@@ -1,0 +1,563 @@
+%\documentclass[12pt,handout]{beamer}
+\documentclass[presentation]{beamer}
+\usepackage{oop-slides}
+\setbeamertemplate{bibliography item}[text]
+\title[OOP01 -- Intro]{01 \\ Introduzione al Laboratorio \& Tool di Base}
+
+\begin{document}
+
+\frame[label=coverpage]{\titlepage}
+
+%====================
+%Outline
+%====================
+\fr{Outline}{
+  \bl{Goal della lezione}{
+    \iz{ 
+			\item Overview su Java (linguaggio + piattaforma)
+			\item Compilazione ed esecuzione di programmi Java a riga di comando
+      \item Ingegnerizzazione e test di semplici classi
+    }
+  }
+}
+\begin{frame}<beamer>
+ 	\frametitle{Outline}
+ 	\tableofcontents[]
+\end{frame}
+  
+\section{Java Overview}
+
+%====================
+%Java nel mondo del lavoro
+%====================
+\fr{Java nel mondo ``reale'' 1/2}{
+	\fg{height=0.70\textheight}{img/javaTrend.png}
+}
+
+\fr{Java nel mondo ``reale'' 2/2}{
+	\fg{height=0.70\textheight}{img/javaTrend_highlight.png}
+}
+		
+%====================
+%Architettura a Runtime
+%====================
+\fr{Architettura a Runtime}{
+	\fg{height=0.80\textheight}{img/arch_runtime.png}
+}
+
+
+
+
+%====================
+%JDK
+%====================
+
+\fr{Java Development Kit (JDK)}{
+	
+	\bl{Esistono diverse distribuzioni di Java}{
+		\begin{description}
+			\item[JRE] -- Java Runtime Environment: mera esecuzione di programmi
+			\item[JDK] -- JRE + tool per lo sviluppo di programmi
+			\item[J2EE] -- Java Enterprise Edition: JDK + set esteso di librerie
+		\end{description}
+	}
+	
+	\bl{Noi faremo riferimento al JDK \cite{jdk-download-page}}{Include il necessario per eseguire applicazioni	Java (JRE), i tool (e librerie) per sviluppare applicazioni e la relativa  documentazione}
+	
+	\bl{I Principali Tool}{
+		\begin{description}
+			\item[javac] -- Compilatore Java
+			\item[java] -- Java virtual machine, per eseguire applicazioni Java
+			\item[javadoc] -- Per creare automaticamente documentazione in HTML
+			\item[jar] -- Per compressione di file (bytecode e risorse) in un archivio eseguibile
+		\end{description}
+	}
+}
+
+\section{Richiamo: Interprete Comandi}
+\fr{Interprete Comandi}{
+	\bl{}{
+		Programma che permette di interagire con il S.O. mediante comandi impartiti in modalità testuale (non grafica), via linea di comando
+	}
+	\bl{Scripting}{
+		L'interprete comandi può avere un linguaggio associato con cui è possibile scrivere script
+%		\iz{
+%			\item Utili (principalmente) per automatizzare task di diversa natura
+%		}
+	}
+	\bl{Vari tipi di comandi}{
+		\iz{
+			\item Navigazione file system
+			\item Interazione con il file system
+			\item Esecuzione di programmi da riga di comando
+			\item ...
+		}
+	}
+	\bl{}{
+		Lo vedrete in maniera esaustiva nel corso di Sistemi Operativi...
+	}
+}
+
+\fr{Sistemi Windows}{
+	\bl{}{
+		L'interprete comandi è rappresentato dal programma \texttt{cmd.exe} in \texttt{C:$\backslash$Windows$\backslash$System32$\backslash$cmd.exe}
+		\iz{
+			\item Da non confondere con il vecchio inteprete (MS)DOS eseguito su macchina virtuale IA16..
+			\item Eredita in realtà sintassi e funzionalità della maggior parte dei comandi del vecchio MSDOS
+		}
+	}
+	
+	\fg{height=0.4\textheight}{img/prompt.png}
+}
+
+\fr{Sistemi Unix}{
+	\bl{Nei sistemi UNIX esistono vari tipi di interpreti, chiamati shell}{
+		Alcuni esempi
+		\iz{
+			\item Bourne shell (sh)
+				\iz{ \item Prima shell sviluppata per UNIX (1977)}
+			\item C-Shell (csh)
+				\iz{ \item Sviluppata da Bill Joy per BSD}
+			\item Bourne Again Shell (bash)
+				\iz{ \item Parte del progetto GNU, è un super set di Bourne shell}
+			\item ...
+		}
+	}
+	\bl{Per una panoramica completa delle differenze}{
+		\textcolor{blue}{\url{http://www.faqs.org/faqs/unix-faq/shell/shell-differences/}}
+	}
+}
+\section{Lab Startup}
+
+\fr{Preparazione Ambiente di Lavoro 1/3}{
+	\iz{
+		\item Accendere il PC
+		\item Loggarsi sul sito del corso
+		\iz{
+			\item \textcolor{blue}{\url{https://elearning-cds.unibo.it/course/view.php?id=3042}}
+		}
+		\item Scaricare dalla sezione dedicata a questa settimana il file \texttt{oop1516-lab01.zip} contenente il materiale dell'esercitazione odierna
+		\item Spostare il file scaricato sul Desktop
+		\item Decomprimere il file usando 7zip (o un programma analogo) sul Desktop
+	}
+}
+
+
+\fr{Preparazione Ambiente di Lavoro 2/3}{
+	\iz{
+		\item Aprire il prompt dei comandi 
+	}	
+	\fg{height=0.8\textheight}{img/open_prompt.png}
+}
+
+\fr{Preparazione Ambiente di Lavoro 3/3}{
+	\iz{
+		\item Posizionarsi all'interno della cartella scompattata con l'ausilio del comando \texttt{cd} (change directory)
+		\en{
+			\item \texttt{cd Desktop} e premere invio, dopodiché
+			\item \texttt{cd oop1516-lab01} e premere invio
+		}
+	}
+	\fg{height=0.4\textheight}{img/cd_prompt.png}
+}
+
+%====================
+%Compilazione \& Esecuzione da Riga di Comando
+%====================
+\section{Compilazione \& Esecuzione da Riga di Comando}
+
+
+\fr{Compilazione \& Esecuzione (base) 1/2}{
+	\iz{
+		\item	Aprire il programma notepad++
+			\iz{
+					\item Nostro IDE per questa prima lezione
+			}
+		\item Da notepad++ aprire la classe \texttt{HelloWorld.java}
+		\item Studiare brevemente il comportamento della classe prima di procedere con i passi successivi
+	}	
+	\fg{height=0.6\textheight}{img/notepad.png}
+}
+
+
+\fr{Compilazione \& Esecuzione (base) 2/2}{
+	
+	%\code{code/HelloWorld.java}
+	
+	\bl{}{
+		Compilazione di una classe (comando \textcolor{blue}{javac})
+		\iz{
+			\item \alert{\cil{javac NomeSorgente.java}} 
+			\item \alert{\cil{javac *.java}} compila tutti i sorgenti nella directory corrente
+			\item Compiliamo \cil{HelloWorld.java} da riga di comando
+				\iz {\item \cil{javac HelloWorld.java}}
+		}
+	}
+	\bl{}{
+		Esecuzione di un programma Java (comando \textcolor{blue}{java})
+		\iz{
+			\item	\alert{\cil{java NomeSorgente}}
+			\item Eseguiamo \cil{HelloWorld} da riga di comando
+				\iz {\item \cil{java HelloWorld}}
+		}
+	}
+}
+
+
+\fr{Warm-up: Prime Modifiche}{
+	\bl{Modificare la classe HelloWorld seguendo i passi riportati qui sotto}{
+		\en{
+			\item Sostituire la stampa a video con un messaggio a piacere
+			\item Ricompilare ed eseguire nuovamente il programma per verificarne il corretto comportamento
+			\item Aggiungere alla fine del messaggio modificato il risultato della computazione 50*50
+			\item Ricompilare ed eseguire nuovamente il programma per verificarne il corretto comportamento
+		}
+	}
+	\bl{}{
+		In caso di problemi/dubbi fare riferimento alle slide del modulo \texttt{02-Oggetti e classi}
+	}
+}
+
+\section{Sviluppo \& Test di Semplici Classi}
+
+\subsection{Esercizi da Svolgere in Autonomia}
+
+\fr{Modalità di Lavoro}{
+	\bl{}{
+		\en{
+			\item Leggere la consegna
+			\item Risolvere l'esercizio autonomamente, cercando di risolvere da soli eventuali piccoli problemi che possono verificarsi durante lo svolgimento degli esercizi
+			\item Contattare i docenti nel caso vi troviate a lungo bloccati nella risoluzione di uno specifico esercizio
+			\item A esercizio ultimato contattare i docenti per un rapido controllo della soluzione realizzata
+			\item Proseguire con l'esercizio seguente
+		}
+	}
+}
+
+
+\fr{Test Scope delle Variabili}{
+	%\sizedcode{\scriptsize}{code/TestScopes.java}
+	\bl{}{
+		\en{ 
+			\item Analizzare il sorgente \cil{TestScopes.java}
+			\item Prima di compilare e lanciare il programma riflettere sul comportamento dei metodi della classe e provare a prevedere l'output di ogni singola stampa
+			\item Compilare ed eseguire il programma. L'output ottenuto corrisponde a quanto preventivato?
+			\item In caso di risultato diverso da quanto aspettato (in questo caso e in tutti i successivi)
+				\en{
+					\item Provare a ragionare e a trovare in autonomia una spiegazione 
+					\item Se non è possibile risolvere i dubbi in maniera autonoma, contattare il docente
+				}
+		}
+	}
+}
+
+	
+\fr{Costruzione di Semplici Classi 1/6}{
+	\bl{}{
+		Completare la classe \cil{Student} caratterizzata da
+		\iz{
+			\item Campi
+			\iz {
+				\item \cil{String name}
+				\item \cil{String surname}
+				\item \cil{int id} (rappresenta la matricola)
+				\item \cil{int matriculationYear}
+			}
+			\item Metodi da implementare
+			\iz {
+				\item \cil{build} (inizializza \cil{Student} con i parametri forniti in input)
+				\iz {
+					\item Input: \cil{String name, String surname, int id, int matriculationYear}
+				}
+				\item \cil{printStudentInfo} (stampa in standard output le informazioni relative allo studente)
+			}
+		}
+	}
+	\bl{}{
+		Infine, testare la classe completando il \cil{main} secondo le linee guida riportate nei commenti del sorgente
+	}
+}
+
+\fr{Costruzione di Semplici Classi 2/6}{
+	\bl{}{
+		Completare la classe \cil{ComplexNum} caratterizzata da
+		\iz{
+			\item Campi
+			\iz {
+				\item \cil{double re} (parte reale), \cil{double im} (parte immaginaria)
+			}
+			\item Metodi (oltre al main)
+			\iz {
+				\item \cil{build} (inizializza \cil{ComplexNum} con i paramtri forniti in input)
+				\iz {
+					\item Input: \cil{double re, double im}
+				}
+				\item equal (determina se il numero complesso è = a quello fornito in input)
+				\iz {
+					\item Input: \cil{ComplexNum num}
+					\item Returns: \cil{boolean} 
+				}
+				\item add (aggiunge il \cil{ComplexNum} fornito in input)
+				\iz {
+					\item Input: \cil{ComplexNum num}
+				}
+				\item \cil{toStringRep} (restituisce una rappresentazione testuale del numero)
+				\iz {
+					\item Returns: \cil{String}
+				}
+			}
+		}
+	}
+	\bl{}{
+		Completare e testare la classe seguendo le linee guida riportate nei commenti del sorgente
+	}
+}
+
+\fr{Costruzione di Semplici Classi 3/6}{
+	\bl{}{
+		Implementare da zero la classe \texttt{Calculator} che realizzi il comportamento di una semplice calcolatrice in grado di lavorare su numeri \cil{double}
+	}
+	\bl{Caratteristiche della classe \cil{Calculator}:}{
+		\iz{
+			\item Campi: - (nessuno)
+			\item Metodi (oltre al \texttt{main})
+			\iz{
+				\item \cil{sum/sub/mul/div}
+					\iz{
+						\item Input: \cil{double n1, double n2}
+						\item Returns: \cil{double} (risultato dell'operazione)
+					}
+			}
+		}
+	}
+	\bl{Testing della classe}{
+		Infine, testare la classe completando il \cil{main} secondo le linee guida riportate nella slide che segue
+	}
+}
+
+\fr{Costruzione di Semplici Classi 3/6}{
+	\bl{Test della classe \texttt{Calculator}}{
+		\sizedcode{\tiny}{code/testCalculator.txt}
+	}
+}
+
+
+\fr{Costruzione di Semplici Classi 4/6}{
+	\bl{Modificare la classe \texttt{Calculator} costruita in precedenza}{
+		\iz{
+			\item Aggiungere due campi
+				\iz{
+					\item \cil{int nOpDone} (n. di operazioni compiute dalla calcolatrice)
+					\item \cil{double lastRes} (ultimo risultato computato)
+				}
+			\item Inizializzare i campi a zero nel metodo \cil{build}
+				\iz{
+					\item Il metodo dovrà avere zero parametri di input
+				}
+			\item Modificare i metodi \cil{add/sub/mul/div} tenendo conto dei due nuovi campi aggiunti alla classe 
+		}
+	}
+	\bl{}{
+		Verificare il corretto funzionamento delle modifiche utilizzando la calcolatrice come in precedenza e stampando di tanto in tanto in standard output il valore dei campi \cil{nOpDone} e \cil{lastRes}
+	}
+}
+
+\fr{Costruzione di Semplici Classi 5/6}{
+	\bl{}{
+		Implementare le classi \cil{UseComplex} e \cil{UseCalculator} composte dal solo metodo \cil{main} in cui testare il corretto comportamento di \cil{ComplexNum} e \cil{Calculator} realizzate in precedenza
+	}
+			
+	\bl{Esempi di possibili test}{
+		\iz{
+			\item Costruire e calcolare la somma di più numeri complessi
+			\item Verificare il corretto comportamento del metodo \cil{equal} della classe \cil{ComplexNum}
+			\item Verificare il corretto funzionamento dei vari metodi forniti dalla classe \cil{Calculator} per diversi valori di input
+			\item Provare ad eseguire il metodo \cil{div} fornendo come valore per il secondo parametro 0. Cosa succede?
+			\item ...
+		}
+	}
+}
+
+\fr{Costruzione di Semplici Classi 6/6 (segue)}{
+	\bl{}{
+		Implementare una classe Java che modelli il concetto di treno
+	}
+	\bl{Caratteristiche della classe \cil{Train}:}{ 
+		\iz{
+			\item Campi
+			\iz{
+				\item \cil{int nTotSeats} (n. posti totale = nFCSeats+nSCSeats)
+				\item \cil{int nFCSeats/nSCSeats} n. posti in prima/seconda (FC/SC) classe
+				\item \cil{int nFCReservedSeats/nSCReservedSeats} n. di posti prenotati in prima/seconda classe
+			}
+			\item Metodi (prevedere \cil{build} per l'inizializzazione dei campi)
+			\iz{
+				\item \cil{reserveFCSeats/reserveSCSeats}
+				\iz{
+					\item Input: \cil{int nSeats}
+				}
+				\item \cil{getTotOccupancyRatio}
+				\iz{
+					\item Returns: \cil{double} (percentuale globale di posti occupati)
+				}
+				\item \cil{getFCOccupancyRatio/getSCOccupancyRatio}
+				\iz{
+					\item Returns: \cil{double} (percentuale posti occupati in FC/SC)
+				}
+				\item \cil{deleteAllReservations} (azzera tutti i posti prenotati)
+			}
+		}
+	}
+}
+
+\fr{Costruzioni di Semplici Classi 6/6 (seguito)}{
+	\bl{Testing}{
+		\iz{
+			\item Da realizzare all'interno della classe \cil{UseTrain}, fornita tra il materiale di questa prima esercitazione 
+			\item Seguire le linee guida fornite nei commenti del \cil{main}
+			\item Utilizzare sempre valori numerici consistenti con i vincoli scelti (vedere commenti)
+		}
+	}
+	\bl{Nota}{
+		Gestire la conversione da \cil{int a double} come siete abituati a fare in C per quanto riguarda il calcolo delle percentuali di posti occupati
+	}		
+}
+\subsection{Approfondimento: Passaggio dei Parametri}
+
+
+\fr{Richiamo dalla Teoria}{
+	\bl{Passaggio dei Parametri}{
+		Java gestisce in maniera diversa dal C il passaggio dei parametri
+		\iz{
+			\item In particolare
+			\iz{
+				\item Tutti i tipi di dato primitivi (\cil{int, long, double}, etc.) sono passati per valore
+				\item Gli oggetti invece sono \textcolor{blue}{\textit{sempre}} passati per riferimento
+			}
+			\item E' importante tenerne conto di questo aspetto durante la scrittura di programmi Java per non incorrere in errori inaspettati
+		}
+	}
+}
+
+\fr{Test Passaggio Per Valore}{
+	\sizedcode{\scriptsize}{code/CallByValueExample.java}
+	\bl{}{
+		\en{
+			\item Analizzare la classe \cil{CallByValueExample}
+			\item Cercare di prevedere l'output
+			\item Compilare ed eseguire il programma. L'output ottenuto corrisponde a quanto preventivato?
+			\item In caso di risultato diverso da quanto aspettato contattare il docente
+		}
+	}
+}
+
+
+
+\fr{Point3D}{
+	\bl{}{
+		Nel prossimo esempio si utilizzerà la classe \cil{Point3D} già vista a lezione
+		\iz{
+			\item Quindi, prima di procedere, compilarla con il comando
+			\iz{
+				\item \texttt{javac Point3D.java}
+			}
+		}
+	}
+}
+
+\fr{Test Passaggio Per Riferimento 1/2}{
+	\sizedcode{\tiny}{code/CallByReferenceExample1.java}
+	\bl{}{
+		\en{
+			\item Analizzare la classe \cil{CallByReferenceExample1}
+			\item Cercare di prevedere l'output
+			\item Compilare ed eseguire il programma. L'output ottenuto corrisponde a quanto preventivato?
+			\item In caso di risultato diverso da quanto aspettato contattare il docente
+		}
+	}
+}
+
+\fr{Test Passaggio Per Riferimento 2/2}{
+	\sizedcode{\tiny}{code/CallByReferenceExample2.java}
+	\bl{}{
+		\en{
+			\item Analizzare la classe \cil{CallByReferenceExample2}, cercando di prevederne l'output
+			\item Compilare ed eseguire il programma 
+			\item L'output ottenuto presenta ``side-effect''? Qual è la spiegazione per il risultato ottenuto?
+			\item Per chiarimenti e approfondimenti contattare il docente
+		}
+	}
+}
+
+\section{Esercizi Aggiuntivi}
+
+\fr{Una Calcolatrice per Numeri Complessi}{
+	
+	\bl{}{
+		Completare e testare una classe Java che realizzi il comportamento di una semplice calcolatrice in grado di lavorare su numeri complessi rappresentati dalla classe \cil{ComplexNum}
+	}
+	\bl{Caratteristiche della classe \cil{ComplexNumCalculator}:}{
+		\iz{
+			\item Campi \cil{int nOpDone, ComplexNum lastRes}
+			\item Metodi (oltre ai soliti \cil{main} e \cil{build})
+			\iz{
+				\item \cil{sum/sub/mul}
+				\iz{
+					\item Input: \cil{ComplexNum n1, ComplexNum n2}
+					\item Returns: \cil{ComplexNum} (risultato dell'operazione)
+				}
+			}
+		}
+	}
+}
+
+\fr{Un Riconoscitore della Sequenza Ripetuta 1234}{
+	\bl{Classe \texttt{Recognizer}}{
+		Completare e testare una classe Java che sia in grado di riconoscere la sequenza 1234 ripetuta (potenzialmente all'infinito)
+	}
+	\bl{Traccia Risolutiva}{
+		\iz{
+			\item Implementare un metodo diverso per gestire il riconoscimento di ciascun carattere (\texttt{check1}, \texttt{check2}, \texttt{check3},..)
+			\item Tenere traccia all'interno della classe delle informazioni di stato ritenute necessarie (p.e. prossimo carattere da dover essere riconosciuto)
+			\item Implementare il metodo \cil{reset} che consente di resettare lo stato corrente del riconoscitore 
+		}
+	}
+}
+	
+
+\begin{frame}[allowframebreaks]
+ \frametitle{Bibliography}
+	\bibliographystyle{plain}
+	\small
+ \bibliography{biblio}
+\end{frame}
+
+
+\end{document}
+
+
+%====================
+%Java come Linguaggio Object-Oriented
+%====================
+\fr{Java come Linguaggio Object-Oriented}{
+	\bl{Un po' di storia}{Java nasce nei laboratori della Sun microsystem per l'embedded networking computing agli inizi degli anni '90
+		\iz{
+			\item Handheld home-entertainment controller: primo \textit{testbed} per il linguaggio, pensato per la TV via cavo
+				\iz{\item Abbandonato perché troppo complesso per quello specifico contesto}
+			\item Poi applicato - inizialmente - in ambito web (Netscape browser, 1995)
+			\item Oggi uno dei linguaggi più usati al mondo
+			\item Per maggiori dettagli sulla storia del linguaggio \cite{java-history-wiki,java-early}
+		}
+	}
+	
+	\bl{(Almost) Everything is an Object}{
+		\iz{
+			\item Tranne i tipi primitivi base (\cil{int}, \cil{float}, ...)...
+			\item .. esistono solo \alert{classi} (a livello statico) e \alert{oggetti} (a runtime)
+%				\iz{
+%					\item Anche il \textit{main} è definito dentro a una classe!
+%				}
+		}
+	}
+}
+

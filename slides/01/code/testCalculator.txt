@@ -1,0 +1,8 @@
+/*
+     * Testare la classe come segue:
+     * 
+     * 1) Effettuare la somma 1+2  (metodo add);
+     * 2) Effettuare la sottrazione -1 - (+2) (metodo sub) 
+     * 3) Effettuare la moltiplicazione 6*3 (metodo mul);
+     * 4) Effettuare la divisione 8 / 4 (medodo div)
+ */
