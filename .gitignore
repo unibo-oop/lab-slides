@@ -1,4 +1,7 @@
 *.pdf
+!**/img/*.pdf
+!**/imgs/*.pdf
+.metadata
 *.aux
 *.bbl
 *.blg
