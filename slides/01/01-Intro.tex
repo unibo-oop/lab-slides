@@ -2,7 +2,7 @@
 \documentclass[presentation]{beamer}
 \usepackage{oop-slides}
 \setbeamertemplate{bibliography item}[text]
-\title[OOP01 -- Intro]{01 \\ Introduzione al Laboratorio \& Tool di Base}
+\title[OOP01 -- Intro]{01 \\ Introduzione al Laboratorio e Tool di Base}
 
 \begin{document}
 
@@ -56,8 +56,8 @@
 	
 	\bl{Esistono diverse distribuzioni di Java}{
 		\begin{description}
-			\item[JRE] -- Java Runtime Environment: mera esecuzione di programmi
-			\item[JDK] -- JRE + tool per lo sviluppo di programmi
+			\item[JRE] -- Java Runtime Environment: esecuzione di programmi
+			\item[JDK] -- JRE + tool per lo sviluppo di programmi (e.g. compilatore)
 			\item[J2EE] -- Java Enterprise Edition: JDK + set esteso di librerie
 		\end{description}
 	}
@@ -69,7 +69,7 @@
 			\item[javac] -- Compilatore Java
 			\item[java] -- Java virtual machine, per eseguire applicazioni Java
 			\item[javadoc] -- Per creare automaticamente documentazione in HTML
-			\item[jar] -- Per compressione di file (bytecode e risorse) in un archivio eseguibile
+			\item[jar] -- Creazione di archivi compressi (anche eseguibili) contenenti bytecode e risorse
 		\end{description}
 	}
 }
@@ -98,6 +98,24 @@
 	}
 }
 
+\fr{Sistemi *nix (Linux, MacOS X, FreeBSD, Minix...)}{
+        \bl{Nei sistemi UNIX esistono vari tipi di interpreti, chiamati shell}{
+                Alcuni esempi
+                \iz{
+                        \item Bourne shell (sh)
+                                \iz{ \item Prima shell sviluppata per UNIX (1977)}
+                        \item C-Shell (csh)
+                                \iz{ \item Sviluppata da Bill Joy per BSD}
+                        \item Bourne Again Shell (bash)
+                                \iz{ \item Parte del progetto GNU, è un super set di Bourne shell}
+                        \item ...
+                }
+        }
+        \bl{Per una panoramica completa delle differenze}{
+                \textcolor{blue}{\url{http://www.faqs.org/faqs/unix-faq/shell/shell-differences/}}
+        }
+}
+
 \fr{Sistemi Windows}{
 	\bl{}{
 		L'interprete comandi è rappresentato dal programma \texttt{cmd.exe} in \texttt{C:$\backslash$Windows$\backslash$System32$\backslash$cmd.exe}
@@ -110,23 +128,6 @@
 	\fg{height=0.4\textheight}{img/prompt.png}
 }
 
-\fr{Sistemi Unix}{
-	\bl{Nei sistemi UNIX esistono vari tipi di interpreti, chiamati shell}{
-		Alcuni esempi
-		\iz{
-			\item Bourne shell (sh)
-				\iz{ \item Prima shell sviluppata per UNIX (1977)}
-			\item C-Shell (csh)
-				\iz{ \item Sviluppata da Bill Joy per BSD}
-			\item Bourne Again Shell (bash)
-				\iz{ \item Parte del progetto GNU, è un super set di Bourne shell}
-			\item ...
-		}
-	}
-	\bl{Per una panoramica completa delle differenze}{
-		\textcolor{blue}{\url{http://www.faqs.org/faqs/unix-faq/shell/shell-differences/}}
-	}
-}
 \section{Lab Startup}
 
 \fr{Preparazione Ambiente di Lavoro 1/3}{
@@ -162,12 +163,12 @@
 }
 
 %====================
-%Compilazione \& Esecuzione da Riga di Comando
+%Compilazione ed Esecuzione da Riga di Comando
 %====================
-\section{Compilazione \& Esecuzione da Riga di Comando}
+\section{Compilazione ed Esecuzione da Riga di Comando}
 
 
-\fr{Compilazione \& Esecuzione (base) 1/2}{
+\fr{Compilazione ed Esecuzione (base) 1/2}{
 	\iz{
 		\item	Aprire il programma notepad++
 			\iz{
@@ -180,7 +181,7 @@
 }
 
 
-\fr{Compilazione \& Esecuzione (base) 2/2}{
+\fr{Compilazione ed Esecuzione (base) 2/2}{
 	
 	%\code{code/HelloWorld.java}
 	
@@ -218,7 +219,7 @@
 	}
 }
 
-\section{Sviluppo \& Test di Semplici Classi}
+\section{Sviluppo e Test di Semplici Classi}
 
 \subsection{Esercizi da Svolgere in Autonomia}
 
