@@ -78,17 +78,17 @@
 \begin{frame}{Elementi base del file system}
   \begin{itemize}
     \item I sistemi operativi odierni consentono di memorizzare permanentemente le informazioni su supporti di memorizzazione di massa (dischi magnetici, dispositivi a stato solido), unità ottiche (CD, DVD, Blu-Ray), memory stick, ecc...
-    \item Le informazioni su questi supporti sono organizzate in files e cartelle:
+    \item Le informazioni su questi supporti sono organizzate in file e cartelle:
       \begin{itemize}
-        \item i files contengono le informazioni;
-        \item le cartelle sono contenitori, all'interno contengono i files ed altre cartelle.
+        \item i file contengono le informazioni
+        \item le cartelle sono contenitori, all'interno contengono i file ed altre cartelle
       \end{itemize}
-    \item La cartella più esterna, che contiene tutte le altre, è detta root. Essa è il livello gerarchico più alto nel file system.
+    \item La cartella più esterna, che contiene tutte le altre, è detta root. Essa rappresenta il livello gerarchico più alto del file system
       \begin{itemize}
-        \item In Windows, ciascun file system ha come root una lettera di unità (e.g. \texttt{C:}, \texttt{D:}).
+        \item In Windows, ciascun file system ha come root una lettera di unità (e.g. \texttt{C:}, \texttt{D:})
         \item In *nix (Linux, MacOS, BSD, Solaris...), vi è una unica radice, ossia \texttt{/}
       \end{itemize}
-    \item La stringa che descrive un intero percorso dalla root fino ad un elemento del file system prende il nome di directory (e.g. \texttt{C:\textbackslash{}Windows\textbackslash{}win32.dll}, \texttt{/home/user/frameworkFS.jar})
+    \item La stringa che descrive un intero percorso dalla root fino ad un elemento del file system prende il nome di \emph{percorso} (e.g. \texttt{C:\textbackslash{}Windows\textbackslash{}win32.dll}, \texttt{/home/user/frameworkFS.jar})
   \end{itemize}
 \end{frame}
 
@@ -172,7 +172,7 @@
   \bl{}{
     L'interprete comandi è rappresentato dal programma \texttt{cmd.exe} in \texttt{C:$\backslash$Windows$\backslash$System32$\backslash$cmd.exe}
     \iz{
-      \item Da non confondere con il vecchio inteprete (MS)DOS eseguito su macchina virtuale IA16..
+      \item Da non confondere con il vecchio inteprete (MS)DOS eseguito su macchina virtuale IA16...
       \item Eredita in realtà sintassi e funzionalità della maggior parte dei comandi del vecchio MSDOS
     }
   }
@@ -624,7 +624,7 @@
 	\bl{Traccia Risolutiva}{
 		\iz{
 			\item Implementare un metodo diverso per gestire il riconoscimento di ciascun carattere (\texttt{check1}, \texttt{check2}, \texttt{check3},..)
-			\item Tenere traccia all'interno della classe delle informazioni di stato ritenute necessarie (p.e. prossimo carattere da dover essere riconosciuto)
+			\item Tenere traccia all'interno della classe delle informazioni di stato ritenute necessarie (p.e. prossimo carattere da riconoscere)
 			\item Implementare il metodo \cil{reset} che consente di resettare lo stato corrente del riconoscitore 
 		}
 	}
