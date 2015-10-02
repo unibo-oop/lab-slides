@@ -1,44 +1,53 @@
 public class Recognizer {
 
-  int nextNum;
+    int nextNum;
+    
+    void build(){
+        nextNum = 1;
+    }
   
-  void build(){
-    nextNum = 1;
-  }
+    boolean check1(int n){
+        nextNum = 2;
+        return n == 1;
+    }
   
-  boolean check1(int n){
-    nextNum = 2;
-    return n==1;
-  }
+    boolean check2(int n){
+        nextNum = 3;
+        return n == 2;
+    }
   
-  boolean check2(int n){
-    nextNum = 3;
-    return n==2;
-  }
+    boolean check3(int n){
+        nextNum = 4;
+        return n == 3;
+    }
   
-  boolean check3(int n){
-    nextNum = 4;
-    return n==3;
-  }
-  
-  boolean check4(int n){
-    nextNum = 1;
-    return n==4;
-  }
+    boolean check4(int n){
+        nextNum = 1;
+        return n == 4;
+    }
 
-  void reset(){
-    nextNum=1;
-  }
+    void reset(){
+        nextNum = 1;
+    }
+
+    int nextExpectedInt() {
+        return nextNum;
+    }
   
-  public static void main(String args[]){
+    public static void main(String args[]){
 
     // 1) Creare un oggetto della classe Recognizer
     Recognizer recognizer = new Recognizer();
+    recognizer.build();
 
     // 2) Invocare i metodi check1, check2, ... passando in input il valore corretto (1,2,..)
+    System.out.println("Next expected int is: " + recognizer.nextExpectedInt());
     System.out.println("Now the result of the check is: " + recognizer.check1(1));
+    System.out.println("Next expected int is: " + recognizer.nextExpectedInt());    
     System.out.println("Now the result of the check is: " + recognizer.check2(2));
+    System.out.println("Next expected int is: " + recognizer.nextExpectedInt());
     System.out.println("Now the result of the check is: " + recognizer.check3(3));
+    System.out.println("Next expected int is: " + recognizer.nextExpectedInt());
     System.out.println("Now the result of the check is: " + recognizer.check4(4)+ "\n");
 
     /*
