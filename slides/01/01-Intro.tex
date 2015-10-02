@@ -74,28 +74,80 @@
 	}
 }
 
+\section{Richiamo: il file system}
+\begin{frame}{Elementi base del file system}
+  \begin{itemize}
+    \item I sistemi operativi odierni consentono di memorizzare permanentemente le informazioni su supporti di memorizzazione di massa (dischi magnetici, dispositivi a stato solido), unità ottiche (CD, DVD, Blu-Ray), memory stick, ecc...
+    \item Le informazioni su questi supporti sono organizzate in files e cartelle:
+      \begin{itemize}
+        \item i files contengono le informazioni;
+        \item le cartelle sono contenitori, all'interno contengono i files ed altre cartelle.
+      \end{itemize}
+    \item La cartella più esterna, che contiene tutte le altre, è detta root. Essa è il livello gerarchico più alto nel file system.
+      \begin{itemize}
+        \item In Windows, ciascun file system ha come root una lettera di unità (e.g. \texttt{C:}, \texttt{D:}).
+        \item In *nix (Linux, MacOS, BSD, Solaris...), vi è una unica radice, ossia \texttt{/}
+      \end{itemize}
+    \item La stringa che descrive un intero percorso dalla root fino ad un elemento del file system prende il nome di directory (e.g. \texttt{C:\textbackslash{}Windows\textbackslash{}win32.dll}, \texttt{/home/user/frameworkFS.jar})
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Manipolare il file system}
+  L'utente può osservare e manipolare il file system:
+  \begin{itemize}
+    \item sapere quali files e cartelle contiene una cartella
+    \item creare nuovi files e cartelle
+    \item spostare file e cartelle dentro altre cartelle
+    \item rinominare files e cartelle
+    \item eliminare files e cartelle
+  \end{itemize}
+  Il software che consente di osservare e manipolare il file system prende il nome di \alert{file manager}.
+  \begin{itemize}
+    \item Su Windows, esso è ``Esplora risorse'' (\texttt{explorer.exe})
+    \item Su MacOS, il principale è ``Finder''
+    \item Su Linux (e Android) ne esistono diversi (Nautilus, Dolphin, Thunar, Astro...)
+  \end{itemize}
+\end{frame}
+
+
+
+
 \section{Richiamo: Interprete Comandi}
 \fr{Interprete Comandi}{
-	\bl{}{
-		Programma che permette di interagire con il S.O. mediante comandi impartiti in modalità testuale (non grafica), via linea di comando
-	}
-	\bl{Scripting}{
-		L'interprete comandi può avere un linguaggio associato con cui è possibile scrivere script
-%		\iz{
-%			\item Utili (principalmente) per automatizzare task di diversa natura
-%		}
-	}
-	\bl{Vari tipi di comandi}{
-		\iz{
-			\item Navigazione file system
-			\item Interazione con il file system
-			\item Esecuzione di programmi da riga di comando
-			\item ...
-		}
-	}
-	\bl{}{
-		Lo vedrete in maniera esaustiva nel corso di Sistemi Operativi...
-	}
+  \bl{}{
+    Programma che permette di interagire con il S.O. mediante comandi impartiti in modalità testuale (non grafica), via linea di comando
+  }
+% 	\bl{Scripting}{
+% 		L'interprete comandi può avere un linguaggio associato con cui è possibile scrivere script
+% %		\iz{
+% %			\item Utili (principalmente) per automatizzare task di diversa natura
+% %		}
+% 	}
+% 	\bl{Vari tipi di comandi}{
+% 		\iz{
+% 			\item Navigazione file system
+% 			\item Interazione con il file system
+% 			\item Esecuzione di programmi da riga di comando
+% 			\item ...
+% 		}
+% 	}
+  \begin{itemize}
+    \item Nell'antichità (in termini informatici) le interfacce grafiche erano sostanzialmente inesistenti, e l'interazione con i calcolatori avveniva di norma tramite interfaccia testuale
+    \item Tutt'oggi, le interfacce testuali sono utilizzate:
+    \begin{itemize}
+      \item per automatizzare le operazioni
+      \item per velocizzare le operazioni (scrivere un comando è spesso molto più veloce di andare a fare click col mouse in giro per lo schermo)
+      \item per fare operazioni complesse con pochi semplici comandi
+      \item non tutti i software sono dotati di interfaccia grafica
+      \item alcune opzioni di configurazione del sistema operativo restano accessibili solo via linea di comando
+      \begin{itemize}
+        \item (anche su Windows: ad esempio i comandi per associare le estensioni ad un eseguibile)
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+  \bl{}{
+    Lo vedrete in maniera esaustiva nel corso di Sistemi Operativi...
+  }
 }
 
 \fr{Sistemi *nix (Linux, MacOS X, FreeBSD, Minix...)}{
@@ -117,16 +169,65 @@
 }
 
 \fr{Sistemi Windows}{
-	\bl{}{
-		L'interprete comandi è rappresentato dal programma \texttt{cmd.exe} in \texttt{C:$\backslash$Windows$\backslash$System32$\backslash$cmd.exe}
-		\iz{
-			\item Da non confondere con il vecchio inteprete (MS)DOS eseguito su macchina virtuale IA16..
-			\item Eredita in realtà sintassi e funzionalità della maggior parte dei comandi del vecchio MSDOS
-		}
-	}
-	
-	\fg{height=0.4\textheight}{img/prompt.png}
+  \bl{}{
+    L'interprete comandi è rappresentato dal programma \texttt{cmd.exe} in \texttt{C:$\backslash$Windows$\backslash$System32$\backslash$cmd.exe}
+    \iz{
+      \item Da non confondere con il vecchio inteprete (MS)DOS eseguito su macchina virtuale IA16..
+      \item Eredita in realtà sintassi e funzionalità della maggior parte dei comandi del vecchio MSDOS
+    }
+  }
+  \fg{height=0.4\textheight}{img/prompt.png}
 }
+
+\begin{frame}[fragile]{Aprire un terminale in laboratorio}
+  \begin{itemize}
+    \item In laboratorio, troverete il terminale (prompt dei comandi) clickando su Start $\Rightarrow$ Programmi $\Rightarrow$ Accessori $\Rightarrow$ Prompt dei comandi
+    \item Metodo più rapido: Start  $\Rightarrow$ Nella barra di ricerca, digitare \texttt{cmd} $\Rightarrow$ clickare su \texttt{cmd.exe}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{File system e terminale: cheat sheet}
+\label{slide:commands}
+  \begin{center}
+    \begin{tabular}{| l | c | c |}
+      \hline
+      \textbf{Operazione} & \textbf{Comando Unix} & \textbf{Comando Win} \\ \hline
+      \scriptsize{}Visualizzare la directory corrente & \texttt{pwd} & \texttt{echo \%cd\%}  \\ \hline
+      \scriptsize{}Eliminare il file \texttt{f} (non va con le cartelle!) & \texttt{rm f} & \texttt{del f} \\ \hline
+      \scriptsize{}Eliminare la directory \texttt{nd} & \texttt{rm -r nd} & \texttt{rd nd} \\ \hline
+      \scriptsize{}Contenuto della directory corrente & \texttt{ls -alh} & \texttt{dir} \\ \hline
+%       \scriptsize{}Avviare un eseguibile di nome \texttt{pippo} & \texttt{./p} & \texttt{.\textbackslash{}p} \\ \hline
+      \scriptsize{}Cambiare unità disco (passare a D:) & -- & \texttt{D:} \\ \hline
+      \scriptsize{}Passare alla directory \texttt{nd} & \texttt{cd nd} & \texttt{cd nd} \\ \hline
+      \scriptsize{}Passare alla directory di livello superiore & \texttt{cd ..} & \texttt{cd..} \\ \hline
+      \scriptsize{}Spostare (rinominare) un file \texttt{f1} in \texttt{f2} & \texttt{mv f1 f2} & \texttt{move f1 f2} \\ \hline
+      \scriptsize{}Copiare il file \texttt{f} in \texttt{fc} & \texttt{cp f fc} & \texttt{copy f fc} \\ \hline
+      \scriptsize{}Creare la directory \texttt{d} & \texttt{mkdir d} & \texttt{md d} \\ \hline
+    \end{tabular}
+  \end{center}
+  Eseguire delle prove ed esser certi di aver compreso come utilizzare ogni comando. Per \emph{cominciare} l'esame, in particolare, dovrete usare il comando \texttt{cd}: siate certi di aver capito cosa fa!
+\end{frame}
+
+\begin{frame}[fragile]{Uso intelligente del terminale}
+  \begin{block}{Autocompletamento}
+    \scriptsize{}
+    Sia *nix che Windows offrono la possibilità di effettuare autocompletamento, ossia chiedere al sistema di provare a completare un comando. Per farlo si utilizza il tasto ``tab'' (quello con due frecce orientate in maniera opposta, sopra il lucchetto).
+  \end{block}
+  \begin{block}{Memoria dei comandi precendenti}
+    \scriptsize{}
+    Sia *nix che Windows offrono la possibilità di richiamare rapidamente i comandi inviati precedentemente premendo il tasto ``freccia su''. I sistemi *nix supportano anche il lancio di comandi eseguiti in sessioni precedenti (non perde memoria col riavvio del terminale). 
+  \end{block}
+  \begin{block}{Interruzione di un programma}
+    \scriptsize{}
+    È possibile interrompere forzatamente un programma (ad esempio perché inloopato). Per farlo, sia su Windows che in *nix, si prema ctrl+c.
+  \end{block}
+  \begin{block}{Ricerca nella storia dei comandi precedenti}
+    \scriptsize{}
+    Premendo ctrl+r seguito da un testo da cercare, i sistemi *nix supportano la ricerca all'interno dei comandi lanciati recentemente, anche in sessioni utente precedenti. Non disponibile su Windows.
+  \end{block}
+\end{frame}
+
+
 
 \section{Lab Startup}
 
@@ -169,15 +270,19 @@
 
 
 \fr{Compilazione ed Esecuzione (base) 1/2}{
-	\iz{
-		\item	Aprire il programma notepad++
-			\iz{
-					\item Nostro IDE per questa prima lezione
-			}
-		\item Da notepad++ aprire la classe \texttt{HelloWorld.java}
-		\item Studiare brevemente il comportamento della classe prima di procedere con i passi successivi
-	}	
-	\fg{height=0.6\textheight}{img/notepad.png}
+  \iz{
+    \item Aprire il programma JEdit
+    \iz{
+      \item Si tratta di un editor di testo pensato per chi scrive codice
+      \item Supporta vari linguaggi tramite plug-in
+      \item Sviluppato in Java
+      \item Multipiattaforma
+      \item Sarà il nostro editor per questa prima lezione
+      \item In futuro useremo un Integrated Development Environment (IDE)
+    }
+    \item Da JEdit aprire la classe \texttt{HelloWorld.java}
+    \item Studiare brevemente il comportamento della classe prima di procedere con i passi successivi
+  }
 }
 
 
