@@ -20,7 +20,7 @@ public class CalculatorV1 {
     return n1/n2;
   }
   
-  public static void main(String args[]){
+  public static void main(String[] args){
     CalculatorV1 calc = new CalculatorV1();
     System.out.println("1+2=" + calc.add(1, 2));
     System.out.println("-1-(+2)=" + calc.sub(-1, 2));

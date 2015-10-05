@@ -20,7 +20,7 @@ class ComplexNum {
     return re + (im>0? "+" + im : "" + im) + "i";
   }
   
-  public static void main(String args[]){
+  public static void main(String[] args){
     
     // 1-4) creazione di c1,c2,c3,c4
     ComplexNum c1 = new ComplexNum();

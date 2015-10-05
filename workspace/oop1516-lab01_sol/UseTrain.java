@@ -1,6 +1,6 @@
 public class UseTrain {
   
-  public static void main(String args[]){
+  public static void main(String[] args){
     // 1) Creare un oggetto della classe Train
     Train train = new Train();
     train.build(150, 50, 100);

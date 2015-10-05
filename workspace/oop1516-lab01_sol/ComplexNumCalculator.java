@@ -28,7 +28,7 @@ public class ComplexNumCalculator {
     return lastRes = returnValue;
   }
   
-  public static void main(String args[]){
+  public static void main(String[] args){
     ComplexNumCalculator calculator = new ComplexNumCalculator();
     calculator.build();
     ComplexNum n1 = new ComplexNum();

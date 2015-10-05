@@ -1,6 +1,6 @@
 public class UseTrain {
   
-  public static void main(String args[]){
+  public static void main(String[] args){
     /*
      * Premesse per un corretto testing della classe. Per ragioni di coerenza e semplicità:
      * 

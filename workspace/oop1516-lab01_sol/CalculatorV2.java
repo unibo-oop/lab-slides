@@ -32,7 +32,7 @@ public class CalculatorV2 {
     return lastRes;
   }
   
-  public static void main(String args[]){
+  public static void main(String[] args){
     CalculatorV2 calc = new CalculatorV2();
     
     System.out.println("1+2=" + calc.add(1, 2));

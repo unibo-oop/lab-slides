@@ -1,6 +1,6 @@
 public class Recognizer {
 
-  public static void main(String args[]){
+  public static void main(String[] args){
     /*
      * 1) Creare un oggetto della classe Recognizer
      * 2) Realizzare i metodi check1, check2, check3 e check4, che accettano in ingresso un intero, ritornando true soltanto se
