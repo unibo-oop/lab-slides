@@ -17,7 +17,7 @@ class ComplexNum {
   }
   
   String toStringRep(){
-    return re + (im>0 ?  "+" + im : "" + im) + "i";
+    return re + (im>0? "+" + im : "" + im) + "i";
   }
   
   public static void main(String args[]){
@@ -39,7 +39,7 @@ class ComplexNum {
     System.out.println(c1.toStringRep());
     System.out.println(c2.toStringRep());
     System.out.println(c3.toStringRep());
-    System.out.println(c4.toStringRep() + "\n");
+    System.out.println(c4.toStringRep()+"\n");
     
     // 6) Sommare a c1 c2
     c1.add(c2);
@@ -50,7 +50,7 @@ class ComplexNum {
     System.out.println(c1.toStringRep());
     System.out.println(c2.toStringRep());
     System.out.println(c3.toStringRep());
-    System.out.println(c4.toStringRep() + "\n");
+    System.out.println(c4.toStringRep()+"\n");
     
     /*
      * 10) Invocare il metodo equals su c3 per tre volte, passando come input c1,c2,c4. Stampare il risultato
