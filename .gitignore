@@ -13,3 +13,5 @@
 *.vrb
 *.class
 *.zip
+*.directory
+
