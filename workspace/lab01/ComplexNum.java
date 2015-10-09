@@ -37,7 +37,7 @@ class ComplexNum {
      * 4) Creare il numero complesso -2+3i e memorizzarlo nella variabile c4
      * 5) Stampare in standard output la rappresentazione testuale di c1,c2,c3,c4
      *    restituita dal metodo toStringRep()
-     * 6) Sommare a c1 c2
+     * 6) Sommare a c1 c2 (somma di due num complessi (a + ib) + (c + id) = (a + c) + i(b + d)
      * 7) Sommare a c2 c4
      * 8) Stampare nuovamente in standard output la rappresentazione testuale di c1,c2,c3,c4
      * 9) Controllare se l'output corrisponde a quanto preventivato
