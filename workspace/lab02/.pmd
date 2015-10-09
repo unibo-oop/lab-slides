@@ -12,10 +12,6 @@
             <ruleset>Design</ruleset>
         </rule>
         <rule>
-            <name>AbstractNaming</name>
-            <ruleset>Naming</ruleset>
-        </rule>
-        <rule>
             <name>AccessorClassGeneration</name>
             <ruleset>Design</ruleset>
         </rule>
@@ -33,7 +29,7 @@
         </rule>
         <rule>
             <name>AssignmentInOperand</name>
-            <ruleset>Basic Ecmascript</ruleset>
+            <ruleset>Controversial</ruleset>
         </rule>
         <rule>
             <name>AssignmentToNonFinalStatic</name>
@@ -52,20 +48,12 @@
             <ruleset>Migration</ruleset>
         </rule>
         <rule>
-            <name>AvoidAxisNavigation</name>
-            <ruleset>XPath in XSL</ruleset>
-        </rule>
-        <rule>
             <name>AvoidBranchingStatementAsLastInLoop</name>
             <ruleset>Basic</ruleset>
         </rule>
         <rule>
             <name>AvoidCallingFinalize</name>
             <ruleset>Finalizer</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidCatchingGenericException</name>
-            <ruleset>Strict Exceptions</ruleset>
         </rule>
         <rule>
             <name>AvoidCatchingNPE</name>
@@ -84,10 +72,6 @@
             <ruleset>Basic</ruleset>
         </rule>
         <rule>
-            <name>AvoidDeeplyNestedIfStmts</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
             <name>AvoidDollarSigns</name>
             <ruleset>Naming</ruleset>
         </rule>
@@ -104,20 +88,8 @@
             <ruleset>Naming</ruleset>
         </rule>
         <rule>
-            <name>AvoidFinalLocalVariable</name>
-            <ruleset>Controversial</ruleset>
-        </rule>
-        <rule>
             <name>AvoidInstanceofChecksInCatchClause</name>
             <ruleset>Design</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidInstantiatingObjectsInLoops</name>
-            <ruleset>Optimization</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidLiteralsInIfCondition</name>
-            <ruleset>Controversial</ruleset>
         </rule>
         <rule>
             <name>AvoidLosingExceptionInformation</name>
@@ -126,10 +98,6 @@
         <rule>
             <name>AvoidMultipleUnaryOperators</name>
             <ruleset>Basic</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidPrefixingMethodParameters</name>
-            <ruleset>Controversial</ruleset>
         </rule>
         <rule>
             <name>AvoidPrintStackTrace</name>
@@ -145,7 +113,7 @@
         </rule>
         <rule>
             <name>AvoidReassigningParameters</name>
-            <ruleset>Design</ruleset>
+            <ruleset>Basic Velocity</ruleset>
         </rule>
         <rule>
             <name>AvoidRethrowingException</name>
@@ -154,10 +122,6 @@
         <rule>
             <name>AvoidStringBufferField</name>
             <ruleset>String and StringBuffer</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidSynchronizedAtMethodLevel</name>
-            <ruleset>Design</ruleset>
         </rule>
         <rule>
             <name>AvoidThreadGroup</name>
@@ -170,14 +134,6 @@
         <rule>
             <name>AvoidThrowingNullPointerException</name>
             <ruleset>Strict Exceptions</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidThrowingRawExceptionTypes</name>
-            <ruleset>Strict Exceptions</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidTrailingComma</name>
-            <ruleset>Basic Ecmascript</ruleset>
         </rule>
         <rule>
             <name>AvoidUsingHardCodedIP</name>
@@ -193,10 +149,6 @@
         </rule>
         <rule>
             <name>AvoidUsingShortType</name>
-            <ruleset>Controversial</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidUsingVolatile</name>
             <ruleset>Controversial</ruleset>
         </rule>
         <rule>
@@ -260,20 +212,12 @@
             <ruleset>Design</ruleset>
         </rule>
         <rule>
-            <name>CloneMethodMustImplementCloneable</name>
-            <ruleset>Clone Implementation</ruleset>
-        </rule>
-        <rule>
-            <name>CloneThrowsCloneNotSupportedException</name>
-            <ruleset>Clone Implementation</ruleset>
-        </rule>
-        <rule>
             <name>CloseResource</name>
             <ruleset>Design</ruleset>
         </rule>
         <rule>
             <name>CollapsibleIfStatements</name>
-            <ruleset>Basic</ruleset>
+            <ruleset>Basic Velocity</ruleset>
         </rule>
         <rule>
             <name>CommentContent</name>
@@ -284,20 +228,8 @@
             <ruleset>Design</ruleset>
         </rule>
         <rule>
-            <name>ConfusingTernary</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
-            <name>ConsecutiveAppendsShouldReuse</name>
-            <ruleset>String and StringBuffer</ruleset>
-        </rule>
-        <rule>
             <name>ConsecutiveLiteralAppends</name>
             <ruleset>String and StringBuffer</ruleset>
-        </rule>
-        <rule>
-            <name>ConsistentReturn</name>
-            <ruleset>Basic Ecmascript</ruleset>
         </rule>
         <rule>
             <name>ConstructorCallsOverridableMethod</name>
@@ -308,20 +240,12 @@
             <ruleset>Coupling</ruleset>
         </rule>
         <rule>
-            <name>CyclomaticComplexity</name>
-            <ruleset>Code Size</ruleset>
-        </rule>
-        <rule>
             <name>DefaultLabelNotLastInSwitchStmt</name>
             <ruleset>Design</ruleset>
         </rule>
         <rule>
             <name>DoNotCallGarbageCollectionExplicitly</name>
             <ruleset>Controversial</ruleset>
-        </rule>
-        <rule>
-            <name>DoNotCallSystemExit</name>
-            <ruleset>J2EE</ruleset>
         </rule>
         <rule>
             <name>DoNotExtendJavaLangError</name>
@@ -334,10 +258,6 @@
         <rule>
             <name>DoNotThrowExceptionInFinally</name>
             <ruleset>Strict Exceptions</ruleset>
-        </rule>
-        <rule>
-            <name>DoNotUseThreads</name>
-            <ruleset>J2EE</ruleset>
         </rule>
         <rule>
             <name>DontCallThreadRun</name>
@@ -396,10 +316,6 @@
             <ruleset>Empty Code</ruleset>
         </rule>
         <rule>
-            <name>EmptyMethodInAbstractClassShouldBeAbstract</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
             <name>EmptyStatementBlock</name>
             <ruleset>Empty Code</ruleset>
         </rule>
@@ -428,44 +344,12 @@
             <ruleset>Empty Code</ruleset>
         </rule>
         <rule>
-            <name>EqualComparison</name>
-            <ruleset>Basic Ecmascript</ruleset>
-        </rule>
-        <rule>
             <name>EqualsNull</name>
             <ruleset>Design</ruleset>
         </rule>
         <rule>
             <name>ExceptionAsFlowControl</name>
             <ruleset>Strict Exceptions</ruleset>
-        </rule>
-        <rule>
-            <name>ExcessiveClassLength</name>
-            <ruleset>Code Size</ruleset>
-        </rule>
-        <rule>
-            <name>ExcessiveImports</name>
-            <ruleset>Coupling</ruleset>
-        </rule>
-        <rule>
-            <name>ExcessiveMethodLength</name>
-            <ruleset>Code Size</ruleset>
-        </rule>
-        <rule>
-            <name>ExcessiveObjectLength</name>
-            <ruleset>Code Size</ruleset>
-        </rule>
-        <rule>
-            <name>ExcessivePackageBodyLength</name>
-            <ruleset>Code Size</ruleset>
-        </rule>
-        <rule>
-            <name>ExcessivePackageSpecificationLength</name>
-            <ruleset>Code Size</ruleset>
-        </rule>
-        <rule>
-            <name>ExcessiveParameterList</name>
-            <ruleset>Code Size</ruleset>
         </rule>
         <rule>
             <name>ExcessivePublicCount</name>
@@ -516,26 +400,6 @@
             <ruleset>Naming</ruleset>
         </rule>
         <rule>
-            <name>GlobalVariable</name>
-            <ruleset>Basic Ecmascript</ruleset>
-        </rule>
-        <rule>
-            <name>GodClass</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
-            <name>GuardDebugLogging</name>
-            <ruleset>Jakarta Commons Logging</ruleset>
-        </rule>
-        <rule>
-            <name>GuardLogStatement</name>
-            <ruleset>Jakarta Commons Logging</ruleset>
-        </rule>
-        <rule>
-            <name>GuardLogStatementJavaUtil</name>
-            <ruleset>Java Logging</ruleset>
-        </rule>
-        <rule>
             <name>IdempotentOperations</name>
             <ruleset>Design</ruleset>
         </rule>
@@ -566,10 +430,6 @@
         <rule>
             <name>InefficientStringBuffering</name>
             <ruleset>String and StringBuffer</ruleset>
-        </rule>
-        <rule>
-            <name>InnaccurateNumericLiteral</name>
-            <ruleset>Basic Ecmascript</ruleset>
         </rule>
         <rule>
             <name>InstantiationToGetClass</name>
@@ -616,20 +476,8 @@
             <ruleset>Migration</ruleset>
         </rule>
         <rule>
-            <name>LongVariable</name>
-            <ruleset>Naming</ruleset>
-        </rule>
-        <rule>
             <name>LooseCoupling</name>
             <ruleset>Coupling</ruleset>
-        </rule>
-        <rule>
-            <name>LoosePackageCoupling</name>
-            <ruleset>Coupling</ruleset>
-        </rule>
-        <rule>
-            <name>MDBAndSessionBeanNamingConvention</name>
-            <ruleset>J2EE</ruleset>
         </rule>
         <rule>
             <name>MethodArgumentCouldBeFinal</name>
@@ -656,10 +504,6 @@
             <ruleset>Basic</ruleset>
         </rule>
         <rule>
-            <name>MissingBreakInSwitch</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
             <name>MissingSerialVersionUID</name>
             <ruleset>JavaBeans</ruleset>
         </rule>
@@ -670,10 +514,6 @@
         <rule>
             <name>MistypedCDATASection</name>
             <ruleset>Basic XML</ruleset>
-        </rule>
-        <rule>
-            <name>ModifiedCyclomaticComplexity</name>
-            <ruleset>Code Size</ruleset>
         </rule>
         <rule>
             <name>MoreThanOneLogger</name>
@@ -744,22 +584,6 @@
             <ruleset>Basic JSP</ruleset>
         </rule>
         <rule>
-            <name>NoUnsanitizedJSPExpression</name>
-            <ruleset>Basic JSP</ruleset>
-        </rule>
-        <rule>
-            <name>NPathComplexity</name>
-            <ruleset>Code Size</ruleset>
-        </rule>
-        <rule>
-            <name>NullAssignment</name>
-            <ruleset>Controversial</ruleset>
-        </rule>
-        <rule>
-            <name>OneDeclarationPerLine</name>
-            <ruleset>Controversial</ruleset>
-        </rule>
-        <rule>
             <name>OptimizableToArrayCall</name>
             <ruleset>Design</ruleset>
         </rule>
@@ -772,24 +596,8 @@
             <ruleset>Naming</ruleset>
         </rule>
         <rule>
-            <name>PositionLiteralsFirstInCaseInsensitiveComparisons</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
-            <name>PositionLiteralsFirstInComparisons</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
             <name>PrematureDeclaration</name>
             <ruleset>Optimization</ruleset>
-        </rule>
-        <rule>
-            <name>PreserveStackTrace</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
-            <name>ProperCloneImplementation</name>
-            <ruleset>Clone Implementation</ruleset>
         </rule>
         <rule>
             <name>ProperLogger</name>
@@ -820,28 +628,12 @@
             <ruleset>Migration</ruleset>
         </rule>
         <rule>
-            <name>ReturnEmptyArrayRatherThanNull</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
             <name>ReturnFromFinallyBlock</name>
             <ruleset>Basic</ruleset>
         </rule>
         <rule>
-            <name>ScopeForInVariable</name>
-            <ruleset>Basic Ecmascript</ruleset>
-        </rule>
-        <rule>
-            <name>ShortClassName</name>
-            <ruleset>Naming</ruleset>
-        </rule>
-        <rule>
             <name>ShortInstantiation</name>
             <ruleset>Migration</ruleset>
-        </rule>
-        <rule>
-            <name>ShortMethodName</name>
-            <ruleset>Naming</ruleset>
         </rule>
         <rule>
             <name>SignatureDeclareThrowsException</name>
@@ -868,20 +660,12 @@
             <ruleset>Design</ruleset>
         </rule>
         <rule>
-            <name>SimplifyStartsWith</name>
-            <ruleset>Optimization</ruleset>
-        </rule>
-        <rule>
             <name>SingularField</name>
             <ruleset>Design</ruleset>
         </rule>
         <rule>
             <name>StaticEJBFieldShouldBeFinal</name>
             <ruleset>J2EE</ruleset>
-        </rule>
-        <rule>
-            <name>StdCyclomaticComplexity</name>
-            <ruleset>Code Size</ruleset>
         </rule>
         <rule>
             <name>StringBufferInstantiationWithChar</name>
@@ -897,10 +681,6 @@
         </rule>
         <rule>
             <name>SuspiciousConstantFieldName</name>
-            <ruleset>Naming</ruleset>
-        </rule>
-        <rule>
-            <name>SuspiciousEqualsMethodName</name>
             <ruleset>Naming</ruleset>
         </rule>
         <rule>
@@ -932,18 +712,6 @@
             <ruleset>Design</ruleset>
         </rule>
         <rule>
-            <name>TooManyFields</name>
-            <ruleset>Code Size</ruleset>
-        </rule>
-        <rule>
-            <name>TooManyMethods</name>
-            <ruleset>Code Size</ruleset>
-        </rule>
-        <rule>
-            <name>TooManyStaticImports</name>
-            <ruleset>Import Statements</ruleset>
-        </rule>
-        <rule>
             <name>TO_DATEWithoutDateFormat</name>
             <ruleset>PLSQL DATETIME</ruleset>
         </rule>
@@ -960,16 +728,8 @@
             <ruleset>Design</ruleset>
         </rule>
         <rule>
-            <name>UncommentedEmptyMethodBody</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
             <name>UnconditionalIfStatement</name>
             <ruleset>Basic</ruleset>
-        </rule>
-        <rule>
-            <name>UnnecessaryBlock</name>
-            <ruleset>Unnecessary</ruleset>
         </rule>
         <rule>
             <name>UnnecessaryBooleanAssertion</name>
@@ -1000,20 +760,12 @@
             <ruleset>Design</ruleset>
         </rule>
         <rule>
-            <name>UnnecessaryParentheses</name>
-            <ruleset>Controversial</ruleset>
-        </rule>
-        <rule>
             <name>UnnecessaryReturn</name>
             <ruleset>Unnecessary</ruleset>
         </rule>
         <rule>
             <name>UnnecessaryWrapperObjectCreation</name>
             <ruleset>Optimization</ruleset>
-        </rule>
-        <rule>
-            <name>UnreachableCode</name>
-            <ruleset>Basic Ecmascript</ruleset>
         </rule>
         <rule>
             <name>UnsynchronizedStaticDateFormatter</name>
@@ -1076,20 +828,12 @@
             <ruleset>JUnit</ruleset>
         </rule>
         <rule>
-            <name>UseBaseWithParseInt</name>
-            <ruleset>Basic Ecmascript</ruleset>
-        </rule>
-        <rule>
             <name>UseCollectionIsEmpty</name>
             <ruleset>Design</ruleset>
         </rule>
         <rule>
             <name>UseConcatOnce</name>
             <ruleset>XPath in XSL</ruleset>
-        </rule>
-        <rule>
-            <name>UseConcurrentHashMap</name>
-            <ruleset>Controversial</ruleset>
         </rule>
         <rule>
             <name>UseCorrectExceptionLogging</name>
@@ -1112,10 +856,6 @@
             <ruleset>Unnecessary</ruleset>
         </rule>
         <rule>
-            <name>UselessParentheses</name>
-            <ruleset>Unnecessary</ruleset>
-        </rule>
-        <rule>
             <name>UselessStringValueOf</name>
             <ruleset>String and StringBuffer</ruleset>
         </rule>
@@ -1130,14 +870,6 @@
         <rule>
             <name>UseObjectForClearerAPI</name>
             <ruleset>Controversial</ruleset>
-        </rule>
-        <rule>
-            <name>UseProperClassLoader</name>
-            <ruleset>J2EE</ruleset>
-        </rule>
-        <rule>
-            <name>UseStringBufferForStringAppends</name>
-            <ruleset>Optimization</ruleset>
         </rule>
         <rule>
             <name>UseStringBufferLength</name>
