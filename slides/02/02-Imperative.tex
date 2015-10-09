@@ -556,8 +556,8 @@
 		\iz{
 			\item \cil{public static int[] revertUpTo(int[] array,int stopEl)}
 				\iz{
-					\item Inverte gli elementi di \cil{array} dall'inizio fino all'elemento \cil{stopElem}. Gli elementi da \cil{stopEl} in poi devono rimanere invariati
-					\item p.e. revertUpTo([1,2,3,4,5,6,7],5) $\rightarrow$ [4,3,2,1,5,6,7]
+					\item Inverte gli elementi di \cil{array} dall'inizio fino all'elemento \cil{stopElem} \textbf{incluso}. Gli elementi successivi a \cil{stopEl} devono rimanere invariati
+					\item p.e. revertUpTo([1,2,3,4,5,6,7],5) $\rightarrow$ [5,4,3,2,1,6,7]
 				}		
 			\item \cil{public static int[] dupElems(int[] array, int nTimes)}
 				\iz{
