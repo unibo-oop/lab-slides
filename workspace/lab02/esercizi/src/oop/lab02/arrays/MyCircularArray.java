@@ -22,14 +22,21 @@ public class MyCircularArray {
 	}
 
 	public static void main(final String[] args) {
-		// 1) Creare un array circolare di dieci elementi
-		// 2) Aggiungere gli elementi da 1 a 10 e stampare il contenuto
-		// dell'array circolare
-		// 3) Aggiungere gli elementi da 11 a 15 e stampare il contenuto
-		// dell'array circolare
-		// 4) Invocare il metodo reset
-		// 5) Stampare il contenuto dell'array circolare
-		// 6) Aggiungere altri elementi a piacere e stampare il contenuto
-		// dell'array circolare
+		/*
+		 * 1) Creare un array circolare di dieci elementi
+		 * 
+		 * 2) Aggiungere gli elementi da 1 a 10 e stampare il contenuto
+		 * dell'array circolare
+		 * 
+		 * 3) Aggiungere gli elementi da 11 a 15 e stampare il contenuto
+		 * dell'array circolare
+		 * 
+		 * 4) Invocare il metodo reset
+		 * 
+		 * 5) Stampare il contenuto dell'array circolare
+		 * 
+		 * 6) Aggiungere altri elementi a piacere e stampare il contenuto
+		 * dell'array circolare
+		 */
 	}
 }
