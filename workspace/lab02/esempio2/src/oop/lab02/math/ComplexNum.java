@@ -5,37 +5,37 @@ class ComplexNum {
 	double re;
 	double im;
 
-	void build(double re, double im) {
+	void build(final double re, final double im) {
 		this.re = re;
 		this.im = im;
 	}
 
-	boolean equal(ComplexNum num) {
+	boolean equal(final ComplexNum num) {
 		return re == num.re && im == num.im;
 	}
 
-	void add(ComplexNum num) {
+	void add(final ComplexNum num) {
 		re += num.re;
 		im += num.im;
 	}
 
 	String toStringRep() {
-		return re + (im > 0 ? "+" + im : "" + im) + "i";
+		return re + (im > 0 ? "+" : "") + im + "i";
 	}
 
-	public static void main(String args[]) {
+	public static void main(final String[] args) {
 
 		// 1-4) creazione di c1,c2,c3,c4
-		ComplexNum c1 = new ComplexNum();
+		final ComplexNum c1 = new ComplexNum();
 		c1.build(3, 5);
 
-		ComplexNum c2 = new ComplexNum();
+		final ComplexNum c2 = new ComplexNum();
 		c2.build(7, -4);
 
-		ComplexNum c3 = new ComplexNum();
+		final ComplexNum c3 = new ComplexNum();
 		c3.build(-2, 3);
 
-		ComplexNum c4 = new ComplexNum();
+		final ComplexNum c4 = new ComplexNum();
 		c4.build(-2, 3);
 
 		/*

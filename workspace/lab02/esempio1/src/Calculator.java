@@ -8,32 +8,32 @@ public class Calculator {
 		lastRes = 0;
 	}
 
-	double add(double n1, double n2) {
+	double add(final double n1, final double n2) {
 		lastRes = n1 + n2;
 		nOpDone++;
 		return lastRes;
 	}
 
-	double sub(double n1, double n2) {
+	double sub(final double n1, final double n2) {
 		lastRes = n1 - n2;
 		nOpDone++;
 		return lastRes;
 	}
 
-	double mul(double n1, double n2) {
+	double mul(final double n1, final double n2) {
 		lastRes = n1 * n2;
 		nOpDone++;
 		return lastRes;
 	}
 
-	double div(double n1, double n2) {
+	double div(final double n1, final double n2) {
 		lastRes = n1 / n2;
 		nOpDone++;
 		return lastRes;
 	}
 
-	public static void main(String[] args) {
-		Calculator calc = new Calculator();
+	public static void main(final String[] args) {
+		final Calculator calc = new Calculator();
 
 		System.out.println("1+2=" + calc.add(1, 2));
 		System.out.println("nOpDone=" + calc.nOpDone);
