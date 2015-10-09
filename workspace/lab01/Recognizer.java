@@ -1,6 +1,10 @@
 public class Recognizer {
 
+<<<<<<< HEAD:workspace/oop1516-lab01/Recognizer.java
+  public static void main(String[] args){
+=======
     public static void main(String args[]){
+>>>>>>> matteo/master:workspace/lab01/Recognizer.java
     /*
      * 1) Creare un oggetto della classe Recognizer
      * 2) Realizzare i metodi check1, check2, check3 e check4, che accettano in ingresso un intero, ritornando true soltanto se

@@ -1,6 +1,6 @@
 public class ComplexNumCalculator {
 
-  public static void main (String args[]){
+  public static void main (String[] args){
     /*
      * 1) Testare la classe con le seguenti operazioni tra numeri complessi:
      * - add(1+2i, 2+3i) = 3+5i

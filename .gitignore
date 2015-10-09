@@ -13,3 +13,6 @@
 *.vrb
 *.class
 *.zip
+*.directory
+*.backup
+

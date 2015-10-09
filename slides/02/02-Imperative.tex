@@ -1,0 +1,656 @@
+\documentclass[presentation]{beamer}
+\usepackage{oop-slides}
+\setbeamertemplate{bibliography item}[text]
+\title[OOP02 -- Imperative]{02 \\ Uso avanzato degli strumenti di laboratorio, programmazione imperativa e costruttori}
+
+\begin{document}
+
+\frame[label=coverpage]{\titlepage}
+
+%====================
+%Outline
+%====================
+\begin{frame}<beamer>
+	\frametitle{Outline}
+	\tableofcontents[]
+\end{frame}
+
+\fr{Preparazione ambiente di lavoro}{
+        \iz{
+                \item Accendere il PC
+                \item Loggarsi sul sito del corso
+                \iz{
+                        \item \textcolor{blue}{\url{https://elearning-cds.unibo.it/course/view.php?id=3042}}
+                }
+                \item Scaricare dalla sezione \texttt{lab} del sito il file \texttt{oop-lab02.zip} contenente il materiale dell'esercitazione odierna
+                \item Spostare il file scaricato sul Desktop
+                \item Decomprimere il file usando 7zip (o un programma analogo) sul Desktop
+        }
+}
+
+
+\section{Compilazione ed esecuzione avanzata di classi Java}
+
+\fr{Nuova opzione per \texttt{javac} \cite{or-javac}}{
+\begin{itemize}
+\item Abbiamo già visto come compilare file sorgenti Java (file \texttt{.java}), generando il bytecode (file \texttt{.class}) nella medesima directory 
+\item Tuttavia è uso comune e \textbf{buona pratica} nella gestione di progetti articolati, \textbf{separare le classi sorgenti dal bytecode}, ad esempio:
+\begin{itemize}
+\item cartella \texttt{src}, per i file sorgenti (\texttt{.java})
+\item cartella \texttt{bin}, contenente le classi compilate (\texttt{.class})
+\end{itemize}
+\item Come si fa?
+\end{itemize}
+  \bl{Nuova opzione del comando \texttt{javac}}{
+    \iz {
+      \item \cil{-d}: consente di specificare la cartella destinazione in cui compilare i file \texttt{.java}
+      \item Si tratta di un'opzione che dovete obbligatoriamente saper usare
+    }
+    \center{\textbf{Sarà oggetto di valutazione in sede di prova pratica!}}
+  }
+}
+
+\subsubsection{Esempio 1}
+\fr{Esempio 1: compilazione nella cartella \texttt{bin}}{
+  \en{
+      \item Aprire un terminale e posizionarsi nella directory contenente il codice
+      \item Spostarsi nella directory \texttt{esempio1}
+      \begin{itemize}
+         \item contiene la cartella \texttt{src}, in cui è presente \texttt{Calculator.java} (laboratorio scorso)
+      \end{itemize}
+      \item Creare una cartella \cil{bin}: comando \cil{mkdir bin}
+      \item Eseguire la compilazione
+      \iz {
+	\item su sistemi UNIX (Linux, Mac OSX, BSD):\\ \textbf{\texttt{javac -d bin src/Calculator.java}}
+	\item su sistemi Windows:\\ \textbf{\texttt{javac -d bin src\textbackslash{}Calculator.java}}\\
+	(Notare l'uso di un differente separatore per il percorso)
+      }
+      \item Controllate la presenza di \texttt{Calculator.class} all'interno di \texttt{bin}
+  }
+}
+
+\fr{Esempio 1: compilare di più file da e in qualunque punto}{
+  \begin{block}{Compilazione in directory arbitrarie}
+    \texttt{javac -d <CARTELLA DESTINAZIONE> <FILE JAVA>}
+    \begin{itemize}
+      \item \tiny{\textbf{OVVIAMENTE} vanno sostituite le variabili fra parentesi angolari con le directory che andranno usate.}
+    \end{itemize}
+  \end{block}
+  \begin{itemize}
+    \item Si posizioni il terminale in \texttt{C:} (in \texttt{/} per chi ha Mac o Linux) e si riprovi a compilare \texttt{Calculator.java}
+  \end{itemize}
+
+  \begin{block}{Compilazione di più file in una singola passata}
+    \texttt{javac -d <CARTELLA DESTINAZIONE> <ELENCO DI FILE JAVA>}
+    \begin{itemize}
+      \item \tiny{\textbf{OVVIAMENTE} vanno sostituite le variabili fra parentesi angolari con le directory che andranno usate.}
+    \end{itemize}
+  \end{block}
+  È possibile anche utilizzare la wildcard (\texttt{*}) invece di elencare tutti i file!
+  \begin{itemize}
+    \item Solo su sistemi *nix si possono usare wildcard in più punti del path
+    \item Ad esempio \texttt{progetti/*/src/*.java} elenca tutti i file con estensione java dentro ciascuna cartella \texttt{src} di ciascuna cartella dentro \texttt{progetti}
+  \end{itemize}
+}
+
+\fr{Esempio 1: Esecuzione di \texttt{Calculator} }{
+  \iz{
+      \item Possiamo usare la ``strategia'' già vista nello scorso laboratorio:
+      \begin{enumerate}
+         \item spostarsi in \texttt{bin}
+         \item eseguire: \texttt{java Calculator}
+      \end{enumerate}
+      \item \textbf{Esiste un modo molto più flessibile!}\\(l'unico veramente efficace quando lavorerete con i package)
+  }
+  \bl{Nuova opzione del comando \texttt{java} \cite{or-java}}{
+    \iz {
+      \item \cil{-cp} (oppure \cil{-classpath}): consente di specificare il \textbf{classpath}, ovvero il percorso in cui cercare i file \texttt{.class} da eseguire
+      \item Va da sé\ldots
+      \center{\textbf{\ldots sarà oggetto di valutazione in sede di prova pratica!}} 
+    }
+  }
+  \bl{Esecuzione tramite classpath esplicito}{
+      \en{
+         \item Posizionarsi in \texttt{esempio1}
+         \item eseguire: \texttt{java -cp bin Calculator}
+      }
+  }
+}
+\fr{Il classpath in dettaglio}{
+  \iz{
+    \item Il classpath è l'insieme delle directory in cui Java cerca classi e package
+    \item Sia \cil{java} che \cil{javac} consentono di specificarlo con l'opzione \cil{-cp}
+  }
+   \bl{In \cil{java}}{
+    Il classpath indica dove verranno cercate le classi necessarie affinché il programma sia eseguito correttamente
+    \iz{
+      \item Uso di classi compilate fornite, di solito come librerie esterne in formato \texttt{jar} (le vedremo) 
+    }
+   }
+  \bl{In \cil{javac}}{
+    Il classpath indica dove verranno cercate le classi necessarie affinché il programma sia compilato
+  }
+}
+\begin{frame}{Più cartelle nel classpath}
+  Il classpath non è composto da una sola cartella, ma può contenere più cartelle, oltre a speciali file compressi contenenti bytecode e risorse (jar file) di cui parleremo in futuro.
+  
+  \begin{block}{}
+  Si possono specificare più cartelle utilizzando come separatore il simbolo ``\texttt{:}'' (per sistemi Unix) oppure ``\texttt{;}'' (per sistemi Windows)
+  \begin{itemize}
+    \item \texttt{javac -d bin -cp lib1:lib2:lib3 src/*.java}
+    \begin{itemize}
+      \item Compila tutti i file con estensione java che si trovano nella cartella \texttt{src}, mettendo i compilati dentro \texttt{bin}. In compilazione, potrà linkare tutte le classi che si trovano nelle cartelle \texttt{lib1}, \texttt{lib2} e \texttt{lib3}: nel caso in cui alcuni sorgenti in src stiano usando delle classi definite dentro queste cartelle, la compilazione avrà successo.
+      \item \scriptsize{Equivalente Windows: \texttt{javac -d bin -cp lib1;lib2;lib3 src/*.java}}
+    \end{itemize}
+    \item \texttt{java -cp bin:lib1:lib2:lib3 MyClass}
+    \begin{itemize}
+      \item Esegue il main della classe \texttt{MyClass}. Cercherà questa classe e tutte quelle collegate all'interno delle cartelle \texttt{bin}, \texttt{lib1}, \texttt{lib2} e \texttt{lib3}.
+      \item \scriptsize{Equivalente Windows: \texttt{java -cp bin;lib1;lib2;lib3 MyClass}}
+    \end{itemize}
+  \end{itemize}
+
+  \end{block}
+\end{frame}
+
+\subsubsection{Esempio 2}
+\fr{Esempio 2: Compilazione ed esecuzione di classi strutturate in package}{
+  \iz{
+      \item Spostarsi nella directory \texttt{esempio2}, contenente il secondo esempio
+      \item All'interno è presente la cartella \texttt{src}, come nel precedente esempio 
+      \item In questo caso src non contiente direttamente una classe java ma una \textbf{gerarchia di cartelle}: \texttt{oop/lab02/math}\\
+      \bx{\textbf{Rappresenta su filesystem la struttura del package \texttt{oop.lab02.math}!}}
+      \item Nella cartella ``foglia'' \texttt{math} è presente il sorgente \texttt{ComplexNum.java} (scorso laboratorio)
+   }
+}
+\fr{Esempio 2: la classe \texttt{ComplexNum}}{
+
+   \sizedcode{\small}{code/esempio2/src/oop/lab02/math/ComplexNumShort.java}
+   \bx{\center{\textbf{\texttt{ComplexNum} è ora definita all'interno del package}}}
+}
+\fr{Esempio 2: compilazione/utilizzo di javac}{
+  \en{
+      \item Spostarsi (se non li si è già fatto) in \texttt{esempio2}
+      \item Eseguire la compilazione:
+      \iz {
+	\item su sistemi UNIX (Linux, Mac OSX, BSD):\\ \textbf{\texttt{javac -d bin src/oop/lab02/math/ComplexNum.java}}
+	\item su sistemi Windows:\\ \textbf{\texttt{javac -d bin src\textbackslash{}oop\textbackslash{}lab02\textbackslash{}math\textbackslash{}ComplexNum.java}}
+      }
+      \item Controllare ora il contenuto di \texttt{bin}: cosa vi aspettate di trovare?
+   }
+   \bx{\center{\textbf{E per l'esecuzione?}}}
+   
+}
+
+\fr{Esempio 2: esecuzione/uso di java}{
+  \iz{
+      \item L'esecuzione funziona come già visto nel primo esempio, tramite \textbf{opzione \texttt{-cp}}
+
+      \item Eseguire la classe
+      \iz {
+	\item \texttt{java -cp bin ComplexNum}
+      }
+   }
+   \bx{\center{La classe viene eseguita?}}
+   
+}
+
+\fr{Esempio 2: esecuzione/uso di java}{
+  \iz{
+      \item L'esecuzione funziona come già visto nel primo esempio, usando \textbf{l'opzione \texttt{-cp}}
+
+      \item Eseguire quindi la compilazione:
+      \iz {
+	\item \texttt{java -cp bin ComplexNum}
+      }
+   }
+   \bx{\center{\textbf{No! La classe è infatti definita all'interno di un package}}}  
+}
+
+\fr{Esempio 2: esecuzione/uso di java}{
+  \iz{
+      \item Eseguendo:
+      \iz {
+	\item \texttt{java -cp bin ComplexNum}
+      }
+      \item La JVM si aspetterebbe di trovare un file \texttt{ComplexNum.class} all'interno di \texttt{bin}
+   }
+   \bx{\center{\textbf{Qual è dunque il metodo corretto per eseguire con successo \texttt{ComplexNum}?}}}  
+}
+
+\fr{Esempio 2: esecuzione/uso di java}{
+  \iz{
+      \item Proviamo con:
+      \iz {
+	\item \texttt{java -cp bin oop.lab02.math.ComplexNum}
+      }
+      \item Questa volta abbiamo avuto successo!
+      \item la JVM, all'interno di \texttt{bin}, si aspetta la struttura \texttt{oop/lab02/math} contenente \texttt{ComplexNum.class}
+   } 
+}
+\subsubsection{Esempio 3}
+\fr{Esempio 3: compilazione ed esecuzione ``avanzati''}{
+  \iz{
+      \item Spostarsi nella directory \texttt{esempio3}
+      \item All'interno è presente la solita cartella \texttt{src} 
+      \item Il contenuto corrisponde alla \textbf{gerarchia di cartelle}: \texttt{oop/lab02/math}
+      \item Nello specifico, dentro \texttt{math}, è presente il sorgente \texttt{UseComplex.java} (scorso laboratorio)
+   }
+}
+
+\fr{Esempio 3: la classe \texttt{UseComplex}}{
+
+   \sizedcode{\tiny}{code/esempio3/src/oop/lab02/math/UseComplex.java}
+}
+
+\fr{Esempio 3: compilazione}{
+  \en{
+      \item Spostarsi (se non li si è già fatto) in \texttt{esempio3}
+      \item Eseguire la compilazione:
+      \iz {
+	\item Su sistemi UNIX (Linux, Mac OSX, BSD):\\ \textbf{\texttt{javac -d bin src/oop/lab02/math/UseComplex.java}}
+	\item Su sistemi Windows:\\ \textbf{\texttt{javac -d bin src\textbackslash{}oop\textbackslash{}lab02\textbackslash{}math\textbackslash{}UseComplex.java}}
+      }
+      \item Otteniamo un errore!
+   }
+   \bl{Comprensione degli errori}{\sizedcode{\tiny}{code/esempio3/src/oop/lab02/math/error.txt}}
+   
+}
+
+\fr{Esempio 3: compilazione}{
+   \bl{Comprensione degli errori}{\sizedcode{\tiny}{code/esempio3/src/oop/lab02/math/error.txt}}
+     \iz{
+      \item Il compilatore si aspetta di trovare nel classpath il bytecode della classe \texttt{ComplexNum} (file \texttt{ComplexNum.class})
+      \item Come risolviamo?
+      }
+      \bx{\center{\textbf{Utilizzo dell'opzione \texttt{-cp} sul comando \texttt{javac}!}}} 
+}
+
+\fr{Esempio 3: compilazione}{
+     \iz{
+      \item Nell'esempio precedente avevamo già compilato \texttt{ComplexNum}:
+       \iz{
+       	\item \texttt{ComplexNum.class} si trova nella cartella \texttt{bin} all'interno di \texttt{esempio2}
+       }
+       \item Eseguiamo nuovamente la compilazione
+      \iz {
+	\item Su sistemi UNIX (Linux, Mac OSX, BSD):\\
+	\bx{\scriptsize{\texttt{javac -d bin -cp ../esempio2/bin src/oop/lab02/math/UseComplex.java}}}
+	\item Su sistemi Windows:\\
+	\bx{\scriptsize{\texttt{javac -d bin -cp ..\textbackslash{}esempio2\textbackslash{}bin src\textbackslash{}oop\textbackslash{}lab02\textbackslash{}math\textbackslash{}UseComplex.java}}}\normalsize
+      }
+      \bx{Contenuto di \texttt{bin}: file \texttt{UseComplex.class} all'interno di \texttt{oop/lab02/math}}
+     }
+   
+}
+\fr{Esempio 3: esecuzione di \texttt{UseComplex}}{
+     \iz{
+      \item Per eseguire correttamente \texttt{UseComplex} dobbiamo dire alla JVM, tramite \textbf{-cp}, dove trovare:
+       \iz{
+       	\item \texttt{ComplexNum.class}
+        \item \texttt{UseComplex.class}
+       }
+       \item Si trovano in \texttt{due percorsi diversi}!
+       \item Dobbiamo specificare come argomento di \texttt{-cp} due percorsi, usando il \textbf{separatore}:
+       \iz {
+	\item \textbf{\texttt{:}} su sistemi UNIX (Linux, Mac OSX, BSD) 
+	\item \textbf{\texttt{;}} su sistemi Windows
+       }
+     }
+}
+\fr{Esempio 3: secuzione di \texttt{UseComplex}}{
+  \iz{
+      \item Eseguiamo il comando:
+      \iz {
+	\item sistemi UNIX (Linux, Mac OSX, BSD):\\ \bx{\texttt{java -cp bin:../esempio2/bin oop.lab02.math.UseComplex}}
+	\item sistemi Windows:\\ \bx{\texttt{java -cp bin;..\textbackslash{}esempio2\textbackslash{}bin oop.lab02.math.UseComplex}}
+      }
+   } 
+   Si ricorda che ``\texttt{..}'' significa ``livello directory superiore a quello corrente'', mentre ``\texttt{.}'' significa ``livello directory corrente''
+}
+\subsubsection{Esempio 4}
+\fr{Esempio 4: Compilazione da più cartelle sorgenti}{
+  \iz{
+      \item Spostarsi nella directory \texttt{esempio4}
+      \item All'interno è presente la solita cartella \texttt{src}, contenente \texttt{UseCalculator.java} (scorso laboratorio)
+   }
+}
+
+\fr{Esempio 4: la classe \texttt{UseCalculator}}{
+
+   \sizedcode{\small}{code/esempio4/src/UseCalculator.java}
+   \bx{Esegue il test di \texttt{Calculator}}
+}
+
+\fr{Esempio 4: compilazione}{
+  \en{
+      \item Come nel caso precedente, \texttt{UseCalculator.java} fa riferimento ad un'altra classe (\texttt{Calculator.java})
+      \item Stavolta le compileremo entrambe, \textbf{contemporaneamente}
+      \iz {
+	\item Su sistemi UNIX (Linux, Mac OSX, BSD):\\ \bx{\tiny\textbf{\texttt{javac -d bin src/UseCalculator.java ../esempio1/src/Calculator.java}}}
+	\item Su sistemi Windows:\\ \bx{\tiny\textbf{\texttt{javac -d bin src\textbackslash{}UseCalculator.java ..\textbackslash{}esempio1\textbackslash{}src\textbackslash{}Calculator.java}}}
+      }
+   }
+      \bx{Contenuto di \texttt{bin}: file \texttt{UseCalculator.class} e \texttt{Calculator.class}}
+}
+
+\fr{Esempio 4: esecuzione}{
+
+      \bx{\center{\Large Questa volta fate voi!}}\normalsize
+}
+
+\begin{frame}{Consiglio finale}
+  Visto che all'esame il loro utilizzo è richiesto, è necessario imparare \textbf{a memoria} le opzioni di \texttt{java} e \texttt{javac}?
+  \begin{center}
+    \textbf{NO}
+  \end{center}
+  Entrambi i comandi (e praticamente tutti i comandi Unix) hanno con loro un'opzione che consente di stampare a video un help. Provate
+  \begin{block}{}
+    \begin{itemize}
+      \item java -help
+      \item javac -help
+    \end{itemize}
+  \end{block}
+%   Vi verranno elencate molte opzioni (molte delle quali non sono coperte nel corso) assieme con le loro descrizioni. Se vi doveste dimenticare la sintassi di una opzione, questo è un modo per ricordarla.
+  
+  \vspace{10pt}
+  
+  Gli help stampano una sbrodolata di testo e a me serve una riga, davvero devo imparare a leggere e capire un help?
+  \begin{center}
+    \textbf{SÌ}
+  \end{center}
+  È molto facile dimenticarsi la sintassi delle opzioni di comandi che non si usano spesso. È molto più facile imparare a destreggiarsi in un help che andare a tentativi o ricordare cose a memoria.
+\end{frame}
+
+
+\section{Esercizi in laboratorio}
+
+
+\fr{Modalità di Lavoro}{
+	\bl{}{
+               Gli esercizi si trovano nella cartella \texttt{esercizi}
+		\en{
+			\item Leggere la consegna
+			\item Risolvere l'esercizio in autonomia
+			\item Cercare di risolvere autonomamente eventuali piccoli problemi che possono verificarsi durante lo svolgimento degli esercizi
+			\item \alert{Utilizzare le funzioni di test presenti nei sorgenti per il testing dell'esercizio}
+			\item Contattare i docenti nel caso vi troviate a lungo bloccati nella risoluzione di uno specifico esercizio
+			\item A esercizio ultimato contattare i docenti per un rapido controllo della soluzione realizzata
+			\item Proseguire con l'esercizio seguente
+		}
+	}
+}
+
+\subsection{Uso dei costruttori}
+
+\fr{Esercizi sui costruttori 1/2}{
+        \bx{Fate riferimento alla parte sui costruttori nelle slide viste durante l'ultima lezione: \texttt{04 - Oggetti e classi, pp 10-18}}
+	\bl{Implementare i costruttori per alcune classi della prima esercitazione}{
+		\en {
+			\item In \cil{oop.lab02.constructors} sono presenti le classi \cil{Train e Student} relative all'esercitazione della settimana scorsa
+			\item Rimuovere dalle classi il metodo \cil{build} e il metodo \cil{main}
+			\item Implementare due diversi costruttori per la classe \cil{Train}
+				\iz {
+					\item Un costruttore con zero parametri
+						\iz {
+							\item I campi della classe dovranno essere inizializzati con dei valori di default (sensati) scelti dallo studente
+						}
+					\item Un costruttore che specifica l'insieme di parametri necessario ad inizializzare i campi della classe
+				}
+			\item Implementare in autonomia il costruttore della classe Student
+			\item Seguire le istruzioni riportate nei commenti di \cil{UseConstructors} per effettuare il test dei nuovi costruttori
+		}
+	}
+}
+
+\fr{Esercizi sui costruttori 2/2}{
+        \bx{
+          Fare riferimento a quanto discusso a lezione, sulla possibilità di \emph{richiamare costruttori esistenti nel corpo di un altro costruttore tramite istruzione}
+          \begin{center}
+            \cil{this(...)}
+          \end{center}
+        }
+	\bl{Modificare/aggiungere i seguenti costruttori alla classe \cil{Train}}{
+		\iz {
+			\item Modificare il costruttore a zero parametri \cil{Train()}, in modo da riusare quello che accetta parametri di inizializzazione
+                        \iz {
+				\item Si riutilizzino in modo appropriato i valori di default definiti in precedenza
+			}
+			\item Un costruttore \cil{Train(int nFCSeats, int nSCSeats)} che richiami, \emph{in modo sensato}, uno dei costruttori definito in precedenza, in modo da inizializzare in \emph{modo consistente} lo stato degli oggetti di classe \cil{Train}
+			\item Seguire le istruzioni riportate nei commenti di \cil{UseConstructorsEvolved} per effettuare il test dei nuovi costruttori
+		}
+	}
+}
+
+
+\subsection{Costruzione di semplici algoritmi su array}
+\fr{Semplici Algoritmi su Array (\cil{oop.lab02.arrays}) 1/2}{
+		\bl{Analizzare il metodo \cil{countOccurr} della classe \cil{WorkWithArrays}}{
+			\iz{
+				\item Capire il comportamente realizzato aiutandosi analizzando il metodo di testing \cil{boolean testCountOccurr()} presente nel main
+				\item Compilare e eseguire la classe
+				\item Aggiungere un nuovo test al metodo \cil{testCountOccurr}
+				\item Compilare e eseguire la classe nuovamente
+			}
+		}
+}
+
+\fr{Semplici algoritmi su array (\cil{oop.lab02.arrays}) 2/2}{
+	\bl{Completare i seguenti metodi statici nella classe \cil{WorkWithArrays}}{
+		\iz{
+			\item \cil{public static int[] evenElems(int[] array)}
+			\iz{
+				\item Restituisce un array con i soli elementi in posizione (indice) \textit{pari} dell'array fornito in input  p.e [1,2,3,4] $\rightarrow$ [1,3]
+			}
+			\item \cil{public static int[] oddElems(int[] array)}                                                                                                                                       
+			\iz{
+				\item Restituisce un array con i soli elementi in posizione (indice) \textit{dispari} dell'array fornito in input p.e [1,2,3,4] $\rightarrow$ [2,4]
+				
+			}
+			\item \cil{public static int getMostRecurringElem(int[] array)}
+			\iz{
+				\item Restituisce l'elemento che viene ripetuto più volte all'interno di \cil{array}
+				\item p.e. [1,2,1,3,4] $\rightarrow$ 1; [7,1,5,7,7,9] $\rightarrow$ 7
+			}
+		}
+	}
+	
+	\bl{}{Per il testing appoggiarsi gli appositi metodi già presenti nella classe \cil{WorkWithArrays}
+	}
+}
+
+\section{Esercizi avanzati}
+
+\subsection{Esercizi avanzati sui costruttori}
+\fr{Esercizi  avanzati sui costruttori}{
+   \bl{Completare la classe \cil{Smartphone} in \cil{oop.lab02.constructors}}{
+      Classe atta a descrivere un generico smartphone. Campi:
+      \iz{
+         \item \cil{int nCPU, ram, sdSize}
+         \item \cil{String brand, model} 
+         \item \cil{boolean hasGPS, hasNFC, has3G} 
+      }
+   }
+   \bl{Implementare i seguenti costruttori per la classe}{
+      \iz{
+         \item \cil{Smartphone(String brand, String model)}
+         \item \cil{Smartphone(String brand, String model, int sdSize)}
+         \item \cil{Smartphone(<param. precedenti>, boolean hasGPS, has3g)}
+         \item \cil{Smartphone(String brand, String model, boolean hasNFC)}
+         \item Un costruttore che richiede come parametri tutti i campi
+      }
+   }
+   \center{Ricordarsi che si possono richiamare costruttori esistenti nel corpo di un altro costruttore tramite istruzione \cil{this(..)} (vista a lezione)}
+}
+
+\fr{Testing degli esercizi avanzati sui costruttori}{
+   \bl{Testing}{
+      Seguire le linee guida riportate nei commenti del \cil{main} della classe \cil{Smartphone}
+   }
+}
+
+\subsection{Esercizi avanzati sugli array}
+\fr{Classe \cil{oop.lab02.arrays.SeqRecognizer } 1/6}{
+		\bl{Classe \cil{SeqRecognizer}: riconoscitore di varie sequenze di caratteri}{Analizzare un primo esempio concreto (già implementato) per la sequenza così descritta %grammatica {1}{2|3}
+			\iz{
+				\item 1: 0-N occorrenze, poi
+				\item 2 o 3: 0-N occorrenze
+			}
+		}
+		\bl{Strategia risolutiva in linguaggio naturale}{
+			\en{
+					\item Finché trovo una sequenza di uno, vado avanti nell’array
+					\item Finché trovo dei due o dei tre, vado avanti nell’array
+					\item	Verifico di essere arrivato in fondo
+			}
+		}
+		\bx{
+			Analizzare l'implementazione del riconoscitore definita nel metodo \cil{boolean checkSeq1(int[] array)}
+		}
+}
+
+\fr{Classe \cil{oop.lab02.arrays.SeqRecognizer } 2/6}{
+		\bl{}{Completare i seguenti metodi statici nella classe \cil{SeqRecognizer}}
+		\bl{\cil{public static boolean checkSeq2(int[] array)}}{
+			\iz{
+				\item Riconoscitore della sequenza % grammatica 1{2}3
+					\iz{
+						\item	1: una sola occorrenza, poi
+						\item 2: 0-N occorrenze, poi
+						\item 3: una sola occorrenza
+					}
+			}
+		}
+		\bl{\cil{public static boolean checkSeq3(int[] array)}}{
+			\iz{
+				\item Riconoscitore della sequenza % grammatica 1{2}3{4}[5]
+					\iz{
+						\item	1: una sola occorrenza, poi
+						\item 2: 0-N occorrenze, poi
+						\item 3: una sola occorrenza, poi
+						\item 4: 0-N occorrenze, poi
+						\item 5: 0-1 occorrenze
+					}
+			}
+		}
+}
+
+
+\fr{Esercizi avanzati 3/6}{
+	\bl{Implementare i seguenti metodi statici nella classe \cil{WorkWithArrays}}{
+		\iz{
+			\item \cil{public static int[] sortArray(int[] array,boolean desc)}
+			\iz{
+				\item Ordina l'array fornito in input (ordinamento crescente/descrescente a seconda del valore del parametro \cil{desc})
+				\item Potete far riferimento all'algoritmo bubble sort 
+			}
+			\item \cil{public static double computeVariance(double[] array)}
+			\iz{
+				\item Calcola la varianza ($\sigma^2 = \frac{\displaystyle\sum_{i=1}^{n}(x_i - \mu)^2} {n}$) dell'array passato in input 
+			}
+		}
+	}
+}
+
+\fr{Esercizi avanzati 4/6}{
+	\bl{Implementare i seguenti metodi statici nella classe WorkWithArrays}{
+		\iz{
+			\item \cil{public static int[] revertUpTo(int[] array,int stopEl)}
+				\iz{
+					\item Inverte gli elementi di \cil{array} dall'inizio fino all'elemento \cil{stopElem}. Gli elementi da \cil{stopEl} in poi devono rimanere invariati
+					\item p.e. revertUpTo([1,2,3,4,5,6,7],5) $\rightarrow$ [4,3,2,1,5,6,7]
+				}		
+			\item \cil{public static int[] dupElems(int[] array, int nTimes)}
+				\iz{
+					\item Restituisce un array in cui ciascun cun elemento dell'array in input è ripetuto \cil{nTimes} volte in sequenza
+					\item p.e. dupElems([1,2,3],2) $\rightarrow$ [1,1,2,2,3,3]
+					\item p.e. dupElems([1,2],5) $\rightarrow$ [1,1,1,1,1,2,2,2,2,2]; ...
+				}
+		}
+	}				
+	\bl{Implementare il seguente nuovo metodo nella classe \cil{SeqRecognizer}}{
+		\cil{public static boolean checkSeq4(int[] array)}
+			\iz{
+				\item Riconoscitore della sequenza % grammatica (2|3){4}5
+					\iz{
+						\item 2 o 3: 0-1 occorrenze
+						\item 4: 0-N occorrenze
+						\item 5 una occorrenza
+					}
+			}
+	}
+}
+
+\fr{Esercizi avanzati 5/6}{
+		\bl{\cil{oop.lab02.arrays.PlayWithSmartphoneArrays}}{
+			La classe dovrà consentire di realizzare semplici operazioni su array di \cil{Smartphone} (classe costruita in precedenza)
+		}
+		\bl{Metodi da completare}{
+			Deve essere restituito il numero di smartphones che rispettano le preferenze fornite in input
+			\iz{
+				\item \cil{static int search(Smartphone[] array, String brand)}
+				\item \cil{static int search(Smartphone[] array, boolean hasNFC, boolean hasGPS)}
+				\item \cil{static int search(Smartphone[] array, int nCPUs, int sdSize, boolean has3G)}
+			}
+		}
+		\bx{
+			Per il testing seguire le linee guida definite nel metodo \cil{main}
+		}
+}
+\fr{Esercizi avanzati 6/6}{
+	\bl{Completare la classe \cil{oop.lab02.arrays.MyCircularArray}}{
+		Realizza un array circolare
+		\iz{
+			\item Un campo \cil{int[] array}
+			\item \cil{public MyCircularArray(int size)} (costruttore)
+			\item \cil{public MyCircularArray()} (costruttore)
+			\item \cil{public void addElem(int elem)}
+				\iz{
+					\item Aggiunge l'elemento \cil{elem} all'interno di \cil{array} in modo che, una volta raggiunta la dimensione massima dell'array, i nuovi valori vadano a sovrascrivere quelli precedentemente memorizzati
+				}
+
+			\item \cil{public void reset()}
+				\iz{
+					\item Re-inizializza a zero tutti gli elementi
+				}
+		}
+	}
+	\bl{}{
+		Seguire le linee guida presenti nel \cil{main} per il test
+	}
+}
+
+
+\begin{frame}[allowframebreaks]
+ \frametitle{Bibliography}
+	\bibliographystyle{plain}
+	\small
+ \bibliography{biblio}
+\end{frame}
+
+
+\end{document}
+
+
+
+			\item Un costruttore \cil{Train(int nFCReservedSeats, int nSCReservedSeats)}, che consenta di creare un nuovo oggetto di classe \cil{Train} con un certo numero di posti di prima e seconda classe già riservati
+			\iz {
+				\item I campi della classe dovranno essere inizializzati con dei valori di default (sensati) scelti dallo studente
+				\item I campi della classe dovranno essere inizializzati con dei valori di default (sensati) scelti dallo studente
+			}
+
+
+\fr{Esempio 1: File sorCompilazione di tre packages in one-shot}{
+  \iz{
+      \item Aprire un terminale
+      \item Posizionarsi nella directory in cui si è scompattato il codice di questo laboratorio
+      \item posizionarsi nella directory \texttt{compilazione1}
+      \item Creare una cartella \cil{bin}:comando \cil{mkdir bin}
+      \item Eseguire la compilazione:
+      \iz {
+	\item Su sistemi UNIX (Linux, Mac OSX, BSD) è possibile eseguire il comando \\ \texttt{javac -d bin src/oop/lab05/packages/pkg*/*}
+	\item Su sistemi Windows, è invece necessario eseguire (\textbf{unico comando}) \\ \texttt{javac -d bin src/oop/lab05/packages/pkg1/* src/oop/lab05/packages/pkg2/* src/oop/lab05/packages/pkg3/* }
+	\item Motivo: l'espansione della wildcard ``*'' è demandata al sistema operativo.
+      }
+      \item Verificare la presenza dei file \texttt{.class} all'interno della directory \texttt{bin}, divisi correttamente in cartelle che ricostruiscono la struttura dei package.
+
+  }s
