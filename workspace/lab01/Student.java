@@ -11,7 +11,7 @@ public class Student {
     //... Aggiungere i comandi per la stampa delle informazioni sullo studente
   }
 
-  public static void main(String args[]){
+  public static void main(String[] args){
     Student student = new Student();
     student.build(); // aggiornare l'invocazione del metodo build con l'aggiunta dei parametri
     student.printStudentInfo();
