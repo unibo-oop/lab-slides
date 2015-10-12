@@ -19,7 +19,7 @@ public class UseConstructors {
          * 5) Creare un treno con 300 posti di cui 100 in prima classe 200 in
          * seconda classe
          * 
-         * 6) Creare un treno con 1200 posti di cui 50 in prima classe 1050 in
+         * 6) Creare un treno con 1100 posti di cui 50 in prima classe 1050 in
          * seconda classe
          * 
          * 7) Creare un treno con 500 posti, tutti di seconda classe
