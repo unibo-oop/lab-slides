@@ -1,8 +1,10 @@
 package oop.lab03.acme;
 
-public class Testing {
+public final class Testing {
 
-    public static void main(String[] args) {
+    private Testing() { }
+    
+    public static void main(final String[] args) {
         /*
          * 1) Creare 3 studenti a piacere 2) Creare 2 docenti a piacere 3)
          * Creare due aulee di esame, una con 100 posti una con 80 posti 4)

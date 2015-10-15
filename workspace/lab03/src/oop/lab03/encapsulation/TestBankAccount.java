@@ -1,8 +1,10 @@
 package oop.lab03.encapsulation;
 
-public class TestBankAccount {
+public final class TestBankAccount {
 
-    public static void main(String[] args) {
+    private TestBankAccount() { }
+    
+    public static void main(final String[] args) {
         /*
          * 1) Creare l' AccountHolder relativo a Mario Rossi con id 1 2) Creare
          * l' AccountHolder relativo a Luigi Bianchi con id 2 3) Creare i due

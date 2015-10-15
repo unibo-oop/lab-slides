@@ -6,7 +6,7 @@ public class ExamRoom {
     private boolean isProjectorAvailable;
     private boolean isNetworkAvailable;
 
-    public ExamRoom(int nSeats, String description, boolean isProjectorAvailable, boolean isNetworkAvailable) {
+    public ExamRoom(final int nSeats, final String description, final boolean isProjectorAvailable, final boolean isNetworkAvailable) {
         this.nSeats = nSeats;
         this.description = description;
         this.isProjectorAvailable = isProjectorAvailable;

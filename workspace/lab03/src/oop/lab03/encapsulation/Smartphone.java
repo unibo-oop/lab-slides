@@ -18,8 +18,7 @@ public class Smartphone {
     public boolean has3G;
     public boolean hasNFC;
 
-    public Smartphone(int nCPU, int ram, int sdSize, String brand, String model, boolean hasGPS, boolean has3G,
-            boolean hasNFC) {
+    public Smartphone(final int nCPU, final int ram, final int sdSize, final String brand, final String model, final boolean hasGPS, final boolean has3G, final boolean hasNFC) {
         this.nCPU = nCPU;
         this.ram = ram;
         this.sdSize = sdSize;
@@ -30,19 +29,19 @@ public class Smartphone {
         this.hasNFC = hasNFC;
     }
 
-    public Smartphone(String brand, String model) {
+    public Smartphone(final String brand, final String model) {
         this(DEF_N_CPU, DEF_RAM_SIZE, DEF_SD_SIZE, brand, model, DEF_HAS_GPS, DEF_HAS_3G, DEF_HAS_NFC);
     }
 
-    public Smartphone(String brand, String model, int sdSize) {
+    public Smartphone(final String brand, final String model, final int sdSize) {
         this(DEF_N_CPU, DEF_RAM_SIZE, DEF_SD_SIZE, brand, model, DEF_HAS_GPS, DEF_HAS_3G, DEF_HAS_NFC);
     }
 
-    public Smartphone(String brand, String model, boolean hasGPS, boolean has3G) {
+    public Smartphone(final String brand, final String model, final boolean hasGPS, final boolean has3G) {
         this(DEF_N_CPU, DEF_RAM_SIZE, DEF_SD_SIZE, brand, model, hasGPS, has3G, DEF_HAS_NFC);
     }
 
-    public Smartphone(String brand, String model, boolean hasNFC) {
+    public Smartphone(final String brand, final String model, final boolean hasNFC) {
         this(DEF_N_CPU, DEF_RAM_SIZE, DEF_SD_SIZE, brand, model, DEF_HAS_GPS, DEF_HAS_3G, hasNFC);
     }
 
@@ -57,7 +56,7 @@ public class Smartphone {
         System.out.println("hasNFC: " + hasNFC + "\n");
     }
 
-    public static void main(String args[]) {
+    public static void main(final String[] args) {
         // 1) Creare lo smarthpone HTC One sdSize:1024
         Smartphone htcOne = new Smartphone("HTC", "One", 1024);
         // 2) Creare lo smarthpone Samsung Galaxy Note 3 ram:2048 cpu:4

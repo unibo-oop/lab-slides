@@ -6,7 +6,7 @@ public class AccountHolder {
     private String surname;
     private Integer userID;
 
-    public AccountHolder(String name, String surname, Integer accountID) {
+    public AccountHolder(final String name, final String surname, final Integer accountID) {
         this.name = name;
         this.surname = surname;
         this.userID = accountID;

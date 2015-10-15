@@ -4,7 +4,7 @@ public class BankAccount {
 
     private int usrID;
 
-    public void deposit(int usrID, double amount) {
+    public void deposit(final int usrID, final double amount) {
         /*
          * Incrementa il numero di transazioni e aggiunge amount al totale del
          * conto Nota: il deposito va a buon fine solo se l'id utente
@@ -12,7 +12,7 @@ public class BankAccount {
          */
     }
 
-    public void withdraw(int usrID, double amount) {
+    public void withdraw(final int usrID, final double amount) {
         /*
          * Incrementa il numero di transazioni e rimuove amount al totale del
          * conto. Note: - Il conto puo' andare in rosso (ammontare negativo) -
@@ -20,7 +20,7 @@ public class BankAccount {
          */
     }
 
-    public void depositFromATM(int usrID, double amount) {
+    public void depositFromATM(final int usrID, final double amount) {
         /*
          * Incrementa il numero di transazioni e aggiunge amount al totale del
          * conto detraendo le spese (costante ATM_TRANSACTION_FEE) relative
@@ -29,7 +29,7 @@ public class BankAccount {
          */
     }
 
-    public void withdrawFromATM(int usrID, double amount) {
+    public void withdrawFromATM(final int usrID, final double amount) {
         /*
          * Incrementa il numero di transazioni e rimuove amount + le spese
          * (costante ATM_TRANSACTION_FEE) relative all'uso dell'ATM (bancomat)
@@ -40,7 +40,7 @@ public class BankAccount {
     }
 
     /* Utility method per controllare lo user */
-    private boolean checkUser(int id) {
+    private boolean checkUser(final int id) {
         return this.usrID == id;
     }
 }
