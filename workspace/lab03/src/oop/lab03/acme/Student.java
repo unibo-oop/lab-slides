@@ -3,11 +3,11 @@ package oop.lab03.acme;
 public class Student implements IUser {
 
     private static final String DOT = ".";
-    private String name;
-    private String surname;
-    private int id;
-    private int matriculationYear;
-    private String password;
+    private final String name;
+    private final String surname;
+    private final int id;
+    private final int matriculationYear;
+    private final String password;
 
     public Student(final int id, final String name, final String surname, final String password, final int matriculationYear) {
         this.id = id;
@@ -34,8 +34,10 @@ public class Student implements IUser {
     }
 
     public String toString() {
-        return "Student [name=" + this.name + ", surname=" + this.surname + ", id=" + this.id + ", matriculationYear="
-                + this.matriculationYear + "]";
+        return "Student [name=" + this.name
+        		+ ", surname=" + this.surname
+        		+ ", id=" + this.id
+        		+ ", matriculationYear=" + this.matriculationYear + "]";
     }
 
     public String getUsername() {

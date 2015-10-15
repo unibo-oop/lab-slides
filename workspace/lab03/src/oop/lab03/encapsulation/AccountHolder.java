@@ -2,9 +2,9 @@ package oop.lab03.encapsulation;
 
 public class AccountHolder {
 
-    private String name;
-    private String surname;
-    private Integer userID;
+    private final String name;
+    private final String surname;
+    private final Integer userID;
 
     public AccountHolder(final String name, final String surname, final Integer accountID) {
         this.name = name;

@@ -1,16 +1,16 @@
 package oop.lab03.acme;
 
 public class ExamRoom {
-    private int nSeats;
-    private String description;
-    private boolean isProjectorAvailable;
-    private boolean isNetworkAvailable;
+    private final int nSeats;
+    private final String description;
+    private final boolean projectorAvailable;
+    private final boolean networkAvailable;
 
     public ExamRoom(final int nSeats, final String description, final boolean isProjectorAvailable, final boolean isNetworkAvailable) {
         this.nSeats = nSeats;
         this.description = description;
-        this.isProjectorAvailable = isProjectorAvailable;
-        this.isNetworkAvailable = isNetworkAvailable;
+        this.projectorAvailable = isProjectorAvailable;
+        this.networkAvailable = isNetworkAvailable;
     }
 
     public int getnSeats() {
@@ -22,15 +22,15 @@ public class ExamRoom {
     }
 
     public boolean isProjectorAvailable() {
-        return isProjectorAvailable;
+        return projectorAvailable;
     }
 
     public boolean isNetworkAvailable() {
-        return isNetworkAvailable;
+        return networkAvailable;
     }
 
     public String toString() {
         return "ExamRoom [nSeats=" + this.nSeats + ", description=" + this.description + ", isProjectorAvailable="
-                + this.isProjectorAvailable + ", isNetworkAvailable=" + this.isNetworkAvailable + "]";
+                + this.projectorAvailable + ", isNetworkAvailable=" + this.networkAvailable + "]";
     }
 }

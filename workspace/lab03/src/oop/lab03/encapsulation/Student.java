@@ -2,10 +2,10 @@ package oop.lab03.encapsulation;
 
 public class Student {
 
-    private String name;
-    private String surname;
-    private int id;
-    private int matriculationYear;
+    private final String name;
+    private final String surname;
+    private final int id;
+    private final int matriculationYear;
 
     public Student(final int id, final String name, final String surname, final int matriculationYear) {
         this.id = id;

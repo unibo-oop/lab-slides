@@ -1,5 +1,6 @@
 package oop.lab03.encapsulation;
 
+// CHECKSTYLE:OFF
 public class TestBankAccount {
 
 	private TestBankAccount() {
