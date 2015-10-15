@@ -49,9 +49,6 @@
    <rule ref="rulesets/java/basic.xml/UselessOperationOnImmutable"/>
    <rule ref="rulesets/java/basic.xml/UnusedNullCheckInEquals"/>
    <rule ref="rulesets/java/basic.xml/UselessParentheses"/>
-   <rule ref="rulesets/java/naming.xml/ShortVariable"/>
-   <rule ref="rulesets/java/naming.xml/LongVariable"/>
-   <rule ref="rulesets/java/naming.xml/ShortMethodName"/>
    <rule ref="rulesets/java/naming.xml/VariableNamingConventions"/>
    <rule ref="rulesets/java/naming.xml/MethodNamingConventions"/>
    <rule ref="rulesets/java/naming.xml/ClassNamingConventions"/>
@@ -259,9 +256,6 @@
    <rule ref="rulesets/java/strictexception.xml/AvoidThrowingNewInstanceOfSameException"/>
    <rule ref="rulesets/java/strictexception.xml/AvoidCatchingGenericException"/>
    <rule ref="rulesets/java/strictexception.xml/AvoidLosingExceptionInformation"/>
-   <rule ref="rulesets/java/comments.xml/CommentRequired"/>
-   <rule ref="rulesets/java/comments.xml/CommentSize"/>
-   <rule ref="rulesets/java/comments.xml/CommentContent"/>
    <rule ref="rulesets/java/unusedcode.xml/UnusedPrivateField"/>
    <rule ref="rulesets/java/unusedcode.xml/UnusedLocalVariable"/>
    <rule ref="rulesets/java/unusedcode.xml/UnusedPrivateMethod"/>
