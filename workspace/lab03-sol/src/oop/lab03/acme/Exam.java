@@ -13,27 +13,39 @@ public class Exam {
 	private final Professor professor;
 	private final ExamRoom room;
 
-	public Exam(final int id, final int nMaxStudents, final String courseName, final Professor professor, final ExamRoom room) {
+	public Exam(
+			final int id,
+			final int nMaxStudents,
+			final String courseName,
+			final Professor professor,
+			final ExamRoom room) {
 		this.id = id;
 		this.nMaxStudents = nMaxStudents;
 		this.nRegisteredStudents = 0;
 		this.courseName = courseName;
 		this.professor = professor;
 		this.room = room;
-		this.students = new Student[nMaxStudents];
+		this.students = new Student[0];
+	}
+	
+	private void expand() {
+		students = Arrays.copyOf(students, students.length + 1);
 	}
 
 	public void registerStudent(final Student stud) {
 		if (nRegisteredStudents < nMaxStudents) {
+			expand();
 			students[nRegisteredStudents] = stud;
 			nRegisteredStudents++;
 		}
 	}
 
 	public String toString() {
-		return "Exam [id=" + this.id + ", nMaxStudents=" + this.nMaxStudents + ", nRegisteredStudents=" + this.nRegisteredStudents + ", courseName="
-				+ this.courseName + ", students=" + Arrays.toString(Arrays.stream(this.students).filter(e -> e != null).toArray()) + ", professor=" + this.professor + ", room="
-				+ this.room.toString() + "]";
+		return "Exam [id=" + this.id + ", nMaxStudents=" + this.nMaxStudents
+				+ ", nRegisteredStudents=" + this.nRegisteredStudents
+				+ ", courseName=" + this.courseName
+				+ ", students=" + Arrays.toString(this.students)
+				+ ", professor=" + this.professor + ", room=" + this.room.toString() + "]";
 	}
 
 	public int getId() {
