@@ -20,7 +20,7 @@
                 \item Accendere il PC
                 \item Loggarsi sul sito del corso
                 \iz{
-                        \item \textcolor{blue}{\url{https://elearning-cds.unibo.it/course/view.php?id=3042}}
+                        \item \textcolor{blue}{\url{https://elearning-cds.unibo.it/course/view.php?id=5844}}
                 }
                 \item Scaricare dalla sezione \texttt{lab} del sito il file \texttt{oop-lab02.zip} contenente il materiale dell'esercitazione odierna
                 \item Spostare il file scaricato sul Desktop
@@ -69,7 +69,7 @@
   }
 }
 
-\fr{Esempio 1: compilare di più file da e in qualunque punto}{
+\fr{Esempio 1: compilare più file contemporaneamente da diverse locazioni}{
   \begin{block}{Compilazione in directory arbitrarie}
     \texttt{javac -d <CARTELLA DESTINAZIONE> <FILE JAVA>}
     \begin{itemize}
@@ -169,7 +169,7 @@
 }
 \fr{Esempio 2: compilazione/utilizzo di javac}{
   \en{
-      \item Spostarsi (se non li si è già fatto) in \texttt{esempio2}
+      \item Spostarsi (se non lo si è già fatto) in \texttt{esempio2}
       \item Eseguire la compilazione:
       \iz {
 	\item su sistemi UNIX (Linux, Mac OSX, BSD):\\ \textbf{\texttt{javac -d bin src/oop/lab02/math/ComplexNum.java}}
@@ -556,8 +556,8 @@
 		\iz{
 			\item \cil{public static int[] revertUpTo(int[] array,int stopEl)}
 				\iz{
-					\item Inverte gli elementi di \cil{array} dall'inizio fino all'elemento \cil{stopElem}. Gli elementi da \cil{stopEl} in poi devono rimanere invariati
-					\item p.e. revertUpTo([1,2,3,4,5,6,7],5) $\rightarrow$ [4,3,2,1,5,6,7]
+					\item Inverte gli elementi di \cil{array} dall'inizio fino all'elemento \cil{stopElem} \textbf{incluso}. Gli elementi successivi a \cil{stopEl} devono rimanere invariati
+					\item p.e. revertUpTo([1,2,3,4,5,6,7],5) $\rightarrow$ [5,4,3,2,1,6,7]
 				}		
 			\item \cil{public static int[] dupElems(int[] array, int nTimes)}
 				\iz{
