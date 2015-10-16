@@ -1,4 +1,4 @@
-package oop1415.lab03.interfaces;
+package oop.lab03.interfaces;
 
 public interface IBankAccount {
   void withdraw(int usrID, double amount);

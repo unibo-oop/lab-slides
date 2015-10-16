@@ -1,4 +1,4 @@
-package oop1415.lab03.interfaces;
+package oop.lab03.interfaces;
 
 public class Circle implements IShape {
 
