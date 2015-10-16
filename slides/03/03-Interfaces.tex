@@ -236,7 +236,7 @@
 		\iz{
 			\item \textcolor{blue}{\url{https://elearning-cds.unibo.it/course/view.php?id=3042}}
 		}
-		\item Scaricare dalla sezione \texttt{lab} del sito il file \texttt{oop1415-lab03.zip} contenente il materiale dell'esercitazione odierna
+		\item Scaricare dalla sezione \texttt{lab} del sito il file \texttt{oop-lab03.zip} contenente il materiale dell'esercitazione odierna
 		\item Spostare il file scaricato sul Desktop
 		\item Decomprimere il file usando 7zip (o un programma analogo) sul Desktop
 	}
@@ -245,7 +245,7 @@
 \fr{Preparazione Ambiente di Lavoro 2/2}{
 	\iz{
 		\item Copiare la cartella scompattata all'interno del workspace di Eclipse
-		\item Importare il progetto \texttt{OOP1415-LAB} con la procedura di importazione dei progetti mostrata nelle slide precedenti
+		\item Importare il progetto \texttt{OOP-LAB} con la procedura di importazione dei progetti mostrata nelle slide precedenti
 		\item Al termine della procedura l'ambiente di lavoro sarà circa come segue
 	}
 	\fg{height=0.3\textheight}{img/prj_importato.png}
@@ -271,9 +271,9 @@
 \section{Warming Up: Miglioramento di Classi già Implementate}
 
 \fr{Applichiamo il Principio di Incapsulamento 1/2}{
-	\bl{Analizzare la classe \cil{oop1415.lab03.encapsulation.Student}}{
+	\bl{Analizzare la classe \cil{oop.lab03.encapsulation.Student}}{
 		\iz{
-			\item E' una versione modificata della classe definita nel package \cil{oop1415.lab02.constructors} e vista la settimana scorsa
+			\item E' una versione modificata della classe definita nel package \cil{oop.lab02.constructors} e vista la settimana scorsa
 			\item Confrontare la classe con la sua versione precedente
 			\item Dettaglio delle modifiche apportate
 				\en{
@@ -292,7 +292,7 @@
 
 \fr{Applichiamo il Principio di Incapsulamento 2/2}{
 	\bl{}{
-		Modificare le classi Calculator e Smartphone contenute nel package \cil{oop1415.lab03.encapsulation} applicando il principio di incapsulamento
+		Modificare le classi Calculator e Smartphone contenute nel package \cil{oop.lab03.encapsulation} applicando il principio di incapsulamento
 	}
 	
 	\bl{Passi da seguire}{
@@ -309,7 +309,7 @@
 
 \section{Esercizi Base da Svolgere in Autonomia}
 
-\fr{\cil{oop1415.lab03.encapsulation.AccountHolder}}{
+\fr{\cil{oop.lab03.encapsulation.AccountHolder}}{
 	\bl{}{
 		\iz{
 			\item Analizzare la classe \cil{AccountHolder}
@@ -330,7 +330,7 @@
 }
 	
 
-\fr{\cil{oop1415.lab03.encapsulation.BankAccount} 1/2}{
+\fr{\cil{oop.lab03.encapsulation.BankAccount} 1/2}{
 	\bl{Modella un generico conto bancario di un AccountHolder}{
 		Completare la classe seguendo le istruzioni riportate nelle slide e nei commenti della classe stessa
 	}
@@ -352,7 +352,7 @@
 	}
 }
 
-\fr{\cil{oop1415.lab03.encapsulation.BankAccount} 2/2}{
+\fr{\cil{oop.lab03.encapsulation.BankAccount} 2/2}{
 	
 	\bl{Metodi}{
 		\iz{
@@ -374,21 +374,21 @@
 
 \fr{Test di BankAccount}{
 	\bl{}{
-		Effettuare il testing della classe \cil{BankAccount} appena implementata seguendo le indicazioni fornite nei commenti in \cil{oop1415.lab03.encapsulation.TestBankAccount} 
+		Effettuare il testing della classe \cil{BankAccount} appena implementata seguendo le indicazioni fornite nei commenti in \cil{oop.lab03.encapsulation.TestBankAccount} 
 	}
 }
 
-\fr{\cil{oop1415.lab03.interfaces.IBankAccount} 1/2}{
+\fr{\cil{oop.lab03.interfaces.IBankAccount} 1/2}{
 	\bl{}{
 		Modificare la classe \cil{BankAccount} in modo da implementare l'interfaccia \cil{IBankAccount}
                 \iz{ \item realizzare solamente i metodi necessari alla corretta implementazione dell'interfaccia da parte di \cil{BankAccount}}
 	}
-	\bl{\cil{oop1415.lab03.interfaces.IBankAccount}}{
+	\bl{\cil{oop.lab03.interfaces.IBankAccount}}{
 		\sizedcode{\scriptsize}{code/IBankAccount.java}
 	}
 }	
 
-\fr{\cil{oop1415.lab03.interfaces.IBankAccount} 2/2}{
+\fr{\cil{oop.lab03.interfaces.IBankAccount} 2/2}{
 	\bl{Requisiti per implementare il metodo \cil{void computeManagementFees(int usrID)}}{
 		\en{
 			\item Il metodo, quando invocato, dovrà detrarre dal conto le \emph{spese di gestione} previste dalla banca  
@@ -400,7 +400,7 @@
 	}
 }
 
-\fr{\cil{oop1415.lab03.interfaces.StrictBankAccount}}{	
+\fr{\cil{oop.lab03.interfaces.StrictBankAccount}}{	
 	\bl{}{Implementare in autonomia la classe \cil{StrictBankAccount}}
 	\bl{Linee guida}{
 		\iz{
@@ -421,7 +421,7 @@
 	
 \fr{\cil{BankAccount e StrictBankAccount: Test}}{	
 		\bl{}{
-			Effettuare il testing delle classi \cil{BankAccount} e \cil{StrictBankAccount} appena implementate seguendo le indicazioni fornite nei commenti in \cil{oop1415.lab03.interfaces.TestIBankAccount} 
+			Effettuare il testing delle classi \cil{BankAccount} e \cil{StrictBankAccount} appena implementate seguendo le indicazioni fornite nei commenti in \cil{oop.lab03.interfaces.TestIBankAccount} 
 		}
 }
 
@@ -448,12 +448,12 @@
 			\item Analizzare l'interfaccia \cil{IUser} e la classe \cil{Student} che la implementa
 		}
 	}
-	\bl{\cil{oop1415.lab03.acme.IUser}}{
+	\bl{\cil{oop.lab03.acme.IUser}}{
 		\sizedcode{\scriptsize}{code/IUser.java}
 	}
 }
 
-\fr{\cil{oop1415.lab03.acme.Professor}}{
+\fr{\cil{oop.lab03.acme.Professor}}{
 	\bl{Implementare la classe \cil{Professor} (dovrà implementare \cil{IUser})}{
 		Modella un generico docente
 		\iz{
@@ -486,7 +486,7 @@
 }
 
 \fr{Forme di Dipendenza tra Classi: Composizione 1/2}{
-	\bl{Implementare la classe \cil{oop1415.lab03.acme.Exam}}{
+	\bl{Implementare la classe \cil{oop.lab03.acme.Exam}}{
 		Modella un generico appello d'esame all'interno di ACME-Exams
 		\iz{
 			\item Campi
@@ -537,7 +537,7 @@
 	}
 }
 
-\fr{\cil{oop1415.lab03.acme.Testing}}{
+\fr{\cil{oop.lab03.acme.Testing}}{
 	\bl{}{
 		Seguire le linee guida riportate nella classe \cil{Testing} per effettuare il testing delle classi \cil{Professor} e \cil{Exam}
 	}
@@ -545,7 +545,7 @@
 \section{Esercizi Avanzati}
 
 \fr{IShape: Un' Interfaccia per Modellare Figure Geometriche}{
-        \bl{\cil{oop1415.lab03.interfaces.IShape.java}}{Realizzare \textbf{da zero} un'interfaccia che consenta di calcolare \textbf{area} e \textbf{perimetro} di una qualsivoglia \textbf{figura geometrica}}
+        \bl{\cil{oop.lab03.interfaces.IShape.java}}{Realizzare \textbf{da zero} un'interfaccia che consenta di calcolare \textbf{area} e \textbf{perimetro} di una qualsivoglia \textbf{figura geometrica}}
 	%\code{code/IShape.java}
 	\bl{Metodi da definire sull'interfaccia}{
 		\iz{	
@@ -555,7 +555,7 @@
 	}
 }
 
-\fr{\cil{oop1415.lab03.shapes.Circle}}{
+\fr{\cil{oop.lab03.shapes.Circle}}{
 	\bx{Realizzare da zero la classe \cil{Circle} che, implementando l'interfaccia \cil{IShape}, consenta di definire un cerchio
 		\iz{	
 			\item Fate attenzione alla definizione dei campi necessari e del costruttore della classe
@@ -566,7 +566,7 @@
 	
 \fr{Estensione per Figure con Lati Limitati}{
 
-	\bl{Realizzare \cil{oop1415.lab03.interfaces.IShapeWithLimitedEdges} che estende \cil{IShape}}{
+	\bl{Realizzare \cil{oop.lab03.interfaces.IShapeWithLimitedEdges} che estende \cil{IShape}}{
 		\iz{
 			\item definire il metodo \cil{int getNumEdges()} che restituisce il numero di lati della forma geometrica
 			\item I metodi definiti in \cil{IShape} vengono perciò \textit{ereditati}

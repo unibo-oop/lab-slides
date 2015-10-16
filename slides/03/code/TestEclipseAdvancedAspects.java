@@ -1,4 +1,4 @@
-package oop1415.lab03;
+package oop.lab03;
 
 public class TestEclipseAdvancedAspects {
   private int a;

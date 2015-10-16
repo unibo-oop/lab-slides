@@ -1,4 +1,4 @@
-package oop1415.lab03.acme;
+package oop.lab03.acme;
 
 public interface IUser {
   String getUsername();
