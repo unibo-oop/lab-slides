@@ -1,6 +1,6 @@
 package oop.lab03.encapsulation;
 
-public class BankAccount {
+public class SimpleBankAccount {
 
     private int usrID;
 
