@@ -1,6 +1,6 @@
 package oop.lab03.interfaces;
 
-public interface IShape {
+public interface Shape {
     double getArea();
 
     double getPerimeter();

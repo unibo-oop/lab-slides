@@ -1,15 +1,15 @@
 package oop.lab03.interfaces;
 
-public final class TestIBankAccount {
+public final class TestBankAccount {
 
-    private TestIBankAccount() { }
+    private TestBankAccount() { }
     
     public static void main(final String[] args) {
         /*
          * 1) Creare l' AccountHolder relativo a Mario Rossi con id 1 2) Creare
          * l' AccountHolder relativo a Luigi Bianchi con id 2 3) Dichiarare due
-         * variabili (acc1 e acc2) di tipo IBankAccount 4) Creare in acc1 un
-         * nuovo oggetto di tipo BankAccount relativo al conto di Mario Rossi
+         * variabili (acc1 e acc2) di tipo BankAccount 4) Creare in acc1 un
+         * nuovo oggetto di tipo SimpleBankAccount relativo al conto di Mario Rossi
          * (ammontare iniziale = 0) 5) Creare in acc2 un nuovo oggetto di tipo
          * StrictBankAccount relativo al conto di Luigi Bianchi (ammontare
          * iniziale = 0) 6) Prima riflessione: perchè è stato possibile fare la

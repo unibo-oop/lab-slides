@@ -1,6 +1,6 @@
 package oop.lab03.interfaces;
 
-public class Circle implements IShape {
+public class Circle implements Shape {
 
     private double radius;
 
