@@ -1,5 +1,5 @@
 package oop.lab03.interfaces;
 
-public interface IShapeWithLimitedEdges extends IShape {
+public interface ShapeWithLimitedEdges extends Shape {
     int getNumEdges();
 }
