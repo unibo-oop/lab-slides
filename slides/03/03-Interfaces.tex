@@ -234,9 +234,9 @@
 		\item Accendere il PC
 		\item Loggarsi sul sito del corso
 		\iz{
-			\item \textcolor{blue}{\url{https://elearning-cds.unibo.it/course/view.php?id=3042}}
+			\item \textcolor{blue}{\moodleurl}
 		}
-		\item Scaricare dalla sezione \texttt{lab} del sito il file \texttt{oop-lab03.zip} contenente il materiale dell'esercitazione odierna
+		\item Scaricare dalla sezione \texttt{lab} del sito il file \texttt{lab03.zip} contenente il materiale dell'esercitazione odierna
 		\item Spostare il file scaricato sul Desktop
 		\item Decomprimere il file usando 7zip (o un programma analogo) sul Desktop
 	}
@@ -245,7 +245,7 @@
 \fr{Preparazione Ambiente di Lavoro 2/2}{
 	\iz{
 		\item Copiare la cartella scompattata all'interno del workspace di Eclipse
-		\item Importare il progetto \texttt{OOP-LAB} con la procedura di importazione dei progetti mostrata nelle slide precedenti
+		\item Importare il progetto \texttt{lab03} con la procedura di importazione dei progetti mostrata nelle slide precedenti
 		\item Al termine della procedura l'ambiente di lavoro sarà circa come segue
 	}
 	\fg{height=0.3\textheight}{img/prj_importato.png}
@@ -301,10 +301,6 @@
 			\item Introdurre degli opportuni selettori per recuperare le informazioni di stato (campi) di interesse
 		}
 	}
-
-	\bl{Nota}{
-		Una volta vista l'ereditarietà (estensione di classi esistenti, meccanismo introdotto nelle prossimi lezioni) vedremo/discuteremo in dettaglio quando è il caso di non dichiarare dei campi privati
-	}
 }
 
 \section{Esercizi Base da Svolgere in Autonomia}
@@ -323,14 +319,14 @@
 	\bl{}{
 		Implementare il metodo \cil{String toString()} lasciato incompleto
 			\iz{
-				\item Metodo visto a lezione, per convenzione Java deve restituire una rappresentazione in stringa dell'oggetto
+				\item Metodo utilizzato convenzionalmente dalle librerie Java e dall'operatore di concatenazione \textbf{+} tra stringhe, al fine di restituire la rappresentazione testuale di un oggetto
 				\item Ogni classe dovrebbe implementarlo
 			}
 	}
 }
 	
 
-\fr{\cil{oop.lab03.encapsulation.BankAccount} 1/2}{
+\fr{\cil{oop.lab03.encapsulation.SimpleBankAccount} 1/2}{
 	\bl{Modella un generico conto bancario di un AccountHolder}{
 		Completare la classe seguendo le istruzioni riportate nelle slide e nei commenti della classe stessa
 	}
@@ -347,12 +343,12 @@
 	
 	\bl{Costruttori}{
 		\iz{
-			\item \cil{public BankAccount(int usrID, double initAmount)}
+			\item \cil{public SimpleBankAccount(int usrID, double initAmount)}
 		}
 	}
 }
 
-\fr{\cil{oop.lab03.encapsulation.BankAccount} 2/2}{
+\fr{\cil{oop.lab03.encapsulation.SimpleBankAccount} 2/2}{
 	
 	\bl{Metodi}{
 		\iz{
@@ -372,23 +368,23 @@
 }
 
 
-\fr{Test di BankAccount}{
+\fr{Test di SimpleBankAccount}{
 	\bl{}{
-		Effettuare il testing della classe \cil{BankAccount} appena implementata seguendo le indicazioni fornite nei commenti in \cil{oop.lab03.encapsulation.TestBankAccount} 
+		Effettuare il test della classe \cil{SimpleBankAccount} appena implementata seguendo le indicazioni fornite nei commenti in \cil{oop.lab03.encapsulation.TestSimpleBankAccount} 
 	}
 }
 
-\fr{\cil{oop.lab03.interfaces.IBankAccount} 1/2}{
+\fr{\cil{oop.lab03.interfaces.BankAccount} 1/2}{
 	\bl{}{
-		Modificare la classe \cil{BankAccount} in modo da implementare l'interfaccia \cil{IBankAccount}
-                \iz{ \item realizzare solamente i metodi necessari alla corretta implementazione dell'interfaccia da parte di \cil{BankAccount}}
+		Modificare la classe \cil{SimpleBankAccount} in modo da implementare l'interfaccia \cil{BankAccount}
+                \iz{ \item realizzare solamente i metodi necessari alla corretta implementazione dell'interfaccia da parte di \cil{SimpleBankAccount}}
 	}
-	\bl{\cil{oop.lab03.interfaces.IBankAccount}}{
-		\sizedcode{\scriptsize}{code/IBankAccount.java}
+	\bl{\cil{oop.lab03.interfaces.BankAccount}}{
+		\sizedcode{\scriptsize}{code/BankAccount.java}
 	}
 }	
 
-\fr{\cil{oop.lab03.interfaces.IBankAccount} 2/2}{
+\fr{\cil{oop.lab03.interfaces.BankAccount} 2/2}{
 	\bl{Requisiti per implementare il metodo \cil{void computeManagementFees(int usrID)}}{
 		\en{
 			\item Il metodo, quando invocato, dovrà detrarre dal conto le \emph{spese di gestione} previste dalla banca  
@@ -404,7 +400,7 @@
 	\bl{}{Implementare in autonomia la classe \cil{StrictBankAccount}}
 	\bl{Linee guida}{
 		\iz{
-			\item La classe dovrà implementare l'interfaccia \cil{IBankAccount}
+			\item La classe dovrà implementare l'interfaccia \cil{BankAccount}
 			\item Al solito, le operazioni sul conto dovranno essere abilitate solo se lo user id corrisponde a quello a cui il conto è stato associato
 			\item Non dovrà essere possibile effettuare dei prelievi se l'ammontare da prelevare specificato è superiore alla disponibilità corrente del conto
 				\iz{
@@ -419,9 +415,9 @@
 	}	
 }
 	
-\fr{\cil{BankAccount e StrictBankAccount: Test}}{	
+\fr{\cil{SimpleBankAccount e StrictBankAccount: Test}}{	
 		\bl{}{
-			Effettuare il testing delle classi \cil{BankAccount} e \cil{StrictBankAccount} appena implementate seguendo le indicazioni fornite nei commenti in \cil{oop.lab03.interfaces.TestIBankAccount} 
+			Effettuare il test delle classi \cil{SimpleBankAccount} e \cil{StrictBankAccount} appena implementate seguendo le indicazioni fornite nei commenti in \cil{oop.lab03.interfaces.TestBankAccount} 
 		}
 }
 
@@ -441,20 +437,20 @@
 	}	
 }
 
-\fr{Modelliamo gli Utenti: Interfaccia IUser}{
+\fr{Modelliamo gli Utenti: Interfaccia User}{
 	\bl{}{
 		\iz{
 			\item \cil{IUser} definisce l'interfaccia di un generico utente di ACME-Exams
-			\item Analizzare l'interfaccia \cil{IUser} e la classe \cil{Student} che la implementa
+			\item Analizzare l'interfaccia \cil{User} e la classe \cil{Student} che la implementa
 		}
 	}
-	\bl{\cil{oop.lab03.acme.IUser}}{
-		\sizedcode{\scriptsize}{code/IUser.java}
+	\bl{\cil{oop.lab03.acme.User}}{
+		\sizedcode{\scriptsize}{code/User.java}
 	}
 }
 
 \fr{\cil{oop.lab03.acme.Professor}}{
-	\bl{Implementare la classe \cil{Professor} (dovrà implementare \cil{IUser})}{
+	\bl{Implementare la classe \cil{Professor} (dovrà implementare \cil{User})}{
 		Modella un generico docente
 		\iz{
 			\item Campi
@@ -544,9 +540,8 @@
 }
 \section{Esercizi Avanzati}
 
-\fr{IShape: Un' Interfaccia per Modellare Figure Geometriche}{
-        \bl{\cil{oop.lab03.interfaces.IShape.java}}{Realizzare \textbf{da zero} un'interfaccia che consenta di calcolare \textbf{area} e \textbf{perimetro} di una qualsivoglia \textbf{figura geometrica}}
-	%\code{code/IShape.java}
+\fr{Shape: un'interfaccia per modellare figure geometriche}{
+        \bl{\cil{oop.lab03.interfaces.Shape.java}}{Realizzare \textbf{da zero} un'interfaccia che consenta di calcolare \textbf{area} e \textbf{perimetro} di una qualsivoglia \textbf{figura geometrica}}
 	\bl{Metodi da definire sull'interfaccia}{
 		\iz{	
 			\item \cil{double getArea ()}
@@ -556,7 +551,7 @@
 }
 
 \fr{\cil{oop.lab03.shapes.Circle}}{
-	\bx{Realizzare da zero la classe \cil{Circle} che, implementando l'interfaccia \cil{IShape}, consenta di definire un cerchio
+	\bx{Realizzare da zero la classe \cil{Circle} che, implementando l'interfaccia \cil{Shape}, consenta di definire un cerchio
 		\iz{	
 			\item Fate attenzione alla definizione dei campi necessari e del costruttore della classe
 		}
@@ -566,11 +561,11 @@
 	
 \fr{Estensione per Figure con Lati Limitati}{
 
-	\bl{Realizzare \cil{oop.lab03.interfaces.IShapeWithLimitedEdges} che estende \cil{IShape}}{
+	\bl{Realizzare \cil{oop.lab03.interfaces.ShapeWithLimitedEdges} che estende \cil{Shape}}{
 		\iz{
 			\item definire il metodo \cil{int getNumEdges()} che restituisce il numero di lati della forma geometrica
-			\item I metodi definiti in \cil{IShape} vengono perciò \textit{ereditati}
-			\item Pertanto, le classi che implementeranno \cil{IShapeWithLimitedEdges} dovranno obbligatoriamente definire 3 metodi relativi a questa interfaccia
+			\item I metodi definiti in \cil{Shape} vengono perciò \textit{ereditati}
+			\item Pertanto, le classi che implementeranno \cil{ShapeWithLimitedEdges} dovranno obbligatoriamente definire 3 metodi relativi a questa interfaccia
 		}
 	}	
 }
@@ -578,7 +573,7 @@
 \fr{Square, Rectangle and ScaleneTriangle}{
 	\bl{Implementare le classi \cil{Square}, \cil{Rectangle} e \cil{ScaleneTriangle}}{
 		\iz{
-			\item Le tre classi dovranno implementare \cil{IShapeWithLimitedEdges}
+			\item Le tre classi dovranno implementare \cil{ShapeWithLimitedEdges}
 			\item Implementare opportunamente i metodi dell'interfaccia
 		}
 	}
