@@ -45,8 +45,7 @@ public class WorkWithArrays {
         for (int d = 0; d < array.length; d++) {
             final int curr = array[d];
             int numOccur = 0;
-            for (int i = d; i < array.length && array[i] == curr; i++, numOccur++)
-                ;
+            for (int i = d; i < array.length && array[i] == curr; i++, numOccur++);
             if (numOccur > maxNumOccur) {
                 maxNumOccur = numOccur;
                 currMostRecurring = curr;
