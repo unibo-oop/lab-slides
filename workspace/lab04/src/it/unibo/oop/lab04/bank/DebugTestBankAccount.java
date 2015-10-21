@@ -1,7 +1,10 @@
 package it.unibo.oop.lab04.bank;
 
-public class DebugTestIBankAccount {
+// CHECKSTYLE:OFF
+public class DebugTestBankAccount {
 
+    private DebugTestBankAccount() {}
+    
     public static void main(final String[] args) {
         // 1) Creare l' AccountHolder relativo a Mario Rossi con id 1
         final AccountHolder usr1 = new AccountHolder("Mario", "Rossi", 1);

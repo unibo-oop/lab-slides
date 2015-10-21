@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package it.unibo.oop.lab04.robot.base;
 
 /**

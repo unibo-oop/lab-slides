@@ -1,8 +1,9 @@
 package it.unibo.oop.lab04.bank;
 
-public final class TestIBankAccount {
+//CHECKSTYLE:OFF
+public final class TestBankAccount {
 
-    private TestIBankAccount() {
+    private TestBankAccount() {
     }
 
     public static void main(final String[] args) {
@@ -12,10 +13,7 @@ public final class TestIBankAccount {
 
         final BankAccount acc1 = new SimpleBankAccount(usr1.getUserID(), 0);
 
-        /*
-         * Change the implementation from StrictBankAccount to
-         * ExtendedStrictBankAccount
-         */
+        // TODO Change the implementation from StrictBankAccount to ExtendedStrictBankAccount
         final BankAccount acc2 = new StrictBankAccount(usr2.getUserID(), 0);
 
         acc1.deposit(usr1.getUserID(), 10000);
