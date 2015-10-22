@@ -1,10 +1,12 @@
 package it.unibo.oop.lab04.robot.composable;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 import it.unibo.oop.lab04.robot.base.BaseRobot;
 import it.unibo.oop.lab04.robot.components.RobotPart;
+import it.unibo.oop.lab04.robot.composable.util.AdvancedArrayBasedPartCollection;
+import it.unibo.oop.lab04.robot.composable.util.RobotPartCollection;
+// import it.unibo.oop.lab04.robot.composable.util.SimpleArrayBasedPartCollection;
 
 /**
  * @author Danilo Pianini
@@ -12,7 +14,12 @@ import it.unibo.oop.lab04.robot.components.RobotPart;
  */
 public class SimpleComposableRobot extends BaseRobot implements ComposableRobot {
 
-    private RobotPart[] parts = new RobotPart[0];
+    /*
+     * Uncomment the following line and its import to test with a simpler part
+     * collection.
+     */
+//    private final RobotPartCollection parts = new SimpleArrayBasedPartCollection();
+    private final RobotPartCollection parts = new AdvancedArrayBasedPartCollection(-5);
 
     public SimpleComposableRobot(final String robotName) {
         super(robotName);
@@ -22,13 +29,14 @@ public class SimpleComposableRobot extends BaseRobot implements ComposableRobot 
         Objects.requireNonNull(rp);
         rp.plug(this);
         if (rp.isPluggedTo(this)) {
-            parts = Arrays.copyOf(parts, parts.length + 1);
-            parts[parts.length - 1] = rp;
+            parts.add(rp);
         }
     }
 
     public final void doCycle() {
-        for (final RobotPart p : parts) {
+        parts.resetIterator();
+        while (parts.hasAnotherPart()) {
+            final RobotPart p = parts.next();
             if (p.isOn()) {
                 if (p.isPluggedTo(this)) {
                     if (p.getEnergyRequired() < getBatteryLevel() && p.doOperation()) {
@@ -48,26 +56,7 @@ public class SimpleComposableRobot extends BaseRobot implements ComposableRobot 
 
     public final void detachComponent(final RobotPart rp) {
         Objects.requireNonNull(rp);
-        final int index = indexOf(rp);
-        if (index >= 0) {
-            final RobotPart[] na = new RobotPart[parts.length - 1];
-            for (int i = 0; i < index; i++) {
-                na[i] = parts[i];
-            }
-            for (int i = index + 1; i < parts.length; i++) {
-                na[i - 1] = parts[i];
-            }
-            parts = na;
-        }
-    }
-
-    private int indexOf(final RobotPart rp) {
-        for (int i = 0; i < parts.length; i++) {
-            if (parts[i].equals(rp)) {
-                return i;
-            }
-        }
-        return -1;
+        parts.remove(rp);
     }
 
 }
