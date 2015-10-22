@@ -45,8 +45,11 @@ public final class TestComposableRobot {
                 battery.turnOff();
             }
             arm1.sendCommand(arm1.availableCommands()[i % arm1.availableCommands().length]);
-            arm2.sendCommand(arm1.availableCommands()[i % arm1.availableCommands().length]);
+            arm2.sendCommand(arm2.availableCommands()[i % arm2.availableCommands().length]);
         }
-
+        
+        r0.detachComponent(arm1);
+        r0.detachComponent(arm2);
+        r0.doCycle();
     }
 }
