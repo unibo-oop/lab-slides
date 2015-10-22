@@ -1,6 +1,6 @@
-package oop1415.lab03.acme;
+package oop.lab03.acme;
 
-public interface IUser {
+public interface User {
   String getUsername();
   String getPassword();
   String getDescription();

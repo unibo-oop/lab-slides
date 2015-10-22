@@ -1,6 +1,6 @@
-package oop1415.lab03.interfaces;
+package oop.lab03.interfaces;
 
-public interface IBankAccount {
+public interface BankAccount {
   void withdraw(int usrID, double amount);
   void deposit(int usrID, double amount);
   void depositFromATM(int usrID, double amount);

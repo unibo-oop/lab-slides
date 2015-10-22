@@ -1,6 +1,6 @@
 package oop.lab03.acme;
 
-public class Student implements IUser {
+public class Student implements User {
 
     private static final String DOT = ".";
     private final String name;
