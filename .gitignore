@@ -15,4 +15,4 @@
 *.zip
 *.directory
 *.backup
-
+**/.recommenders/*
