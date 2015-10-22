@@ -38,7 +38,6 @@ public final class TestComposableRobot {
         arm2.turnOn();
 
         for (int i = 0; i < CYCLES; i++) {
-            r0.doCycle();
             if (r0.getBatteryLevel() < BaseRobot.BATTERY_FULL / 2) {
                 battery.turnOn();
             } else {
@@ -46,10 +45,12 @@ public final class TestComposableRobot {
             }
             arm1.sendCommand(arm1.availableCommands()[i % arm1.availableCommands().length]);
             arm2.sendCommand(arm2.availableCommands()[i % arm2.availableCommands().length]);
+            r0.doCycle();
         }
         
         r0.detachComponent(arm1);
         r0.detachComponent(arm2);
+        r0.doCycle();
         r0.doCycle();
     }
 }
