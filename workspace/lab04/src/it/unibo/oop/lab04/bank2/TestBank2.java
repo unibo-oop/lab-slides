@@ -9,8 +9,9 @@ public final class TestBank2 {
 
     private static void checkEquality(final String propertyName, final Object expected, final Object actual) {
         if (actual == null || !actual.equals(expected)) {
-            System.out.println(propertyName + " was expected to be " + expected + ", but it yields " + actual
-                    + " (ERROR!)");
+            System.out.println(
+            		propertyName + " was expected to be " + expected
+            		+ ", but it yields " + actual + " (ERROR!)");
         } else {
             System.out.println(propertyName + ": " + actual + " (CORRECT)");
         }
