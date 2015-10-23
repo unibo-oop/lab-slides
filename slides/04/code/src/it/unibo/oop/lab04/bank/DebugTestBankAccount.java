@@ -1,6 +1,5 @@
 package it.unibo.oop.lab04.bank;
 
-// CHECKSTYLE:OFF
 public class DebugTestBankAccount {
 
     private DebugTestBankAccount() {}
@@ -31,7 +30,7 @@ public class DebugTestBankAccount {
 
         b1.deposit(usr1.getUserID(), 2000);
         System.out.println("Mario Rossi current balance is " + b1.getBalance());
-        
+
         // robbery attempted by Lupin on Rossi's account
         b1.withdraw(arsenioLupin.getUserID(), 3000);
         System.out.println("Mario Rossi current balance is " + b1.getBalance());
