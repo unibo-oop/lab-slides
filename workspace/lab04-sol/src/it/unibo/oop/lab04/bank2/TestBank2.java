@@ -5,13 +5,13 @@ import it.unibo.oop.lab04.bank.BankAccount;
 
 public final class TestBank2 {
 
-    private TestBank2() { }
+    private TestBank2() {
+    }
 
     private static void checkEquality(final String propertyName, final Object expected, final Object actual) {
         if (actual == null || !actual.equals(expected)) {
-            System.out.println(
-            		propertyName + " was expected to be " + expected
-            		+ ", but it yields " + actual + " (ERROR!)");
+            System.out.println(propertyName + " was expected to be " + expected + ", but it yields " + actual
+                    + " (ERROR!)");
         } else {
             System.out.println(propertyName + ": " + actual + " (CORRECT)");
         }
@@ -22,9 +22,11 @@ public final class TestBank2 {
         final AccountHolder usr1 = new AccountHolder("Mario", "Rossi", 1);
         final AccountHolder usr2 = new AccountHolder("Luigi", "Bianchi", 2);
 
-        // TODO assign actual instances of the realized classes
-        final BankAccount acc1 = null;
-        final BankAccount acc2 = null;
+        /*
+         * Use proper test classes
+         */
+        final BankAccount acc1 = new ClassicBankAccount(usr1.getUserID(), 0);
+        final BankAccount acc2 = new RestrictedBankAccount(usr2.getUserID(), 0);
 
         final String balance1 = usr1.getName() + " " + usr1.getSurname() + " account balance";
         final String balance2 = usr2.getName() + " " + usr2.getSurname() + " account balance";

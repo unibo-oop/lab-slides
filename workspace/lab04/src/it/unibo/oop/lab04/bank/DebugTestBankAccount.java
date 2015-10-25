@@ -1,7 +1,10 @@
 package it.unibo.oop.lab04.bank;
 
-public class DebugTestIBankAccount {
+// CHECKSTYLE:OFF
+public class DebugTestBankAccount {
 
+    private DebugTestBankAccount() {}
+    
     public static void main(final String[] args) {
         // 1) Creare l' AccountHolder relativo a Mario Rossi con id 1
         final AccountHolder usr1 = new AccountHolder("Mario", "Rossi", 1);
@@ -28,7 +31,7 @@ public class DebugTestIBankAccount {
 
         b1.deposit(usr1.getUserID(), 2000);
         System.out.println("Mario Rossi current balance is " + b1.getBalance());
-
+        
         // robbery attempted by Lupin on Rossi's account
         b1.withdraw(arsenioLupin.getUserID(), 3000);
         System.out.println("Mario Rossi current balance is " + b1.getBalance());

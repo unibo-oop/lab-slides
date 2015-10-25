@@ -6,7 +6,7 @@ import it.unibo.oop.lab04.robot.base.RobotEnvironment;
 import it.unibo.oop.lab04.robot.base.RobotPosition;
 
 /**
- * Utility class for testing robots
+ * Utility class for testing componible robots
  * 
  * @author Danilo Pianini
  */
@@ -72,5 +72,6 @@ public final class TestRobots {
             assertEquality(r0pos, new RobotPosition(RobotEnvironment.X_UPPER_LIMIT, RobotEnvironment.Y_UPPER_LIMIT),
                     r0.getPosition());
         }
+
     }
 }
