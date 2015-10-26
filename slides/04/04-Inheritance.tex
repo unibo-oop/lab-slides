@@ -1,0 +1,514 @@
+\documentclass[presentation]{beamer}
+\usepackage{oop-slides}
+\usepackage{url}
+\setbeamertemplate{bibliography item}[text]
+\title[OOP04 -- Ereditarietà]{04 \\Uso avanzato di Eclipse, ereditarietà e classi astratte}
+
+\begin{document}
+
+\frame[label=coverpage]{\titlepage}
+
+%====================
+%Outline
+%====================
+\fr{Outline}{
+  \bl{Goal della lezione}{
+    \iz{ 
+      \item Utilizzo avanzato di Eclipse
+      \item Imparare a costruire classi sfruttando l'ereditarietà
+        \iz{
+          \item Scittura ed estensione di classi
+          \item Scrittura ed estensione di classi astratte
+        }
+    }
+  }
+}
+
+\section{Eclipse: Aspetti Avanzati}
+
+\fr{Debugging di Applicazioni \cite{debugger,debugging}}{
+	L'avvio del debugging è molto simile all'esecuzione di applicazioni
+	\fg{height=0.8\textheight}{img/debug.png}
+}
+
+
+\fr{Debugging: Principali Operazioni}{
+	\bl{Principali Operazioni}{
+		\en{
+			\item Inserimento di un breakpoint
+			\iz{
+				\item Doppio click sulla linea di interesse (o CTRL+SHIFT+B)
+			}
+			\item Esecuzione \textcolor{blue}{step-by-step}: F6
+			\iz{
+				\item Una volta che l'esecuzione è stata sospesa da un breakpoint
+			}
+			\item \textcolor{blue}{Step into}: F5 
+			\iz{
+				\item Debugging corpo di un metodo/costruttore
+			}
+			\item \textcolor{blue}{Step return}: F7 
+			\iz{
+				\item Ritorno dal debugging del corpo di un metodo/costruttore
+			}
+			\item \textcolor{blue}{Resume}: F8 
+			\iz{
+				\item Esecuzione fino al prossimo breakpoint 
+			}
+		}
+	}
+}
+
+\fr{Debugging: Test delle Principali Operazioni}{
+	\tiny Classe d'esempio \cil{it.unibo.oop.lab04.bank.DebugTestBankAccount}\normalsize
+   \sizedcode{\tiny}{code/src/it/unibo/oop/lab04/bank/DebugTestBankAccount.java}
+}
+
+
+\fr{Refactoring}{
+	\fg{height=0.6\textheight}{img/refactor.png}
+	\bl{}{
+		Operazioni di modifica del nome di variabili, classi, metodi etc.
+		\iz{ 
+			\item Gestite in maniera automatica e safe dall'IDE 
+			\item Attivabile anche tramite ALT+SHIFT+R sulla selezione di interesse
+		}
+	}
+}
+
+\fr{History delle Modifiche 1/2}{
+	
+	\bl{Aiuto! Ho erroneamente cancellato/modificato parti del mio sorgente!}{
+		\iz{
+			\item(Potenzialmente) nulla è perduto!
+				\iz{ 
+					\item	Eclipse gestisce automaticamente un supporto (di base) di \textcolor{blue}{versioning} dei progetti all'interno del vostro workspace
+					
+					\item Possiamo quindi cercare di recuperare le modifiche perse analizzando versioni precedenti dei sorgente salvate nella \textcolor{blue}{local history} di Eclipse
+				}
+			\item La history gestita da Eclipse è completamente configurabile	
+			\iz{ \item p.e. dimensione massima su disco della history, numero massimo di versioni salvate per un dato file, etc. }
+		}
+	}
+	\bl{Nota importante}{
+		\iz{
+			\item La history delle modifiche è un supporto \textit{``comodo e utile'' }
+			\item \alert{Non è però da considerare come una valida alternativa ai sistemi di versioning al supporto dello sviluppo di software (che vedremo)}
+			\iz{ \item p.e. modfiche potrebbero essere perse una volta raggiunta la dimensione massima della history su disco}
+		}
+	}
+}
+
+\fr{History delle Modifiche 2/2}{
+	\fg{height=0.8\textheight}{img/local_history1.png}
+}
+
+\fr{Keyboard Shortcuts 1/2}{
+	
+	\bl{Perchè usarle?}{
+		\iz{
+			\item Velocizzano l'esecuzione di operazioni ricorrenti
+			\item Diminuiscono la probabilità di \textit{``infortuni''} legati all'uso del mouse
+			\iz{
+				\item I tennisti hanno problemi al gomito, gli informatici al tunnel carpale
+			}			
+		}
+	}
+	\bl{Principali shortcut (per Mac OSX sostiuire CMD a CTRL)}{
+		\iz{
+			\item \alert{CTRL+1}: quick-fix contestuale per errori (molto potente)
+			\item \alert{ALT+SHIFT+R}: refactoring di campi/metodi/classi
+			\item \alert{CTRL+PGUP/PGDOWN}: per muoversi di uno step avanti (PGUP) o indietro (PGDOWN) tra la lista di sorgenti correntemente aperti
+			\item \alert{F3} (o \alert{CTRL+CLICK}): ci sposta alla definizione di un dato elemento 
+			\item \alert{CTRL+SHIFT+L}: lista delle shortcut disponibili per il dato contesto 
+
+		}
+	}
+}
+\fr{Keyboard Shortcuts 2/2}{
+	\bl{Altre shortcut (per Mac OSX sostiuire CMD a CTRL)}{
+		\iz{
+%			\item \alert{CTRL+I}: indenta un blocco di codice precedentemente selezionato
+			\item \alert{CTRL+SHIFT+O}: include in automatico tutti gli import necessari sulla base delle classi utilizzate nel sorgente corrente
+			\item \alert{CTRL + . }: sposta il cursorse al successivo errore/warning
+			\item \alert{CTRL+F8}: consente di spostarsi tra le varie perspective
+			\item \alert{CTRL+J}: search incrementale, senza l'uso di GUI
+			\item \alert{ALT+SHIFT+S}: da l'accesso a un insieme di wizard con cui automatizzare la scrittura di costruttori, getter, setter, etc.
+						
+		}
+	}
+}
+
+\section{Lab Startup}
+
+\fr{Preparazione Ambiente di Lavoro 1/2}{
+  \iz{
+    \item Accendere il PC
+    \item Loggarsi sul sito del corso
+    \iz{
+      \item \textcolor{blue}{\moodleurl}
+    }
+    \item Scaricare dalla sezione \texttt{lab} del sito il file \texttt{lab04.zip} contenente il materiale dell'esercitazione odierna
+    \item Spostare il file scaricato sul Desktop
+    \item Decomprimere il file usando 7zip (o un programma analogo) sul Desktop
+    \item Copiare la cartella scompattata (\texttt{lab04}) nel vostro workspace di Eclipse
+    \iz{
+      \item p.e. \texttt{C:$\backslash$Users$\backslash$<username>$\backslash$workspace}
+    }
+    \item Importare il progetto \texttt{lab04} con la procedura di importazione dei progetti vista durante lo scorso laboratorio
+  }
+  
+}
+
+
+\fr{Modalità di Lavoro}{
+  \bl{}{
+    \en{
+      \item Leggere la consegna
+      \item Risolvere l'esercizio in autonomia
+      \item Cercare di risolvere autonomamente eventuali piccoli problemi che possono verificarsi durante lo svolgimento degli esercizi
+      \item \textcolor{red}{Utilizzare le funzioni di test presenti nei sorgenti per il testing dell'esercizio}
+      \item Contattare i docenti nel caso vi troviate a lungo bloccati nella risoluzione di uno specifico esercizio
+      \item A esercizio ultimato contattare i docenti per un rapido controllo della soluzione realizzata
+%       \item \textcolor{red}{Scrivere la Javadoc per l'esercizio svolto} (o in lab o a casa in mancanza di tempo)
+      \item Proseguire con l'esercizio seguente
+    }
+  }
+}
+
+\section{Ereditarietà}
+
+\subsection{Refactoring di un esercizio precedente}
+
+\fr{SimpleBankAccount e StrictBankAccount}{
+  \bl{Miglioriamo la precedente esercitazione}{
+    \iz{
+      \item Nelle soluzioni dell'esercizio della volta scorsa, c'è molto codice duplicato fra \texttt{SimpleBankAccount} e \texttt{StrictBankAccount}
+      \item Si crei la classe \texttt{ExtendedStrictBankAccount extends SimpleBankAccount}, con lo stesso comportamento di StrictBankAccount, cercando di ottimizzare il riuso di codice.
+		\item È \textbf{proibito} apportare modifiche a \texttt{SimpleBankAccount}, di qualunque tipo.
+		\item Si mostri il risultato al docente per una correzione
+    }
+  }
+  \bl{Una nuova architettura}{
+    \iz{
+      \item La soluzione precedente è stata ottenuta per modifica di un design sub-ottimo (non conoscevamo ancora l'ereditarietà!)
+      \item Come sarebbe stato il design dell'applicazione se avessimo conosciuto fin dall'inizio il meccanismo di ereditarietà?
+    }
+  }
+}
+  
+\fr{SimpleBankAccount e StrictBankAccount}{
+  \bl{Una nuova architettura}{
+    \iz{
+      \item All'interno del package \texttt{it.unibo.oop.lab04.bank2}, si creino le seguenti classi:
+      \iz{
+        \item \texttt{abstract AbstractBankAccount implements BankAccount}
+        \iz{
+          \item dovrà contenere elementi comuni a \textbf{tutti} i conti correnti
+          \item \textbf{tutti} i campi della classe dovranno essere privati
+          \item la classe dovrà esporre come metodi \texttt{public} tutti e soli i metodi dell'interfaccia \texttt{BankAccount}
+          \item deve definire  ed utilizzare due metodi \texttt{protected abstract}: \texttt{boolean isWithdrawAllowed(double)} (\texttt{true} se se è possibile prelevare dal conto il valore passato) e \texttt{double computeFee()} (ritorna l'ammontare complessivo dei costi di gestione)
+        }
+        \item \texttt{ClassicBankAccount extends AbstractBankAccount}
+        \iz{
+          \item Implementa lo stesso comportamento di \texttt{SimpleBankAccount}
+        }
+        \item \texttt{RestrictedBankAccount extends AbstractBankAccount}
+        \iz{
+          \item Implementa lo stesso comportamento di \texttt{StrictBankAccount}
+        }
+      }
+      \item In cosa è migliore della soluzione precedente?
+    }
+  }
+}
+
+\subsection{Nuovo scenario: robot}
+
+\fr{Costruzione e Testing di Robot}{
+  \bl{}{
+    Nella lezione di oggi studieremo in pratica l'ereditarietà e le classi astratte usando come scenario di riferimento la modellazione e il testing di robot
+  }
+  
+  \iz{ \item \cil{package it.unibo.oop.lab04.robot.base}: set di interfacce e classi fornite }
+    \iz{
+      \item \cil{Robot}
+      \item \cil{Position2D}
+      \item \cil{BaseRobot}
+      \item \cil{RobotPosition}
+      \item \cil{RobotEnvironment}
+    }
+  Si utilizzi \texttt{TestRobots} per capire il funzionamento delle classi suddette
+}
+
+\fr{Costruzione e Testing di Robot}{
+  \fg{width=0.99\textwidth}{img/robots_core.png}
+}
+
+\subsection{Robot con braccia}
+
+\fr{Suggested design}{
+  \fg{width=0.99\textwidth}{img/arms}
+}
+
+\fr{Design guidato}{
+  Sfruttando le classi base già definite, e facendo riferimento allo schema UML allegato nella slide precedente, si realizzino nel \cil{package it.unibo.oop.lab04.robot.arms}:
+  \iz{
+    \scriptsize
+    \item \cil{interface RobotWithArms}: descrive un robot dotato di braccia. Presenta tre metodi:
+    \iz{
+      \scriptsize
+      \item \cil{boolean pickUp()} raccoglie un oggetto, restituisce \cil{true} se ha successo
+      \item \cil{boolean dropDown()} rilascia un oggetto, restituisce \cil{true} se ha successo
+      \item \cil{int getItemsCarried()} restituisce il numero di oggetti che si stanno trasportando.
+    }
+    \item \cil{class BasicArm}: modella un singolo braccio robot. Si faccia riferimento allo schema UML precedente, sapendo che ciascun braccio è in grado di sollevare un solo oggetto alla volta, che ha un consumo per prendere un oggetto e per lasciarlo.
+    \item \cil{class RobotWithTwoArms extends BaseRobot implements RobotWithArms}: modella un robot con due braccia. Al comando \cil{pickUp()}, il robot preleva un oggetto, aumentando il numero di oggetti che sta trasportando, ed occupando una delle braccia. Quando tutte le braccia sono occupate, \cil{pickUp()} fallisce (restituisce \cil{false}). Allo stesso modo, quando le braccia sono vuote, \cil{dropDown()} fallisce. Quando il robot sta trasportando oggetti, il suo consumo di batteria è superiore.
+  }
+  Si utilizzi \texttt{TestRobots} per capire il funzionamento delle classi suddette
+}
+
+\section{Design}
+
+\fr{Design di una applicazione}{
+  \iz {
+    \item Come ingegneri, dovrete essere in grado di tradurre una descrizione in linguaggio naturale (``a parole'') di una applicazione in termini di astrazioni adatte ad essere scritte in forma di software (nel nostro caso, in elementi di linguaggio di programmazione orientato agli oggetti)
+    \item Si tratta dell'esercizio \textbf{più difficile} e \textbf{più importante} che dovrete fare quando realizzerete il progetto
+    \item Dalle vostre capacità di analisi del problema e di design della soluzione dipende il successo o meno del vostro software
+    \item Nel prossimo esercizio, vi sarà data una descrizione in linguaggio naturale, e starà a voi realizzare il software autonomamente
+    \item \textbf{SUGGERIMENTO} --- Prima di iniziare a ``sporcarsi le mani'' col codice, prendete carta e penna e cercate di ottenere un design chiaro dei componenti che realizzerete: nessuno costruisce un'automobile partendo con l'assemblare i bulloni, ma decide prima quali saranno i componenti e come andranno connessi fra loro.
+  }
+}
+
+\subsection{Robot componibili}
+
+\fr{Requisiti: robot componibile}{
+  \iz {
+    \item Si desidera realizzare un robot di tipo componibile.
+    \item Un robot componibile è un robot al quale possono essere aggiunti o rimossi nuovi componenti arbitrari.
+    \item Il robot componibile espone una funzionalità che consente di mettere in moto e far funzionare tutti i componenti connessi, a patto ovviamente che siano accesi.
+    \item Quando tale funzionalità viene chiamata, il robot mette in funzione in ordine, per una sola volta, tutti i componenti ad esso connessi.
+  }
+}
+
+\fr{Requisiti: componenti di robot}{
+  \iz {
+    \item Un componente per robot è un'entità che può essere accesa o spenta.
+    \item Il componente può essere non connesso oppure connesso ad un solo robot.
+    \item Il componente è in grado di compiere operazioni sul robot.
+    \item Ciascun componente ha un proprio consumo di energia.
+    \item Quando il robot a componenti fa uso del componente, deve scalare il consumo di energia del componente dalla propria batteria.
+    \item Alcuni componenti sono in grado di supportare dei comandi.
+    \item Ciascun componente comandabile ha il proprio set di comandi
+    \item Il componente comandabile può ricevere un comando
+    \item Alla ricezione del comando, se il comando corrisponde ad uno dei comandi supportati, il componente comandabile cambia il proprio comportamento in maniera tale da eseguire il comando richiesto.
+  }
+}
+
+\fr{Requisiti: test}{
+  Si desidera testare l'infrastruttura creando un robot componibile ed assegnandogli i seguenti componenti:
+  \iz {
+    \item Batteria atomica:
+    \iz {
+      \scriptsize
+      \item Componente non comandabile.
+      \item Batteria alimentata ad Uranio-239, che ricarica istantaneamente il robot.
+      \item In fase di test, per evitare il surriscaldamento, si attivi la batteria atomica solo nel caso in cui la batteria del robot sia al di sotto del 50\%.
+    }
+    \item Navigatore di confine:
+    \iz {
+      \scriptsize
+      \item Componente non comandabile.
+      \item Una volta avviato, fa sì che il robot raggiunga il bordo del \texttt{RobotEnvironment} e continui ad esplorarlo.
+    }
+    \item Due braccia prensili:
+    \iz {
+      \scriptsize
+      \item Componente comandabile, con comandi ``pick'' e ``drop''.
+      \item Se è attivo il comando ``pick'' e il braccio non ha alcun oggetto in mano, allora ne viene preso uno.
+      \item Se è attivo il comando ``pick'' e il braccio ha già un oggetto in mano, allora non viene fatta alcuna azione.
+      \item Se è attivo il comando ``drop'' e il braccio ha già un oggetto in mano, allora l'oggetto viene lasciato.
+      \item Se è attivo il comando ``drop'' e il braccio non ha alcun alcun oggetto in mano, allora non viene fatta alcuna azione.
+    }
+  }
+}
+
+%\fr{Badge: Pimp by bot} {
+%  \iz {
+%    \item Chi riesce a completare un robot componibile dotato di tutte le componenti sopra indicate può creare un nuovo componente personalizzato.
+%    \item I componenti innovativi e di buona qualità che verranno postati sul forum studenti vinceranno un badge del corso.
+%  }
+%}
+
+
+\begin{frame}[allowframebreaks]
+ \frametitle{Bibliography}
+  \bibliographystyle{plain}
+  \small
+ \bibliography{biblio}
+\end{frame}
+
+
+\end{document}
+
+%%%%%%%%%%%%by by exam exercise!%%%%%%%%5
+\section{Esempio Esercizio d'Esame}
+  
+\fr{Esempio Esercizio d'Esame}{
+  \bl{}{
+    All'interno del package \cil{oop1415.lab04.examsample} è contenuto un esempio di esercizio di esame relativo ai temi della odierna lezione di laboratorio
+    \iz{
+      \item \cil{testo.txt} contiene le linee guida per la risoluzione dell'esercizio
+      \item Trovate all'interno del package un insieme di classi di partenza da cui iniziare la risoluzione
+      \item Nota: rimuovere i commenti relativi ad alcune parti implementate (sono stati introdotti per evitare la generazione di errori di compilazione relativi alla implementazione parziale dell'esercizio)
+    }
+  }
+}
+
+
+
+%%%this my dear regards javadoc and we made the wise decision to move it to a future lab
+\section{Scrivere e Generare la Documentazione di Programmi Java}
+
+\fr{Javadoc: Introduzione 1/2}{
+  \bl{Il ruolo fondamentale della documentazione}{
+    La documentazione di un progetto software è un aspetto fondamentale
+    \iz{
+      \item Al fine di garantirne la manutenibilità
+        \iz{
+          \item Siamo così sicuri di ricordarci a distanza di settimane del perché abbiamo adottato una certa architettura, scritto una certa classe, una data estensione di una classe, un certo metodo?
+          \item Arriva in azienda un nuovo sviluppatore: come fa a costruirsi il background necessario per lavorare su un progetto software esistente?
+        }
+      \item Al fine di aumentare la comprensione del codice
+        \iz{
+          \item Cosa farà mai il metodo \textit{XYZ()} sviluppato dal collega?
+          \item Ci sono dei metodi che sono disponibili solo per ragioni di compatibilità e che non dovrei più utilizzare?
+        }
+    }
+  }
+  \bl{}{
+    Oggi ci concentreremo sulla \alert{Javadoc} che, integrata all'uso di UML, è una delle parti fondamentali di una buona documentazione di un progetto sw
+  }
+}
+
+\fr{Javadoc: Introduzione 2/2}{
+  \bl{Javadoc \cite{javadoc-ref, javadoc-howto}: che cos'è?}{
+    Tool a supporto della generazione automatica della documentazione HTML-based di programmi Java che si appoggia all'utilizzo di commenti \textit{``speciali''} collocati in precisi punti dei sorgenti
+  }
+  
+  \bl{Come funziona}{
+    \iz{
+      \item Il tool processa tutti i commenti del tipo \cil{/** ... */}
+      \item Commenti che si trovano in testa a dichiarazione di classi, metodi, etc. vengono inclusi per generare automaticamente la documentazione
+      \item Custom tag consentono di classificare diverse tipologie di informazioni, facilitando la scrittura e la generazione della documentazione
+    }
+  }
+}
+
+\fr{Esempio di Classe con Commenti Javadoc}{
+   \sizedcode{\small  }{code/HelloWorld.java}  
+}
+
+\fr{Javadoc: Principali Tag 1/2}{
+  \iz{ 
+    \item \textcolor{blue}{\cil{@author}}
+      \iz{
+        \item Utilizzabile: solamente nel commento che descrive la classe
+        \item Descrive: l'autore/autori della classe
+      }
+  }
+  \iz{ 
+    \item \textcolor{blue}{\cil{@param}}
+      \iz{
+        \item Utilizzabile: nei commenti relativi a costruttori/metodi
+        \item Descrive: un generico parametro di input
+      }
+  }
+  \iz{ 
+    \item \textcolor{blue}{\cil{@return}}
+      \iz{
+        \item Utilizzabile: nei commenti relativi ai metodi
+        \item Descrive: il valore di ritorno
+      }
+  }
+  \iz{ 
+    \item \textcolor{blue}{\cil{@deprecated}}
+      \iz{
+        \item Utilizzabile: nei commenti relativi a classi/costruttori/metodi/campi
+        \item Descrive: che quel particolare costruttore/metodo etc. è stato deprecato. E' ancora disponibile per ragioni di compatibilità ma è opportuno non utilizzarlo nello sviluppo di nuove applicazioni
+      }
+  }
+}
+
+\fr{Javadoc: Principali Tag 2/2}{
+  \iz{ 
+    \item \textcolor{blue}{\cil{@throws}}
+      \iz{
+        \item Utilizzabile: nei commenti relativi a costruttori/metodi che lanciano una eccezione (le vedremo in seguito)
+        \item Descrive: l'eccezione e il motivo per cui viene lanciata
+      }
+  }
+  
+  \iz{ 
+    \item \textcolor{blue}{\cil{@link}}
+      \iz{
+        \item Descrive: collegamenti ipertestuali (link) a metodi/classi/costanti della stessa classe o anche di classi esterne
+        \item Esempi di utilizzo
+          \iz{
+            \item \texttt{ \{@link package.OtherClass\#someMethod\} }
+            \item \texttt{ \{@link \#someMethodOfSameClass\} }
+            \item \texttt{ \{@link \#someFieldOfSameClass\} }
+          }
+      }
+  }    
+}
+
+\fr{Javadoc: Linee Guida d'Uso}{
+  \bl{Cosa commentare e quali tag usare?}{
+    \iz{
+      \item Inserire sempre un commento (anche corto) che descrive il ruolo e il funzionamento generale della classe
+      \item Inserire un commento per tutti i costruttori (parametri e return value inclusi), metodi, e campi con livello di accesso \cil{public} e \cil{protected}
+      \item Evitare di inserire descrizioni di metodi, parametri e valori di ritorno quando il loro scopo/descrizione sono banali
+      \item Inserire però la documentazione necessaria per gli elementi chiave
+        \iz{ \item \textcolor{red}{E' a vostra discrezione decidere cosa è banale e cosa no, questo però non vi autorizza a non inserire alcun commento!}}
+    }
+  }
+  \bl{}{
+    Utilizzare i sorgenti che vi forniamo in lab come linea guida di riferimento
+  }
+}
+
+\fr{Generazione Javadoc da Riga di comando}{
+  Esempio base di generazione della documentazione\\
+  
+  \iz{ 
+    \item {\tiny\texttt{javadoc -d <dest-dir> -sourcepath <src-path> -subpackages <base-pckg> -exclude <ex-pckg> -author}} 
+      \iz{
+        \item \textcolor{blue}{-d} directory in cui viene salvata la doc generata
+        \item \textcolor{blue}{-sourcepath} il path in cui trovare i sorgenti (da la possibilità di invocare il comando da qualunque cartella)
+        \item \textcolor{blue}{-subpackages} lista di package root da usare come base per generare la documentazione. Il comando andrà in ricorsione in tutti i sotto package
+        \item \textcolor{blue}{-exclude} lista di sotto package da escludere
+        \item \textcolor{blue}{-author} include il tag author alla doc generata
+      }
+  }
+  
+  Generiamo la documentazione per il progetto OOP1415-LAB (supponendo di trovarci in OOP1415-LAB)
+    \iz{
+      \item {\small\texttt{javadoc -d doc -sourcepath src -subpackages oop1415 -author}} 
+    }  
+}
+
+
+\fr{Generazione Javadoc da Eclipse 1/2}{
+  \fg{height=0.9\textheight}{img/Javadoc1.png} 
+}
+
+\fr{Generazione Javadoc da Eclipse 2/2}{
+  \fg{height=0.8\textheight}{img/javadoc2.png}
+}
+
+\fr{Javadoc: Esempio di Documentazione Generata}{
+  \fg{height=0.8\textheight}{img/javadoc_view.png}
+}
+
+
