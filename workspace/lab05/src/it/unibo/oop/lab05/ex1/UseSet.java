@@ -15,10 +15,10 @@ public final class UseSet {
     }
 
     /**
-     * @param s
+     * @param args
      *            ignored
      */
-    public static void main(final String[] s) {
+    public static void main(final String[] args) {
 
         /*
          * Considering the content of "UseCollection, write a program which, in

@@ -1,7 +1,17 @@
 package it.unibo.oop.lab05.ex5;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.TreeSet;
 
+/**
+ * 
+ * Simple the class to test {it.unibo.oop.lab05.Utilities} class.
+ * 
+ * @author mviroli
+ * @author dpianini
+ *
+ */
 public final class UseUtilities {
 
     private UseUtilities() {

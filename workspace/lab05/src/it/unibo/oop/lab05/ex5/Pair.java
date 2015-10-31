@@ -41,10 +41,21 @@ public class Pair<X, Y> {
         return this.second;
     }
 
+    /**
+     * Returns a string representation of the pair.
+     * 
+     * @return a string representing this pair's state
+     */
     public String toString() {
         return "Pair [first=" + first + ", second=" + second + "]";
     }
 
+    /**
+     * Returns the hashcode for this pair, calculated via
+     * {@link it.unibo.oop.lab05.HashUtils#djb2int32}.
+     * 
+     * @return the hascode of this pair.
+     */
     public int hashCode() {
         /*
          * DJB-2.
@@ -52,6 +63,15 @@ public class Pair<X, Y> {
         return HashUtils.djb2int32(first.hashCode(), second.hashCode());
     }
 
+    /**
+     * Compares this pair to the specified object. The result is true if and
+     * only if the argument is not null and is a Pair object containing the same
+     * pair of object.
+     * 
+     * @param obj the object to compare this pair against
+     * 
+     * @return true if the given pair is equal to this pair
+     */
     public boolean equals(final Object obj) {
         if (obj instanceof Pair) {
             final Pair<?, ?> p = (Pair<?, ?>) obj;

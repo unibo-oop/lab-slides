@@ -12,10 +12,10 @@ public final class UseSetWithOrder {
     }
 
     /**
-     * @param s
+     * @param args
      *            ignored
      */
-    public static void main(final String[] s) {
+    public static void main(final String[] args) {
 
         /*
          * Write a program which:

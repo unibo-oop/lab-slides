@@ -22,8 +22,8 @@ public final class UseWarehouse {
         /*
          * Modify the previous exercise in such a way that:
          * 
-         * 1) allProducts() returns the products in order. Prefer solutions that
-         * reuse existing code.
+         * 1) allProducts() returns the products alphabetically ordered. Prefer
+         * solutions that reuse existing code.
          * 
          * 2) The implementation of Product must implement Comparable<Product>.
          */

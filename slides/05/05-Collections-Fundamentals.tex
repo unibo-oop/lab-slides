@@ -37,6 +37,71 @@
   }
 }
 
+
+\section{Introduzione e utilizzo dei jar}
+\subsection{I JAR file}
+\fr{Java: i file JAR}{
+  \iz {
+    \item Finora, abbiamo visto che un'applicazione Java è composta di un insieme di classi: noi vorremmo distribuirla come singolo file!
+    \item Normalmente, le applicazioni Java vengono confezionate in JAR files
+  }
+  \bl{Cos'è?} {
+    \iz {
+      \item Un JAR è un archivio (normalmente compresso) che contiene le classi, le risorse (e.g. icone) e un file descrittivo detto ``ManifGest''
+      \item Il Manifest viene creato sempre in \texttt{META-INF/MANIFEST.MF}, e contiene informazioni sull'applicazione, ad esempio su quale classe contenga il main del programma
+      \item È possibile associare (a livello di sistema operativo) l'esecuzione del JAR file al comando Java, in modo che l'applicazione si avvii automaticamente ``col doppio click'' (avviando automaticamente\ la classe scritta nel Manifest)
+      \item È possibile utilizzare i file JAR come componenti di altre applicazioni
+    }
+  }
+}
+
+\subsection{Gestione dei JAR file da Eclipse}
+\fr {Generazione di JAR files con Eclipse} {
+  Eclipse è in grado di supportare l'utente nella generazione di file JAR.
+  \iz {
+    \item Si seguano i passi nelle slide successive per generare un Jar a partire dai tre packages:
+     \iz{
+     	\item \texttt{it.unibo.oop.lab05.packages.pkg1} 
+        \item \texttt{it.unibo.oop.lab05.packages.pkg2}
+	\item \texttt{it.unibo.oop.lab05.packages.pkg3}
+     }
+  }
+}
+
+\imgfr{Generazione di JAR files con Eclipse}{Selezionare le risorse da esportare, click destro ed \texttt{Export}}{0.3}{img/exportjar1}
+\imgfr{Generazione di JAR files con Eclipse}{}{0.6}{img/exportjar2}
+\imgfr{Generazione di JAR files con Eclipse}{}{0.6}{img/exportjar3}
+\imgfr{Generazione di JAR files con Eclipse}{}{0.6}{img/exportjar4}
+\imgfr{Generazione di JAR files con Eclipse}{Espandere l'elenco dei file}{0.4}{img/exportjar5}
+\imgfr{Generazione di JAR files con Eclipse}{Verificare \textbf{sempre} che siano selezionate \textbf{tutte e sole} le risorse che ci interessano.}{0.5}{img/exportjar6}
+\imgfr{Generazione di JAR files con Eclipse}{Eventualmente potete esportare anche i sorgenti}{0.5}{img/exportjar7}
+\imgfr{Generazione di JAR files con Eclipse}{Inserite il nome del file (e selezionate la cartella dove volete creare il JAR)}{0.5}{img/exportjar8}
+\imgfr{Generazione di JAR files con Eclipse}{Finish}{0.5}{img/exportjar9}
+
+\fr {Verifica del contenuto di un JAR da riga di comando} {
+       Si verifichi il contenuto del JAR file con \texttt{jar tf myjar.jar}
+  }
+
+\fr {Generazione di JAR files eseguibili con Eclipse} {
+  Eclipse è anche in grado di generare automaticamente il Manifest file corretto per mettere in esecuzione una certa classe.
+  \iz {
+    \item È necessario che esista già una ``Run configuration''. Quando lanciate una classe con \texttt{main} per la prima volta, questa viene creata automaticamente
+    \item Si seguano i passi nelle slide successive per esportare i tre packages compilati, specificando la main class da eseguire
+    %\item Si tenti di eseguire il JAR con \texttt{Java -jar myjar.jar}. Cosa succede?
+  }
+}
+
+\imgfr{Generazione di JAR files eseguibili con Eclipse}{}{0.99}{img/exportrunnablejar1}
+\imgfr{Generazione di JAR files eseguibili con Eclipse}{}{0.3}{img/exportrunnablejar2}
+\imgfr{Generazione di JAR files eseguibili con Eclipse}{}{0.4}{img/exportrunnablejar3}
+\imgfr{Generazione di JAR files eseguibili con Eclipse}{Selezionare le risorse di interesse}{0.99}{img/exportrunnablejar4}
+\imgfr{Generazione di JAR files eseguibili con Eclipse}{}{0.3}{img/exportrunnablejar5}
+\imgfr{Generazione di JAR files eseguibili con Eclipse}{}{0.7}{img/exportrunnablejar6}
+\imgfr{Generazione di JAR files eseguibili con Eclipse}{Selezionare la la ``Run configuration'' da utilizzare}{0.7}{img/exportrunnablejar7}
+\imgfr{Generazione di JAR files eseguibili con Eclipse}{Inserire il nome del file (e selezionare il path in cui si desidera crearlo)}{0.7}{img/exportrunnablejar8}
+\imgfr{Generazione di JAR files eseguibili con Eclipse}{Finish}{0.7}{img/exportrunnablejar9}
+
+
 \section{Scrivere e Generare la Documentazione di Programmi Java}
 
 \fr{Javadoc: Introduzione 1/2}{
@@ -175,70 +240,6 @@
   \fg{height=0.8\textheight}{img/javadoc_view}
 }
 
-\section{Introduzione e utilizzo dei jar}
-\subsection{I JAR file}
-\fr{Java: i file JAR}{
-  \iz {
-    \item Finora, abbiamo visto che un'applicazione Java è composta di un insieme di classi: noi vorremmo distribuirla come singolo file!
-    \item Normalmente, le applicazioni Java vengono confezionate in JAR files
-  }
-  \bl{Cos'è?} {
-    \iz {
-      \item Un JAR è un archivio (normalmente compresso) che contiene le classi, le risorse (e.g. icone) e un file descrittivo detto ``ManifGest''
-      \item Il Manifest viene creato sempre in \texttt{META-INF/MANIFEST.MF}, e contiene informazioni sull'applicazione, ad esempio su quale classe contenga il main del programma
-      \item È possibile associare (a livello di sistema operativo) l'esecuzione del JAR file al comando Java, in modo che l'applicazione si avvii automaticamente ``col doppio click'' (avviando automaticamente\ la classe scritta nel Manifest)
-      \item È possibile utilizzare i file JAR come componenti di altre applicazioni
-    }
-  }
-}
-
-\subsection{Gestione dei JAR file da Eclipse}
-\fr {Generazione di JAR files con Eclipse} {
-  Eclipse è in grado di supportare l'utente nella generazione di file JAR.
-  \iz {
-    \item Si seguano i passi nelle slide successive per generare un Jar a partire dai tre packages:
-     \iz{
-     	\item \texttt{it.unibo.oop.lab05.packages.pkg1} 
-        \item \texttt{it.unibo.oop.lab05.packages.pkg2}
-	\item \texttt{it.unibo.oop.lab05.packages.pkg3}
-     }
-  }
-}
-
-\imgfr{Generazione di JAR files con Eclipse}{Selezionare le risorse da esportare, click destro ed \texttt{Export}}{0.3}{img/exportjar1}
-\imgfr{Generazione di JAR files con Eclipse}{}{0.6}{img/exportjar2}
-\imgfr{Generazione di JAR files con Eclipse}{}{0.6}{img/exportjar3}
-\imgfr{Generazione di JAR files con Eclipse}{}{0.6}{img/exportjar4}
-\imgfr{Generazione di JAR files con Eclipse}{Espandere l'elenco dei file}{0.4}{img/exportjar5}
-\imgfr{Generazione di JAR files con Eclipse}{Verificare \textbf{sempre} che siano selezionate \textbf{tutte e sole} le risorse che ci interessano.}{0.5}{img/exportjar6}
-\imgfr{Generazione di JAR files con Eclipse}{Eventualmente potete esportare anche i sorgenti}{0.5}{img/exportjar7}
-\imgfr{Generazione di JAR files con Eclipse}{Inserite il nome del file (e selezionate la cartella dove volete creare il JAR)}{0.5}{img/exportjar8}
-\imgfr{Generazione di JAR files con Eclipse}{Finish}{0.5}{img/exportjar9}
-
-\fr {Verifica del contenuto di un JAR da riga di comando} {
-       Si verifichi il contenuto del JAR file con \texttt{jar tf myjar.jar}
-  }
-
-\fr {Generazione di JAR files eseguibili con Eclipse} {
-  Eclipse è anche in grado di generare automaticamente il Manifest file corretto per mettere in esecuzione una certa classe.
-  \iz {
-    \item È necessario che esista già una ``Run configuration''. Quando lanciate una classe con \texttt{main} per la prima volta, questa viene creata automaticamente
-    \item Si seguano i passi nelle slide successive per esportare i tre packages compilati, specificando la main class da eseguire
-    %\item Si tenti di eseguire il JAR con \texttt{Java -jar myjar.jar}. Cosa succede?
-  }
-}
-
-\imgfr{Generazione di JAR files eseguibili con Eclipse}{}{0.99}{img/exportrunnablejar1}
-\imgfr{Generazione di JAR files eseguibili con Eclipse}{}{0.3}{img/exportrunnablejar2}
-\imgfr{Generazione di JAR files eseguibili con Eclipse}{}{0.4}{img/exportrunnablejar3}
-\imgfr{Generazione di JAR files eseguibili con Eclipse}{Selezionare le risorse di interesse}{0.99}{img/exportrunnablejar4}
-\imgfr{Generazione di JAR files eseguibili con Eclipse}{}{0.3}{img/exportrunnablejar5}
-\imgfr{Generazione di JAR files eseguibili con Eclipse}{}{0.7}{img/exportrunnablejar6}
-\imgfr{Generazione di JAR files eseguibili con Eclipse}{Selezionare la la ``Run configuration'' da utilizzare}{0.7}{img/exportrunnablejar7}
-\imgfr{Generazione di JAR files eseguibili con Eclipse}{Inserire il nome del file (e selezionare il path in cui si desidera crearlo)}{0.7}{img/exportrunnablejar8}
-\imgfr{Generazione di JAR files eseguibili con Eclipse}{Finish}{0.7}{img/exportrunnablejar9}
-
-
 
 \fr{Modalità di Lavoro}{
   \bl{}{
@@ -255,7 +256,6 @@
     }
   }
 }
-
 
 \end{document}
 

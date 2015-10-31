@@ -1,9 +1,11 @@
 package it.unibo.oop.lab05.ex1;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
+//CHECKSTYLE:OFF
 /**
  * Example class using {@link java.util.Collection}.
  * 
@@ -17,10 +19,10 @@ public final class UseCollection {
     }
 
     /**
-     * @param s
+     * @param args
      *            unused
      */
-    public static void main(final String[] s) {
+    public static void main(final String[] args) {
 
         /*
          * Unless you need to perform specific operations, always use the most
