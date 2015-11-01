@@ -142,13 +142,6 @@
 
 \fr{Javadoc: Principali Tag 1/2}{
   \iz{ 
-    \item \textcolor{blue}{\cil{@author}}
-      \iz{
-        \item Utilizzabile solamente nel commento che descrive la classe
-        \item Descrive l'autore/autori della classe
-      }
-  }
-  \iz{ 
     \item \textcolor{blue}{\cil{@param}}
       \iz{
         \item Utilizzabile nei commenti relativi a costruttori/metodi o in classi parametriche
@@ -192,6 +185,15 @@
           }
       }
   }    
+
+  \iz{ 
+    \item \textcolor{blue}{\cil{@author}} ed \textcolor{blue}{\cil{@version}}
+      \iz{
+        \item Utilizzabili nel commento che descrive la classe
+        \item Descrive l'autore/autori della classe, e la sua versione
+        \item \textcolor{red}{Non usateli}. Esistono modi migliori (che vedremo in futuro in questo corso) per sapere esattamente chi ha fatto cosa, quando, e qual è la versione della classe.
+      }
+  }
 }
 
 \fr{Javadoc: Linee Guida d'Uso}{
