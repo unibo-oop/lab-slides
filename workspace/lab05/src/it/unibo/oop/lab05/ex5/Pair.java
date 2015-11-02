@@ -52,7 +52,7 @@ public class Pair<X, Y> {
 
     /**
      * Returns the hashcode for this pair, calculated via
-     * {@link it.unibo.oop.lab05.HashUtils#djb2int32}.
+     * {@link it.unibo.oop.lab05.ex5.HashUtils#djb2int32}.
      * 
      * @return the hascode of this pair.
      */
