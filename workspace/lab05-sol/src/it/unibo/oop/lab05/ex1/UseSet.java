@@ -36,20 +36,20 @@ public final class UseSet {
         for (int i = 1; i <= ELEMS; i++) {
             set.add(Integer.toString(i));
         }
-        System.out.println(set);
+        System.out.println("Initial set: " + set);
+        
         for (int i = 3; i <= ELEMS; i += 3) {
             set.remove(Integer.toString(i));
         }
-        for (final String str : set) {
-            System.out.print(str + " | ");
-        }
-        System.out.println();
+        System.out.println("Modified set: " + set);
+
         final Set<String> set2 = new TreeSet<>();
         for (int i = 2; i <= ELEMS; i += 2) {
             set2.add(Integer.toString(i));
         }
-        System.out.println(set2);
-        System.out.println(set.containsAll(set2));
+        System.out.println("Even elements: " + set2);
+        
+        System.out.println(set2.containsAll(set));
 
     }
 }
