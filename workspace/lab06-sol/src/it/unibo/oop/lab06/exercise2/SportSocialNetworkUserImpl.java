@@ -24,136 +24,139 @@ import it.unibo.oop.lab06.exercise1.SocialNetworkUserImpl;
  * @param <U>
  *            specific {@link User} type
  */
-public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUserImpl<U> {
+public class SportSocialNetworkUserImpl<U extends User> extends
+        SocialNetworkUserImpl<U> {
 
-	/**
-	 * Static {@link Sport} constant.
-	 */
-	public static final Sport SOCCER = new Sport("Football");
-	/**
-	 * Static {@link Sport} constant.
-	 */
-	public static final Sport F1 = new Sport("Formula 1");
-	/**
-	 * Static {@link Sport} constant.
-	 */
-	public static final Sport MOTOGP = new Sport("MotoGP");
-	/**
-	 * Static {@link Sport} constant.
-	 */
-	public static final Sport VOLLEY = new Sport("Volleyball");
-	/**
-	 * Static {@link Sport} constant.
-	 */
-	public static final Sport BASKET = new Sport("Basketball");
-	/**
-	 * Static {@link Sport} constant.
-	 */
-	public static final Sport BIKE = new Sport("Road biking");
+    /**
+     * Static {@link Sport} constant.
+     */
+    public static final Sport SOCCER = new Sport("Football");
+    /**
+     * Static {@link Sport} constant.
+     */
+    public static final Sport F1 = new Sport("Formula 1");
+    /**
+     * Static {@link Sport} constant.
+     */
+    public static final Sport MOTOGP = new Sport("MotoGP");
+    /**
+     * Static {@link Sport} constant.
+     */
+    public static final Sport VOLLEY = new Sport("Volleyball");
+    /**
+     * Static {@link Sport} constant.
+     */
+    public static final Sport BASKET = new Sport("Basketball");
+    /**
+     * Static {@link Sport} constant.
+     */
+    public static final Sport BIKE = new Sport("Road biking");
 
-	/**
-	 * Field meant to keep track of the set of sports followed/done by a user
-	 */
-	private final Set<Sport> sports;
+    /**
+     * Field meant to keep track of the set of sports followed/done by a user
+     */
+    private final Set<Sport> sports;
 
-	/**
-	 * Builds a new {@link SportSocialNetworkUserImpl}.
-	 * 
-	 * @param name
-	 *            the user firstname
-	 * @param surname
-	 *            the user lastname
-	 * @param user
-	 *            alias of the user, i.e. the way a user is identified on an
-	 *            application
-	 */
-	public SportSocialNetworkUserImpl(final String name, final String surname, final String user) {
-		this(name, surname, user, -1);
-	}
+    /**
+     * Builds a new {@link SportSocialNetworkUserImpl}.
+     * 
+     * @param name
+     *            the user firstname
+     * @param surname
+     *            the user lastname
+     * @param user
+     *            alias of the user, i.e. the way a user is identified on an
+     *            application
+     */
+    public SportSocialNetworkUserImpl(final String name, final String surname,
+            final String user) {
+        this(name, surname, user, -1);
+    }
 
-	/**
-	 * Builds a new {@link SportSocialNetworkUserImpl}.
-	 * 
-	 * @param name
-	 *            the user firstname
-	 * @param surname
-	 *            the user lastname
-	 * @param userAge
-	 *            user's age
-	 * @param user
-	 *            alias of the user, i.e. the way a user is identified on an
-	 *            application
-	 */
-	public SportSocialNetworkUserImpl(final String name, final String surname, final String user, final int userAge) {
-		super(name, surname, user, userAge);
-		this.sports = new HashSet<>();
-	}
+    /**
+     * Builds a new {@link SportSocialNetworkUserImpl}.
+     * 
+     * @param name
+     *            the user firstname
+     * @param surname
+     *            the user lastname
+     * @param userAge
+     *            user's age
+     * @param user
+     *            alias of the user, i.e. the way a user is identified on an
+     *            application
+     */
+    public SportSocialNetworkUserImpl(final String name, final String surname,
+            final String user, final int userAge) {
+        super(name, surname, user, userAge);
+        this.sports = new HashSet<>();
+    }
 
-	/**
-	 * Add a new sport followed by this user: if the user already likes or does
-	 * the sport, nothing happens.
-	 * 
-	 * @param sport
-	 *            a sport followed/done by the user
-	 */
-	public void addSport(final Sport sport) {
-		this.sports.add(sport);
-	}
+    /**
+     * Add a new sport followed by this user: if the user already likes or does
+     * the sport, nothing happens.
+     * 
+     * @param sport
+     *            a sport followed/done by the user
+     */
+    public void addSport(final Sport sport) {
+        this.sports.add(sport);
+    }
 
-	/**
-	 * Returns true if a user likes/does a given sport.
-	 * 
-	 * @param s
-	 *            sport to use as an input
-	 * @return true if a user likes sport s
-	 */
-	public boolean hasSport(final Sport s) {
-		return this.sports.contains(s);
-	}
+    /**
+     * Returns true if a user likes/does a given sport.
+     * 
+     * @param s
+     *            sport to use as an input
+     * @return true if a user likes sport s
+     */
+    public boolean hasSport(final Sport s) {
+        return this.sports.contains(s);
+    }
 
-	/**
-	 * Implements a static inner class defining a Sport along with its bare
-	 * name.
-	 */
-	public static class Sport {
-		private final String n;
-		private int hash;
+    /**
+     * Implements a static inner class defining a Sport along with its bare
+     * name.
+     */
+    public static class Sport {
+        private final String n;
+        private int hash;
 
-		/**
-		 * @param name
-		 *            the sport name
-		 */
-		public Sport(final String name) {
-			this.n = name;
-		}
+        /**
+         * @param name
+         *            the sport name
+         */
+        public Sport(final String name) {
+            this.n = name;
+        }
 
-		/**
-		 * Redefine equals so that two sports are equal only if they feature the
-		 * very same name.
-		 */
-		public boolean equals(final Object o) {
-			if (o instanceof Sport) {
-				return n.equals(((Sport) o).n);
-			}
-			return false;
-		}
+        /**
+         * Redefine equals so that two sports are equal only if they feature the
+         * very same name.
+         */
+        public boolean equals(final Object o) {
+            if (o instanceof Sport) {
+                return n.equals(((Sport) o).n);
+            }
+            return false;
+        }
 
-		/*
-		 * Also hashCode must be re-implemented, or this class would violate the
-		 * equals/hashCode contract.
-		 * 
-		 * @see java.lang.Object#hashCode()
-		 */
-		public int hashCode() {
-			/*
-			 * All fields are final. Moreover, there is equality with String. As
-			 * such, hashCode() must mimic String hashCode, and lazy init is
-			 * doable.
-			 */
-			if (hash == 0) {
-				hash = n.hashCode();
-			}
-			return hash;
-		}
-	}
+        /*
+         * Also hashCode must be re-implemented, or this class would violate the
+         * equals/hashCode contract.
+         * 
+         * @see java.lang.Object#hashCode()
+         */
+        public int hashCode() {
+            /*
+             * All fields are final. Moreover, there is equality with String. As
+             * such, hashCode() must mimic String hashCode, and lazy init is
+             * doable.
+             */
+            if (hash == 0) {
+                hash = n.hashCode();
+            }
+            return hash;
+        }
+    }
 }

@@ -29,63 +29,66 @@ import it.unibo.oop.lab06.exercise1.SocialNetworkUserImpl;
  * @param <U>
  *            specific user type
  */
-public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUserImpl<U> {
+public class SportSocialNetworkUserImpl<U extends User> extends
+        SocialNetworkUserImpl<U> {
 
-	private final Set<Sport> sports;
+    private final Set<Sport> sports;
 
-	/**
-	 * Builds a new {@link SportSocialNetworkUserImpl}.
-	 * 
-	 * @param name
-	 *            the user firstname
-	 * @param surname
-	 *            the user lastname
-	 * @param user
-	 *            alias of the user, i.e. the way a user is identified on an
-	 *            application
-	 */
-	public SportSocialNetworkUserImpl(final String name, final String surname, final String user) {
-		this(name, surname, user, -1);
-	}
+    /**
+     * Builds a new {@link SportSocialNetworkUserImpl}.
+     * 
+     * @param name
+     *            the user firstname
+     * @param surname
+     *            the user lastname
+     * @param user
+     *            alias of the user, i.e. the way a user is identified on an
+     *            application
+     */
+    public SportSocialNetworkUserImpl(final String name, final String surname,
+            final String user) {
+        this(name, surname, user, -1);
+    }
 
-	/**
-	 * Builds a new {@link SportSocialNetworkUserImpl}.
-	 * 
-	 * @param name
-	 *            the user firstname
-	 * @param surname
-	 *            the user lastname
-	 * @param userAge
-	 *            user's age
-	 * @param user
-	 *            alias of the user, i.e. the way a user is identified on an
-	 *            application
-	 */
-	public SportSocialNetworkUserImpl(final String name, final String surname, final String user, final int userAge) {
-		super(name, surname, user, userAge);
-		this.sports = new HashSet<>();
-	}
+    /**
+     * Builds a new {@link SportSocialNetworkUserImpl}.
+     * 
+     * @param name
+     *            the user firstname
+     * @param surname
+     *            the user lastname
+     * @param userAge
+     *            user's age
+     * @param user
+     *            alias of the user, i.e. the way a user is identified on an
+     *            application
+     */
+    public SportSocialNetworkUserImpl(final String name, final String surname,
+            final String user, final int userAge) {
+        super(name, surname, user, userAge);
+        this.sports = new HashSet<>();
+    }
 
-	/**
-	 * Add a new sport followed by this user: if the user already likes or does
-	 * the sport, nothing happens.
-	 * 
-	 * @param sport
-	 *            a sport followed/done by the user
-	 */
-	public void addSport(final Sport sport) {
-		this.sports.add(sport);
-	}
+    /**
+     * Add a new sport followed by this user: if the user already likes or does
+     * the sport, nothing happens.
+     * 
+     * @param sport
+     *            a sport followed/done by the user
+     */
+    public void addSport(final Sport sport) {
+        this.sports.add(sport);
+    }
 
-	/**
-	 * Returns true if a user likes/does a given sport.
-	 * 
-	 * @param s
-	 *            sport to use as an input
-	 * 
-	 * @return true if the user likes sport s
-	 */
-	public boolean hasSport(final Sport s) {
-		return this.sports.contains(s);
-	}
+    /**
+     * Returns true if a user likes/does a given sport.
+     * 
+     * @param s
+     *            sport to use as an input
+     * 
+     * @return true if the user likes sport s
+     */
+    public boolean hasSport(final Sport s) {
+        return this.sports.contains(s);
+    }
 }
