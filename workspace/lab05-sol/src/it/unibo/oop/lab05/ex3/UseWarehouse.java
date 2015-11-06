@@ -17,10 +17,17 @@ public final class UseWarehouse {
      *            unused
      */
     public static void main(final String[] args) {
-
         /*
-         * Realize the class "WarehouseImpl" which implements Warehouse, and use
-         * it to run the test.
+         * Realize the classes:
+         * 
+         * 1) WarehouseImpl implements Warehouse. Such class should use
+         * internally a java.util.HashSet.
+         * 
+         * 2) ProductImpl implements Product. Remember that two products are the
+         * same if their name is the same.
+         * 
+         * Read VERY carefully the comments in the implemented interfaces and use
+         * them to run the test.
          */
 
         final Product p1 = new ProductImpl("p1", 100);
