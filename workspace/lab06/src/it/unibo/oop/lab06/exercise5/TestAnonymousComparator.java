@@ -59,7 +59,8 @@ public final class TestAnonymousComparator {
          * create 6 social network users
          */
         final SocialNetworkUser<User> kbacon = new SocialNetworkUserImpl<>("Kevin", "Bacon", "kbacon", 56);
-        final SocialNetworkUser<User> dwashington = new SocialNetworkUserImpl<>("Denzel", "Washington", "dwashington", 59);
+        final SocialNetworkUser<User> dwashington = new SocialNetworkUserImpl<>("Denzel", "Washington", "dwashington",
+                59);
         final SocialNetworkUser<User> mgladwell = new SocialNetworkUserImpl<>("Malcom", "Gladwell", "mgladwell", 51);
         final SocialNetworkUser<User> ntaleb = new SocialNetworkUserImpl<>("Nicholas", "Taleb", "ntaleb", 54);
         final SocialNetworkUser<User> mrossi = new SocialNetworkUserImpl<>("Mario", "Rossi", "mrossi", 31);
@@ -115,8 +116,6 @@ public final class TestAnonymousComparator {
          * 
          * NOTE: in order to sort a list think about a method of the utility
          * class Collections
-         * 
-         * REFER TO LESSON 12-Advanced-Mechanisms.pdf, slide 39
          */
         // TODO
 
