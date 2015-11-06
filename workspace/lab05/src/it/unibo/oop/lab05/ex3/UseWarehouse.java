@@ -17,12 +17,11 @@ public final class UseWarehouse {
      *            unused
      */
     public static void main(final String[] args) {
-
         /*
          * Realize the classes:
          * 
          * 1) WarehouseImpl implements Warehouse. Such class should use
-         * internally a java.lang.HashSet.
+         * internally a java.util.HashSet.
          * 
          * 2) ProductImpl implements Product. Remember that two products are the
          * same if their name is the same.

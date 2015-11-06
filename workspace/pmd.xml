@@ -242,4 +242,5 @@
 	<rule ref="rulesets/java/strings.xml/UselessStringValueOf" />
 	<rule ref="rulesets/java/naming.xml/VariableNamingConventions" />
 	<rule ref="rulesets/java/braces.xml/WhileLoopsMustUseBraces" />
+    <rule ref="rulesets/java/design.xml/UseVarargs" />
 </ruleset>
