@@ -19,7 +19,6 @@ public final class UseSet {
      *            ignored
      */
     public static void main(final String[] args) {
-
         /*
          * Considering the content of "UseCollection, write a program which, in
          * order:
