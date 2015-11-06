@@ -43,16 +43,17 @@ public final class TestSportAdvancedEnumeration {
 
         // alonso in a fan of soccer and bike and practices F1:
         /*
-         * falonso.addSport(Sport.F1); 
-         * falonso.addSport(Sport.SOCCER);
+         * falonso.addSport(Sport.F1); falonso.addSport(Sport.SOCCER);
          * falonso.addSport(Sport.BIKE);
          */
 
         // TEST getIndividualSports()
         /*
          * Set<Sport> individual = falonso.getIndividualSports();
-         * System.out.println("[Alonso] [Individual] [F1]: " + individual.contains(Sport.F1));
-         * System.out.println("[Alonso] [Individual] [not TENNIS]: " + !individual. contains(Sport.TENNIS));
+         * System.out.println("[Alonso] [Individual] [F1]: " +
+         * individual.contains(Sport.F1));
+         * System.out.println("[Alonso] [Individual] [not TENNIS]: " +
+         * !individual. contains(Sport.TENNIS));
          */
 
         // Cassani practiced bike and loves F1 and MotoGP:
@@ -64,14 +65,17 @@ public final class TestSportAdvancedEnumeration {
         // TEST getIndividualSports()
         /*
          * individual = dcassani.getIndividualSports();
-         * System.out.println("[Cassani] [Individual] [F1]: " + individual.contains(Sport.F1));
-         * System.out.println("[Cassani] [Individual] [not TENNIS]: " + !individual.contains(Sport.TENNIS));
+         * System.out.println("[Cassani] [Individual] [F1]: " +
+         * individual.contains(Sport.F1));
+         * System.out.println("[Cassani] [Individual] [not TENNIS]: " +
+         * !individual.contains(Sport.TENNIS));
          */
 
         // TEST getSportPracticedInPlace(Place)
         /*
          * sportsInPlace = dcassani.getSportPracticedInPlace(Place.OUTDOOR);
-         * System.out.println("[Cassani] [Outdoor] [no. sports==3]: " + (sportsInPlace.size()==3));
+         * System.out.println("[Cassani] [Outdoor] [no. sports==3]: " +
+         * (sportsInPlace.size()==3));
          */
     }
 

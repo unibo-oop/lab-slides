@@ -1,9 +1,10 @@
 package it.unibo.oop.lab06.exercise1;
 
 /**
- * This is a basic implementation of a {@link it.unibo.oop.lab06.exercise1.User}.
+ * This is a basic implementation of a {@link it.unibo.oop.lab06.exercise1.User}
+ * .
  * 
- *  This class is completely mplemented and can be used as it is.
+ * This class is completely mplemented and can be used as it is.
  * 
  * @author Matteo Casadei
  * @author Danilo Pianini

@@ -29,7 +29,7 @@ public final class TestSocialNetworkUser {
      */
     public static void main(final String[] args) {
 
-        //TODO create 5 social network users (SocialNetworkUser)
+        // TODO create 5 social network users (SocialNetworkUser)
         /*
          * 
          * Kevin Bacon,kbacon, 56
@@ -49,7 +49,7 @@ public final class TestSocialNetworkUser {
 
         mgladwell.addFollowedUser("acquaintances", ntaleb);
         dwashington.addFollowedUser("myths", asmith);
-        dwashington.addFollowedUser("writers", ntaleb); 
+        dwashington.addFollowedUser("writers", ntaleb);
         dwashington.addFollowedUser("colleagues", kbacon);
         dwashington.addFollowedUser("writers", mgladwell);
 
