@@ -12,8 +12,6 @@ import java.util.Collection;
  * 
  * 2) Run it: every test must return true.
  * 
- * @author Matteo Casadei
- *
  */
 public final class TestSocialNetworkUser {
 
@@ -27,7 +25,7 @@ public final class TestSocialNetworkUser {
      * @param args
      *            ignored
      */
-    public static void main(final String[] args) {
+    public static void main(final String... args) {
 
         // TODO create 5 social network users (SocialNetworkUser)
         /*

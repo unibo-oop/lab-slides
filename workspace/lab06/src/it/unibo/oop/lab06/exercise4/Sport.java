@@ -14,8 +14,6 @@ package it.unibo.oop.lab06.exercise4;
  * 3) A third field, of type Place, will allow to define if the sport is
  * practiced indoor or outdoor
  * 
- * @author Matteo Casadei
- *
  */
 public enum Sport {
 

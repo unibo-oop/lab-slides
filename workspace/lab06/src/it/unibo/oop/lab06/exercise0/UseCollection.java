@@ -6,8 +6,6 @@ import java.util.Map;
 /**
  * Example class using {@link List} and {@link Map}.
  * 
- * @author Danilo Pianini
- *
  */
 public final class UseCollection {
 
@@ -18,7 +16,7 @@ public final class UseCollection {
      * @param s
      *            unused
      */
-    public static void main(final String[] s) {
+    public static void main(final String... s) {
 
         /*
          * 1) Create a new ArrayList<Integer>, and populate it with the numbers

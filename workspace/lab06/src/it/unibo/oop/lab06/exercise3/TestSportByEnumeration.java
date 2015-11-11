@@ -19,7 +19,7 @@ public final class TestSportByEnumeration {
      * @param args
      *            ignored
      */
-    public static void main(final String[] args) {
+    public static void main(final String... args) {
         /*
          * [TEST DEFINITION]
          * 

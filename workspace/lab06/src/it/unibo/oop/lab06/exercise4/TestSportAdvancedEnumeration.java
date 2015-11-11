@@ -11,9 +11,6 @@ import it.unibo.oop.lab06.exercise1.User;
  * 
  * 2) Run it: every test must return true.
  * 
- * @author Matteo Casadei
- * @author Danilo Pianini
- *
  */
 public final class TestSportAdvancedEnumeration {
 
@@ -27,16 +24,16 @@ public final class TestSportAdvancedEnumeration {
      * @param args
      *            ignored
      */
-    public static void main(final String[] args) {
+    public static void main(final String... args) {
 
         /*
          * create 2 social network users (Sport2SocialNetworkUser): - Davide
          * Cassani , dcassani, 53 - Fernando Alonso, falonso, 34
          */
-        final Sport2SocialNetworkUserImpl<User> dcassani = new Sport2SocialNetworkUserImpl<>("Davide", "Cassani",
-                "dcassani", 53);
-        final Sport2SocialNetworkUserImpl<User> falonso = new Sport2SocialNetworkUserImpl<>("Fernando", "Alonso",
-                "falonso", 34);
+        final Sport2SocialNetworkUserImpl<User> dcassani =
+                new Sport2SocialNetworkUserImpl<>("Davide", "Cassani", "dcassani", 53);
+        final Sport2SocialNetworkUserImpl<User> falonso =
+                new Sport2SocialNetworkUserImpl<>("Fernando", "Alonso", "falonso", 34);
 
         // ONCE YOU HAVE COMPLETED EVERY CLASS, UNCOMMENT THE INSTRUCTION BELOW
         // IN ORDER TO COMPLETE THE TEST
