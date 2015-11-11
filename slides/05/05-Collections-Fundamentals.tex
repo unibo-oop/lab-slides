@@ -201,7 +201,7 @@
     \iz{
       \item Inserire sempre un commento (anche corto) che descrive il ruolo e il funzionamento generale della classe
       \item Inserire un commento per tutti i costruttori (parametri e return value inclusi), metodi, e campi con livello di accesso \cil{public} e \cil{protected}
-      \item Non è necessario documentare metodi di cui si fa override, a meno che non vi siano peculiarità non rilevate nella documentazione della superclasse.
+      \item Non è necessario documentare metodi di cui si fa override, a meno che non vi siano peculiarità non rilevate nella documentazione della superclasse. In questo caso, è sufficiente utilizzare \textcolor{red}{\texttt{\{@inheritDoc\}}} all'interno del commento, e verrà generata Javadoc prendendola dalla superclasse.
     }
   }
   \bl{}{
