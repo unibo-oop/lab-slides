@@ -14,17 +14,36 @@ package it.unibo.oop.lab06.exercise4;
  * 3) A third field, of type Place, will allow to define if the sport is
  * practiced indoor or outdoor
  * 
- * @author Matteo Casadei
- *
  */
 public enum Sport {
 
+    /**
+     * Basket.
+     */
     BASKET(Place.INDOOR, 5, "Basketball"), 
+    /**
+     * Volleyball.
+     */
     VOLLEY(Place.INDOOR, 6, "Volleyball"), 
+    /**
+     * Tennis.
+     */
     TENNIS(Place.OUTDOOR, 1, "Tennis"), 
+    /**
+     * Bike. Not motorbike.
+     */
     BIKE(Place.OUTDOOR, 1, "Road biking"), 
+    /**
+     * Formula 1.
+     */
     F1(Place.OUTDOOR, 1, "Formula 1"), 
+    /**
+     * MotoGP. Other categories, such as Superbike, are not included.
+     */
     MOTOGP(Place.OUTDOOR, 1, "MotoGP"), 
+    /**
+     * Football, also known as soccer in USA.
+     */
     SOCCER(Place.OUTDOOR, 11, "Football");
 
     private final Place place;
