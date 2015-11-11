@@ -2,6 +2,8 @@
 <pmd>
     <useProjectRuleSet>false</useProjectRuleSet>
     <ruleSetFile>.ruleset</ruleSetFile>
+    <excludePatterns/>
+    <includePatterns/>
     <rules>
         <rule>
             <name>CallSuperFirst</name>
@@ -108,6 +110,10 @@
             <ruleset>Basic</ruleset>
         </rule>
         <rule>
+            <name>AssignmentInOperand</name>
+            <ruleset>Basic Ecmascript</ruleset>
+        </rule>
+        <rule>
             <name>AvoidTrailingComma</name>
             <ruleset>Basic Ecmascript</ruleset>
         </rule>
@@ -185,10 +191,6 @@
         </rule>
         <rule>
             <name>EmptyForeachStmt</name>
-            <ruleset>Basic Velocity</ruleset>
-        </rule>
-        <rule>
-            <name>EmptyIfStmt</name>
             <ruleset>Basic Velocity</ruleset>
         </rule>
         <rule>
@@ -288,10 +290,6 @@
             <ruleset>Code Size</ruleset>
         </rule>
         <rule>
-            <name>AssignmentInOperand</name>
-            <ruleset>Controversial</ruleset>
-        </rule>
-        <rule>
             <name>AvoidFinalLocalVariable</name>
             <ruleset>Controversial</ruleset>
         </rule>
@@ -333,6 +331,10 @@
         </rule>
         <rule>
             <name>UnnecessaryConstructor</name>
+            <ruleset>Controversial</ruleset>
+        </rule>
+        <rule>
+            <name>UnnecessaryParentheses</name>
             <ruleset>Controversial</ruleset>
         </rule>
         <rule>
@@ -524,10 +526,6 @@
             <ruleset>Design</ruleset>
         </rule>
         <rule>
-            <name>UncommentedEmptyMethod</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
             <name>UnnecessaryLocalBeforeReturn</name>
             <ruleset>Design</ruleset>
         </rule>
@@ -561,6 +559,10 @@
         </rule>
         <rule>
             <name>EmptyFinallyBlock</name>
+            <ruleset>Empty Code</ruleset>
+        </rule>
+        <rule>
+            <name>EmptyIfStmt</name>
             <ruleset>Empty Code</ruleset>
         </rule>
         <rule>
@@ -1033,10 +1035,6 @@
         </rule>
         <rule>
             <name>UnnecessaryFinalModifier</name>
-            <ruleset>Unnecessary</ruleset>
-        </rule>
-        <rule>
-            <name>UnnecessaryParentheses</name>
             <ruleset>Unnecessary</ruleset>
         </rule>
         <rule>
