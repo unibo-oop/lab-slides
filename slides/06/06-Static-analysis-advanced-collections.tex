@@ -57,20 +57,51 @@
 	}
 }
 
+\begin{frame}{Configurazione globale vs. locale}
+  I code checkers che vedremo sono eseguibili anche stand-alone, oltre ad avere plug-in per poter esser integrati negli IDE più diffusi. Abbiamo Eclipse come IDE di riferimento, e vedremo come operare dentro questo ambiente.
+  \begin{block}{Code checkers in Eclipse}
+    I plugin che vedremo possono operare in due modalità: globale o per-progetto
+  \end{block}
+\end{frame}
+
+\begin{frame}{Configurazione globale}
+  La configurazione globale viene applicata a \textbf{tutti} i progetti del workspace, a meno che non sia sovrascritta localmente (non sempre è possibile).
+  \begin{block}{Caratteristiche}
+    \begin{itemize}
+      \item Veloce da configurare: si configura una volta, e i settaggi sono applicati su tutti i progetti
+      \item Poco portabile: se inviamo il progetto ad un collaboratore, questi settaggi \textbf{non} saranno inviati: c'è il rischio di inconsistenze
+      \item Ottimo da usare quando si hanno molti progetti nel workspace con la stessa configurazione, e si sviluppa da soli.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Configurazione per-progetto}
+  La configurazione locale va messa a punto singolarmente per ciascun progetto. Bisogna verificare che quella globale non la stia sovrascrivendo.
+  \begin{block}{Caratteristiche}
+    \begin{itemize}
+      \item Tediosa da configurare, specialmente se si hanno molti progetti e la configurazione è uguale per tutti
+      \item Alta flessibilità: si possono specificare regole diverse per progetti diversi
+      \item Alta portabilità: se si invia il progetto ad un collaboratore, questi settaggi vengono mantenuti
+      \item Ottimo da usare quando si hanno pochi progetti, o ai progetti serve una configurazione diversa, oppure quando si lavora in modo collaborativo
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
 \subsection{FindBugs}
 
 \fr{FindBugs} {
-	\bl{Cos'è} {
-		FindBugs si occupa di trovare potenziali bug nel sorgente, ad esempio:
-		\iz {
-			\item Uguaglianza esatta fra \texttt{float} o \texttt{double}
-			\item Utilizzo di \texttt{==} invece di \texttt{equals()}
-			\item Mancato retain a runtime di annotazioni
-			\item Uso errato di meccanismi di sincronizzazione
-			\item Vulnerabilità di sicurezza
-			\item Tanti altri! Si veda: \url{http://findbugs.sourceforge.net/bugDescriptions.html}
-		}
-	}
+  \bl{Cos'è} {
+      FindBugs scansiona il bytecode generato dal compilatore, e dalla sua analisi cerca di scoprire potenziali bug nel sorgente, ad esempio:
+      \iz {
+        \item Uguaglianza esatta fra \texttt{float} o \texttt{double}
+        \item Utilizzo di \texttt{==} invece di \texttt{equals()}
+        \item Mancato retain a runtime di annotazioni
+        \item Uso errato di meccanismi di sincronizzazione
+        \item Vulnerabilità di sicurezza
+        \item Tanti altri! Si veda: \url{http://findbugs.sourceforge.net/bugDescriptions.html}
+      }
+  }
 }
 
 \fr{FindBugs} {
@@ -90,8 +121,9 @@
 }
 
 \fr{FindBugs --- Configurazione del progetto} {
-	\centering
-	\includegraphics[width=0.99\textwidth]{img/findbugsproj}
+  In FindBugs, la configurazione locale \textbf{è più prioritaria} di quella globale.
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/findbugsproj}
 }
 
 \subsection{PMD e CPD}
@@ -108,7 +140,7 @@
 	}
 }
 
-\fr{PMD} {
+\fr{PMD: Installazione} {
 	\bl{Plugin Eclipse --- installazione} {
 		Il marketplace contiene due plugin concorrenti: meglio eseguire l'installazione manuale.
 		\iz {
@@ -144,8 +176,9 @@
 }
 
 \fr{PMD --- Configurazione globale} {
-	\centering
-	\includegraphics[width=0.99\textwidth]{img/pmdconf1}
+  In PMD, la configurazione globale \textbf{sovrascrive} quella locale: disattivate ``Use global rule management'' se sviluppate un progetto su più sistemi
+  \centering
+  \includegraphics[width=0.9\textwidth]{img/pmdconf1}
 }
 
 \fr{PMD --- Configurazione globale} {
@@ -154,8 +187,9 @@
 }
 
 \fr{PMD --- Configurazione del progetto} {
+	\textcolor{red}{ATTENZIONE}: Prima di attivare la configurazione locale, \textbf{assicurarsi} che il file pmd.xml sia stato copiato all'interno della cartella del progetto!
 	\centering
-	\includegraphics[width=0.99\textwidth]{img/pmdproj}
+	\includegraphics[width=0.9\textwidth]{img/pmdproj}
 }
 
 
@@ -176,35 +210,35 @@
 
 \fr{Checkstyle} {
 	\bl{Plugin Eclipse --- installazione} {
-		Può essere installato dal marketplace di Eclipse cercando ``checkstyle plug-in''. Se si cerca solo ``checkstyle'', il primo risultato \textbf{non} è quello corretto. Il logo corretto presenta la scritta ``eclipse-cs''.
+		Può essere installato dal marketplace di Eclipse cercando ``checkstyle''.
+		
+		\textcolor{red}{Attenzione}: il primo risultato potrebbe \textbf{non} essere quello corretto. Il logo corretto presenta la scritta ``eclipse-cs''.
 
 		Al termine dell'installazione, verrà installato un menu di opzioni globali, un menu di opzioni per progetto ed un menu contestuale.
 	}
 }
 
-\fr{Checkstyle --- Configurazione globale} {
-	La configurazione di default di Checkstyle è inadatta all'uso con Eclipse. C'è una configurazione built-in adatta ad Eclipse ma è eccessivamente pedante. Vi forniremo noi un file di configurazione per Checkstyle:
-	\iz{
-		\item Dalle proprietà di Eclipse, clicki sul menu Checkstyle
-		\item Si vada su Rule Configuration
+\fr{Checkstyle --- Configurazione} {
+	La configurazione di default di Checkstyle è eccessivamente pedante. Vi forniremo noi un file di configurazione idoneo:
+	\en{
+		\item Dalle proprietà di progetto, si clicki sul menu Checkstyle
+		\item Si selezioni ``Local Check Configurations''
 		\item Si scelga ``New''
 		\item Si scelga ``Project Relative Configuration'' (mai usare path assoluti!)
 		\item Utilizzando ``Browse...'' si punti al file di configurazione, che deve esser copiato nel progetto
 		\item Si dia un nome e si prema ``OK''
-		\item Si selezioni dalla lista la nuova Check configuration
-		\item Si faccia click ``Set as Default''
+		\item Si vada su ``Main''
+		\item Si selezioni dal menu la nuova Check configuration
+		\item Si attivi ``Checkstyle active for this project'' e ``Use simple configuration''
+		\item ``OK''
 	}
+	\footnotesize
+	Nota: la configurazione globale è molto simile, si ripetano gli step andando dal menu  Windows $\rightarrow$ Preferences $\rightarrow$ Java $\rightarrow$ Code style $\rightarrow$ Formatter 
 }
 
-\fr{Checkstyle --- Configurazione globale} {
-    Windows $\rightarrow$ Preferences $\rightarrow$ Java $\rightarrow$ Code style $\rightarrow$ Formatter
+\fr{Checkstyle --- Configurazione per-progetto} {
 	\centering
-	\includegraphics[width=0.9\textwidth]{img/checkstyleconf}
-}
-
-\fr{Checkstyle --- Configurazione del progetto} {
-	\centering
-	\includegraphics[width=0.99\textwidth]{img/checkstyleproj}
+	\includegraphics[width=0.7\textwidth]{img/checkstyle}
 }
 
 \section{Coding style: configurazione IDE Eclipse}
