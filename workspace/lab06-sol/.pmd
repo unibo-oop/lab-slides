@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pmd>
     <useProjectRuleSet>false</useProjectRuleSet>
-    <ruleSetFile>C:\Users\mcasadei\Desktop\works\OOP1415_Lab06\.pmd</ruleSetFile>
+    <ruleSetFile>pmd.xml</ruleSetFile>
+    <excludePatterns/>
+    <includePatterns/>
     <rules>
         <rule>
             <name>CallSuperFirst</name>
@@ -104,6 +106,10 @@
             <ruleset>Basic</ruleset>
         </rule>
         <rule>
+            <name>AssignmentInOperand</name>
+            <ruleset>Basic Ecmascript</ruleset>
+        </rule>
+        <rule>
             <name>AvoidTrailingComma</name>
             <ruleset>Basic Ecmascript</ruleset>
         </rule>
@@ -178,6 +184,14 @@
         <rule>
             <name>NoScriptlets</name>
             <ruleset>Basic JSP</ruleset>
+        </rule>
+        <rule>
+            <name>AvoidDeeplyNestedIfStmts</name>
+            <ruleset>Basic Velocity</ruleset>
+        </rule>
+        <rule>
+            <name>AvoidReassigningParameters</name>
+            <ruleset>Basic Velocity</ruleset>
         </rule>
         <rule>
             <name>CollapsibleIfStatements</name>
@@ -262,10 +276,6 @@
         <rule>
             <name>CommentContent</name>
             <ruleset>Comments</ruleset>
-        </rule>
-        <rule>
-            <name>AssignmentInOperand</name>
-            <ruleset>Controversial</ruleset>
         </rule>
         <rule>
             <name>AvoidAccessibilityAlteration</name>
@@ -356,10 +366,6 @@
             <ruleset>Design</ruleset>
         </rule>
         <rule>
-            <name>AvoidDeeplyNestedIfStmts</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
             <name>AvoidInstanceofChecksInCatchClause</name>
             <ruleset>Design</ruleset>
         </rule>
@@ -369,10 +375,6 @@
         </rule>
         <rule>
             <name>AvoidProtectedMethodInFinalClassNotExtending</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
-            <name>AvoidReassigningParameters</name>
             <ruleset>Design</ruleset>
         </rule>
         <rule>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pmd>
     <useProjectRuleSet>false</useProjectRuleSet>
-    <ruleSetFile>.ruleset</ruleSetFile>
+    <ruleSetFile>pmd.xml</ruleSetFile>
     <excludePatterns/>
     <includePatterns/>
     <rules>
@@ -63,10 +63,6 @@
         </rule>
         <rule>
             <name>ClassCastExceptionWithToArray</name>
-            <ruleset>Basic</ruleset>
-        </rule>
-        <rule>
-            <name>CollapsibleIfStatements</name>
             <ruleset>Basic</ruleset>
         </rule>
         <rule>
@@ -190,7 +186,19 @@
             <ruleset>Basic JSP</ruleset>
         </rule>
         <rule>
+            <name>AvoidReassigningParameters</name>
+            <ruleset>Basic Velocity</ruleset>
+        </rule>
+        <rule>
+            <name>CollapsibleIfStatements</name>
+            <ruleset>Basic Velocity</ruleset>
+        </rule>
+        <rule>
             <name>EmptyForeachStmt</name>
+            <ruleset>Basic Velocity</ruleset>
+        </rule>
+        <rule>
+            <name>EmptyIfStmt</name>
             <ruleset>Basic Velocity</ruleset>
         </rule>
         <rule>
@@ -386,10 +394,6 @@
             <ruleset>Design</ruleset>
         </rule>
         <rule>
-            <name>AvoidReassigningParameters</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
             <name>AvoidSynchronizedAtMethodLevel</name>
             <ruleset>Design</ruleset>
         </rule>
@@ -559,10 +563,6 @@
         </rule>
         <rule>
             <name>EmptyFinallyBlock</name>
-            <ruleset>Empty Code</ruleset>
-        </rule>
-        <rule>
-            <name>EmptyIfStmt</name>
             <ruleset>Empty Code</ruleset>
         </rule>
         <rule>
