@@ -9,8 +9,6 @@ package it.unibo.oop.lab06.exercise3;
  * 
  * 2) Run it: every test must return true.
  * 
- * @author Matteo Casadei
- * @author Danilo Pianini
  */
 public final class TestSportByEnumeration {
 

@@ -17,16 +17,11 @@ import it.unibo.oop.lab06.exercise1.SocialNetworkUserImpl;
  * The sport has to be defined as a nested static class, featuring just a field
  * representing the sport name.
  * 
- * 
- * @author Matteo Casadei
- * @author Danilo Pianini
- *
  * @param <U>
  *            specific {@link User} type
  */
-public class SportSocialNetworkUserImpl<U extends User> extends
-        SocialNetworkUserImpl<U> {
-
+public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUserImpl<U> {
+ 
     /**
      * Static {@link Sport} constant.
      */
@@ -68,8 +63,7 @@ public class SportSocialNetworkUserImpl<U extends User> extends
      *            alias of the user, i.e. the way a user is identified on an
      *            application
      */
-    public SportSocialNetworkUserImpl(final String name, final String surname,
-            final String user) {
+    public SportSocialNetworkUserImpl(final String name, final String surname, final String user) {
         this(name, surname, user, -1);
     }
 
@@ -86,8 +80,7 @@ public class SportSocialNetworkUserImpl<U extends User> extends
      *            alias of the user, i.e. the way a user is identified on an
      *            application
      */
-    public SportSocialNetworkUserImpl(final String name, final String surname,
-            final String user, final int userAge) {
+    public SportSocialNetworkUserImpl(final String name, final String surname, final String user, final int userAge) {
         super(name, surname, user, userAge);
         this.sports = new HashSet<>();
     }
@@ -130,9 +123,12 @@ public class SportSocialNetworkUserImpl<U extends User> extends
             this.n = name;
         }
 
-        /**
+        /*
          * Redefine equals so that two sports are equal only if they feature the
          * very same name.
+         */
+        /**
+         * {@inheritDoc}
          */
         public boolean equals(final Object o) {
             if (o instanceof Sport) {
@@ -144,8 +140,9 @@ public class SportSocialNetworkUserImpl<U extends User> extends
         /*
          * Also hashCode must be re-implemented, or this class would violate the
          * equals/hashCode contract.
-         * 
-         * @see java.lang.Object#hashCode()
+         */
+        /**
+         * {@inheritDoc}
          */
         public int hashCode() {
             /*
