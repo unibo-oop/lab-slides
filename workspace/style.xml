@@ -33,7 +33,7 @@
 	<!-- See http://checkstyle.sf.net/config_misc.html -->
 	<module name="RegexpSingleline">
 		<property name="severity" value="warning" />
-		<property name="format" value="\s+$" />
+		<property name="format" value="\s{2,}$" />
 		<property name="fileExtensions" value="java,xtend" />
 		<property name="message" value="Line has trailing spaces." />
 	</module>
