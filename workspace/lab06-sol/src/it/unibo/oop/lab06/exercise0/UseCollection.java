@@ -8,8 +8,6 @@ import java.util.Map;
 
 /**
  * Example class using {@link List} and {@link Map}.
- * 
- * @author Danilo Pianini
  *
  */
 public final class UseCollection {
@@ -17,8 +15,17 @@ public final class UseCollection {
     private static final int TO_MS = 1000000;
     private static final int ELEMS = 100000;
     private static final int READS = 10000;
+    private static final int START = 1000;
+    private static final int END = 2000;
     private static final String NS = "ns (";
     private static final String MS = "ms).";
+
+    private static final long AFRICA_POPULATION = 1110635000L;
+    private static final long AMERICAS_POPULATION = 972005000L;
+    private static final long ANTARTICA_POPULATION = 0L;
+    private static final long ASIA_POPULATION = 4298723000L;
+    private static final long EUROPE_POPULATION = 742452000L;
+    private static final long OCEANIA_POPULATION = 38304000L;
 
     private UseCollection() {
     }
@@ -75,7 +82,7 @@ public final class UseCollection {
          */
 
         final List<Integer> al = new ArrayList<>();
-        for (int i = 1000; i < 2000; i++) {
+        for (int i = START; i < END; i++) {
             al.add(i);
         }
 
@@ -128,19 +135,17 @@ public final class UseCollection {
                 + time / TO_MS + MS);
 
         final Map<String, Long> world = new HashMap<>();
-        world.put("Africa", 1110635000L);
-        world.put("Americas", 972005000L);
-        world.put("Antarctica", 0L);
-        world.put("Asia", 4298723000L);
-        world.put("Europe", 742452000L);
-        world.put("Oceania", 38304000L);
+        world.put("Africa", AFRICA_POPULATION);
+        world.put("Americas", AMERICAS_POPULATION);
+        world.put("Antarctica", ANTARTICA_POPULATION);
+        world.put("Asia", ASIA_POPULATION);
+        world.put("Europe", EUROPE_POPULATION);
+        world.put("Oceania", OCEANIA_POPULATION);
         long totPop = 0;
         for (final long population : world.values()) {
             totPop += population;
         }
-        System.out
-                .println("We are ~"
-                        + totPop
-                        + " humans on this pale blue dot (enough people to overflow integers).");
+        System.out.println("We are ~" + totPop
+                + " human beings on this pale blue dot (enough people to overflow integers).");
     }
 }

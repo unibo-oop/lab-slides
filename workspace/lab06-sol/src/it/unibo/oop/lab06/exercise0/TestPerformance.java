@@ -5,8 +5,6 @@ import java.util.TreeSet;
 
 /**
  * Example performance measuring.
- * 
- * @author Danilo Pianini
  *
  */
 public final class TestPerformance {

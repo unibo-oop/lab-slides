@@ -11,7 +11,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * 
@@ -23,9 +22,6 @@ import java.util.TreeSet;
  * 1) complete the definition of the methods by following the suggestions
  * included in the comments below.
  * 
- * @author Matteo Casadei
- * @author Danilo Pianini
- *
  * @param <U>
  *            Specific {@link User} type
  */
