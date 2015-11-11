@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 /**
@@ -25,8 +26,7 @@ import java.util.Set;
  * @param <U>
  *            Specific {@link User} type
  */
-public class SocialNetworkUserImpl<U extends User> extends UserImpl implements
-        SocialNetworkUser<U> {
+public class SocialNetworkUserImpl<U extends User> extends UserImpl implements SocialNetworkUser<U> {
 
     private final Map<String, Set<U>> friends;
 
@@ -42,8 +42,7 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements
      *            alias of the user, i.e. the way a user is identified on an
      *            application
      */
-    public SocialNetworkUserImpl(final String firstName, final String lastName,
-            final String username) {
+    public SocialNetworkUserImpl(final String firstName, final String lastName, final String username) {
         this(firstName, lastName, username, -1);
 
     }
@@ -61,8 +60,7 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements
      *            alias of the user, i.e. the way a user is identified on an
      *            application
      */
-    public SocialNetworkUserImpl(final String name, final String surname,
-            final String user, final int userAge) {
+    public SocialNetworkUserImpl(final String name, final String surname, final String user, final int userAge) {
         super(name, surname, user, userAge);
         this.friends = new HashMap<>(); // inference of type variables
     }
@@ -108,10 +106,25 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements
          * Pre-populate a Set in order to prevent duplicates
          */
         final Set<U> followedUsers = new HashSet<>();
-        for (final String group : this.friends.keySet()) {
-            followedUsers.addAll(this.friends.get(group));
+        for (final Entry<String, Set<U>> group : friends.entrySet()) {
+            followedUsers.addAll(group.getValue());
         }
         return new ArrayList<>(followedUsers);
     }
 
+    /**
+     * @see it.unibo.oop.lab06.exercise1.UserImpl#equals(java.lang.Object)
+     */
+    public boolean equals(final Object o) {
+        return o instanceof SocialNetworkUserImpl
+                && super.equals(o)
+                && ((SocialNetworkUserImpl<?>) o).friends.equals(friends);
+    }
+
+    /**
+     * @see it.unibo.oop.lab06.exercise1.UserImpl#hashCode()
+     */
+    public int hashCode() {
+        return super.hashCode() ^ friends.hashCode();
+    }
 }
