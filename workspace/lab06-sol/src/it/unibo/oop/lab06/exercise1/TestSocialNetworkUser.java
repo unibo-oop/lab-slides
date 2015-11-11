@@ -12,6 +12,8 @@ import java.util.Collection;
  */
 public final class TestSocialNetworkUser {
 
+    private static final String WRITERS = "writers";
+
     private TestSocialNetworkUser() {
     }
 
@@ -22,7 +24,7 @@ public final class TestSocialNetworkUser {
      * @param args
      *            ignored
      */
-    public static void main(final String[] args) {
+    public static void main(final String... args) {
 
         /*
          * create 5 social network users (SocialNetworkUser):
@@ -48,9 +50,9 @@ public final class TestSocialNetworkUser {
 
         mgladwell.addFollowedUser("acquaintances", ntaleb);
         dwashington.addFollowedUser("myths", asmith);
-        dwashington.addFollowedUser("writers", ntaleb);
+        dwashington.addFollowedUser(WRITERS, ntaleb);
         dwashington.addFollowedUser("colleagues", kbacon);
-        dwashington.addFollowedUser("writers", mgladwell);
+        dwashington.addFollowedUser(WRITERS, mgladwell);
 
         // THE FOLLOWING TEST MUST ALL RETURN TRUE
         System.out.println("Smith has not set any age at all: " + (!asmith.isAgeDefined()));
@@ -60,15 +62,15 @@ public final class TestSocialNetworkUser {
         final Collection<User> mgladFriends = mgladwell.getFollowedUsersInGroup("Close friends");
         System.out.println("M Gladwell has not set yet any group called \"Close friends\": " + mgladFriends.isEmpty());
 
-        final Collection<User> dwashFriends = dwashington.getFollowedUsersInGroup("writers");
-        System.out.println("Denzel has 2 followed people in group \"writers\": " + (dwashFriends.size() == 2));
+        final Collection<User> dwashFriends = dwashington.getFollowedUsersInGroup(WRITERS);
+        System.out.println("Denzel has 2 followed people in group \"" + WRITERS + ": " + (dwashFriends.size() == 2));
 
         // Trying to add another friend to Denzel's "writers" group...
         dwashFriends.add(asmith);
 
         // The above operation *MUST* have no effect on Denzel's profile itself:
         // STILL TWO PEOPLE in denzel's group called writers
-        System.out.println("Denzel has STILL 2 followed people in group \"writers\": "
-                + (dwashington.getFollowedUsersInGroup("writers").size() == 2));
+        System.out.println("Denzel has STILL 2 followed people in group \"" + WRITERS + ": "
+                + (dwashington.getFollowedUsersInGroup(WRITERS).size() == 2));
     }
 }

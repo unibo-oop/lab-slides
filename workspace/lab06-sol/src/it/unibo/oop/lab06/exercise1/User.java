@@ -7,8 +7,6 @@ package it.unibo.oop.lab06.exercise1;
  * 
  * Represents a the contract for a generic application {@link UserImpl}.
  * 
- * @author Matteo Casadei
- *
  */
 public interface User {
 

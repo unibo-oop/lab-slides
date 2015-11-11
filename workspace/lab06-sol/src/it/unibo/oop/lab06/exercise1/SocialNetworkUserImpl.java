@@ -66,8 +66,7 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
     }
 
     /**
-     * @see it.unibo.oop.lab06.exercise1.SocialNetworkUser#addFollowedUser(String,
-     *      User)
+     * {@inheritDoc}
      */
     public boolean addFollowedUser(final String circle, final U user) {
         Set<U> circleFriends = this.friends.get(circle);
@@ -83,9 +82,7 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
      * [NOTE] If no group with groupName exists yet, this implementation must
      * return an empty Collection.
      * 
-     * @see it.unibo.oop.lab06.exercise1.SocialNetworkUser#getFollowedUsersInGroup(String)
-     * 
-     *
+     * {@inheritDoc}
      */
     public Collection<U> getFollowedUsersInGroup(final String groupName) {
         final Collection<U> usersInCircle = this.friends.get(groupName);
@@ -99,7 +96,7 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
     }
 
     /**
-     * @see it.unibo.oop.lab06.exercise1.SocialNetworkUser#getFollowedUsers()
+     * {@inheritDoc}
      */
     public List<U> getFollowedUsers() {
         /*
@@ -113,7 +110,7 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
     }
 
     /**
-     * @see it.unibo.oop.lab06.exercise1.UserImpl#equals(java.lang.Object)
+     * {@inheritDoc}
      */
     public boolean equals(final Object o) {
         return o instanceof SocialNetworkUserImpl
@@ -122,7 +119,7 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
     }
 
     /**
-     * @see it.unibo.oop.lab06.exercise1.UserImpl#hashCode()
+     * {@inheritDoc}
      */
     public int hashCode() {
         return super.hashCode() ^ friends.hashCode();

@@ -6,9 +6,6 @@ package it.unibo.oop.lab06.exercise1;
  * 
  * This class has already been implemented and can be used as it is.
  * 
- * @author Matteo Casadei
- * @author Danilo Pianini
- *
  */
 public class UserImpl implements User {
 
@@ -50,8 +47,7 @@ public class UserImpl implements User {
      *            alias of the user, i.e. the way a user is identified on an
      *            application
      */
-    public UserImpl(final String name, final String surname, final String user,
-            final int userAge) {
+    public UserImpl(final String name, final String surname, final String user, final int userAge) {
         this.firstName = name;
         this.lastName = surname;
         this.age = userAge;
@@ -59,65 +55,71 @@ public class UserImpl implements User {
     }
 
     /**
-     * @see it.unibo.oop.lab06.exercise1.User#getFirstName()
+     * {@inheritDoc}
      */
     public String getFirstName() {
         return this.firstName;
     }
 
     /**
-     * @see it.unibo.oop.lab06.exercise1.User#getLastName()
+     * {@inheritDoc}
      */
     public String getLastName() {
         return this.lastName;
     }
 
     /**
-     * @see it.unibo.oop.lab06.exercise1.User#getUsername()
+     * {@inheritDoc}
      */
     public String getUsername() {
         return this.username;
     }
 
     /**
-     * @see it.unibo.oop.lab06.exercise1.User#getAge()
+     * {@inheritDoc}
      */
     public int getAge() {
         return this.age;
     }
 
     /**
-     * @see it.unibo.oop.lab06.exercise1.User#isAgeDefined()
+     * {@inheritDoc}
      */
     public boolean isAgeDefined() {
         return this.age > 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean equals(final Object o) {
         if (o instanceof UserImpl) {
             final UserImpl user = (UserImpl) o;
             return (this.firstName.equals(user.getFirstName())
                     && this.lastName.equals(user.getLastName())
-                    && this.username.equals(user.getUsername()) && this.age == user
-                        .getAge());
+                    && this.username.equals(user.getUsername()) && this.age == user.getAge());
         }
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public int hashCode() {
         /*
          * All fields are final and immutable: lazy init allowed.
          */
         if (hash == 0) {
-            hash = firstName.hashCode() ^ lastName.hashCode()
-                    ^ username.hashCode() ^ age;
+            hash = firstName.hashCode() ^ lastName.hashCode() ^ username.hashCode() ^ age;
         }
         return hash;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public String toString() {
-        return "[ " + this.firstName + " " + this.lastName + " " + this.age
-                + " " + this.username + " ]";
+        return "[ " + this.firstName + " " + this.lastName + " " + this.age + " " + this.username + " ]";
     }
 
 }
