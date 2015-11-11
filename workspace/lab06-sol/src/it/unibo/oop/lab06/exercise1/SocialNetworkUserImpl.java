@@ -109,19 +109,4 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
         return new ArrayList<>(followedUsers);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public boolean equals(final Object o) {
-        return o instanceof SocialNetworkUserImpl
-                && super.equals(o)
-                && ((SocialNetworkUserImpl<?>) o).friends.equals(friends);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public int hashCode() {
-        return super.hashCode() ^ friends.hashCode();
-    }
 }
