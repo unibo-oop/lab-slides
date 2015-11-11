@@ -34,7 +34,7 @@ public final class UseCollection {
      * @param s
      *            unused
      */
-    public static void main(final String[] s) {
+    public static void main(final String... s) {
 
         /*
          * 1) Create a new ArrayList<Integer>, and populate it with the numbers
@@ -87,6 +87,7 @@ public final class UseCollection {
         }
 
         final List<Integer> ll = new LinkedList<>(al);
+        System.out.println(ll);
 
         final int el = al.get(al.size() - 1);
         al.set(al.size() - 1, al.get(0));
@@ -118,7 +119,7 @@ public final class UseCollection {
 
         time = System.nanoTime();
         for (int i = 0; i < READS; i++) {
-            al.get(al.size() / 2);
+            al.get(al.size() / 2); // Warning OK: we are just benchmarking
         }
         time = System.nanoTime() - time;
         System.out.println("Reading " + READS
