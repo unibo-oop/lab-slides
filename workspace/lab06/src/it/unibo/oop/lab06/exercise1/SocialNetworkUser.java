@@ -33,7 +33,8 @@ public interface SocialNetworkUser<U extends User> extends User {
     boolean addFollowedUser(String group, U user);
 
     /**
-     * Gets the list of people followed by this user independently of the belonging group.
+     * Gets the list of people followed by this user independently of the
+     * belonging group.
      * 
      * @return the list of people followed by this user among all her/his groups
      */
