@@ -1,8 +1,6 @@
 package it.unibo.oop.lab06.exercise6;
 
 /**
- * @author Mirko Viroli
- * @author Danilo Pianini
  *
  */
 public final class UseGraph {
@@ -14,7 +12,7 @@ public final class UseGraph {
      * @param args
      *            ignored
      */
-    public static void main(final String[] args) {
+    public static void main(final String... args) {
         final Graph<String> g = new GraphImpl<>();
 
         g.addNode("a");

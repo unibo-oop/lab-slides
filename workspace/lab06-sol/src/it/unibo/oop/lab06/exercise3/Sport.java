@@ -6,8 +6,6 @@ package it.unibo.oop.lab06.exercise3;
 /**
  * Represents an enumeration for declaring sports.
  * 
- * @author Matteo Casadei
- *
  */
 public enum Sport {
     /*

@@ -5,8 +5,6 @@ import java.util.TreeSet;
 
 /**
  * Example performance measuring.
- * 
- * @author Danilo Pianini
  *
  */
 public final class TestPerformance {
@@ -21,7 +19,7 @@ public final class TestPerformance {
      * @param s
      *            ignored
      */
-    public static void main(final String[] s) {
+    public static void main(final String... s) {
 
         /*
          * Set up the data structures
@@ -47,6 +45,8 @@ public final class TestPerformance {
         System.out.println("Converting " + ELEMS
                 + " int to String and inserting them in a Set took " + time
                 + "ns (" + time / TO_MS + "ms)");
+
+        System.out.println(set);
 
     }
 }

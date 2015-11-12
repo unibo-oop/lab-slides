@@ -13,8 +13,6 @@ import java.util.Set;
 
 /**
  * Implementation of a graph.
- * 
- * @author Danilo Pianini
  *
  * @param <N>
  *            node type
@@ -55,9 +53,8 @@ public class GraphImpl<N> implements Graph<N> {
             startList.add(source);
             return buildPath(source, target, startList);
         }
-        System.out
-                .println("Cannot compute path between nodes which are not in the graph ("
-                        + source + ", " + target + "). Edge will be ignored");
+        System.out.println("Cannot compute path between nodes which are not in the graph ("
+                + source + ", " + target + "). Edge will be ignored");
         return Collections.emptyList();
     }
 
@@ -76,8 +73,7 @@ public class GraphImpl<N> implements Graph<N> {
             if (!path.contains(step)) {
                 path.add(step);
                 final List<N> possibleResult = buildPath(step, target, path);
-                if (target
-                        .equals(possibleResult.get(possibleResult.size() - 1))) {
+                if (target.equals(possibleResult.get(possibleResult.size() - 1))) {
                     return possibleResult;
                 }
                 path.remove(path.size() - 1);

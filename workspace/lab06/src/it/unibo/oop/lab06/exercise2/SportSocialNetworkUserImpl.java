@@ -19,10 +19,6 @@ import it.unibo.oop.lab06.exercise1.SocialNetworkUserImpl;
  * 
  * 2) Add the unimplemented methods.
  * 
- * 
- * @author Matteo Casadei
- * @author Danilo Pianini
- *
  * @param <U>
  *            specific {@link User} type
  */
