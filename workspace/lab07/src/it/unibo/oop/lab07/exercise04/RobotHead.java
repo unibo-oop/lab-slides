@@ -17,7 +17,8 @@ public class RobotHead extends AbstractMovementPart {
 
     /**
      * 
-     * @param description head description
+     * @param description
+     *            head description
      */
     public RobotHead(final String description) {
         super(RobotHead.ENERGY_REQUIRED_TO_MOVE, description);

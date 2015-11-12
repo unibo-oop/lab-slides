@@ -7,7 +7,7 @@ package it.unibo.oop.lab07.exercise04;
  * @author Matteo Casadei
  *
  */
-public interface IRobotPart {
+public interface RobotPart {
 
     /**
      * Turn on the robot part.

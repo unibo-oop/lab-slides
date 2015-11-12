@@ -13,7 +13,7 @@ public class Robot {
     private static final int MOVEMENT_DELTA = 1;
     private static final double MOVEMENT_DELTA_CONSUMPTION = 0.1;
     private static final double BATTERY_FULL = 100;
-    
+
     private double batteryLevel;
     private final RobotEnvironment environment;
     private final String robotName;
@@ -38,8 +38,7 @@ public class Robot {
      * @return If the Up movement has been performed
      */
     public boolean moveUp() {
-        return moveToPosition(environment.getCurrPosX(),
-                this.environment.getCurrPosY() + Robot.MOVEMENT_DELTA);
+        return moveToPosition(environment.getCurrPosX(), this.environment.getCurrPosY() + Robot.MOVEMENT_DELTA);
     }
 
     /**
@@ -48,8 +47,7 @@ public class Robot {
      * @return If the Down movement has been performed
      */
     public boolean moveDown() {
-        return this.moveToPosition(this.environment.getCurrPosX(),
-                environment.getCurrPosY() - Robot.MOVEMENT_DELTA);
+        return this.moveToPosition(this.environment.getCurrPosX(), environment.getCurrPosY() - Robot.MOVEMENT_DELTA);
     }
 
     /**
@@ -58,8 +56,8 @@ public class Robot {
      * @return A boolean indicating if the Left movement has been performed
      */
     public boolean moveLeft() {
-        return this.moveToPosition(this.environment.getCurrPosX()
-                - Robot.MOVEMENT_DELTA, this.environment.getCurrPosY());
+        return this.moveToPosition(this.environment.getCurrPosX() - Robot.MOVEMENT_DELTA,
+                this.environment.getCurrPosY());
     }
 
     /**
@@ -68,8 +66,8 @@ public class Robot {
      * @return A boolean indicating if the Right movement has been performed
      */
     public boolean moveRight() {
-        return this.moveToPosition(this.environment.getCurrPosX()
-                + Robot.MOVEMENT_DELTA, this.environment.getCurrPosY());
+        return this.moveToPosition(this.environment.getCurrPosX() + Robot.MOVEMENT_DELTA,
+                this.environment.getCurrPosY());
     }
 
     /**
@@ -100,8 +98,7 @@ public class Robot {
                 returnValue = false;
             }
         } else {
-            this.log("Can not move to position(" + newX + "," + newY
-                    + "). Not enough battery.");
+            this.log("Can not move to position(" + newX + "," + newY + "). Not enough battery.");
             returnValue = false;
         }
         return returnValue;

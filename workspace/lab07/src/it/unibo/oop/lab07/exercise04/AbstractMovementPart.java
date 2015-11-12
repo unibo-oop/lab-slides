@@ -8,9 +8,9 @@ package it.unibo.oop.lab07.exercise04;
  * @author Matteo Casadei
  *
  */
-public abstract class AbstractMovementPart implements IRobotPart {
+public abstract class AbstractMovementPart implements RobotPart {
 
-    private boolean isOn;
+    private boolean on;
     private final String description;
     private final double energyRequiredToMove;
 
@@ -19,18 +19,17 @@ public abstract class AbstractMovementPart implements IRobotPart {
      * @param energyRequiredToMove
      * @param description
      */
-    public AbstractMovementPart(final double energyRequiredToMove,
-            final String description) {
+    public AbstractMovementPart(final double energyRequiredToMove, final String description) {
         this.description = description;
         this.energyRequiredToMove = energyRequiredToMove;
     }
 
     /**
-     * @return true if the part has turned successfully on
+     * {@inheritDoc}
      */
     public boolean turnOn() {
-        if (!this.isOn) {
-            this.isOn = true;
+        if (!this.on) {
+            this.on = true;
             return true;
         } else {
             return false;
@@ -38,25 +37,27 @@ public abstract class AbstractMovementPart implements IRobotPart {
     }
 
     /**
-     * @return true if the part has turned successfully off
+     * {@inheritDoc}
      */
     public boolean turnOff() {
-        if (this.isOn) {
-            this.isOn = false;
+        if (this.on) {
+            this.on = false;
             return true;
         } else {
             return false;
         }
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public String toString() {
         return this.getDescription();
     }
 
     /**
      * 
-     * @return return the description of this part
+     * {@inheritDoc}
      */
     public String getDescription() {
         return this.description;
@@ -70,10 +71,11 @@ public abstract class AbstractMovementPart implements IRobotPart {
     }
 
     /**
-     * @return true is this part is on
+     * 
+     * {@inheritDoc}
      */
     public boolean isOn() {
-        return this.isOn;
+        return this.on;
     }
 
     /**

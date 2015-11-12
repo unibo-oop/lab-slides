@@ -26,9 +26,10 @@ public class PositionOutOfBoundException extends Exception {
         this.y = initY;
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public String getMessage() {
-        return "Can not move to pos(" + this.x + ", " + this.y
-                + "), out of bounds";
+        return "Can not move to pos(" + this.x + ", " + this.y + "), out of bounds";
     }
 }

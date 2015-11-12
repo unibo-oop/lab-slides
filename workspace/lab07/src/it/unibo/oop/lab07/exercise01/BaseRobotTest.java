@@ -1,6 +1,8 @@
 package it.unibo.oop.lab07.exercise01;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Test;
 
@@ -21,12 +23,10 @@ public final class BaseRobotTest {
     public void testRobotMovementBase() {
         // 1) Creare il robot SimpleRobot, istanza della classe Robot con
         // batteria=100
-        Robot r1 = new Robot("SimpleRobot", 100);
+        final Robot r1 = new Robot("SimpleRobot", 100);
         // checking if robot in in position x=0; y=0
-        assertEquals("[CHECKING ROBOT INIT POS X]", 0, r1.getEnvironment()
-                .getCurrPosX());
-        assertEquals("[CHECKING ROBOT INIT POS Y]", 0, r1.getEnvironment()
-                .getCurrPosY());
+        assertEquals("[CHECKING ROBOT INIT POS X]", 0, r1.getEnvironment().getCurrPosX());
+        assertEquals("[CHECKING ROBOT INIT POS Y]", 0, r1.getEnvironment().getCurrPosY());
 
         /*
          * 2) Provare a muovere SimpleRobot verso dx, fino a giungere all'angolo
@@ -40,10 +40,8 @@ public final class BaseRobotTest {
         // reached the right limit of the world
         assertFalse("[CHECKING MOVING RIGHT]", r1.moveRight());
         // checking positions x=50; y=0
-        assertEquals("[MOVING RIGHT ROBOT POS X]", 50, r1.getEnvironment()
-                .getCurrPosX());
-        assertEquals("[MOVING RIGHT ROBOT POS Y]", 0, r1.getEnvironment()
-                .getCurrPosY());
+        assertEquals("[MOVING RIGHT ROBOT POS X]", 50, r1.getEnvironment().getCurrPosX());
+        assertEquals("[MOVING RIGHT ROBOT POS Y]", 0, r1.getEnvironment().getCurrPosY());
 
         /*
          * 2) Provare a muovere SimpleRobot verso il basso, fino a giungere
@@ -57,10 +55,8 @@ public final class BaseRobotTest {
         // reached the upper limit of the world
         assertFalse("[CHECKING MOVING UP]", r1.moveUp());
         // checking positions x=50; y=80
-        assertEquals("[MOVING RIGHT ROBOT POS X]", 50, r1.getEnvironment()
-                .getCurrPosX());
-        assertEquals("[MOVING RIGHT ROBOT POS Y]", 80, r1.getEnvironment()
-                .getCurrPosY());
+        assertEquals("[MOVING RIGHT ROBOT POS X]", 50, r1.getEnvironment().getCurrPosX());
+        assertEquals("[MOVING RIGHT ROBOT POS Y]", 80, r1.getEnvironment().getCurrPosY());
 
     }
 
@@ -72,7 +68,7 @@ public final class BaseRobotTest {
     public void testRobotBatteryBase() {
         // 1) Creare il robot SimpleRobot2, istanza della classe Robot con
         // batteria=20
-        Robot r2 = new Robot("SimpleRobot2", 20);
+        final Robot r2 = new Robot("SimpleRobot2", 20);
 
         /*
          * 2) Muovere ripetutamente il robot su di una posizione e giù di una
@@ -82,7 +78,7 @@ public final class BaseRobotTest {
          * robot dopo che è stata consumata completamente.
          */
 
-        for (; r2.getBatteryLevel() > 0;) {
+        while (r2.getBatteryLevel() > 0) {
             r2.moveUp();
             r2.moveDown();
         }
@@ -91,8 +87,7 @@ public final class BaseRobotTest {
         // values: in this case we accept NO ERROR)
         assertEquals(0d, r2.getBatteryLevel(), 0);
         // verify position: same as start position
-        assertEquals("[CHECKING ROBOT INIT POS Y]", 0, r2.getEnvironment()
-                .getCurrPosY());
+        assertEquals("[CHECKING ROBOT INIT POS Y]", 0, r2.getEnvironment().getCurrPosY());
         // out of world: returns false
         assertFalse("[CHECKING MOVING UP]", r2.moveUp());
 

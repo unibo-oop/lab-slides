@@ -16,17 +16,22 @@ public class NotEnoughBatteryException extends RobotException {
 
     /**
      * 
-     * @param batteryLevel current battery level
-     * @param required required level to complete action
+     * @param batteryLevel
+     *            current battery level
+     * @param batteryRequired
+     *            required level to complete action
      */
-    public NotEnoughBatteryException(final double batteryLevel, final double required) {
+    public NotEnoughBatteryException(final double batteryLevel, final double batteryRequired) {
         this.batteryLevel = batteryLevel;
-        this.batteyRequired = required;
+        this.batteyRequired = batteryRequired;
     }
 
-    @Override
+    /**
+     * 
+     * {@inheritDoc}
+     */
     public String toString() {
-        return "No enough battery for moving. Battery level is " + batteryLevel
-                + " battery required is " + batteyRequired;
+        return "No enough battery for moving. Battery level is " + batteryLevel + " battery required is "
+                + batteyRequired;
     }
 }

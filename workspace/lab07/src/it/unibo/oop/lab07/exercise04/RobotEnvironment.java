@@ -29,7 +29,7 @@ public class RobotEnvironment {
      */
     public static final int WORLD_Y_LOWER_LIMIT = 0;
 
-    private RobotPosition position;
+    private final RobotPosition position;
 
     /**
      * 
@@ -50,8 +50,7 @@ public class RobotEnvironment {
      * @throws PositionOutOfBoundException
      *             if the movement is outside the boundaries
      */
-    public void move(final int newX, final int newY)
-            throws PositionOutOfBoundException {
+    public void move(final int newX, final int newY) throws PositionOutOfBoundException {
         if ((newX >= RobotEnvironment.WORLD_X_LOWER_LIMIT && newX <= RobotEnvironment.WORLD_X_UPPER_LIMIT)
                 && (newY >= RobotEnvironment.WORLD_Y_LOWER_LIMIT && newY <= RobotEnvironment.WORLD_Y_UPPER_LIMIT)) {
             this.position.setX(newX);

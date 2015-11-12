@@ -23,8 +23,7 @@ public class AccountHolder {
      * @param accountID
      *            holder id
      */
-    public AccountHolder(final String name, final String surname,
-            final Integer accountID) {
+    public AccountHolder(final String name, final String surname, final Integer accountID) {
         this.name = name;
         this.surname = surname;
         this.userID = accountID;
@@ -59,7 +58,6 @@ public class AccountHolder {
      */
     @Override
     public String toString() {
-        return "[ACCOUNT HOLDER firstname=" + this.name + ", lastname="
-                + this.surname + "id=" + this.userID + "]";
+        return "[ACCOUNT HOLDER firstname=" + this.name + ", lastname=" + this.surname + "id=" + this.userID + "]";
     }
 }

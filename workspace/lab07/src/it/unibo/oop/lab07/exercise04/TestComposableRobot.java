@@ -1,8 +1,5 @@
 package it.unibo.oop.lab07.exercise04;
 
-import static org.junit.Assert.*;
-import org.junit.Test;
-
 /**
  * Act as a convenience JUnit test of a robot factory.
  * 
@@ -14,39 +11,39 @@ public class TestComposableRobot {
     /**
      * Test a Robot Factory.
      */
-    /*
-    @Test
-    public void testParts() {
-        RobotArm left = new RobotArm("Left arm");
-        RobotArm right = new RobotArm("Right arm");
-        RobotHead head = new RobotHead("head");
-        
-        //turning parts on
-        try {
-            left.turnOn();
-            right.turnOn();
-            head.turnOn();
-        } catch (CantTurnOnException e) {
-            assertTrue("Test failed: parts must be activated with no issues", false);
-        }
-        try {
-            left.turnOn();
-            assertTrue("Left arm cannot be activated againg", false);
-        } catch (CantTurnOnException e) {
-            assertTrue(true);
-        }
-        try {
-            right.turnOff();
-            head.turnOff();
-        } catch (CantTurnOffException e) {
-            assertTrue("Test failed: parts must be deactivated with no issues", false);
-        }
-        try {
-            right.turnOff();
-            assertTrue("Test failed: right arm already off", false);
-        } catch (CantTurnOffException e) {
-            assertTrue(true);
-        }
-     }*/
-        
+
+    // TODO uncomment the following test after completing the assignment so as to test your solution.
+//    @Test
+//    public void testParts() {
+//        final RobotArm left = new RobotArm("Left arm");
+//        final RobotArm right = new RobotArm("Right arm");
+//        final RobotHead head = new RobotHead("head");
+//
+//        // turning parts on
+//        try {
+//            left.turnOn();
+//            right.turnOn();
+//            head.turnOn();
+//        } catch (CantTurnOnException e) {
+//            fail("Test failed: parts must be activated with no issues");
+//        }
+//        try {
+//            left.turnOn();
+//            fail("Left arm cannot be activated againg");
+//        } catch (CantTurnOnException e) {
+//            System.out.println("Left arm already active");
+//        }
+//        try {
+//            right.turnOff();
+//            head.turnOff();
+//        } catch (CantTurnOnException e) {
+//            fail("Test failed: parts must be deactivated with no issues");
+//        }
+//        try {
+//            right.turnOff();
+//            fail("Test failed: right arm already off");
+//        } catch (CantTurnOnException e) {
+//            System.out.println("Right arm is already off");
+//        }
+//    }
 }

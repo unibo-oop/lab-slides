@@ -14,8 +14,7 @@ public interface Acceptor<T> {
 
     /**
      * Accept a new element. In case the element is not part of the set
-     * sequence, returns a
-     * {@link it.unibo.oop.lab07.exercise05.Acceptor.ElementNotAcceptedException}
+     * sequence, returns a {@link Acceptor.ElementNotAcceptedException}
      * .
      * 
      * @param newElement
@@ -27,8 +26,7 @@ public interface Acceptor<T> {
 
     /**
      * Terminate to input new elements. If more elements have still to be
-     * inserted, throws an
-     * {@link it.unibo.oop.lab07.exercise05.Acceptor.EndNotAcceptedException}.
+     * inserted, throws an {@link Acceptor.EndNotAcceptedException}.
      * 
      * @throws EndNotAcceptedException
      *             if more elements still need to be accepted
@@ -42,7 +40,7 @@ public interface Acceptor<T> {
      * @author Matteo Casadei
      *
      */
-    public static class ElementNotAcceptedException extends Exception {
+    class ElementNotAcceptedException extends Exception {
 
         private final Object element;
 
@@ -73,7 +71,7 @@ public interface Acceptor<T> {
      * @author Matteo Casadei
      *
      */
-    public static class EndNotAcceptedException extends Exception {
+    class EndNotAcceptedException extends Exception {
     }
 
 }

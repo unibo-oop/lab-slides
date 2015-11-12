@@ -25,7 +25,7 @@ public class ClonableClass {
      * 
      * param a the value of a field to be set.
      */
-    public void setA(String a) {
+    public void setA(final String a) {
         this.a = a;
     }
 
@@ -41,7 +41,7 @@ public class ClonableClass {
      * 
      * param b the value of b field to be set.
      */
-    public void setB(String b) {
+    public void setB(final String b) {
         this.b = b;
     }
 
@@ -57,7 +57,7 @@ public class ClonableClass {
      * 
      * param d the value of d field to be set.
      */
-    public void setD(Double d) {
+    public void setD(final Double d) {
         this.d = d;
     }
 

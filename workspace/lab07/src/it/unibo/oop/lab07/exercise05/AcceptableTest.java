@@ -1,14 +1,15 @@
 package it.unibo.oop.lab07.exercise05;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
 
+//FIXME please fix magic numbers spread in the code
 /**
- * This is the JUnit test for {@link it.unibo.oop.lab07.exercise05.Acceptable}
+ * This is the JUnit test for {@link Acceptable}
  * implementation.
  * 
  * @author Andrea Santi
@@ -25,16 +26,15 @@ public class AcceptableTest {
         // test di una accettazione corretta:
         // accettazione della lista 10, 20, 30, 40
         try {
-            List<Integer> list = Arrays.asList(10, 20, 30, 40);
-            // the following has to be instantiated
-            Acceptable<Integer> acc = null;
-            Acceptor<Integer> acceptor = acc.acceptor();
+            final List<Integer> list = Arrays.asList(10, 20, 30, 40);
+            // TODO the following has to be instantiated
+            final Acceptable<Integer> acc = null;
+            final Acceptor<Integer> acceptor = acc.acceptor();
             acceptor.accept(10);
             acceptor.accept(20);
             acceptor.accept(30);
             acceptor.accept(40);
             acceptor.end();
-            assertTrue(true);
         } catch (Exception e) {
             fail();
         }
@@ -47,16 +47,15 @@ public class AcceptableTest {
     @Test
     public void test2() {
         // eccezione per via di un elemento accetatto in più
-        List<Integer> list = Arrays.asList(10, 20, 30, 40);
-        // the following has to be instantiated
-        Acceptable<Integer> acc = null;
-        Acceptor<Integer> acceptor = acc.acceptor();
+        final List<Integer> list = Arrays.asList(10, 20, 30, 40);
+        // TODO the following has to be instantiated
+        final Acceptable<Integer> acc = null;
+        final Acceptor<Integer> acceptor = acc.acceptor();
         try {
             acceptor.accept(10);
             acceptor.accept(20);
             acceptor.accept(30);
             acceptor.accept(40);
-            assertTrue(true);
         } catch (Acceptor.ElementNotAcceptedException e) {
             // test failed: sequence is not accepted
             fail();
@@ -68,34 +67,33 @@ public class AcceptableTest {
             fail();
         } catch (Acceptor.ElementNotAcceptedException e) {
             // true because test has succeed: 50 not accepted
-            assertTrue(true);
+            System.out.println("50 cannot be accepted as a valid element");
         }
     }
 
     /**
      * Test raising
-     * {@link it.unibo.oop.lab07.exercise05.Acceptor.EndNotAcceptedException}.
+     * {@link Acceptor.EndNotAcceptedException}.
      * 
      */
     @Test
     public void test3() {
         // eccezione per via di una fine anticipata
-        List<Integer> list = Arrays.asList(10, 20, 30, 40);
+        final List<Integer> list = Arrays.asList(10, 20, 30, 40);
         // the following has to be instantiated
-        Acceptable<Integer> acc = null;
-        Acceptor<Integer> acceptor = acc.acceptor();
+        final Acceptable<Integer> acc = null;
+        final Acceptor<Integer> acceptor = acc.acceptor();
         try {
             acceptor.accept(10);
             acceptor.accept(20);
-            assertTrue(true);
         } catch (Acceptor.ElementNotAcceptedException e) {
-            assertTrue("No element expected: " + e.getElement(), false);
+            fail("No element expected: " + e.getElement());
         }
         try {
             acceptor.end();
             fail();
         } catch (Acceptor.EndNotAcceptedException e) {
-            assertTrue(true);
+            System.out.println("Impossible to end the sequence");
         }
     }
 

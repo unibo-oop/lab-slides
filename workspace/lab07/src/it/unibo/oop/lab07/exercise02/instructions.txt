@@ -1,6 +1,6 @@
 == StrictBankAccountImpl ==
 Analizzare la classe StrictBankAccountImpl, lievemente modificata rispetto alla versione 
-vista in lab03 (che si chiamava StrictBankAccount).
+già vista (che si chiamava StrictBankAccount).
 
 == Modifiche a StrictBankAccountImpl ==
 Modificare la classe StrictBankAccount in modo che:
