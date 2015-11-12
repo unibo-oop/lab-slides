@@ -1,0 +1,47 @@
+== Un Set Base di Robot Componibili ==
+Si tratta di un esercizio basato sul caso dei robot componibili visto durante l'esercitazione di 
+laboratorio su classi astratte e template method.
+
+La classe ComposableRobot contiene ora tre nested class (che estendono ComposableRobot) relative
+ a un set base di robot componibili pronti da usare:
+
+ - RobotWithTwoArms
+ - RobotWithTwoArmsAndHead
+ - RobotWithHead
+
+== Definire l'enum BasicComposableRobots == 
+Valori:
+ - WITH_TWO_ARMS
+ - WITH_TWO_ARMS_AND_HEAD
+ - WITH_HEAD
+Consentirà di discriminare il tipo di robot base di interesse
+
+== Eccezioni ==
+Realizzare le seguenti eccezioni
+
+= CantTurnOffException =
+Sollevata nel caso in cui si cerchi di spegnere una parte robotica già spenta
+
+= CantTurnOnException =
+Sollevata nel caso in cui si cerchi di accendere una parte robotica già attiva
+
+Suggerimenti:
+- intervenire sull'interfaccia IRobotPart e sulla classe astratta AbstractPart, in particolare,
+  sui metodi turnOn() e turnOff()
+
+- aggiornare la logica di tutte le altre classi coinvolte dall'introduzione delle nuove
+  eccezioni, MA SENZA MODIFICARE ALCUNA INTERFACCIA 
+  
+- Leggere attentamente il test TestComposableRobot: è stato commentato per evitare errori di 
+  compilazione.
+
+= Test =
+Decommentare il TestComposableRobot ed eseguirlo.
+
+== ComposableRobotFactory ==
+La classe consentirà di costruire i tre robot componibili (sopra) via reflection.
+
+Completare la classe seguendo le linee guida riportate nei commenti.
+
+== TEST ==
+Completare la classe di test TestFactory seguendo le linee guida presenti nei commenti.
