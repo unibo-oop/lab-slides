@@ -513,12 +513,18 @@ summary:     fix a bug on ChangeBiomolConcentrationInCell
 	\begin{enumerate}
 	 \item Si passa al branch ``destinazione'', ossia quello che consideriamo essere il principale. Se si è già nel branch corretto, e se non ci sono modifiche pendenti, non è necessario.
 		\begin{itemize}
-		 \item \texttt{hg update mainline --clean}
+			\item \texttt{hg update mainline --clean}
 		\end{itemize}
 	 \item Si fa il merge del branch che contiene le nuove feature in modo analogo a quello che abbiamo fatto nel caso di più teste:
 		\begin{itemize}
-		 \item \texttt{hg merge feature}
-		 \item \texttt{hg commit -m "Merge feature into mainline"}
+			\item \texttt{hg merge feature}
+			\item \texttt{hg commit -m "Merge feature into mainline"}
+		\end{itemize}
+	 \item Si segnala che il branch precedente non sarà più usato ``chiudendolo'' con uno speciale commit:
+		\begin{itemize}
+			\item \texttt{hg update feature}
+			\item \texttt{hg commit --close-branch -m "Close branch feature"}
+			\item \texttt{hg update mainline}
 		\end{itemize}
 	\end{enumerate}
 \end{frame}
