@@ -3,10 +3,8 @@ package it.unibo.oop.lab07.exercise04;
 import it.unibo.oop.lab07.exercise01.PositionOutOfBoundException;
 
 /**
- * Models the environment in which a {@link oop1314.lab06.robots.Robot} is
+ * Models the environment in which a {@link Robot} is
  * situated.
- * 
- * @author Matteo Casadei
  *
  */
 public class RobotEnvironment {

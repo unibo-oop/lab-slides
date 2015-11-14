@@ -5,8 +5,6 @@ import java.util.Arrays;
 /**
  * Concrete implementation of a robot composed by a set of generic
  * {@link it.unibo.oop.lab07.exercise04.IRobotPart}.
- * 
- * @author Matteo Casadei
  *
  */
 public class ComposableRobot extends Robot implements IComposableRobot {
@@ -109,8 +107,6 @@ public class ComposableRobot extends Robot implements IComposableRobot {
     }
 
     /**
-     * 
-     * @author Matteo Casadei
      *
      */
     public static class RobotWithTwoArms extends ComposableRobot {
@@ -131,8 +127,6 @@ public class ComposableRobot extends Robot implements IComposableRobot {
 
     /**
      * 
-     * @author Matteo Casadei
-     *
      */
     public static class RobotWithTwoArmsAndHead extends ComposableRobot {
         private static final String LEFT_ARM = "Left Arm";
@@ -155,8 +149,6 @@ public class ComposableRobot extends Robot implements IComposableRobot {
 
     /**
      * 
-     * @author Matteo Casadei
-     *
      */
     public static class RobotWithHead extends ComposableRobot {
         private static final String HEAD_DESCRIPTION = "Robot head";

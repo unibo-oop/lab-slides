@@ -4,8 +4,6 @@ package it.unibo.oop.lab07.exercise02;
  * Models a generic owner of a bank account modeled by
  * {@link it.unibo.oop.lab07.exercise02.BankAccount}.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
  */
 public class AccountHolder {
 

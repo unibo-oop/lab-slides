@@ -1,5 +1,20 @@
 package it.unibo.oop.lab07.exercise04;
 
+/**
+ * Enum listing the possible {@link IComposableRobot}s.
+ */
 public enum BasicComposableRobots {
-  WITH_TWO_ARMS, WITH_TWO_ARMS_AND_HEAD, WITH_HEAD
+
+    /**
+     * Robot with two arms.
+     */
+    WITH_TWO_ARMS,
+    /**
+     * Robot with two arms and head.
+     */
+    WITH_TWO_ARMS_AND_HEAD,
+    /**
+     * Robot with head.
+     */
+    WITH_HEAD
 }

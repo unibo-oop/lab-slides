@@ -4,9 +4,6 @@ package it.unibo.oop.lab07.exercise05;
  * 
  * Represent the dual of an Iterator: accept elements in the same sequence as
  * configured on its Acceptable.
- * 
- * @author Andrea Santi
- * @author Matteo Casadei
  *
  * @param <T>
  */
@@ -35,14 +32,16 @@ public interface Acceptor<T> {
      */
     void end() throws EndNotAcceptedException;
 
+    /*
+     * Note: this class is public and static by default, so the modifiers are
+     * not redundantly written here.
+     */
     /**
      * Represents an exception occurring when trying to make the acceptor accept
      * a wrong (out-of-sequence) element.
-     * 
-     * @author Matteo Casadei
      *
      */
-    public static class ElementNotAcceptedException extends Exception {
+    class ElementNotAcceptedException extends Exception {
 
         /**
          * 
@@ -73,11 +72,9 @@ public interface Acceptor<T> {
     /**
      * Occurring when trying to terminate accepting new elements, but still
      * other elements have to accepted.
-     * 
-     * @author Matteo Casadei
      *
      */
-    public static class EndNotAcceptedException extends Exception {
+    class EndNotAcceptedException extends Exception {
 
         /**
          * 

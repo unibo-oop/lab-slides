@@ -2,8 +2,6 @@ package it.unibo.oop.lab07.exercise02;
 
 /**
  * 
- * @author Matteo Casadei
- *
  */
 public class NotEnoughFoundsException extends Exception {
 

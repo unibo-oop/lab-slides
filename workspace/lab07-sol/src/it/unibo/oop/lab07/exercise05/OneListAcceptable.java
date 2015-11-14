@@ -1,14 +1,12 @@
 package it.unibo.oop.lab07.exercise05;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * 
  * Solution to sample exam assignment.
  * 
- * @author Matteo Casadei
- * @author Andrea Santi
- *
  * @param <T>
  */
 public class OneListAcceptable<T> implements Acceptable<T> {
@@ -53,7 +51,7 @@ public class OneListAcceptable<T> implements Acceptable<T> {
                         return;
                     }
                 } catch (Exception e) {
-                    System.out.println("2"+e.getMessage());
+                    System.out.println("2" + e.getMessage());
                 }
                 throw new Acceptor.EndNotAcceptedException();
             }

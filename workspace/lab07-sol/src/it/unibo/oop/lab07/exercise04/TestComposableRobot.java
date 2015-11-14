@@ -1,12 +1,12 @@
 package it.unibo.oop.lab07.exercise04;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
 import org.junit.Test;
 
 /**
  * Act as a convenience JUnit test of a robot factory.
- * 
- * @author Matteo Casadei
  *
  */
 public class TestComposableRobot {

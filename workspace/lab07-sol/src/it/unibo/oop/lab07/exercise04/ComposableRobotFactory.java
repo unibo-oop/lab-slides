@@ -3,16 +3,13 @@ package it.unibo.oop.lab07.exercise04;
 import java.lang.reflect.Constructor;
 
 /**
- * 
- * @author Matteo Casadei
  *
  */
 public final class ComposableRobotFactory {
 
     private ComposableRobotFactory() {
-        
     }
-    
+
     /**
      * 
      * @param robot
@@ -25,7 +22,9 @@ public final class ComposableRobotFactory {
      * @throws RobotException
      *             raised in case of trouble
      */
-    public static ComposableRobot createBasicComposableRobot(final BasicComposableRobots robot, final String robotName,
+    public static ComposableRobot createBasicComposableRobot(
+            final BasicComposableRobots robot,
+            final String robotName,
             final double batteryValue) throws RobotException {
         ComposableRobot returnValue = null;
         Class<? extends ComposableRobot> cl = null;
@@ -36,18 +35,14 @@ public final class ComposableRobotFactory {
             case WITH_HEAD:
                 cl = ComposableRobot.RobotWithHead.class;
                 break;
-
             case WITH_TWO_ARMS:
                 cl = ComposableRobot.RobotWithTwoArms.class;
                 break;
-
             case WITH_TWO_ARMS_AND_HEAD:
                 cl = ComposableRobot.RobotWithTwoArmsAndHead.class;
                 break;
-
             default:
-                break;
-
+                throw new RobotException();
             }
             cons = cl.getConstructor(constructorArgTypes);
             returnValue = cons.newInstance(new Object[] { robotName, batteryValue });

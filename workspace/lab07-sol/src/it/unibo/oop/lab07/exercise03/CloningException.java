@@ -4,9 +4,6 @@ package it.unibo.oop.lab07.exercise03;
  * 
  * A very trivial cloning exception.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public class CloningException extends Exception {
 

@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.Test;
 
 /**
- * This is the JUnit test for {@link it.unibo.oop.lab07.exercise05.Acceptable}
+ * This is the JUnit test for {@link Acceptable}
  * implementation.
  * 
  */
