@@ -1,6 +1,7 @@
 package it.unibo.oop.lab07.exercise05;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,9 +12,6 @@ import org.junit.Test;
  * This is the JUnit test for {@link it.unibo.oop.lab07.exercise05.Acceptable}
  * implementation.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public class AcceptableTest {
 
@@ -29,10 +27,9 @@ public class AcceptableTest {
             // the following has to be instantiated
             final Acceptable<Integer> acc = new OneListAcceptable<>(list);
             final Acceptor<Integer> acceptor = acc.acceptor();
-            acceptor.accept(10);
-            acceptor.accept(20);
-            acceptor.accept(30);
-            acceptor.accept(40);
+            for (final Integer el: list) {
+                acceptor.accept(el);
+            }
             acceptor.end();
         } catch (Exception e) {
             fail("Sequence was supposed to be correct!");
@@ -51,17 +48,16 @@ public class AcceptableTest {
         final Acceptable<Integer> acc = new OneListAcceptable<>(list);
         final Acceptor<Integer> acceptor = acc.acceptor();
         try {
-            acceptor.accept(10);
-            acceptor.accept(20);
-            acceptor.accept(30);
-            acceptor.accept(40);
+            for (final Integer el: list) {
+                acceptor.accept(el);
+            }
         } catch (Acceptor.ElementNotAcceptedException e) {
             // test failed: sequence is not accepted
             fail("Element out of sequence: " + e.getElement());
         }
         try {
             // makes an exception to be raised;
-            acceptor.accept(50);
+            acceptor.accept(-1);
             // assert: impossible to get here with a wrong element
             fail("Element out of sequence");
         } catch (Acceptor.ElementNotAcceptedException e) {
@@ -84,7 +80,6 @@ public class AcceptableTest {
         final Acceptor<Integer> acceptor = acc.acceptor();
         try {
             acceptor.accept(10);
-            acceptor.accept(20);
         } catch (Acceptor.ElementNotAcceptedException e) {
             fail("No element expected: " + e.getElement());
         }

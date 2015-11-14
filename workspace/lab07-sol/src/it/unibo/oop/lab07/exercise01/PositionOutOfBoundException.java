@@ -4,9 +4,6 @@ package it.unibo.oop.lab07.exercise01;
  * Represents an exception occurring when a robot overcomes the boundaries of
  * its environment.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public class PositionOutOfBoundException extends Exception {
 

@@ -1,20 +1,22 @@
 package it.unibo.oop.lab07.exercise01;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+import static it.unibo.oop.lab07.exercise01.RobotEnvironment.WORLD_X_UPPER_LIMIT;
+import static it.unibo.oop.lab07.exercise01.RobotEnvironment.WORLD_Y_UPPER_LIMIT;
 
-import org.junit.Assert;
 import org.junit.Test;
-import org.junit.matchers.JUnitMatchers;
-import org.junit.rules.ExpectedException;
 
 /**
  * Testing class for PositionOutOfBound.
  * 
- * @author Matteo Casadei
- *
  */
 public final class BaseRobotTest {
+
+    private static final int TEST_BATTERY_LEVEL = 20;
+
     /**
      * Simple test for testing a robot moving, wandering the available
      * environment.
@@ -23,10 +25,14 @@ public final class BaseRobotTest {
     @Test
     public void testRobotMovementBase() {
 
-        // 1) Creare il robot SimpleRobot, istanza della classe Robot con
-        // batteria=100
+        /*
+         * 1) Creare il robot SimpleRobot, istanza della classe Robot con
+         * batteria=100
+         */
         final Robot r1 = new Robot("SimpleRobot", 100);
-        // checking if robot in in position x=0; y=0
+        /*
+         * checking if robot in in position x=0; y=0
+         */
         assertEquals("[CHECKING ROBOT INIT POS X]", 0, r1.getEnvironment().getCurrPosX());
         assertEquals("[CHECKING ROBOT INIT POS Y]", 0, r1.getEnvironment().getCurrPosY());
 
@@ -36,16 +42,19 @@ public final class BaseRobotTest {
          * restituisca false quando si superano i limiti del mondo
          */
         try {
-            for (int i = 0; i < RobotEnvironment.WORLD_X_UPPER_LIMIT; i++) {
+            for (int i = 0; i < WORLD_X_UPPER_LIMIT; i++) {
                 r1.moveRight();
             }
-
-            // this is causing an exception to be raised
+            /*
+             * this is causing an exception to be raised
+             */
             r1.moveRight();
-            // this must not be reached;
+            /*
+             * this must not be reached;
+             */
             fail("I should not get such far!");
         } catch (PositionOutOfBoundException e) {
-            assertThat(e.getMessage(), containsString("pos(" + (RobotEnvironment.WORLD_X_UPPER_LIMIT + 1) + ", 0)"));
+            assertThat(e.getMessage(), containsString("pos(" + (WORLD_X_UPPER_LIMIT + 1) + ", 0)"));
         } catch (NotEnoughBatteryException e) {
             fail("No battery problems expected here!");
         }
@@ -55,14 +64,13 @@ public final class BaseRobotTest {
          * metodo restituisca false quando si superano i limiti del mondo
          */
         try {
-            for (int i = 0; i < RobotEnvironment.WORLD_Y_UPPER_LIMIT; i++) {
+            for (int i = 0; i < WORLD_Y_UPPER_LIMIT; i++) {
                 // check if position if coherent
                 r1.moveUp();
             }
             r1.moveUp();
         } catch (PositionOutOfBoundException e) {
-            assertThat(e.getMessage(), containsString("pos(" + RobotEnvironment.WORLD_X_UPPER_LIMIT + ", "
-                    + (RobotEnvironment.WORLD_Y_UPPER_LIMIT + 1) + ")"));
+            assertThat(e.getMessage(), containsString("pos(" + WORLD_X_UPPER_LIMIT + ", " + (WORLD_Y_UPPER_LIMIT + 1) + ")"));
         } catch (NotEnoughBatteryException e) {
             fail("Battery should not be the issue here!");
         }
@@ -75,9 +83,11 @@ public final class BaseRobotTest {
      */
     @Test
     public void testRobotBatteryBase() {
-        // 1) Creare il robot SimpleRobot2, istanza della classe Robot con
-        // batteria=20
-        Robot r2 = new Robot("SimpleRobot2", 20);
+        /*
+         * 1) Creare il robot SimpleRobot2, istanza della classe Robot con
+         * batteria=20
+         */
+        final Robot r2 = new Robot("SimpleRobot2", TEST_BATTERY_LEVEL);
 
         /*
          * 2) Muovere ripetutamente il robot su di una posizione e giù di una
@@ -92,9 +102,9 @@ public final class BaseRobotTest {
                 r2.moveDown();
             }
             r2.moveDown();
-            fail("You not supposed to get that far with no battery!");
+            fail("You're not supposed to get that far with no battery!");
         } catch (PositionOutOfBoundException e) {
-            fail("I expect battery to fail!");
+            fail("I expected battery to fail!");
         } catch (NotEnoughBatteryException e) {
             assertThat(e.getMessage(), containsString(" Battery level is " + r2.getBatteryLevel()));
         }
