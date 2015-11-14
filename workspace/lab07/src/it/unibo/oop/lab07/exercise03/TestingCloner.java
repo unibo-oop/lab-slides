@@ -5,9 +5,6 @@ import org.junit.Test;
 /**
  * Used to test reflection on ClonableClass.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public class TestingCloner {
 

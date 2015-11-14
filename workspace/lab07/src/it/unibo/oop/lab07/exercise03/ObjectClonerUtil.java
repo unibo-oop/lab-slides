@@ -3,9 +3,6 @@ package it.unibo.oop.lab07.exercise03;
 /**
  * Utility class for cloning objects via reflection.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public final class ObjectClonerUtil {
 

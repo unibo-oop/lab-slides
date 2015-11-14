@@ -5,9 +5,6 @@ import it.unibo.oop.lab07.exercise01.PositionOutOfBoundException;
 /**
  * Models a generic Robot.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public class Robot {
 

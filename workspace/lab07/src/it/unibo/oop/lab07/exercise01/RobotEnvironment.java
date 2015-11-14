@@ -4,9 +4,6 @@ package it.unibo.oop.lab07.exercise01;
  * Models the environment in which a {@link it.unibo.oop.lab07.exercise01.Robot}
  * is situated.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public class RobotEnvironment {
 

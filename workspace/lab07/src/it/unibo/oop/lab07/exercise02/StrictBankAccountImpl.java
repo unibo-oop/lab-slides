@@ -5,9 +5,6 @@ package it.unibo.oop.lab07.exercise02;
  * only with enough founds, and there are also a limited number of free ATM
  * transaction (this number is provided as a input in the constructor).
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public class StrictBankAccountImpl implements BankAccount {
 

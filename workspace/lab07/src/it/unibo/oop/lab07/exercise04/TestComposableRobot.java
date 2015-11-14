@@ -3,8 +3,6 @@ package it.unibo.oop.lab07.exercise04;
 /**
  * Act as a convenience JUnit test of a robot factory.
  * 
- * @author Matteo Casadei
- *
  */
 public class TestComposableRobot {
 
