@@ -195,7 +195,6 @@
 	<rule ref="rulesets/java/controversial.xml/SuspiciousOctalEscape" />
 	<rule ref="rulesets/java/design.xml/SwitchDensity" />
 	<rule ref="rulesets/java/design.xml/SwitchStmtsShouldHaveDefault" />
-	<rule ref="rulesets/java/logging-java.xml/SystemPrintln" />
 	<rule ref="rulesets/plsql/dates.xml/TO_DATEWithoutDateFormat" />
 	<rule ref="rulesets/plsql/dates.xml/TO_DATE_TO_CHAR" />
 	<rule ref="rulesets/plsql/dates.xml/TO_TIMESTAMPWithoutDateFormat" />
