@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * @author Mirko Viroli
- * @author Danilo Pianini
- *
  * @param <N>
  *            node type
  */

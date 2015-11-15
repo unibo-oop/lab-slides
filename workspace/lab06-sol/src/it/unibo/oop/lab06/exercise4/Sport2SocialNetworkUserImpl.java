@@ -23,9 +23,6 @@ import it.unibo.oop.lab06.exercise1.SocialNetworkUserImpl;
  * 
  * 2) complete the implementation of the new methods as explained below
  * 
- * @author Matteo Casadei
- * @author Danilo Pianini
- *
  * @param <U>
  *            specific {@link User} type
  */

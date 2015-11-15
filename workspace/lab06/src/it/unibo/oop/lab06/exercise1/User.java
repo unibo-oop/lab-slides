@@ -7,8 +7,6 @@ package it.unibo.oop.lab06.exercise1;
  * 
  * Represents the contract for a generic user.
  * 
- * @author Matteo Casadei
- *
  */
 public interface User {
 

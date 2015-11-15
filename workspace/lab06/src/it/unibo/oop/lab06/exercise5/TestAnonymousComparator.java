@@ -18,9 +18,6 @@ import java.util.List;
  * 
  * (Refer to: 12-Advanced-Mechanisms.pdf, slide 39)
  * 
- * @author Matteo Casadei
- * @author Danilo Pianini
- *
  */
 public final class TestAnonymousComparator {
 
@@ -53,7 +50,7 @@ public final class TestAnonymousComparator {
      * @param args
      *            ignored
      */
-    public static void main(final String[] args) {
+    public static void main(final String... args) {
 
         /*
          * create 6 social network users

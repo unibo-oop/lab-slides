@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * 
@@ -23,14 +23,10 @@ import java.util.TreeSet;
  * 1) complete the definition of the methods by following the suggestions
  * included in the comments below.
  * 
- * @author Matteo Casadei
- * @author Danilo Pianini
- *
  * @param <U>
  *            Specific {@link User} type
  */
-public class SocialNetworkUserImpl<U extends User> extends UserImpl implements
-        SocialNetworkUser<U> {
+public class SocialNetworkUserImpl<U extends User> extends UserImpl implements SocialNetworkUser<U> {
 
     private final Map<String, Set<U>> friends;
 
@@ -46,8 +42,7 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements
      *            alias of the user, i.e. the way a user is identified on an
      *            application
      */
-    public SocialNetworkUserImpl(final String firstName, final String lastName,
-            final String username) {
+    public SocialNetworkUserImpl(final String firstName, final String lastName, final String username) {
         this(firstName, lastName, username, -1);
 
     }
@@ -65,15 +60,13 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements
      *            alias of the user, i.e. the way a user is identified on an
      *            application
      */
-    public SocialNetworkUserImpl(final String name, final String surname,
-            final String user, final int userAge) {
+    public SocialNetworkUserImpl(final String name, final String surname, final String user, final int userAge) {
         super(name, surname, user, userAge);
         this.friends = new HashMap<>(); // inference of type variables
     }
 
     /**
-     * @see it.unibo.oop.lab06.exercise1.SocialNetworkUser#addFollowedUser(String,
-     *      User)
+     * {@inheritDoc}
      */
     public boolean addFollowedUser(final String circle, final U user) {
         Set<U> circleFriends = this.friends.get(circle);
@@ -89,9 +82,7 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements
      * [NOTE] If no group with groupName exists yet, this implementation must
      * return an empty Collection.
      * 
-     * @see it.unibo.oop.lab06.exercise1.SocialNetworkUser#getFollowedUsersInGroup(String)
-     * 
-     *
+     * {@inheritDoc}
      */
     public Collection<U> getFollowedUsersInGroup(final String groupName) {
         final Collection<U> usersInCircle = this.friends.get(groupName);
@@ -105,15 +96,15 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements
     }
 
     /**
-     * @see it.unibo.oop.lab06.exercise1.SocialNetworkUser#getFollowedUsers()
+     * {@inheritDoc}
      */
     public List<U> getFollowedUsers() {
         /*
          * Pre-populate a Set in order to prevent duplicates
          */
         final Set<U> followedUsers = new HashSet<>();
-        for (final String group : this.friends.keySet()) {
-            followedUsers.addAll(this.friends.get(group));
+        for (final Entry<String, Set<U>> group : friends.entrySet()) {
+            followedUsers.addAll(group.getValue());
         }
         return new ArrayList<>(followedUsers);
     }

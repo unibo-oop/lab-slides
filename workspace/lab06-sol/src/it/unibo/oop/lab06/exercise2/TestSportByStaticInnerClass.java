@@ -10,9 +10,6 @@ import it.unibo.oop.lab06.exercise1.User;
  * 
  * 2) Run it: every test must return true.
  * 
- * @author Matteo Casadei
- * @author Danilo Pianini
- *
  */
 public final class TestSportByStaticInnerClass {
 
@@ -23,7 +20,7 @@ public final class TestSportByStaticInnerClass {
      * @param args
      *            ignored
      */
-    public static void main(final String[] args) {
+    public static void main(final String... args) {
 
         /*
          * create 3 sport social network users (SportSocialNetworkUser):

@@ -6,9 +6,6 @@ package it.unibo.oop.lab06.exercise1;
  * 
  * This class is completely mplemented and can be used as it is.
  * 
- * @author Matteo Casadei
- * @author Danilo Pianini
- *
  */
 public class UserImpl implements User {
 
@@ -86,8 +83,10 @@ public class UserImpl implements User {
     public boolean equals(final Object o) {
         if (o instanceof UserImpl) {
             final UserImpl user = (UserImpl) o;
-            return (this.firstName.equals(user.getFirstName()) && this.lastName.equals(user.getLastName())
-                    && this.username.equals(user.getUsername()) && this.age == user.getAge());
+            return firstName.equals(user.getFirstName())
+                    && lastName.equals(user.getLastName())
+                    && username.equals(user.getUsername())
+                    && age == user.getAge();
         }
         return false;
     }

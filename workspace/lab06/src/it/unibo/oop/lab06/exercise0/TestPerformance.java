@@ -7,8 +7,6 @@ import java.util.TreeSet;
  * Example performance measuring. Use this class as working example of how to
  * measure the time necessary to perform operations on data structures.
  * 
- * @author Danilo Pianini
- *
  */
 public final class TestPerformance {
 
@@ -22,7 +20,7 @@ public final class TestPerformance {
      * @param s
      *            ignored
      */
-    public static void main(final String[] s) {
+    public static void main(final String... s) {
 
         /*
          * Set up the data structures

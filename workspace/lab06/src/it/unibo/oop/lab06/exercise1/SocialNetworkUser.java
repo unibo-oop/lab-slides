@@ -11,9 +11,6 @@ import java.util.List;
  * Represents the user of a social network. A user follows other users and of
  * course can be followed as well.
  * 
- * @author Matteo Casadei
- * @author Danilo Pianini
- *
  * @param <U>
  *            specific {@link User} type
  */

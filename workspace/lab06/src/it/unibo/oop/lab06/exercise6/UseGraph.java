@@ -1,8 +1,6 @@
 package it.unibo.oop.lab06.exercise6;
 
 /**
- * @author Mirko Viroli
- * @author Danilo Pianini
  *
  */
 public final class UseGraph {
@@ -14,7 +12,7 @@ public final class UseGraph {
      * @param args
      *            ignored
      */
-    public static void main(final String[] args) {
+    public static void main(final String... args) {
         final Graph<String> g = null; // new GraphImpl<>();
 
         g.addNode("a");
@@ -29,12 +27,20 @@ public final class UseGraph {
         g.addEdge("d", "e");
         g.addEdge("c", "a");
 
-        System.out.println(g.nodeSet()); // prints ["a","b","c","d","e"].. in
-                                         // any order
-        System.out.println(g.linkedNodes("c")); // prints ["d","a"].. in any
-                                                // order
-        System.out.println(g.getPath("b", "a")); // prints either the path b,c,a
-                                                 // or b,c,d,e,a
+        /*
+         * Should print ["a","b","c","d","e"], in any order
+         */
+        System.out.println(g.nodeSet());
+
+        /*
+         * ["d","a"], in any order
+         */
+        System.out.println(g.linkedNodes("c"));
+
+        /*
+         * Must print either the path b,c,a or b,c,d,e,a
+         */
+        System.out.println(g.getPath("b", "a"));
 
     }
 }
