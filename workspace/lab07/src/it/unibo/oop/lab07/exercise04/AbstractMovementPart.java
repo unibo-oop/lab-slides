@@ -4,9 +4,6 @@ package it.unibo.oop.lab07.exercise04;
  * Abstract class to use as a basis to implement a robotic part that can perform
  * move operation (e.g. actuators).
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public abstract class AbstractMovementPart implements RobotPart {
 
@@ -17,7 +14,9 @@ public abstract class AbstractMovementPart implements RobotPart {
     /**
      * 
      * @param energyRequiredToMove
+     *            energy required for a movement
      * @param description
+     *            a description of this robot part
      */
     public AbstractMovementPart(final double energyRequiredToMove, final String description) {
         this.description = description;

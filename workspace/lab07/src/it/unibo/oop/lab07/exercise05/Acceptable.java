@@ -4,9 +4,6 @@ package it.unibo.oop.lab07.exercise05;
  * 
  * Represent a class of object accepting a given sequence of elements.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  * @param <T>
  */
 public interface Acceptable<T> {

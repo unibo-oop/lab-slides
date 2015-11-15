@@ -1,15 +1,13 @@
 package it.unibo.oop.lab07.exercise03;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
 /**
  * Used to test reflection on ClonableClass.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public class TestingCloner {
 

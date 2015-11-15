@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ruleset name ="Danilo Pianini's ruleset"
 	xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="alchemist-pmd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
 	<description>Alchemist PMD Plugin preferences rule set</description>
 	<rule ref="rulesets/java/design.xml/AbstractClassWithoutAbstractMethod" />
@@ -195,7 +195,6 @@
 	<rule ref="rulesets/java/controversial.xml/SuspiciousOctalEscape" />
 	<rule ref="rulesets/java/design.xml/SwitchDensity" />
 	<rule ref="rulesets/java/design.xml/SwitchStmtsShouldHaveDefault" />
-	<rule ref="rulesets/java/logging-java.xml/SystemPrintln" />
 	<rule ref="rulesets/plsql/dates.xml/TO_DATEWithoutDateFormat" />
 	<rule ref="rulesets/plsql/dates.xml/TO_DATE_TO_CHAR" />
 	<rule ref="rulesets/plsql/dates.xml/TO_TIMESTAMPWithoutDateFormat" />

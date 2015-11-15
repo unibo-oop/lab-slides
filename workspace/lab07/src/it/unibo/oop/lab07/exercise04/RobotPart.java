@@ -3,9 +3,6 @@ package it.unibo.oop.lab07.exercise04;
 /**
  * Models a generic robot part.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public interface RobotPart {
 

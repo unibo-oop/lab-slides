@@ -1,6 +1,7 @@
 package it.unibo.oop.lab07.exercise02;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -8,11 +9,11 @@ import org.junit.Test;
  * JUnit test to test
  * {@link it.unibo.oop.lab07.exercise02.StrictBankAccountImpl}.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public class TestStrictBankAccount {
+
+    private static final int INITIAL_AMOUNT = 10000;
+    private static final int TOO_MUCH = 50000;
 
     /**
      * Used to test Exceptions on
@@ -25,8 +26,8 @@ public class TestStrictBankAccount {
         final AccountHolder usr1 = new AccountHolder("Mario", "Rossi", 1);
         final AccountHolder usr2 = new AccountHolder("Luigi", "Bianchi", 2);
 
-        final StrictBankAccountImpl account1 = new StrictBankAccountImpl(usr1.getUserID(), 10000, 10);
-        final StrictBankAccountImpl account2 = new StrictBankAccountImpl(usr2.getUserID(), 10000, 10);
+        final StrictBankAccountImpl account1 = new StrictBankAccountImpl(usr1.getUserID(), INITIAL_AMOUNT, 10);
+        final StrictBankAccountImpl account2 = new StrictBankAccountImpl(usr2.getUserID(), INITIAL_AMOUNT, 10);
 
         // 2) Effetture un numero di operazioni a piacere per testare il lancio
         // delle eccezioni per i casi di interesse
@@ -62,7 +63,7 @@ public class TestStrictBankAccount {
              * Questa istruzione genererà una eccezione di tipo
              * NotEnoughFoundsException
              */
-            account1.withdraw(usr1.getUserID(), 50000);
+            account1.withdraw(usr1.getUserID(), TOO_MUCH);
         } catch (WrongAccountHolderException e) {
             fail();
         } catch (NotEnoughFoundsException e) {

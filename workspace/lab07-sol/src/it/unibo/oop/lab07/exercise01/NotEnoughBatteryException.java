@@ -2,9 +2,6 @@ package it.unibo.oop.lab07.exercise01;
 
 /**
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public class NotEnoughBatteryException extends Exception {
 

@@ -6,9 +6,6 @@ import java.util.Arrays;
  * Concrete implementation of a robot composed by a set of generic
  * {@link RobotPart}.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public class SimpleComposableRobot extends Robot implements ComposableRobot {
 

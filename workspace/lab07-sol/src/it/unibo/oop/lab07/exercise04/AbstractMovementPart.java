@@ -4,8 +4,6 @@ package it.unibo.oop.lab07.exercise04;
  * Abstract class to use as a basis to implement a robotic part that can perform
  * move operation (e.g. actuators).
  * 
- * @author Matteo Casadei
- *
  */
 public abstract class AbstractMovementPart implements IRobotPart {
 

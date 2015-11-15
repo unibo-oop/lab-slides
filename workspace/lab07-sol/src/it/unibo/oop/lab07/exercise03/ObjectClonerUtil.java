@@ -6,9 +6,6 @@ import java.lang.reflect.Method;
 /**
  * Utility class for cloning objects via reflection.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public final class ObjectClonerUtil {
 

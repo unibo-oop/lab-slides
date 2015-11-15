@@ -3,9 +3,6 @@ package it.unibo.oop.lab07.exercise01;
 /**
  * Models a generic Robot.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public class Robot {
 
@@ -37,6 +34,7 @@ public class Robot {
      * @throws PositionOutOfBoundException
      *             raised if moving out of environment
      * @throws NotEnoughBatteryException
+     *             if battery is not enough
      */
     public void moveUp() throws PositionOutOfBoundException, NotEnoughBatteryException {
         moveToPosition(environment.getCurrPosX(), this.environment.getCurrPosY() + Robot.MOVEMENT_DELTA);
@@ -48,6 +46,7 @@ public class Robot {
      * @throws PositionOutOfBoundException
      *             raised if moving out of environment
      * @throws NotEnoughBatteryException
+     *             if battery is not enough
      */
     public void moveDown() throws PositionOutOfBoundException, NotEnoughBatteryException {
         this.moveToPosition(this.environment.getCurrPosX(), environment.getCurrPosY() - Robot.MOVEMENT_DELTA);
@@ -59,6 +58,7 @@ public class Robot {
      * @throws PositionOutOfBoundException
      *             raised if moving out of environment
      * @throws NotEnoughBatteryException
+     *             if battery is not enough
      */
     public void moveLeft() throws PositionOutOfBoundException, NotEnoughBatteryException {
         this.moveToPosition(this.environment.getCurrPosX() - Robot.MOVEMENT_DELTA, this.environment.getCurrPosY());
@@ -70,6 +70,7 @@ public class Robot {
      * @throws PositionOutOfBoundException
      *             raised if moving out of environment
      * @throws NotEnoughBatteryException
+     *             if battery is not enough
      */
     public void moveRight() throws PositionOutOfBoundException, NotEnoughBatteryException {
         this.moveToPosition(this.environment.getCurrPosX() + Robot.MOVEMENT_DELTA, this.environment.getCurrPosY());

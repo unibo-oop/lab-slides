@@ -3,9 +3,6 @@ package it.unibo.oop.lab07.exercise03;
 /**
  * A dummy clonable class.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public class ClonableClass {
 
@@ -23,7 +20,7 @@ public class ClonableClass {
 
     /**
      * 
-     * param a the value of a field to be set.
+     * @param a the value of a field to be set.
      */
     public void setA(final String a) {
         this.a = a;
@@ -39,7 +36,7 @@ public class ClonableClass {
 
     /**
      * 
-     * param b the value of b field to be set.
+     * @param b the value of b field to be set.
      */
     public void setB(final String b) {
         this.b = b;
@@ -55,7 +52,7 @@ public class ClonableClass {
 
     /**
      * 
-     * param d the value of d field to be set.
+     * @param d the value of d field to be set.
      */
     public void setD(final Double d) {
         this.d = d;

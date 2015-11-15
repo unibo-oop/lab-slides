@@ -1,9 +1,7 @@
 package it.unibo.oop.lab07.exercise04;
 
 /**
- * Model a robotic head.
- * 
- * @author Matteo Casadei
+ * Models a robotic head.
  *
  */
 public class RobotHead extends AbstractMovementPart {

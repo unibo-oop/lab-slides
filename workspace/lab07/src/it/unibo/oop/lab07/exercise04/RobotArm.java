@@ -3,9 +3,6 @@ package it.unibo.oop.lab07.exercise04;
 /**
  * Models a robotic arm.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public class RobotArm extends AbstractMovementPart {
 

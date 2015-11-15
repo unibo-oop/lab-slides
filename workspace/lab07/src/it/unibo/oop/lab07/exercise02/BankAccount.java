@@ -3,8 +3,6 @@ package it.unibo.oop.lab07.exercise02;
 /**
  * Models a generic bank account.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
  */
 public interface BankAccount {
 

@@ -3,9 +3,6 @@ package it.unibo.oop.lab07.exercise01;
 /**
  * Models a (x,y) position for a {@link it.unibo.oop.lab07.exercise01.Robot}.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public class RobotPosition {
 

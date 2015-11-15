@@ -6,9 +6,6 @@ import org.junit.Test;
  * JUnit test to test
  * {@link StrictBankAccountImpl}.
  * 
- * @author Andrea Santi
- * @author Matteo Casadei
- *
  */
 public class TestStrictBankAccount {
 

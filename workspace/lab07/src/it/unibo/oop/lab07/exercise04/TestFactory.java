@@ -5,8 +5,6 @@ import org.junit.Test;
 /**
  * Act as a convenience JUnit test of a robot factory.
  * 
- * @author Matteo Casadei
- *
  */
 public class TestFactory {
 

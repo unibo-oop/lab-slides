@@ -1,8 +1,6 @@
 package it.unibo.oop.lab07.exercise04;
 
 /**
- * 
- * @author Matteo Casadei
  *
  */
 public class RobotException extends Exception {
