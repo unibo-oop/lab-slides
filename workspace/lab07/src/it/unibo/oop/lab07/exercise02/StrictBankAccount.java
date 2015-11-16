@@ -6,7 +6,7 @@ package it.unibo.oop.lab07.exercise02;
  * transaction (this number is provided as a input in the constructor).
  * 
  */
-public class StrictBankAccountImpl implements BankAccount {
+public class StrictBankAccount implements BankAccount {
 
     private final int usrID;
     private double balance;
@@ -25,7 +25,7 @@ public class StrictBankAccountImpl implements BankAccount {
      * @param nMaxATMTransactions
      *            max no of ATM transactions allowed
      */
-    public StrictBankAccountImpl(final int usrID, final double balance, final int nMaxATMTransactions) {
+    public StrictBankAccount(final int usrID, final double balance, final int nMaxATMTransactions) {
         this.usrID = usrID;
         this.balance = balance;
         this.nMaxATMTransactions = nMaxATMTransactions;
@@ -59,7 +59,7 @@ public class StrictBankAccountImpl implements BankAccount {
      */
     public void depositFromATM(final int usrID, final double amount) {
         if (nTransactions < nMaxATMTransactions) {
-            this.deposit(usrID, amount - StrictBankAccountImpl.ATM_TRANSACTION_FEE);
+            this.deposit(usrID, amount - StrictBankAccount.ATM_TRANSACTION_FEE);
             nTransactions++;
         }
     }
@@ -70,7 +70,7 @@ public class StrictBankAccountImpl implements BankAccount {
      */
     public void withdrawFromATM(final int usrID, final double amount) {
         if (nTransactions < nMaxATMTransactions) {
-            this.withdraw(usrID, amount + StrictBankAccountImpl.ATM_TRANSACTION_FEE);
+            this.withdraw(usrID, amount + StrictBankAccount.ATM_TRANSACTION_FEE);
         }
     }
 
@@ -96,9 +96,9 @@ public class StrictBankAccountImpl implements BankAccount {
      *            id of the user related to these fees
      */
     public void computeManagementFees(final int usrID) {
-        final double feeAmount = MANAGEMENT_FEE + (nTransactions * StrictBankAccountImpl.TRANSACTION_FEE);
+        final double feeAmount = MANAGEMENT_FEE + (nTransactions * StrictBankAccount.TRANSACTION_FEE);
         if (checkUser(usrID) && isWithdrawAllowed(feeAmount)) {
-            balance -= (MANAGEMENT_FEE + (nTransactions * StrictBankAccountImpl.TRANSACTION_FEE));
+            balance -= (MANAGEMENT_FEE + (nTransactions * StrictBankAccount.TRANSACTION_FEE));
             nTransactions = 0;
         }
     }

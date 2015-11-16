@@ -5,7 +5,7 @@ package it.unibo.oop.lab07.exercise04;
  * move operation (e.g. actuators).
  * 
  */
-public abstract class AbstractMovementPart implements IRobotPart {
+public abstract class AbstractMovementPart implements RobotPart {
 
     private boolean on;
     private final String description;

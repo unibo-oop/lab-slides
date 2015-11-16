@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 /**
  * Concrete implementation of a robot composed by a set of generic
- * {@link RobotPart}.
- * 
+ * {@link it.unibo.oop.lab07.exercise04.RobotPart}.
+ *
  */
 public class SimpleComposableRobot extends Robot implements ComposableRobot {
 
@@ -34,8 +34,9 @@ public class SimpleComposableRobot extends Robot implements ComposableRobot {
     }
 
     /**
-     * Invoke the {@link AbstractMovementPart#doMove} method for all the
-     * {@link AbstractMovementPart} available.
+     * Invoke the {@link it.unibo.oop.lab07.AbstractMovementPart#doMove()}
+     * method for all the {@link it.unibo.oop.lab07.AbstractMovementPart}
+     * available.
      * 
      * @throws NotEnoughBatteryException
      *             if the battery if not enough to complete the movement of the
@@ -65,26 +66,31 @@ public class SimpleComposableRobot extends Robot implements ComposableRobot {
     }
 
     /**
-     * Turn on all the {@link RobotPart} invoking the method
-     * {@link RobotPart#turnOn} for each one of them.
+     * Turn on all the {@link it.unibo.oop.lab07.RobotPart} invoking the method
+     * {@link it.unibo.oop.lab07.RobotPart#turnOn()} for each one of them.
      */
     public void turnOnAll() {
         for (final RobotPart part : this.parts) {
             this.log("Turning on part " + part.getDescription());
-            if (!part.turnOn()) {
+            try {
+                part.turnOn();
+            } catch (CantTurnOnException e) {
                 this.log("Can not turn on " + part + ". Is alredy on");
             }
         }
     }
 
     /**
-     * Turn off all the {@link RobotPart} invoking the method
-     * {@link RobotPart#turnOff} for each one of them.
+     * Turn off all the {@link RobotPart.unibo.oop.lab07.IRobotPart} invoking the
+     * method {@link RobotPart.unibo.oop.lab07.IRobotPart#turnOff()} for each one of
+     * them.
      */
     public void turnOffAll() {
         for (final RobotPart part : this.parts) {
             this.log("Turning off part " + part.getDescription());
-            if (!part.turnOff()) {
+            try {
+                part.turnOff();
+            } catch (CantTurnOffException e) {
                 this.log("Can not turn off " + part + ". Is alredy off");
             }
         }
@@ -92,69 +98,70 @@ public class SimpleComposableRobot extends Robot implements ComposableRobot {
 
     /**
      * Consume the energy required for moving from the battery, taking into the
-     * account an energy contribution for each {@link RobotPart}.
+     * account an energy contribution for each
+     * {@link it.unibo.oop.lab07.RobotPart}.
      */
     protected void consumeBatteryForMovement() {
         super.consumeBatteryForMovement();
         this.consumeBattery(this.parts.length * MOVEMENT_DELTA_CONSUMPTION_FOR_PART);
     }
-    
+
     /**
-    *
-    */
-   public static class RobotWithTwoArms extends SimpleComposableRobot {
-       private static final String LEFT_ARM = "Left Arm";
-       private static final String RIGTH_ARM = "Right Arm";
+     *
+     */
+    public static class RobotWithTwoArms extends SimpleComposableRobot {
+        private static final String LEFT_ARM = "Left Arm";
+        private static final String RIGTH_ARM = "Right Arm";
 
-       /**
-        * 
-        * @param robotName
-        *            name of robot
-        * @param batteryLevel
-        *            initial battery level
-        */
-       public RobotWithTwoArms(final String robotName, final double batteryLevel) {
-           super(robotName, new RobotPart[] { new RobotArm(LEFT_ARM), new RobotArm(RIGTH_ARM) }, batteryLevel);
-       }
-   }
+        /**
+         * 
+         * @param robotName
+         *            name of robot
+         * @param batteryLevel
+         *            initial battery level
+         */
+        public RobotWithTwoArms(final String robotName, final double batteryLevel) {
+            super(robotName, new RobotPart[] { new RobotArm(LEFT_ARM), new RobotArm(RIGTH_ARM) }, batteryLevel);
+        }
+    }
 
-   /**
-    * 
-    */
-   public static class RobotWithTwoArmsAndHead extends SimpleComposableRobot {
-       private static final String LEFT_ARM = "Left Arm";
-       private static final String RIGTH_ARM = "Right Arm";
-       private static final String HEAD_DESCRIPTION = "Robot head";
+    /**
+     * 
+     */
+    public static class RobotWithTwoArmsAndHead extends SimpleComposableRobot {
+        private static final String LEFT_ARM = "Left Arm";
+        private static final String RIGTH_ARM = "Right Arm";
+        private static final String HEAD_DESCRIPTION = "Robot head";
 
-       /**
-        * 
-        * @param robotName
-        *            name of robot
-        * @param batteryLevel
-        *            initial battery level
-        */
-       public RobotWithTwoArmsAndHead(final String robotName, final double batteryLevel) {
-           super(robotName,
-                   new RobotPart[] { new RobotArm(LEFT_ARM), new RobotArm(RIGTH_ARM), new RobotHead(HEAD_DESCRIPTION) },
-                   batteryLevel);
-       }
-   }
+        /**
+         * 
+         * @param robotName
+         *            name of robot
+         * @param batteryLevel
+         *            initial battery level
+         */
+        public RobotWithTwoArmsAndHead(final String robotName, final double batteryLevel) {
+            super(robotName,
+                    new RobotPart[] { new RobotArm(LEFT_ARM), new RobotArm(RIGTH_ARM), new RobotHead(HEAD_DESCRIPTION) },
+                    batteryLevel);
+        }
+    }
 
-   /**
-    * 
-    */
-   public static class RobotWithHead extends SimpleComposableRobot {
-       private static final String HEAD_DESCRIPTION = "Robot head";
+    /**
+     * 
+     */
+    public static class RobotWithHead extends SimpleComposableRobot {
+        private static final String HEAD_DESCRIPTION = "Robot head";
 
-       /**
-        * 
-        * @param robotName
-        *            name of robot
-        * @param batteryLevel
-        *            initial battery level
-        */
-       public RobotWithHead(final String robotName, final double batteryLevel) {
-           super(robotName, new RobotPart[] { new RobotHead(HEAD_DESCRIPTION) }, batteryLevel);
-       }
-   }
+        /**
+         * 
+         * @param robotName
+         *            name of robot
+         * @param batteryLevel
+         *            initial battery level
+         */
+        public RobotWithHead(final String robotName, final double batteryLevel) {
+            super(robotName, new RobotPart[] { new RobotHead(HEAD_DESCRIPTION) }, batteryLevel);
+        }
+    }
 }

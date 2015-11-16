@@ -22,24 +22,24 @@ public final class ComposableRobotFactory {
      * @throws RobotException
      *             raised in case of trouble
      */
-    public static ComposableRobot createBasicComposableRobot(
+    public static SimpleComposableRobot createBasicComposableRobot(
             final BasicComposableRobots robot,
             final String robotName,
             final double batteryValue) throws RobotException {
-        ComposableRobot returnValue = null;
-        Class<? extends ComposableRobot> cl = null;
+        SimpleComposableRobot returnValue = null;
+        Class<? extends SimpleComposableRobot> cl = null;
         final Class<?>[] constructorArgTypes = new Class<?>[] { String.class, Double.TYPE };
-        Constructor<? extends ComposableRobot> cons = null;
+        Constructor<? extends SimpleComposableRobot> cons = null;
         try {
             switch (robot) {
             case WITH_HEAD:
-                cl = ComposableRobot.RobotWithHead.class;
+                cl = SimpleComposableRobot.RobotWithHead.class;
                 break;
             case WITH_TWO_ARMS:
-                cl = ComposableRobot.RobotWithTwoArms.class;
+                cl = SimpleComposableRobot.RobotWithTwoArms.class;
                 break;
             case WITH_TWO_ARMS_AND_HEAD:
-                cl = ComposableRobot.RobotWithTwoArmsAndHead.class;
+                cl = SimpleComposableRobot.RobotWithTwoArmsAndHead.class;
                 break;
             default:
                 throw new RobotException();

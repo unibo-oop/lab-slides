@@ -42,7 +42,7 @@ public final class BaseRobotTest {
         assertEquals("[MOVING RIGHT ROBOT POS Y]", 0, r1.getEnvironment().getCurrPosY());
 
         /*
-         * 2) Provare a muovere SimpleRobot verso il basso, fino a giungere
+         * 2) Provare a muovere SimpleRobot verso l'alto, fino a giungere
          * all'angolo in alto a destra del RobotEnvironment controllando che il
          * metodo restituisca false quando si superano i limiti del mondo
          */
