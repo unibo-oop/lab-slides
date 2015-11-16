@@ -4,13 +4,13 @@ import org.junit.Test;
 
 /**
  * JUnit test to test
- * {@link StrictBankAccountImpl}.
+ * {@link StrictBankAccount}.
  * 
  */
 public class TestStrictBankAccount {
 
     /**
-     * Used to test Exceptions on {@link StrictBankAccountImpl}.
+     * Used to test Exceptions on {@link StrictBankAccount}.
      */
     @Test
     public void testBankOperations() {

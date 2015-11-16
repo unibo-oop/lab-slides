@@ -1,7 +1,7 @@
 package it.unibo.oop.lab07.exercise04;
 
 /**
- * Enum listing the possible {@link IComposableRobot}s.
+ * Enum listing the possible {@link ComposableRobot}s.
  */
 public enum BasicComposableRobots {
 
