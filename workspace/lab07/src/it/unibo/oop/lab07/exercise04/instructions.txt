@@ -2,7 +2,7 @@
 Si tratta di un esercizio basato sul caso dei robot componibili visto durante l'esercitazione di 
 laboratorio su classi astratte e template method.
 
-La classe ComposableRobot contiene ora tre nested class (che estendono ComposableRobot) relative
+La classe SimpleComposableRobot contiene ora tre nested class (che estendono SimpleComposableRobot) relative
  a un set base di robot componibili pronti da usare:
 
  - RobotWithTwoArms
@@ -26,7 +26,7 @@ Sollevata nel caso in cui si cerchi di spegnere una parte robotica già spenta
 Sollevata nel caso in cui si cerchi di accendere una parte robotica già attiva
 
 Suggerimenti:
-- intervenire sull'interfaccia IRobotPart e sulla classe astratta AbstractPart, in particolare,
+- intervenire sull'interfaccia RobotPart e sulla classe astratta AbstractPart, in particolare,
   sui metodi turnOn() e turnOff()
 
 - aggiornare la logica di tutte le altre classi coinvolte dall'introduzione delle nuove

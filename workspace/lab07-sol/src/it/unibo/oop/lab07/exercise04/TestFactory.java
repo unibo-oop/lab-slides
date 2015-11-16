@@ -16,11 +16,11 @@ public class TestFactory {
     @Test
     public void testRobotFactory() {
         try {
-            final ComposableRobot r1 = ComposableRobotFactory.createBasicComposableRobot(
+            final SimpleComposableRobot r1 = ComposableRobotFactory.createBasicComposableRobot(
                     BasicComposableRobots.WITH_HEAD, "Rob1 (Robot with head)", 100);
-            final ComposableRobot r2 = ComposableRobotFactory.createBasicComposableRobot(
+            final SimpleComposableRobot r2 = ComposableRobotFactory.createBasicComposableRobot(
                     BasicComposableRobots.WITH_TWO_ARMS, "Rob2 (Robot with two arms)", 100);
-            final ComposableRobot r3 = ComposableRobotFactory.createBasicComposableRobot(
+            final SimpleComposableRobot r3 = ComposableRobotFactory.createBasicComposableRobot(
                     BasicComposableRobots.WITH_TWO_ARMS_AND_HEAD, "Rob3 (Robot with two arms and one head)", 100);
             assertEquals("r1 wrong", r1.getParts().length, 1);
             assertEquals("r2 wrong", r2.getParts().length, 2);

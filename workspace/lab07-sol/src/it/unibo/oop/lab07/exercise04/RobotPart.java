@@ -4,7 +4,7 @@ package it.unibo.oop.lab07.exercise04;
  * Models a generic robot part.
  * 
  */
-public interface IRobotPart {
+public interface RobotPart {
 
     /**
      * Turn on the robot part.
