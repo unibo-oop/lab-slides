@@ -23,8 +23,6 @@ import it.unibo.oop.lab06.exercise1.SocialNetworkUserImpl;
  * Sport.java)
  * 
  * 
- * @author Matteo Casadei
- * @author Danilo Pianini
  *
  * @param <U>
  *            specific user type

@@ -8,8 +8,6 @@ package it.unibo.oop.lab06.exercise3;
  * 
  * 1) Complete the definition of the enumeration.
  * 
- * @author Matteo Casadei
- *
  */
 public enum Sport {
     /*

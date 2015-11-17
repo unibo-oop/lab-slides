@@ -3,11 +3,15 @@ package it.unibo.oop.lab06.codeanalysis;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/*
+ * Checkstyle complains: the author and version Javadoc tags should not be used.
+ */
 /**
  * This code triggers static code analyzers. You should use it to see how things
  * SHOULD NOT be done.
  *
  * @author Danilo Pianini
+ * @version 1.2
  *
  */
 public class ThisIsHowThingsShouldNotBeDone {

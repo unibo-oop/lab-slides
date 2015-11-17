@@ -21,9 +21,6 @@ import java.util.List;
  * 
  * (Refer to: 12-Advanced-Mechanisms.pdf, slide 39)
  * 
- * @author Matteo Casadei
- * @author Danilo Pianini
- *
  */
 public final class TestAnonymousComparator {
 
@@ -41,13 +38,12 @@ public final class TestAnonymousComparator {
      *            the list of users returned by the test
      * @return true is result's users are in the same order as expected's users
      */
-    public static boolean checkUserOrder(final List<User> expected,
-            final List<User> result) {
+    public static boolean checkUserOrder(final List<User> expected, final List<User> result) {
         for (int i = 0; i < expected.size(); i++) {
             if (!expected.get(i).equals(result.get(i))) {
                 System.out.println("    [EXCEPTION] [POS. " + i
-                        + "] [EXPECTED] " + expected.get(i) + " [GOT] "
-                        + result.get(i));
+                        + "] [EXPECTED] " + expected.get(i)
+                        + " [GOT] " + result.get(i));
                 return false;
             }
         }
@@ -58,23 +54,18 @@ public final class TestAnonymousComparator {
      * @param args
      *            ignored
      */
-    public static void main(final String[] args) {
+    public static void main(final String... args) {
 
         /*
          * create 6 social network users
          */
-        final SocialNetworkUser<User> kbacon = new SocialNetworkUserImpl<>(
-                "Kevin", "Bacon", "kbacon", 56);
-        final SocialNetworkUser<User> dwashington = new SocialNetworkUserImpl<>(
-                "Denzel", "Washington", "dwashington", 59);
-        final SocialNetworkUser<User> mgladwell = new SocialNetworkUserImpl<>(
-                "Malcom", "Gladwell", "mgladwell", 51);
-        final SocialNetworkUser<User> ntaleb = new SocialNetworkUserImpl<>(
-                "Nicholas", "Taleb", "ntaleb", 54);
-        final SocialNetworkUser<User> mrossi = new SocialNetworkUserImpl<>(
-                "Mario", "Rossi", "mrossi", 31);
-        final SocialNetworkUser<User> pverdi = new SocialNetworkUserImpl<>(
-                "Paolo", "Verdi", "pverdi", 24);
+        final SocialNetworkUser<User> kbacon = new SocialNetworkUserImpl<>("Kevin", "Bacon", "kbacon", 56);
+        final SocialNetworkUser<User> dwashington = new SocialNetworkUserImpl<>("Denzel", "Washington", "dwashington",
+                59);
+        final SocialNetworkUser<User> mgladwell = new SocialNetworkUserImpl<>("Malcom", "Gladwell", "mgladwell", 51);
+        final SocialNetworkUser<User> ntaleb = new SocialNetworkUserImpl<>("Nicholas", "Taleb", "ntaleb", 54);
+        final SocialNetworkUser<User> mrossi = new SocialNetworkUserImpl<>("Mario", "Rossi", "mrossi", 31);
+        final SocialNetworkUser<User> pverdi = new SocialNetworkUserImpl<>("Paolo", "Verdi", "pverdi", 24);
 
         // TEST on DENZEL
         dwashington.addFollowedUser("relatives", mrossi);
@@ -95,7 +86,6 @@ public final class TestAnonymousComparator {
          * REFER TO LESSON 12-Advanced-Mechanisms.pdf, slide 39
          */
         Collections.sort(denzelUsers, new Comparator<User>() {
-
             public int compare(final User a, final User b) {
                 final int aAge = a.getAge();
                 final int bAge = b.getAge();
@@ -113,13 +103,10 @@ public final class TestAnonymousComparator {
         expectedResult.add(ntaleb);
         expectedResult.add(kbacon);
 
-        System.out
-                .println("[Order by age (increasing) Denzel friends] [TEST] [START]");
-        System.out
-                .println("[Order by age (increasing) Denzel friends] [TEST] [RESULT] "
-                        + checkUserOrder(expectedResult, denzelUsers));
-        System.out
-                .println("[Order by age (increasing) Denzel friends] [TEST] [END]");
+        System.out.println("[Order by age (increasing) Denzel friends] [TEST] [START]");
+        System.out.println("[Order by age (increasing) Denzel friends] [TEST] [RESULT] "
+                + checkUserOrder(expectedResult, denzelUsers));
+        System.out.println("[Order by age (increasing) Denzel friends] [TEST] [END]");
 
         // TEST on MARIO ROSSI
         mrossi.addFollowedUser("relatives", pverdi);
@@ -157,13 +144,10 @@ public final class TestAnonymousComparator {
         expectedResult.add(mgladwell);
         expectedResult.add(pverdi);
 
-        System.out
-                .println("[Order by age (decreasing) Rossi friends] [TEST] [START]");
-        System.out
-                .println("[Order by age (decreasing) Rossi friends] [TEST] [RESULT] "
-                        + checkUserOrder(expectedResult, rossiUsers));
-        System.out
-                .println("[Order by age (decreasing) Rossi friends] [TEST] [END]");
+        System.out.println("[Order by age (decreasing) Rossi friends] [TEST] [START]");
+        System.out.println("[Order by age (decreasing) Rossi friends] [TEST] [RESULT] "
+                + checkUserOrder(expectedResult, rossiUsers));
+        System.out.println("[Order by age (decreasing) Rossi friends] [TEST] [END]");
     }
 
 }
