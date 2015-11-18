@@ -1,0 +1,46 @@
+== PARTE 1 ==
+
+Realizzare un pulsante Clear da posizionare sotto gli altri nella View,
+che comporti la cancellazione di tutti i dati immessi. Si noti che il
+modello e la view già forniscono le operazioni necessarie a fare tale "pulizia".
+
+2) Aggiungere un metodo a IController:
+void commandClear();
+
+2) aggiungere l'implementazione in Controller, in modo che si resetti prima il
+modello e poi le View connesse
+
+3) aggiungere il pulsante sotto agli altri nella vista, e, prendendo spunto
+dall'implementazione degli altri pulsanti, si implementi il listener come
+anonymous class
+
+
+
+== PARTE 2 ==
+
+Realizzare una JCheckBox da posizionare sotto i Button nella View,
+che venga spuntata se l'utente desidera che i dati vengano presentati
+in ordine per codice fiscale.
+
+1) Aggiungere in IModel il metodo:
+public Iterator<Person> sortedIterator()
+
+2) Implementarlo con la costruzione di un treeset al quale si passa un
+Comparator<Person>. Il suddetto comparator deve ordinare le persone per
+codice. A questo punto, aggiungere tutti elementi del modello al suddetto,
+e quindi ritorni l'iteratore del TreeSet. Se si hanno in mente soluzioni
+più performanti, si invita lo studente a realizzarle.
+
+3) Aggiungere alla View una checkbox (sotto i pulsanti) per far indicare
+all'utente se desidera la lista ordinata o meno
+
+4) Aggiungere a IView un metodo
+boolean wantsSorted()
+
+5) Implementarlo in modo che torni true se la checkbox è abilitata
+
+6) Controller dovrà essere modificato nella in modo da inviare ogni
+volta tutti i dati nuovi in modo ordinato se wantsSorted() restituisce
+true. Questo controllo andrà fatto sia che si aggiunga una nuova persona
+sia che si cambi l'ordinamento o si carichi una nuova lista di persone.
+
