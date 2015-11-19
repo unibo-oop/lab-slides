@@ -10,7 +10,7 @@ public final class SimpleGUIWithFileChooser {
      * TODO: Starting from the application in ex02:
      * 
      * 1) Add a JTextField and a button "Browse..." on the upper part of the
-     * graphical interface. To see which should be the result, see ex02.png.
+     * graphical interface. To see which should be the result, see ex03.png.
      * Suggestion: use a second JPanel with a second BorderLayout, put the panel
      * in the North of the main panel, put the text field in the center of the
      * new panel and put the button in the line_end of the new panel.

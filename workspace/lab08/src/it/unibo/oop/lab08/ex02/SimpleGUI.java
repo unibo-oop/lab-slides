@@ -29,6 +29,8 @@ public final class SimpleGUI {
      * 
      * 5) The behavior of the program is that, if "Save" is pressed, the
      * controller is asked to save the file.
+     * 
+     * Use "ex02.png" (in the res directory) to verify the expected aspect.
      */
 
     /**
