@@ -22,27 +22,24 @@ public final class SimpleGUI {
 
     private final JFrame frame = new JFrame("My first Java graphical interface");
 
-    private enum Command {
-        SAVE;
-
-        private boolean checkCommand(final ActionEvent ev) {
-            return ev.getActionCommand().equals(toString());
-        }
-
-    }
-
-    private final Controller ctrl = new Controller();
-    private final JTextArea text = new JTextArea();
-
-    private SimpleGUI() {
+    private SimpleGUI(final Controller ctrl) {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        final JTextArea text = new JTextArea();
         final JPanel panel1 = new JPanel();
         final LayoutManager layout = new BorderLayout();
         panel1.setLayout(layout);
         final JButton save = new JButton("Save");
-        save.setActionCommand(Command.SAVE.toString());
-        save.addActionListener(new SimpleGUIListner());
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent event) {
+                try {
+                    ctrl.save(text.getText());
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage(), "An error occurred", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
         panel1.add(text, BorderLayout.CENTER);
         panel1.add(save, BorderLayout.SOUTH);
 
@@ -65,23 +62,7 @@ public final class SimpleGUI {
      *            unused
      */
     public static void main(final String... a) {
-        final SimpleGUI gui = new SimpleGUI();
+        final SimpleGUI gui = new SimpleGUI(new Controller());
         gui.display();
     }
-
-    private class SimpleGUIListner implements ActionListener {
-
-        @Override
-        public void actionPerformed(final ActionEvent ev) {
-            if (Command.SAVE.checkCommand(ev)) {
-                try {
-                    ctrl.save(text.getText());
-                } catch (IOException e) {
-                    JOptionPane.showMessageDialog(null, e.getMessage(), "An error occurred", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        }
-
-    }
-
 }

@@ -20,19 +20,14 @@ public final class SimpleGUI {
      * 
      * 2) In its constructor, sets up the whole view
      * 
-     * 3) Its components register to a private inner class that implements
-     * ActionListener for its event handling. SUGGESTION: rely on
-     * setActionCommand() and check the commands to understand which component
-     * generated the event
-     * 
-     * 4) The graphical interface consists of a JTextArea with a button "Save"
-     * right below (see ex1.png for the expected result). SUGGESTION: Use a
+     * 3) The graphical interface consists of a JTextArea with a button "Save"
+     * right below (see result.png for the expected result). SUGGESTION: Use a
      * JPanel with BorderLayout
      * 
-     * 5) By default, if the graphical interface is closed the program must exit
+     * 4) By default, if the graphical interface is closed the program must exit
      * (call setDefaultCloseOperation)
      * 
-     * 6) The behavior of the program is that, if "Save" is pressed, the
+     * 5) The behavior of the program is that, if "Save" is pressed, the
      * controller is asked to save the file.
      */
 
