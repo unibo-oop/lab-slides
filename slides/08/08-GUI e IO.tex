@@ -439,6 +439,29 @@
 	\textbf{Ogni} altro tool per la gestione di Mercurial via GUI è sconsigliato.
 \end{frame}
 
+\subsection{Features avanzate e prossimo episodio}
+
+\fr{Aspetti avanzati (cenni)}{
+  \bl{Rebasing}{
+    Procedura alternativa al merge, in cui i due commit, invece di essere fusi, vengono messi in sequenza. Simula una storia ``lineare'' anche dove è in realtà parallela.
+  }
+  \bl{Cherry picking}{
+    Pull di un singolo commit o di un piccolo gruppo di commit. Spesso utilizzato quando si desidera avere un bugfix che si trova in un altro branch, ma non tutto il resto. Molto comune nel backporting delle patch di sicurezza.
+  }
+  \bl{Bisection}{
+    Strategia per scoprire bug in maniera automatizzata, testando il software a varie versioni (ricerca dicotomica). Una volta trovata la prima versione dove il bug si verifica, si controllano commit message e le differenze.
+  }
+}
+
+\begin{frame}{Nel prossimo episodio}
+	\begin{itemize}
+		\item Abbiamo in mano uno strumento formidabile per la gestione di progetti
+		\item Non ci resta che trovare una strategia efficace per massimizzarne l'efficacia
+		\item Vedremo una strategia di lavoro che promuoverà e faciliterà il lavoro in parallelo
+	\end{itemize}
+\end{frame}
+
+
 \end{document}
 
 \subsection{Workflow}
@@ -507,20 +530,6 @@
   \begin{center}
     \includegraphics[width=0.99\textwidth]{img/forks}
   \end{center}
-}
-
-\subsection{Features avanzate}
-
-\fr{Aspetti avanzati}{
-  \bl{Rebasing}{
-    Procedura alternativa al merge, in cui i due commit, invece di essere fusi, vengono messi in sequenza.
-  }
-  \bl{Cherry picking}{
-    Pull di un singolo commit o di un piccolo gruppo di commit. Spesso utilizzato quando si desidera avere un bugfix che si trova in un altro branch, ma non tutto il resto. Molto comune nel backporting delle patch di sicurezza.
-  }
-  \bl{Bisection}{
-    Strategia per scoprire bug in maniera automatizzata, testando il software a varie versioni (ricerca dicotomica). Una volta trovata la prima versione dove il bug si verifica, si controllano commit message e le differenze.
-  }
 }
 
 
