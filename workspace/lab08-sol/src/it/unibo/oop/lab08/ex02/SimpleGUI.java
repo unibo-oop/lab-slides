@@ -17,70 +17,71 @@ import javax.swing.JTextArea;
 /**
  * A very simple program using a graphical interface.
  * 
- * @author Danilo Pianini
- *
  */
-public final class SimpleGUI extends JFrame {
+public final class SimpleGUI {
 
-	private static final long serialVersionUID = 1760990730218643730L;
+    private final JFrame frame = new JFrame("My first Java graphical interface");
 
-	private static enum Command {
-		SAVE;
-		
-		private boolean checkCommand(final ActionEvent ev) {
-			return ev.getActionCommand().equals(toString());
-		}
+    private enum Command {
+        SAVE;
 
-	}
+        private boolean checkCommand(final ActionEvent ev) {
+            return ev.getActionCommand().equals(toString());
+        }
 
-	private final Controller ctrl = new Controller();
-	private final JTextArea text = new JTextArea();
+    }
 
-	private SimpleGUI() {
-		super("My first Java graphical interface");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    private final Controller ctrl = new Controller();
+    private final JTextArea text = new JTextArea();
 
-		final JPanel panel1 = new JPanel();
-		final LayoutManager layout = new BorderLayout();
-		panel1.setLayout(layout);
-		final JButton save = new JButton("Save");
-		save.setActionCommand(Command.SAVE.toString());
-		save.addActionListener(new SimpleGUIListner());
-		panel1.add(text, BorderLayout.CENTER);
-		panel1.add(save, BorderLayout.SOUTH);
+    private SimpleGUI() {
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		setContentPane(panel1);
+        final JPanel panel1 = new JPanel();
+        final LayoutManager layout = new BorderLayout();
+        panel1.setLayout(layout);
+        final JButton save = new JButton("Save");
+        save.setActionCommand(Command.SAVE.toString());
+        save.addActionListener(new SimpleGUIListner());
+        panel1.add(text, BorderLayout.CENTER);
+        panel1.add(save, BorderLayout.SOUTH);
 
-		final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		final int sw = (int) screen.getWidth();
-		final int sh = (int) screen.getHeight();
-		setSize(sw / 2, sh / 2);
+        frame.setContentPane(panel1);
 
-		setLocationByPlatform(true);
-	}
+        final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+        final int sw = (int) screen.getWidth();
+        final int sh = (int) screen.getHeight();
+        frame.setSize(sw / 2, sh / 2);
 
-	/**
-	 * @param a
-	 *            unused
-	 */
-	public static void main(final String[] a) {
-		final SimpleGUI gui = new SimpleGUI();
-		gui.setVisible(true);
-	}
+        frame.setLocationByPlatform(true);
+    }
 
-	private class SimpleGUIListner implements ActionListener {
-		
-		@Override
-		public void actionPerformed(final ActionEvent ev) {
-			if (Command.SAVE.checkCommand(ev)) {
-				try {
-					ctrl.save(text.getText());
-				} catch (IOException e) {
-					JOptionPane.showMessageDialog(null, e.getMessage(), "An error occurred", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		}
+    private void display() {
+        frame.setVisible(true);
+    }
 
-	}
-	
+    /**
+     * @param a
+     *            unused
+     */
+    public static void main(final String... a) {
+        final SimpleGUI gui = new SimpleGUI();
+        gui.display();
+    }
+
+    private class SimpleGUIListner implements ActionListener {
+
+        @Override
+        public void actionPerformed(final ActionEvent ev) {
+            if (Command.SAVE.checkCommand(ev)) {
+                try {
+                    ctrl.save(text.getText());
+                } catch (IOException e) {
+                    JOptionPane.showMessageDialog(null, e.getMessage(), "An error occurred", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+
+    }
+
 }
