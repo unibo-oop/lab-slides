@@ -16,3 +16,4 @@
 *.directory
 *.backup
 **/.recommenders/*
+**/bin/*
