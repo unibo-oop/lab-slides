@@ -26,7 +26,7 @@
 	<!-- Checks for whitespace -->
 	<!-- See http://checkstyle.sf.net/config_whitespace.html -->
 	<module name="FileTabCharacter">
-		<property name="fileExtension" value="java" />
+		<property name="fileExtensions" value="java" />
 	    <property name="severity" value="warning" />
 	</module>
 
