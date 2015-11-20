@@ -25,9 +25,6 @@ public class DrawNumberApp implements DrawNumberViewObserver {
         try {
             final DrawResult result = model.attempt(n);
             this.view.result(result);
-            if (result.equals(DrawResult.YOU_LOSE)) {
-                resetGame();
-            }
         } catch (IllegalArgumentException e) {
             this.view.numberIncorrect();
         }

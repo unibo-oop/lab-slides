@@ -11,16 +11,23 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * Graphical {@link DrawNumberView} implementation.
+ */
 public class DrawNumberViewImpl implements DrawNumberView {
 
     private static final String FRAME_NAME = "Draw Number App";
     private static final String QUIT = "Quit";
     private static final String RESET = "Reset";
     private static final String GO = "Go";
+    private static final String NEW_GAME = ": a new game starts!";
 
     private DrawNumberViewObserver observer;
     private final JFrame frame = new JFrame(FRAME_NAME);
 
+    /**
+     * 
+     */
     public DrawNumberViewImpl() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(new JPanel(new BorderLayout()));
@@ -86,27 +93,25 @@ public class DrawNumberViewImpl implements DrawNumberView {
     }
 
     @Override
-    public void limitsReached() {
-        JOptionPane.showMessageDialog(frame, "You lost.. a new game starts", "Lost", JOptionPane.WARNING_MESSAGE);
-    }
-
-    @Override
     public void result(final DrawResult res) {
         switch (res) {
         case YOURS_HIGH:
-            JOptionPane.showMessageDialog(frame, "Your number is too high", "Result", JOptionPane.PLAIN_MESSAGE);
-            return;
         case YOURS_LOW:
-            JOptionPane.showMessageDialog(frame, "Your number is too low", "Result", JOptionPane.PLAIN_MESSAGE);
+            plainMessage(res.getDescription());
             return;
         case YOU_WON:
-            JOptionPane.showMessageDialog(frame, "You won the game!!", "Result", JOptionPane.PLAIN_MESSAGE);
-            observer.resetGame();
-            return;
-        case YOU_LOSE:
-            limitsReached();
-        default:
+            plainMessage(res.getDescription() + NEW_GAME);
             break;
+        case YOU_LOST:
+            JOptionPane.showMessageDialog(frame, res.getDescription() + NEW_GAME, "Lost", JOptionPane.WARNING_MESSAGE);
+            break;
+        default:
+            throw new IllegalStateException("Unexpected result: " + res);
         }
+        observer.resetGame();
+    }
+
+    private void plainMessage(final String msg) {
+        JOptionPane.showMessageDialog(frame, msg, "Result", JOptionPane.PLAIN_MESSAGE);
     }
 }

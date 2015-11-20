@@ -2,6 +2,9 @@ package it.unibo.oop.lab08.ex04;
 
 import java.util.Random;
 
+/**
+ *
+ */
 public final class DrawNumberImpl implements DrawNumber {
 
     private int choice;
@@ -11,6 +14,14 @@ public final class DrawNumberImpl implements DrawNumber {
     private int remainingAttempts;
     private final Random random = new Random();
 
+    /**
+     * @param min
+     *            minimum number
+     * @param max
+     *            maximum number
+     * @param attempts
+     *            the maximum number of attempts
+     */
     public DrawNumberImpl(final int min, final int max, final int attempts) {
         this.min = min;
         this.max = max;
@@ -27,7 +38,7 @@ public final class DrawNumberImpl implements DrawNumber {
     @Override
     public DrawResult attempt(final int n) {
         if (this.remainingAttempts <= 0) {
-            return DrawResult.YOU_LOSE;
+            return DrawResult.YOU_LOST;
         }
         if (n < this.min || n > this.max) {
             throw new IllegalArgumentException("The number is outside boundaries");
