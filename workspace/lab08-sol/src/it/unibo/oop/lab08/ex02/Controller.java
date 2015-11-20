@@ -1,8 +1,10 @@
 package it.unibo.oop.lab08.ex02;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
 /**
  *
@@ -11,7 +13,7 @@ public class Controller {
 
     private static final String HOME = System.getProperty("user.home");
     private static final String SEPARATOR = System.getProperty("file.separator");
-    private static final String DEFAULT_FILE = "output.txt";
+    private static final String DEFAULT_FILE = "output.dat";
 
     private File dest = new File(HOME + SEPARATOR + DEFAULT_FILE);
 
@@ -37,10 +39,10 @@ public class Controller {
      * @throws IOException
      *             if the writing fails
      */
-    public void save(final String text) throws IOException {
-        final PrintStream ps = new PrintStream(dest);
-        ps.print(text);
-        ps.close();
+    public void save(final Serializable text) throws IOException {
+        final ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(dest));
+        oos.writeObject(text);
+        oos.close();
     }
 
     /**
