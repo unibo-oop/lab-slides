@@ -165,7 +165,7 @@
 	\end{block}
 	\scriptsize \alert{Utenti MacOS X}: di default Mercurial su MacOS X utilizza \texttt{vi} come editor. A meno che non lo conosciate, specificate \texttt{nano} o il percorso completo verso l'eseguibile di un editor di testo di vostro gradimento.
 	
-	\alert{Utenti Linux}: di default Mercurial \textbf{dovrebbe} usare \texttt{nano} come editor. Visto che ciascuna distribuzione potrebbe comportarsi diversamente, è comunque bene specificare il comando del vostro editor preferito (ad esempio \texttt{nano}) - eventualmente anche con gui (ad esempio \texttt{gedit}).
+	\alert{Utenti Linux}: di default Mercurial \textbf{dovrebbe} usare \texttt{nano} come editor. Visto che ciascuna distribuzione potrebbe comportarsi diversamente, è comunque bene specificare il comando del vostro editor preferito (ad esempio \texttt{nano}).
 
 \end{frame}
 
@@ -477,9 +477,9 @@ summary:     fix a bug on ChangeBiomolConcentrationInCell
 	\end{block}
 	\begin{block}{Passaggio ad un altro branch}
 		\begin{center}
-			\texttt{hg update nome\_del\_branch}
+			\texttt{hg update nome\_del\_branch --clean}
 		\end{center}
-		Assegna il nome \texttt{nome\_del\_nuovo\_branch} al branch corrente: a partire dal commit successivo, si lavorerà su \texttt{nome\_del\_nuovo\_branch}
+		Passa al branch \texttt{nome\_del\_branch}. Se si attiva l'opzione texttt{--clean}, verranno aggiornati anche i file nella working directory
 	\end{block}
 \end{frame}
 
