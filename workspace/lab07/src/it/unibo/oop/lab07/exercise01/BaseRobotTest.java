@@ -19,6 +19,9 @@ public final class BaseRobotTest {
      */
     @Test
     public void testRobotMovementBase() {
+        /*
+         * 0) Please take a look to TestWithExceptions
+         */
         // 1) Creare il robot SimpleRobot, istanza della classe Robot con
         // batteria=100
         final Robot r1 = new Robot("SimpleRobot", 100);
