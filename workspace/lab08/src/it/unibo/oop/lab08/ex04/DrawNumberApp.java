@@ -27,6 +27,8 @@ public class DrawNumberApp implements DrawNumberViewObserver {
             this.view.result(result);
         } catch (IllegalArgumentException e) {
             this.view.numberIncorrect();
+        } catch (AttemptsLimitReachedException e) {
+            view.limitsReached();
         }
     }
 

@@ -14,8 +14,11 @@ public interface DrawNumber {
     /**
      * Guesses a number.
      * 
-     * @param n the guess
+     * @param n
+     *            the guess
      * @return the result of the guess
+     * @throws AttemptsLimitReachedException
+     *             in case the game is lost
      */
-    DrawResult attempt(int n);
+    DrawResult attempt(int n) throws AttemptsLimitReachedException;
 }

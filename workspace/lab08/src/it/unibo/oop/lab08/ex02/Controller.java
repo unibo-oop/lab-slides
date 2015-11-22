@@ -6,7 +6,11 @@ package it.unibo.oop.lab08.ex02;
 public class Controller {
 
     /*
-     * TODO - Implement this class in such a way that:
+     * This class must implement a simple controller responsible of I/O access.
+     * It considers a single file at a time, and it is able to serialize objects
+     * in it.
+     * 
+     * Implement this class in such a way that:
      * 
      * 1) It has a method for setting a File as current file
      * 
@@ -15,10 +19,11 @@ public class Controller {
      * 3) It has a method for getting the path (in form of String) of the
      * current File
      * 
-     * 4) It has a method that gets a String as input and saves such string in
-     * the current file
+     * 4) It has a method that gets a Serializable as input and saves such
+     * Object in the current file. Remember how to use the ObjectOutputStream.
+     * This method may throw IOException.
      * 
-     * 5) By default, the current file is "output.txt" inside the user home
+     * 5) By default, the current file is "output.dat" inside the user home
      * folder. A String representing the local user home folder can be accessed
      * using System.getProperty("user.home"). The separator symbol (/ on *nix, \
      * on Windows) can be obtained as String through the method

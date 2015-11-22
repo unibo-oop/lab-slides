@@ -16,7 +16,7 @@ public interface DrawNumberView {
     void start();
 
     /**
-     * Informs the user that the inserted number is not correct.
+     * Tells the user that the inserted number is not correct.
      */
     void numberIncorrect();
 
@@ -24,5 +24,10 @@ public interface DrawNumberView {
      * @param res the result of the last draw
      */
     void result(DrawResult res);
+
+    /**
+     * Tells the user that the match is lost.
+     */
+    void limitsReached();
 
 }
