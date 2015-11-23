@@ -8,6 +8,7 @@
 * Utilizzando il comando ``hg heads``, si verifichi che il progetto ha tre teste
 * La situazione non è triviale: si utilizzi ``hg log -G`` per capire esattamente com'è strutturato il repository
 * Si noti che il branch su cui ci troviamo (``default``)  ha due teste (la revision 2 e la 3, dove ci troviamo), mentre il branch ``feature`` ne ha una soltanto (revision 4).
+* Si configuri Mercurial per utilizzare come algoritmo di risoluzione ``internal:merge``
 * Si tenti di fare il merge delle teste del branch corrente utilizzando ``hg merge -r 2``
 * Si osservi l'output di Mercurial: il merge ha generato un conflitto
 * Si utilizzi il comando ``ls -ahl`` (su Windows si usi l'equivalente ``dir``) per vedere l'elenco dei file contenuti in ``src``
