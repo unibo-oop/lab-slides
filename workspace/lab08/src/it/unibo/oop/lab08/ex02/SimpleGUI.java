@@ -21,7 +21,7 @@ public final class SimpleGUI {
      * 2) In its constructor, sets up the whole view
      * 
      * 3) The graphical interface consists of a JTextArea with a button "Save"
-     * right below (see result.png for the expected result). SUGGESTION: Use a
+     * right below (see "ex02.png" for the expected result). SUGGESTION: Use a
      * JPanel with BorderLayout
      * 
      * 4) By default, if the graphical interface is closed the program must exit

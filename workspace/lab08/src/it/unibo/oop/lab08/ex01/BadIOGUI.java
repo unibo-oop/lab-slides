@@ -58,10 +58,8 @@ public class BadIOGUI {
                  * operation. I/O operations may take a long time, during which
                  * your UI becomes completely unresponsive.
                  */
-                try {
-                    final PrintStream ps = new PrintStream(PATH);
+                try (final PrintStream ps = new PrintStream(PATH)) {
                     ps.print(rng.nextInt());
-                    ps.close();
                 } catch (FileNotFoundException e1) {
                     JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
                     e1.printStackTrace();
