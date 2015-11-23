@@ -1,0 +1,547 @@
+\documentclass[presentation]{beamer}
+\usepackage{../oop-slides-pianini}
+\setbeamertemplate{bibliography item}[text]
+\newcommand{\lessonnr}[0]{06}
+\title[OOP09 -- Deployment and Concurrency]{09\\Deployment di applicazioni \\ programmazione multipiattaforma \\ Concorrenza}
+
+\begin{document}
+
+\frame[label=coverpage]{\titlepage}
+
+%====================
+%Outline
+%====================
+\begin{frame}<beamer>
+ 	\frametitle{Outline}
+ 	\tableofcontents[]
+\end{frame}
+
+
+
+\section{Programmazione multipiattaforma}
+\fr{\textbf{Write once, run anywhere...}} {
+	\textbf{...È VERO A PATTO CHE ``WRITE'' SIA FATTA CORRETTAMENTE!}
+}
+\subsection{Accesso al file system}
+\fr{Path e separatori}{
+	\bl{Path non multipiattaforma}{
+		Inserire dei path assoluti nel proprio sorgente è \textbf{sempre} fonte di problemi quando si scrive software multipiattaforma:
+		\iz{
+			\item \url{C:\\Users\\UserName\\file} --- Non funzionerà su piattaforma *nix, e non funzionerà se l'utente Windows non è ``UserName''
+			\item \url{C:\\MyProgram\\file} --- Non funzionerà su piattaforma *nix, e non funzionerà se l'installazione di Windows è sana e il software non è avviato come admin (il che è \textbf{MALE})
+			\item \url{/home/username/file} --- Non funzionerà su piattaforma Windows, e non funzionerà se l'utente non è \texttt{username}
+		}
+	}
+	\bl{Problemi}{
+		\iz {
+			\item I separatori cambiano a seconda dell'OS!
+			\item La struttura del file system cambia con l'OS!
+			\item I diritti di lettura e scrittura cambiano con la configurazione dell'OS!
+		}
+	}
+}
+\fr{\texttt{System.getProperties(String)}}{
+	\bl{Proprietà di sistema}{
+		Java fornisce nella classe \texttt{System} un metodo \texttt{String getProperties(String)} che consente di accedere a proprietà di sistema in modo corretto!
+		\iz {
+			\item \texttt{file.separator} --- Restituisce \url{\\} per Windows e \url{/} per Unix
+			\item \texttt{java.home} --- La directory di installazione di Java
+			\item \texttt{user.dir} --- La directory da cui il comando \texttt{java} è stato invocato
+			\item \texttt{user.home} --- Restituisce la home directory dell'utente che ha lanciato \texttt{java}
+			\item \texttt{user.name} --- Restituisce il nome utente
+		}
+	}
+}
+
+\fr{Funzionalità OS-specifiche}{
+	\bl{Riconoscimento dell'OS}{
+		Nonostante i vostri migliori sforzi, potreste dipendere (magari parzialmente) da una libreria non disponibile o non licenziata su alcune piattaforme.
+
+		In questo caso, Java fornisce delle proprietà che consentono di identificare OS, versione e JVM corrente
+		\iz {
+			\item \texttt{java.version} --- La versione di \texttt{java} in uso. Si potrebbe decidere di non usare una funzionalità che si sa non esistere o essere buggata.
+			\item \texttt{os.arch} --- L'architettura della CPU come rilevata dal sistema operativo (x86, i386, amd64, x86\_64, ppc, sparc, armv6, mips, aplha, ppc64, IA64N, arm...)
+			\item \texttt{os.name} --- Il nome del sistema operativo (Linux, MacOS X, MacOS, Windows 95, Windows XP, Solaris, FreeBSD, Irix, OpenVMS...)
+			\item \texttt{os.version} --- Restituisce per Windows il numero di versione effettivo (e.g. Windows XP restituisce 5.1), per MacOS il numero di versione (e.g. 10.3.4), per Linux la versione del kernel (e.g. 3.17)
+		}
+	}
+}
+
+\subsection{Interfacce grafiche scalabili}
+
+\fr{Motivazioni}{
+	\bl{Flessibilità}{
+		Diversamente dagli anni 90, i dispositivi oggi hanno una densità di pixel per area \textbf{estremamente} variabile. Si va da 120 PPI a 640ppi, su schermi di dimensione estremamente variabile (da 3 a 200 pollici).
+	}
+	\bl{Multipiattaforma}{
+		Piattaforme diverse, anche a parità di schermo, possono avere diverse convenzioni:
+		\iz {
+			\item Diversa grandezza di bordi
+			\item Diversa spaziatura, dimensione e tipo di font
+			\item Diverso sistema di decorazioni
+		}
+		Questi elementi sono stabiliti dal \emph{compositor} e non dallo sviluppatore dell'applicazione: un'applicazione ben sviluppata eredita il ``look and feel'' dal sistema su cui sta girando.
+	}
+}
+
+\fr{Scalabilità}{
+	\bl{Conseguenze}{
+		\iz {
+			\item La dimensione di default della finestra va calcolata in base alla dimensione dello/gli schermo/i
+			\item Non si devono \textbf{mai} usare dimensioni assolute in pixel per alcun componente
+			\item Non si devono usare dimensioni in pixel per i layout
+			\item Preferire i font di sistema (la JVM in automatico associa il font di default dell'OS)
+			\item Preferire la dimensione dei font di default, se se ne sceglie una diversa, renderla relativa alla dimensione corrente della view
+		}
+	}
+}
+
+\fr{Finestra non ridimensionabile e bassa risoluzione} {
+	\centering
+	\includegraphics[width=0.8\textwidth]{img/lowres}
+}
+
+\fr{Finestra non ridimensionabile e alta risoluzione} {
+	\centering
+	\includegraphics[width=0.99\textwidth]{img/brokensword}
+}
+
+\subsection{Font ed encoding}
+
+\fr{Motivazioni}{
+	\bl{Differenze fra piattaforme}{
+		Diverse piattaforme utilizzano di default encoding diversi:
+		\iz {
+			\item UTF-8 --- default su Linux, funziona ottimamente ovunque
+			\item MacRoman --- default su MacOS, raramente causa artefatti se riconvertito ad altri formati
+			\item ISO-8859-1 --- default su Windows, causa artefatti su quasi tutti i caratteri non ASCII se convertito a UTF-8
+		}
+	}
+	\bl{Soluzione}{
+		Si sviluppa utilizzando UTF-8, specialmente se si ha intenzione di utilizzare caratteri accentati o caratteri non inclusi nella tabella ASCII.
+	}
+	\bl{In Eclipse}{
+		Proprietà del progetto $\rightarrow$ Resource $\rightarrow$ Text file encoding $\rightarrow$ Other $\rightarrow$ UTF-8 $\rightarrow$ OK
+	}
+}
+
+\subsection{Supporto all'internazionalizzazione}
+
+\fr{Resource bundles}{
+	\bl{Una UI, tanti linguaggi}{
+		Vorremmo poter scrivere la GUI una volta sola, e cambiare le parti scritte a seconda dell'impostazione della lingua (di sistema o della nostra applicazione).
+
+		Non solo per la lingua, ma anche per il formato dei numeri, la valuta, le convenzioni sulla data...
+	}
+	\bl{In Java}{
+		Java fornisce una architettura per l'internazionalizzazione, che fa uso di ``ResourceBundle'' e di una serie di file di supporto (properties files).
+
+		Chi desidera implementare supporto multilingua, è invitato a seguire i seguenti tutorial:
+		\iz {
+			\item \url{https://docs.oracle.com/javase/tutorial/i18n/resbundle/index.html}
+			\item \url{http://tutorials.jenkov.com/java-internationalization/resourcebundle.html}
+		}
+	}
+}
+
+
+\section{Deployment di applicazioni}
+\fr{\textbf{Write once, run anywhere...}} {
+	\textbf{...È VERO A PATTO CHE SIATE IN GRADO DI DISTRIBUIRE PER TUTTE LE PIATTAFORME LA VOSTRA APPLICAZIONE!}
+
+	\iz {
+		\item Ossia, nel nostro caso, distribuire un archivio JAR eseguibile autocontenuto
+		\item Esistono setup diversi, ad esempio con installer dedicati per ciascuna piattaforma, che aggiungono notevole complessità e tempo senza nessun vantaggio davvero importante
+	}
+}
+
+\subsection{Corretta configurazione di un progetto Eclipse}
+
+\fr{Corretta struttura di un progetto} {
+	\centering
+	\includegraphics[width=0.99\textwidth]{img/struct}
+}
+
+\fr{Corretta struttura di un progetto} {
+	\bl{\texttt{src}} {
+		\iz{
+			\item	Contiene \textbf{esclusivamente} il codice sorgente dell'applicazione. Non deve contenere risorse, javadocs o file binari
+			\item Eventualmente possono esistere più cartelle sorgente, ad esempio perché parte del codice viene generato da un sistema automatico, oppure perché il progetto è sviluppato usando più di un linguaggio
+			\item Nel caso di generatori, è buona norma dividere il codice generato da quello generante, ad esempio creando una cartella \texttt{src-gen}
+			\item Nel caso si utilizzino più linguaggi, è bene distinguerli usando source folder separate, e.g. \texttt{src-java} e \texttt{src-prolog}
+			\item In Eclipse è possibile marcare una cartella come ``cartella sorgente'': Proprietà del progetto $\rightarrow$ Java Build Path $\rightarrow$ Source $\rightarrow$ Add Folder $\rightarrow$ Selezione della cartella $\rightarrow$ OK $\rightarrow$ OK
+			\item Tutti i sorgenti di tutte le cartelle sorgente verranno compilati ed inseriti nella cartella di output da Eclipse
+		}
+	}
+}
+
+\fr{Corretta struttura di un progetto} {
+	\bl{\texttt{res}} {
+		\iz{
+			\item	Contiene le risorse del progetto opportunamente organizzate
+			\item	Per risorse si intendono icone, file di testo, video, immagini, modelli 3D e qualunque cosa sia necessaria al corretto funzionamento del programma ma non sia una libreria o un file sorgente
+			\item	In Eclipse, per far sì che le risorse vengano inserite nel classpath (da cui sarà più facile caricarle), è necessario rendere \texttt{res} una cartella sorgente con la procedura descritta nella slide precedente
+		}
+	}
+	\bl{\texttt{lib}} {
+		\iz{
+			\item	Contiene tutte le librerie che si sono usate, che siano in file jar o che siano librerie native in formato .so (o .dll)
+		}
+	}
+}
+
+\fr{Corretta struttura di un progetto} {
+	\bl{\texttt{doc}} {
+		\iz{
+			\item	Contiene la documentazione del progetto
+			\item	Se c'è sia documentazione non rigenerabile (e.g. una relazione) che rigenerabile (e.g. la javadoc), è bene tenerle separate (facilita il tracking con DVCS)
+		}
+	}
+	\bl{\texttt{bin}} {
+		\iz{
+			\item	Contiene la versione compilata del vostro software
+			\item	In Eclipse, la creazione di questa cartella è totalmente nelle mani del SDK
+		}
+	}
+	\bl{\texttt{README.md}} {
+		\iz{
+			\item	File con la descrizione del progetto: autori, breve guida d'uso, link a risorse. Bitbucket e GitHub sono in grado di fare il parse del file e di integrarlo nella pagina del progetto, in modo da dargli una descrizione.
+		}
+	}
+}
+
+\fr{Eclipse e path relativi} {
+	\bl{Motivazioni} {
+		Quando si lavora ad un progetto, è bene che tutti i path siano relativi alla radice del progetto, altrimenti:
+		\iz{
+			\item Gli altri membri del team dovranno continuamente cambiare le impostazioni per adattarle al loro file system
+			\item Il progetto non sarà sviluppabile su piattaforme diverse
+			\item Questo è vero in particolare per le librerie, supponendo che le risorse siano gestite correttamente
+		}
+	}
+}
+
+\fr{Eclipse e path relativi} {
+	\bl{Procedura \textbf{\underline{NON}} corretta} {
+		Il modo \textbf{\underline{sbagliato}} di cui importare una libreria in Eclipse è: Proprietà del progetto $\rightarrow$ Java Build Path $\rightarrow$ Libraries $\rightarrow$ Add External JARs $\rightarrow$ Selezione dei JAR $\rightarrow$ OK $\rightarrow$ OK
+
+		\iz{
+			\item È possibile scegliere JAR da qualunque punto del file system
+			\item Vengono generati percorsi assoluti
+		}
+	}
+	\bl{Procedura \textbf{\underline{corretta}}} {
+		Il modo \textbf{\underline{corretto}} di cui importare una libreria in Eclipse è: Proprietà del progetto $\rightarrow$ Java Build Path $\rightarrow$ Libraries $\rightarrow$ Add JARs $\rightarrow$ Selezione dei JAR $\rightarrow$ OK $\rightarrow$ OK
+		\iz{
+			\item È possibile scegliere solo JAR file che esistono in una delle cartelle del progetto (e, se il progetto è ben configurato, stanno in \texttt{lib})
+			\item Vengono generati percorsi relativi alla root del progetto
+		}
+	}
+}
+
+\subsection{Caricamento di risorse dal classpath}
+
+\fr{Risorse dal classpath} {
+	\bl{Motivazione} {
+		\iz {
+			\item Abbiamo inserito le nostre risorse nel progetto in maniera tale che vengano copiate nella cartella bin
+			\item Queste risorse ed i file compilati verranno anche inseriti nel JAR eseguibile
+			\item Come possiamo accedere a queste risorse trasparentemente, ossia caricarle sia che si trovino sul file system, sia che si trovino nel JAR eseguibile, sia che vengano incluse in un JAR di risorse separato (e.g. nel caso di videogiochi open source a pagamento)?
+		}
+	}
+	\bl{\texttt{Class.getResource()}} {
+		\iz {
+			\item Java fornisce un'utilità per caricare risorse dal \textbf{classpath}
+			\item Come abbiamo visto usando l'opzione \texttt{-cp} di \texttt{java} e \texttt{javac}, il classpath può contenere indifferentemente dei path o dei JAR
+		}
+		
+	}
+}
+
+\begin{frame}[fragile]{Caricamento di file}
+	\begin{lstlisting}
+		final InputStream in = LoadImage.class.getResourceAsStream("/settings/settings");
+		final BufferedReader br = new BufferedReader(new InputStreamReader(in));
+		final String line = br.readLine();
+		in.close();
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Caricamento di immagini}
+	\begin{lstlisting}
+		final URL imgURL = LoadImage.class.getResource("/images/gandalf.jpg");
+		final ImageIcon icon = new ImageIcon(imgURL);
+		final JLabel lab1 = new JLabel(icon);
+	\end{lstlisting}
+\end{frame}
+
+\subsection{Installazione per-utente}
+
+\fr{Installazione delle impostazioni} {
+	\bl{Motivazione} {
+		Spesso un software ha necessità di caricare al primo avvio delle impostazioni di default, quindi lasciare l'utente libero di modificarle e, se avviato successivamente caricare quelle scelte dall'utente. In caso di sistema multiutente, le impostazioni saranno diverse per ciascuno.
+	}
+	\bl{Strategia} {
+		\footnotesize
+		\iz {
+			\item Si sceglie una cartella nella home folder dell'utente dove salvare le impostazioni. È norma consolidata creare una cartella \texttt{.nomeprogramma}.
+			\item Al primo avvio, si verifica se tale cartella esiste e se contenga i file di configurazione
+			\item Se non è presente, non sono presenti i file, oppure non sono leggibili, si procede a caricare i default usando \texttt{getResource()} e li si copia nella cartella destinazione
+			\item I file di configurazione della cartella vengono caricati e utilizzati, ed eventualmente sovrascritti con le nuove impostazioni utente
+		}
+	}
+}
+
+\section{Esercitazione sulla concorrenza}
+
+\subsection{GUI reattive}
+
+\fr{Esercizi sulle GUI reattive}{
+	\bl{Istruzioni}{
+		\en{
+			\item  \emph{gui1}: studiare e analizzare il primo esercizio, aiutandosi con i commenti
+			\item \emph{gui2}: estensione di \emph{gui1} (seguire le istruzioni riportate nel test dell'esercizio)
+			\item \emph{gui3}: ulteriore estensione di \emph{gui3}
+		}
+	}
+}
+
+\subsection{Worker}
+
+\fr{Esercizi sui Worker}{
+	\bl{Istruzioni}{
+		\en{
+			\item  \emph{worker1}: studiare e analizzare il primo esercizio, aiutandosi con i commenti
+			\item \emph{worker2}: estensione di \emph{worker1} (seguire le istruzioni riportate nel test dell'esercizio)
+		}
+	}
+}
+
+
+
+\end{document}
+\section{Monitoring e Debugging di Applicazioni Concorrenti}
+
+\fr{Monitoring Thread: JConsole TOOL}{
+	\bl{}{
+	JConsole \cite{jconsole} is the Java Monitoring and Management Console, a graphical tool shipped in J2SE JDK 5.0 (and later versions)
+		\iz{
+			\item It uses the instrumentation of the Java virtual machine to provide information on performance and resource consumption of applications running on the Java platform
+			\item Based on the Java Management Extension (JMX) technology
+		}
+	}
+	\bl{}{
+		Useful (also) to monitor the thread spawned by a running Java programs
+		\iz{ \item Including VM threads, such as the one used for garbage collecting}
+	}
+}
+\fr{Using JConsole 1/2}{
+	\iz{ 
+		\item JDK $<$ 1.6 start the Java application that you want to monitor with the option: 
+			\iz{ 
+				\item \cil{-Dcom.sun.management.jmxremote}
+				\item e.g. \cil{java -Dcom.sun.management.jmxremote -cp bin Test}
+			}
+	}
+	\iz{
+		\item JDK $>=$ 1.6 it just type \cil{jconsole} from the command line
+		\iz{ 
+			\item When JConsole starts, you will be given a choice of all the Java applications that are running locally that JConsole can connect to
+			\item Connections with remote applications is possible as well (e.g. \cil{jconsole hostName:portNum})
+		}
+	}
+}
+\fr{Using JConsole 2/2}{
+	\fg{height=0.6\textheight}{img/jconsole.png} 
+}
+\fr{VisualVM: Am Open-Source Profiler}{
+	\iz{
+		\item Similar to JConsole, VisualVm \cite{visualvm} is a full-fledged profiler allowing to measure and visualize performances of Java programs
+			\iz{
+				\item It uses the instrumentation of the Java virtual machine to provide information on performance and resource consumption of applications running on the Java platform (like JConsole)
+				\item Based on the Java Management Extension (JMX) technology
+				\item Shipped with J2SE JDK 5.0 (and later versions)
+			}
+		}
+	\iz{
+		\item More fine-grained monitoring than JConsole
+			\iz{
+				\item Monitoring \% CPU used by methods, threads
+				\item Monitoring how long a thread is blocked or running
+				\item ...
+			}
+	}
+}
+\section{Somma Concorrente degli Elementi di un Array}
+
+\fr{Concurrent Adder 1/3}{
+	\bl{}{
+		Vogliamo calcolare la somma di tutti gli elementi di un array (elevandoli prima al cubo) in maniera concorrente, sfruttando un certo insieme di worker thread
+			\iz{
+				\item Useremo come riferimento l'architettura del \textit{``concurrent sorter''} visto a lezione
+				\item L'elevamento al cubo è stato introdotto semplicemente al fine di notare uno speedup tra la versione sequenziale e quella concorrente (vedere prossime slide)
+			}
+	}
+	\bl{\cil{oop1314.lab09.adder.ConcurrentAdder}}{
+		A tal fine renderemo concorrente l'implementazione di \cil{oop1314.lab09.adder.SequentialAdder} seguendo i passi riportati nelle prossime slide
+	}
+}
+
+\fr{Concurrent Adder 2/3}{
+	\bl{Passi da Seguire}{
+		\en{
+			\item Creare la classe \cil{ConcurrentAdder}
+			\item Creare al suo interno l'inner static class \cil{AdderWorker} che estenderà la classe \cil{Thread}
+			\item Creare il costruttore \cil{AdderWorker (long[] data, int minIndex, int maxIndex)} 
+			\item Definire il campo \cil{long sum}
+			\item Definire il metodo \cil{run} in \cil{AdderWorker} in cui memorizzare all'interno del campo \cil{sum} la somma elevata al cubo degli elementi di interesse
+				\iz{\item Analogamente a quanto visto per il sorter concorrente}
+			\item Definire il selettore \cil{public long getSum()} in modo che restituisca il valore del campo \cil{sum}
+		}
+	}
+}
+
+\fr{Concurrent Adder 3/3}{
+	\bl{Passi da Seguire}{
+		\en{
+			\item Nel \cil{main} di \cil{ConcurrentAdder} istanziare un numero \cil{nWorker} di \cil{AdderWorker} pari a nCPU + 1
+				\iz{\item nCPU va ricavando utilizzando il metodo statico \cil{Runtime.getRuntime().availableProcessors()}}
+			\item Suddividere equamente il lavoro tra gli \cil{nWorker} (sempre nel \cil{main})
+				\iz{\item Per semplicità, allocare all'ultimo worker eventuali elementi in eccesso derivanti da una suddivisione con resto degli elementi dell'input array}
+			\item Stampare in stdout il tempo necessario ad effettuare la somma (sempre nel \cil{main})
+				\iz{ \item Fare riferimento all'implementazione del main di \cil{SequentialAdder} per capire come calcolare il tempo}
+		}
+	}
+	
+}
+\fr{Concurrent Adder: Testing}{
+	\bl{Testing}{
+		Lanciare il programma e confrontare i tempi di esecuzione tra la versione concorrente e quella sequenziale
+			\iz{ \item Dovremmo sperimentare uno speedup del programma concorrente rispetto alla versione sequenziale}
+	}
+	
+	\bl{Nota}{
+		Se NON si dovesse notare lo speedup, è perché l'infrastruttura di virtualizzazione delle macchine del laboratorio non consente di ottenere dei risultati veritieri (il tempo puo' risultare inficiato da politiche di scheduling del server di virtualizzazione così come da ritardi dovuti alla rete): in questo caso, provare lo stesso test su una macchina fisica (anche a casa)
+	}
+}
+\section{Costruzione di GUI Reattive}
+%\section{Checksum di un File (Calcolato in Maniera Concorrente)}
+\fr{SimpleReactiveGUI}{
+	\bl{}{
+		Saper sviluppare GUI reattive e responsive alle interazioni dell'utente è un aspetto di fondamentale importanza (come visto a lezione)
+	}
+	\bl{Obiettivo}{
+		\iz{
+			\item Rendere la GUI \cil{SimpleReactiveGUI} responsive all'interazione con un generico utente
+			\item In particolare, \cil{SimpleReactiveGUI} dovrà consentire di salvare sul file system un array di 10 milioni di long contenente valori casuali, a seguito del click sul pulsante \cil{Save}
+		}
+	}
+}
+
+\fr{SimpleReactiveGUI 1/2}{
+	\bl{Primo passo}{
+		\iz{
+			\item Implementare l'operazione di salvataggio su file system direttamente nel listener del pulsante \textit{Save}
+			\item Fare il testing dell'applicazione: controllare che il comportamento atteso corrisponda a quello sperimentato 
+		}
+	}
+	
+	\bl{Secondo passo}{
+		Risolvere i problemi relativi all'implementazione precedente introducendo un thread dedicato per il salvataggio su file
+			\iz{
+				\item Appoggiarsi alla creazione di un oggetto thread anonimo all'interno del listener relativo ai click sui bottoni
+			}
+		\sizedcode{\scriptsize}{code/Thread.java}
+	}
+}
+
+\fr{SimpleReactiveGUI 2/2}{
+	\bl{}{
+		Che cosa succede se viene premuto una seconda volta il pulsante \cil{Save} prima che il salvataggio sul file system sia stato effettivamente completato?
+			\iz{ \item Verificarlo in maniera autonoma tramite debugging}
+	}
+
+	\bl{}{
+		Trovare in autonomia ad una soluzione per risolvere il problema
+			\iz{ \item E' una soluzione molto semplice... non vogliamo più ricevere eventi dal bottone \cil{Save} fino a che... e ricominciare poi a riceverli nuovamente una volta che...}
+	}
+}
+
+\section{Sfida tra Robot in un Ambiente Condiviso}
+\fr{Object Search Contest 1/2}{
+	\bl{Quali saranno i robot più veloci a trovare N oggetti nell'ambiente?}{
+		Vogliamo costruire una competizione tra robot (software) per stabilire chi riesce ad individuare più velocemente un certo numero di oggetti
+	}
+	\bl{Punto di partenza: le classi in \cil{oop1314.lab09.robot}}{
+		Cosa è cambiato
+		\iz{
+			\item \cil{RobotEnvironment}: è condiviso da tutti i robot e contiene al suo interno un dato numero (specificato nel costruttore) di oggetti recuperabili dai robot. Metodi aggiunti
+				\iz{
+					\item \cil{addRobot}: agginge un robot alla posizione specificata
+					\item \cil{searchObjFromCurrPoistion}: per cercare un oggetto nelle vicinanze (robotX+-1,robotY+-1) di un robot
+					\item \cil{pickObj}: per recuperare un oggetto alla posizione specificata
+				}
+			\item \cil{Robot}: modificata per allinearsi alle modifiche apportate a \cil{RobotEnvironment}, in particolare aggiunti i metodi \cil{searchObjFromCurrPoistion} e \cil{pick}
+		}
+	}
+}
+
+\fr{Object Search Contest 2/2}{
+	\bl{}{
+		Completare la classe \cil{RobotControllerAgent} che avrà il compito di governare in maniera autonoma il comportamento di un robot seguendo le indicazioni riportate nei commenti
+		\iz{
+			\item Ogni robot sarà quindi governato da un flusso di controllo indipendente, in competizione con gli altri
+		}
+	}
+	
+	\bl{}{
+		Completare la classe \cil{TestingRobot} seguendo le indicazioni riportate nei commenti e lanciare il test
+	}
+}
+\fr{Object Search Contest: Prime Modifiche}{
+	\bl{}{
+		Effettuando il testing del programma notiamo che vengono generate un insieme di eccezioni di tipo \textit{ConcurrentModificationException}
+			\iz{ \item Perchè? Provare di capire il motivo in autonomia, analizzando il messaggio di erore ripotato}
+	}
+	\bl{}{
+		Provare a risolvere in autonomia il problema, ricordando i costrutti di sincronizzazione visti a lezione
+			\iz{\item La keyword \cil{synchronized} in particolare}
+	}
+	\bl{Testing}{
+		Effettuare nuovamente il testing dell'applicazione per verificare la correttezza delle modifiche apportate
+	}
+}
+
+\fr{Object Search Contest: Ulteriori Modifiche}{
+	\bl{}{
+		Miglioriamo la stampa dei rankings
+			\iz{ \item In modo tale da non dover andare a cercare manualmente i messaggi in stdout }
+	}
+	\bl{Passi da seguire}{
+		\iz{
+			\item Completare la classe \cil{Ranker} seguendo le linee guida dei sorgenti, ricordandosi di utilizzare - quando necessario - opportuni meccanismi di sincronizzazione per evitare corse critiche
+			\item Modificare il costruttore di \cil{RobotControllerAgent} come segue
+				\iz{ \item \cil{RobotControllerAgent(Robot r, int nItemsToPick, Ranker ranker)} } 
+			\item Nel metodo \cil{run} di \cil{RobotControllerAgent} appoggiarsi al ranker per notificare la terminazione delle operazioni di ricerca
+			\item Nella classe \cil{TestingRobot} creare il ranker e passarlo ai vari controller, dopodiché quando tutti avranno terminato le ricerche, stampare la classifica appoggiandosi al metodo \cil{printRankings}
+		}
+	}
+}
+
+\section{Esercizi Aggiuntivi}
+\fr{Ultimiamo l'implementazione di SimpleReactiveGUI}{
+	\bl{}{
+		Implementare l'handler del bottone \cil{Checksum} in modo tale che calcoli il checksum relativo al file \cil{data.dat} memorizzato dal bottone \cil{Save} e visualizzi tale risultato nella label visualizzata nella GUI
+	}
+	\bl{Nota}{
+		Calcolare il checksum come semplice somma del valore di tutti i byte contenuti nel file \cil{data.dat}
+	}
+}
+
+\begin{frame}[allowframebreaks]
+ \frametitle{Bibliography}
+	\bibliographystyle{plain}
+	\small
+ \bibliography{biblio}
+\end{frame}
+
