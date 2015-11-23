@@ -40,9 +40,9 @@ public class Controller {
      *             if the writing fails
      */
     public void save(final Serializable text) throws IOException {
-        final ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(dest));
-        oos.writeObject(text);
-        oos.close();
+        try (final ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(dest))) {
+            oos.writeObject(text);
+        }
     }
 
     /**
