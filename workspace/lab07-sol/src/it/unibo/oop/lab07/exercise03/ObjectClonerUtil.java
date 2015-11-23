@@ -1,6 +1,7 @@
 package it.unibo.oop.lab07.exercise03;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -45,7 +46,9 @@ public final class ObjectClonerUtil {
                     correspondingSetter.invoke(returnValue, res);
                 }
             }
-        } catch (Exception e) {
+        } catch (IllegalAccessException | IllegalArgumentException
+                | InvocationTargetException | NoSuchMethodException 
+                | SecurityException | InstantiationException  e) {
             throw new CloningException(e.toString());
         }
         return returnValue;
