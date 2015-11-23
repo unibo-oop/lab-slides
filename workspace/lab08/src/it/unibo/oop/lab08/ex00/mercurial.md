@@ -17,7 +17,7 @@
 * Si compili nella cartella ``bin`` il file ``HelloWorld.java``
 * Se ne testi il funzionamento
 * Una volta che il programma è funzionante, si usi hg status per vedere lo stato del repository. Si noti che il file ``.orig`` è in stato ``?`` (non track-ato, non ignorato)
-* Si elimini il file \texttt{.orig}
+* Si elimini il file ``.orig``
 * Si dichiari risolto il conflitto di merge di ``HelloWorld.java`` utilizzando propriamente il comando ``hg resolve -m``
 * Si osservi che Mercurial segnala che non vi sono conflitti rimanenti
 * Si salvi il merge con ``hg commit``
