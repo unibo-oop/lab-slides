@@ -1,8 +1,8 @@
 \documentclass[presentation]{beamer}
-\usepackage{../oop-slides-pianini}
+\usepackage{oop-slides}
 \setbeamertemplate{bibliography item}[text]
 \newcommand{\lessonnr}[0]{06}
-\title[OOP09 -- Deployment and Concurrency]{09\\Deployment di applicazioni \\ programmazione multipiattaforma \\ Concorrenza}
+\title[OOP09 -- Deployment and Concurrency]{09\\Deployment di applicazioni, Programmazione multipiattaforma, Profiling e Concorrenza}
 
 \begin{document}
 
@@ -16,310 +16,469 @@
  	\tableofcontents[]
 \end{frame}
 
+\begin{frame}{``Write once, run anywhere...''}
+Lo ``slogan'' coniato originariamente da \textit{Sun Microsystems} per illustrare i benefici del linguaggio Java vale a patto che:
 
+\begin{enumerate}\itemsep10pt
+\item \textbf{``write'' sia fatta in modo corretto e robusto},
+\begin{itemize}
+\item ovvero, sia adottato un approccio di programmazione adeguato.
+\end{itemize}
+\item \textbf{sia possibile distribuire ciascuna applicazione per qualunque piattaforma}.
+\begin{itemize}
+\item ovvero, sia predisposto un deployment efficace. 
+\end{itemize}
+\end{enumerate}
+\end{frame}
 
 \section{Programmazione multipiattaforma}
-\fr{\textbf{Write once, run anywhere...}} {
-	\textbf{...È VERO A PATTO CHE ``WRITE'' SIA FATTA CORRETTAMENTE!}
-}
+
 \subsection{Accesso al file system}
-\fr{Path e separatori}{
-	\bl{Path non multipiattaforma}{
-		Inserire dei path assoluti nel proprio sorgente è \textbf{sempre} fonte di problemi quando si scrive software multipiattaforma:
-		\iz{
-			\item \url{C:\\Users\\UserName\\file} --- Non funzionerà su piattaforma *nix, e non funzionerà se l'utente Windows non è ``UserName''
-			\item \url{C:\\MyProgram\\file} --- Non funzionerà su piattaforma *nix, e non funzionerà se l'installazione di Windows è sana e il software non è avviato come admin (il che è \textbf{MALE})
-			\item \url{/home/username/file} --- Non funzionerà su piattaforma Windows, e non funzionerà se l'utente non è \texttt{username}
-		}
-	}
-	\bl{Problemi}{
-		\iz {
-			\item I separatori cambiano a seconda dell'OS!
-			\item La struttura del file system cambia con l'OS!
-			\item I diritti di lettura e scrittura cambiano con la configurazione dell'OS!
-		}
-	}
-}
-\fr{\texttt{System.getProperties(String)}}{
-	\bl{Proprietà di sistema}{
-		Java fornisce nella classe \texttt{System} un metodo \texttt{String getProperties(String)} che consente di accedere a proprietà di sistema in modo corretto!
-		\iz {
-			\item \texttt{file.separator} --- Restituisce \url{\\} per Windows e \url{/} per Unix
-			\item \texttt{java.home} --- La directory di installazione di Java
-			\item \texttt{user.dir} --- La directory da cui il comando \texttt{java} è stato invocato
-			\item \texttt{user.home} --- Restituisce la home directory dell'utente che ha lanciato \texttt{java}
-			\item \texttt{user.name} --- Restituisce il nome utente
-		}
-	}
-}
+\begin{frame}{Path e Separatori}
+Inserire dei path assoluti nel proprio sorgente è \textbf{sempre} fonte di problemi quando si scrive software multipiattaforma:
+\begin{itemize}
+\item \url{C:\\Users\\UserName\\file} --- Non funzionerà su piattaforma *nix, e non funzionerà se l'utente Windows non è ``UserName''.
 
-\fr{Funzionalità OS-specifiche}{
-	\bl{Riconoscimento dell'OS}{
-		Nonostante i vostri migliori sforzi, potreste dipendere (magari parzialmente) da una libreria non disponibile o non licenziata su alcune piattaforme.
+\item \url{C:\\MyProgram\\file} --- Non funzionerà su piattaforma *nix, e non funzionerà se l'installazione di Windows è sana e il software non è avviato come admin.
 
-		In questo caso, Java fornisce delle proprietà che consentono di identificare OS, versione e JVM corrente
-		\iz {
-			\item \texttt{java.version} --- La versione di \texttt{java} in uso. Si potrebbe decidere di non usare una funzionalità che si sa non esistere o essere buggata.
-			\item \texttt{os.arch} --- L'architettura della CPU come rilevata dal sistema operativo (x86, i386, amd64, x86\_64, ppc, sparc, armv6, mips, aplha, ppc64, IA64N, arm...)
-			\item \texttt{os.name} --- Il nome del sistema operativo (Linux, MacOS X, MacOS, Windows 95, Windows XP, Solaris, FreeBSD, Irix, OpenVMS...)
-			\item \texttt{os.version} --- Restituisce per Windows il numero di versione effettivo (e.g. Windows XP restituisce 5.1), per MacOS il numero di versione (e.g. 10.3.4), per Linux la versione del kernel (e.g. 3.17)
-		}
-	}
-}
+\item \url{/home/username/file} --- Non funzionerà su piattaforma Windows, e non funzionerà se l'utente non è \texttt{username}.
+\end{itemize}
 
-\subsection{Interfacce grafiche scalabili}
+\begin{block}{Problemi}
+\begin{itemize}
+\item I separatori per i path cambiano a seconda dell'OS!
+\item La struttura del file system cambia con l'OS!
+\item I diritti di lettura e scrittura cambiano con la configurazione.
+\end{itemize}
+\end{block}
+\end{frame}
 
-\fr{Motivazioni}{
-	\bl{Flessibilità}{
-		Diversamente dagli anni 90, i dispositivi oggi hanno una densità di pixel per area \textbf{estremamente} variabile. Si va da 120 PPI a 640ppi, su schermi di dimensione estremamente variabile (da 3 a 200 pollici).
-	}
-	\bl{Multipiattaforma}{
-		Piattaforme diverse, anche a parità di schermo, possono avere diverse convenzioni:
-		\iz {
-			\item Diversa grandezza di bordi
-			\item Diversa spaziatura, dimensione e tipo di font
-			\item Diverso sistema di decorazioni
-		}
-		Questi elementi sono stabiliti dal \emph{compositor} e non dallo sviluppatore dell'applicazione: un'applicazione ben sviluppata eredita il ``look and feel'' dal sistema su cui sta girando.
-	}
-}
+\begin{frame}{Proprietà di sistema}
+Java fornisce nella classe \texttt{System} un metodo\\
+\begin{center}
+{\Large \texttt{String getProperty(String par)}}
+\end{center}
+che consente di accedere a proprietà di sistema in modo corretto!
+\vspace{10pt}
+\begin{block}{Alcuni parametri ammissibili}
+\begin{itemize}
+\item \texttt{file.separator} --- Restituisce \url{\\} per Windows e \url{/} per Unix
+\item \texttt{java.home} --- La directory di installazione di Java
+\item \texttt{user.dir} --- La directory da cui il comando \texttt{java} è stato invocato
+\item \texttt{user.home} --- Restituisce la home directory dell'utente che ha lanciato \texttt{java}
+\item \texttt{user.name} --- Restituisce il nome utente
+\end{itemize}
+\end{block}
+\end{frame}
 
-\fr{Scalabilità}{
-	\bl{Conseguenze}{
-		\iz {
-			\item La dimensione di default della finestra va calcolata in base alla dimensione dello/gli schermo/i
-			\item Non si devono \textbf{mai} usare dimensioni assolute in pixel per alcun componente
-			\item Non si devono usare dimensioni in pixel per i layout
-			\item Preferire i font di sistema (la JVM in automatico associa il font di default dell'OS)
-			\item Preferire la dimensione dei font di default, se se ne sceglie una diversa, renderla relativa alla dimensione corrente della view
-		}
-	}
-}
+\begin{frame}{Funzionalità OS-specifiche}
+\begin{itemize}\itemsep10pt
+\item Talvolta è possibile che in una applicazione si debbano utilizzare librerie non disponibili o non licenziate per alcune piattaforme.
+\item A supporto di ciò, Java fornisce delle proprietà che consentono di identificare OS, versione e JVM corrente.
+\end{itemize}
 
-\fr{Finestra non ridimensionabile e bassa risoluzione} {
-	\centering
-	\includegraphics[width=0.8\textwidth]{img/lowres}
-}
+\begin{block}{Altri parametri ammissibili}
+\begin{itemize}
+\item \texttt{java.version} --- La versione di \texttt{java} in uso. Si potrebbe decidere di non usare una funzionalità che si sa non esistere o essere buggata.
 
-\fr{Finestra non ridimensionabile e alta risoluzione} {
-	\centering
-	\includegraphics[width=0.99\textwidth]{img/brokensword}
-}
+\item \texttt{os.arch} --- L'architettura della CPU come rilevata dall'OS (es. x86, i386, amd64, x86\_64, IA64N, arm,\dots)
+
+\item \texttt{os.name} --- Il nome del sistema operativo (es. Linux, MacOS X, MacOS, Windows 8.1, Windows 10, Solaris, FreeBSD, \dots)
+
+\item \texttt{os.version} --- Restituisce per Windows il numero di versione effettivo (es. Windows 10 restituisce 10.0), per MacOS il numero di versione (es. 10.3.4), per Linux la versione del kernel (es. 3.17)
+\end{itemize}
+\end{block}
+
+\end{frame}
+
 
 \subsection{Font ed encoding}
 
-\fr{Motivazioni}{
-	\bl{Differenze fra piattaforme}{
-		Diverse piattaforme utilizzano di default encoding diversi:
-		\iz {
-			\item UTF-8 --- default su Linux, funziona ottimamente ovunque
-			\item MacRoman --- default su MacOS, raramente causa artefatti se riconvertito ad altri formati
-			\item ISO-8859-1 --- default su Windows, causa artefatti su quasi tutti i caratteri non ASCII se convertito a UTF-8
-		}
-	}
-	\bl{Soluzione}{
-		Si sviluppa utilizzando UTF-8, specialmente se si ha intenzione di utilizzare caratteri accentati o caratteri non inclusi nella tabella ASCII.
-	}
-	\bl{In Eclipse}{
-		Proprietà del progetto $\rightarrow$ Resource $\rightarrow$ Text file encoding $\rightarrow$ Other $\rightarrow$ UTF-8 $\rightarrow$ OK
-	}
-}
+\begin{frame}{Font ed encoding}
+Le più note piattaforme utilizzano di default encoding diversi:
+
+\begin{itemize}
+\item \textbf{UTF-8} --- default su Linux, può essere considerato lo standard de-facto.
+\item \textbf{MacRoman} --- default su MacOS, raramente causa artefatti se riconvertito ad altri formati.
+\item \textbf{ISO-8859-1} --- default su Windows, può causare artefatti su quasi tutti i caratteri non ASCII se convertito a UTF-8.
+\end{itemize}
+
+\begin{block}{Encoding per il codice sorgente}
+Solitamente, il codice sorgente si sviluppa utilizzando la codifica UTF-8
+\begin{itemize}
+\item Essenziale se si utilizzano caratteri non inclusi nella tabella ASCII (caratteri accentati, ad esempio).
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Uso di UTF-8 in Eclipse}
+$\rightarrow$ Windows $\rightarrow$ Preferences $\rightarrow$ General $\rightarrow$ Workspace $\rightarrow$ Text file encoding $\rightarrow$ Other $\rightarrow$ UTF-8 $\rightarrow$ OK
+\begin{center}
+\includegraphics[width=0.7\textwidth]{img/eclipse-encoding}
+\end{center}
+\end{frame}
+
+\subsection{GUI scalabili}
+
+\begin{frame}{GUI scalabili -- Motivazioni}
+\begin{block}{Flessibilità}
+Diversamente dagli anni 90, i dispositivi oggi hanno una densità di pixel per area \textbf{estremamente} variabile. Si va da 120 PPI a 640 PPI, su schermi di dimensione estremamente variabile (da 3 a 200 pollici).
+\end{block}
+
+\begin{block}{Multipiattaforma}
+Piattaforme diverse, anche a parità di schermo, possono adottare diverse convenzioni:
+\begin{itemize}
+\item Diversa grandezza di bordi
+\item Diversa spaziatura, dimensione e tipo di font
+\item Diverso sistema di decorazioni
+\end{itemize}
+
+Questi elementi sono stabiliti dal \emph{compositor} e non dallo sviluppatore dell'applicazione. Come indicazione generale vale che \textbf{un'applicazione ben sviluppata eredita il ``look and feel'' dal sistema su cui sta girando}.
+\end{block}
+\end{frame}
+
+\begin{frame}{Esempio: Finestra non ridimensionabile e bassa risoluzione}
+\centering
+\includegraphics[width=0.8\textwidth]{img/lowres}
+\end{frame}
+
+\begin{frame}{Esempio: Finestra non ridimensionabile e alta risoluzione}
+\centering
+\includegraphics[width=0.8\textwidth]{img/brokensword}
+\end{frame}
+
+\begin{frame}{Best-practices per la costruzione di GUI}
+\begin{itemize}\itemsep10pt
+\item La dimensione di default della finestra va calcolata in base alla dimensione dello schermo.
+\item \`{E} opportuno \underline{non} specificare dimensioni assolute in pixel per i componenti della GUI, ma dimensionarli in termini relativi rispetto al container.
+\item Anche per i layout è opportuno non utilizzare dimensioni fisse in pixel.
+\item Preferire i font di sistema (la JVM in automatico associa il font di default dell'OS).
+\item Preferire la dimensione dei font di default, se se ne sceglie una diversa, renderla relativa alla dimensione corrente della view.
+\end{itemize}
+\end{frame}
 
 \subsection{Supporto all'internazionalizzazione}
 
-\fr{Resource bundles}{
-	\bl{Una UI, tanti linguaggi}{
-		Vorremmo poter scrivere la GUI una volta sola, e cambiare le parti scritte a seconda dell'impostazione della lingua (di sistema o della nostra applicazione).
+\begin{frame}{Supporto multilingua per le GUI}
+\begin{itemize}
+\item Sarebbe opportuno definire la GUI una sola volta e cambiare dinamicamente le parti scritte (il testo) a seconda dell'impostazione della lingua di sistema (o della nostra applicazione).
+\begin{itemize}
+\item In realtà, non solo per la lingua ma anche per il formato dei numeri, la valuta, le convenzioni sulla data,\dots
+\end{itemize}
+\end{itemize}
+\begin{block}{Java Resource Bundles}
+Java fornisce una architettura per l'internazionalizzazione, che fa uso di ``\textbf{ResourceBundle}'' e di una serie di file di supporto (properties files).
 
-		Non solo per la lingua, ma anche per il formato dei numeri, la valuta, le convenzioni sulla data...
-	}
-	\bl{In Java}{
-		Java fornisce una architettura per l'internazionalizzazione, che fa uso di ``ResourceBundle'' e di una serie di file di supporto (properties files).
-
-		Chi desidera implementare supporto multilingua, è invitato a seguire i seguenti tutorial:
-		\iz {
-			\item \url{https://docs.oracle.com/javase/tutorial/i18n/resbundle/index.html}
-			\item \url{http://tutorials.jenkov.com/java-internationalization/resourcebundle.html}
-		}
-	}
-}
-
+Per approfondimenti (per implementare il supporto multilingua):
+\begin{itemize}
+\item \url{https://docs.oracle.com/javase/tutorial/i18n/resbundle/index.html}
+\item \url{http://tutorials.jenkov.com/java-internationalization/resourcebundle.html}
+\end{itemize}
+\end{block}
+\end{frame}
 
 \section{Deployment di applicazioni}
-\fr{\textbf{Write once, run anywhere...}} {
-	\textbf{...È VERO A PATTO CHE SIATE IN GRADO DI DISTRIBUIRE PER TUTTE LE PIATTAFORME LA VOSTRA APPLICAZIONE!}
 
-	\iz {
-		\item Ossia, nel nostro caso, distribuire un archivio JAR eseguibile autocontenuto
-		\item Esistono setup diversi, ad esempio con installer dedicati per ciascuna piattaforma, che aggiungono notevole complessità e tempo senza nessun vantaggio davvero importante
-	}
-}
+\begin{frame}{Deployment: indicazione generale}
+\begin{itemize}\itemsep20pt
+\item \textbf{Per le applicazioni scritte in linguaggio Java, è buona norma distribuire un archivio JAR eseguibile autocontenuto.}
+\begin{itemize}
+\item In Eclipse: (Project dir) $\rightarrow$ Export... $\rightarrow$ Java $\rightarrow$ Runnable JAR File
+\end{itemize}
+\item Esistono anche setup diversi, ad esempio con installer dedicati per ciascuna piattaforma, che aggiungono notevole complessità e tempo senza nessun vantaggio realmente importante.
+\end{itemize}
+
+\end{frame}
 
 \subsection{Corretta configurazione di un progetto Eclipse}
 
-\fr{Corretta struttura di un progetto} {
-	\centering
-	\includegraphics[width=0.99\textwidth]{img/struct}
-}
+\begin{frame}{Corretta struttura di un progetto}
+\centering
+\includegraphics[width=0.99\textwidth]{img/struct}
+\end{frame}
 
-\fr{Corretta struttura di un progetto} {
-	\bl{\texttt{src}} {
-		\iz{
-			\item	Contiene \textbf{esclusivamente} il codice sorgente dell'applicazione. Non deve contenere risorse, javadocs o file binari
-			\item Eventualmente possono esistere più cartelle sorgente, ad esempio perché parte del codice viene generato da un sistema automatico, oppure perché il progetto è sviluppato usando più di un linguaggio
-			\item Nel caso di generatori, è buona norma dividere il codice generato da quello generante, ad esempio creando una cartella \texttt{src-gen}
-			\item Nel caso si utilizzino più linguaggi, è bene distinguerli usando source folder separate, e.g. \texttt{src-java} e \texttt{src-prolog}
-			\item In Eclipse è possibile marcare una cartella come ``cartella sorgente'': Proprietà del progetto $\rightarrow$ Java Build Path $\rightarrow$ Source $\rightarrow$ Add Folder $\rightarrow$ Selezione della cartella $\rightarrow$ OK $\rightarrow$ OK
-			\item Tutti i sorgenti di tutte le cartelle sorgente verranno compilati ed inseriti nella cartella di output da Eclipse
-		}
-	}
-}
+\begin{frame}{Corretta struttura di un progetto -- Dettagli (1/3)}
 
-\fr{Corretta struttura di un progetto} {
-	\bl{\texttt{res}} {
-		\iz{
-			\item	Contiene le risorse del progetto opportunamente organizzate
-			\item	Per risorse si intendono icone, file di testo, video, immagini, modelli 3D e qualunque cosa sia necessaria al corretto funzionamento del programma ma non sia una libreria o un file sorgente
-			\item	In Eclipse, per far sì che le risorse vengano inserite nel classpath (da cui sarà più facile caricarle), è necessario rendere \texttt{res} una cartella sorgente con la procedura descritta nella slide precedente
-		}
-	}
-	\bl{\texttt{lib}} {
-		\iz{
-			\item	Contiene tutte le librerie che si sono usate, che siano in file jar o che siano librerie native in formato .so (o .dll)
-		}
-	}
-}
+\begin{block}{\texttt{src}}
+\begin{itemize}
+\item Contiene \textbf{esclusivamente} il codice sorgente dell'applicazione organizzato in package. Non deve contenere altro!
 
-\fr{Corretta struttura di un progetto} {
-	\bl{\texttt{doc}} {
-		\iz{
-			\item	Contiene la documentazione del progetto
-			\item	Se c'è sia documentazione non rigenerabile (e.g. una relazione) che rigenerabile (e.g. la javadoc), è bene tenerle separate (facilita il tracking con DVCS)
-		}
-	}
-	\bl{\texttt{bin}} {
-		\iz{
-			\item	Contiene la versione compilata del vostro software
-			\item	In Eclipse, la creazione di questa cartella è totalmente nelle mani del SDK
-		}
-	}
-	\bl{\texttt{README.md}} {
-		\iz{
-			\item	File con la descrizione del progetto: autori, breve guida d'uso, link a risorse. Bitbucket e GitHub sono in grado di fare il parse del file e di integrarlo nella pagina del progetto, in modo da dargli una descrizione.
-		}
-	}
-}
+\item Eventualmente possono esistere più cartelle sorgente.
+\begin{itemize}
+\item Ad esempio perché parte del codice viene generato da un sistema automatico, oppure perché il progetto è sviluppato usando più di un linguaggio.
+\item Nel caso di generatori, è buona norma dividere il codice generato da quello generante, ad esempio creando una cartella \texttt{src-gen}.
+\item Nel caso si utilizzino più linguaggi, è bene distinguerli usando source folder separate, es. \texttt{src-java} e \texttt{src-prolog}.
+\end{itemize} 
 
-\fr{Eclipse e path relativi} {
-	\bl{Motivazioni} {
-		Quando si lavora ad un progetto, è bene che tutti i path siano relativi alla radice del progetto, altrimenti:
-		\iz{
-			\item Gli altri membri del team dovranno continuamente cambiare le impostazioni per adattarle al loro file system
-			\item Il progetto non sarà sviluppabile su piattaforme diverse
-			\item Questo è vero in particolare per le librerie, supponendo che le risorse siano gestite correttamente
-		}
-	}
-}
+\item In Eclipse è possibile marcare una cartella come ``cartella sorgente'': Proprietà del progetto $\rightarrow$ Java Build Path $\rightarrow$ Source $\rightarrow$ Add Folder $\rightarrow$ Selezione della cartella $\rightarrow$ OK $\rightarrow$ OK
+\begin{itemize}
+\item Tutti i sorgenti di tutte le cartelle sorgente verranno compilati ed inseriti nella cartella di output da Eclipse
+\end{itemize}		
+\end{itemize}
+\end{block}
+\end{frame}
 
-\fr{Eclipse e path relativi} {
-	\bl{Procedura \textbf{\underline{NON}} corretta} {
-		Il modo \textbf{\underline{sbagliato}} di cui importare una libreria in Eclipse è: Proprietà del progetto $\rightarrow$ Java Build Path $\rightarrow$ Libraries $\rightarrow$ Add External JARs $\rightarrow$ Selezione dei JAR $\rightarrow$ OK $\rightarrow$ OK
+\begin{frame}{Corretta struttura di un progetto -- Dettagli (2/3)}
+\begin{block}{\texttt{res}}
+\begin{itemize}
+\item Contiene le risorse del progetto opportunamente organizzate
+\begin{itemize}
+\item Per risorse si intendono icone, file di testo, video, immagini, modelli 3D e qualunque cosa sia necessaria al corretto funzionamento del programma ma non sia una libreria o un file sorgente.
+\end{itemize}
 
-		\iz{
-			\item È possibile scegliere JAR da qualunque punto del file system
-			\item Vengono generati percorsi assoluti
-		}
-	}
-	\bl{Procedura \textbf{\underline{corretta}}} {
-		Il modo \textbf{\underline{corretto}} di cui importare una libreria in Eclipse è: Proprietà del progetto $\rightarrow$ Java Build Path $\rightarrow$ Libraries $\rightarrow$ Add JARs $\rightarrow$ Selezione dei JAR $\rightarrow$ OK $\rightarrow$ OK
-		\iz{
-			\item È possibile scegliere solo JAR file che esistono in una delle cartelle del progetto (e, se il progetto è ben configurato, stanno in \texttt{lib})
-			\item Vengono generati percorsi relativi alla root del progetto
-		}
-	}
-}
+\item In Eclipse, per far sì che le risorse vengano inserite nel classpath (da cui sarà più facile caricarle), è necessario rendere \texttt{res} una cartella sorgente con la procedura descritta nella slide precedente.
+\end{itemize}
+\end{block}
+
+\begin{block}{\texttt{lib}}
+\begin{itemize}
+\item	Contiene tutte le librerie che si sono usate, che siano in file jar o che siano librerie native in formato .so (o .dll)
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Corretta struttura di un progetto -- Dettagli (3/3)}
+\begin{block}{\texttt{doc}}
+\begin{itemize}
+\item Contiene la documentazione del progetto.
+\item Sesi decide di inserire sia documentazione di tipo non rigenerabile (e.g. una relazione in pdf) sia quella di tipo rigenerabile (e.g. la javadoc), è bene tenerle separate (facilita il tracking con DVCS).
+\end{itemize}
+\end{block}
+
+\begin{block}{\texttt{bin}}
+\begin{itemize}
+\item Contiene la versione compilata del vostro software.
+\item In Eclipse, la creazione di questa cartella è compito del SDK.
+\end{itemize}
+\end{block}
+
+\begin{block}{\texttt{README.md}}
+\begin{itemize}
+\item File con la descrizione del progetto: autori, breve guida d'uso, link a risorse. \begin{itemize}
+\item Bitbucket e GitHub sono in grado di fare il parse del file e di integrarlo nella pagina del progetto, in modo da dargli una descrizione.
+\end{itemize} 
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Utilizzo di path relativi in Eclipse (1/2)}
+\begin{itemize}\itemsep20pt
+\item Quando si lavora ad un progetto, \textbf{è bene che tutti i path siano relativi alla radice del progetto stesso}.
+\item In caso contrario:
+\begin{itemize}
+\item Gli altri membri del team dovranno continuamente cambiare le impostazioni per adattarle al loro file system.
+\item Il progetto non sarà sviluppabile su piattaforme diverse.
+\item Questo è vero in particolare per le librerie, supponendo che le risorse siano gestite correttamente.
+\item \dots
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Utilizzo di path relativi in Eclipse (2/2)}
+
+\begin{block}{Procedura \textbf{\underline{NON}} corretta}
+Il modo \textbf{\underline{sbagliato}} di cui importare una libreria in Eclipse è: Proprietà del progetto $\rightarrow$ Java Build Path $\rightarrow$ Libraries $\rightarrow$ Add External JARs $\rightarrow$ Selezione dei JAR $\rightarrow$ OK $\rightarrow$ OK
+\begin{itemize}
+\item \`{E} possibile scegliere JAR da qualunque punto del file system.
+\item Vengono generati percorsi assoluti.
+\end{itemize}
+\end{block}
+
+\begin{block}{Procedura \textbf{\underline{corretta}}}
+Il modo \textbf{\underline{corretto}} di cui importare una libreria in Eclipse è: Proprietà del progetto $\rightarrow$ Java Build Path $\rightarrow$ Libraries $\rightarrow$ Add JARs $\rightarrow$ Selezione dei JAR $\rightarrow$ OK $\rightarrow$ OK
+\begin{itemize}
+\item \`{E} possibile scegliere solo JAR file che esistono in una delle cartelle del progetto (e, se il progetto è ben configurato, sono inserite in \texttt{lib}).
+\item Vengono generati percorsi relativi alla root del progetto.
+\end{itemize}
+\end{block}
+\end{frame}
 
 \subsection{Caricamento di risorse dal classpath}
 
-\fr{Risorse dal classpath} {
-	\bl{Motivazione} {
-		\iz {
-			\item Abbiamo inserito le nostre risorse nel progetto in maniera tale che vengano copiate nella cartella bin
-			\item Queste risorse ed i file compilati verranno anche inseriti nel JAR eseguibile
-			\item Come possiamo accedere a queste risorse trasparentemente, ossia caricarle sia che si trovino sul file system, sia che si trovino nel JAR eseguibile, sia che vengano incluse in un JAR di risorse separato (e.g. nel caso di videogiochi open source a pagamento)?
-		}
-	}
-	\bl{\texttt{Class.getResource()}} {
-		\iz {
-			\item Java fornisce un'utilità per caricare risorse dal \textbf{classpath}
-			\item Come abbiamo visto usando l'opzione \texttt{-cp} di \texttt{java} e \texttt{javac}, il classpath può contenere indifferentemente dei path o dei JAR
-		}
-		
-	}
-}
-
-\begin{frame}[fragile]{Caricamento di file}
-	\begin{lstlisting}
-		final InputStream in = LoadImage.class.getResourceAsStream("/settings/settings");
-		final BufferedReader br = new BufferedReader(new InputStreamReader(in));
-		final String line = br.readLine();
-		in.close();
-\end{lstlisting}
+\begin{frame}{Risorse caricate dal classpath}
+\begin{itemize}
+\item Abbiamo inserito le nostre risorse nel progetto in maniera tale che vengano copiate nella cartella bin.
+\item Queste risorse ed i file compilati verranno anche inseriti nel JAR eseguibile.
+\item Come possiamo accedere a queste risorse in modo trasparente?
+\begin{itemize}
+\item Ossia caricarle sia che si trovino sul file system, sia che si trovino nel JAR eseguibile, sia che vengano incluse in un JAR di risorse separato.
+\end{itemize} 
+\end{itemize}
+\begin{block}{\texttt{Class.getResource()}}
+\begin{itemize}
+\item Java fornisce un'utilità per caricare risorse dal \textbf{classpath}
+\item Come abbiamo visto usando l'opzione \texttt{-cp} di \texttt{java} e \texttt{javac}, il classpath può contenere indifferentemente dei path o dei JAR
+\end{itemize}
+\end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Caricamento di immagini}
-	\begin{lstlisting}
-		final URL imgURL = LoadImage.class.getResource("/images/gandalf.jpg");
-		final ImageIcon icon = new ImageIcon(imgURL);
-		final JLabel lab1 = new JLabel(icon);
-	\end{lstlisting}
+\begin{frame}[fragile]{Risorse caricate dal classpath -- Esempi}
+
+\begin{block}{Caricamento di File}
+\begin{lstlisting}
+final InputStream in = LoadImage.class.getResourceAsStream("/settings/settings");
+final BufferedReader br = new BufferedReader(new InputStreamReader(in));
+final String line = br.readLine();
+in.close();
+\end{lstlisting}
+\end{block}
+
+\begin{block}{Caricamento di Immagini}
+\begin{lstlisting}
+final URL imgURL = LoadImage.class.getResource("/images/gandalf.jpg");
+final ImageIcon icon = new ImageIcon(imgURL);
+final JLabel lab1 = new JLabel(icon);
+\end{lstlisting}
+\end{block}
 \end{frame}
 
 \subsection{Installazione per-utente}
 
-\fr{Installazione delle impostazioni} {
-	\bl{Motivazione} {
-		Spesso un software ha necessità di caricare al primo avvio delle impostazioni di default, quindi lasciare l'utente libero di modificarle e, se avviato successivamente caricare quelle scelte dall'utente. In caso di sistema multiutente, le impostazioni saranno diverse per ciascuno.
-	}
-	\bl{Strategia} {
-		\footnotesize
-		\iz {
-			\item Si sceglie una cartella nella home folder dell'utente dove salvare le impostazioni. È norma consolidata creare una cartella \texttt{.nomeprogramma}.
-			\item Al primo avvio, si verifica se tale cartella esiste e se contenga i file di configurazione
-			\item Se non è presente, non sono presenti i file, oppure non sono leggibili, si procede a caricare i default usando \texttt{getResource()} e li si copia nella cartella destinazione
-			\item I file di configurazione della cartella vengono caricati e utilizzati, ed eventualmente sovrascritti con le nuove impostazioni utente
-		}
-	}
-}
+\begin{frame}{Installazione delle impostazioni}
+\begin{block}{Motivazione}
+Spesso un software ha necessità di caricare al primo avvio delle impostazioni di default, quindi lasciare l'utente libero di modificarle e, se avviato successivamente caricare quelle scelte dall'utente. In caso di sistema multiutente, le impostazioni saranno diverse per ciascuno.
+\end{block}
+
+\begin{block}{Strategia}
+\begin{itemize}
+\item Si sceglie una cartella nella home folder dell'utente dove salvare le impostazioni. 
+\begin{itemize}
+\item È norma consolidata creare una cartella \texttt{.nomeprogramma}.
+\end{itemize}
+
+\item Al primo avvio, si verifica se tale cartella esiste e se contiene i file di configurazione previsti.
+\begin{itemize}
+\item Se non è presente (o se non sono presenti alcuni/tutti) i file oppure se non sono leggibili), si procede a caricare nella cartella di destinazione i file di default usando \texttt{getResource()}.
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\section{Ricerca/Utilizzo di Librerie a Supporto}
+\begin{frame}{Uso di Librerie a Supporto}
+\begin{itemize}\itemsep15pt
+\item Durante lo sviluppo di un software, spesso emerge la necessità di realizzare componenti a supporto della propria applicazione, utili per incapsulare un determinato comportamento/funzionalità ma non cruciali per la logica applicativa.
+
+\item Nella maggior parte dei casi una tale libreria/componente è già stato sviluppato da qualcun altro!
+
+\item Risulta opportuno avvalersi di librerie open source già disponibili e testate\dots
+\begin{itemize}
+\item \dots dopo aver letto attentamente la documentazione e averne compreso a fondo il comportamento!
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{The Maven Central Repository}
+\begin{itemize}\itemsep10pt
+\item Costituisce la più ampia collezione di librerie e componenti Java open-source.
+\begin{itemize}
+\item È il repository di default per Apache Maven (il più noto tool per il project management).
+\end{itemize}
+\item Rappresenta uno dei modi più rapidi per accedere a librerie sviluppate da altri sviluppatori e distribuire le proprie.
+\item Consente di ricercare e scaricare pressoché qualunque libreria a supporto utile nelle proprie applicazioni open-source.
+
+\item \url{https://search.maven.org/}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Top 20 Java Library}
+\begin{center}
+\includegraphics[width=0.6\textwidth]{img/top-20-java-libraries}
+\end{center}
+{\scriptsize \url{blog.takipi.com/we-analyzed-60678-libraries-on-github-here-are-the-top-100}}
+\end{frame}
+
+\begin{frame}{Altri Repository per librerie Java-based}
+\begin{itemize}\itemsep15pt
+\item \textbf{Google Guava} (\url{https://github.com/google/guava})
+\begin{itemize}
+\item Il progetto Guava di Google raccoglie diverse librerie core sviluppate da Google che possono essere utilizzate per lo sviluppo di applicazioni.
+\item Ad esempio, sono disponibili librerie per Collections Management, Concurrency, I/O, String Processing,\dots
+\end{itemize}
+\item \textbf{Apache Commons} (\url{https://commons.apache.org})
+\item \textbf{SLF4J} (\url{http://www.slf4j.org})
+\begin{itemize}
+\item Consente di utilizzare una serie di framework per il logging.
+\end{itemize}
+\end{itemize}
+\end{frame}
 
 \section{Esercitazione sulla concorrenza}
 
+\subsection{JVisualVM}
+
+\begin{frame}{Profiling di applicazioni Java}
+\begin{itemize}\itemsep10pt
+\item Quando si sviluppa un'applicazione complessa, soprattutto se basata su meccanismi di concorrenza, è opportuno analizzarne il comportamento e monitorarne le performance.
+\begin{itemize}
+\item Spesso il monitoraggio delle performance è essenziale per identificare eventuali problematiche o capire l'origine di problemi che possono essere insorti.
+\end{itemize}
+\item Tra gli strumenti che possono essere utilizzati per monitorare l'esecuzione di applicazioni che sono eseguite sulla JVM, due sono distribuiti unitamente al Java Development Kit (JDK).
+\begin{itemize}
+\item \textbf{JConsole}, lo storico (e scarno) tool per il profiling di applicazioni Java.
+\item \textbf{JVisualVM}, il più recente ed evoluto tool utilizzabile per monitorare l'evoluzione e le performance di applicazioni in esecuzione sulla JVM.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{JVisualVM}
+\begin{itemize}\itemsep10pt
+\item Si tratta di un profiler per applicazioni Java che consente di misurarne ed analizzarne le performance.
+\item Interagisce con la JVM per fornire informazioni circa le performance e il consumo di risorse di applicazioni in esecuzione.
+\item Distribuito internamente al JDK dalla versione 5.0
+\item Consente di monitorare:
+\begin{itemize}
+\item la percentuale di CPU utilizzata da singoli metodi, thread, \dots
+\item per quanto tempo un thread si trova nello stato di running oppure in stato di blocco o di idle.
+\item \dots
+\end{itemize}
+\item Richiamabile attraverso il comando \texttt{jvisualvm}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{JVisualVM - Overview}
+\centering
+\includegraphics[width=0.99\textwidth]{img/jvisualvm-0}
+\end{frame}
+
+\begin{frame}{JVisualVM - Monitor}
+\centering
+\includegraphics[width=0.99\textwidth]{img/jvisualvm-1}
+\end{frame}
+
+\begin{frame}{JVisualVM - Threads Status}
+\centering
+\includegraphics[width=0.99\textwidth]{img/jvisualvm-2}
+\end{frame}
+
+\begin{frame}{JVisualVM - Thread Dump Example}
+\centering
+\includegraphics[width=0.99\textwidth]{img/jvisualvm-3}
+\end{frame}
+
 \subsection{GUI reattive}
 
-\fr{Esercizi sulle GUI reattive}{
-	\bl{Istruzioni}{
-		\en{
-			\item  \emph{gui1}: studiare e analizzare il primo esercizio, aiutandosi con i commenti
-			\item \emph{gui2}: estensione di \emph{gui1} (seguire le istruzioni riportate nel test dell'esercizio)
-			\item \emph{gui3}: ulteriore estensione di \emph{gui3}
-		}
-	}
-}
+\begin{frame}{Esercizi da svolgere in Autonomia}
+\begin{block}{Esercizi sulle GUI reattive}
+\begin{enumerate}
+\item \emph{gui1}: studiare e analizzare il primo esercizio, aiutandosi con i commenti
+\item \emph{gui2}: estensione di \emph{gui1} (seguire le istruzioni riportate nel test dell'esercizio)
+\item \emph{gui3}: ulteriore estensione di \emph{gui3}
+\end{enumerate}
+\end{block}
 
-\subsection{Worker}
-
-\fr{Esercizi sui Worker}{
-	\bl{Istruzioni}{
-		\en{
-			\item  \emph{worker1}: studiare e analizzare il primo esercizio, aiutandosi con i commenti
-			\item \emph{worker2}: estensione di \emph{worker1} (seguire le istruzioni riportate nel test dell'esercizio)
-		}
-	}
-}
-
-
+\begin{block}{Esercizi sui Worker}
+\begin{enumerate}
+\item  \emph{worker1}: studiare e analizzare il primo esercizio, aiutandosi con i commenti
+\item \emph{worker2}: estensione di \emph{worker1} (seguire le istruzioni riportate nel test dell'esercizio)
+\end{enumerate}
+\end{block}
+\end{frame}
 
 \end{document}
+
+
 \section{Monitoring e Debugging di Applicazioni Concorrenti}
 
 \fr{Monitoring Thread: JConsole TOOL}{
