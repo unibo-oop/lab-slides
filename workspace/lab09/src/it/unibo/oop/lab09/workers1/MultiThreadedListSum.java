@@ -5,9 +5,6 @@ import java.util.List;
 /**
  * This is a standard implementation of the calculation.
  * 
- * @author mviroli
- * @author mcasadei
- * 
  * */
 
 public class MultiThreadedListSum implements ISumList {
@@ -20,16 +17,15 @@ public class MultiThreadedListSum implements ISumList {
      *            no. of thread performing the sum.
      */
     public MultiThreadedListSum(final int nthread) {
-        super();
         this.nthread = nthread;
     }
 
-    private class Worker extends Thread {
+    private static class Worker extends Thread {
 
         // Campi che identificano il lavoro che il singolo Worker deve eseguire
         private final List<Integer> list;
-        private int startpos;
-        private int nelem;
+        private final int startpos;
+        private final int nelem;
         // Risultato della computazione
         private long res;
 
@@ -53,7 +49,7 @@ public class MultiThreadedListSum implements ISumList {
         @Override
         public void run() {
             // Esecuzione del singolo Worker
-            // System.out.println("Working from position "+startpos+" to position "+(startpos+nelem-1));
+            System.out.println("Working from position " + startpos + " to position " + (startpos + nelem - 1));
             for (int i = startpos; i < list.size() && i < startpos + nelem; i++) {
                 this.res += this.list.get(i);
             }
@@ -77,18 +73,18 @@ public class MultiThreadedListSum implements ISumList {
         // Genero un array di Worker e li faccio partire
         Worker[] w = new Worker[nthread];
         int start = 0;
-        int size = list.size() % nthread + list.size() / nthread;
+        final int size = list.size() % nthread + list.size() / nthread;
         for (int j = 0; j < nthread; j++) {
             w[j] = new Worker(list, start, size);
             w[j].start();
             start = start + size;
         }
         // Attendo la fine di tutti i worker e recupero i risultati
-        for (Worker worker : w) {
+        for (final Worker worker : w) {
             try {
                 worker.join();
             } catch (InterruptedException e) {
-
+                System.out.println("Sum execution interrupted");
             }
             res += worker.getResult();
         }

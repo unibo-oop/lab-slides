@@ -5,9 +5,6 @@ import java.util.List;
 /**
  * 
  * An interface defining a method to sum up the elements of a list.
- * 
- * @author mviroli
- * @author mcasadei
  *
  */
 public interface ISumList {
