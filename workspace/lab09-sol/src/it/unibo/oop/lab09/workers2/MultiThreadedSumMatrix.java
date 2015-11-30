@@ -5,9 +5,6 @@ import java.util.Arrays;
 /**
  * This is a standard implementation of the calculation.
  * 
- * @author mviroli
- * @author mcasadei
- * 
  */
 
 public class MultiThreadedSumMatrix implements ISumMatrix {
@@ -66,12 +63,7 @@ public class MultiThreadedSumMatrix implements ISumMatrix {
     }
 
     /**
-     * Global sum fo the matrix.
-     * 
-     * @param matrix
-     *            the matrix to be summed.
-     * 
-     * @return the sum of the matrix elements
+     * {@inheritDoc}
      */
     public double sum(final double[][] matrix) {
         double res = 0;
@@ -87,6 +79,7 @@ public class MultiThreadedSumMatrix implements ISumMatrix {
             try {
                 worker.join();
             } catch (InterruptedException e) {
+                System.out.println("Something went wrong: " + e);
             }
             res += worker.getResult();
         }

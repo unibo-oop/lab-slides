@@ -1,15 +1,16 @@
 package it.unibo.oop.lab09.workers1;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
-import java.util.*;
 
 /**
  * 
  * TestMatrix for worker 1.
  * 
- * @author mviroli
- * @author mcasadei
  *
  */
 public class TestListSum {
@@ -29,6 +30,7 @@ public class TestListSum {
      */
 
     private static final int SIZE = 10000000;
+    private static final String MSEC = " msec";
 
     /**
      * Base test for a multithreaded list sum.
@@ -47,27 +49,27 @@ public class TestListSum {
         ISumList sumList = new MultiThreadedListSum(1);
         time = System.currentTimeMillis();
         assertEquals(sumList.sum(list), sum);
-        System.out.println("Tried with 1 thread: " + (System.currentTimeMillis() - time) + " msec");
+        System.out.println("Tried with 1 thread: " + (System.currentTimeMillis() - time) + MSEC);
 
         sumList = new MultiThreadedListSum(3);
         time = System.currentTimeMillis();
         assertEquals(sumList.sum(list), sum);
-        System.out.println("Tried with 3 threads: " + (System.currentTimeMillis() - time) + " msec");
+        System.out.println("Tried with 3 threads: " + (System.currentTimeMillis() - time) + MSEC);
 
         sumList = new MultiThreadedListSum(7);
         time = System.currentTimeMillis();
         assertEquals(sumList.sum(list), sum);
-        System.out.println("Tried with 7 threads: " + (System.currentTimeMillis() - time) + " msec");
+        System.out.println("Tried with 7 threads: " + (System.currentTimeMillis() - time) + MSEC);
 
         sumList = new MultiThreadedListSum(10);
         time = System.currentTimeMillis();
         assertEquals(sumList.sum(list), sum);
-        System.out.println("Tried with 10 threads: " + (System.currentTimeMillis() - time) + " msec");
+        System.out.println("Tried with 10 threads: " + (System.currentTimeMillis() - time) + MSEC);
 
         sumList = new MultiThreadedListSum(17);
         time = System.currentTimeMillis();
         assertEquals(sumList.sum(list), sum);
-        System.out.println("Tried with 17 threads: " + (System.currentTimeMillis() - time) + " msec");
+        System.out.println("Tried with 17 threads: " + (System.currentTimeMillis() - time) + MSEC);
     }
 
 }

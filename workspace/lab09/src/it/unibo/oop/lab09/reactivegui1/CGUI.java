@@ -100,7 +100,7 @@ public class CGUI extends JFrame {
                     Thread.sleep(100);
                 } catch (InvocationTargetException | InterruptedException ex) {
                     // interrupted: added a system.out but there are much better ways to log exceptions
-                    System.out.println("Agent has been interrupted " + ex);
+                    System.out.println("Something went wrong. " + ex);
                 }
             }
         }

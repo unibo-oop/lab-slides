@@ -1,25 +1,28 @@
 package it.unibo.oop.lab09.reactivegui1;
 
-import javax.swing.*;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  * 
  * This is a first example on how to realize a reactive GUI.
- * 
- * @author mviroli
- * @author mcasadei
  *
  */
 public class CGUI extends JFrame {
 
     // JFrame implementa Serializable, ricordarsi di generare l'UID
     private static final long serialVersionUID = -6218820567019985015L;
-    
+
     private static final double WIDTH_PERC = 0.2;
     private static final double HEIGHT_PERC = 0.1;
 
@@ -31,10 +34,9 @@ public class CGUI extends JFrame {
      * Builds a new CGUI.
      */
     public CGUI() {
-
+        super();
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize((int) (screenSize.getWidth() * WIDTH_PERC), (int) (screenSize.getHeight() * HEIGHT_PERC));
-
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         final JPanel panel = new JPanel();
@@ -76,7 +78,7 @@ public class CGUI extends JFrame {
 
         // stop viene modificato "da fuori": sia volatile!!
         private volatile boolean stop;
-        private int counter = 0;
+        private int counter;
 
         /**
          * Behavior of thread.
@@ -87,16 +89,18 @@ public class CGUI extends JFrame {
                 try {
                     SwingUtilities.invokeAndWait(new Runnable() {
                         public void run() {
-                            CGUI.this.display.setText("" + Agent.this.counter);
+                            CGUI.this.display.setText(Integer.toString(Agent.this.counter));
                             // or simply:
                             // display.setText("" + counter);
                         }
                     });
                     // Incremento il conteggio e dormo per 100 msec
                     this.counter++;
+
                     Thread.sleep(100);
-                } catch (InterruptedException | InvocationTargetException ex) {
-                    // interrupted
+                } catch (InvocationTargetException | InterruptedException ex) {
+                    // interrupted: added a system.out but there are much better ways to log exceptions
+                    System.out.println("Something went wrong. " + ex);
                 }
             }
         }
