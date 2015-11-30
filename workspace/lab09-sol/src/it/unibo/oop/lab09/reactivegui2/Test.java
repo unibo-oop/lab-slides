@@ -1,13 +1,8 @@
 package it.unibo.oop.lab09.reactivegui2;
 
-import java.io.IOException;
-
 /**
  * 
  * TestMatrix for second reactive GUI.
- * 
- * @author mviroli
- * @author mcasadei
  *
  */
 public final class Test {
@@ -19,15 +14,19 @@ public final class Test {
     /*
      * Realizzare una classe C2GUI con costruttore a zero argomenti, tale che
      * quando istanziata crei un JFrame con l'aspetto mostrato nella figura
-     * allegata (e contatore inizialmente posto a zero). Il contatore venga
-     * aggiornato incrementandolo ogni 100 millisecondi circa, e il suo nuovo
-     * valore venga mostrato ogni volta (l'interfaccia sia quindi reattiva).
-     * Alla pressione del pulsante "down", il conteggio venga da lì in poi
-     * aggiornato decrementandolo; alla pressione del pulsante "up", il
-     * conteggio venga da lì in poi aggiornato incrementandolo; e così via, in
-     * modo alternato. Alla pressione del pulsante "stop", il conteggio si
-     * blocchi, e i tre pulsanti vengano disabilitati. Per far partire
-     * l'applicazioni si tolga il commento nel main qui sotto.
+     * allegata (e contatore inizialmente posto a zero).
+     * 
+     * Il contatore venga aggiornato incrementandolo ogni 100 millisecondi
+     * circa, e il suo nuovo valore venga mostrato ogni volta (l'interfaccia sia
+     * quindi reattiva). Alla pressione del pulsante "down", il conteggio venga
+     * da lì in poi aggiornato decrementandolo; alla pressione del pulsante
+     * "up", il conteggio venga da lì in poi aggiornato incrementandolo; e così
+     * via, in modo alternato.
+     * 
+     * Alla pressione del pulsante "stop", il conteggio si blocchi, e i tre
+     * pulsanti vengano disabilitati.
+     * 
+     * Per far partire l'applicazioni si tolga il commento nel main qui sotto.
      * 
      * Suggerimenti: - si mantenga la struttura dell'esercizio precedente - per
      * pilotare la direzione su/giù si aggiunga un flag booleano all'agente --
@@ -38,10 +37,10 @@ public final class Test {
     /**
      * 
      * @param args
-     *            possible args to pass (not used)
+     *            unused
      * 
      */
-    public static void main(final String[] args) {
+    public static void main(final String... args) {
         new C2GUI();
 
     }
