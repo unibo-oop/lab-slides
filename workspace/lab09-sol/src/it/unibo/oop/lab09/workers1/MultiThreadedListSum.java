@@ -5,8 +5,6 @@ import java.util.List;
 /**
  * This is a standard implementation of the calculation.
  * 
- * @author mviroli
- * @author mcasadei
  * 
  * */
 
@@ -70,7 +68,9 @@ public class MultiThreadedListSum implements ISumList {
 
     }
 
-    @Override
+    /**
+     * {@inheritDoc}.
+     */
     public long sum(final List<Integer> list) {
         long res = 0;
 
@@ -88,7 +88,8 @@ public class MultiThreadedListSum implements ISumList {
             try {
                 worker.join();
             } catch (InterruptedException e) {
-
+                // interrupted: added a system.out but there are much better ways to log exceptions
+                System.out.println("Something went wrong. " + e);
             }
             res += worker.getResult();
         }

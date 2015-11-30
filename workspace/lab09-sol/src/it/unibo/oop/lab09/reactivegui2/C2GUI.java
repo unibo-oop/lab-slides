@@ -1,18 +1,20 @@
 package it.unibo.oop.lab09.reactivegui2;
 
-import javax.swing.*;
-
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  * 
  * Second example of reactive GUI.
- * 
- * @author mviroli
- * @author mcasadei
  *
  */
 public class C2GUI extends JFrame {
@@ -20,7 +22,7 @@ public class C2GUI extends JFrame {
     private static final long serialVersionUID = -6218820567019985015L;
     private static final double WIDTH_PERC = 0.2;
     private static final double HEIGHT_PERC = 0.1;
-    
+
     private final JLabel display = new JLabel();
     private final JButton stop = new JButton("stop");
     private final JButton up = new JButton("up");
@@ -30,9 +32,10 @@ public class C2GUI extends JFrame {
      * Construct a C2GUI.
      */
     public C2GUI() {
+        super();
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize((int) (screenSize.getWidth() * WIDTH_PERC), (int) (screenSize.getHeight() * HEIGHT_PERC));
-        
+
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         final JPanel panel = new JPanel();
@@ -84,20 +87,22 @@ public class C2GUI extends JFrame {
 
         private volatile boolean stop;
         private volatile boolean up = true;
-        private int counter = 0;
+        private int counter;
 
         public void run() {
             while (!stop) {
                 try {
                     SwingUtilities.invokeAndWait(new Runnable() {
                         public void run() {
-                            display.setText("" + counter);
+                            display.setText(Integer.toString(counter));
                         }
                     });
                     counter += up ? 1 : -1;
 
                     Thread.sleep(100);
                 } catch (InvocationTargetException | InterruptedException ex) {
+                    // interrupted: added a system.out but there are much better ways to log exceptions
+                    System.out.println("Something went wrong. " + ex);
                 }
             }
         }

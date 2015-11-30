@@ -3,8 +3,6 @@ package it.unibo.oop.lab09.reactivegui3;
 /**
  * TestMatrix class for third reactive GUI.
  * 
- * @author mviroli
- * @author mcasadei
  *
  */
 public final class Test {
@@ -26,10 +24,10 @@ public final class Test {
     /**
      * 
      * @param args
-     *            possible args to pass (not used)
+     *            unused
      * 
      */
-    public static void main(final String[] args) {
+    public static void main(final String... args) {
         new C3GUI();
 
     }

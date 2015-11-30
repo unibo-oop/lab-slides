@@ -1,17 +1,20 @@
 package it.unibo.oop.lab09.reactivegui3;
 
-import javax.swing.*;
-
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  * 
  * Third experiment with reactive gui.
  * 
- * @author mviroli
- * @author mcasadei
  *
  */
 public class C3GUI extends JFrame {
@@ -31,6 +34,7 @@ public class C3GUI extends JFrame {
      * Builds a C3GUI.
      */
     public C3GUI() {
+        super();
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize((int) (screenSize.getWidth() * WIDTH_PERC), (int) (screenSize.getHeight() * HEIGHT_PERC));
 
@@ -88,20 +92,22 @@ public class C3GUI extends JFrame {
 
         private volatile boolean stop;
         private volatile boolean up = true;
-        private int counter = 0;
+        private int counter;
 
         public void run() {
             while (!stop) {
                 try {
                     SwingUtilities.invokeAndWait(new Runnable() {
                         public void run() {
-                            display.setText("" + counter);
+                            display.setText(Integer.toString(counter));
                         }
                     });
                     counter += up ? 1 : -1;
 
                     Thread.sleep(100);
                 } catch (Exception ex) {
+                    // interrupted: added a system.out but there are much better ways to log exceptions
+                    System.out.println("Something went wrong. " + ex);
                 }
             }
         }
@@ -127,6 +133,8 @@ public class C3GUI extends JFrame {
             try {
                 Thread.sleep(DEADLINE);
             } catch (Exception ex) {
+             // interrupted: added a system.out but there are much better ways to log exceptions
+                System.out.println("Something went wrong. " + ex);
             }
             C3GUI.this.stopCounting();
         }
