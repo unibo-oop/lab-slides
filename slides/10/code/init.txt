@@ -1,0 +1,7 @@
+hg init myawesomeproject
+
+cd myawesomeproject
+
+#do some work 
+
+hg ci -m "my first commit"

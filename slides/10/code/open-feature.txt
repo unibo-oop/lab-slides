@@ -1,0 +1,21 @@
+hg branch feature/name 
+
+# work on feature
+
+hg ci -m "message"
+
+# further work on feature
+
+...
+
+# periodic merge of default into feature
+hg merge default
+hg ci -m "merge default into feature/name"
+
+...
+
+# Close and merge a finished feature
+hg ci --close-branch -m "finished feature" 
+hg update default
+hg merge feature/name 
+hg ci -m "merged finished feature into default"
