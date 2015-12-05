@@ -3,7 +3,7 @@ hg branch stable
 hg tag 0.1.0
 hg up default
 hg merge stable
-hg ci -m "merged stable into default: ready for more development"`
+hg ci -m "merged stable into default: ready for more development"
 
 
 ...

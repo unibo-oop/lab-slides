@@ -52,7 +52,7 @@
 			\item Essendo \textbf{collaborativo} by definition, ciascun team member vi partecipa con un \textbf{ruolo}
 			\item Associa le diverse fasi del ciclo di vita del software a una serie di attività
             \iz {
-                \item Ogni ruolo la/le proprie attività, ognuna codificata in un insieme di passi da seguire         
+                \item Ogni ruolo ha la/le proprie attività, ognuna codificata in un insieme di passi da seguire         
             }
 		}
 		
@@ -89,7 +89,7 @@
         \iz {
 			\item Sono quelle tipiche del cosiddetto \emph{software lifecycle}
             \iz{
-                \item Sviluppo di nuove funzionalità
+                \item Sviluppo del software (delle nuove funzionalità)
 
                 \item Rilascio delle nuove funzionalità (dopo opportuni test funzionali)
 
@@ -109,7 +109,7 @@
                     \iz{
                         \item Retrocompatibilità non garantita!                    
                     } 
-                \item \textbf{Y - minor version}. Identifica rilasci che aggiungono nuove funzionalità, senza toccare quelle già presenti. 
+                \item \textbf{Y - minor version}. Identifica rilasci che aggiungono nuove funzioni, senza toccare quelle già presenti. 
                     \iz{
                         \item Retrocompatibilità garantita!                    
                     } 
@@ -169,35 +169,52 @@
 
 \fr{Rivediamo ruoli e compiti} {
 \iz{
-\item developer: 
+\item Developer: 
     \begin{enumerate}
-        \item aprono una nuova \textbf{feature branch} da default ogni volta che cominciano a sviluppare una nuova funzionalità
+        \item aprono una nuova \textbf{feature branch} da default ogni volta che cominciano lo sviluppo di nuova funzionalità
         \item le \textbf{feature} in realtà si aprono solo per funzionalità ``grandi'', altrimenti si lavora su default
         \item effettuano commit regolari sulla feature branch
-        \item terminato lo sviluppo effettuano la merge della feature in default. Non sempre!
+        \item terminato lo sviluppo della funzionalità effettuano la merge della feature in default
         \item si occupano anche degli hotfix
     \end{enumerate}
 
-\item technical leader: 
+\item Technical leader (per i vostri progetti questa figura non esisterà, probabilmente): 
     \begin{enumerate}
         \item supervisiona la qualità del codice prodotto
         \item è responsabile della qualità del codice che finisce sulla default branch       
     \end{enumerate}
 
-\item release manager:
+\item Release manager:
     \begin{enumerate}
-        \item effettua i rilasci, quindi...
+        \item effettua i rilasci
         \item quando una nuova versione è pronta per il rilascio, effettua il merge della default in stable 
         \item effettua il tagging della release
     \end{enumerate}
 }
 }
 
+\fr{Sulle feature branch} {
+        \iz {
+			\item Ha senso utilizzarle per funzionalità/task grandi
+            \item Quando l'attività di analisi abbia già portato ad una classificazione accurata delle funzionalità
+            \item In particolare in termini di tempo richiesto per completare l'implementazione
+            \item Per progetti articolati consente di separare e gestire meglio le attività di sviluppo
+            \iz{
+                \item chi fa cosa
+                \item più sviluppatori impegnati sulla stessa funzionalità/task usano la stessa branch            
+            }
+            \item In questi contesti può aiutare a tener traccia dello stato di avanzamento di determinate attività
+            \item Per i vostri progetti potrebbe non essere così sensato... 
+		}	
+}
+
+\subsection{Comandi Mercurial}
+
 \fr{Init del repo} {
 \sizedcode{\tiny}{code/init.txt}
 }
 
-\fr{Apertura di una feature} {
+\fr{Uso di una feature} {
 \sizedcode{\tiny}{code/open-feature.txt}
 }
 
@@ -209,8 +226,72 @@
 \sizedcode{\tiny}{code/hotfix.txt}
 }
 
-\fr{Per approfondimenti...} {
+\fr{E la collaborazione?} {
+\iz{
+    \item Finora abbiamo mostrato comandi che si eseguono su un singolo repo
+    \item Vi ricordate come si fa per condividere gli sviluppi con il resto del vostro team?
+    \iz{
+        \item clone
+        \item push
+        \item pull    
+    }
+    \item E' quindi necessario avere un repository remoto ufficiale per il vostro progetto! $\rightarrow$ BitBucket!
+}
+}
 
+\fr{Il repo ufficiale del vostro progetto} {
+\iz{
+    \item Qualcuno di voi agirà come ``repo maintainer''
+    \item Creerà quindi il repo su BitBucket, per esempio
+    \item I membri del team eseguiranno quindi:
+    \iz{
+        \item hg clone URI\_TO\_OFFICIAL\_REPO   
+    }
+    \item Le attività verranno quindi eseguite sul repo locale (working copy) di ciascun membro del team, con condivisione via official repo tramite \texttt{push} e \texttt{pull}
+}
+}
+
+\fr{Best practice per la condivisione I} {
+Developer
+\iz{
+    \item In generale, push regolare delle proprie modifiche su repo ufficiale (e pull regolare di quanto presente in remoto)
+    \iz{
+        \item Se il push riguarda la default branch: le modifiche che condividete via push \textbf{devono compilare}!
+    }
+    \item Eseguire sempre un pull e update tutte le volte che cominciate a lavorare su qualche cosa in una certa branch 
+    \item Per eventuali feature branch? Stesse regole di default (possiamo rilassare qualche vincolo)
+    \item Spesso per questioni di revisione del codice e quality check non sempre gli sviluppatori hanno il permesso di fare push direttamente su default
+    \iz{
+        \item Si può gestire richiedendo una ``pull-request'' sul vs. sistema di hosting (e.g. BitBucket). 
+        \item Non ritenuto di particolare utilità per la gestione dei vostri progetti
+    } 
+    \item Stable non si tocca!
+        \iz{
+        \item Meglio non garantire i diritti di scrittura (pushing) su stable agli sviluppatori!
+    } 
+}
+
+}
+
+\fr{Best practice per la condivisione II} {
+
+Release manager
+\iz{
+    \item Pull e update di default prima di cominciare una release
+    \item Push di stable e default al termine della release 
+}
+}
+
+
+
+
+
+
+
+\fr{Per approfondimenti...} {
+A complete Mercurial branching strategy:\\
+
+\url{http://draketo.de/light/english/mercurial/complete-branching-strategy}
 }
 \end{document}
 
