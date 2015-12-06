@@ -80,7 +80,7 @@
 
                 \item il \textbf{team leader}: coordina l'attività dei developer, sviluppa egli stesso (spesso si prende carico degli aspetti più delicati)
 
-                \item il \textbf{release manager}: si occupa di gestire i rilasci, ovvero ``pubblicazione'' agli utenti delle nuove funzionalità del software
+                \item il \textbf{release manager}: si occupa di gestire i rilasci, ovvero ``pubblicazione'' delle nuove funzionalità del software, rese così disponibili ai suoi utenti
             }
 		}	
 }
@@ -93,7 +93,7 @@
 
                 \item Rilascio delle nuove funzionalità (dopo opportuni test funzionali)
 
-                \item Fix di bug riscontrati nelle versioni rilasciate (tipicamente a seguito di segnalazioni da parte degli utenti)
+                \item Fix di bug riscontrati nelle versioni già rilasciate (a seguito di segnalazioni da parte degli utenti)
             }
             \item Versioni? Cioè?
 		}	
@@ -105,7 +105,7 @@
             \item il numero ha (o dovrebbe) avere un senso, non è un numero estratto a sorte!
             \item Il pattern tipico è: \textbf{X.Y.Z} (numeri naturali)
             \iz{
-                \item \textbf{X - major version}. Identifica una evoluzione importante di un software, nella quale funzionalità precedenti possono in generale aver subito modifiche o essere state eliminate.
+                \item \textbf{X - major version}. Identifica una evoluzione importante del software, nella quale funzionalità precedenti possono in generale aver subito modifiche o essere state eliminate.
                     \iz{
                         \item Retrocompatibilità non garantita!                    
                     } 
@@ -196,8 +196,8 @@
 \fr{Sulle feature branch} {
         \iz {
 			\item Ha senso utilizzarle per funzionalità/task grandi
-            \item Quando l'attività di analisi abbia già portato ad una classificazione accurata delle funzionalità
-            \item In particolare in termini di tempo richiesto per completare l'implementazione
+            \item In particolare in termini di tempo richiesto per completare l'implementazion
+            \item Quando l'attività di analisi abbia già portato ad una classificazione accurata delle funzionalitàe
             \item Per progetti articolati consente di separare e gestire meglio le attività di sviluppo
             \iz{
                 \item chi fa cosa
@@ -242,7 +242,7 @@
 \fr{Il repo ufficiale del vostro progetto} {
 \iz{
     \item Qualcuno di voi agirà come ``repo maintainer''
-    \item Creerà quindi il repo su BitBucket, per esempio
+    \item Creerà quindi il repo su BitBucket
     \item I membri del team eseguiranno quindi:
     \iz{
         \item hg clone URI\_TO\_OFFICIAL\_REPO   

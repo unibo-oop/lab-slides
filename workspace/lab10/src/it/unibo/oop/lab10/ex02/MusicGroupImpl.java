@@ -26,7 +26,7 @@ public class MusicGroupImpl implements MusicGroup {
         if (albumName.isPresent() && !this.albums.containsKey(albumName.get())) {
             throw new IllegalArgumentException("invalid album name");
         }
-        this.songs.add(new Song(songName, albumName, duration));
+        this.songs.add(new MusicGroupImpl.Song(songName, albumName, duration));
     }
 
     @Override

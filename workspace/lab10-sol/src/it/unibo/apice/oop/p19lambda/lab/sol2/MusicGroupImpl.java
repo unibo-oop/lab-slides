@@ -64,6 +64,7 @@ public class MusicGroupImpl implements MusicGroup {
 
     @Override
     public Optional<String> longestSong() {
+        
         return this.songs.stream()
                 .collect(Collectors.maxBy((a, b) -> Double.compare(a.getDuration(), b.getDuration())))
                 .map(Song::getSongName);

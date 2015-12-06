@@ -50,6 +50,7 @@ public final class LambdaFilter extends JFrame {
             while (tk.hasMoreElements()) {
                 set.add(tk.nextToken());
             }
+            System.out.println(" Set : " + set);
             final StringBuilder sb = new StringBuilder();
             for (final String word : set) {
                 sb.append(word);
