@@ -25,35 +25,58 @@
 		Abbiamo visto nell'ultima lezione come sia possibile riunire due flussi di lavoro diversi.
 		%
 		Abbiamo anche visto che, nel caso in cui due linee di sviluppo abbiano modificato concorrentemente un file nello stesso punto, il merge non è banale da effettuare ma occorre risolvere manualmente un \emph{merge conflict}.
-		
-		In caso di merge conflict, l'operazione di merge non viene completata, e per tutti i file che presentano conflitti vengono creati:
-		\iz {
-			\item Un file .orig, che mostra il contenuto del file al momento della richiesta di merge
-			\item Il file col nome precedente, contenente le linee di entrambe le teste.
-		}
 	}
 }
+
+\begin{frame}[fragile]{Selezione dell'algoritmo di merge}
+	\begin{itemize}
+		\item Esistono numerosi algoritmi che si occupano di effettuare il merge, e molti tool che consentono di comparare due versioni confliggenti per crearne una terza che risolva i conflitti.
+		\item Mercurial supporta numerosi algoritmi, ed è inoltre in grado di appoggiarsi a merge tool esterni (su tutti \texttt{kdiff3}).
+		\item Noi useremo un algoritmo built-in che non richiede tool esterni, chiamato \texttt{local:merge}
+		\item Sebbene dovrebbe essere l'algoritmo di default, in molti casi Mercurial trova un merge editor in modo automatico e lo usa: noi \textbf{non} vogliamo che succeda, e configureremo esplicitamente Mercurial per usare \texttt{local:merge}.
+	\end{itemize}
+	Si modifichi il proprio \texttt{hgrc} (\texttt{Mercurial.ini} per chiusa Windows) \emph{aggiungendo} le seguenti linee:
+	\begin{block}{}
+% 		\tiny
+		\begin{verbatim}
+			[ui]
+			merge = internal:merge
+		\end{verbatim}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{internal:merge}}
+		\begin{itemize}
+			\item Cerca di risolvere i conflitti in modo automatico, applicando tutte le modifiche che possono essere inserite parallelamente
+			\item In caso di merge conflict, l'operazione di merge non viene completata, e per tutti i file che presentano conflitti vengono creati:
+			\begin{itemize}
+				\item Un file .orig, che mostra il contenuto del file locale al momento della richiesta di merge.
+				\item Il file col nome precedente, contenente le linee di entrambe le teste (conflict file).
+			\end{itemize}
+		\end{itemize}
+\end{frame}
+
 
 \begin{frame}[fragile]{Esempio di conflict file}
 	\begin{block}{}
 		\tiny
 		\begin{verbatim}
-		public final class HelloWorld {
-		private static final String AUTHOR = "Danilo Pianini";
+public final class HelloWorld {
+    private static final String AUTHOR = "Danilo Pianini";
 
-		public static void main(final String[] args) {
-		<<<<<<< local
-			System.out.println("This program has been realised by " + AUTHOR);
-		=======
-			System.out.println("This program is running in a PC with " + procNumber() + " logic processors!");
-		}
+    public static void main(final String[] args) {
+<<<<<<< local
+        System.out.println("This program has been realised by " + AUTHOR);
+=======
+        System.out.println("This program is running in a PC with " + procNumber() + " logic processors!");
+    }
 
-		public static int procNumber() {
-			return Runtime.getRuntime().availableProcessors();
-		>>>>>>> other
-		}
+    public static int procNumber() {
+        return Runtime.getRuntime().availableProcessors();
+>>>>>>> other
+    }
 
-		}
+}
 		\end{verbatim}
 	\end{block}
 \end{frame}

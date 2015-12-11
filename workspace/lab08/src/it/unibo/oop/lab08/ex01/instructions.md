@@ -22,7 +22,7 @@
 1. Create a new "Read" button
 2. Add it to the JPanel created in ``Ex 01.01``
 3. Test your application. Verify that you can see a new button, but it is useless
-4. Write a new ``ActionListener`` for the new button, in form of anonymous class, that prints a string on screen when the button is pressed.
+4. Write a new ``ActionListener`` for the new button, in form of anonymous class, that prints a string on terminal (use ``System.out``) when the button is pressed.
 5. Test it
 
 ### Ex 01.03
