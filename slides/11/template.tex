@@ -1,0 +1,477 @@
+\documentclass[a4paper,12pt]{report}
+
+\usepackage{alltt, fancyvrb, url}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{wrapfig}
+\usepackage{algorithmic}
+\usepackage[utf8]{inputenc}
+\usepackage{fontenc}
+\usepackage{amsmath,stmaryrd,mathtools,algorithm}
+\usepackage{amssymb}
+
+% Remove option to use English naming
+\usepackage[italian]{cleveref}
+
+% Questo commentalo se vuoi scrivere in inglese.
+\usepackage[italian]{babel}
+
+\title{Meta-relazione per ``Programmazione ad Oggetti''}
+ 
+\author{Danilo Pianini}
+\date{\today}
+
+
+\begin{document}
+ 
+\maketitle
+
+\begin{abstract}
+Questo documento è una relazione di meta livello, ossia una relazione che spiega come scrivere la relazione.
+%
+Lo scopo di questo documento è quello di aiutare gli studenti a comprendere quali punti trattare nella loro relazione, ed in che modo farlo, evitando di perdere del tempo prezioso in prolisse discussioni di aspetti marginali tralasciando invece aspetti di maggior rilievo.
+%
+Per ciascuna delle sezioni del documento sarà fornita una descrizione di ciò che ci si aspetta venga prodotto dal team di sviluppo, assieme ad un elenco (per forza di cose non esaustivo) di elementi che \emph{non} dovrebbero essere inclusi.
+
+Il modello della relazione segue il processo tradizionale di ingegneria del software fase per fase (in maniera ovviamente semplificata).
+%
+Lo studente attento dovrebbe sforzarsi di seguire le tappe suggerite in questa relazione anche per l'effettivo sviluppo del progetto: oltre ad una considerevole semplificazione del processo di redazione di questo documento, infatti, il gruppo beneficerà di un processo di sviluppo più solido e collaudato, di tipo top-down.
+
+La meta-relazione verrà fornita corredata di un template \LaTeX{} per coloro che volessero cimentarsi nell'uso.
+%
+L'uso di \LaTeX{} non è fra i requisiti, non è parte del corso di Programmazione ad Oggetti e non sarà ovviamente valutato. I docenti accetteranno qualunque relazione in formato standard Portable Document Format (pdf), indipendentemente dal software con cui tale documento sarà redatto.
+\end{abstract}
+
+\tableofcontents
+ 
+\chapter{Analisi}
+
+In questo capitolo andrà fatta l'analisi dei requisiti e quella del problema.
+%
+In fase di analisi, è molto importante tenere a mente che non vi deve essere alcun riferimento al design e tantomeno alle tecnologie implementative.
+
+\section{Requisiti}
+
+Nell'analisi dei requisiti si devono elencare i \emph{requisiti} dell'applicazione, ossia cosa l'applicazione dovrà fare.
+%
+Non ci si deve concentrare sui particolari problemi, ma esclusivamente su cosa si desidera che l'applicazione faccia.
+
+\subsection*{Elementi positivi}
+\begin{itemize}
+	\item Si fornisce una descrizione in linguaggio naturale di ciò che il software dovrà fare.
+	\item Gli obiettivi sono spiegati con chiarezza.
+	\item Se il software è stato commissionato o è destinato ad un utente o compagnia specifici, il committente viene nominato.
+	\item Se vi sono termini il cui significato non è immediatamente intuibile, essi vengono spiegati.
+\end{itemize}
+
+\subsection*{Elementi negativi}
+\begin{itemize}
+	\item Si forniscono indicazioni circa i problemi da affrontare
+	\item Si forniscono indicazioni circa possibili soluzioni
+	\item Si forniscono dettagli di tipo tecnico o implementativo
+\end{itemize}
+
+\subsection*{Esempio}
+Il software, commissionato dal gestore del centro di ricerca ``Aperture Laboratories Inc.''\footnote{\url{http://aperturescience.com/}}, mira alla costruzione di una intelligenza artificiale di nome GLaDOS (Genetic Lifeform and Disk Operating System).
+%
+Per intelligenza artificiale si intende un software in grado di assumere decisioni complesse in maniera semi autonoma sugli argomenti di sua competenza, a partire dai vincoli e dagli obiettivi datigli dall'utente.
+
+La suddetta intelligenza artificiale dovrà occuparsi di coordinare le attività all'interno delle camere di test di Aperture, guidando l'utente attraverso un certo numero di sfide di difficoltà crescente.
+%
+Una camera di test è un ambiente realizzato da Aperture Laboratories Inc. al fine di mettere alla prova le proprie tecnologie di manipolazione dell'ambiente.
+%
+All'interno della camera di test, un soggetto qualificato è incaricato di sfruttarle per risolvere alcune sfide.
+%
+Il piano preciso ed il numero delle sfide sarà variabile, e GLaDOS dovrà essere in grado di adattarsi dinamicamente e di fornire indicazioni di guida.
+%
+GLaDOS dovrà essere in grado di comunicare col reparto cucina di Aperture, per ordinare torte da donare agli utenti che completassero l'ultima camera di test con successo.
+
+\section{Analisi e modello del dominio}
+
+In questa sezione si descrive il modello del dominio, descrivendo le entità in gioco ed i rapporti fra loro.
+%
+Si possono sollevare eventuali aspetti particolarmente impegnativi, descrivendo perché lo sono, senza inserire idee circa possibili soluzioni.
+
+È possibile, ed è anzi raccomandato, aiutarsi con uno schema UML del dominio, che diventerà anche lo scheletro del model dell'applicazione: se l'analisi è ben fatta, dovreste ottenere una gerarchia di concetti che rappresentano le entità che compongono il problema da risolvere.
+%
+Un'analisi ben svolta \textbf{prima} di cimentarsi con lo sviluppo rappresenta un notevole aiuto per le fasi successive.
+
+\subsection*{Elementi positivi}
+\begin{itemize}
+	\item Viene descritto accuratamente il modello del dominio.
+	\item Alcuni problemi, se non risolubili in assoluto o nel monte ore, vengono dichiarati come problemi che non saranno risolti o sarano risolti in futuro.
+	\item Si modella il dominio in forma di UML.
+	\item Vengono elencati eventuali requisiti non funzionali (ad esempio requisiti di performance o di compatibilità con piattaforme specifiche).
+\end{itemize}
+
+\subsection*{Elementi negativi}
+\begin{itemize}
+	\item Manca una descrizione a parole del modello del dominio.
+	\item Manca una descrizione UML delle entità del dominio e delle relazioni che intercorrono fra loro.
+	\item Vengono elencate soluzioni ai problemi, invece della descrizione degli stessi.
+	\item Vengono presentati elementi di design, o peggio aspetti implementativi.
+	\item Viene mostrato uno schema UML che include elementi implementativi o non utili alla descrizione del dominio, ma volti alla soluzione (non devono vedersi, ad esempio, campi o metodi privati, o cose che non siano equivalenti ad interfacce).
+\end{itemize}
+
+\subsection*{Esempio}
+GlaDOS dovrà essere in grado di accedere ad un'insieme di camere di test.
+%
+Tale insieme di camere prende il nome di percorso.
+%
+Ciascuna camera è composta di challenge successivi.
+%
+GLaDOS è responsabile di associare a ciascun challenge un insieme di consigli (suggestions) destinati all'utente (subject), dipendenti da possibili eventi.
+%
+Gli elementi costitutivi il problema sono sintetizzati in \Cref{img:analysis}.
+
+La difficoltà primaria sarà quella di riuscire a correlare lo stato corrente dell'utente e gli eventi in modo tale da generare i corretti suggerimenti.
+%
+Questo richiederà di mettere in campo appropriate strategie di intelligenza artificiale.
+
+Data la complessità di elaborare consigli via AI senza intervento umano, la prima versione del software fornita prevederà una serie di consigli forniti dall'utente.
+
+GLaDOS dovrà essere in grado di funzionare sui mainframe di Aperture.
+%
+Inoltre, è necessaria una versione ``lite'' in grado di funzionare su piattaforma a ridotto consumo di energia, il committente in particolare fa riferimento ad un sistema il cui consumo sia sostenibile da una batteria biologica basata su una patata.
+%
+Quest'ultimo punto richiederà studi specifici sulle performance di GLaDOS che non potranno essere effettuati all'interno del monte ore previsto: tale feature sarà oggetto di futuri lavori.
+
+\begin{figure}
+\centering{}
+\includegraphics{img/analysis}
+\caption{Schema UML dell'analisi del problema, con rappresentate le entità principali ed i rapporti fra loro}
+\label{img:analysis}
+\end{figure}
+
+\chapter{Design}
+
+In questo capitolo si spiegano le strategie messe in campo per realizzare la soluzione ai problemi identificati nell'analisi.
+
+Si parte da una visione architetturale, il cui scopo è informare il lettore di quale sia il funzionamento dell'applicativo realizzato ad alto livello.
+%
+In particolare, è necessario descrivere accuratamente in che modo i componenti principali del sistema si coordinano fra loro.
+%
+A seguire, si dettagliano alcune parti del design, quelle maggiormente rilevanti al fine di chiarificare la logica con cui sono stati risolti i problemi dell'applicazione.
+
+\section{Architettura}
+
+Questa sezione spiega come le componenti principali del software interagiscono fra loro.
+%
+In particolare, qui va spiegato come è stato utilizzato il pattern architetturale model-view-controller se è stato utilizzato.
+%
+Se non è stato utilizzato, va spiegata in maniera molto accurata l'architettura scelta, giustificando in modo appropriato la ragione per cui si è scelta un'architettura non-MVC.
+
+Raccomandiamo di sfruttare la definizione del dominio fatta in fase di analisi per capire quale sia l'entry point del model, e di non realizzare un'unica macro-interfaccia che, spesso, finisce con l'essere il prodromo ad una ``God class''.
+%
+Consigliamo anche di separare bene controller e model, facendo attenzione a non includere nel secondo strategie d'uso che appartengono al primo.
+%
+Infine, attenzione al design dell'interazione fra view e controller: se ben progettato, sostituire in blocco la view non dovrebbe causare alcuna modifica nel controller.
+
+\subsection*{Elementi positivi}
+\begin{itemize}
+ \item Si mostrano pochi, mirati schemi UML dai quali si deduce con chiarezza quali sono le parti principali del software e come interagiscono fra loro.
+ \item Si mette in evidenza se e come il pattern architetturale model-view-controller è stato applicato, anche con l'uso di un UML che mostri le interfacce principali ed i rapporti fra loro.
+ \item Gli schemi UML contengono soprattutto (eventualmente anche solo) interfacce.
+ \item Si discute se sia semplice o meno, con l'architettura scelta, sostituire in blocco la view senza toccare minimamente il controller. Va da sé che, se cambiare la UI si trasforma in un bagno di sangue che impatta controller o modello, il design architetturale non è stato fatto in modo adeguato.
+\end{itemize}
+
+\subsection*{Elementi negativi}
+\begin{itemize}
+ \item MVC non è applicato in maniera corretta
+ \item L'architettura è fatta in modo che sia impossibile riusare il modello per un software diverso che affronta lo stesso problema.
+ \item L'architettura è tale che l'aggiunta di una funzionalità sul controller impatta pesantemente su view e/o modello.
+ \item L'architettura è tale che la sostituzione in blocco della view impatta sul controller o, peggio ancora, sul modello.
+ \item Si presentano UML caotici, difficili da leggere.
+ \item Si presentano UML in cui sono mostrati elementi di dettaglio non appartenenti all'architettura, ad esempio includenti campi o con metodi che non interessano la parte di interazione fra le componenti principali del software.
+ \item Si presentano schemi UML con classi (nel senso UML del termine) che ``galleggiano'' nello schema, non connesse, ossia senza relazioni con il resto degli elementi inseriti.
+ \item Si presentano elementi di design di dettaglio, ad esempio tutte le classi e interfacce del modello o della view.
+ \item Si discutono aspetti implementativi, ad esempio eventuali librerie usate oppure dettagli di codice.
+\end{itemize}
+
+\subsection*{Esempio di buon diagramma UML dell'Architettura}
+In \Cref{img:goodarch} è esemplificato un buon diagramma UML architetturale.
+%
+Le sue caratteristiche positive sono:
+\begin{itemize}
+	\item Mostra solo interfacce.
+	\item Le interfacce sono semplificate, e mostrano solo le parti che interessano la parte architetturale.
+	\item Non sono presenti elementi galleggianti, tutti gli elementi sono legati fra loro.
+	\item Lo schema è minimale, non caotico, facile da leggere.
+	\item Lo schema non mostra elementi implementativi.
+	\item Lo schema non mostra elementi non strettamente correlati all'interazione fra le macro-parti del software, ad esempio di tutto il modello si mostra solo l'entry point.
+\end{itemize}
+
+\begin{figure}
+\centering{}
+\includegraphics[width=\textwidth]{img/goodarch}
+\caption{Schema UML architetturale. In questo software, una \texttt{ISimulation} è associata ad un \texttt{IEnvironment}. Una \texttt{ISimulation} può avere uno o più \texttt{OutputMonitor}, che possono essere (de)registrati usando i metodi appositi. \texttt{OutputMonitor} dipende da \texttt{IEnvironment}, significa che ha bisogno di sapere come è fatto quest'ultimo. In questo schema, \texttt{OutputMonitor} rappresenta la UI, che funziona in sola lettura e accede direttamente al model, che ha come punto di ingresso \texttt{IEnvironment}, quando notificata dal controller, rappresentato da \texttt{ISimulation}}
+\label{img:goodarch}
+\end{figure}
+
+
+\section{Design dettagliato}
+
+In questa sezione si possono approfondire alcuni elementi del design con maggior dettaglio.
+%
+Mentre ci attendiamo principalmente (o solo) interfacce negli schemi UML delle sezioni precedenti, in questa sezione è necessario scendere in maggior dettaglio presentando la struttura di alcune sottoparti rilevanti dell'applicazione.
+%
+È molto importante che, descrivendo un problema, quando possibile si mostri che non si è re-inventata la ruota ma si è applicato un design pattern noto.
+%
+È assolutamente inutile, ed è anzi controproducente, descrivere classe-per-classe (o peggio ancora metodo-per-metodo) com'è fatto il vostro software: è un livello di dettaglio proprio della documentazione dell'API (deducibile dalla Javadoc), e non fa parte della progettazione.
+
+Ci aspettiamo che vi sia \textbf{una sezione di design dettagliato per ciascun membro del gruppo}.
+%
+Ciascun membro del gruppo sarà responsabile del contenuto della propria sezione, e dovrà spiegare in modo corretto e giustamente approfondito (non troppo in dettaglio, non superficialmente) il proprio contributo.
+%
+Ciascuno inoltre, descriverà in che modo ha progettato il software in modo estensibile, citando almeno un esempio di come la decisione impatti positivamente un possibile cambiamento futuro.
+
+\subsection*{Elementi positivi}
+
+\begin{itemize}
+	\item È presente una sezione per ciascun membro del gruppo.
+	\item Ogni membro del gruppo identifica i pattern utilizzati nella sua sottoparte.
+	\item Ogni membro del gruppo discute le proprie decisioni di progettazione, ed in particolare le azioni volte ad anticipare possibili cambiamenti futuri (ad esempio l'aggiunta di una nuova funzionalità, o il miglioramento di una esistente).
+	\item Si mostrano gli aspetti di design più rilevanti dell'applicazione, mettendo in luce la maniera in cui si è costruita la soluzione ai problemi descritti nell'analisi.
+	\item Si tralasciano aspetti strettamente implementativi e quelli non rilevanti, non mostrandoli negli schemi UML (ad esempio, campi privati) e non descrivendoli.
+	\item Si mostrano le principali interazioni fra le varie componenti che collaborano alla soluzione di un determinato problema.
+	\item Si identificano ed utilizzano numerosi design pattern.
+	\item Ciascun design pattern identificato presenta una piccola descrizione del problema calato nell'applicazione, uno schema UML che ne mostri la concretizzazione nelle classi del progetto, ed una breve descrizione della motivazione per cui tale pattern è stato scelto.
+	\item La divisione in package rispecchia l'architettura e consente di navigare facilmente il sorgente, dando brevi giustificazione alle scelte fatte.
+\end{itemize}
+
+\subsection*{Elementi negativi}
+\begin{itemize}
+	\item Il design del modello risulta scorrelato dal problema descritto in analisi.
+	\item Si tratta in modo prolisso, classe per classe, il software realizzato.
+	\item Non si presentano schemi UML esemplificativi.
+	\item Non si individuano design pattern, o si individuano in modo errato (si spaccia per design pattern qualcosa che non lo è).
+	\item Si producono schemi UML caotici e difficili da leggere, che comprendono inutili elementi di dettaglio.
+	\item Si presentano schemi UML con classi (nel senso UML del termine) che ``galleggiano'' nello schema, non connesse, ossia senza relazioni con il resto degli elementi inseriti.
+	\item Si tratta in modo inutilmente prolisso la divisione in package, elencando ad esempio le classi una per una.
+	\item La divisione in package non rispecchia l'architettura, o è caotica.
+\end{itemize}
+
+\subsection*{Esempio di buona suddivisione in package}
+L'applicazione è stata divisa in tre sottoparti logiche, come descritto nell'architettura: Model, Controller e Boundary. Maggiori dettagli sulle scelte fatte:
+\begin{itemize}
+ \item Radice: non avendo alcun dominio, abbiamo deciso di utilizzare il prefisso dell'Università, cui abbiamo aggiunto un nostro identificativo: \texttt{it.unibo.studentsgroup}. Inoltre, abbiamo aggiunto un suffisso che indentifica questo progetto, per cui tutti i package saranno prefissi da: \texttt{it.unibo.studentsgroup.thisapp}.
+ \item Abbiamo diviso l'applicazione in tre sottoparti logiche in architettura, la divisione in package le rispecchia: \texttt{.model}, \texttt{.control}, \texttt{.boundary}. 
+ \item Essendo la parte di gestione dell'I/O composta di molti sorgenti, abbiamo suddiviso \texttt{.boundary} in sottopackage: \texttt{.boundary.network} e \texttt{.boundary.local}.
+ \item All'interno del model il concetto di \texttt{InterfacciaMoltoUsata} è stato implementato da numerose classi diverse. Di conseguenza, abbiamo adottato un subpackage \texttt{.model.imoltousata} dove abbiamo organizzato tutte le implementazioni, rendendo più navigable il package \texttt{it.unibo.studentsgroup.thisapp.model}.
+\end{itemize}
+
+
+\subsection*{Esempi di buoni diagrammi UML del design di dettaglio}
+
+In \Cref{img:goodmodel} viene mostrato un UML che appartiene al design di dettaglio, in cui viene mostrato come è strutturato il model di un'applicazione.
+%
+Tale model, essendo comunque corposo, viene mostrato solo a livello di interfacce.
+%
+Se uno schema del problema è presente nella parte di analisi, allora questo secondo schema dovrebbe essere una sua rivisitazione più ricca di dettagli.
+
+Nel caso in cui si vogliano mostrare alcune parti che, se inserite nello schema precedente, renderebbero il tutto difficile da leggere e interpretare, è preferibile ``zoomare'' su una parte del proprio progetto come è stato fatto in \Cref{img:goodzoommodel}.
+%
+Esattamente come nessun ingegnere meccanico presenta un solo foglio con l'intero progetto di una vettura di Formula 1, ma molteplici fogli di progetto che mostrano a livelli di dettaglio differenti le varie parti della vettura e le modalità di connessione fra le parti, così ci aspettiamo che voi, futuri ingegneri informatici, ci presentiate prima una visione globale del progetto, e via via siate in grado di entrare nel dettaglio delle specifiche parti, riuscendo a metter da parte le parti del progetto che non interessano la parte specifica.
+%
+Per continuare il parallelo con la vettura di Formula 1, se nei fogli che mostrano il design delle sospensioni anteriori appaiono pezzi che appartengono al volante o al turbo, vuol dire che c'è qualche grosso problema di design architetturale.
+
+Infine, in \Cref{img:strategy} viene mostrata una modalità con cui si può mostrare che alcuni problemi non sono stati risolti re-inventando la ruota ma adattando una soluzione precedente.
+%
+Nel caso della figura, si mostra come il pattern strategy è stato concretizzato in una applicazione.
+%
+Per i design pattern che il team di sviluppo riesce ad identificare, ci aspettiamo un simile schema che ce ne mostri la loro applicazione.
+
+Ricordatevi, per ogni schema UML, di associare una descrizione in linguaggio naturale (``a parole'') che guidi la lettura dello schema, descrivendo cosa mostra, come in questa meta-relazione è fatto con le didascalie delle immagini.
+
+\begin{figure}
+\centering{}
+\includegraphics[width=\textwidth]{img/goodmodel}
+\caption{Schema UML di dettaglio del model di una applicazione.
+%
+Dallo schema, si deducono numerose informazioni utili.
+%
+\texttt{IEnvironment} contiene più \texttt{INode}.
+%
+\texttt{INode} è associato con \texttt{IPosition}, e \texttt{IPosition} è associata con \texttt{LinkingRule}.
+%
+\texttt{IEnvironment} dipende da \texttt{LinkingRule} (probabile pattern Strategy).
+%
+\texttt{INode} è associato con \texttt{INeighborhood}
+%
+Ogni \texttt{INode} può contenere delle \texttt{IMolecule}.
+%
+\texttt{IMolecule} sono associate a \texttt{IConcentration}.
+%
+Ogni \texttt{INode} può contenere delle \texttt{IReaction}.
+%
+Ogni \texttt{IReaction} è composta obbligatoriamente da \texttt{IAction} e \texttt{ICondition}, e per funzionare dipende da \texttt{TimeDistribution} (altro probabile pattern Strategy).
+%
+Da questo schema, è possibile capire come è costruito il modello dell'applicazione, in una relazione organica questo dovrebbe essere una estensione e integrazione di quanto mostrato nell'eventuale schema UML descrivente le entità del problema.
+%
+}
+\label{img:goodmodel}
+\end{figure}
+
+\begin{figure}
+\centering{}
+\includegraphics[width=\textwidth]{img/goodzoommodel}
+\caption{Schema UML di dettaglio di una sottoparte del model di una applicazione.
+%
+Schemi come questo vengono usati per mostrare l'implementazione di pezzi specifici del software, magari particolarmente delicati.
+%
+Lo schema rappresenta una sorta di ``zoom'' dentro ad una specifica parte del software, e di conseguenza riesce a mostrare un maggiore livello di dettaglio.
+%
+Nello schema in oggetto, è mostrata la gerarchia di un ambiente e di un ambiente con ostacoli.
+%
+Essi sono descritti da due interfacce, e quella più generica viene estesa da due classi astratte, una responsabile di implementare parti del tutto generiche e un'altra responsabile di gestire delle ``\texttt{ILinkingRule}''.
+%
+Da queste due classi astratte eredita una classe concreta che rappresenta un ambiente bidimensionale, dal quale a sua volta viene giù un ambiente ccon supporto a OpenStreetMaps (si vedono i metodi per calcolare delle route).
+%
+Dagli ambienti continui bidimensionali derivano ambienti con limitazioni (ad esempio con una dimensione finita), dai quali derivano ambienti con ostacoli, che implementano anche la sotto-interfaccia che aggiunge le funzionalità per la gestione di ostacoli.
+}
+\label{img:goodzoommodel}
+\end{figure}
+
+\begin{figure}
+\centering{}
+\includegraphics[width=\textwidth]{img/strategy}
+\caption{Schema UML di dettaglio dell'istanziazione di un design pattern all'interno di una applicazione.
+%
+In questo caso, si tratta di un pattern strategy, in cui \texttt{IEnvironment} utilizza una \texttt{ILinkingRule} (oggetto strategy) per ottenere un metodo per il calcolo di un \texttt{INeighborhood}.
+%
+Si può anche dedurre che la stessa strategia può esser condivisa da più ambienti (la molteplicità è 1-N).
+%
+Nello schema, si mostra anche una gerarchia di strategie implementate: nessun link, distanza euclidea, distanza euclidea con ostacoli che rompono i collegamenti, e una strategia adattativa, probabilmente più complicata delle precedenti.
+}
+\label{img:strategy}
+\end{figure}
+
+\subsection*{Esempio di pessimo diagramma UML}
+
+In \Cref{img:badarch} è mostrato il modo \textbf{sbagliato} di fare le cose.
+%
+Questo schema è fatto male perché:
+\begin{itemize}
+	\item È caotico.
+	\item È difficile da leggere e capire.
+	\item Vi sono troppe classi, e non si capisce bene quali siano i rapporti che intercorrono fra loro.
+	\item Si mostrano elementi implementativi irrilevanti, come i campi e i metodi privati nella classe \texttt{AbstractEnvironment}.
+	\item Se l'intenzione era quella di costruire un diagramma architetturale, allora lo schema è ancora più sbagliato, perché mostra pezzi di implementazione.
+	\item Una delle classi, in alto al centro, galleggia nello schema, non connessa a nessuna altra classe, e di fatto costituisce da sola un secondo schema UML scorrelato al resto
+	\item Le interfacce presentano tutti i metodi e non una selezione che aiuti il lettore a capire quale parte del sistema si vuol mostrare.
+\end{itemize}
+
+
+\begin{figure}
+\centering{}
+\includegraphics[width=\textwidth]{img/badarch}
+\caption{Schema UML mal fatto e con una pessima descrizione, che non aiuta a capire. Don't try this at home.}
+\label{img:badarch}
+\end{figure}
+
+
+\chapter{Sviluppo}
+\section{Testing automatizzato}
+
+\subsection*{Elementi positivi}
+
+\begin{itemize}
+ \item Si descrivono molto brevemente i componenti che si è deciso di sottoporre a test automatizzato.
+ \item Si utilizzano suite specifiche (e.g. JUnit) per il testing automatico.
+ \item Se sono stati eseguiti test manuali di rilievo, si elencano descrivendo brevemente la ragione per cui non sono stati automatizzati. Ad esempio, se tutto il team sviluppa e testa su uno stesso sistema operativo e si sono svolti test manuali per verificare, ad esempio, il corretto funzionamento dell'interfaccia grafica o di librerie native su altri sistemi operativi, può avere senso menzionare la cosa.
+\end{itemize}
+
+\subsection*{Elementi negativi}
+\begin{itemize}
+ \item Non si realizza alcun test automatico.
+ \item La non presenza di testing viene aggravata dall'adduzione di motivazioni non valide.
+ \item Si descrive un testing di tipo manuale in maniera prolissa.
+ \item Si descrivono test effettuati manualmente che sarebbero potuti essere automatizzati, ad esempio descrivendo che si è usata l'applicazione manualmente.
+\end{itemize}
+
+\section{Metodologia di lavoro}
+
+Ci aspettiamo, leggendo questa sezione, di trovare conferma alla divisione operata nella sezione del design di dettaglio, e di capire come è stato svolto il lavoro di integrazione.
+
+\subsection*{Elementi positivi}
+
+\begin{itemize}
+	\item Si identifica con precisione il ruolo di ciascuno all'interno del gruppo, ossia su quale parte del progetto ciascuno dei componenti si è concentrato maggiormente.
+	\item La divisione dei compiti è equa, ossia non vi sono membri del gruppo che hanno svolto molto più lavoro di altri
+	\item La divisione dei compiti è coerente con quanto descritto nelle parti precedenti della relazione
+	\item La divisione dei compiti è realistica, ossia le dipendenze fra le parti sviluppate sono minime
+	\item Si identifica quale parte del software è stato sviluppato da tutti i componenti insieme.
+	\item Si spiega in che modo si sono integrate le parti di codice sviluppate separatamente, evidenziando eventuali problemi. Ad esempio, una strategia è convenire sulle interfacce da usare (ossia, occuparsi insieme di stabilire l'architettura) e quindi procedere indipendentemente allo sviluppo di parti differenti. Una possibile problematica potrebbe essere una dimenticanza in fase di design architetturale che ha costretto ad un cambio e a modifiche in fase di integrazione. Una situazione simile è la norma nell'ingegneria di un sistema software non banale, ed il processo di progettazione top-down con raffinamento successivo è il così detto processo ``a spirale''.
+	\item Si descrive in che modo è stato impiegato il DVCS.
+\end{itemize}
+
+\subsection*{Elementi negativi}
+\begin{itemize}
+	\item Non si chiarisce chi ha fatto cosa.
+	\item C'è discrepanza fra questa sezione e le sezioni che descrivono il design dettagliato.
+	\item Tutto il progetto è stato svolto lavorando insieme invece che assegnando una parte a ciascuno.
+	\item Non viene descritta la metodologia di integrazione delle parti sviluppate indipendentemente.
+	\item Uso superficiale del DVCS.
+\end{itemize}
+
+\section{Note di sviluppo}
+
+Questa sezione è opzionale.
+
+\subsection*{Elementi positivi}
+
+\begin{itemize}
+ \item Si descrivono aspetti particolarmente complicati o rilevanti relativi all'implementazione, ad esempio, in un'applicazione performance critical, un uso particolarmente avanzato di meccanismi di caching, oppure l'implementazione di uno specifico algorigmo.
+ \item Se si è utilizzato un particolare algoritmo, se ne cita la fonte originale. Ad esempio, se si è usato Mersenne Twister per la generazione dei numeri random, si cita \cite{mersenne}.
+ \item Si identificano eventuali librerie utilizzate, parti di codice prese da altri progetti, dal web, o comunque scritte in forma originale da altre persone. In tal senso, si ricorda che agli ingegneri non è richiesto di re-inventare la ruota continuamente: se ci cita debitamente la sorgente, non solo è tollerato ma è consigliato fare uso di librerie o anche di snippet di codice per risolvere velocemente problemi non banali. Nel caso in cui si usino snippet di codice di qualità discutibile, oltre a menzionarne l'autore originale si invitano gli studenti ad adeguare tali parti di codice agli standard e allo stile del progetto.
+\end{itemize}
+
+\subsection*{Elementi negativi}
+\begin{itemize}
+ \item Si descrivono aspetti di scarsa rilevanza, o si scende in dettagli inutili.
+ \item Sono presenti parti di codice sviluppate originalmente da altri che non vengono debitamente segnalate. In tal senso, si ricorda agli studenti che i docenti hanno accesso a tutti i progetti degli anni passati, a Stack Overflow, ai principali blog di sviluppatori ed esperti Java e ai blog dedicati allo sviluppo di soluzioni e applicazioni (inclusi blog dedicati ad Android e allo sviluppo di videogame). Conseguentemente, è \emph{molto} conveniente \emph{citare} una fonte ed usarla invece di tentare di spacciare per proprio il lavoro di altri.
+\end{itemize}
+
+\chapter{Commenti finali}
+
+In quest'ultimo capitolo si tirano le somme del lavoro svolto e si delineano eventuali sviluppi futuri.
+
+\section{Autovalutazione e lavori futuri}
+
+\subsection*{Cosa scrivere}
+
+\begin{itemize}
+ \item Il team si sforza di autovalutare il lavoro svolto, cercandone i punti di forza e di debolezza.
+ \item Ciascun membro del team si sforza di autovalutare il proprio lavoro, ed il proprio ruolo nel gruppo.
+ \item Nel caso in cui il team pensa che il lavoro possa essere completato o esteso ulteriormente, si descrive brevemente verso che direzione portarlo.
+\end{itemize}
+
+\section{Difficoltà incontrate e commenti per i docenti}
+
+Questa sezione, opzionale, può essere utilizzata per segnalare ai docenti eventuali problemi o difficoltà incontrate nel corso o nello svolgimento del progetto.
+%
+È possibile che alcuni dei commenti vengano utilizzati per migliorare il corso in futuro: sebbene non andrà a vostro beneficio, potreste fare un favore ai vostri futuri colleghi.
+%
+Ovviamente il contenuto della sezione non impatterà il voto finale.
+
+\appendix
+\chapter{Guida utente}
+
+Capitolo in cui si spiega come utilizzare il software. Nel caso in cui il suo uso sia del tutto banale, tale capitolo può essere omesso.
+
+\subsection*{Elementi positivi}
+
+\begin{itemize}
+ \item Si istruisce in modo semplice l'utente sull'uso dell'applicazione, eventualmente facendo uso di schermate e descrizioni.
+\end{itemize}
+
+\subsection*{Elementi negativi}
+\begin{itemize}
+ \item Si descrivono in modo eccessivamente minuzioso tutte le caratteristiche, anche minori, del software in oggetto.
+ \item Manca una descrizione che consenta ad un utente qualunque di utilizzare almeno le funzionalità primarie dell'applicativo.
+\end{itemize}
+
+\bibliographystyle{abbrv}
+\bibliography{template}
+
+\end{document}
