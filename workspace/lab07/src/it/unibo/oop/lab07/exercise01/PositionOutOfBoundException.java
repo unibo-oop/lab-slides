@@ -20,6 +20,7 @@ public class PositionOutOfBoundException extends Exception {
      *            position on Y that caused the exception
      */
     public PositionOutOfBoundException(final int initX, final int initY) {
+        super();
         this.x = initX;
         this.y = initY;
     }

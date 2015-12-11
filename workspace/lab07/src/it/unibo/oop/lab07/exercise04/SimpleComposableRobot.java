@@ -98,4 +98,63 @@ public class SimpleComposableRobot extends Robot implements ComposableRobot {
         super.consumeBatteryForMovement();
         this.consumeBattery(this.parts.length * MOVEMENT_DELTA_CONSUMPTION_FOR_PART);
     }
+    
+    /**
+    *
+    */
+   public static class RobotWithTwoArms extends SimpleComposableRobot {
+       private static final String LEFT_ARM = "Left Arm";
+       private static final String RIGTH_ARM = "Right Arm";
+
+       /**
+        * 
+        * @param robotName
+        *            name of robot
+        * @param batteryLevel
+        *            initial battery level
+        */
+       public RobotWithTwoArms(final String robotName, final double batteryLevel) {
+           super(robotName, new RobotPart[] { new RobotArm(LEFT_ARM), new RobotArm(RIGTH_ARM) }, batteryLevel);
+       }
+   }
+
+   /**
+    * 
+    */
+   public static class RobotWithTwoArmsAndHead extends SimpleComposableRobot {
+       private static final String LEFT_ARM = "Left Arm";
+       private static final String RIGTH_ARM = "Right Arm";
+       private static final String HEAD_DESCRIPTION = "Robot head";
+
+       /**
+        * 
+        * @param robotName
+        *            name of robot
+        * @param batteryLevel
+        *            initial battery level
+        */
+       public RobotWithTwoArmsAndHead(final String robotName, final double batteryLevel) {
+           super(robotName,
+                   new RobotPart[] { new RobotArm(LEFT_ARM), new RobotArm(RIGTH_ARM), new RobotHead(HEAD_DESCRIPTION) },
+                   batteryLevel);
+       }
+   }
+
+   /**
+    * 
+    */
+   public static class RobotWithHead extends SimpleComposableRobot {
+       private static final String HEAD_DESCRIPTION = "Robot head";
+
+       /**
+        * 
+        * @param robotName
+        *            name of robot
+        * @param batteryLevel
+        *            initial battery level
+        */
+       public RobotWithHead(final String robotName, final double batteryLevel) {
+           super(robotName, new RobotPart[] { new RobotHead(HEAD_DESCRIPTION) }, batteryLevel);
+       }
+   }
 }

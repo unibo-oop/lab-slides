@@ -1,8 +1,8 @@
 == StrictBankAccountImpl ==
-Analizzare la classe StrictBankAccountImpl, lievemente modificata rispetto alla versione 
-già vista (che si chiamava StrictBankAccount).
+Analizzare la classe StrictBankAccount, lievemente modificata rispetto alla versione 
+già vista.
 
-== Modifiche a StrictBankAccountImpl ==
+== Modifiche a StrictBankAccount ==
 Modificare la classe StrictBankAccount in modo che:
  - Venga lanciata una eccezione WrongAccountHolderException, tutte le volte che viene 
    tentata una operazione da un utente non autorizzato.
@@ -10,7 +10,7 @@ Modificare la classe StrictBankAccount in modo che:
    essere effettuato un prelievo (fondi insufficienti).
  - Venga lanciata una eccezione TransactionsOverQuotaException, tutte le volte che il 
    numero di operazioni fatte tramite ATM sia superiore a nMaxATMTransactions 
-   (parametro passato al costruttore di StrictBankAccountImpl).
+   (parametro passato al costruttore di StrictBankAccount).
 
 == TEST ==
 Completare il test JUnit TestStrictBankAccount, facendo riferimento ai commenti riportati

@@ -59,7 +59,7 @@ public final class BaseRobotTest {
             fail("No battery problems expected here!");
         }
         /*
-         * 2) Provare a muovere SimpleRobot verso il basso, fino a giungere
+         * 2) Provare a muovere SimpleRobot verso l'alto, fino a giungere
          * all'angolo in alto a destra del RobotEnvironment controllando che il
          * metodo restituisca false quando si superano i limiti del mondo
          */
