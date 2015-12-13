@@ -61,7 +61,7 @@ Non ci si deve concentrare sui particolari problemi, ma esclusivamente su cosa s
 \subsection*{Elementi positivi}
 \begin{itemize}
 	\item Si fornisce una descrizione in linguaggio naturale di ciò che il software dovrà fare.
-	\item Gli obiettivi sono spiegati con chiarezza.
+	\item Gli obiettivi sono spiegati con chiarezza, per punti.
 	\item Se il software è stato commissionato o è destinato ad un utente o compagnia specifici, il committente viene nominato.
 	\item Se vi sono termini il cui significato non è immediatamente intuibile, essi vengono spiegati.
 \end{itemize}
@@ -78,15 +78,12 @@ Il software, commissionato dal gestore del centro di ricerca ``Aperture Laborato
 %
 Per intelligenza artificiale si intende un software in grado di assumere decisioni complesse in maniera semi autonoma sugli argomenti di sua competenza, a partire dai vincoli e dagli obiettivi datigli dall'utente.
 
-La suddetta intelligenza artificiale dovrà occuparsi di coordinare le attività all'interno delle camere di test di Aperture, guidando l'utente attraverso un certo numero di sfide di difficoltà crescente.
-%
-Una camera di test è un ambiente realizzato da Aperture Laboratories Inc. al fine di mettere alla prova le proprie tecnologie di manipolazione dell'ambiente.
-%
-All'interno della camera di test, un soggetto qualificato è incaricato di sfruttarle per risolvere alcune sfide.
-%
-Il piano preciso ed il numero delle sfide sarà variabile, e GLaDOS dovrà essere in grado di adattarsi dinamicamente e di fornire indicazioni di guida.
-%
-GLaDOS dovrà essere in grado di comunicare col reparto cucina di Aperture, per ordinare torte da donare agli utenti che completassero l'ultima camera di test con successo.
+\subsubsection{Requisiti concordati}
+\begin{itemize}
+	\item La suddetta intelligenza artificiale dovrà occuparsi di coordinare le attività all'interno delle camere di test di Aperture, guidando l'utente attraverso un certo numero di sfide di difficoltà crescente. Una camera di test è un ambiente realizzato da Aperture Laboratories Inc. al fine di mettere alla prova le proprie tecnologie di manipolazione dell'ambiente. All'interno della camera di test, un soggetto qualificato è incaricato di sfruttarle per risolvere alcune sfide.
+	\item Il piano preciso ed il numero delle sfide sarà variabile, e GLaDOS dovrà essere in grado di adattarsi dinamicamente e di fornire indicazioni di guida.
+	\item GLaDOS dovrà essere in grado di comunicare col reparto cucina di Aperture, per ordinare torte da donare agli utenti che completassero l'ultima camera di test con successo.
+\end{itemize}
 
 \section{Analisi e modello del dominio}
 
@@ -205,8 +202,10 @@ Le sue caratteristiche positive sono:
 
 \begin{figure}
 \centering{}
-\includegraphics[width=\textwidth]{img/goodarch}
-\caption{Schema UML architetturale. In questo software, una \texttt{ISimulation} è associata ad un \texttt{IEnvironment}. Una \texttt{ISimulation} può avere uno o più \texttt{OutputMonitor}, che possono essere (de)registrati usando i metodi appositi. \texttt{OutputMonitor} dipende da \texttt{IEnvironment}, significa che ha bisogno di sapere come è fatto quest'ultimo. In questo schema, \texttt{OutputMonitor} rappresenta la UI, che funziona in sola lettura e accede direttamente al model, che ha come punto di ingresso \texttt{IEnvironment}, quando notificata dal controller, rappresentato da \texttt{ISimulation}}
+\includegraphics[width=\textwidth]{img/mvc}
+\caption{Schema UML architetturale. In questo software, un \texttt{Controller} è un osservatore di \texttt{ViewInterface}, responsabile anche di gestire le interazioni con il  \texttt{ModelInterface}. Ancora una volta, si fa presente che \texttt{ModelInterface} è l'\textit{entry-point} del modello e non il modello completo. \texttt{Application} è il componente del software responsabile di creare ogni istanza di model, view e controller e di connetterli correttamente.}
+
+%una \texttt{ISimulation} è associata ad un \texttt{IEnvironment}. Una \texttt{ISimulation} può avere uno o più \texttt{OutputMonitor}, che possono essere (de)registrati usando i metodi appositi. \texttt{OutputMonitor} dipende da \texttt{IEnvironment}, significa che ha bisogno di sapere come è fatto quest'ultimo. In questo schema, \texttt{OutputMonitor} rappresenta la UI, che funziona in sola lettura e accede direttamente al model, che ha come punto di ingresso \texttt{IEnvironment}, quando notificata dal controller, rappresentato da \texttt{ISimulation}}
 \label{img:goodarch}
 \end{figure}
 
@@ -374,6 +373,10 @@ Questo schema è fatto male perché:
 
 \chapter{Sviluppo}
 \section{Testing automatizzato}
+
+Il testing automatizzato è un requisito di qualunque progetto software che si rispetti, e consente di verificare che non vi siano regressioni nelle funzionalità a fronte di aggiornamenti.
+%
+Per quanto riguarda questo progetto, è considerato sufficiente un test minimale del funzionamento delle entità principali del modello.
 
 \subsection*{Elementi positivi}
 
