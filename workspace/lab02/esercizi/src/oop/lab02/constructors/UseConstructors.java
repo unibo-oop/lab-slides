@@ -29,7 +29,10 @@ public class UseConstructors {
          * 9) Per verificare la correttezza dei costruttori implementati
          * stampare a video le informaizioni relative agli studenti (metodo
          * printStudentInfo) e ai treni (a tal fine implementare un metodo
-         * printTrainInfo nella classe Train)
+         * printTrainInfo nella classe Train). Verificare che il numero di posti
+         * di default sia consistente (ossia che ci sia un numero positivo di
+         * posti totali, e che la somma dei posti in prima e seconda classe dia
+         * il totale dei posti sul treno).
          */
     }
 }
