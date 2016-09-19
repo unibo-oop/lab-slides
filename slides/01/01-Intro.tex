@@ -1,8 +1,17 @@
 %\documentclass[12pt,handout]{beamer}
 \documentclass[presentation]{beamer}
-\usepackage{oop-slides}
+\usepackage{../oop-slides-pianini}
 \setbeamertemplate{bibliography item}[text]
+
 \title[OOP01 -- Intro]{01 \\ Introduzione al Laboratorio e Tool di Base}
+
+\author[Pianini]{Danilo Pianini \\ Angelo Croatti, Simone Grotti, Mirko Viroli}
+
+\institute[Università di Bologna]
+{C.D.L. Ingegneria e Scienze Informatiche \\\textsc{Alma Mater Studiorum}---Università di Bologna, Cesena}
+
+\date[\today]{\today}
+
 
 \begin{document}
 
@@ -21,8 +30,8 @@
   }
 }
 \begin{frame}<beamer>
- 	\frametitle{Outline}
- 	\tableofcontents[]
+	\frametitle{Outline}
+	\tableofcontents[]
 \end{frame}
   
 \section{Java Overview}
@@ -30,13 +39,11 @@
 %====================
 %Java nel mondo del lavoro
 %====================
-\fr{Java nel mondo ``reale'' 1/2}{
-	\fg{height=0.70\textheight}{img/javaTrend.png}
-}
-
-\fr{Java nel mondo ``reale'' 2/2}{
-	\fg{height=0.70\textheight}{img/javaTrend_highlight.png}
-}
+\begin{frame}[fragile, allowframebreaks]{Java nel mondo ``reale''}
+	\fg{height=0.80\textheight}{img/javaTrend.png}
+	\fg{height=0.80\textheight}{img/javaTrend_highlight.png}
+	\fg{height=0.80\textheight}{img/tiobe2016}
+\end{frame}
 		
 %====================
 %Architettura a Runtime
@@ -85,8 +92,8 @@
       \end{itemize}
     \item La cartella più esterna, che contiene tutte le altre, è detta root. Essa rappresenta il livello gerarchico più alto del file system
       \begin{itemize}
-        \item In Windows, ciascun file system ha come root una lettera di unità (e.g. \texttt{C:}, \texttt{D:})
         \item In *nix (Linux, MacOS, BSD, Solaris...), vi è una unica radice, ossia \texttt{/}
+        \item In Windows, ciascun file system ha come root una lettera di unità (e.g. \texttt{C:}, \texttt{D:})
       \end{itemize}
     \item La stringa che descrive un intero percorso dalla root fino ad un elemento del file system prende il nome di \emph{percorso} (e.g. \texttt{C:\textbackslash{}Windows\textbackslash{}win32.dll}, \texttt{/home/user/frameworkFS.jar})
   \end{itemize}
@@ -172,8 +179,9 @@
   \bl{}{
     L'interprete comandi è rappresentato dal programma \texttt{cmd.exe} in \texttt{C:$\backslash$Windows$\backslash$System32$\backslash$cmd.exe}
     \iz{
-      \item Da non confondere con il vecchio inteprete (MS)DOS eseguito su macchina virtuale IA16...
       \item Eredita in realtà sintassi e funzionalità della maggior parte dei comandi del vecchio MSDOS
+      \item Versioni recenti hanno introdotto PowerShell, basato su .NET e C\#
+      \item Windows 10 ha introdotto il supporto a bash tramite Linux Subsystem for Linux
     }
   }
   \fg{height=0.4\textheight}{img/prompt.png}
@@ -230,6 +238,25 @@
 
 
 \section{Lab Startup}
+
+\begin{frame}[fragile]{Come funziona il laboratorio di OOP}
+	\begin{block}{Organizzazione}
+		\begin{itemize}
+			\item Introduzione del docente, a nuovi metodi e strumenti
+			\item Esercizi di difficoltà crescente
+			\item Esercizi ``aggiuntivi'' (che non sono opzionali)
+		\end{itemize}
+	\end{block}
+	\begin{block}{Come svolgere gli esercizi}
+		\begin{itemize}
+			\item Provate da soli. Se bloccati per qualche minuto, chiamate il docente
+			\item Fate riferimento alle slides del corso, tenetele con voi. Specialmente all'inizio, \textbf{evitate} di andare a prendere pezzi di codice online, assicuratevi di avere sempre chiaro cosa stiate facendo e perché
+			\item Una volta terminato, chiamate il docente per la correzione
+			\item Riuscire a completare anche gli esercizi ``aggiuntivi'' nelle quattro ore è indice di buona preparazione. Non riuscirci non è preoccupante, ma raccomandiamo caldamente di terminarli a casa \textbf{prima} del laboratorio successivo.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
 
 \fr{Preparazione Ambiente di Lavoro 1/3}{
 	\iz{
@@ -533,7 +560,7 @@
 
 \fr{Richiamo dalla Teoria}{
 	\bl{Passaggio dei Parametri}{
-		Java gestisce in maniera diversa dal C il passaggio dei parametri
+		Java gestisce in maniera diversa da C il passaggio dei parametri
 		\iz{
 			\item In particolare
 			\iz{
