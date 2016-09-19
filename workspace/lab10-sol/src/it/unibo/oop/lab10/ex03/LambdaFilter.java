@@ -1,11 +1,18 @@
 package it.unibo.oop.lab10.ex03;
 
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
+import java.util.Arrays;
+import java.util.SortedSet;
+import java.util.StringTokenizer;
+import java.util.TreeSet;
 import java.util.function.Function;
 
 import javax.swing.BorderFactory;
@@ -14,12 +21,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.SortedSet;
-import java.util.StringTokenizer;
-import java.util.TreeSet;
 
 /**
  * Modify this small program adding new filters.
@@ -58,21 +59,15 @@ public final class LambdaFilter extends JFrame {
             }
             return sb.toString();
         }), WORDCOUNT("Count words", s -> {
-            final StringTokenizer tk = new StringTokenizer(s, TOKEN_SYMBOLS);
-            final Map<String, Integer> map = new HashMap<>();
-            while (tk.hasMoreElements()) {
-                final String key = tk.nextToken();
-                map.merge(key, 1, (pre, cur) -> pre + 1);
-            }
-            final StringBuilder sb = new StringBuilder();
-            map.forEach((k, v) -> {
-                sb.append(k);
-                sb.append(" -> ");
-                sb.append(v);
-                sb.append('\n');
-            });
-            return sb.toString();
-        });
+                    final StringBuilder sb = new StringBuilder();
+                    Arrays.asList(s.split("\\W+")).stream().collect(groupingBy(e -> e, counting())).forEach((k, v) -> {
+                        sb.append(k);
+                        sb.append(" -> ");
+                        sb.append(v);
+                        sb.append('\n');
+                    });
+                    return sb.toString();
+                });
 
         private final String commandName;
         private final Function<String, String> fun;
