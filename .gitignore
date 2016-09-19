@@ -17,3 +17,5 @@
 *.backup
 **/.recommenders/*
 **/bin/
+*.synctex.gz
+
