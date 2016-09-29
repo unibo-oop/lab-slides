@@ -4,10 +4,8 @@ public class SeqRecognizer {
 
     public static boolean checkSeq1(final int[] array) {
         int i = 0;
-        for (; i < array.length && array[i] == 1; i++)
-            ;
-        for (; i < array.length && (array[i] == 2 || array[i] == 3); i++)
-            ;
+        for (; i < array.length && array[i] == 1; i++);
+        for (; i < array.length && (array[i] == 2 || array[i] == 3); i++);
         return i == array.length;
     }
 
