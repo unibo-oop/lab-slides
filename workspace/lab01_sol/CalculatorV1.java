@@ -1,6 +1,7 @@
 public class CalculatorV1 {
 
-    void build() { }
+    void build() {
+    }
 
     double add(double n1, double n2) {
         return n1 + n2;
