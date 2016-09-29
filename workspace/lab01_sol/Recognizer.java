@@ -1,32 +1,51 @@
 public class Recognizer {
     int nextNum;
+    boolean success;
 
     void build() {
         nextNum = 1;
+        success = true;
     }
 
     boolean check1(int n) {
-        nextNum = 2;
-        return n == 1;
+      nextNum = 2;
+
+      if(n != 1)
+        success = false;
+
+      return success;
     }
 
     boolean check2(int n) {
-        nextNum = 3;
-        return n == 2;
+      nextNum = 3;
+
+      if(n != 2)
+        success = false;
+
+      return success;
     }
 
     boolean check3(int n) {
-        nextNum = 4;
-        return n == 3;
+      nextNum = 4;
+
+      if(n != 3)
+        success = false;
+
+      return success;
     }
 
     boolean check4(int n) {
-        nextNum = 1;
-        return n == 4;
+      nextNum = 1;
+
+      if(n != 4)
+        success = false;
+
+      return success;
     }
 
     void reset() {
         nextNum = 1;
+        success = true;
     }
 
     int nextExpectedInt() {
@@ -54,7 +73,7 @@ public class Recognizer {
          * procedimento analogo a quello appena descritto - 1,2,3,4,1,2,3,4 -
          * 1,2,3,4,5 - 1,2,3,4,1,2,3,4,1,2,7 - ...
          */
-        System.out.println("Reset");
+        System.out.println("Reset\n");
         recognizer.reset();
 
         // 1,2,3,4,1,2,3,4
@@ -68,7 +87,7 @@ public class Recognizer {
         System.out.println("Now the result of the check is: " + recognizer.check4(4) + "\n");
 
         // 1,2,3,4,5
-        System.out.println("Reset");
+        System.out.println("Reset\n");
         recognizer.reset();
         System.out.println("Now the result of the check is: " + recognizer.check1(1));
         System.out.println("Now the result of the check is: " + recognizer.check2(2));
@@ -77,16 +96,16 @@ public class Recognizer {
         System.out.println("Now the result of the check is: " + recognizer.check1(5) + "\n");
 
         // 1,2,3,4,1,2,3,4,1,2,7,8,9
-        System.out.println("Reset");
+        System.out.println("Reset\n");
         recognizer.reset();
         System.out.println("Now the result of the check is: " + recognizer.check1(1));
         System.out.println("Now the result of the check is: " + recognizer.check2(2));
         System.out.println("Now the result of the check is: " + recognizer.check3(3));
         System.out.println("Now the result of the check is: " + recognizer.check4(4));
-        System.out.println("Now the result of the check is: " + recognizer.check4(5));
-        System.out.println("Now the result of the check is: " + recognizer.check4(6));
-        System.out.println("Now the result of the check is: " + recognizer.check4(7));
+        System.out.println("Now the result of the check is: " + recognizer.check1(5));
+        System.out.println("Now the result of the check is: " + recognizer.check2(6));
+        System.out.println("Now the result of the check is: " + recognizer.check3(7));
         System.out.println("Now the result of the check is: " + recognizer.check4(8));
-        System.out.println("Now the result of the check is: " + recognizer.check4(9));
+        System.out.println("Now the result of the check is: " + recognizer.check1(9));
     }
 }
