@@ -28,26 +28,142 @@
 	}
 }
 
+\section{Stile}
+
+\begin{frame}{L'importanza dello stile}
+	Cominceremo a correggere anche lo stile con cui scrivete codice
+	\begin{itemize}
+		\item Il codice che scriverete verrà condiviso con altre persone
+		\begin{itemize}
+			\item È importante scrivere software immediatamente comprensibile
+			\item ``gira'' non è una sufficente metrica di qualità
+		\end{itemize}
+% 		\item Ogni linguaggio ha le sue prassi
+% 		\begin{itemize}
+% 			\item Quelle Java di riferimento sono disponibili qui:
+% 			\begin{itemize}
+% 				\item \url{https://web.archive.org/web/20060228095122/http://developers.sun.com/prodtech/cc/products/archive/whitepapers/java-style.pdf}
+% 				\item \url{https://web.archive.org/web/20080513084244/http://java.sun.com/docs/codeconv/CodeConventions.pdf}
+% 				\item \url{http://www.oracle.com/technetwork/java/codeconvtoc-136057.html}
+% 			\end{itemize}
+% 		\end{itemize}
+% 		\item Ogni azienda poi è libera di darsi altre regole interne
+% 		\begin{itemize}
+% 			\item Google: \url{https://google.github.io/styleguide/javaguide.html}
+% 			\item Twitter: \url{https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/styleguide.md}
+% 			\item Mozilla: \url{https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Coding_Style#Java_practices}
+% 		\end{itemize}
+		\item È importante adottare uno stile consistente!
+		\item Ma bisogna sempre essere consistenti
+		\item Nel corso useremo un'estensione di JCC
+	\end{itemize}
+	\vspace{1cm}
+	\begin{quote}
+		Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live. Code for readability.
+		\flushright{--- John Woods [disputed]}
+	\end{quote}
+\end{frame}
+
+\begin{frame}{Stili}
+	Ogni linguaggio ha le sue prassi
+	\begin{itemize}
+		\item Quelle Java di riferimento sono disponibili qui:
+		\tiny
+		\begin{itemize}
+			\item \url{http://bit.ly/java-style-guide}
+			\item \url{http://bit.ly/java-code-conventions}
+			\item \url{http://bit.ly/oracle-java-code-conventions}
+		\end{itemize}
+	\end{itemize}
+	Ogni azienda poi è libera di darsi altre regole interne, ad esempio:
+	\footnotesize
+	\begin{itemize}
+		\item Google: \url{https://google.github.io/styleguide/javaguide.html}
+ 		\item Twitter: \url{https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/styleguide.md}
+ 		\item Mozilla: \url{https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Coding_Style\#Java_practices}
+	\end{itemize}
+	\normalsize
+	Notare che sono sempre \textbf{consistenti}!
+	\begin{center}
+		\textbf{Nel corso useremo un'estensione delle JCC}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Stili}
+	Ogni linguaggio ha le sue prassi
+	\begin{itemize}
+		\item Quelle Java di riferimento sono disponibili qui:
+		\tiny
+		\begin{itemize}
+			\item \url{http://bit.ly/java-style-guide}
+			\item \url{http://bit.ly/java-code-conventions}
+			\item \url{http://bit.ly/oracle-java-code-conventions}
+		\end{itemize}
+	\end{itemize}
+	Ogni azienda poi è libera di darsi altre regole interne, ad esempio:
+	\footnotesize
+	\begin{itemize}
+		\item Google: \url{https://google.github.io/styleguide/javaguide.html}
+ 		\item Twitter: \url{https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/styleguide.md}
+ 		\item Mozilla: \url{https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Coding_Style\#Java_practices}
+	\end{itemize}
+	\normalsize
+	Notare che sono sempre \textbf{consistenti}!
+	\begin{center}
+		\textbf{Nel corso useremo un'estensione delle JCC}
+	\end{center}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Buone prassi}
+	\begin{block}{Usare sempre le parentesi per if, else, for, while, anche se segue una sola istruzione}
+		\begin{itemize}
+			\item Aumentano la manutenibilità del codice
+			\item È facile che nella fretta si modifichi il codice in modo sbagliato
+			\item È facile che alcuni tool automatici si sbaglino quando ``uniscono'' pezzi di codice scritti da diverse persone
+			\item Apple iOS soffrì di un grave bug a SSL/TLS causato da questa cattiva pratica \url{https://www.imperialviolet.org/2014/02/22/applebug.html}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Le parentesi graffe vanno sempre ``all'egiziana'' (Egyptian brackets)}
+		\begin{itemize}
+			\item La graffa che apre va in linea con lo statement di apertura
+			\item La graffa che chiude va in a capo, nella stessa colonna dello statement di apertura
+		\end{itemize}
+	\end{block}
+	\begin{block}{Naming conventions - \textbf{molto importanti!}}
+		\begin{itemize}
+			\item I nomi di \texttt{package} usano sempre e solo lettere minuscole
+			\item Usare sempre CamelCase, evitare gli underscore (\_)
+			\item I nomi di classe cominciano sempre per maiuscola
+			\item I nomi di campi, metodi e variabili locali iniziano sempre per minuscola
+			\item I campi \texttt{static final} (costanti di classe) sono interamente maiuscoli e possono usare underscore
+		\end{itemize}
+	\end{block}
+	\begin{itemize}
+		\item Più avanti avrete ulteriori vincoli
+		\item Ma anche degli strumenti automatici che vi aiuteranno
+	\end{itemize}
+\end{frame}
+
 
 \section{Compilazione ed esecuzione avanzata di classi Java}
 
 \fr{Nuova opzione per \texttt{javac} \cite{or-javac}}{
-\begin{itemize}
-\item Abbiamo già visto come compilare file sorgenti Java (file \texttt{.java}), generando classi in bytecode, che prendono la forma di file \texttt{.class} nella medesima directory 
-\item Tuttavia è uso comune e \textbf{buona pratica} nella gestione di progetti articolati, \textbf{separare le classi sorgenti dal bytecode}, ad esempio:
-\begin{itemize}
-\item cartella \texttt{src}, per i file sorgenti (\texttt{.java})
-\item cartella \texttt{bin}, contenente le classi compilate (\texttt{.class})
-\end{itemize}
-\item Come si fa?
-\end{itemize}
-  \bl{Nuova opzione del comando \texttt{javac}}{
-    \iz {
-      \item \cil{-d}: consente di specificare la cartella destinazione in cui compilare i file \texttt{.java}
-      \item Si tratta di un'opzione che dovete obbligatoriamente saper usare
-    }
-    \center{\textbf{Sarà oggetto di valutazione in sede di prova pratica!}}
-  }
+	\begin{itemize}
+		\item Abbiamo già visto come compilare file sorgenti Java (file \texttt{.java}), generando classi in bytecode, che prendono la forma di file \texttt{.class} nella medesima directory 
+		\item Tuttavia è uso comune e \textbf{buona pratica} nella gestione di progetti articolati, \textbf{separare le classi sorgenti dal bytecode}, ad esempio:
+	\begin{itemize}
+		\item cartella \texttt{src}, per i file sorgenti (\texttt{.java})
+		\item cartella \texttt{bin}, contenente le classi compilate (\texttt{.class})
+	\end{itemize}
+		\item Come si fa?
+	\end{itemize}
+	\bl{Nuova opzione del comando \texttt{javac}}{
+		\iz {
+			\item \cil{-d}: consente di specificare la cartella destinazione in cui compilare i file \texttt{.java}
+			\item Si tratta di un'opzione che dovete obbligatoriamente saper usare
+		}
+		\center{\textbf{Sarà oggetto di valutazione in sede di prova pratica!}}
+	}
 }
 
 \subsubsection{Esempio 1}
