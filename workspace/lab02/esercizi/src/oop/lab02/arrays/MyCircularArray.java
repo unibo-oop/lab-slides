@@ -6,11 +6,9 @@ public class MyCircularArray {
     int[] array;
 
     public void add(final int elem) {
-        // TODO
     }
 
     public void reset() {
-        // TODO
     }
 
     public void printArray() {

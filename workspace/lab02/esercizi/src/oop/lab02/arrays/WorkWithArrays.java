@@ -26,7 +26,9 @@ public class WorkWithArrays {
 
     /** Testing methods **/
 
-    /* Utility method for testing countOccurr method */
+    /*
+     * Utility method for testing countOccurr method
+     */
     public static boolean testCountOccurr() {
         return countOccurr(new int[] { 1, 2, 3, 4 }, 1) == 1
                 && countOccurr(new int[] { 0, 2, 3, 4 }, 1) == 0
@@ -34,7 +36,9 @@ public class WorkWithArrays {
                 && countOccurr(new int[] { 1, 2, 1, 3, 4, 1 }, 1) == 3;
     }
 
-    /* Utility method for testing testEvenElems method */
+    /*
+     * Utility method for testing testEvenElems method
+     */
     public static boolean testEvenElems() {
         return arrayEquals(evenElems(new int[] { 1, 2, 3, 4 }), new int[] { 1,
                 3 })
@@ -47,7 +51,9 @@ public class WorkWithArrays {
                         11, 54, 81 }), new int[] { 7, 1, 12, 23, 54 });
     }
 
-    /* Utility method for testing testOddElems method */
+    /*
+     * Utility method for testing testOddElems method
+     */
     public static boolean testOddElems() {
         return arrayEquals(oddElems(new int[] { 1, 2, 3, 4 }),
                 new int[] { 2, 4 })
@@ -60,7 +66,9 @@ public class WorkWithArrays {
                         11, 54, 81 }), new int[] { 5, 24, 46, 11, 81 });
     }
 
-    /* Utility method for testing testGetMostRecurringElem method */
+    /*
+     * Utility method for testing testGetMostRecurringElem method
+     */
     public static boolean testGetMostRecurringElem() {
         return getMostRecurringElem(new int[] { 1, 2, 1, 3, 4 }) == 1
                 && getMostRecurringElem(new int[] { 7, 1, 5, 7, 7, 9 }) == 7
@@ -68,7 +76,9 @@ public class WorkWithArrays {
                 && getMostRecurringElem(new int[] { 5, 11, 2, 11, 7, 11 }) == 11;
     }
 
-    /* Utility method used to check if two int arrays are equals */
+    /*
+     * Utility method used to check if two int arrays are equals
+     */
     private static boolean arrayEquals(final int[] array1, final int[] array2) {
         if (array1.length == array2.length) {
             for (int i = 0; i < array1.length; i++) {

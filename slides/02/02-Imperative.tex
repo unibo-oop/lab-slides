@@ -1,7 +1,8 @@
 \documentclass[presentation]{beamer}
-\usepackage{oop-slides}
+\usepackage{../oop-slides-pianini}
 \setbeamertemplate{bibliography item}[text]
-\title[OOP02 -- Imperative]{02 \\ Uso avanzato degli strumenti di laboratorio, programmazione imperativa e costruttori}
+\title[OOP02 -- Imperative]{02 \\ Stile, classpath, passaggio di argomenti, programmazione imperativa e costruttori}
+\author[Pianini]{Danilo Pianini \\ Angelo Croatti, Simone Grotti, Mirko Viroli}
 
 \begin{document}
 
@@ -16,38 +17,154 @@
 \end{frame}
 
 \fr{Preparazione ambiente di lavoro}{
-        \iz{
-                \item Accendere il PC
-                \item Loggarsi sul sito del corso
-                \iz{
-                        \item \textcolor{blue}{\url{https://elearning-cds.unibo.it/course/view.php?id=5844}}
-                }
-                \item Scaricare dalla sezione \texttt{lab} del sito il file \texttt{oop-lab02.zip} contenente il materiale dell'esercitazione odierna
-                \item Spostare il file scaricato sul Desktop
-                \item Decomprimere il file usando 7zip (o un programma analogo) sul Desktop
-        }
+	\iz{
+		\item Accendere il PC
+		\item Loggarsi sul sito del corso
+	\iz{
+		\item \textcolor{blue}{\url{https://bit.ly/oop2016cesena}}
+	}
+	\item Scaricare dalla sezione \texttt{lab} del sito il file \texttt{oop-lab02.zip} contenente il materiale dell'esercitazione odierna
+	\item Spostare il file scaricato sul Desktop
+	\item Decomprimere il file usando 7zip (o un programma analogo) sul Desktop
+	}
 }
+
+\section{Stile}
+
+\begin{frame}{L'importanza dello stile}
+	Cominceremo a correggere anche lo stile con cui scrivete codice
+	\begin{itemize}
+		\item Il codice che scriverete verrà condiviso con altre persone
+		\begin{itemize}
+			\item È importante scrivere software immediatamente comprensibile
+			\item ``gira'' non è una sufficente metrica di qualità
+		\end{itemize}
+% 		\item Ogni linguaggio ha le sue prassi
+% 		\begin{itemize}
+% 			\item Quelle Java di riferimento sono disponibili qui:
+% 			\begin{itemize}
+% 				\item \url{https://web.archive.org/web/20060228095122/http://developers.sun.com/prodtech/cc/products/archive/whitepapers/java-style.pdf}
+% 				\item \url{https://web.archive.org/web/20080513084244/http://java.sun.com/docs/codeconv/CodeConventions.pdf}
+% 				\item \url{http://www.oracle.com/technetwork/java/codeconvtoc-136057.html}
+% 			\end{itemize}
+% 		\end{itemize}
+% 		\item Ogni azienda poi è libera di darsi altre regole interne
+% 		\begin{itemize}
+% 			\item Google: \url{https://google.github.io/styleguide/javaguide.html}
+% 			\item Twitter: \url{https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/styleguide.md}
+% 			\item Mozilla: \url{https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Coding_Style#Java_practices}
+% 		\end{itemize}
+		\item È importante adottare uno stile consistente!
+		\item Ma bisogna sempre essere consistenti
+		\item Nel corso useremo un'estensione di JCC
+	\end{itemize}
+	\vspace{1cm}
+	\begin{quote}
+		Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live. Code for readability.
+		\flushright{--- John Woods [disputed]}
+	\end{quote}
+\end{frame}
+
+\begin{frame}{Stili}
+	Ogni linguaggio ha le sue prassi
+	\begin{itemize}
+		\item Quelle Java di riferimento sono disponibili qui:
+		\tiny
+		\begin{itemize}
+			\item \url{http://bit.ly/java-style-guide}
+			\item \url{http://bit.ly/java-code-conventions}
+			\item \url{http://bit.ly/oracle-java-code-conventions}
+		\end{itemize}
+	\end{itemize}
+	Ogni azienda poi è libera di darsi altre regole interne, ad esempio:
+	\footnotesize
+	\begin{itemize}
+		\item Google: \url{https://google.github.io/styleguide/javaguide.html}
+ 		\item Twitter: \url{https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/styleguide.md}
+ 		\item Mozilla: \url{https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Coding_Style\#Java_practices}
+	\end{itemize}
+	\normalsize
+	Notare che sono sempre \textbf{consistenti}!
+	\begin{center}
+		\textbf{Nel corso useremo un'estensione delle JCC}
+	\end{center}
+\end{frame}
+
+\begin{frame}{Stili}
+	Ogni linguaggio ha le sue prassi
+	\begin{itemize}
+		\item Quelle Java di riferimento sono disponibili qui:
+		\tiny
+		\begin{itemize}
+			\item \url{http://bit.ly/java-style-guide}
+			\item \url{http://bit.ly/java-code-conventions}
+			\item \url{http://bit.ly/oracle-java-code-conventions}
+		\end{itemize}
+	\end{itemize}
+	Ogni azienda poi è libera di darsi altre regole interne, ad esempio:
+	\footnotesize
+	\begin{itemize}
+		\item Google: \url{https://google.github.io/styleguide/javaguide.html}
+ 		\item Twitter: \url{https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/styleguide.md}
+ 		\item Mozilla: \url{https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Coding_Style\#Java_practices}
+	\end{itemize}
+	\normalsize
+	Notare che sono sempre \textbf{consistenti}!
+	\begin{center}
+		\textbf{Nel corso useremo un'estensione delle JCC}
+	\end{center}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Buone prassi}
+	\begin{block}{Usare sempre le parentesi per if, else, for, while, anche se segue una sola istruzione}
+		\begin{itemize}
+			\item Aumentano la manutenibilità del codice
+			\item È facile che nella fretta si modifichi il codice in modo sbagliato
+			\item È facile che alcuni tool automatici si sbaglino quando ``uniscono'' pezzi di codice scritti da diverse persone
+			\item Apple iOS soffrì di un grave bug a SSL/TLS causato da questa cattiva pratica \url{https://www.imperialviolet.org/2014/02/22/applebug.html}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Le parentesi graffe vanno sempre ``all'egiziana'' (Egyptian brackets)}
+		\begin{itemize}
+			\item La graffa che apre va in linea con lo statement di apertura
+			\item La graffa che chiude va in a capo, nella stessa colonna dello statement di apertura
+		\end{itemize}
+	\end{block}
+	\begin{block}{Naming conventions - \textbf{molto importanti!}}
+		\begin{itemize}
+			\item I nomi di \texttt{package} usano sempre e solo lettere minuscole
+			\item Usare sempre CamelCase, evitare gli underscore (\_)
+			\item I nomi di classe cominciano sempre per maiuscola
+			\item I nomi di campi, metodi e variabili locali iniziano sempre per minuscola
+			\item I campi \texttt{static final} (costanti di classe) sono interamente maiuscoli e possono usare underscore
+		\end{itemize}
+	\end{block}
+	\begin{itemize}
+		\item Più avanti avrete ulteriori vincoli
+		\item Ma anche degli strumenti automatici che vi aiuteranno
+	\end{itemize}
+\end{frame}
 
 
 \section{Compilazione ed esecuzione avanzata di classi Java}
 
 \fr{Nuova opzione per \texttt{javac} \cite{or-javac}}{
-\begin{itemize}
-\item Abbiamo già visto come compilare file sorgenti Java (file \texttt{.java}), generando il bytecode (file \texttt{.class}) nella medesima directory 
-\item Tuttavia è uso comune e \textbf{buona pratica} nella gestione di progetti articolati, \textbf{separare le classi sorgenti dal bytecode}, ad esempio:
-\begin{itemize}
-\item cartella \texttt{src}, per i file sorgenti (\texttt{.java})
-\item cartella \texttt{bin}, contenente le classi compilate (\texttt{.class})
-\end{itemize}
-\item Come si fa?
-\end{itemize}
-  \bl{Nuova opzione del comando \texttt{javac}}{
-    \iz {
-      \item \cil{-d}: consente di specificare la cartella destinazione in cui compilare i file \texttt{.java}
-      \item Si tratta di un'opzione che dovete obbligatoriamente saper usare
-    }
-    \center{\textbf{Sarà oggetto di valutazione in sede di prova pratica!}}
-  }
+	\begin{itemize}
+		\item Abbiamo già visto come compilare file sorgenti Java (file \texttt{.java}), generando classi in bytecode, che prendono la forma di file \texttt{.class} nella medesima directory 
+		\item Tuttavia è uso comune e \textbf{buona pratica} nella gestione di progetti articolati, \textbf{separare le classi sorgenti dal bytecode}, ad esempio:
+	\begin{itemize}
+		\item cartella \texttt{src}, per i file sorgenti (\texttt{.java})
+		\item cartella \texttt{bin}, contenente le classi compilate (\texttt{.class})
+	\end{itemize}
+		\item Come si fa?
+	\end{itemize}
+	\bl{Nuova opzione del comando \texttt{javac}}{
+		\iz {
+			\item \cil{-d}: consente di specificare la cartella destinazione in cui compilare i file \texttt{.java}
+			\item Si tratta di un'opzione che dovete obbligatoriamente saper usare
+		}
+		\center{\textbf{Sarà oggetto di valutazione in sede di prova pratica!}}
+	}
 }
 
 \subsubsection{Esempio 1}
@@ -77,7 +194,8 @@
     \end{itemize}
   \end{block}
   \begin{itemize}
-    \item Si posizioni il terminale in \texttt{C:} (in \texttt{/} per chi ha Mac o Linux) e si riprovi a compilare \texttt{Calculator.java}
+    \item Si cancelli il contenuto di \texttt{bin}
+    \item Si posizioni il terminale nella root (\texttt{/} per Unix, \texttt{C:\textbackslash} per Windows) e si ricompili \texttt{Calculator.java} dentro la medesima cartella \texttt{bin}
   \end{itemize}
 
   \begin{block}{Compilazione di più file in una singola passata}
@@ -88,8 +206,7 @@
   \end{block}
   È possibile anche utilizzare la wildcard (\texttt{*}) invece di elencare tutti i file!
   \begin{itemize}
-    \item Solo su sistemi *nix si possono usare wildcard in più punti del path
-    \item Ad esempio \texttt{progetti/*/src/*.java} elenca tutti i file con estensione java dentro ciascuna cartella \texttt{src} di ciascuna cartella dentro \texttt{progetti}
+    \item Su Unix si possono usare wildcard in più punti del path, ad esempio \texttt{progetti/*/src/*.java} elenca tutti i file con estensione java dentro ciascuna cartella \texttt{src} di ciascuna cartella dentro \texttt{progetti}
   \end{itemize}
 }
 
@@ -117,69 +234,70 @@
   }
 }
 \fr{Il classpath in dettaglio}{
-  \iz{
-    \item Il classpath è l'insieme delle directory in cui Java cerca classi e package
-    \item Sia \cil{java} che \cil{javac} consentono di specificarlo con l'opzione \cil{-cp}
-  }
-   \bl{In \cil{java}}{
-    Il classpath indica dove verranno cercate le classi necessarie affinché il programma sia eseguito correttamente
-    \iz{
-      \item Uso di classi compilate fornite, di solito come librerie esterne in formato \texttt{jar} (le vedremo) 
-    }
-   }
-  \bl{In \cil{javac}}{
-    Il classpath indica dove verranno cercate le classi necessarie affinché il programma sia compilato
-  }
+	\iz{
+		\item Il classpath è l'insieme delle directory in cui Java cerca le classi
+		\item Sia \cil{java} che \cil{javac} consentono di specificarlo con l'opzione \cil{-cp}
+	}
+	\bl{In \cil{java}}{
+		Il classpath indica dove verranno cercate le classi necessarie affinché il programma sia eseguito correttamente
+	}
+	\bl{In \cil{javac}}{
+		Il classpath indica dove verranno cercate le classi necessarie affinché il programma sia compilato
+	}
 }
 \begin{frame}{Più cartelle nel classpath}
-  Il classpath non è composto da una sola cartella, ma può contenere più cartelle, oltre a speciali file compressi contenenti bytecode e risorse (jar file) di cui parleremo in futuro.
-  
-  \begin{block}{}
-  Si possono specificare più cartelle utilizzando come separatore il simbolo ``\texttt{:}'' (per sistemi Unix) oppure ``\texttt{;}'' (per sistemi Windows)
-  \begin{itemize}
-    \item \texttt{javac -d bin -cp lib1:lib2:lib3 src/*.java}
-    \begin{itemize}
-      \item Compila tutti i file con estensione java che si trovano nella cartella \texttt{src}, mettendo i compilati dentro \texttt{bin}. In compilazione, potrà linkare tutte le classi che si trovano nelle cartelle \texttt{lib1}, \texttt{lib2} e \texttt{lib3}: nel caso in cui alcuni sorgenti in src stiano usando delle classi definite dentro queste cartelle, la compilazione avrà successo.
-      \item \scriptsize{Equivalente Windows: \texttt{javac -d bin -cp lib1;lib2;lib3 src/*.java}}
-    \end{itemize}
-    \item \texttt{java -cp bin:lib1:lib2:lib3 MyClass}
-    \begin{itemize}
-      \item Esegue il main della classe \texttt{MyClass}. Cercherà questa classe e tutte quelle collegate all'interno delle cartelle \texttt{bin}, \texttt{lib1}, \texttt{lib2} e \texttt{lib3}.
-      \item \scriptsize{Equivalente Windows: \texttt{java -cp bin;lib1;lib2;lib3 MyClass}}
-    \end{itemize}
-  \end{itemize}
-
-  \end{block}
+	Il classpath non è composto da una sola cartella, ma può contenere più cartelle, oltre a file compressi contenenti bytecode e risorse, come zip o jar (li vedremo in futuro).
+	\begin{block}{}
+		Si possono specificare più cartelle utilizzando come separatore il simbolo ``\texttt{:}'' (per sistemi Unix) oppure ``\texttt{;}'' (per sistemi Windows)
+		\begin{itemize}
+			\item \texttt{javac -d bin -cp lib1:lib2:lib3 src/*.java}
+			\begin{itemize}
+				\item Compila tutti i file con estensione java che si trovano nella cartella \texttt{src}, mettendo i compilati dentro \texttt{bin}. In compilazione, potrà linkare tutte le classi che si trovano nelle cartelle \texttt{lib1}, \texttt{lib2} e \texttt{lib3}: nel caso in cui alcuni sorgenti in src stiano usando delle classi definite dentro queste cartelle, la compilazione avrà successo.
+				\item \scriptsize{Equivalente Windows: \texttt{javac -d bin -cp lib1;lib2;lib3 src/*.java}}
+		\end{itemize}
+			\item \texttt{java -cp bin:lib1:lib2:lib3 MyClass}
+			\begin{itemize}
+				\item Esegue il main della classe \texttt{MyClass}. Cercherà questa classe e tutte quelle collegate all'interno delle cartelle \texttt{bin}, \texttt{lib1}, \texttt{lib2} e \texttt{lib3}.
+				\item \scriptsize{Equivalente Windows: \texttt{java -cp bin;lib1;lib2;lib3 MyClass}}
+			\end{itemize}
+		\end{itemize}
+	\end{block}
 \end{frame}
 
 \subsubsection{Esempio 2}
-\fr{Esempio 2: Compilazione ed esecuzione di classi strutturate in package}{
-  \iz{
-      \item Spostarsi nella directory \texttt{esempio2}, contenente il secondo esempio
-      \item All'interno è presente la cartella \texttt{src}, come nel precedente esempio 
-      \item In questo caso src non contiente direttamente una classe java ma una \textbf{gerarchia di cartelle}: \texttt{oop/lab02/math}\\
-      \bx{\textbf{Rappresenta su filesystem la struttura del package \texttt{oop.lab02.math}!}}
-      \item Nella cartella ``foglia'' \texttt{math} è presente il sorgente \texttt{ComplexNum.java} (scorso laboratorio)
-   }
-}
-\fr{Esempio 2: la classe \texttt{ComplexNum}}{
+\begin{frame}{Esempio 2: Compilazione ed esecuzione di classi strutturate in package}
+	\begin{itemize}
+		\item Spostarsi nella directory \texttt{esempio2}, contenente il secondo esempio
+		\item All'interno è presente la cartella \texttt{src}, come nel precedente esempio 
+		\item In questo caso src non contiente direttamente una classe java ma una \textbf{gerarchia di cartelle}: \texttt{oop/lab02/math}\\
+		\begin{beamerboxesrounded}[shadow=true]{}
+			È buona norma organizzare i sorgenti in modo da rappresentare su filesystem la struttura dei package. Si noti però che (dato che il compilatore lavora su \alert{file}) questa scelta \textbf{non è obbligatoria}!
+		\end{beamerboxesrounded}
+		\item Nella cartella ``foglia'' \texttt{math} è presente il sorgente \texttt{ComplexNum.java} (scorso laboratorio)
+	\end{itemize}
+\end{frame}
 
+\fr{Esempio 2: la classe \texttt{ComplexNum}}{
    \sizedcode{\small}{code/esempio2/src/oop/lab02/math/ComplexNumShort.java}
-   \bx{\center{\textbf{\texttt{ComplexNum} è ora definita all'interno del package}}}
+   \bx{\center{\textbf{\texttt{ComplexNum} è ora definita all'interno di un package}}}
 }
-\fr{Esempio 2: compilazione/utilizzo di javac}{
-  \en{
-      \item Spostarsi (se non lo si è già fatto) in \texttt{esempio2}
-      \item Eseguire la compilazione:
-      \iz {
-	\item su sistemi UNIX (Linux, Mac OSX, BSD):\\ \textbf{\texttt{javac -d bin src/oop/lab02/math/ComplexNum.java}}
-	\item su sistemi Windows:\\ \textbf{\texttt{javac -d bin src\textbackslash{}oop\textbackslash{}lab02\textbackslash{}math\textbackslash{}ComplexNum.java}}
-      }
-      \item Controllare ora il contenuto di \texttt{bin}: cosa vi aspettate di trovare?
-   }
-   \bx{\center{\textbf{E per l'esecuzione?}}}
-   
-}
+
+\begin{frame}{Esempio 2: compilazione/utilizzo di javac}
+	\begin{enumerate}
+		\item Spostarsi (se non lo si è già fatto) in \texttt{esempio2}
+		\item Eseguire la compilazione:
+		\begin{itemize}
+			\item su sistemi UNIX (Linux, Mac OSX, BSD):\\ \textbf{\texttt{javac -d bin src/oop/lab02/math/ComplexNum.java}}
+			\item su sistemi Windows:\\ \textbf{\texttt{javac -d bin src\textbackslash{}oop\textbackslash{}lab02\textbackslash{}math\textbackslash{}ComplexNum.java}}
+		\end{itemize}
+		\item Controllare ora il contenuto di \texttt{bin}: cosa vi aspettate di trovare?
+		\begin{itemize}
+			\item La struttura dei package è stata riprodotta dal compilatore
+			\item Dato che l'interprete non lavora con file ma con \alert{classi}, il loro layout sul file system \textbf{non può essere modificato!}
+% 			\item Provate a spostare il file generato dal compilatore in una cartella differente: non riuscirete più ad eseguire la classe ivi scritta
+		\end{itemize}
+	\end{enumerate}
+\end{frame}
 
 \fr{Esempio 2: esecuzione/uso di java}{
   \iz{
@@ -203,29 +321,30 @@
 	\item \texttt{java -cp bin ComplexNum}
       }
    }
-   \bx{\center{\textbf{No! La classe è infatti definita all'interno di un package}}}  
+   \bx{\center{\textbf{No! Bisogna usare l'intero nome della classe, che in Java include anche il nome del package}}}  
 }
 
-\fr{Esempio 2: esecuzione/uso di java}{
-  \iz{
-      \item Eseguendo:
-      \iz {
-	\item \texttt{java -cp bin ComplexNum}
-      }
-      \item La JVM si aspetterebbe di trovare un file \texttt{ComplexNum.class} all'interno di \texttt{bin}
-   }
-   \bx{\center{\textbf{Qual è dunque il metodo corretto per eseguire con successo \texttt{ComplexNum}?}}}  
-}
+\begin{frame}{Esempio 2: esecuzione/uso di java}
+	\begin{itemize}
+		\item Eseguendo: \texttt{java -cp bin ComplexNum}
+		\item La JVM si aspetterebbe di la classe \texttt{ComplexNum} nel package di default dentro il classpath, composto nel nostro caso dalla sola directory \texttt{bin}
+		\item Ossia, per il modo in cui sono rappresentate le classi nel file system, cercherebbe un file \texttt{ComplexNum.class} dentro \texttt{bin}
+	\end{itemize}
+   \bx{\center{Qual è dunque il metodo corretto per eseguire con successo \texttt{ComplexNum}?}} 
+
+\end{frame}
 
 \fr{Esempio 2: esecuzione/uso di java}{
-  \iz{
-      \item Proviamo con:
-      \iz {
-	\item \texttt{java -cp bin oop.lab02.math.ComplexNum}
-      }
-      \item Questa volta abbiamo avuto successo!
-      \item la JVM, all'interno di \texttt{bin}, si aspetta la struttura \texttt{oop/lab02/math} contenente \texttt{ComplexNum.class}
-   } 
+	\iz{
+		\item Proviamo con:
+		\iz {
+			\item \texttt{java -cp bin oop.lab02.math.ComplexNum}
+		}
+		\item Questa volta abbiamo avuto successo!
+		\item la JVM, all'interno di \texttt{bin}, si aspetta la struttura \texttt{oop/lab02/math} contenente \texttt{ComplexNum.class}
+		\item Dato che l'interprete non lavora con file ma con \alert{classi}, il loro layout sul file system \textbf{non può essere modificato!}
+		\item Provate a spostare il file generato dal compilatore in una cartella differente: non riuscirete più ad eseguire la classe.
+	} 
 }
 \subsubsection{Esempio 3}
 \fr{Esempio 3: compilazione ed esecuzione ``avanzati''}{
@@ -257,12 +376,13 @@
 }
 
 \fr{Esempio 3: compilazione}{
-   \bl{Comprensione degli errori}{\sizedcode{\tiny}{code/esempio3/src/oop/lab02/math/error.txt}}
-     \iz{
-      \item Il compilatore si aspetta di trovare nel classpath il bytecode della classe \texttt{ComplexNum} (file \texttt{ComplexNum.class})
-      \item Come risolviamo?
-      }
-      \bx{\center{\textbf{Utilizzo dell'opzione \texttt{-cp} sul comando \texttt{javac}!}}} 
+	\bl{Comprensione degli errori}{\sizedcode{\tiny}{code/esempio3/src/oop/lab02/math/error.txt}}
+	\iz{
+		\item Il compilatore ha bisogno di conoscere la classe ComplexNum per poterla linkare e per poter compilare una classe che la riferisce
+		\item Il compilatore cerca nel classpath il bytecode della classe \texttt{ComplexNum}
+		\item Come risolviamo?
+	}
+	\bx{\center{\textbf{Utilizzo dell'opzione \texttt{-cp} sul comando \texttt{javac}!}}} 
 }
 
 \fr{Esempio 3: compilazione}{
@@ -305,7 +425,7 @@
 	\item sistemi Windows:\\ \bx{\texttt{java -cp bin;..\textbackslash{}esempio2\textbackslash{}bin oop.lab02.math.UseComplex}}
       }
    } 
-   Si ricorda che ``\texttt{..}'' significa ``livello directory superiore a quello corrente'', mentre ``\texttt{.}'' significa ``livello directory corrente''
+   Si ricorda che \alert{\texttt{..}} significa ``livello directory superiore a quello corrente'', mentre \alert{\texttt{.}} significa ``livello directory corrente''
 }
 \subsubsection{Esempio 4}
 \fr{Esempio 4: Compilazione da più cartelle sorgenti}{
@@ -350,8 +470,6 @@
       \item javac -help
     \end{itemize}
   \end{block}
-%   Vi verranno elencate molte opzioni (molte delle quali non sono coperte nel corso) assieme con le loro descrizioni. Se vi doveste dimenticare la sintassi di una opzione, questo è un modo per ricordarla.
-  
   \vspace{10pt}
   
   Gli help stampano una sbrodolata di testo e a me serve una riga, davvero devo imparare a leggere e capire un help?
@@ -359,6 +477,38 @@
     \textbf{SÌ}
   \end{center}
   È molto facile dimenticarsi la sintassi delle opzioni di comandi che non si usano spesso. È molto più facile imparare a destreggiarsi in un help che andare a tentativi o ricordare cose a memoria.
+\end{frame}
+
+\section{Passaggio degli argomenti}
+
+\begin{frame}{Passaggio degli argomenti}
+	\begin{itemize}
+		\item La maggior parte dei comandi supporta degli argomenti
+		\begin{itemize}
+			\item Ad esempio, quando eseguite \texttt{javac -d bin MyClass.java} gli argomenti sono:
+			\begin{enumerate}
+			 \item \texttt{-d}
+			 \item \texttt{bin}
+			 \item \texttt{MyClass.java}
+			\end{enumerate}
+		\end{itemize}
+		\item In C, questi vengono passati al \texttt{main} come coppia di \texttt{char **} e \texttt{int}, rappresentanti rispettivamente un riferimento all'area di memoria dove sono salvati i parametri ed il numero dei suddetti.
+		\item Anche in Java ovviamente è possibile passare degli argomenti ad un programma 
+		\item La gestione è un po' più semplice che in C, grazie al fatto che gli array si portano dietro l'informazione circa la loro dimensione
+		\item E grazie al fatto che la signature del main è una sola.
+		\begin{itemize}
+			\item \texttt{public static void main(String [])} è l'unica signature valida
+			\item In C sia \texttt{int main(void)} che \texttt{int main(char **, int)} sono accettabili
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Argomenti in Java}
+	\begin{itemize}
+		\item Gli argomenti con cui il programma Java viene invocato vengono inseriti dentro lo \texttt{String[]} che il \texttt{main} prende in ingresso
+		\item Questo è un normalissimo array di \texttt{String}, uguale a qualunque altro array di \texttt{String}, e senza alcuna specialità
+	\end{itemize}
+	Provate a svolgere l'esercizio proposto come esempio 5 nel codice!
 \end{frame}
 
 
@@ -629,28 +779,3 @@
 
 
 \end{document}
-
-
-
-			\item Un costruttore \cil{Train(int nFCReservedSeats, int nSCReservedSeats)}, che consenta di creare un nuovo oggetto di classe \cil{Train} con un certo numero di posti di prima e seconda classe già riservati
-			\iz {
-				\item I campi della classe dovranno essere inizializzati con dei valori di default (sensati) scelti dallo studente
-				\item I campi della classe dovranno essere inizializzati con dei valori di default (sensati) scelti dallo studente
-			}
-
-
-\fr{Esempio 1: File sorCompilazione di tre packages in one-shot}{
-  \iz{
-      \item Aprire un terminale
-      \item Posizionarsi nella directory in cui si è scompattato il codice di questo laboratorio
-      \item posizionarsi nella directory \texttt{compilazione1}
-      \item Creare una cartella \cil{bin}:comando \cil{mkdir bin}
-      \item Eseguire la compilazione:
-      \iz {
-	\item Su sistemi UNIX (Linux, Mac OSX, BSD) è possibile eseguire il comando \\ \texttt{javac -d bin src/oop/lab05/packages/pkg*/*}
-	\item Su sistemi Windows, è invece necessario eseguire (\textbf{unico comando}) \\ \texttt{javac -d bin src/oop/lab05/packages/pkg1/* src/oop/lab05/packages/pkg2/* src/oop/lab05/packages/pkg3/* }
-	\item Motivo: l'espansione della wildcard ``*'' è demandata al sistema operativo.
-      }
-      \item Verificare la presenza dei file \texttt{.class} all'interno della directory \texttt{bin}, divisi correttamente in cartelle che ricostruiscono la struttura dei package.
-
-  }s
