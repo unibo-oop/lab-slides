@@ -369,11 +369,54 @@ Spesso un software ha necessità di caricare al primo avvio delle impostazioni d
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Librerie particolarmente utili}
+	\begin{itemize}\itemsep15pt
+		\item \textbf{Google Guava} (\url{https://github.com/google/guava})
+		\begin{itemize}
+			\item Il progetto Guava di Google raccoglie diverse librerie core sviluppate da Google che possono essere utilizzate per lo sviluppo di applicazioni.
+			\item Ad esempio, sono disponibili librerie per Collections Management, Concurrency, I/O, String Processing,\dots
+		\end{itemize}
+		\item \textbf{Apache Commons} (\url{https://commons.apache.org})
+		\begin{itemize}
+			\item Estensioni al linguaggio (Commons Lang3)
+			\item Libreria matematica estesa (Commons Math3)
+			\item Accesso semplificato all'I/O (Commons IO)
+			\item Costruzione semi automatica di una command line (Commons CLI)
+			\item Encoding e crittazione (Commons Codec), compressione (Commons Compress)
+		\end{itemize}
+		\item \textbf{Static Logger Facade for Java (SLF4J)} (\url{http://www.slf4j.org})
+		\begin{itemize}
+			\item Backend-independent logging (addio \texttt{println})
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Top 20 Java Library}
+	\begin{center}
+		\includegraphics[width=0.6\textwidth]{img/top-20-java-libraries}
+	\end{center}
+	{\scriptsize \url{blog.takipi.com/we-analyzed-60678-libraries-on-github-here-are-the-top-100}}
+\end{frame}
+
+\begin{frame}{Awesome Java}
+	Esiste una lista, costantemente manutenuta, che elenca le più comuni, diffuse e stabili librerie per una pletora di usi:
+	\begin{center}
+		\url{bit.ly/awesome-java}
+	\end{center}
+	\begin{center}
+		\begin{LARGE}\textbf{U-SA-TE-LE}\end{LARGE}
+	\end{center}
+	\begin{center}
+		\textbf{Usare librerie e non reinventare la ruota è \alert{IMPORTANTE} e valutato positivamente.}\\
+		Attenzione però a scegliere le librerie dopo aver fatto il \textbf{modello del dominio} dell'applicazione: \textbf{PRIMA} si studia il problema, \textbf{DOPO} si implementa una soluzione.
+	\end{center}
+\end{frame}
+
 \begin{frame}{The Maven Central Repository}
 \begin{itemize}\itemsep10pt
 \item Costituisce la più ampia collezione di librerie e componenti Java open-source.
 \begin{itemize}
-\item È il repository di default per Apache Maven (il più noto tool per il project management).
+\item È il repository di default per Apache Maven (noto tool per il project management).
 \end{itemize}
 \item Rappresenta uno dei modi più rapidi per accedere a librerie sviluppate da altri sviluppatori e distribuire le proprie.
 \item Consente di ricercare e scaricare pressoché qualunque libreria a supporto utile nelle proprie applicazioni open-source.
@@ -382,27 +425,6 @@ Spesso un software ha necessità di caricare al primo avvio delle impostazioni d
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Top 20 Java Library}
-\begin{center}
-\includegraphics[width=0.6\textwidth]{img/top-20-java-libraries}
-\end{center}
-{\scriptsize \url{blog.takipi.com/we-analyzed-60678-libraries-on-github-here-are-the-top-100}}
-\end{frame}
-
-\begin{frame}{Altri Repository per librerie Java-based}
-\begin{itemize}\itemsep15pt
-\item \textbf{Google Guava} (\url{https://github.com/google/guava})
-\begin{itemize}
-\item Il progetto Guava di Google raccoglie diverse librerie core sviluppate da Google che possono essere utilizzate per lo sviluppo di applicazioni.
-\item Ad esempio, sono disponibili librerie per Collections Management, Concurrency, I/O, String Processing,\dots
-\end{itemize}
-\item \textbf{Apache Commons} (\url{https://commons.apache.org})
-\item \textbf{SLF4J} (\url{http://www.slf4j.org})
-\begin{itemize}
-\item Consente di utilizzare una serie di framework per il logging.
-\end{itemize}
-\end{itemize}
-\end{frame}
 
 \section{Esercitazione sulla concorrenza}
 
