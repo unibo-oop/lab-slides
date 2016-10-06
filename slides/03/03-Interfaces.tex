@@ -1,7 +1,8 @@
 \documentclass[presentation]{beamer}
-\usepackage{oop-slides}
+\usepackage{../oop-slides-pianini}
 \setbeamertemplate{bibliography item}[text]
-\title[OOP03 -- Interfaces]{03 \\ Eclipse, Incapsulamento e Interfacce}
+\title[OOP03 -- Interfaces]{03\\Eclipse IDE, Incapsulamento e Interfacce}
+\author[Pianini]{Danilo Pianini\\Angelo Croatti, Simone Grotti, Mirko Viroli}
 
 \begin{document}
 	
@@ -11,48 +12,55 @@
 %Outline
 %====================
 \fr{Outline}{
-	\bl{Goal della lezione}{
-		\iz{ 
-			\item Introduzione ad Eclipse
-			\item Costruzione e test di classi con incapsulamento
-			\item Costruzione di classi con relazione di composizione e d'uso verso una interfaccia
-		}
-	}
+\bl{Goal della lezione}{
+\iz{ 
+\item Introduzione ad Eclipse
+\item Costruzione e test di classi con incapsulamento
+\item Costruzione di classi con relazione di composizione e d'uso verso una interfaccia
 }
-
+}
+}
 
 \begin{frame}<beamer>
 	\frametitle{Outline}
 	\tableofcontents[]
 \end{frame}
+
 \section{Eclipse Overview}
-
 \subsection{Introduzione}
-\fr{Integrated Development Environment (IDE)}{
 
-%	\bl{}{
-		\iz{
-			\item Gli Integrated Development Environment (IDE) sono applicazioni che integrano - nel medesimo ambiente - un insieme di strumenti per lo sviluppo di progetti software (e non)
-			\iz{
-					\item Editor di testo, compilatore, macchine virtuali per l'esecuzione e il debugging delle applicazioni, etc.
-											
-					\item Esempi di IDE sono Eclipse~\cite{eclipse}, Netbeans~\cite{netbeans}, Microsoft Visual Studio~\cite{vstudio}, JBuilder~\cite{jbuilder}, etc.
-				}
-		}				
-		\iz{
-			\item Un progetto è una collezione organizzata di risorse 
-				\iz{
-					\item Sorgenti, librerie, compilati, documentazione etc.
-				}
-		}			
-		\iz{
-			\item Gli IDE permettono di sviluppare progetti, in termini di creazione ed interazione con le risorse
-				\iz{
-						\item Editing, compilazione, esecuzione, debugging, testing, deployment (distribuzione delle applicazioni)	
-				}
-		}
-%	}
-}
+\begin{frame}{Integrated Development Environment (IDE)}
+
+\begin{block}{}
+\emph{A software suite that consolidates the basic tools developers need to write and test software. An IDE contains a code editor, a compiler and a debugger that the developer accesses through a single user interface.}
+\end{block}
+
+\begin{itemize}
+\item Ambiente integrato per la creazione e la gestione di progetti software.
+\begin{itemize}
+\item Un progetto, per un IDE, è composto da una collezione organizzata di risorse: sorgenti, librerie, compilati, documentazione, \dots
+\end{itemize}
+\item Componenti tipici di un IDE:
+\begin{itemize}
+\item Editor di testo con Syntax Highlighting (e Code Completion)
+\item Compilatore
+\item Macchina(e) virtuale per l'esecuzione e il debugging delle applicazioni
+\item Strumenti per agevolare il deployment (distribuzione) delle applicazioni
+\item \dots
+\end{itemize}
+\item Esempi di IDE:
+\begin{itemize}
+\item Eclipse, NetBeans, IntelliJ IDEA, Microsoft Visual Studio, XCode, \dots
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Diffusione dei principali IDE}
+\fg{height=0.7\textheight}{img/topIDE2015.png}
+Dati aggiornati a Luglio 2015\\\footnotesize{(fonte: \url{knoema.com/jtieieg/popularity-of-programming-languages})}
+\end{frame}
+
+
 
 \fr{Eclipse Overview}{
 
@@ -70,7 +78,7 @@
 	\bl{Un po' di storia}{
 		\iz{
 			\item Nato nei laboratori di ricerca IBM (alphaWorks) 
-			\item	Successivamente	donato alla comunità open-source che ora ne cura lo sviluppo per mezzo di una apposita fondazione~\cite{eclipse-foundation}
+			\item	Successivamente	donato alla comunità open-source che ora ne cura lo sviluppo per mezzo di una apposita fondazione
 			\item Correntemente supportato/utilizzato da un vasto numero di sviluppatori, sia in ambito accademico che industriale
 		}
 	}
@@ -81,7 +89,7 @@
 \subsection{Operazioni Base per lo Sviluppo di Progetti Java}
 
 \fr{Avvio di Eclipse: Scelta del Workspace}{
-	\fg{height=0.6\textheight}{img/eclipse_startup.png}	
+	\fg{height=0.8\textheight}{img/eclipse_startup.png}	
 }
 \fr{Creazione di Progetti Java 1/3}{
 	\fg{height=0.85\textheight}{img/new_prj1.png}
@@ -182,7 +190,7 @@
 				}
 			\item Supporto nativo lo sviluppo di nuovi plug-in
 				\iz{
-					\item Plug-in Development Environment (PDE)~\cite{eclipse-pde}
+					\item Plug-in Development Environment (PDE)
 				}
 		}
 	}
@@ -223,23 +231,19 @@
 		\fg{height=0.85\textheight}{img/jdt_perspective.png}
 }
 
-
-
-
-
 \section{Lab Startup}
 
 \fr{Preparazione Ambiente di Lavoro 1/2}{
-	\iz{
-		\item Accendere il PC
-		\item Loggarsi sul sito del corso
-		\iz{
-			\item \textcolor{blue}{\moodleurl}
-		}
-		\item Scaricare dalla sezione \texttt{lab} del sito il file \texttt{lab03.zip} contenente il materiale dell'esercitazione odierna
-		\item Spostare il file scaricato sul Desktop
-		\item Decomprimere il file usando 7zip (o un programma analogo) sul Desktop
-	}
+\iz{
+\item Accendere il PC
+\item Loggarsi sul sito del corso
+\iz{
+\item\textcolor{blue}{\url{https://bit.ly/oop2016cesena}}
+}
+\item Scaricare dalla sezione \texttt{lab} del sito il file \texttt{lab03.zip} contenente il materiale dell'esercitazione odierna
+\item Spostare il file scaricato sul Desktop
+\item Decomprimere il file usando 7zip (o un programma analogo) sul Desktop
+}
 }
 
 \fr{Preparazione Ambiente di Lavoro 2/2}{
@@ -487,7 +491,8 @@
 		\iz{
 			\item Campi
 			\iz{
-				\item \cil{int id, nMaxStudents, nRegisteredStudents; String courseName}
+				\item \cil{int id, nMaxStudents, nRegisteredStudents;}
+				\item \cil{String courseName;}
 				\item \cil{Student[] students; Professor professor}
 				\item \cil{ExamRoom room} (classe che modella un aula, \textcolor{blue}{fornita tra i sorgenti})
 			}
@@ -503,7 +508,7 @@
 			\iz{
 				\item \cil{public void registerStudent(Student student)}
 				\iz{
-					\item Iscrive lo studente all'appello. Nel caso sia stato già raggiunto il limite massimo di studenti per l'appello non fa nulla
+					\item Iscrive lo studente all'appello. Qualora si sia raggiunto il limite massimo di studenti per l'appello non fa nulla.
 				}
 			}
 		}
@@ -589,12 +594,12 @@
 	}
 }
 
-\begin{frame}[allowframebreaks]
- \frametitle{Bibliography}
-	\bibliographystyle{plain}
-	\small
- \bibliography{biblio}
-\end{frame}
+%\begin{frame}[allowframebreaks]
+% \frametitle{Bibliography}
+%	\bibliographystyle{plain}
+%	\small
+% \bibliography{biblio}
+%\end{frame}
 
 
 \end{document}
