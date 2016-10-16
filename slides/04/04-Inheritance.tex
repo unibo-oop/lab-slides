@@ -74,69 +74,79 @@
 }
 
 
-\fr{Debugging in Eclipse: Principali Operazioni}{
-\iz{
-\item L'avvio del debugger in Eclipse comporta l'apertura della perspective \emph{Debug}, con gli strumenti utili per le operazioni di debugging
-}
-\bl{Principali Operazioni}{
-\en{
-\item Inserimento di un breakpoint
-\iz{
-\item Doppio click sulla linea di interesse (o CTRL+SHIFT+B)
-}
-\item Esecuzione \textcolor{blue}{step-by-step}: F6
-\iz{
-\item Una volta che l'esecuzione è stata sospesa da un breakpoint
-}
-\item \textcolor{blue}{Step into}: F5 
-\iz{
-\item Debugging corpo di un metodo/costruttore
-}
-\item \textcolor{blue}{Step return}: F7 
-\iz{
-\item Ritorno dal debugging del corpo di un metodo/costruttore
-}
-\item \textcolor{blue}{Resume}: F8 
-\iz{
-\item Esecuzione fino al prossimo breakpoint 
-}
-}
-}
+\fr{Debugging in Eclipse: manipolazione del flusso di controllo}{
+	\iz{
+		\item L'avvio del debugger in Eclipse comporta l'apertura della perspective \emph{Debug}, con gli strumenti utili per le operazioni di debugging
+	}
+	\bl{Principali operazioni di manipolazione del flusso di controllo}{
+		\en{
+			\item Inserimento di un breakpoint
+			\iz{
+				\item Doppio click sulla linea di interesse (o CTRL+SHIFT+B)
+			}
+			\item Esecuzione \textcolor{blue}{step-by-step}: F6
+			\iz{
+				\item Una volta che l'esecuzione è stata sospesa da un breakpoint
+			}
+			\item \textcolor{blue}{Step into}: F5 
+			\iz{
+				\item Debugging corpo di un metodo/costruttore
+			}
+				\item \textcolor{blue}{Step return}: F7 
+			\iz{
+				\item Ritorno dal debugging del corpo di un metodo/costruttore
+			}
+			\item \textcolor{blue}{Resume}: F8 
+			\iz{
+				\item Esecuzione fino al prossimo breakpoint 
+			}
+		}
+	}
 }
 
+\begin{frame}[allowframebreaks]{Debugging in Eclipse: strumenti}
+	\begin{block}{Breakpoint condizionali}
+		Tramite click destro su breakpoint e ``Properties'', è possibile scrivere una condizione per il breakpoint, ad esempio di scattare solo dopo un certo numero di volte, oppure di scattare se una certa condizione è vera (estremamente utile).
+	\end{block}
+	\begin{block}{Osservazione e manipolazione dei valori}
+		La view ``Variables'' consente di visualizzare il valore di tutti i campi e delle variabili locali, esplorando anche l'interno degli oggetti. Inoltre, consente di modificarne i valori a runtime, per ispezionare il funzionamento del programma.
+	\end{block}
+	\begin{block}{Valutazione di espressioni}
+		È possibile, nella tab ``Expressions'', scrivere un'espressione java valida nel contesto (quindi, con accesso alle variabili locali e ai campi). L'IDE la valuterà e scriverà il risultato. Molto utile per visualizzare valori che richiederebbero altrimenti l'inserimento di una stampa ed il riavvio del debug, oppure un uso complicato dell'osservazione dentro Variables.
+	\end{block}
+\end{frame}
+
+
 \fr{Debugging: Test delle Principali Operazioni}{
-\tiny Classe d'esempio: \cil{it.unibo.oop.lab04.bank.DebugTestBankAccount}\sizedcode{\tiny}{code/src/it/unibo/oop/lab04/bank/DebugTestBankAccount.java}
+	\tiny Classe d'esempio: \cil{it.unibo.oop.lab04.bank.DebugTestBankAccount}\sizedcode{\tiny}{code/src/it/unibo/oop/lab04/bank/DebugTestBankAccount.java}
 }
 
 \subsection{Refactoring}
 \begin{frame}{Refactoring}
-\begin{block}{}
-\emph{Refactoring is a disciplined technique for restructuring an existing body of code, altering its internal structure without changing its external behavior.}\\--- \url{refactoring.com}
-\end{block}
-
-\begin{block}{Vantaggi nel refactoring supportato dall'IDE}
-\begin{itemize}
-\item Le modifiche apportate al codice sono gestite dall'IDE e quindi più consistenti
-\begin{itemize}
-\item \footnotesize{Es (1). \emph{Rinominare una variabile}: se si procede ``a mano'', si dovrà modificare il nome della variabile sia nella riga in cui la si dichiara sia in tutte le sue occorrenze di utilizzo. Viceversa, avvalendosi dell'IDE, la modifica da fare è una sola.}
-\item \footnotesize{Es (2). \emph{Spostare una classe da un package ad un altro}: utilizzando l'IDE vengono aggiornati tutti i riferimenti nell'intero progetto}
-\end{itemize}
-\item \`{E} minimizzata l'eventualità di introdurre ulteriori errori (bug) in fase di refactoring
-\end{itemize}
-
-\end{block}
-	
+	\begin{block}{}
+		\emph{Refactoring is a disciplined technique for restructuring an existing body of code, altering its internal structure without changing its external behavior.}\\--- \url{refactoring.com}
+	\end{block}
+	\begin{block}{Vantaggi nel refactoring supportato dall'IDE}
+		\begin{itemize}
+			\item Le modifiche apportate al codice sono gestite dall'IDE e quindi più consistenti
+			\begin{itemize}
+				\item \footnotesize{Es (1). \emph{Rinominare una variabile}: se si procede ``a mano'', si dovrà modificare il nome della variabile sia nella riga in cui la si dichiara sia in tutte le sue occorrenze di utilizzo. Viceversa, avvalendosi dell'IDE, la modifica da fare è una sola.}
+				\item \footnotesize{Es (2). \emph{Spostare una classe da un package ad un altro}: utilizzando l'IDE vengono aggiornati tutti i riferimenti nell'intero progetto}
+			\end{itemize}
+			\item \`{E} minimizzata l'eventualità di introdurre ulteriori errori (bug) in fase di refactoring
+		\end{itemize}
+	\end{block}
 \end{frame}
 
 \fr{Refactoring in Eclipse}{
-\bl{}{
-Operazioni di modifica del nome di variabili, classi, metodi etc.
-\iz{ 
-\item Gestite in maniera automatica e safe dall'IDE 
-\item Attivabile anche tramite ALT+SHIFT+R sulla selezione di interesse
-}
-}
-\fg{height=0.7\textheight}{img/refactor.png}
+	\bl{}{
+		Operazioni di modifica del nome di variabili, classi, metodi etc.
+		\iz{ 
+			\item Gestite in maniera automatica e safe dall'IDE 
+			\item Attivabile anche tramite ALT+SHIFT+R sulla selezione di interesse
+		}
+	}
+	\fg{height=0.7\textheight}{img/refactor.png}
 }
 
 \subsection{Keyboard Shortcuts}
