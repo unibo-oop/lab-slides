@@ -310,14 +310,15 @@ nothing to commit (create/copy files and use "git add" to track)
 	\end{block}
 \end{frame}
 
-\begin{frame}[allowframebreaks,fragile]{Aggiungere files al tracker}
+\begin{frame}[allowframebreaks,fragile]{Aggiungere files alla staging area}
 	\begin{block}{In generale}	
-		È necessario segnalare esplicitamente quali file si vogliono tracciare.
+		È necessario segnalare esplicitamente quali file dovranno essere inclusi nel prossimo salvataggio.
 		\begin{itemize}
 			\item molti dei file potrebbero essere rigenerabili a partire da altri
 			\item Il tracking differenziale è efficiente con file testuali...
 			\item ...ma inefficiente con i binari!
 			\item tracciare file generabili è uno spreco di risorse!
+			\item I file selezionati saranno aggiunti alla ``staging area''
 		\end{itemize}
 	\end{block}
 	\begin{block}{In un progetto Java}	
@@ -336,15 +337,18 @@ nothing to commit (create/copy files and use "git add" to track)
 		\end{itemize}
 	\end{block}
 	\begin{block}{In Git}
-		Il sottocomando \texttt{add} aggiunge nuovi file al tracker
+		Il sottocomando \texttt{add} aggiunge delle modifiche alla staging area
 		\begin{itemize}
 			\item \texttt{git add PATH\_TO\_FILE}
 			\begin{itemize}
-				\item Aggiunge il file indicato al tracking. Il file deve essere all'interno del repository (non è possibile tracciare file esterni al repository).
+				\item Aggiunge il file indicato alla staging area. Il file deve essere all'interno del repository.
+				\item Il file deve essere cambiato rispetto allo stato precedente (perché nuovo, modificato, o cancellato)
+				\item Il file può essere un file che esisteva ma è stato cancellato!
+				\item In questo caso, viene registrata nella staging area la cancellazione
 			\end{itemize}
 			\item \texttt{git add PATH\_TO\_FILE\_1 PATH\_TO\_FILE\_2 PATH\_TO\_FILE\_N}
 			\begin{itemize}
-				\item Aggiunge tutti i file indicato al tracking. Valgono le stesse restrizioni di cui sopra circa la loro posizione nel file system.
+				\item Aggiunge tutti i file indicati alla staging area.
 			\end{itemize}
 		\end{itemize}
 	\end{block}
@@ -377,6 +381,166 @@ Changes to be committed:
 	\begin{block}{Spiegazione dell'output}
 		\begin{itemize}
 			\item La parte relativa alla staging area è cambiata: git ci segnala che le modifiche ad \texttt{src/HelloWorld.java} saranno salvate al prossimo commit
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[allowframebreaks,fragile]{Creare punti di salvataggio}
+	\begin{block}{In generale}
+		L'operazione fondamentale che vogliamo eseguire è quella di creare un punto di salvataggio, che registri i nostri progressi e al quale potremo sempre tornare.
+		
+		Assieme al salvataggio, vogliamo registrare alcuni metadati:
+		\begin{itemize}
+			\item Nome dell'autore del commit
+			\item Informazioni per identificare e contattare l'autore (email)
+			\item Un \textbf{messaggio} che riassuma quali modifiche sono state fatte in quel commit
+			\item Data e ora del commit (acquisite automaticamente)
+			\item Un identificativo univoco (hash) (generato automaticamente)
+		\end{itemize}
+		
+		Il commit non salverà lo stato del progetto, ma il set di modifiche necessarie per portare i file dallo stato precedente a quello del nuovo commit.
+	\end{block}
+	\begin{block}{Buone pratiche di commit}
+		È molto importante specificare un messaggio di commit sensato.
+		\begin{itemize}
+			\item Deve essere un breve riassunto di quanto è stato fatto dal salvataggio precedente
+			\item Chi vede la storia del progetto deve capire immediatamente quali siano le differenze che il commit introduce
+			\item È buona norma scrivere in inglese usando il simple present
+		\end{itemize}
+		È molto importante fare commit piccoli e frequenti
+		\begin{itemize}
+			\item Idealmente, uno ad ogni modifica di cui sia possibile fornire una descrizione organica nel commit message
+			\item Non importa se le modifiche sono minimali
+% 			\item Ad esempio, i seguenti sono buoni commit:
+% 			\begin{itemize}
+% 				\item \texttt{Aggiunta stampa in caso di errore}, con modifica di una sola linea di codice
+% 				\item \texttt{Aggiunta di final mancanti}, con modifica di poche linee di codice in un solo file
+% 				\item \texttt{Implementata versione iniziale della funzionalità X}, con modifica e aggiunta di diversi file sorgente
+% 			\end{itemize}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Cattive pratiche da evitare}
+		\begin{itemize}
+			\item Messaggi non chiari, generici e/o troppo brevi, ad esempio:
+			\begin{itemize}
+				\item Fix bug
+				\item Fix project
+				\item Add files
+				\item Commit
+			\end{itemize}
+			\item Commit giganteschi con molte modifiche, magari non strettamente correlate fra loro
+		\end{itemize}
+	\end{block}
+	\begin{block}{In Git}
+		Il sottocomando \texttt{commit} crea il salvataggio
+		\begin{itemize}
+			\item \texttt{git commit}
+			\begin{itemize}
+				\footnotesize
+				\item Esegue un commit salvando tutte le modifiche nella staging area
+				\item Apre l'editor di testo di sistema per l'inserimento del commit message
+			\end{itemize}
+			\item \texttt{git commit PATH\_TO\_FILE\_1 PATH\_TO\_FILE\_2 PATH\_TO\_FILE\_N}
+			\begin{itemize}
+				\footnotesize
+				\item Esegue un commit salvando tutte le modifiche ai file elencati
+				\item Apre l'editor di testo di sistema per l'inserimento del commit message
+				\item Equivalente ad eseguire \texttt{git add FILES} seguito da \texttt{git commit} a partire da una staging area vuota
+			\end{itemize}
+			\item \texttt{git commit -m "A message"}
+			\begin{itemize}
+				\footnotesize
+				\item Esegue un commit di tutte le modifiche aggiunte alla staging area
+				\item Utilizza \texttt{A message} come commit message
+			\end{itemize}
+			\item \texttt{git commit FILES -m "A message"}
+			\begin{itemize}
+				\footnotesize
+				\item Esegue un commit salvando tutte le modifiche ai file elencati
+				\item Utilizza \texttt{A message} come commit message
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Configurare l'editor di testo}
+		Sistemi diversi hanno editor diversi
+		\begin{itemize}
+			\item Di default MacOS X utilizza \texttt{vim}
+			\item In Linux dipende dalla distribuzione, solitamente è uno fra \texttt{vim}, \texttt{nano}, o \texttt{emacs}
+			\item In Windows \textit{dovrebbe} essere \texttt{Notepad.exe}
+		\end{itemize}
+		Non sempre l'editor di default è quello che preferite: è bene configurarlo
+		\begin{itemize}
+			\item \texttt{git config --global core.editor "editorcommand"}
+			\begin{itemize}
+				\item Setta \texttt{editorcommand} come comando da invocare per aprire l'editor
+				\item Va da sé che il comando debba essere disponibile sul vostro sistema...
+			\end{itemize}
+		\end{itemize}
+		Vi consiglio di:
+		\begin{itemize}
+			\item Se conoscete già un editor a command line, usate quello
+			\item Se non lo avete, in ambiente Linux o Mac, di usare \texttt{nano}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Esercizio}	
+		\begin{itemize}
+			\item Se si sta usando Linux o MacOS X, si configuri adeguatamente l'editor di testo
+			\item Si verifichi lo stato del repository
+			\item Si effettui il commit delle modifiche presenti nella staging area
+			\begin{itemize}
+				\item Inserendo un commit message SENSATO!
+			\end{itemize}
+			\item Si visualizzi lo stato del repository
+		\end{itemize}
+	\end{block}
+	\begin{block}{Output atteso dopo il commit}
+		\begin{Verbatim}[fontsize=\scriptsize]
+[master (root-commit) 19aa252] Create HelloWorld
+ 1 file changed, 5 insertions(+)
+ create mode 100644 src/HelloWorld.java
+\end{Verbatim}
+	\end{block}
+	\begin{block}{Spiegazione dell'output}
+		\begin{itemize}
+			\item Ci troviamo nel branch master
+			\item Questo è il primo commit (radice)
+			\item L'hash del nostro commit (una parte, in realtà) è \texttt{19aa252}
+			\begin{itemize}
+				\item Ovviamente il vostro potrebbe differire
+			\end{itemize}
+			\item Il messaggio inserito è ``Create HelloWorld''
+			\begin{itemize}
+				\item Ovviamente questo è il mio, il vostro potrebbe essere diverso, dipende da che messaggio avete inserito
+			\end{itemize}
+			\item È stato modificato un file, in totale sono state inserite 5 righe di codice
+			\item È stato creato un nuovo file \texttt{src/HelloWorld.java}
+			\begin{itemize}
+				\item Si noti che sono stati tracciati i permessi unix (\texttt{644} in ottale)
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[allowframebreaks,fragile]{Rimuovere files dalla staging area}
+	\begin{block}{In generale}	
+		Vogliamo poter togliere dalla staging area dei file che abbiamo aggiunto
+		\begin{itemize}
+			\item Ad esempio perché li abbiamo aggiunti a seguito dell'uso di un comando con la wildcard
+			\item Oppure perché abbiamo deciso di salvare le modifiche in più commit
+		\end{itemize}
+	\end{block}
+	\begin{block}{In Git}
+		Il sottocomando \texttt{reset} rimuove delle modifiche dalla staging area
+		\begin{itemize}
+			\item \texttt{git reset PATH\_TO\_FILE}
+			\begin{itemize}
+				\item Rimuove le modifiche fatte al file selezionato dalla staging area (non dal tracking!)
+				\item Il file potrebbe anche non esistere, ad esempio se abbiamo cancellato un file e aggiunto la modifica alla staging area.
+			\end{itemize}
+			\item \texttt{git reset PATH\_TO\_FILE\_1 PATH\_TO\_FILE\_2 PATH\_TO\_FILE\_N}
+			\begin{itemize}
+				\item Rimuove le modifiche fatte a tutti i file indicati dalla staging area.
+			\end{itemize}
 		\end{itemize}
 	\end{block}
 \end{frame}
@@ -634,6 +798,8 @@ nothing to commit, working tree clean
 			\item \texttt{git log}
 			\begin{itemize}
 				\item Visualizza tutti i commit della linea di sviluppo corrente
+				\item Se l'output è troppo lungo crea una visualizzazione scorrevole (si vedano i comandi Unix \texttt{less} e \texttt{more})
+				\item Per uscire dalla visualizzazione scorrevole, si usa il tasto Q
 			\end{itemize}
 			\item \texttt{git log --graph}
 			\begin{itemize}
@@ -794,6 +960,8 @@ index de0a8c8..0000000
 				\item Potete ottenerlo usando \texttt{git log}
 			\end{itemize}
 			\item Si torni alla cima della linea di sviluppo (\texttt{master})
+			\item Si rimuova il file \texttt{junk.txt} dall'area di staging (con \texttt{reset})
+			\item Si elimini il file \texttt{junk.txt}
 		\end{itemize}
 	\end{block}
 	\begin{block}{Output atteso}
@@ -862,6 +1030,23 @@ Changes to be committed:
 
 		\end{Verbatim}
 	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        junk.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+nothing to commit, working tree clean
+		\end{Verbatim}
+	\end{block}
 	\begin{block}{Spiegazione dell'output}
 		\begin{itemize}
 			\item Si noti che Git cerca di non cancellare le modifiche non salvate in un commit quando si naviga la storia (il file \texttt{junk.txt} non viene cancellato)
@@ -871,9 +1056,369 @@ Changes to be committed:
 	\end{block}
 \end{frame}
 
-\section{Multiple linee di sviluppo}
+\subsection{Gestione di più linee di sviluppo}
 
-\subsection{Branching}
+\begin{frame}[allowframebreaks,fragile]{Creazione di nuove linee di sviluppo (branching)}
+	\begin{block}{In generale}
+		Vogliamo poter sviluppare su più linee
+		\begin{itemize}
+			\item Ad esempio perché stiamo per sviluppare una funzionalità che non sapremo se e quando completeremo, ma nel frattempo il nostro software va comunque manutenuto
+			\item Ad esempio perché vogliamo sviluppare qualcosa a partire da una versione più vecchia (ossia, salvare i commit effettuati in modalità ``detached \texttt{HEAD}''
+		\end{itemize}
+	\end{block}
+	\begin{block}{In Git}
+		Il sottocomando \texttt{checkout} consente di creare passare di branch in branch, e di crearne di nuovi tramite l'opzione \texttt{-b}
+		\begin{itemize}
+			\item \texttt{git checkout -b branchname}
+			\begin{itemize}
+				\item Crea un nuovo branch di nome \texttt{branchname}
+				\item I nuovi commit apparterranno a quel branch
+			\end{itemize}
+			\item \texttt{git checkout branchname}
+			\begin{itemize}
+				\item Passa dal branch corrente al branch \texttt{branchname}
+				\item Questo in realtà è un ripasso di quanto detto un attimo fa...
+			\end{itemize}
+		\end{itemize}
+		Il sottocomando \texttt{branch} consente di visualizzare i branch
+		\begin{itemize}
+			\item \texttt{git branch}
+			\begin{itemize}
+				\item Stampa i branch, mostrando con \texttt{*} quello corrente.
+			\end{itemize}
+		\end{itemize}
+		L'opzione \texttt{--all} di \texttt{git log} visualizza la storia per tutti i branch
+		\begin{itemize}
+			\item \texttt{git log --all --graph}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Esercizio}	
+		\textbf{Premessa}: si osservi e comprenda lo stato del repository con \texttt{git status} \textbf{prima e dopo ogni operazione} di modifica di file o \texttt{commit}
+		\begin{itemize}
+			\footnotesize
+			\item Si visualizzino i branch disponibili
+			\item Si crei un nuovo branch di nome \texttt{feature-readme}
+			\item Si visualizzino i branch disponibili
+			\item Si crei un nuovo file \texttt{README.md}, con del testo semplice
+			\item Si aggiunga \texttt{README.md} alla staging area
+			\item Si effettui il commit
+			\item Si passi al branch \texttt{master}
+			\item Si modifichi la stampa di \texttt{HelloWorld.java}
+			\item Si aggiunga \texttt{HelloWorld.java} alla staging area
+			\item Si effettui il commit
+			\item Si visualizzi la storia dei commit su tutti i branch
+		\end{itemize}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+* master
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+Switched to a new branch 'feature-readme'
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+* feature-readme
+  master
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch feature-readme
+nothing to commit, working tree clean
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch feature-readme
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        README.md
+
+nothing added to commit but untracked files present (use "git add" to track)
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch feature-readme
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   README.md
+
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+[feature-readme 9261ec2] Add README.md file
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch feature-readme
+nothing to commit, working tree clean
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+Switched to branch 'master'
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+nothing to commit, working tree clean
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   src/HelloWorld.java
+
+no changes added to commit (use "git add" and/or "git commit -a")
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        modified:   src/HelloWorld.java
+
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+[master 56aa7aa] Modify HelloWorld
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+nothing to commit, working tree clean
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\tiny]
+* commit 56aa7aaad47026911c2aa2b026f33293c3b4fe31
+| Author: Danilo Pianini <danilo.pianini@unibo.it>
+| Date:   Thu Oct 20 15:47:57 2016 +0200
+| 
+|     Modify HelloWorld
+|    
+| * commit 9261ec24cfb56d7cd7ecc67d4eaa8add9c44b3ff
+|/  Author: Danilo Pianini <danilo.pianini@unibo.it>
+|   Date:   Thu Oct 20 15:43:50 2016 +0200
+|   
+|       Add README.md file
+|  
+* commit 47b5f2fb9f5300dc8bc530ce45d37a86a0436755
+| Author: Danilo Pianini <danilo.pianini@unibo.it>
+| Date:   Wed Oct 19 16:46:21 2016 +0200
+| 
+|     Remove the trash
+|  
+* commit 4d086a9b0d2139f0cd300d329f532a2c464304c7
+| Author: Danilo Pianini <danilo.pianini@unibo.it>
+| Date:   Wed Oct 19 16:45:28 2016 +0200
+| 
+|     move junk to trash
+
+... CONTINUA!
+		\end{Verbatim}
+	\end{block}
+\end{frame}
+
+\begin{frame}[allowframebreaks,fragile]{Unione di più linee di sviluppo (merge)}
+	\begin{block}{In generale}
+		Vogliamo poter unire due linee di sviluppo in una sola
+		\begin{itemize}
+			\item Abbiamo sviluppato in un branch separato una nuova funzionalità, ora è pronta e vogliamo unirla al resto
+		\end{itemize}
+	\end{block}
+	\begin{block}{In Git}
+		Il sottocomando \texttt{merge} consente di unire due branch
+		\begin{itemize}
+			\item \texttt{git merge branchname}
+			\begin{itemize}
+				\item Tenta di unire le modifiche di \texttt{branchname} al branch corrente
+				\item Prima di effettuare il merge, è necessario spostarsi sul branch destinazione (con \texttt{checkout})
+				\item Se non ci sono conflitti, tutti i commit di \texttt{branchname} vengono aggiunti al branch corrente
+				\item Viene creato un nuovo commit (merge commit)
+				\item È buona norma non cambiare il messaggio di commit predefinito
+				\item La risoluzione dei conflitti sarà uno dei temi del prossimo laboratorio
+			\end{itemize}
+			\item \texttt{git branch -d branchname}
+			\begin{itemize}
+				\item Elimina il branch \texttt{branchname}
+				\item Se un branch non dovesse più servire, ad esempio perché tutte le sue modifiche sono state merse in un altro branch, è possibile rimuoverlo.
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Esercizio}	
+		\textbf{Premessa}: si osservi e comprenda lo stato del repository con \texttt{git status} \textbf{prima e dopo ogni operazione} di modifica di file o \texttt{merge}
+		\begin{itemize}
+			\footnotesize
+			\item Si visualizzino i branch disponibili, ci si assicuri di essere su \texttt{master}
+			\item Si faccia il merge di \texttt{feature-readme}
+			\item Si visualizzino i file del repository con \texttt{ls -ahl} (Unix) o \texttt{dir} (Windows)
+			\item Si visualizzi la storia dei commit su tutti i branch
+			\item Si elimini il branch \texttt{feature-readme}
+			\item Si visualizzino i branch disponibili
+			\item Si visualizzi la storia dei commit su tutti i branch
+		\end{itemize}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+  feature-readme
+* master
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+nothing to commit, working tree clean
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+Merge made by the 'recursive' strategy.
+ README.md | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+nothing to commit, working tree clean
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+total 2.0M
+drwxr-xr-x 5 danysk users 4.0K Oct 20 16:15 .
+drwxr-xr-x 6 danysk users 2.0M Oct 20 15:56 ..
+drwxr-xr-x 2 danysk users 4.0K Oct 19 16:22 bin
+drwxr-xr-x 8 danysk users 4.0K Oct 20 16:15 .git
+-rw-r--r-- 1 danysk users    5 Oct 19 18:55 .gitignore
+-rw-r--r-- 1 danysk users   25 Oct 20 16:15 README.md
+drwxr-xr-x 2 danysk users 4.0K Oct 19 16:00 src
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\tiny]
+*   commit b68c8a48dc24bd1d948c2ac4409d8d91a000b8b6
+|\  Merge: 56aa7aa 9261ec2
+| | Author: Danilo Pianini <danilo.pianini@unibo.it>
+| | Date:   Thu Oct 20 16:15:47 2016 +0200
+| | 
+| |     Merge branch 'feature-readme'
+| |   
+| * commit 9261ec24cfb56d7cd7ecc67d4eaa8add9c44b3ff
+| | Author: Danilo Pianini <danilo.pianini@unibo.it>
+| | Date:   Thu Oct 20 15:43:50 2016 +0200
+| | 
+| |     Add README.md file
+| |   
+* | commit 56aa7aaad47026911c2aa2b026f33293c3b4fe31
+|/  Author: Danilo Pianini <danilo.pianini@unibo.it>
+|   Date:   Thu Oct 20 15:47:57 2016 +0200
+|   
+|       Modify HelloWorld
+|  
+* commit 47b5f2fb9f5300dc8bc530ce45d37a86a0436755
+| Author: Danilo Pianini <danilo.pianini@unibo.it>
+| Date:   Wed Oct 19 16:46:21 2016 +0200
+| 
+|     Remove the trash
+|  
+
+...CONTINUA!
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+Deleted branch feature-readme (was 9261ec2).
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+* master
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\tiny]
+*   commit b68c8a48dc24bd1d948c2ac4409d8d91a000b8b6
+|\  Merge: 56aa7aa 9261ec2
+| | Author: Danilo Pianini <danilo.pianini@unibo.it>
+| | Date:   Thu Oct 20 16:15:47 2016 +0200
+| | 
+| |     Merge branch 'feature-readme'
+| |   
+| * commit 9261ec24cfb56d7cd7ecc67d4eaa8add9c44b3ff
+| | Author: Danilo Pianini <danilo.pianini@unibo.it>
+| | Date:   Thu Oct 20 15:43:50 2016 +0200
+| | 
+| |     Add README.md file
+| |   
+* | commit 56aa7aaad47026911c2aa2b026f33293c3b4fe31
+|/  Author: Danilo Pianini <danilo.pianini@unibo.it>
+|   Date:   Thu Oct 20 15:47:57 2016 +0200
+|   
+|       Modify HelloWorld
+|  
+* commit 47b5f2fb9f5300dc8bc530ce45d37a86a0436755
+| Author: Danilo Pianini <danilo.pianini@unibo.it>
+| Date:   Wed Oct 19 16:46:21 2016 +0200
+| 
+|     Remove the trash
+|  
+
+...CONTINUA!
+		\end{Verbatim}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Conclusioni}
+	\begin{itemize}
+		\item Avete in mano uno strumento molto potente
+		\item Usatelo sempre d'ora in poi
+		\item A partire da questo laboratorio!
+		\begin{itemize}
+			\item Effettuate almeno un commit alla fine di ogni esercizio prima di chiamarci per correggere
+			\item Se ve ne servono di più, fatene di più!
+		\end{itemize}
+	\end{itemize}
+	\begin{block}{Nei prossimi laboratori}
+		\begin{itemize}
+			\item Impareremo ad usare git per lavorare in modo efficace con un team di persone
+			\item Impareremo a scambiarci commit via Internet
+			\item Lo useremo per ottenere le esercitazioni (bye bye zip files)
+		\end{itemize}
+	\end{block}
+	\begin{block}{Nel progetto d'esame}
+		\begin{itemize}
+			\item Andrà consegnato sotto forma di repository Git o Mercurial
+			\item L'abilità nell'uso del DVCS sarà parte della valutazione
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\end{document}
 
 \begin{frame}{Branching}
 	\begin{block}{Il concetto di branching}
@@ -1039,7 +1584,6 @@ Changes to be committed:
     }
   }
 }
-\end{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% TO BE REUSED ON NEXT LAB %%%%%%%%
