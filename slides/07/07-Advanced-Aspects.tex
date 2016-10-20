@@ -1,6 +1,7 @@
 \documentclass[presentation]{beamer}
 \usepackage{oop-slides}
 \usepackage{ragged2e}
+\usepackage{textcomp}
 \usepackage{cleveref}
 \setbeamertemplate{bibliography item}[text]
 \newcommand{\lessonnr}[0]{06}
@@ -89,38 +90,106 @@
 	\includegraphics[width=\textwidth]{img/chart}
 }
 
-\begin{frame}{Parentesi: perché Mercurial}
-	Dalla slide precedente si vede che non è il più diffuso, né quello in più rapida espansione. Perché non git?
-	\begin{itemize}
-		\item Nasconde le feature avanzate
-		\item Didatticamente più semplice
-		\item Identici principi di base
-		\item Spesso identici comandi
-		\item git richiede una shell Unix per funzionare, e su Windows questa va emulata tramite Cygwin
-		\item Molto più Windows friendly, e purtroppo:
+\begin{frame}{Mercurial vs. Git}
+	\begin{block}{Similarità}
 		\begin{itemize}
-			\item Sui PC del laboratorio abbiamo Windows
-			\item Molti studenti lo usano anche per sviluppare
+			\item Identici principi di base
+			\item Spesso identici comandi
 		\end{itemize}
-	\end{itemize}
-	Se il trend continuasse e il dominio di git diventasse ancor più marcato, è possibile che in futuro insegneremo direttamente git.
-	
-	Chi ha capito bene Mercurial, imparerà git in un paio d'ore.
+	\end{block}
+	\begin{block}{Principali differenze}
+		\begin{itemize}
+			\item Mercurial è concettualmente più snello, con architettura a plugin
+			\item Git è più veloce, ha un'architettura monolitica
+			\item Git gestisce il branching e gli accessi remoti in modo più semplice
+			\item Git ha una gestione più conservativa dello ``stage''
+			\item Git nasce per le esigenze di Linus Torvalds e Linux, e si porta dietro informazioni Unix-specifiche, come i permessi dei file
+			\begin{itemize}
+				\item Mercurial è più Windows-friendly...
+				\item ...chi sviluppa in Unix tende a preferire le feature aggiuntive di Git
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+	Imparato uno dei due sistemi, l'altro si apprende con un investimento di poche ore.
 \end{frame}
+
+\begin{frame}[fragile]{Bits of history}
+	\begin{itemize}
+		\item In April 2005, BitKeeper, the SCM Linux was developed with, withdrawn the free (as in beer) use
+		\item No other SCM met the requirements of Torvalds
+		\begin{itemize}
+			\item Performance was the \textit{real} issue with such a code base
+		\end{itemize}
+		\item Torvalds decided to write his own
+		\item The project was successful, and Torvalds appointed maintenance to Hamano
+	\end{itemize}
+	\begin{block}{Why the name}
+		\begin{quote}
+			I'm an egotistical bastard, and I name all my projects after myself. First 'Linux', now 'git'. \footnote{\tiny{From the project Wiki. ``git'' is slang for ``pig headed, think they are always correct, argumentative''}}
+			\begin{flushright}
+				\normalfont{--- Linus Torvalds}
+			\end{flushright}
+		\end{quote}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{The \texttt{git} \texttt{README.md} file}
+	\begin{block}{}
+		\begin{Verbatim}[fontsize=\footnotesize]
+GIT - the stupid content tracker
+
+"git" can mean anything, depending on your mood.
+
+ - random three-letter combination that is pronounceable, and not
+   actually used by any common UNIX command.  The fact that it is a
+   mispronounciation of "get" may or may not be relevant.
+ - stupid. contemptible and despicable. simple. Take your pick from the
+   dictionary of slang.
+ - "global information tracker": you're in a good mood, and it actually
+   works for you. Angels sing, and a light suddenly fills the room. 
+ - "goddamn idiotic truckload of sh*t": when it breaks
+		\end{Verbatim}
+	\end{block}
+\end{frame}
+
 
 \subsection{Concetti fondamentali}
 
-\fr{Concetti basilari}{
-  \bl{Repository}{
-    Il repository è l'insieme dei file che vengono tracciati dal DVCS assieme ai metadati, ossia alle informazioni che servono a ricostruire qualunque stato precedente.
-  }
-  \bl{Tracking differenziale}{
-    Il tracking differenziale è l'abilità di registrare le differenze fra diverse versioni di uno o più file. Invece di salvare l'intero stato (tutto il contenuto di un file), vengono salvate solo le informazioni necessarie a ricostruire il file a partire dal salvataggio precedente.
-  }
-  \bl{Navigazione della history}{
-		La navigazione della history è la possibilità di far tornare uno qualunque dei file del repository ad uno qualunque dei salvataggi precedenti (o successivi, se ce ne sono).
-  }
-}
+\begin{frame}[allowframebreaks]{Concetti basilari e terminologia}
+	\begin{block}{Repository}
+		Il repository è l'insieme dei file che vengono tracciati dal DVCS assieme ai metadati, ossia alle informazioni che servono a ricostruire qualunque stato precedente.
+	\end{block}
+	\begin{block}{Tracciamento delle differenze}
+		Abilità di registrare le differenze fra diverse versioni di uno o più file. Invece di salvare l'intero stato (tutto il contenuto di un file), vengono salvate solo le informazioni necessarie a ricostruire il file a partire dal salvataggio precedente
+	\end{block}
+	\begin{block}{Commit}
+		Salvataggio dello stato del repository
+	\end{block}
+	\begin{block}{Staging area}
+		Insieme delle modifiche accodate per esser salvate al prossimo commit. Il processo di salvataggio si articola infatti in due fasi:
+		\begin{enumerate}
+			\item \textbf{Staging} --- Selezione di quali file modificati, aggiunti o rimossi salvare al prossimo commit
+			\item \textbf{Commit} --- Effettivo salvataggio delle modifiche presenti nella staging area
+		\end{enumerate}
+		Nota: Mercurial differisce da Git in questo particolare. Il concetto di staging area in Mercurial è assente, lo stato corrente del repository è esso stesso lo stage.
+	\end{block}
+	\begin{block}{Navigazione della storia}
+		Possibilità di tornare ad un qualunque commit (salvataggio) precedente o successivo
+	\end{block}
+	\begin{block}{Branch}
+		Linea di sviluppo (ossia sequenza di commit successivi). Dal momento in cui si può tornare indietro nella storia dei salvataggi e ripartire a sviluppare, si può creare una nuova linea di sviluppo, che si diparte da quella originale e procede parallelamente.
+		\begin{center}
+			\includegraphics[height=.4\textheight]{img/branch}
+		\end{center}
+	\end{block}
+	\begin{block}{Merge}
+		Fusione di due branch (linee di sviluppo) in una sola.
+		\begin{center}
+			\includegraphics[width=.99\textwidth]{img/merge}
+		\end{center}
+	\end{block}
+\end{frame}
+
 
 \fr{Flussi di lavoro}{
   \bl{Branching} {
@@ -135,289 +204,674 @@
 
 \subsection{Operazioni preliminari}
 
-\fr{Installazione e configurazione}{
+\begin{frame}[allowframebreaks]{Configurazione globale}
 	\bl{In generale}{
-		Come ogni prodotto software, i DVCS necessitano di alcune operazioni di configurazione preliminari. In particolare, richiedono di impostare un nome utente ed una email (in modo da poter capire chi ha apportato modifiche e contattarlo).
+		Come ogni prodotto software, i DVCS necessitano di alcune operazioni di configurazione preliminari. In particolare, richiedono di impostare un nome utente ed una email (in modo da poter capire chi ha apportato modifiche).
 	}
-	\bl{In Mercurial}{
-		Mercurial gestisce la configurazione nel file \texttt{\textbf{hgrc}} posizionato nella home directory
+	\bl{In Git}{
+		È possibile specificare un nome utente di default utilizzando
 		\iz {
-			\item Su *nix: \texttt{\textasciitilde{}/.hgrc}
-			\item Su Windows: \texttt{\%USERPROFILE\%\textbackslash{}Mercurial.ini}
-			\item Istruzioni per la configurazione: \url{http://mercurial.selenic.com/wiki/QuickStart}
+			\item \texttt{git config --global user.name "YOUR NAME"}
+			\begin{itemize}
+				\item \textbf{OVVIAMENTE} al posto di \texttt{YOUR NAME} dovrete inserire il vostro nome.
+			\end{itemize}
 		}
-		\scriptsize \alert{Utenti windows}: fate attenzione all'estensione del file. Molti software Windows, incluso il file manager, hanno l'abitudine di apporre una loro estensione di default. Fate attenzione a creare \texttt{Mercurial.ini} e non \texttt{Mercurial.ini.txt} (verificate il nome del file con il terminale).
-	}
-}
-
-\begin{frame}[fragile]{Il file \textbf{hgrc}}
-	\begin{itemize}
-		\item Comincia con \texttt{[ui]}, che identifica l'inizio dell'omonima sezione
-		\item In molti casi, è sufficiente una sola riga di configurazione, con username ed email
-		\item Opzionalmente, è possibile specificare un editor
-	\end{itemize}
-	\begin{block}{Esempio}
-		\begin{verbatim}
-			[ui]
-			username = Danilo Pianini <danilo.pianini@unibo.it>
-			editor = kwrite
-		\end{verbatim}
-	\end{block}
-	\scriptsize \alert{Utenti MacOS X}: di default Mercurial su MacOS X utilizza \texttt{vi} come editor. A meno che non lo conosciate, specificate \texttt{nano} o il percorso completo verso l'eseguibile di un editor di testo di vostro gradimento.
-	
-	\alert{Utenti Linux}: di default Mercurial \textbf{dovrebbe} usare \texttt{nano} come editor. Visto che ciascuna distribuzione potrebbe comportarsi diversamente, è comunque bene specificare il comando del vostro editor preferito (ad esempio \texttt{nano}).
-
-\end{frame}
-
-\subsection{Operazioni di base sul repository}
-
-\fr{Inizializzazione}{
-	\bl{In generale}{
-		È necessario esplicitare che, da un certo punto del file system, si desidera utilizzare il DVCS per tener traccia dei cambiamenti dei file contenuti da quel punto in poi.
-	}
-	\bl{In Mercurial}{
-		\iz{
-			\item \texttt{hg init}
-		}
-		Marca la cartella corrente come repository Mercurial. Crea una sottocartella nascosta \texttt{.hg} nella quale saranno salvati i metadati. Fintanto che la cartella \texttt{.hg} è integra, sarà possibile ripristinare lo stato dei file del repository a qualunque versione. Il file \texttt{.hg/hgrc} può contenere impostazioni che sovrascrivono (per il repository locale) quelle di \texttt{\textasciitilde{}/.hgrc}. Il formato del file è lo stesso di \texttt{\textasciitilde{}/.hgrc}.
-	}
-}
-
-\fr{Aggiunta}{
-	\bl{In generale}{
-		È necessario segnalare esplicitamente quali file si vogliono tracciare. La ragione è che molti dei file potrebbero essere rigenerabili a partire da altri, si pensi ad esempio ai file binari che possono essere ricompilati a partire dai sorgenti: tracciarli è un inutile dispendio di risorse!
-
-		Il tracking differenziale è molto efficiente e veloce nel tracking di file di testo, mentre è \textbf{molto inefficiente} nel tracciare file binari. La regola è quindi quella di tracciare solo e soltanto i files non rigenerabili. Nel caso di un progetto Java, esclusivamente i sorgenti (\texttt{*.java}) e le eventuali risorse (icone, XML, etc.). \textbf{Mai} tracciare \texttt{class} files o documentazione rigenerabile (Javadoc).
-	}
-	\bl{Esempi con Mercurial}{
-		\iz{
-			\item \texttt{hg add nomefile1 nomefile2 directory1 directory2}
-			\item \texttt{hg add *}
+		È possibile specificare una email di default utilizzando
+		\iz {
+			\item \texttt{git config --global user.email "your.email@provider"}
 		}
 	}
-}
-
-\fr{Ignorare files} {
-	\bl{In generale} {
-		Dato che spesso si vogliono aggiungere moltissimi file con un solo comando evitando di elencarli, è necessario offrire un meccanismo che consenta di descrivere quali file si vogliono tracciare ed escluderne automaticamente altri.
-
-		È anche un'ottima pratica per evitare possibili errori!
-	}
-	\bl{In Mercurial}{
-		\iz{
-			\item È possibile creare un file \texttt{.hgignore} che contenga informazioni circa i file da ignorare.
-			\item È possibile utilizzare una sintassi classica (\texttt{glob}, consigliata) oppure una sintassi avanzata (basata su regular expressions).
-		}
-	}
-}
-
-\begin{frame}[fragile]{Il file \texttt{.hgignore}}
-	\begin{block}{Esempio di contenuto del file}
-		\scriptsize
-		\begin{verbatim}
-		syntax: glob
-		*.class
-		*_gen
-		*_trace
-		*/target/*
-		*hs_err_pid*
-		*/bin/*
-		\end{verbatim}
-	\end{block}
-	\begin{block}{Il file così scritto ignora:}
+	\begin{block}{Esercizio}
 		\begin{itemize}
-			\item Tutti i files il cui nome termina in \texttt{.class}
-			\item Tutti i files il cui nome termina in \texttt{\_gen}
-			\item Tutti i files il cui nome termina in \texttt{\_trace}
-			\item Tutti i files il cui path completo contenga una cartella di nome \texttt{target} 
-			\item Tutti i files nel cui path completo compaia a qualunque punto la stringa \texttt{hs\_err\_pid} 
-			\item Tutti i files il cui path completo contenga una cartella di nome \texttt{bin} 
+			\item Si apra un terminale
+			\item Si settino username ed email di default usando nome e cognome ed email istituzionale
 		\end{itemize}
 	\end{block}
 \end{frame}
 
+\section{Gestione di un repository}
 
-\fr{Rimozione}{
+\subsection{Operazioni di base sul repository}
+
+\begin{frame}[allowframebreaks]{Inizializzazione di un repository}
 	\bl{In generale}{
-		Come l'aggiunta, la rimozione deve essere esplicita. Quando si rimuove un file tracciato, infatti, vi sono due opzioni:
-		\begin{enumerate}
-			\item Si desidera rimuovere il file, registrarne la rimozione e cessare di farne il tracking (se venisse ricreato, andrebbe riaggiunto). È l'opzione più comune.
-			\item Si desidera rimuovere il file dalla working copy, ma si desidera mantenere l'ultima versione del file come tracciato.
-		\end{enumerate}
-		Se si desidera la prima opzione, è necessario segnalarlo al DVCS.
+		È necessario esplicitare che, da un certo punto del file system, si desidera utilizzare il DVCS per tener traccia dei cambiamenti dei file contenuti da quel punto del file system.
 	}
-	\bl{In Mercurial}{
+	\bl{In Git}{
 		\iz{
-			\item \texttt{hg rm file1 file2}
+			\item \texttt{git init}
 		}
-		Rimuove \texttt{file1} e \texttt{file2} dalla working copy e registra il fatto che sono stati rimossi (se ricreati, andranno riaggiunti con \texttt{hg add}).
+		Marca la cartella corrente come repository Git. Crea una sottocartella nascosta \texttt{.git} nella quale saranno salvati i metadati. Fintanto che la cartella \texttt{.git} è integra, sarà possibile ripristinare lo stato dei file del repository a qualunque versione.
+		
+		È possibile settare username ed email personalizzati per ogni repository, usando i comandi visti prima privati dell'argomento \texttt{--global}, e.g.:\\
+		\begin{center}
+			\texttt{git config user.email "your.second@email"}
+		\end{center}
 	}
-}
-
-\fr{Rinominazione}{
-	\bl{In generale}{
-		La rinominazione può essere vista come una rimozione e una riaggiunta, per cui presenta gli stessi problemi della rimozione.
-
-		Se si desidera (normalmente è così) far sì che il DVCS registri il cambio di nome di un file, è necessario eseguirlo esplicitamente.
-	}
-	\bl{In Mercurial}{
-		\iz{
-			\item \texttt{hg mv file1 file2}
-		}
-		Rinomina \texttt{file1} in \texttt{file2} nella working copy e registra il fatto che \texttt{file1} è stato rimosso e \texttt{file2} è stato aggiunto al tracking.
-	}
-}
-
-\subsection{Stato corrente, commit e diff}
-
-\fr{Stato}{
-	\bl{In generale}{
-		È necessario avere la possibilità di capire in qualunque momento quali file nel repository sono stati modificati, quali rimossi e quali sono nuovi
-	}
-	\bl{In Mercurial}{
-		\iz{
-			\item \texttt{hg status}
-		}
-		Produce un elenco di file il cui stato non è lo stesso della revision attiva di Mercurial. Ognuno è preceduto da una lettera indicante perché differisce:
-		\iz{
-			\item \texttt{M} --- File modificato rispetto alla versione corrente
-			\item \texttt{A} --- File aggiunto (con \texttt{hg add})
-			\item \texttt{R} --- File rimosso (con \texttt{hg rm})
-			\item \texttt{!} --- File rimosso manualmente ma ancora tracciato
-			\item \texttt{?} --- File non tracciato e non ignorato
-		}
-	}
-}
-
-\fr{Salvataggio}{
-	\bl{In generale}{
-		È necessario avere una operazione che segnali al DVCS che intendiamo eseguire uno snapshot (commit) dello stato corrente di alcuni dei file, generando una nuova versione.
-
-		Assieme con lo stato dei file, vengono automaticamente salvati:
-		\iz{
-			\item L'utente che ha eseguito il commit e la sua email
-			\item Un messaggio di commit. \textbf{È estremamamente importante che il messaggio di commit sia sensato.}
-		}
-	}
-}
-
-\fr{Salvataggio}{
-	\bl{In Mercurial}{
-		\iz{
-			\item \texttt{hg commit file1 file2 file3} --- Crea una nuova revision contenente la versione corrente di \texttt{file1}, \texttt{file2} e \texttt{file3} (se con stato \texttt{M}, \texttt{A} o \texttt{R} in \texttt{hg status}). Viene aperto un editor di testo per l'inserimento del commit message.
-			\item \texttt{hg commit} --- Crea una nuova revision contenente la versione corrente di tutti i file modificati o rimossi (stato \texttt{M}, \texttt{A} o \texttt{R} in \texttt{hg status}) Viene aperto un editor di testo per l'inserimento del commit message.
-			\item \texttt{hg commit GraphImpl.java -m \ditto{}Improve efficiency of getPath()\ditto{}} --- Crea una nuova revision contenente la versione corrente di \texttt{GraphImpl.java}. Il messaggio di commit sarà \texttt{Improve efficiency of getPath()}.
-		}
-	}
-}
-
-\fr{Diff}{
-	\bl{In generale}{
-		Come detto, i DVCS utilizzano il tracking differenziale, ossia invece di salvare una copia di ciascun file salvano l'insieme di modifiche necessario a generare i nuovi files a partire dai file precedenti.
-
-		È necessario uno strumento che consenta di visualizzare quali sono le modifiche che saranno apportate ad un certo file
-	}
-	\bl{In Mercurial}{
-		\scriptsize
-		\iz{
-			\item \texttt{hg diff}
-			\item \texttt{hg diff file}
-			\item \texttt{hg diff -r RN1 -r RN2 file}
-		}
-		Mostra su schermo quali differenze saranno salvate al momento del commit in formato standard (lo stesso del comando UNIX \texttt{diff}). L'output è interpretabile dal comando \texttt{diff} e può essere utilizzato per creare delle ``patch''. È possibile specificare il nome dei file che si vuole visualizzare e il numero delle revision che si vogliono confrontare.
-	}
-}
-
-\begin{frame}[fragile]{Esempio di output del comando \texttt{hg diff}}
-\scriptsize
-\begin{verbatim}
-danysk@apiceworkstation ~ $ hg diff -r 2075 -r 2080 EnvironmentBuilder.java
-diff -r e37f2d9e346c EnvironmentBuilder.java
---- EnvironmentBuilder.java    Thu Oct 16 12:23:56 2014 +0200
-+++ EnvironmentBuilder.java    Fri Nov 07 15:43:45 2014 +0100
-@@ -99,7 +99,9 @@
-              final String args = son.getNodeValue();
- //           final StringTokenizer tk = new StringTokenizer(args, " ,;");
-              final ArrayList<String> arguments = new ArrayList<String>(1);
--             arguments.add(args);
-+             if(!args.isEmpty()) {
-+                 arguments.add(args);
-+             }
- //           while (tk.hasMoreElements()) {
- //               arguments.add(tk.nextToken());
- //           }
-
-\end{verbatim}
+	\begin{block}{Errori comuni}
+		\begin{itemize}
+			\item Bisogna posizionarsi dentro la cartella che ospiterà il nostro repository \textbf{prima} di dare il comando \texttt{git init}
+			\item Dare il comando dentro la home folder (dove dovrebbe aprirsi il terminale di default) marcherà tutta la home folder come repository Git
+		\end{itemize}
+	\end{block}
+	\begin{block}{Esercizio}
+		\begin{itemize}
+			\item Si crei una cartella di nome \texttt{dvcstest} (comando \texttt{mkdir})
+			\item Si entri nella cartella col terminale
+			\item Si inizializzi un repository git
+			\item Si setti l'email utente \textbf{per il repository} al vostro indirizzo personale (quindi non quello \texttt{@studio.unibo.it})
+			\begin{itemize}
+				\item Nota: chi non volesse usare l'indirizzo personale per ragioni di privacy, usi una email fittizia.
+			\end{itemize}
+		\end{itemize}
+	\end{block}
 \end{frame}
 
-\subsection{Gestione della history}
+\begin{frame}[allowframebreaks,fragile]{Ispezionare lo stato del repository}
+	\begin{block}{In generale}
+		È necessario sapere quale sia lo stato del repository e della staging area, per conoscere:
+		\begin{itemize}
+			\item Quali file sono stati modificati
+			\item Quali file sono stati aggiunti allo stage
+		\end{itemize}
+	\end{block}
+	\begin{block}{In Git}
+		È possibile ispezionare lo stato usando:
+		\begin{itemize}
+			\item \texttt{git status}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Suggerimenti}
+		\begin{itemize}
+			\item Bisogna controllare spesso lo stato del repository
+			\item Idealmente, prima di ogni operazione che potrebbe modificare lo stato del repository
+		\end{itemize}
+	\end{block}
+	\begin{block}{Esercizio}
+		\begin{itemize}
+			\item Si ispezioni lo stato corrente del repository
+		\end{itemize}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
 
-\fr{Log}{
-	\bl{In generale}{
-		Occorre un comando che consenta di visualizzare l'elenco dei commit, chi li ha effettuati, quando, e quali sono le differenze dall'uno all'altro.
-	}
-	\bl{In Mercurial}{
-		\iz{
-			\item \texttt{hg log}
-			\item \texttt{hg log --limit 10}
-		}
-		Mostra su standard output la lista di tutti commit. L'opzione \texttt{--limit N} limita il numero di commit visualizzati agli ultimi \texttt{N}.
-	}
-}
+Initial commit
 
-\fr{Log}{
-	\bl{In Mercurial}{
-		Informazioni del log:
-		\iz{
-			\item \texttt{changeset} --- Il numero del salvataggio, seguito da un codice hash univoco
-			\item \texttt{tag} [OPZIONALE] --- Eventuale nome tag associato al changeset
-			\item \texttt{parent} [OPZIONALE] --- Il changeset del salvataggio precedente. Se si tratta di un merge commit, i parent sono almeno due
-			\item \texttt{user} --- L'utente che ha eseguito il commit e la sua email
-			\item \texttt{date} --- La data in cui il commit è stato registrato
-			\item \texttt{summary} --- Il commit message
-			\item Utilizzando l'opzione \texttt{-G} --- Visualizzazione grafica delle linee di sviluppo
-		}
-	}
-}
-
-\begin{frame}[fragile]{Esempio di output del comando \texttt{hg log}}
-\scriptsize
-\begin{verbatim}
-danysk@apiceworkstation ~/Dropbox/Alchemist/Alchemist $ hg log --limit 3
-changeset:   2081:e37f2d9e346c
-tag:         tip
-parent:      2067:8f158282ebea
-parent:      2080:ad571bda2cc6
-user:        Danilo Pianini <danilo.pianini@unibo.it>
-date:        Thu Oct 16 12:23:56 2014 +0200
-summary:     Merged in smontagna/alchemist-bio (pull request #64)
-
-changeset:   2080:ad571bda2cc6
-user:        Sara Montagna <sara.montagna@unibo.it>
-date:        Tue Oct 14 11:33:35 2014 +0200
-summary:     Fix code (for intracellular simulation) according to FindBugs and PMD rules
-
-changeset:   2079:5bc295d59fbf
-user:        Sara Montagna <sara.montagna@unibo.it>
-date:        Mon Oct 13 11:41:32 2014 +0200
-summary:     fix a bug on ChangeBiomolConcentrationInCell
-
-\end{verbatim}
+nothing to commit (create/copy files and use "git add" to track)		 
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Spiegazione dell'output}
+		\begin{itemize}
+			\item Prima linea: il branch su cui ci si trova. Non ne è stato creato nessuno esplicitamente, quindi Git assume che di default si lavori su un branch di nome \texttt{master}
+			\item Seconda linea: Git ci segnala che non abbiamo ancora effettuato alcun commit
+			\item Terza linea: Git mostra lo stato della staging area. In questo momento non c'è nulla di cui far commit (difatti, non ci sono file nel nostro repository)
+		\end{itemize}
+	\end{block}
 \end{frame}
 
-\fr{Update}{
-	\bl{In generale}{
-		Abbiamo una lista di commit, dobbiamo essere in grado di navigarla aggiornando i file tracciati alla revision desiderata.
+\begin{frame}[allowframebreaks,fragile]{Aggiungere files al tracker}
+	\begin{block}{In generale}	
+		È necessario segnalare esplicitamente quali file si vogliono tracciare.
+		\begin{itemize}
+			\item molti dei file potrebbero essere rigenerabili a partire da altri
+			\item Il tracking differenziale è efficiente con file testuali...
+			\item ...ma inefficiente con i binari!
+			\item tracciare file generabili è uno spreco di risorse!
+		\end{itemize}
+	\end{block}
+	\begin{block}{In un progetto Java}	
+		Vanno tracciati:
+		\begin{itemize}
+			\item I sorgenti
+			\item Le risorse (icone, file di configurazione...)
+			\item Librerie jar copiate nel progetti (in realtà, vedrete in altri corsi, esistono sistemi migliori)
+			\item Eventuali file esterni, ad esempio un README.md, un file per la licenza, il file .project di Eclipse per facilitare l'import...
+		\end{itemize}
+		\textbf{Non} vanno tracciati:
+		\begin{itemize}
+			\item I binari (rigenerabile dai sorgenti)
+			\item La documentazione javadoc (rigenerabile dai sorgenti)
+			\item I jar della vostra applicazione (rigenerabili)
+		\end{itemize}
+	\end{block}
+	\begin{block}{In Git}
+		Il sottocomando \texttt{add} aggiunge nuovi file al tracker
+		\begin{itemize}
+			\item \texttt{git add PATH\_TO\_FILE}
+			\begin{itemize}
+				\item Aggiunge il file indicato al tracking. Il file deve essere all'interno del repository (non è possibile tracciare file esterni al repository).
+			\end{itemize}
+			\item \texttt{git add PATH\_TO\_FILE\_1 PATH\_TO\_FILE\_2 PATH\_TO\_FILE\_N}
+			\begin{itemize}
+				\item Aggiunge tutti i file indicato al tracking. Valgono le stesse restrizioni di cui sopra circa la loro posizione nel file system.
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Esercizio}	
+		\begin{itemize}
+			\item All'interno della cartella dove abbiamo inizializzato il repository git vuoto, si creino due cartelle: \texttt{src} e \texttt{bin}
+			\item Si crei dentro src un file \texttt{HelloWorld.java} (ad esempio con JEdit o Notepad++), contenente un semplice main con una stampa
+			\item Si visualizzi lo stato del repository con \texttt{git status}
+			\begin{itemize}
+				\item Si noti che ci sono nuove informazioni!
+				\item Git ci informa che ci sono dei file non tracciati dentro la cartella \texttt{src/}
+			\end{itemize}
+			\item Si utilizzi in modo appropriato il comando \texttt{git add} per aggiungere al tracking il file \texttt{HelloWorld.java}
+			\item Se il comando viene eseguito correttamente, non viene dato alcun output all'utente
+			\item Si visualizzi lo stato del repository
+		\end{itemize}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
 
-		Esiste una funzionalità che consente di andare avanti e indietro nella history.
-	}
-	\bl{In Mercurial}{
-		\iz{
-			\item \texttt{hg update -r RN --clean}
-		}
-		Aggiorna tutti i file del repository alla revision \texttt{RN}. L'opzione \texttt{--clean} forza l'aggiornamento dei file e \textbf{scarta tutte le modifiche} che non sono state soggette ad un \texttt{commit}.
-	}
-}
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+        new file:   src/HelloWorld.java	 
+			\end{Verbatim}
+	\end{block}
+	\begin{block}{Spiegazione dell'output}
+		\begin{itemize}
+			\item La parte relativa alla staging area è cambiata: git ci segnala che le modifiche ad \texttt{src/HelloWorld.java} saranno salvate al prossimo commit
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\subsection{Gestione dei file}
+
+\begin{frame}[allowframebreaks,fragile]{Ignorare file indesiderati}
+	\begin{block}{In generale}
+		In molti casi, vorremmo poter dire al DVCS di ignorare alcuni file o cartelle, che sappiamo essere rigenerabili o che riteniamo non utili
+		\begin{itemize}
+			\item I file compilati
+			\item I file contenenti la Javadoc
+			\item I nostri jar
+		\end{itemize}
+	\end{block}
+	\begin{block}{In Git}
+		È possibile creare, nella radice del repository, un file \texttt{.gitignore}
+		\begin{itemize}
+			\item I file elencati dentro \texttt{.gitignore} saranno invisibili a Git
+			\item È bene che il file \texttt{.gitignore} venga aggiunto al tracker!
+		\end{itemize}
+	\end{block}
+	\begin{block}{Sintassi di .gitignore}
+		\begin{Verbatim}[fontsize=\scriptsize]
+bin/
+doc/
+*.log
+*.pdf
+!myImportantFile.pdf
+		\end{Verbatim}
+		Stiamo dicendo che git deve:
+		\begin{itemize}
+			\item Ignorare la cartella \texttt{bin}, e tutto il suo contenuto
+			\item Ignorare la cartella \texttt{doc}, e tutto il suo contenuto
+			\item Ignorare tutti i file di con estensione \texttt{.log}
+			\item Ignorare tutti i file di con estensione \texttt{.pdf}
+			\item Non ignorare il file \texttt{myImportantFile.pdf}
+			\begin{itemize}
+				\item È possibile usare \texttt{!} per creare eccezioni ad una regola
+				\item È molto più comodo che elencare tutti i file da escludere uno per uno!
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Note sulla creazione di file il cui nome inizia per \texttt{.}}
+		\begin{itemize}
+			\item Windows ha l'abitudine di aggiungere autonomamente l'estensione ai file che vengono creati...
+			\item ...per poi nasconderla
+			\item Verificate \textbf{sempre con il terminale} che il file sia esattamente quello che vi aspettate, ossia \texttt{.gitignore}
+			\item Se il file viene chiamato \texttt{.gitignore.txt}, o in qualunque modo diverso da \texttt{.gitignore}, non sarà considerato un ignore file valido da Git!
+		\end{itemize}
+		Il problema non si pone su MacOS X e Linux.
+	\end{block}
+	\begin{block}{Esercizio}	
+		\begin{itemize}
+			\item Si compili dentro bin il file HelloWorld.java che avete creato
+			\begin{itemize}
+				\item Spero che vi ricordiate come si compila un file con \texttt{javac}
+				\item Se il file non compilasse, sistematelo, quindi aggiungetelo alla staging area ed eseguite un commit
+				\item Già che ci siamo, eseguite e verificate che funzioni
+			\end{itemize}
+			\item Si osservi lo stato del repository
+			\item Si crei un file \texttt{.gitignore} che ignori la cartella bin e tutto il suo contenuto
+			\item Si osservi lo stato del repository
+			\item Si aggiunga \texttt{.gitignore} alla staging area
+			\item Si osservi lo stato del repository
+			\item Si effettui il commit
+			\item Si osservi lo stato del repository
+		\end{itemize}
+	\end{block}
+	\begin{block}{Output atteso: primo \texttt{git status}}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        bin/
+
+nothing added to commit but untracked files present (use "git add" to track)
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso: secondo \texttt{git status}}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        .gitignore
+
+nothing added to commit but untracked files present (use "git add" to track)
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso: terzo \texttt{git status}}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   .gitignore
+
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso: commit}
+		\begin{Verbatim}[fontsize=\scriptsize]
+[master 3ae8422] Create .gitignore
+ 1 file changed, 1 insertion(+)
+ create mode 100644 .gitignore
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso: quarto \texttt{git status}}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+nothing to commit, working tree clean
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Spiegazione dell'output}
+		\begin{itemize}
+			\item Si noti come \texttt{bin/} sparisca dai file presenti nell'area di lavoro una volta che il file \texttt{.gitignore} è stato creato
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[allowframebreaks,fragile]{Rimozione e rinominazione}
+	\begin{block}{In generale}
+		Vogliamo poter cancellare e rinominare files, e tracciare il fatto che lo abbiamo fatto
+	\end{block}
+	\begin{block}{In Git}
+		Git è in grado di capire da solo quando qualcosa è stato modificato o eliminato (in questo è molto più semplice di Mercurial)
+		\begin{itemize}
+			\item Git tratta tutte le modifiche allo stesso modo
+			\item A fronte della cancellazione di un file, basta aggiungerlo alla staging area perché la modifica venga registrata al successivo commit
+			\item A fronte di una rinominazione, si aggiungono sia il file col vecchio nome che quello col nuovo
+			\begin{itemize}
+				\item Diversamente, verrà trattata come una rimozione o un'aggiunta, a seconda di quale delle due modifiche aggiungete all'area di staging.
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Esercizio}	
+		Premessa: si osservi lo stato del repository con \texttt{git status} \textbf{prima e dopo ogni operazione}, assicurandosi di capire appieno l'output fornito da Git
+		\begin{itemize}
+			\item Si crei un file \texttt{junk.txt}, con un contenuto casuale
+			\item Si aggiunga \texttt{junk.txt} alla staging area
+			\item Si effettui il commit
+			\item Si rinomini \texttt{junk.txt} in \texttt{trash.txt}
+			\item Si aggiungano tutte le modifiche alla staging area
+% 			\begin{itemize}
+% 				\item Protip: \texttt{git add *}
+% 				\item Da usare il \textit{meno possibile}! È un comando \textit{potenzialmente dannoso}!
+% 			\end{itemize}
+			\item Si effettui il commit
+			\item Si elimini \texttt{trash.txt}
+			\item Si aggiunga \texttt{trash.txt} alla staging area
+			\item Si effettui il commit
+		\end{itemize}
+	\end{block}
+	\begin{block}{Output atteso 1}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        junk.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso 2}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   junk.txt
+
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso 3}
+		\begin{Verbatim}[fontsize=\scriptsize]
+[master 844aebd] Add junk
+ 1 file changed, 1 insertion(+)
+ create mode 100644 junk.txt
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso 4}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        deleted:    junk.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        trash.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso 5}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        renamed:    junk.txt -> trash.txt
+
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso 6}
+		\begin{Verbatim}[fontsize=\scriptsize]
+[master 4d086a9] move junk to trash
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename junk.txt => trash.txt (100%)
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso 7}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        deleted:    trash.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso 8}
+		\begin{Verbatim}[fontsize=\scriptsize]
+[master 47b5f2f] Remove the trash
+ 1 file changed, 1 deletion(-)
+ delete mode 100644 trash.txt
+
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso 9}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+nothing to commit, working tree clean
+		\end{Verbatim}
+	\end{block}
+\end{frame}
+
+\subsection{Visualizzazione della linea di sviluppo}
+
+\begin{frame}[allowframebreaks,fragile]{Visualizzazione della storia}
+	\begin{block}{In generale}
+		Visualizzare l'elenco dei commit effettuati, chi li ha eseguiti, quando, ed il loro message commit
+	\end{block}
+	\begin{block}{In Git}
+		Git offre il sottocomando \texttt{log}
+		\begin{itemize}
+			\item \texttt{git log}
+			\begin{itemize}
+				\item Visualizza tutti i commit della linea di sviluppo corrente
+			\end{itemize}
+			\item \texttt{git log --graph}
+			\begin{itemize}
+				\item Come sopra, con visualizzazione grafica dell'evoluzione sulla sinistra 
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Esercizio}	
+		\begin{itemize}
+			\item Si visualizzi l'attuale storia del repository, corredata di grafico
+		\end{itemize}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\tiny]
+* commit 47b5f2fb9f5300dc8bc530ce45d37a86a0436755
+| Author: Danilo Pianini <danilo.pianini@unibo.it>
+| Date:   Wed Oct 19 16:46:21 2016 +0200
+| 
+|     Remove the trash
+|  
+* commit 4d086a9b0d2139f0cd300d329f532a2c464304c7
+| Author: Danilo Pianini <danilo.pianini@unibo.it>
+| Date:   Wed Oct 19 16:45:28 2016 +0200
+| 
+|     move junk to trash
+|  
+* commit 844aebd840e6f3d2b034312e9fa37677f64b9a15
+| Author: Danilo Pianini <danilo.pianini@unibo.it>
+| Date:   Wed Oct 19 16:43:48 2016 +0200
+| 
+|     Add junk
+|  
+* commit 3ae84225f45afdfa02c268c6079e0f6c96695c1f
+| Author: Danilo Pianini <danilo.pianini@unibo.it>
+| Date:   Wed Oct 19 16:26:30 2016 +0200
+| 
+|     Create .gitignore
+|  
+* commit 19aa252373d1e44897233bf5b733cf82019cd5bf
+  Author: Danilo Pianini <danilo.pianini@unibo.it>
+  Date:   Wed Oct 19 15:51:10 2016 +0200
+  
+      Create HelloWorld
+		\end{Verbatim}
+	\end{block}
+\end{frame}
+
+\begin{frame}[allowframebreaks,fragile]{Visualizzazione delle differenze}
+	\begin{block}{In generale}
+		Vogliamo poter controllare quali modifiche sono state introdotte da un commit
+	\end{block}
+	\begin{block}{In Git}
+		Git può mostrare le modifiche fra intercorse fra due commit col sottocomando \texttt{diff}
+		\begin{itemize}
+			\item \texttt{git diff}
+			\begin{itemize}
+				\item Mostra le differenze fra l'ultimo commit effettuato e il contenuto della staging area
+			\end{itemize}
+			\item \texttt{git diff FROM}
+			\begin{itemize}
+				\item Dove \texttt{FROM} è lo hash di un commit
+				\item Mostra le differenze fra \texttt{FROM} e la staging area
+			\end{itemize}
+			\item \texttt{git diff FROM TO}
+			\begin{itemize}
+				\item Dove \texttt{FROM} e \texttt{TO} sono gli hash di due commit
+				\item Mostra le differenze fra \texttt{FROM} e \texttt{TO}
+			\end{itemize}
+		\end{itemize}
+		Il formato dell'output è lo stesso del comando Unix \texttt{diff}, è interpretabile da quest'ultimo e può essere utilizzato per creare delle ``patch''.
+	\end{block}
+	\begin{block}{\texttt{HEAD}}
+		Per semplificare l'accesso agli ultimi commit effettuati, Git mette a disposizione la keyword \texttt{HEAD}
+		\begin{itemize}
+			\item \texttt{HEAD} fa riferimento all'ultimo commit effettuato
+			\item \texttt{HEAD\textasciitilde{}1} fa riferimento al penultimo commit effettuato
+			\item \texttt{HEAD\textasciitilde{}2} fa riferimento al terz'ultimo commit effettuato
+			\item \texttt{HEAD\textasciitilde{}N} fa riferimento al N-esimo commit effettuato prima dell'ultimo
+		\end{itemize}
+		È possibile quindi, ad esempio, richiedere di visualizzare le modifiche introdotte negli ultimi tre commit prima dell'ultimo usando:
+		\begin{itemize}
+			\item \texttt{git diff HEAD\textasciitilde{}3 HEAD}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Esercizio}	
+		\begin{itemize}
+			\item Osservare le differenze fra la staging area e i tre commit precedenti (\texttt{HEAD\textasciitilde{}2})
+		\end{itemize}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+diff --git a/junk.txt b/junk.txt
+deleted file mode 100644
+index de0a8c8..0000000
+--- a/junk.txt
++++ /dev/null
+@@ -1 +0,0 @@
+-some trash
+		\end{Verbatim}
+	\end{block}
+		\begin{block}{Spiegazione dell'output}
+		\begin{itemize}
+			\item È stato cancellato un file con permessi ottali \texttt{644}
+			\item è stato spostato \texttt{junk.txt} dentro \texttt{/dev/null}
+			\begin{itemize}
+				\item Ossia cancellato
+				\item \texttt{/dev/null} è uno speciale device file Unix (lo vedrete in Sistemi Operativi)
+			\end{itemize}
+			\item Una modifica ha rimosso una linea a partire dalla riga 0, colonna 0
+			\item Il contenuto della riga rimossa è \texttt{some trash}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\subsection{Navigazione della linea di sviluppo}
+
+\begin{frame}[allowframebreaks,fragile]{Navigazione della linea di sviluppo}
+	\begin{block}{In generale}
+		Vogliamo poter ritornare a qualunque salvataggio della nostra linea di sviluppo
+	\end{block}
+	\begin{block}{In Git}
+		Il sottocomando \texttt{checkout} consente di ripristinare una versione precedente di un file o dell'intero repository
+		\begin{itemize}
+			\item \texttt{git checkout COMMITHASH}
+			\begin{itemize}
+				\item Dove \texttt{COMMITHASH} è lo hash di un commit o un suo riferimento, ad esempio:
+				\begin{itemize}
+					\item \texttt{HEAD}
+					\item \texttt{master}, o altro nome di branch
+				\end{itemize}
+				\item Se non ci sono modifiche che rischiano di essere perse, torna al salvataggio \texttt{COMMITHASH}
+			\end{itemize}
+			\item \texttt{git checkout COMMITHASH -- FILENAME}
+			\begin{itemize}
+				\item Ripristina il file \texttt{FILENAME} prendendolo dal commit \texttt{COMMITHASH}
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+	\begin{block}{La modalità detached HEAD}
+		Quando si torna indietro nella storia, Git entra in modalità ``detached HEAD'': la ``testa'', ossia il commit a cui ci troviamo, è staccato dalla ``cima'' della linea di sviluppo.\\
+		\centering
+		\includegraphics[width=.4\textwidth]{img/detached}
+		\begin{itemize}
+			\item I commit effettuati in questa modalità verranno scartati
+			\item Per tornare alla modalità ``attached'', è necessario effettuare un checkout con il nome del branch
+			\begin{itemize}
+				\item Il nome del branch punta sempre all'ultimo commit su quella linea di sviluppo
+				\item Ad esempio: \texttt{git checkout master}
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Esercizio}	
+		Premessa: si osservi lo stato del repository con \texttt{git status} \textbf{prima e dopo ogni operazione}, assicurandosi di capire appieno l'output fornito da Git
+		\begin{itemize}
+			\item Si recuperi il file \texttt{junk.txt} da tre commit fa (\texttt{HEAD\textasciitilde{}2})
+			\item Si vada al primo commit, usando il suo hash
+			\begin{itemize}
+				\item Potete ottenerlo usando \texttt{git log}
+			\end{itemize}
+			\item Si torni alla cima della linea di sviluppo (\texttt{master})
+		\end{itemize}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+nothing to commit, working tree clean
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   junk.txt
+
+
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+A       junk.txt
+Note: checking out '19aa252373d1e44897233bf5b733cf82019cd5bf'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b <new-branch-name>
+
+HEAD is now at 19aa252... Create HelloWorld
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+HEAD detached at 19aa252
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   junk.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        bin/
+
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+A       junk.txt
+Previous HEAD position was 19aa252... Create HelloWorld
+Switched to branch 'master
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Output atteso}
+		\begin{Verbatim}[fontsize=\scriptsize]
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+        new file:   junk.txt
+
+		\end{Verbatim}
+	\end{block}
+	\begin{block}{Spiegazione dell'output}
+		\begin{itemize}
+			\item Si noti che Git cerca di non cancellare le modifiche non salvate in un commit quando si naviga la storia (il file \texttt{junk.txt} non viene cancellato)
+			\item In caso di conflitti, si rifiuterebbe di cambiare commit
+			\item Si risolve cancellando le modifiche fatte o creando un nuovo commit, in modo da tornare allo stato di ``\texttt{working tree clean}''
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\section{Multiple linee di sviluppo}
 
 \subsection{Branching}
 
@@ -528,73 +982,6 @@ summary:     fix a bug on ChangeBiomolConcentrationInCell
 		\end{itemize}
 	\end{enumerate}
 \end{frame}
-
-% \fr{Esercizio con Mercurial}{
-% 	Tenendo a mente quanto spiegato finora e facendo uso delle informazioni nelle slides precedenti, svolgere \textbf{in ordine} i seguenti punti.
-% 	\iz {
-% 		\item Si configuri Mercurial, creando il file di configurazione appropriato a seconda che si stia usando un sistema *nix o Windows
-% 		\item Si apra un terminale
-% 		\item Si crei una nuova cartella
-% 		\item Ci si posizioni col terminale nella nuova cartella
-% 		\item Si inizializzi un nuovo repository Mercurial
-% 		\item Si crei, utilizzando un editor di testo (e.g. JEdit) un file \texttt{HelloWorld.java}, che contenga una sola classe \texttt{HelloWorld} ed un metodo main con una sola \texttt{println}
-% 		\item Si aggiunga \texttt{HelloWorld.java} al repository
-% 		\item Si osservi lo stato del repository con \texttt{hg status}
-% 		\item Si effettui il primo commit, inserendo un commit message sensato (ad esempio ``create new HelloWorld class''), senza utilizzare l'opzione \texttt{-m}
-% 	}
-% }
-% 
-% \fr{Esercizio con Mercurial}{
-% 	\iz {
-% 		\item Si osservi nuovamente lo stato del repository con \texttt{hg status}
-% 		\item Si osservi la history dei commit utilizzando \texttt{hg log}
-% 		\item Si modifichi \texttt{HelloWorld.java}, cambiando la stringa che viene stampata nella \texttt{println}
-% 		\item Si osservi nuovamente lo stato del repository con \texttt{hg status}
-% 		\item Si osservi la modifica fatta al file \texttt{HelloWorld.java} utilizzando propriamente \texttt{hg diff}
-% 		\item Si faccia il commit delle modifiche, stavolta utilizzando l'opzione \texttt{-m}
-% 		\item Si compili nella cartella \texttt{bin} il file HelloWorld.java
-% 		\item Si osservi nuovamente lo stato del repository con \texttt{hg status}. Si noti che Mercurial rileva dei nuovi file che non sono ancora tracciati
-% 	}
-% }
-% 
-% \fr{Esercizio con Mercurial}{
-% 	\iz {
-% 		\item Dato che non desideriamo tracciare file che possono essere compilati, si scriva un file \texttt{.hgignore} che faccia sì che Mercurial ignori tutti i file con estensione \texttt{.class} e tutti i file nel cui path è presente una cartella chiamata \texttt{bin}
-% 		\item Si verifichi con \texttt{hg status} che il file compilato non viene più mostrato fra quelli tracciabili, mentre viene mostrato \texttt{.hgignore}
-% 		\item Si aggiunga \texttt{.hgignore} al tracker e si faccia commit
-% 		\item Modificare \texttt{HelloWorld.java} in modo tale che non compili. Assicurarsi che non compili utilizzando \texttt{javac}
-% 		\item Correggere l'errore inserito facendo roll back con \texttt{hg update --clean}
-% 		\item Verificare con \texttt{hg status} che il repository sia stato portato allo stato precedente, quindi compilarlo con \texttt{javac}
-% 		\item Tornare al primo commit effettuato con \texttt{hg update -r0 --clean}
-% 		\item Ricompilare ed eseguire, verificando che si sia tornati allo stato iniziale
-% 	}
-% }
-% 
-% \fr{Esercizio con Mercurial}{
-% 	\iz {
-% 		\item Creare un nuovo file \texttt{readme.txt} utilizzando un editor di testo. Inserire al suo interno nome, cognome e matricola.
-% 		\item Si aggiunga \texttt{readme.txt} al tracker
-% 		\item Si faccia commit
-% 		\item Si rinomini, utilizzando \texttt{hg mv}, \texttt{readme.txt} in \texttt{readme.md}
-% 		\item Verificare con \texttt{hg status} quale sia lo stato del repository
-% 		\item Si faccia commit della modifica
-% 		\item Si osservi, utilizzando \texttt{hg heads}, che si abbiano due linee di sviluppo (in una c'è \texttt{HelloWorld.java} aggiornato e \texttt{.hgignore}, nell'altro il file \texttt{readme.md})
-% 		\item Si uniscano le linee di sviluppo con \texttt{hg merge} (se tutto è stato eseguito correttamente, non ci saranno merge conflict)
-% 		\item Si esegua il commit dell'operazione di merge
-% 		\item Si utilizzi \texttt{hg log} per osservare la storia del repository. Si noti che il commit corrente ha due parent.
-% 	}
-% }
-% 
-% \fr{Esercizio con Mercurial}{
-% 	\iz {
-% 		\item Si cancellino tutti i file dal repository a mano (senza utilizzare \texttt{hg rm}, ma semplicemente rimuovendoli)
-% 		\item Si osservi lo stato del repository con \texttt{hg status}
-% 		\item Si ripristini i file cancellati con \texttt{hg update --clean}
-% 		\item Si rimuova dal tracking il file \texttt{readme.md} utilizzando \texttt{hg rm}
-% 		\item Si faccia il commit della modifica
-% 		\item Utilizzando hg log, si osservi tutta la storia del repository, quindi si visualizzino solo le ultime due operazioni.
-% 	}
-% }
 
 \begin{frame}{Esercizio}
 	Provate a svolgere l'esercizio 0 dell'esercitazione. Troverete un file di istruzioni che vi spiegherà dettagliatamente il da farsi.
