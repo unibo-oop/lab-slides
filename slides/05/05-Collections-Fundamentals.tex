@@ -1,16 +1,14 @@
 \documentclass[presentation]{beamer}
-\usepackage{oop-slides}
+\usepackage{../oop-slides-pianini}
 \setbeamertemplate{bibliography item}[text]
 \newcommand{\lessonnr}[0]{05}
-\title[OOP\lessonnr{} -- Collections and Generics I]{\lessonnr{}\\ Javadoc, jar, polimorfismo parametrico e introduzione al Java Collections Framework}
+\title[OOP05 -- Collections and Generics I]{05 \\JAR file, Javadoc, Polimorfismo Parametrico e Introduzione al Java Collections Framework}
+\author[Pianini]{Danilo Pianini\\Angelo Croatti, Simone Grotti, Mirko Viroli}
 
 \begin{document}
 	
 \frame[label=coverpage]{\titlepage}
 
-%====================
-%Outline
-%====================
 \newcommand{\al}[0]{\textless}
 \newcommand{\ar}[0]{\textgreater}
 \newcommand{\gen}[1]{\al{}#1\ar{}}
@@ -20,15 +18,35 @@
 \end{center}
 }}
 
+%====================
+%Outline
+%====================
+
+\fr{Outline}{
+\bl{Goal della lezione}{
+\iz{ 
+\item Introduzione ai Java ARchive (JAR) e loro utilizzo
+\item Il ruolo della documentazione nello sviluppo del software
+\iz{
+\item Javadoc: linee guida
+\item Generazione automatica
+}
+\item Esercizi in Autonomia
+\iz{
+\item Polimorfismo Parametrico
+\item Java Collection Framework - Parte I
+}
+}
+}
+}
 
 
-\section{Esercitazione di oggi}
 \fr{Preparazione Ambiente di Lavoro}{
   \iz{
     \item Accendere il PC
     \item Loggarsi sul sito del corso
     \iz{
-      \item \textcolor{blue}{\moodleurl{}}
+      \item\textcolor{blue}{\url{https://bit.ly/oop2016cesena}}
     }
     \item Scaricare dal sito il file \texttt{lab05.zip} contenente il materiale dell'esercitazione odierna
     \item Spostare il file scaricato sul Desktop
@@ -38,14 +56,14 @@
 }
 
 
-\section{Introduzione e utilizzo dei jar}
+\section{Deployment di applicazioni Java}
 \subsection{I JAR file}
-\fr{Java: i file JAR}{
+\fr{Deployment di applicazioni Java}{
   \iz {
     \item Finora, abbiamo visto che un'applicazione Java è composta di un insieme di classi: noi vorremmo distribuirla come singolo file!
-    \item Normalmente, le applicazioni Java vengono confezionate in file JAR
+    \item Normalmente, le applicazioni Java vengono confezionate in file JAR (Java ARchive)
   }
-  \bl{Cos'è?} {
+  \bl{File JAR} {
     \iz {
       \item Un JAR è un archivio (normalmente compresso) che contiene le classi, le risorse (e.g. icone) e un file descrittivo detto ``Manifest''
       \item Il Manifest viene creato sempre in \texttt{META-INF/MANIFEST.MF}, e contiene informazioni sull'applicazione, ad esempio su quale classe contenga il main del programma
@@ -55,56 +73,159 @@
   }
 }
 
-\subsection{Gestione dei JAR file da Eclipse}
-\fr {Generazione di file JAR con Eclipse} {
-  Eclipse è in grado di supportare l'utente nella generazione di file JAR.
+\fr{Il comando \texttt{jar}}{
+\iz{
+\item Per creare un file JAR, si può utilizzare direttamente il comando \texttt{jar}
+\iz{
+\item Normalmente, tuttavia, ci si avvale del supporto dell'IDE
+}
+}
+\bl{Opzioni importanti del comando \texttt{jar}}{
+\textbf{\texttt{c}} --- Specifica l'intenzione di creare un JAR file\\
+\textbf{\texttt{f}} --- Specifica un file di output (se non presente, l'output è rediretto su standard output)\\
+\textbf{\texttt{m}} --- Specifica l'intenzione di allegare un manifest file personalizzato (se non presente, ne viene creato uno di default, che non specifica alcuna classe da eseguire)
+}
+}
+
+\fr{Esempi d'uso del comando \texttt{jar}}{
+
+\bl{\texttt{jar cf jar-file.jar file1 file2 directory1}}{
+\iz {
+\item Crea un nuovo JAR file di nome \texttt{jar-file.jar} contenente \texttt{file1} \texttt{file2} \texttt{directory1}. Include un Manifest di default.
+}
+}
+
+\bl{\texttt{jar cf jar-file.jar *}}{
+\iz {
+\item Crea un nuovo JAR file di nome \texttt{jar-file.jar} contenente tutti i file e le directory nel path corrente. Include un Manifest di default.
+}
+}
+}
+
+
+\fr{Esecuzione di JAR file tramite command line shell}{
   \iz {
-    \item Si seguano i passi nelle slide successive per generare un Jar a partire dai tre packages:
-     \iz{
-     	\item \texttt{it.unibo.oop.lab05.packages.pkg1} 
-        \item \texttt{it.unibo.oop.lab05.packages.pkg2}
-	\item \texttt{it.unibo.oop.lab05.packages.pkg3}
-     }
+    \item \texttt{java} ha un'opzione che consente l'esecuzione di file jar.
+    \item Tale opzione è \texttt{-jar}
+    \item Quando si lancia \texttt{java -jar nomefile.jar}, la Java Virtual Machine automaticamente legge il file Manifest, cerca una descrizione della Main Class da eseguire e tenta di eseguirla.
   }
 }
 
-\imgfr{Generazione di file JAR con Eclipse}{Selezionare le risorse da esportare, click destro ed \texttt{Export}}{0.3}{img/exportjar1}
-\imgfr{Generazione di file JAR con Eclipse}{}{0.6}{img/exportjar2}
-\imgfr{Generazione di file JAR con Eclipse}{}{0.6}{img/exportjar3}
-\imgfr{Generazione di file JAR con Eclipse}{}{0.6}{img/exportjar4}
-\imgfr{Generazione di file JAR con Eclipse}{Espandere l'elenco dei file}{0.4}{img/exportjar5}
-\imgfr{Generazione di file JAR con Eclipse}{Verificare \textbf{sempre} che siano selezionate \textbf{tutte e sole} le risorse che ci interessano.}{0.5}{img/exportjar6}
-\imgfr{Generazione di file JAR con Eclipse}{Eventualmente potete esportare anche i sorgenti}{0.5}{img/exportjar7}
-\imgfr{Generazione di file JAR con Eclipse}{Inserite il nome del file (e selezionate la cartella dove volete creare il JAR)}{0.5}{img/exportjar8}
-\imgfr{Generazione di file JAR con Eclipse}{Finish}{0.5}{img/exportjar9}
-
-\fr {Verifica del contenuto di un JAR da riga di comando} {
-       Si verifichi il contenuto del JAR file con \texttt{jar tf myjar.jar}
-  }
-
-\fr {Generazione di file JAR eseguibili con Eclipse} {
-  Eclipse è anche in grado di generare automaticamente il Manifest file corretto per mettere in esecuzione una certa classe.
-  \iz {
-    \item È necessario che esista già una ``Run configuration''. Quando lanciate una classe con \texttt{main} per la prima volta, questa viene creata automaticamente
-    \item Si seguano i passi nelle slide successive per esportare i tre packages compilati, specificando la main class da eseguire
-    %\item Si tenti di eseguire il JAR con \texttt{Java -jar myjar.jar}. Cosa succede?
-  }
+\subsection{Generazione di JAR tramite Eclipse}
+\fr {Generazione di file JAR con Eclipse (1/5)} {
+\iz {
+\item L'IDE Eclipse supporta efficacemente l'utente nella generazione di file JAR (eseguibili o per la creazione di librerie).
+}
+\bl{Esercizio}{
+\iz {
+\item Si seguano i passi descritti nelle slide successive per generare un file JAR a partire dai tre packages:
+\iz{
+\item \texttt{it.unibo.oop.lab05.packages.pkg1} 
+\item \texttt{it.unibo.oop.lab05.packages.pkg2}
+\item \texttt{it.unibo.oop.lab05.packages.pkg3}
+}
+}
+}
 }
 
-\imgfr{Generazione di file JAR eseguibili con Eclipse}{}{0.99}{img/exportrunnablejar1}
-\imgfr{Generazione di file JAR eseguibili con Eclipse}{}{0.3}{img/exportrunnablejar2}
-\imgfr{Generazione di file JAR eseguibili con Eclipse}{}{0.4}{img/exportrunnablejar3}
-\imgfr{Generazione di file JAR eseguibili con Eclipse}{Selezionare le risorse di interesse}{0.99}{img/exportrunnablejar4}
-\imgfr{Generazione di file JAR eseguibili con Eclipse}{}{0.3}{img/exportrunnablejar5}
-\imgfr{Generazione di file JAR eseguibili con Eclipse}{}{0.7}{img/exportrunnablejar6}
-\imgfr{Generazione di file JAR eseguibili con Eclipse}{Selezionare la la ``Run configuration'' da utilizzare}{0.7}{img/exportrunnablejar7}
-\imgfr{Generazione di file JAR eseguibili con Eclipse}{Inserire il nome del file (e selezionare il path in cui si desidera crearlo)}{0.7}{img/exportrunnablejar8}
-\imgfr{Generazione di file JAR eseguibili con Eclipse}{Finish}{0.7}{img/exportrunnablejar9}
+\fr {Generazione di file JAR con Eclipse (2/5)}{
+\iz{
+\item Clik DX su progetto $>$ Export...
+\item Nella schermata di export: java $>$ JAR file $>$ Next
+}
+\fg{height=0.8\textheight}{img/exportjar4} 
+}
+
+\fr {Generazione di file JAR con Eclipse (3/5)}{
+\iz{
+\item Espandere l'elenco dei file: verificare \textbf{sempre} che siano selezionate \textbf{tutte e sole} le risorse d'interesse per il JAR file
+}
+\fg{height=0.75\textheight}{img/exportjar6} 
+}
+
+\fr {Generazione di file JAR con Eclipse (4/5)}{
+\iz{
+\item Risulta possibile esportare anche i sorgenti nel file JAR
+\iz{
+\item Utile nel caso si voglia rendere ispezionabile il codice sorgente delle librerie distribuite come file JAR (ad esempio) in fase di debug.
+}
+\item In questo caso, selezionare: \emph{Export Java Source files and resources}
+}
+\fg{height=\textheight}{img/exportjar7} 
+}
+
+\fr {Generazione di file JAR con Eclipse (5/5)}{
+\iz{
+\item Selezionare una directory di destinazione
+\item Fornire un nome (con estensione .jar) al file che sarà generato
+\item Click su Finish
+}
+\fg{height=0.75\textheight}{img/exportjar9} 
+}
+
+%\imgfr{Generazione di file JAR con Eclipse}{Selezionare le risorse da esportare, click destro ed \texttt{Export}}{0.3}{img/exportjar1}
+%\imgfr{Generazione di file JAR con Eclipse}{}{0.6}{img/exportjar2}
+%\imgfr{Generazione di file JAR con Eclipse}{}{0.6}{img/exportjar3}
+%\imgfr{Generazione di file JAR con Eclipse}{}{0.6}{img/exportjar4}
+%\imgfr{Generazione di file JAR con Eclipse}{Espandere l'elenco dei file}{0.4}{img/exportjar5}
+%\imgfr{Generazione di file JAR con Eclipse}{Verificare \textbf{sempre} che siano selezionate \textbf{tutte e sole} le risorse che ci interessano.}{0.5}{img/exportjar6}
+%\imgfr{Generazione di file JAR con Eclipse}{Eventualmente potete esportare anche i sorgenti}{0.5}{img/exportjar7}
+%\imgfr{Generazione di file JAR con Eclipse}{Inserite il nome del file (e selezionate la cartella dove volete creare il JAR)}{0.5}{img/exportjar8}
+%\imgfr{Generazione di file JAR con Eclipse}{Finish}{0.5}{img/exportjar9}
+
+\fr {Verifica del contenuto di un JAR} {
+\iz{
+\item Il tool \texttt{jar} distribuito con il JDK consente di verificare il contenuto del file compresso
+\iz{
+\item Aprire una shell a linea di comando (CMD su Windows)
+\item Digitare \texttt{jar tf myjar.jar} (dove \texttt{myjar.jar} è il nome del file JAR da verificare
+}
+}
+}
+
+\subsection{Generazione di JAR eseguibili tramite Eclipse}
+
+\fr {Generazione di file JAR eseguibili con Eclipse (1/3)} {
+\iz {
+\item Eclipse consente anche di generare file JAR con un file Manifest ad hoc per mettere in esecuzione il progetto software contenuto nell'archivio.
+
+\item Come prerequisito, è necessario che esista in Eclipse una ``Run Configuration'' valida per il progetto.
+\iz{
+\item Ovvero, è necessario che il progetto sia stato eseguito almeno una volta in Eclipse.
+}
+}
+}
+
+\fr {Generazione di file JAR eseguibili con Eclipse (2/3)}{
+\iz{
+\item Clik DX su progetto $>$ Export...
+\item Nella schermata di export: java $>$ Runnable JAR file $>$ Next
+}
+\fg{height=0.8\textheight}{img/exportrunnablejar6} 
+}
+
+\fr {Generazione di file JAR eseguibili con Eclipse (3/3)}{
+\iz{
+\item Selezionare la ``Run configuration'' da utilizzare
+\item Inserire il nome del file (e selezionare il path in cui si desidera crearlo)
+}
+\fg{height=0.8\textheight}{img/exportrunnablejar9} 
+}
+
+%\imgfr{Generazione di file JAR eseguibili con Eclipse}{}{0.99}{img/exportrunnablejar1}
+%\imgfr{Generazione di file JAR eseguibili con Eclipse}{}{0.3}{img/exportrunnablejar2}
+%\imgfr{Generazione di file JAR eseguibili con Eclipse}{}{0.4}{img/exportrunnablejar3}
+%\imgfr{Generazione di file JAR eseguibili con Eclipse}{Selezionare le risorse di interesse}{0.99}{img/exportrunnablejar4}
+%\imgfr{Generazione di file JAR eseguibili con Eclipse}{}{0.3}{img/exportrunnablejar5}
+%\imgfr{Generazione di file JAR eseguibili con Eclipse}{}{0.7}{img/exportrunnablejar6}
+%\imgfr{Generazione di file JAR eseguibili con Eclipse}{Selezionare la ``Run configuration'' da utilizzare}{0.7}{img/exportrunnablejar7}
+%\imgfr{Generazione di file JAR eseguibili con Eclipse}{Inserire il nome del file (e selezionare il path in cui si desidera crearlo)}{0.7}{img/exportrunnablejar8}
+%\imgfr{Generazione di file JAR eseguibili con Eclipse}{Finish}{0.7}{img/exportrunnablejar9}
 
 
-\section{Scrivere e Generare la Documentazione di Programmi Java}
+\section{Documentazione per il codice Java}
 
-\fr{Javadoc: Introduzione 1/2}{
+\fr{Documentazione per il Codice Sorgente}{
   \bl{Il ruolo fondamentale della documentazione}{
     La documentazione di un progetto software è un aspetto fondamentale
     \iz{
@@ -126,7 +247,9 @@
   }
 }
 
-\fr{Javadoc: Introduzione 2/2}{
+\subsection{Javadoc}
+
+\fr{Javadoc -- Introduzione}{
   \bl{Javadoc: che cos'è?}{
     Tool di supporto per la generazione automatica della documentazione (HTML-based) dei programmi Java, tramite utilizzo di annotazioni \textit{``speciali''} collocate in punti ben precisi dei sorgenti
   }
@@ -140,7 +263,9 @@
   }
 }
 
-\fr{Javadoc: Principali Tag 1/2}{
+\subsection{Principali Tag e Linee Guida}
+
+\fr{Javadoc -- Principali Tag (1/2)}{
   \iz{ 
     \item \textcolor{blue}{\cil{@param}}
       \iz{
@@ -164,7 +289,7 @@
   }
 }
 
-\fr{Javadoc: Principali Tag 2/2}{
+\fr{Javadoc -- Principali Tag (2/2)}{
   \iz{ 
     \item \textcolor{blue}{\cil{@throws}}
       \iz{
@@ -196,7 +321,7 @@
   }
 }
 
-\fr{Javadoc: Linee Guida d'Uso}{
+\fr{Javadoc -- Linee Guida}{
   \bl{Cosa commentare e quali tag usare?}{
     \iz{
       \item Inserire sempre un commento (anche corto) che descrive il ruolo e il funzionamento generale della classe
@@ -229,19 +354,21 @@
 %     }  
 % }
 
+\subsection{Generazione della Javadoc tramite Eclipse}
 
-\fr{Generazione Javadoc da Eclipse 1/2}{
-  \fg{height=0.9\textheight}{img/javadoc1} 
+\fr{Generazione Javadoc tramite Eclipse (1/2)}{
+\fg{height=0.9\textheight}{img/javadoc1} 
 }
 
-\fr{Generazione Javadoc da Eclipse 2/2}{
-  \fg{height=0.8\textheight}{img/javadoc2}
+\fr{Generazione Javadoc tramite Eclipse (2/2)}{
+\fg{height=0.8\textheight}{img/javadoc2}
 }
 
 \fr{Javadoc: Esempio di Documentazione Generata}{
-  \fg{height=0.8\textheight}{img/javadoc_view}
+\fg{height=0.8\textheight}{img/javadoc_view}
 }
 
+\section{Esercizi in Autonomia}
 
 \fr{Modalità di Lavoro}{
   \bl{}{
@@ -259,248 +386,266 @@
   }
 }
 
+\begin{frame}{[Esercizio 1] \texttt{it.unibo.oop.lab05.ex1}}
+\begin{enumerate}
+\item Analizzare ed eseguire il programma definito in \texttt{UseCollection.java}
+\item Seguire i commenti presenti in \texttt{UseSet.java} per realizzare un programma che crei, popoli e manipoli un oggetto di tipo \texttt{TreeSet<String>}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{[Esercizio 2] \texttt{it.unibo.oop.lab05.ex2}}
+\begin{enumerate}
+\item Seguire i commenti presenti in \texttt{UseSetWithOrder.java} per realizzare un programma che crei e ordini un oggetto di tipo \texttt{TreeSet<String>} avvalendosi di un oggetto da creare ad hoc che sia istanza di \texttt{Comparator<String>}
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{[Esercizio 3] \texttt{it.unibo.oop.lab05.ex3}}
+\begin{enumerate}
+\item Implementare le classi \texttt{WarehouseImpl.java} e \texttt{ProductImpl.java} secondo i contratti definiti nelle rispettive interfacce.
+\item Si faccia riferimento alla Javadoc inserita per descrive le interfacce per i dettagli circa l'implementazione dei diversi metodi.
+\item Si esegua la classe \texttt{UseWarehouse.java} e si verifichi il corretto funzionamento del programma.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{[Esercizio 4] \texttt{it.unibo.oop.lab05.ex4}}
+\begin{enumerate}
+\item L'esercizio è una variazione di quanto fatto nell'esercizio precedente.
+\item Si riutilizzi quanto più possibile il codice (funzionante) prodotto per completare l'esercizio 3
+\item Per testare il buon funzionamento del codice prodotto, si completino -- nel metodo \texttt{main} della classe presente in \texttt{UseWarehouse.java} -- le inizializzazioni delle variabili di tipo \texttt{Product} e \texttt{Warehouse}.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{[Esercizio 5] \texttt{it.unibo.oop.lab05.ex5}}
+\begin{enumerate}
+\item Si implementino le funzioni descritte nella classe \texttt{Utilities.java}
+\item Si verifichi il buon funzionamento di quanto implementato eseguendo il programma descritto in \texttt{UseUtilities.java}
+\end{enumerate}
+\end{frame}
+
+
+%\section{Java collections framework e Java generics}
+%
+%\fr {Istruzioni}{
+%  \iz {
+%    \item Nell'esercitazione di oggi troverete sorgenti parzialmente implementati
+%    \item Direttamente dentro i sorgenti, troverete una serie di punti da svolgere
+%    \item Per aiutarvi a trovarli, essi sono segnalati con il commento \cil{//TODO} ed un numero.
+%    \item Eseguite gli esercizi tenendo conto della numerazione
+%  }
+%}
+%
+%%\imgfr{Struttura delle classi del model}{UML del modello}{0.99}{img/class}
+%
+%\subsection{Completamento di classi che usano collections}
+%
+%\fr {Utilizzo di Set\gen{E}}{
+%  \iz {
+%    \item Si completi la classe \texttt{oop1314.lab05.exams.model.Exam}.
+%    \item È richiesto l'uso dell'interfaccia Set, come implementazione è consigliato HashSet.
+%    \item Per dettagli sui metodi forniti dall'interfaccia, si consulti la Javadoc delle API Java
+%  }
+%}
+%
+%
+%\subsection{Costruzione di una classe generica}
+%
+%\fr {Utilizzo di List\gen{E}: creazione di una memoria associativa}{
+%  \iz {
+%    \item Si osservi l'interfaccia \cil{oop1415.lab05.exams.generics.IAssociativeMemory<K, V>}
+%    \item Essa rappresenta una semplice memoria associativa, ossia una memoria in grado di associare due oggetti. Dato un oggetto, è possible risalire all'altro.
+%    \iz {
+%      \item Una (banale, vedrete \textbf{molto} di meglio a lezione) strategia implementativa è l'utilizzo di due liste ordinate.
+%      \item Quando una nuova associazione viene creata, gli oggetti vengono salvati in due liste diverse nella medesima posizione.
+%      \item Quando uno dei due oggetti viene rimosso, viene rimosso anche l'altro
+%      \item Quando viene richiesto un oggetto passando l'altro, si cerca in che posizione sia nella lista, quindi si ritorna l'elemento nella stessa posizione dell'altra lista
+%    }
+%    \item Tenendo conto di quanto detto, si realizzi la classe \cil{oop1415.lab05.exams.generics.AssociativeMemory<K, V>}, che implementa l'interfaccia \cil{oop1415.lab05.exams.generics.IAssociativeMemory<K, V>}.
+%  }
+%}
+%
+%\subsection{Ordinamento con Comparable\gen{T}}
+%
+%\fr {Implementazione di Comparable\gen{T}}{
+%  \iz {
+%    \item Si implementi \cil{Comparable<IPerson>} in \cil{IPerson}.
+%    \item Si implementi in \cil{AbstractPerson} il metodo necessario a supportare \cil{Comparable<IPerson>}. Tale metodo deve ordinare le persone alfabeticamente  per cognome.
+%    \item Si ricorda che la classe \cil{String} implementa già \cil{Comparable<String>}: le stringhe hanno ordine naturale uguale all'ordine alfabetico.
+%  }
+%}
+%
+%\fr {Test}{
+%Si testi il funzionamento di quanto fatto terminando l'implementazione di \texttt{oop1415.lab05.exams.ExamManagerTest}
+%}
+%
+%\subsection{Uso di wildcard bounded}
+%\fr {Varianza}{
+%  \iz {
+%    \item Si rimuavano i commenti la prima parte commentata in \cil{PeopleManagerTest}
+%    \item Errori!
+%    \item Ragioniamo su cosa stiamo facendo: il metodo vuole prendere una \cil{Collection<IPerson>} per aggiungerla internamente al \cil{PeopleManager}
+%    \item Noi stiamo passando una \cil{Collection<Student>}.
+%    \item Dato che \cil{Student} implementa \cil{IPerson}, ci aspetteremmo che le \cil{Collection<Student>} siano anche \cil{Collection<IPerson>}, giusto?
+%    \item \textbf{NO.}
+%    \item Infatti, ad una \cil{Collection<IPerson>} possono essere aggiunti anche dei \cil{Professor}, mentre ad una \cil{Collection<Student>} no.
+%  }
+%}
+%
+%\fr {Non ci servono le add: uso di \cil{? extends}}{
+%  \iz {
+%    \item Nel nostro caso, però, l'uso sarebbe lecito: usiamo la \cil{Collection<Student>} per \textbf{accedere} ai suoi elementi, ma non li aggiungiamo, e l'operazione di aggiungere degli \cil{Student} ad un \cil{IPeopleManager<IPerson>} è lecita.
+%    \item In Java, è possibile imporre delle limitazioni per dire al compilatore che utilizzeremo quell'oggetto solo per \textbf{accedere} ai suoi elementi
+%    \item Si modifichi il metodo\\ \cil{void addAllFromCollection(Collection<PersonType>)} in: \\ \cil{void addAllFromCollection(Collection<? extends PersonType>)}
+%    \item Si osservi che gli errori spariscono
+%    \item Si tenti di inserire un nuovo elemento nella \cil{Collection<? extends PersonType>} passata: cosa succede?
+%    \item Il compilatore sa che la \cil{Collection} contiene un sottotipo di \cil{PersonType}, ma non sa quale: non vi consente di aggiungere elementi.
+%  }
+%}
+%
+%\fr {Contro-varianza}{
+%  \iz {
+%    \item Si decommenti la seconda parte commentata in \cil{PeopleManagerTest}
+%    \item Errori!
+%    \item Ragioniamo su cosa stiamo facendo: il metodo vuole prendere una \cil{Collection<IPerson>} per aggiungerci il contenuto del \cil{PeopleManager}
+%    \item Noi stiamo passando una \cil{Collection<Object>}.
+%    \item Dato che ogni tipo Java è sottotipo di \cil{Object}, ci aspetteremmo che le \cil{Collection<IPerson>} siano anche \cil{Collection<Object>}, giusto?
+%    \item \textbf{NO.}
+%    \item Infatti, gli elementi di una \cil{Collection<Object>}, non sempre sono delle \cil{IPerson}!
+%  }
+%}
+%
+%\fr {Non ci servono le get: uso di \cil{? super}}{
+%  \iz {
+%    \item Nel nostro caso, però, l'uso sarebbe lecito: aggiungiamo dei PersonType alla \cil{Collection<Object>}, e questo è perfettamente lecito
+%    \item In Java, è possibile imporre delle limitazioni per dire al compilatore che utilizzeremo quell'oggetto solo per \textbf{aggiungere} degli elementi, ma non ne controlleremo il contenuto
+%    \item Si modifichi il metodo\\ \cil{void addAllToCollection(Collection<PersonType>)} in: \\ \cil{void addAllToCollection(Collection<? super PersonType>)}
+%    \item Si osservi che gli errori spariscono
+%    \item Si tenti di prendere elemento della \cil{Collection<? super PersonType>} passata: cosa succede?
+%    \item Il compilatore sa che la \cil{Collection} contiene un supertipo di \cil{PersonType}, ma non sa quale: vi ritorna un Object.
+%  }
+%}
+%
+%\section{Prova d'esame}
+%\subsection{Progettazione di una classe generica}
+%\fr{Esercizio con classe generica}{
+%  \iz {
+%    \item Si legga e si risolva l'esercizio in \texttt{UseThree.java}.
+%    \item Per problemi, suggerimenti o richieste, si chieda e ci si aiuti anche fra studenti facendo uso del forum del corso.
+%  }
+%}
+%\subsection{Costruzione di un iteratore}
+%\fr{Esercizio con iteratore}{
+%  \iz {
+%    \item Si legga e si risolva l'esercizio nel file testo.txt in \texttt{oop1415.lab05.examsaple2}.
+%    \item Per problemi, suggerimenti o richieste, si chieda e ci si aiuti anche fra studenti facendo uso del forum del corso.
+%  }
+%}
+
 \end{document}
 
 
-\subsection{I JAR file}
-\fr{Deployment di applicazioni Java}{
-  \iz {
-    \item Finora, abbiamo visto che un'applicazione Java è composta di un insieme di classi: noi vorremmo distribuirla come singolo file!
-    \item Normalmente, le applicazioni Java vengono confezionate in file JAR
-  }
-  \bl{Cos'è?} {
-    \iz {
-      \item Un JAR è un archivio (normalmente compresso) che contiene le classi, le risorse (e.g. icone) e un file descrittivo detto ``Manifest''
-      \item Il Manifest viene creato sempre in \texttt{META-INF/MANIFEST.MF}, e contiene informazioni sull'applicazione, ad esempio su quale classe contenga il main del programma
-      \item È possibile associare (a livello di sistema operativo) l'esecuzione del JAR file al comando Java, in modo che l'applicazione si avvii automaticamente ``col doppio click'' (avviando automaticamente\ la classe scritta nel Manifest)
-      \item È possibile utilizzare i file JAR come componenti di altre applicazioni
-    }
-  }
-}
 
-\fr{Il comando \texttt{jar}}{
-  Per creare un JAR, si utilizza il comando \texttt{jar}
-  \bl{Opzioni importanti di \texttt{jar}}{
-    \iz {
-      \item \textbf{\texttt{c}} --- Specifica l'intenzione di creare un JAR file
-      \item \textbf{\texttt{f}} --- Specifica un file di output (se non presente, l'output è rediretto su standard output)
-      \item \textbf{\texttt{m}} --- Specifica l'intenzione di allegare un manifest file personalizzato (se non presente, ne viene creato uno di default, che non specifica alcuna classe da eseguire)
-    }
-  }
-}
-
-\fr{Uso di \texttt{jar}}{
-  \bl{Esempi d'uso:}{
-    \texttt{jar cf jar-file.jar file1 file2 directory1}
-    \iz {
-      \item Crea un nuovo JAR file di nome \texttt{jar-file.jar} contenente \texttt{file1} \texttt{file2} \texttt{directory1}. Include un Manifest di default
-    }
-    \texttt{jar cf jar-file.jar *}
-    \iz {
-      \item Crea un nuovo JAR file di nome \texttt{jar-file.jar} contenente tutti i files e le directory nel path corrente. Include un Manifest di default
-    }
-    \texttt{jar cmf manifest.mf jar-file.jar *}
-    \iz {
-      \item Crea un nuovo JAR file di nome \texttt{jar-file.jar} contenente tutti i files e le directory nel path corrente. Utilizza il file \texttt{manifest.mf} come file Manifest
-    }
-  }
-}
-
-\fr{File Manifest}{
-  \bl{Esempio di Manifest}{
-    \sizedcode{\scriptsize}{code/MANIFEST.MF}
-  }
-  \iz {
-    \item versione del Manifest
-    \item Class Path (vedremo fra poco)
-    \item Main Class da eseguire
-  }
-}
-
-\fr{Esecuzione di JAR file}{
-  \iz {
-    \item \texttt{java} ha un'opzione che consente l'esecuzione di file jar.
-    \item Tale opzione è \texttt{-jar}
-    \item Quando si lancia \\ \texttt{java -jar nomefile.jar}, la Java Virtual Machine automaticamente legge il file Manifest, cerca una descrizione della Main Class da eseguire e tenta di eseguirla.
-  }
-}
-
-\fr{Primo esercizio con \texttt{jar}} {
-  Facendo riferimento alle ultime slides, si svolga quanto segue:
-  \iz {
-    \item Ci si posizioni nella cartella \texttt{bin}
-    \item Si crei un jar file contenente le classi appena compilate, utilizzando \texttt{jar cf} e le opportune opzioni.
-    \item Si verifichi con il comando \texttt{jar tf nomefile.jar} il contenuto del jar. Esso dovrà corrispondere a quello della prossima slide.
-  }
-}
-
-\fr{Soluzione} {
-  \texttt{META-INF/ \\
-  META-INF/MANIFEST.MF \\
-  oop1415/lab05/packages/ \\
-  oop1415/lab05/packages/pkg3/ \\
-  oop1415/lab05/packages/pkg3/UseDummies.class \\
-  oop1415/lab05/packages/pkg1/ \\
-  oop1415/lab05/packages/pkg1/MinionDummy.class \\
-  oop1415/lab05/packages/pkg1/DummyClass.class \\
-  oop1415/lab05/packages/pkg2/ \\
-  oop1415/lab05/packages/pkg2/EvenMoreDummy.class \\
-  oop1415/lab05/packages/pkg2/MoreDummy.class}
-}
-
-% \fr{Altri esercizi con JAR} {
-%   Facendo riferimento alle ultime slides, si svolga quanto segue:
-%   \iz {
-%     \item Ci si posizioni nella cartella \texttt{bin}
-%     \item Si crei un jar file \textbf{eseguibile} contenente le classi appena compilate, utilizzando \texttt{jar cfm} e le opportune opzioni. Il file Manifest da utilizzare è fornito nella cartella \texttt{res/lab05/TestManifest.MF}
-%     \iz {
-%       \item Si ricorda che, per risalire nell'albero delle directory, è possibile utilizzare \texttt{../} \\ Ad esempio, \\ jar mcf ../res/lab05/Manifest.MF testfile.jar directory \\ crea un nuovo JAR prendendo il manifest dalla cartella superiore alla corrente in \texttt{res/lab05/Manifest.MF}
-%     }
-%     \item Si lanci con \texttt{java -jar} il JAR appena creato
-%   }
-% }
-
-\fr {Generazione di file JAR con Eclipse} {
-  Eclipse è in grado di supportare l'utente nella generazione di file JAR.
-  \iz {
-    \item Si seguano i passi nelle slide successive per esportare i tre packages compilati
-    \item Si verifichi il contenuto del JAR file con \texttt{jar tf myjar.jar}
-    \item Si tenti di eseguire il JAR con \texttt{Java -jar myjar.jar}. Cosa succede?
-  }
-}
-
-\imgfr{Generazione di file JAR con Eclipse}{Selezionare le risorse da esportare, click destro ed \texttt{Export}}{0.3}{img/exportjar1}
-\imgfr{Generazione di file JAR con Eclipse}{}{0.6}{img/exportjar2}
-\imgfr{Generazione di file JAR con Eclipse}{}{0.6}{img/exportjar3}
-\imgfr{Generazione di file JAR con Eclipse}{}{0.6}{img/exportjar4}
-\imgfr{Generazione di file JAR con Eclipse}{Espandere l'elenco dei file}{0.4}{img/exportjar5}
-\imgfr{Generazione di file JAR con Eclipse}{Verificare \textbf{sempre} che siano selezionate \textbf{tutte e sole} le risorse che ci interessano.}{0.5}{img/exportjar6}
-\imgfr{Generazione di file JAR con Eclipse}{Eventualmente potete esportare anche i sorgenti}{0.5}{img/exportjar7}
-\imgfr{Generazione di file JAR con Eclipse}{Inserite il nome del file (e selezionate la cartella dove volete creare il JAR)}{0.5}{img/exportjar8}
-\imgfr{Generazione di file JAR con Eclipse}{Finish}{0.5}{img/exportjar9}
-
-
-\fr {Generazione di file JAR eseguibili con Eclipse} {
-  Eclipse è anche in grado di generare automaticamente il Manifest file corretto per mettere in esecuzione una certa classe.
-  \iz {
-    \item È necessario che esista già una ``Run configuration''. Quando lanciate una classe con \texttt{main} per la prima volta, questa viene creata automaticamente
-    \item Si seguano i passi nelle slide successive per esportare i tre packages compilati, specificando la main class da eseguire
-    \item Si tenti di eseguire il JAR con \texttt{Java -jar myjar.jar}. Cosa succede?
-  }
-}
-
-\imgfr{Generazione di file JAR eseguibili con Eclipse}{}{0.99}{img/exportrunnablejar1}
-\imgfr{Generazione di file JAR eseguibili con Eclipse}{}{0.3}{img/exportrunnablejar2}
-\imgfr{Generazione di file JAR eseguibili con Eclipse}{}{0.4}{img/exportrunnablejar3}
-\imgfr{Generazione di file JAR eseguibili con Eclipse}{Selezionare le risorse di interesse}{0.99}{img/exportrunnablejar4}
-\imgfr{Generazione di file JAR eseguibili con Eclipse}{}{0.3}{img/exportrunnablejar5}
-\imgfr{Generazione di file JAR eseguibili con Eclipse}{}{0.7}{img/exportrunnablejar6}
-\imgfr{Generazione UML del modellodi file JAR eseguibili con Eclipse}{Selezionare la la ``Run configuration'' da utilizzare}{0.7}{img/exportrunnablejar7}
-\imgfr{Generazione di file JAR eseguibili con Eclipse}{Inserire il nome del file (e selezionare il path in cui si desidera crearlo)}{0.7}{img/exportrunnablejar8}
-\imgfr{Generazione di file JAR eseguibili con Eclipse}{Finish}{0.7}{img/exportrunnablejar9}
-
-\subsection{Il classpath}
-\fr{Il classpath}{
-  \iz{
-    \item Il classpath è l'insieme delle directory in cui Java cerca classi e packages.
-    \item Sia \cil{java} che \cil{javac} consentono di specificarlo con l'opzione \cil{-cp}
-  }
-  \bl{In \cil{javac}}{
-    Il classpath indica dove verranno cercate le classi necessarie affinché il programma sia compilato.
-    \iz{
-      \item Uso di librerie esterne
-    }
-  }
-  \bl{In \cil{java}}{
-    Il classpath indica dove verranno cercate le classi necessarie affinché il programma sia eseguito correttamente
-    \iz{
-      \item Uso di librerie esterne
-      \item Software esportato come JAR file
-      \item Risorse da caricare incluse in un JAR file
-    }
-  }
-}
-
-\fr{Compilazione: librerie mancanti}{
-  \iz{
-    \item Ci si posizioni con un terminale nella cartella contenente il progetto
-    \item Si svuoti la cartella \texttt{bin} se presente, la si crei altrimenti
-    \item Si provi a compilare la classe oop1415.lab05.mathlib.TestMathLab (utilizzando \texttt{javac} senza l'opzione \texttt{-cp} come in precedenza, il comando \textbf{dovete} saperlo a questo punto.)
-    \item Cosa succede?
-  }
-  \bl{Leggere e capire gli errori. \textbf{Sempre}.}{
-    \texttt{
-      src/oop1415/lab05/mathlib/TestFastMath.java:6: error: package org.apache.commons.math3.util does not exist
-    }
-  }
-}
-
-\fr{Compilazione: aggiunta di librerie al class path}{
-  \iz{
-    \item Motivo: il programma si appoggia ad una libreria esterna (Apache Commons Math \cite{apache-commons-math})
-    \item È necessario istruire javac dicendogli dove trovare la libreria
-    \item Essa vi viene fornita in \texttt{lib/commons-math3-3.2.jar}
-    \item Si ricompili, aggiungendo l'opzione \texttt{-cp lib/commons-math3-3.2.jar}
-    \item La compilazione va a buon fine!
-  }
-}
-
-\fr{Esecuzione: librerie mancanti}{
-  \iz{
-    \item Lo stesso problema si pone al momento dell'esecuzione
-    \item Dato che avete solo compilato, ma non ``impacchettato'' un JAR che includesse tutto il necessario, è necessario dire alla Java Virtual Machine dove recuperare le classi necessarie per \textbf{eseguire} il programma.
-%     \item Si noti che, in generale, le librerie richieste a tempo d'esecuzione possono essere diverse da quelle necessarie a tempo di compilazione (in genere, di più).
-    \item Ci si posizioni con il terminale dentro la cartella \texttt{bin}.
-    \item Si esegua la classe appena compilata con \texttt{java}, senza usare l'opzione \texttt{-cp} (anche stavolta, dovete essere in grado di scrivere correttamente il comando).
-    \item Cosa succede?
-  }
-  \bl{Leggere e capire gli errori. \textbf{Sempre}.}{
-    \scriptsize\texttt{
-This program will run 1000000 calculations of asin and acos for each library, and print the time. \\
-Java Math took 51.9713719ms to complete. \\
-Exception in thread "main" java.lang.NoClassDefFoundError: \\ org/apache/commons/math3/util/FastMath \\
-        at oop1314.lab05.mathlib.TestFastMath.main(TestFastMath.java:52)
-    }
-  }
-}
-
-\fr{Esecuzione: aggiunta di librerie al class path}{
-  \iz{
-    \item Il programma esegue finché possibile, quindi lancia un errore!
-    \item La Java Virtual Machine, \textbf{a run time}, non riesce a caricare la classe \texttt{org.apache.commons.math3.util.FastMath}
-  }
-  Inclusione della libreria nel classpath
-  \iz{
-    \item Ci si posizioni con un terminale nella cartella del progetto
-    \item Sappiamo che le nostre classi compilate stanno in \texttt{bin}, mentre la libreria necessaria in \texttt{lib/commons-math3-3.2.jar}
-    \item Si provi ad eseguire da questa posizione, utilizzando l'opzione \texttt{-cp} di \texttt{java}:
-    \iz{
-      \item Su sistemi UNIX: \texttt{-cp bin:lib/commons-math3-3.2.jar}
-      \item Su sistemi Windows: \texttt{-cp bin;lib/commons-math3-3.2.jar}
-      \item Ossia: su UNIX i vari componenti del classpath si separano con i due punti, su Windows con il punto e virgola.
-    }
-  }
-}
-
-\fr{Gestione del Classpath da Eclipse}{
-  \iz {
-    \item Eclipse consente di aggiungere le librerie desiderate al classpath
-    \item Si importi il progetto odierno in Eclipse
-    \item Si seguano le istruzioni seguenti per includere nel classpath il file jar necessario alla compilazione
-  }
-} 
-
-\imgfr{Gestione del Classpath da Eclipse}{Properties}{0.4}{img/eclipsejar1}
-\imgfr{Gestione del Classpath da Eclipse}{Java Build Path}{0.8}{img/eclipsejar2}
-\imgfr{Gestione del Classpath da Eclipse}{Libraries}{0.8}{img/eclipsejar3}
-\imgfr{Gestione del Classpath da Eclipse}{Add JARs...}{0.8}{img/eclipsejar4}
-\imgfr{Gestione del Classpath da Eclipse}{I JAR file devono essere dentro uno dei progetti}{0.6}{img/eclipsejar5}
-\imgfr{Gestione del Classpath da Eclipse}{Normalmente, si posizionano in \texttt{lib}}{0.6}{img/eclipsejar6}
-\imgfr{Gestione del Classpath da Eclipse}{}{0.6}{img/eclipsejar7}
-\imgfr{Gestione del Classpath da Eclipse}{}{0.6}{img/eclipsejar8}
-\imgfr{Gestione del Classpath da Eclipse}{}{0.8}{img/eclipsejar9}
-\imgfr{Gestione del Classpath da Eclipse}{Appare ``Referenced Libraries'' nel progetto}{0.99}{img/eclipsejar10}
-\imgfr{Gestione del Classpath da Eclipse}{All'interno, trovate il JAR e tutte le classi in esso contenute!}{0.99}{img/eclipsejar11}
+%\subsection{Il classpath}
+%\fr{Il classpath}{
+%  \iz{
+%    \item Il classpath è l'insieme delle directory in cui Java cerca classi e packages.
+%    \item Sia \cil{java} che \cil{javac} consentono di specificarlo con l'opzione \cil{-cp}
+%  }
+%  \bl{In \cil{javac}}{
+%    Il classpath indica dove verranno cercate le classi necessarie affinché il programma sia compilato.
+%    \iz{
+%      \item Uso di librerie esterne
+%    }
+%  }
+%  \bl{In \cil{java}}{
+%    Il classpath indica dove verranno cercate le classi necessarie affinché il programma sia eseguito correttamente
+%    \iz{
+%      \item Uso di librerie esterne
+%      \item Software esportato come JAR file
+%      \item Risorse da caricare incluse in un JAR file
+%    }
+%  }
+%}
+%
+%\fr{Compilazione: librerie mancanti}{
+%  \iz{
+%    \item Ci si posizioni con un terminale nella cartella contenente il progetto
+%    \item Si svuoti la cartella \texttt{bin} se presente, la si crei altrimenti
+%    \item Si provi a compilare la classe oop1415.lab05.mathlib.TestMathLab (utilizzando \texttt{javac} senza l'opzione \texttt{-cp} come in precedenza, il comando \textbf{dovete} saperlo a questo punto.)
+%    \item Cosa succede?
+%  }
+%  \bl{Leggere e capire gli errori. \textbf{Sempre}.}{
+%    \texttt{
+%      src/oop1415/lab05/mathlib/TestFastMath.java:6: error: package org.apache.commons.math3.util does not exist
+%    }
+%  }
+%}
+%
+%\fr{Compilazione: aggiunta di librerie al class path}{
+%  \iz{
+%    \item Motivo: il programma si appoggia ad una libreria esterna (Apache Commons Math \cite{apache-commons-math})
+%    \item È necessario istruire javac dicendogli dove trovare la libreria
+%    \item Essa vi viene fornita in \texttt{lib/commons-math3-3.2.jar}
+%    \item Si ricompili, aggiungendo l'opzione \texttt{-cp lib/commons-math3-3.2.jar}
+%    \item La compilazione va a buon fine!
+%  }
+%}
+%
+%\fr{Esecuzione: librerie mancanti}{
+%  \iz{
+%    \item Lo stesso problema si pone al momento dell'esecuzione
+%    \item Dato che avete solo compilato, ma non ``impacchettato'' un JAR che includesse tutto il necessario, è necessario dire alla Java Virtual Machine dove recuperare le classi necessarie per \textbf{eseguire} il programma.
+%%     \item Si noti che, in generale, le librerie richieste a tempo d'esecuzione possono essere diverse da quelle necessarie a tempo di compilazione (in genere, di più).
+%    \item Ci si posizioni con il terminale dentro la cartella \texttt{bin}.
+%    \item Si esegua la classe appena compilata con \texttt{java}, senza usare l'opzione \texttt{-cp} (anche stavolta, dovete essere in grado di scrivere correttamente il comando).
+%    \item Cosa succede?
+%  }
+%  \bl{Leggere e capire gli errori. \textbf{Sempre}.}{
+%    \scriptsize\texttt{
+%This program will run 1000000 calculations of asin and acos for each library, and print the time. \\
+%Java Math took 51.9713719ms to complete. \\
+%Exception in thread "main" java.lang.NoClassDefFoundError: \\ org/apache/commons/math3/util/FastMath \\
+%        at oop1314.lab05.mathlib.TestFastMath.main(TestFastMath.java:52)
+%    }
+%  }
+%}
+%
+%\fr{Esecuzione: aggiunta di librerie al class path}{
+%  \iz{
+%    \item Il programma esegue finché possibile, quindi lancia un errore!
+%    \item La Java Virtual Machine, \textbf{a run time}, non riesce a caricare la classe \texttt{org.apache.commons.math3.util.FastMath}
+%  }
+%  Inclusione della libreria nel classpath
+%  \iz{
+%    \item Ci si posizioni con un terminale nella cartella del progetto
+%    \item Sappiamo che le nostre classi compilate stanno in \texttt{bin}, mentre la libreria necessaria in \texttt{lib/commons-math3-3.2.jar}
+%    \item Si provi ad eseguire da questa posizione, utilizzando l'opzione \texttt{-cp} di \texttt{java}:
+%    \iz{
+%      \item Su sistemi UNIX: \texttt{-cp bin:lib/commons-math3-3.2.jar}
+%      \item Su sistemi Windows: \texttt{-cp bin;lib/commons-math3-3.2.jar}
+%      \item Ossia: su UNIX i vari componenti del classpath si separano con i due punti, su Windows con il punto e virgola.
+%    }
+%  }
+%}
+%
+%\fr{Gestione del Classpath da Eclipse}{
+%  \iz {
+%    \item Eclipse consente di aggiungere le librerie desiderate al classpath
+%    \item Si importi il progetto odierno in Eclipse
+%    \item Si seguano le istruzioni seguenti per includere nel classpath il file jar necessario alla compilazione
+%  }
+%} 
+%
+%\imgfr{Gestione del Classpath da Eclipse}{Properties}{0.4}{img/eclipsejar1}
+%\imgfr{Gestione del Classpath da Eclipse}{Java Build Path}{0.8}{img/eclipsejar2}
+%\imgfr{Gestione del Classpath da Eclipse}{Libraries}{0.8}{img/eclipsejar3}
+%\imgfr{Gestione del Classpath da Eclipse}{Add JARs...}{0.8}{img/eclipsejar4}
+%\imgfr{Gestione del Classpath da Eclipse}{I JAR file devono essere dentro uno dei progetti}{0.6}{img/eclipsejar5}
+%\imgfr{Gestione del Classpath da Eclipse}{Normalmente, si posizionano in \texttt{lib}}{0.6}{img/eclipsejar6}
+%\imgfr{Gestione del Classpath da Eclipse}{}{0.6}{img/eclipsejar7}
+%\imgfr{Gestione del Classpath da Eclipse}{}{0.6}{img/eclipsejar8}
+%\imgfr{Gestione del Classpath da Eclipse}{}{0.8}{img/eclipsejar9}
+%\imgfr{Gestione del Classpath da Eclipse}{Appare ``Referenced Libraries'' nel progetto}{0.99}{img/eclipsejar10}
+%\imgfr{Gestione del Classpath da Eclipse}{All'interno, trovate il JAR e tutte le classi in esso contenute!}{0.99}{img/eclipsejar11}
 
 
 % \subsection{Javadoc personalizzato: doclets}
@@ -511,126 +656,4 @@ Exception in thread "main" java.lang.NoClassDefFoundError: \\ org/apache/commons
 % 
 % }
 
-\section{Java collections framework e Java generics}
 
-\fr {Istruzioni}{
-  \iz {
-    \item Nell'esercitazione di oggi troverete sorgenti parzialmente implementati
-    \item Direttamente dentro i sorgenti, troverete una serie di punti da svolgere
-    \item Per aiutarvi a trovarli, essi sono segnalati con il commento \cil{//TODO} ed un numero.
-    \item Eseguite gli esercizi tenendo conto della numerazione
-  }
-}
-
-%\imgfr{Struttura delle classi del model}{UML del modello}{0.99}{img/class}
-
-\subsection{Completamento di classi che usano collections}
-
-\fr {Utilizzo di Set\gen{E}}{
-  \iz {
-    \item Si completi la classe \texttt{oop1314.lab05.exams.model.Exam}.
-    \item È richiesto l'uso dell'interfaccia Set, come implementazione è consigliato HashSet.
-    \item Per dettagli sui metodi forniti dall'interfaccia, si consulti la Javadoc delle API Java
-  }
-}
-
-
-\subsection{Costruzione di una classe generica}
-
-\fr {Utilizzo di List\gen{E}: creazione di una memoria associativa}{
-  \iz {
-    \item Si osservi l'interfaccia \cil{oop1415.lab05.exams.generics.IAssociativeMemory<K, V>}
-    \item Essa rappresenta una semplice memoria associativa, ossia una memoria in grado di associare due oggetti. Dato un oggetto, è possible risalire all'altro.
-    \iz {
-      \item Una (banale, vedrete \textbf{molto} di meglio a lezione) strategia implementativa è l'utilizzo di due liste ordinate.
-      \item Quando una nuova associazione viene creata, gli oggetti vengono salvati in due liste diverse nella medesima posizione.
-      \item Quando uno dei due oggetti viene rimosso, viene rimosso anche l'altro
-      \item Quando viene richiesto un oggetto passando l'altro, si cerca in che posizione sia nella lista, quindi si ritorna l'elemento nella stessa posizione dell'altra lista
-    }
-    \item Tenendo conto di quanto detto, si realizzi la classe \cil{oop1415.lab05.exams.generics.AssociativeMemory<K, V>}, che implementa l'interfaccia \cil{oop1415.lab05.exams.generics.IAssociativeMemory<K, V>}.
-  }
-}
-
-\subsection{Ordinamento con Comparable\gen{T}}
-
-\fr {Implementazione di Comparable\gen{T}}{
-  \iz {
-    \item Si implementi \cil{Comparable<IPerson>} in \cil{IPerson}.
-    \item Si implementi in \cil{AbstractPerson} il metodo necessario a supportare \cil{Comparable<IPerson>}. Tale metodo deve ordinare le persone alfabeticamente  per cognome.
-    \item Si ricorda che la classe \cil{String} implementa già \cil{Comparable<String>}: le stringhe hanno ordine naturale uguale all'ordine alfabetico.
-  }
-}
-
-\fr {Test}{
-Si testi il funzionamento di quanto fatto terminando l'implementazione di \texttt{oop1415.lab05.exams.ExamManagerTest}
-}
-
-\subsection{Uso di wildcard bounded}
-\fr {Varianza}{
-  \iz {
-    \item Si rimuavano i commenti la prima parte commentata in \cil{PeopleManagerTest}
-    \item Errori!
-    \item Ragioniamo su cosa stiamo facendo: il metodo vuole prendere una \cil{Collection<IPerson>} per aggiungerla internamente al \cil{PeopleManager}
-    \item Noi stiamo passando una \cil{Collection<Student>}.
-    \item Dato che \cil{Student} implementa \cil{IPerson}, ci aspetteremmo che le \cil{Collection<Student>} siano anche \cil{Collection<IPerson>}, giusto?
-    \item \textbf{NO.}
-    \item Infatti, ad una \cil{Collection<IPerson>} possono essere aggiunti anche dei \cil{Professor}, mentre ad una \cil{Collection<Student>} no.
-  }
-}
-
-\fr {Non ci servono le add: uso di \cil{? extends}}{
-  \iz {
-    \item Nel nostro caso, però, l'uso sarebbe lecito: usiamo la \cil{Collection<Student>} per \textbf{accedere} ai suoi elementi, ma non li aggiungiamo, e l'operazione di aggiungere degli \cil{Student} ad un \cil{IPeopleManager<IPerson>} è lecita.
-    \item In Java, è possibile imporre delle limitazioni per dire al compilatore che utilizzeremo quell'oggetto solo per \textbf{accedere} ai suoi elementi
-    \item Si modifichi il metodo\\ \cil{void addAllFromCollection(Collection<PersonType>)} in: \\ \cil{void addAllFromCollection(Collection<? extends PersonType>)}
-    \item Si osservi che gli errori spariscono
-    \item Si tenti di inserire un nuovo elemento nella \cil{Collection<? extends PersonType>} passata: cosa succede?
-    \item Il compilatore sa che la \cil{Collection} contiene un sottotipo di \cil{PersonType}, ma non sa quale: non vi consente di aggiungere elementi.
-  }
-}
-
-\fr {Contro-varianza}{
-  \iz {
-    \item Si decommenti la seconda parte commentata in \cil{PeopleManagerTest}
-    \item Errori!
-    \item Ragioniamo su cosa stiamo facendo: il metodo vuole prendere una \cil{Collection<IPerson>} per aggiungerci il contenuto del \cil{PeopleManager}
-    \item Noi stiamo passando una \cil{Collection<Object>}.
-    \item Dato che ogni tipo Java è sottotipo di \cil{Object}, ci aspetteremmo che le \cil{Collection<IPerson>} siano anche \cil{Collection<Object>}, giusto?
-    \item \textbf{NO.}
-    \item Infatti, gli elementi di una \cil{Collection<Object>}, non sempre sono delle \cil{IPerson}!
-  }
-}
-
-\fr {Non ci servono le get: uso di \cil{? super}}{
-  \iz {
-    \item Nel nostro caso, però, l'uso sarebbe lecito: aggiungiamo dei PersonType alla \cil{Collection<Object>}, e questo è perfettamente lecito
-    \item In Java, è possibile imporre delle limitazioni per dire al compilatore che utilizzeremo quell'oggetto solo per \textbf{aggiungere} degli elementi, ma non ne controlleremo il contenuto
-    \item Si modifichi il metodo\\ \cil{void addAllToCollection(Collection<PersonType>)} in: \\ \cil{void addAllToCollection(Collection<? super PersonType>)}
-    \item Si osservi che gli errori spariscono
-    \item Si tenti di prendere elemento della \cil{Collection<? super PersonType>} passata: cosa succede?
-    \item Il compilatore sa che la \cil{Collection} contiene un supertipo di \cil{PersonType}, ma non sa quale: vi ritorna un Object.
-  }
-}
-
-\section{Prova d'esame}
-\subsection{Progettazione di una classe generica}
-\fr{Esercizio con classe generica}{
-  \iz {
-    \item Si legga e si risolva l'esercizio in \texttt{UseThree.java}.
-    \item Per problemi, suggerimenti o richieste, si chieda e ci si aiuti anche fra studenti facendo uso del forum del corso.
-  }
-}
-\subsection{Costruzione di un iteratore}
-\fr{Esercizio con iteratore}{
-  \iz {
-    \item Si legga e si risolva l'esercizio nel file testo.txt in \texttt{oop1415.lab05.examsaple2}.
-    \item Per problemi, suggerimenti o richieste, si chieda e ci si aiuti anche fra studenti facendo uso del forum del corso.
-  }
-}
-
-\begin{frame}[allowframebreaks]
- \frametitle{Bibliography}
-   \bibliographystyle{plain}
-   \small
- \bibliography{biblio}
-\end{frame}
