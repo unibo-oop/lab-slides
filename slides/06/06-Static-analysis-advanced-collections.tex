@@ -1,8 +1,9 @@
 \documentclass[presentation]{beamer}
-\usepackage{oop-slides}
+\usepackage{../oop-slides-pianini}
+\usepackage{url}
 \setbeamertemplate{bibliography item}[text]
-\newcommand{\lessonnr}[0]{06}
-\title[OOP\lessonnr{} -- Advanced Collections]{\lessonnr{}\\ Static code analysis, collezioni avanzate, enumeration e classi nested}
+\author[Pianini]{Danilo Pianini\\Angelo Croatti, Simone Grotti, Mirko Viroli}
+\title[L06 -- Advanced Collections]{06\\ Static code analysis, collezioni avanzate, enumeration e classi nested}
 
 \begin{document}
 	
@@ -22,71 +23,66 @@
 
 \section{JAR e gestione del classpath in Eclipse}
 
-\fr{Aggiunta di un jar al classpath di un progetto Eclipse - I} {
-\bl{} {
+\begin{frame}[allowframebreaks]{Aggiunta di un jar al classpath di un progetto Eclipse}
+	\begin{block}{}
 		lab06 $\rightarrow$ Properties $\rightarrow$ Java build path $\rightarrow$ Libraries $\rightarrow$ Add Jar
-	}
-	\centering
-	\includegraphics[width=0.99\textwidth]{img/addjar-1}
-}
+	\end{block}
+	\begin{center}
+		\includegraphics[width=0.82\textwidth]{img/addjar-1} \\
+		\includegraphics[width=0.99\textwidth]{img/addjar-2} \\
+		\includegraphics[width=0.99\textwidth]{img/addjar-3} \\
+	\end{center}
+\end{frame}
 
-\fr{Aggiunta di un jar al classpath di un progetto Eclipse - II} {
-	\centering
-	\includegraphics[width=0.99\textwidth]{img/addjar-2}
-}
+\section{Analisi di qualità del codice}
 
-\fr{Aggiunta di un jar al classpath di un progetto Eclipse - III} {
-	\centering
-	\includegraphics[width=0.99\textwidth]{img/addjar-3}
-}
-
-\section{Static source code analysis}
-
-\fr{Static source code analysis} {
-	\bl{Cos'è} {
-		Utilizzo di software in grado di analizzare staticamente (senza che venga compilato od eseguito) del sorgente Java, per scoprire:
-		\iz {
+\begin{frame}{Analisi di qualità del codice sorgente}
+	\begin{block}{Definizione}
+		Software in grado di analizzare il codice sorgente per individuare:
+		\begin{itemize}
 			\item Potenziali bug, magari dovuti a distrazione
 			\item Possibili miglioramenti, ottimizzazioni o pratiche difformi da quelle consigliate
 			\item Codice duplicato, segnale di una progettazione discutibile
-			\item Stile non coerente, specie se si lavora in più persone su un progetto
-		}
-	}
-	\bl{Utilità} {
+			\item Stile non conforme
+		\end{itemize}
+	\end{block}
+	\begin{block}{Uso}
 		L'analisi automatica del proprio codice garantisce sempre un elevata qualità del codice, aiuta ad apprendere il modo corretto di scrivere, riduce il costo di manutenzione e garantisce uniformità fra le parti sviluppate da persone diverse.
-	}
-}
-
-\begin{frame}{Configurazione globale vs. locale}
-  I code checkers che vedremo sono eseguibili anche stand-alone, oltre ad avere plug-in per poter esser integrati negli IDE più diffusi. Abbiamo Eclipse come IDE di riferimento, e vedremo come operare dentro questo ambiente.
-  \begin{block}{Code checkers in Eclipse}
-    I plugin che vedremo possono operare in due modalità: globale o per-progetto
-  \end{block}
+	\end{block}
 \end{frame}
 
-\begin{frame}{Configurazione globale}
-  La configurazione globale viene applicata a \textbf{tutti} i progetti del workspace, a meno che non sia sovrascritta localmente (non sempre è possibile).
-  \begin{block}{Caratteristiche}
-    \begin{itemize}
-      \item Veloce da configurare: si configura una volta, e i settaggi sono applicati su tutti i progetti
-      \item Poco portabile: se inviamo il progetto ad un collaboratore, questi settaggi \textbf{non} saranno inviati: c'è il rischio di inconsistenze
-      \item Ottimo da usare quando si hanno molti progetti nel workspace con la stessa configurazione, e si sviluppa da soli.
-    \end{itemize}
-  \end{block}
-\end{frame}
 
-\begin{frame}{Configurazione per-progetto}
-  La configurazione locale va messa a punto singolarmente per ciascun progetto. Bisogna verificare che quella globale non la stia sovrascrivendo.
-  \begin{block}{Caratteristiche}
-    \begin{itemize}
-      \item Tediosa da configurare, specialmente se si hanno molti progetti e la configurazione è uguale per tutti
-      \item Alta flessibilità: si possono specificare regole diverse per progetti diversi
-      \item Alta portabilità: se si invia il progetto ad un collaboratore, questi settaggi vengono mantenuti
-      \item Ottimo da usare quando si hanno pochi progetti, o ai progetti serve una configurazione diversa, oppure quando si lavora in modo collaborativo
-    \end{itemize}
-  \end{block}
+\begin{frame}[allowframebreaks]{Code checking}
+	I software che vedremo sono eseguibili in due modalità\footnote{In realtà cominciano a prender piede anche servizi web come Codacy, ma non li tratteremo in questo corso...}:
+	\begin{itemize}
+		\item Stand-alone: il software viene eseguito e genera un report
+		\item Come plug-in: il software viene integrato con l'IDE (nel nostro caso Eclipse), e segnala i problemi sotto forma di warning
+	\end{itemize}
+	Noi ci concentreremo nell'imparare la seconda modalità.
 \end{frame}
+\begin{frame}[allowframebreaks]{Code checkers in Eclipse}
+	\begin{block}{Configurazione globale}
+	La configurazione globale viene applicata a \textbf{tutti} i progetti del workspace, a meno che non sia sovrascritta localmente (non sempre è possibile).
+		\begin{itemize}
+			\item Veloce da configurare: si configura una volta, e i settaggi sono applicati su tutti i progetti
+			\item Poco portabile: se inviamo il progetto ad un collaboratore, questi settaggi \textbf{non} saranno inviati: c'è il rischio di inconsistenze
+			\item Ottimo da usare quando si hanno molti progetti nel workspace con la stessa configurazione, e si sviluppa da soli.
+		\end{itemize}
+	\end{block}
+	\begin{block}{Configurazione locale}
+	La configurazione locale va messa a punto singolarmente per ciascun progetto. Bisogna verificare che quella globale non la stia sovrascrivendo.
+		\begin{itemize}
+			\item Alta flessibilità: si possono specificare regole diverse per progetti diversi
+			\item Alta portabilità: se si invia il progetto ad un collaboratore, questi settaggi vengono mantenuti
+			\item Ottimo da usare quando si hanno pochi progetti, o ai progetti serve una configurazione diversa, oppure quando si lavora in modo collaborativo
+		\end{itemize}
+	\end{block}
+	\begin{center}
+		Noi faremo uso della configurazione \textbf{locale} \\
+		\textbf{Voi farete} uso della configurazione locale nell'\textbf{elaborato finale}
+	\end{center}
 
+\end{frame}
 
 \subsection{FindBugs}
 
@@ -243,12 +239,28 @@
 
 \section{Coding style: configurazione IDE Eclipse}
 \fr{Configurare l'editor per una corretta formattazione del codice} {
-	\bl{}{Checkstyle è in grado di supportarci nel verificare l'utilizzo di un corretto stile di codifica. Ovvero, seguendo la ``Java Code Convention'':
+	Checkstyle è in grado di supportarci nel verificare l'utilizzo di un corretto stile di codifica. Adattando le ``Java Code Convention'':
 	\iz{
-		\item 4 spazi per l'indentazione (NO TAB)
-		\item Linee lunghe max 80 caratteri (meglio comunque 120!)
-	}}
-    \bl{}{Ora, però, dobbiamo configurare l'editor perché ci supporti nella scrittura di codice con lo stile corretto: come fare?}
+		\item 4 spazi per l'indentazione
+		\begin{itemize}
+			\item Nell'originale è consentito scegliere fra fra i due ed i quattro
+		\end{itemize}
+		\item Nessun carattere tab
+		\begin{itemize}
+			\item Nell'originale è consentito usarli
+			\item Ma noi vogliamo indentazione consistente, quindi o spazi, oppure tab
+			\item Essendo in JCC un tab equivalente ad 8 spazi, diventa troppo largo per una buona indentazione 
+		\end{itemize}
+		\item Linee lunghe al massimo 120 o 130 caratteri
+		\begin{itemize}
+			\item Nell'originale sono 80 per motivi storici (le schede perforate IBM avevano 80 colonne)
+			\item Noi abbiamo i monitor, e anche i nostri colleghi
+		\end{itemize}
+
+	}
+	\begin{block}{}
+		Ora, però, dobbiamo configurare l'editor perché ci supporti nella scrittura di codice con lo stile corretto: come fare?
+	\end{block}
 }
 
 \fr{Coding style: configurazione IDE Eclipse} {
@@ -272,18 +284,6 @@
 }
 
 \section{Esercitazione di oggi}
-\fr{Preparazione Ambiente di Lavoro}{
-  \iz{
-    \item Accendere il PC
-    \item Loggarsi sul sito del corso
-    \iz{
-      \item \textcolor{blue}{\moodleurl}
-    }
-    \item Scaricare dalla sezione \texttt{lab} del sito il file \texttt{lab06.zip} contenente il materiale dell'esercitazione odierna
-    \item Spostare il file scaricato sul Desktop
-    \item Decomprimere il file usando 7zip (o un programma analogo) sul Desktop
-  }
-}
 
 \fr{Modalità di Lavoro}{
   \bl{}{
