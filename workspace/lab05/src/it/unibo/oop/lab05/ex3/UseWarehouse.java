@@ -3,9 +3,6 @@ package it.unibo.oop.lab05.ex3;
 /**
  * Simple test class for {@link Warehouse}.
  * 
- * @author Mirko Viroli
- * @author Danilo Pianini
- *
  */
 public final class UseWarehouse {
 
