@@ -2,16 +2,13 @@ package it.unibo.oop.lab05.ex5;
 
 /**
  * A class used to enclose two objects.
- * 
- * @author Mirko Viroli
- * @author Danilo Pianini
  *
  * @param <X>
  *            type of the first {@link Object}
  * @param <Y>
  *            type of the second {@link Object}
  */
-public class Pair<X, Y> {
+public final class Pair<X, Y> {
 
     private final X first;
     private final Y second;
@@ -75,19 +72,19 @@ public class Pair<X, Y> {
     public boolean equals(final Object obj) {
         if (obj instanceof Pair) {
             final Pair<?, ?> p = (Pair<?, ?>) obj;
-            if (first == null) {
-                if (p.first != null) {
-                    return false;
-                }
-            }
-            if (second == null) {
-                if (p.second != null) {
-                    return false;
-                }
-            }
-            return first.equals(p.first) && second.equals(p.second);
+            return areEquals(first, p.first) && areEquals(second, p.second);
         }
         return false;
+    }
+
+    private static boolean areEquals(final Object o1, final Object o2) {
+        if (o1 == null) {
+            if (o2 == null) {
+                return true;
+            }
+            return false;
+        }
+        return o1.equals(o2);
     }
 
 }
