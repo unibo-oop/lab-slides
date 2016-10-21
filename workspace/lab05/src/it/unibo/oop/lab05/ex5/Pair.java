@@ -79,10 +79,7 @@ public final class Pair<X, Y> {
 
     private static boolean areEquals(final Object o1, final Object o2) {
         if (o1 == null) {
-            if (o2 == null) {
-                return true;
-            }
-            return false;
+            return o2 == null;
         }
         return o1.equals(o2);
     }
