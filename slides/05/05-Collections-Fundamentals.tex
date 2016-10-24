@@ -392,9 +392,31 @@
 \end{enumerate}
 \end{frame}
 
+\begin{frame}{[Esercizio 1] Note Importanti (1/2)}
+\begin{itemize}
+\item Gli elementi inseriti in un \texttt{TreeSet} sono ordinati secondo l'\emph{ordine naturale}, ovvero il tipo specificato per gli oggetti contenuti nel \texttt{TreeSet} deve implementare l'interfaccia \texttt{Comparable}. Quindi, ad esempio:
+\begin{itemize}
+\item un set di tipo \texttt{TreeSet<String>} consente di aggiungere elementi al set attraverso il metodo \texttt{add} in quanto il tipo \texttt{String} implementa l'interfaccia \texttt{Comparable}
+\item viceversa, se si tenta di aggiungere un qualunque elemento ad un set di tipo \texttt{TreeSet<MyClass>} -- dove \texttt{MyClass} rappresenta una classe che NON implementa l'interfaccia \texttt{Comparable} -- sarà generato un errore run-time di tipo \texttt{CastClassException} (i dettagli sulle eccezioni saranno descritti in una prossima lezione)
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{[Esercizio 1] Note Importanti (2/2)}
+\begin{itemize}
+\item Tutti gli iteratori creati/richiesti per istanze di oggetti della classe \texttt{TreeSet} sono detti \emph{fail-fast}:
+\begin{itemize}
+\item Se il l'istanza di \texttt{TreeSet} è sottoposta a modifica dopo la creazione dell'iteratore (prima della rimozione dell'iteratore stesso), l'iteratore produrrà un errore run-time (nello specifico, sarà lanciata l'eccezione \texttt{ConcurrentModificationException} --- i dettagli sulle eccezioni saranno descritti in una prossima lezione)
+\item \textbf{Provare a scrivere un ciclo foreach che itera sull'istanza di \texttt{TreeSet} -- che quindi crea internamente un iteratore -- tentando di eseguire sull'istanza il metodo \texttt{remove} all'interno del ciclo.} Funziona? No, perché si sta tentando di modificare il set dopo aver creato un iteratore sulla stessa istanza.
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
 \begin{frame}{[Esercizio 2] \texttt{it.unibo.oop.lab05.ex2}}
 \begin{enumerate}
 \item Seguire i commenti presenti in \texttt{UseSetWithOrder.java} per realizzare un programma che crei e ordini un oggetto di tipo \texttt{TreeSet<String>} avvalendosi di un oggetto da creare ad hoc che sia istanza di \texttt{Comparator<String>}
+\item Si faccia riferimento alla documentazione di Java per verificare come poter utilizzare un Comparator per una specifica istanza di un TreeSet.
 \end{enumerate}
 \end{frame}
 
