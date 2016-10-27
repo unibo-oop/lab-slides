@@ -1,10 +1,14 @@
-hg init myawesomeproject
+mkdir myawesomeproject
 
 cd myawesomeproject
 
+git init
+
 #create project structure
-#Note: default is the only branch available
+#Note: master is the only branch available
 
-#add files to version control
+git checkout -b develop
 
-hg ci -m "my first commit"
+# add files to the staging area with git add
+
+git commit -m "Initialize project"
