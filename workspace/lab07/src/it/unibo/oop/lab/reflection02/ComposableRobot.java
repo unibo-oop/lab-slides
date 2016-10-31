@@ -1,4 +1,4 @@
-package it.unibo.oop.lab07.reflection02;
+package it.unibo.oop.lab.reflection02;
 
 /**
  * Models a generic composable robot.

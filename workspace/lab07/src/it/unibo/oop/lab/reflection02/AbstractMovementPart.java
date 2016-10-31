@@ -1,4 +1,4 @@
-package it.unibo.oop.lab07.reflection02;
+package it.unibo.oop.lab.reflection02;
 
 /**
  * Abstract class to use as a basis to implement a robotic part that can perform

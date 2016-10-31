@@ -1,7 +1,7 @@
-package it.unibo.oop.lab07.reflection02;
+package it.unibo.oop.lab.reflection02;
 
 /**
- * Models a (x,y) position for a {@link it.unibo.oop.lab07.reflection02.Robot}.
+ * Models a (x,y) position for a {@link it.unibo.oop.lab.reflection02.Robot}.
  * 
  */
 public class RobotPosition {
