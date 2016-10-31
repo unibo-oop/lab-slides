@@ -1,7 +1,5 @@
 package it.unibo.oop.lab.reflection02;
 
-import it.unibo.oop.lab.exception01.PositionOutOfBoundException;
-
 /**
  * Models the environment in which a {@link Robot} is
  * situated.
