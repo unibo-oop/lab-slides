@@ -1,7 +1,6 @@
 package it.unibo.oop.lab06.usejar;
 
 /**
- * @author Matteo Casadei
  * 
  */
 public final class UseDummyJar {
