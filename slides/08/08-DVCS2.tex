@@ -1,4 +1,4 @@
-\documentclass[presentation]{beamer}
+ \documentclass[presentation]{beamer}
 \usepackage{../oop-slides-pianini}
 \setbeamertemplate{bibliography item}[text]
 \newcommand{\lessonnr}[0]{06}
@@ -34,19 +34,19 @@
 		\begin{verbatim}
 public final class HelloWorld {
 
-        private static final String AUTHOR = "Danilo Pianini";
+    private static final String AUTHOR = "Danilo Pianini";
 
-        public static void main(final String[] args) {
+    public static void main(final String[] args) {
 <<<<<<< HEAD
-                System.out.println("This program is running in a PC with " + procNumber() + " logic processors!");
-        }
+        System.out.println("This program is running in a PC with " + procNumber() + " logic processors!");
+    }
 
-        public static int procNumber() {
-                return Runtime.getRuntime().availableProcessors();
+    public static int procNumber() {
+        return Runtime.getRuntime().availableProcessors();
 =======
-                System.out.println("This program has been realised by " + AUTHOR);
+        System.out.println("This program has been realised by " + AUTHOR);
 >>>>>>> feature
-        }
+    }
 
 }
 		\end{verbatim}
@@ -78,7 +78,7 @@ public final class HelloWorld {
 	}
 }
 
-\subsection{Lavorare in gruppo: clone, pull, push}
+\subsection{Lavorare in remoto: clone, fetch, pull, push}
 
 \fr{Decentralizzazione}{
 	\bl{Decentralizzazione totale...}{
