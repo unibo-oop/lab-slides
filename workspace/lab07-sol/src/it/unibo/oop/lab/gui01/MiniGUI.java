@@ -37,15 +37,19 @@ public class MiniGUI {
     public MiniGUI() {
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
-        //EX 01.01
+        /*
+         * EX 01.01
+         */
         final JPanel aPanel = new JPanel();
         aPanel.setLayout(new BoxLayout(aPanel, BoxLayout.LINE_AXIS));
         canvas.add(aPanel, BorderLayout.CENTER);
         final JButton write = new JButton("Print a random number on standard output");
         aPanel.add(write);
-        //EX 01.02
+        /*
+         * EX 01.02
+         */
         final JTextField result = new JTextField(RESULT_TXT_CONTENT);
-        aPanel.add(result);
+        canvas.add(result, BorderLayout.NORTH);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -55,7 +59,9 @@ public class MiniGUI {
         write.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                //EX 01.03
+                /*
+                 * EX 01.03
+                 */
                 final int res = rng.nextInt();
                 System.out.println(res);
                 result.setText(RESULT_TXT_CONTENT + ": " + Integer.toString(res));
