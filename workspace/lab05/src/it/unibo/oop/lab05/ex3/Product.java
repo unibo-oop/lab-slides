@@ -3,10 +3,7 @@ package it.unibo.oop.lab05.ex3;
 /**
  * This interface represents a product.
  * 
- * @author Mirko Viroli
- * @author Danilo Pianini
  */
-
 public interface Product {
 
     /**

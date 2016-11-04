@@ -1,5 +1,5 @@
 \documentclass[presentation]{beamer}
-\usepackage{../oop-slides-casadei}
+\usepackage{../oop-slides-pianini}
 \setbeamertemplate{bibliography item}[text]
 \newcommand{\lessonnr}[0]{10}
 \title[OOP10 -- DVCS Workflow and Lambdas]{10\\ Workflow per DVCS \\ Lambda expression e Stream}
@@ -142,7 +142,6 @@
 \fr{Lo stato dell'arte II} {
     \bl{Alcune considerazioni} {    
         \iz {
-            \item Pensato per GIT (ma adottabile anche su Mercurial)
 			\item Non lo useremo
             \iz{
                 \item troppo complicato per i nostri scopi            
@@ -155,7 +154,7 @@
 		\iz {
 			\item Sono il supporto fondamentale alle fasi del ciclo di vita del software 
 			\item Ogni fase la propria branch! 
-			\item Forking e merging di branch sono all'ordine del giorno!
+			\item Branching e merging all'ordine del giorno!
 		}
 	}
 }
@@ -171,46 +170,46 @@
 \iz{
 \item Developer: 
     \begin{enumerate}
-        \item aprono una nuova \textbf{feature branch} da default ogni volta che cominciano lo sviluppo di nuova funzionalità
-        \item le \textbf{feature} in realtà si aprono solo per funzionalità ``grandi'', altrimenti si lavora su default
+        \item aprono una nuova \textbf{feature branch} da \texttt{develop} ogni volta che cominciano lo sviluppo di nuova funzionalità
+        \item le \textbf{feature} in realtà si aprono solo per funzionalità ``grandi'', altrimenti si lavora su \texttt{develop}
         \item effettuano commit regolari sulla feature branch
-        \item terminato lo sviluppo della funzionalità effettuano la merge della feature in default
-        \item si occupano anche degli hotfix
+        \item terminato lo sviluppo della funzionalità effettuano il merge della feature in \texttt{develop}
+%         \item si occupano anche degli hotfix
     \end{enumerate}
 
 \item Technical leader (per i vostri progetti questa figura non esisterà, probabilmente): 
     \begin{enumerate}
         \item supervisiona la qualità del codice prodotto
-        \item è responsabile della qualità del codice che finisce sulla default branch       
+        \item è responsabile della qualità del codice che finisce sulla \texttt{develop} branch       
     \end{enumerate}
 
 \item Release manager:
     \begin{enumerate}
         \item effettua i rilasci
-        \item quando una nuova versione è pronta per il rilascio, effettua il merge della default in stable 
+        \item quando una nuova versione è pronta per il rilascio, effettua il merge della \texttt{develop} in \texttt{master} 
         \item effettua il tagging della release
     \end{enumerate}
 }
 }
 
 \fr{Sulle feature branch} {
-        \iz {
-			\item Ha senso utilizzarle per funzionalità/task grandi
-            \item In particolare in termini di tempo richiesto per completare l'implementazion
-            \item Quando l'attività di analisi abbia già portato ad una classificazione accurata delle funzionalitàe
-            \item Per progetti articolati consente di separare e gestire meglio le attività di sviluppo
-            \iz{
-                \item chi fa cosa
-                \item più sviluppatori impegnati sulla stessa funzionalità/task usano la stessa branch            
-            }
-            \item In contesti articolati può quindi aiutare a tener traccia dello stato di avanzamento di determinate attività
-            \item Per i vostri progetti potrebbe non essere così sensato... 
-		}	
+	\iz {
+		\item Ha senso utilizzarle per funzionalità/task grandi
+		\item In particolare in termini di tempo richiesto per completare l'implementazione
+		\item Quando l'attività di analisi abbia già portato ad una classificazione accurata delle funzionalitàe
+		\item Per progetti articolati consente di separare e gestire meglio le attività di sviluppo
+		\iz{
+			\item chi fa cosa
+			\item più sviluppatori impegnati sulla stessa funzionalità/task usano la stessa branch            
+		}
+		\item In contesti articolati può quindi aiutare a tener traccia dello stato di avanzamento di determinate attività
+		\item Per i vostri progetti potrebbe non essere così sensato... 
+	}	
 }
 
-\subsection{Comandi Mercurial}
+\subsection{Comandi}
 
-\fr{Init del repo} {
+\fr{Inizializzazione del repository} {
 \sizedcode{\tiny}{code/init.txt}
 }
 
@@ -220,10 +219,6 @@
 
 \fr{Fare una release} {
 \sizedcode{\tiny}{code/do-release.txt}
-}
-
-\fr{Hotfix} {
-\sizedcode{\tiny}{code/hotfix.txt}
 }
 
 \fr{E la collaborazione?} {
@@ -256,18 +251,18 @@ Developer
 \iz{
     \item In generale, push regolare delle proprie modifiche su repo ufficiale (e pull regolare di quanto presente in remoto)
     \iz{
-        \item Se il push riguarda la default branch: le modifiche che condividete via push \textbf{devono compilare}!
+        \item Se il push riguarda la \texttt{develop} branch: le modifiche che condividete via push \textbf{devono compilare}!
     }
     \item Eseguire sempre un pull e update tutte le volte che cominciate a lavorare su qualche cosa in una certa branch 
-    \item Per eventuali feature branch? Stesse regole di default (possiamo rilassare qualche vincolo)
-    \item Spesso per questioni di revisione del codice e quality check non sempre gli sviluppatori hanno il permesso di fare push direttamente su default
+    \item Per eventuali feature branch? Stesse regole di \texttt{develop} (possiamo rilassare qualche vincolo)
+    \item Spesso per questioni di revisione del codice e quality check non sempre gli sviluppatori hanno il permesso di fare push direttamente su \texttt{develop}
     \iz{
         \item Si può gestire richiedendo una ``pull-request'' sul vs. sistema di hosting (e.g. BitBucket). 
         \item Non ritenuto di particolare utilità per la gestione dei vostri progetti
     } 
-    \item Stable non si tocca!
+    \item \texttt{master} non si tocca!
         \iz{
-        \item Meglio non garantire i diritti di scrittura (pushing) su stable agli sviluppatori!
+        \item Meglio non garantire i diritti di scrittura (pushing) su \texttt{master} agli sviluppatori!
     } 
 }
 
@@ -277,8 +272,8 @@ Developer
 
 Release manager
 \iz{
-    \item Pull e update di default prima di cominciare una release
-    \item Push di stable e default al termine della release 
+    \item Pull di \texttt{develop} prima di cominciare una release
+    \item Push di \texttt{master} e \texttt{develop} al termine della release 
 }
 }
 
@@ -289,9 +284,9 @@ Release manager
 
 
 \fr{Per approfondimenti...} {
-A complete Mercurial branching strategy:\\
+A successful git branching model:\\
 
-\url{http://draketo.de/light/english/mercurial/complete-branching-strategy}
+\url{http://nvie.com/posts/a-successful-git-branching-model/}
 }
 \end{document}
 

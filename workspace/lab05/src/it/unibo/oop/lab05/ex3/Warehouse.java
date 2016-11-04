@@ -5,9 +5,6 @@ import java.util.Set;
 /**
  * This interface models a warehouse.
  * 
- * @author Mirko Viroli
- * @author Danilo Pianini
- *
  */
 public interface Warehouse {
 

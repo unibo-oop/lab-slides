@@ -9,7 +9,6 @@ import it.unibo.oop.lab05.packages.pkg2.EvenMoreDummy;
 import it.unibo.oop.lab05.packages.pkg2.MoreDummy;
 
 /**
- * @author Danilo Pianini
  * 
  */
 public final class UseDummies {

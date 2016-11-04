@@ -1,5 +1,5 @@
 \documentclass[presentation]{beamer}
-\usepackage{oop-slides}
+\usepackage{../oop-slides-pianini}
 \setbeamertemplate{bibliography item}[text]
 \newcommand{\lessonnr}[0]{06}
 \title[OOP09 -- Deployment and Concurrency]{09\\Deployment di applicazioni, Programmazione multipiattaforma, Profiling e Concorrenza}
@@ -35,41 +35,42 @@ Lo ``slogan'' coniato originariamente da \textit{Sun Microsystems} per illustrar
 
 \subsection{Accesso al file system}
 \begin{frame}{Path e Separatori}
-Inserire dei path assoluti nel proprio sorgente è \textbf{sempre} fonte di problemi quando si scrive software multipiattaforma:
-\begin{itemize}
-\item \url{C:\\Users\\UserName\\file} --- Non funzionerà su piattaforma *nix, e non funzionerà se l'utente Windows non è ``UserName''.
+	Inserire dei path assoluti nel proprio sorgente è \textbf{sempre} fonte di problemi quando si scrive software multipiattaforma:
+	\begin{itemize}
+		\item \url{C:\\Users\\UserName\\file} --- Non funzionerà su piattaforma *nix, e non funzionerà se l'utente Windows non è ``UserName''.
 
-\item \url{C:\\MyProgram\\file} --- Non funzionerà su piattaforma *nix, e non funzionerà se l'installazione di Windows è sana e il software non è avviato come admin.
+		\item \url{C:\\MyProgram\\file} --- Non funzionerà su piattaforma *nix, e non funzionerà se l'installazione di Windows è sana e il software non è avviato come admin.
 
-\item \url{/home/username/file} --- Non funzionerà su piattaforma Windows, e non funzionerà se l'utente non è \texttt{username}.
-\end{itemize}
-
-\begin{block}{Problemi}
-\begin{itemize}
-\item I separatori per i path cambiano a seconda dell'OS!
-\item La struttura del file system cambia con l'OS!
-\item I diritti di lettura e scrittura cambiano con la configurazione.
-\end{itemize}
-\end{block}
+		\item \url{/home/username/file} --- Non funzionerà su piattaforma Windows, e non funzionerà se l'utente non è \texttt{username}.
+	\end{itemize}
+	\begin{block}{Problemi}
+		\begin{itemize}
+			\item I separatori per i path cambiano a seconda dell'OS!
+			\item La struttura del file system cambia con l'OS!
+			\item I diritti di lettura e scrittura cambiano con la configurazione.
+		\end{itemize}
+		\end{block}
 \end{frame}
 
 \begin{frame}{Proprietà di sistema}
-Java fornisce nella classe \texttt{System} un metodo\\
-\begin{center}
-{\Large \texttt{String getProperty(String par)}}
-\end{center}
-che consente di accedere a proprietà di sistema in modo corretto!
-\vspace{10pt}
-\begin{block}{Alcuni parametri ammissibili}
-\begin{itemize}
-\item \texttt{file.separator} --- Restituisce \url{\\} per Windows e \url{/} per Unix
-\item \texttt{java.home} --- La directory di installazione di Java
-\item \texttt{user.dir} --- La directory da cui il comando \texttt{java} è stato invocato
-\item \texttt{user.home} --- Restituisce la home directory dell'utente che ha lanciato \texttt{java}
-\item \texttt{user.name} --- Restituisce il nome utente
-\end{itemize}
-\end{block}
+	Java fornisce nella classe \texttt{System} un metodo\\
+	\begin{center}
+	{\Large \texttt{String getProperty(String p)}}
+	\end{center}
+	che consente di accedere a proprietà di sistema in modo corretto!
+	\vspace{10pt}
+	\begin{block}{Proprietà relative al file system}
+		\begin{itemize}
+			\item \texttt{file.separator} --- Restituisce \url{\\} per Windows e \url{/} per Unix
+			\item \texttt{java.home} --- La directory di installazione di Java
+			\item \texttt{user.dir} --- La directory da cui il comando \texttt{java} è stato invocato
+			\item \texttt{user.home} --- Restituisce la home directory dell'utente che ha lanciato \texttt{java}
+			\item \texttt{user.name} --- Restituisce il nome utente
+		\end{itemize}
+	\end{block}
 \end{frame}
+
+\subsection{Accesso ai dettagli del sistema}
 
 \begin{frame}{Funzionalità OS-specifiche}
 \begin{itemize}\itemsep10pt
@@ -77,7 +78,7 @@ che consente di accedere a proprietà di sistema in modo corretto!
 \item A supporto di ciò, Java fornisce delle proprietà che consentono di identificare OS, versione e JVM corrente.
 \end{itemize}
 
-\begin{block}{Altri parametri ammissibili}
+\begin{block}{Proprietà relative al sistema}
 \begin{itemize}
 \item \texttt{java.version} --- La versione di \texttt{java} in uso. Si potrebbe decidere di non usare una funzionalità che si sa non esistere o essere buggata.
 
@@ -95,26 +96,62 @@ che consente di accedere a proprietà di sistema in modo corretto!
 \subsection{Font ed encoding}
 
 \begin{frame}{Font ed encoding}
-Le più note piattaforme utilizzano di default encoding diversi:
-
-\begin{itemize}
-\item \textbf{UTF-8} --- default su Linux, può essere considerato lo standard de-facto.
-\item \textbf{MacRoman} --- default su MacOS, raramente causa artefatti se riconvertito ad altri formati.
-\item \textbf{ISO-8859-1} --- default su Windows, può causare artefatti su quasi tutti i caratteri non ASCII se convertito a UTF-8.
-\end{itemize}
-
-\begin{block}{Encoding per il codice sorgente}
-Solitamente, il codice sorgente si sviluppa utilizzando la codifica UTF-8
-\begin{itemize}
-\item Essenziale se si utilizzano caratteri non inclusi nella tabella ASCII (caratteri accentati, ad esempio).
-\end{itemize}
-\end{block}
+	Le più note piattaforme utilizzano di default encoding diversi:
+	\begin{itemize}
+		\item \textbf{UTF-8} --- default su Linux, può essere considerato lo standard de-facto.
+		\item \textbf{MacRoman} --- default su MacOS, raramente causa artefatti se riconvertito ad altri formati.
+		\item \textbf{ISO-8859-1} --- default su Windows, può causare artefatti su quasi tutti i caratteri non ASCII se convertito a UTF-8.
+	\end{itemize}
+	\begin{block}{Encoding per il codice sorgente}
+		Solitamente, il codice sorgente si sviluppa utilizzando la codifica UTF-8
+		\begin{itemize}
+			\item Essenziale se si utilizzano caratteri non inclusi nella tabella ASCII (caratteri accentati, ad esempio).
+		\end{itemize}
+	\end{block}
 \end{frame}
 
-\begin{frame}{Uso di UTF-8 in Eclipse}
-$\rightarrow$ Windows $\rightarrow$ Preferences $\rightarrow$ General $\rightarrow$ Workspace $\rightarrow$ Text file encoding $\rightarrow$ Other $\rightarrow$ UTF-8 $\rightarrow$ OK
+\begin{frame}[allowframebreaks]{Carattere di new line}
+	Unix e Windows differiscono anche per il carattere di newline
+	\begin{itemize}
+		\item \texttt{\textbackslash{}n} --- Su Linux e MacOS X (e su tutti i sistemi non Windows).
+		\item \texttt{\textbackslash{}r} --- Su MacOS 9 e precedenti
+		\item \texttt{\textbackslash{}r\textbackslash{}n} --- Windows
+	\end{itemize}
+	\begin{block}{Pillola di storia}
+		\begin{itemize}
+			\item Il ``carriage report'' è un'eredità dovuta alla compatibilità con MS-DOS
+			\item Che a sua ha ereditato la cosa dalla compatibilità con CP/M-80
+			\item A quel tempo, le stampanti erano macchine da scrivere elettromeccaniche
+			\item \texttt{\textbackslash{}r} riportava il rullo con la carta al margine sinistro
+			\item Anche se queste stampanti non sono più in uso, alcuni produttori (come HP) mantengono la compatibilità su alcuni prodotti
+			\item Ad oggi, si usa \texttt{\textbackslash{}r} solo per realizzare animazioni su terminale (far sì che la nuova linea cancelli la precedente)
+		\end{itemize}
+	\end{block}
+	\begin{block}{Standardizzazione}
+		\begin{itemize}
+			\item Entrambi i sistemi ``digeriscono'' entrambi i newline
+			\item Ma se due membri del team usano impostazioni diverse, il DVCS considererà ogni file modificato come integralmente cambiato ad ogni salvataggio 
+			\begin{itemize}
+				\item Diff incomprensibili
+				\item Storia del progetto compromessa
+				\item Difficoltà di produrre patch e ripristinare il lavoro precedente
+			\end{itemize}
+			\item Facciamo una scelta, e utilizziamo un solo formato
+			\item La nostra scelta sarà \texttt{\textbackslash{}n} (Unix newline)
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Configurazione in Eclipse}
+\begin{itemize}
+	\item Selezione del progetto $\rightarrow$ Click destro $\rightarrow$ Preferences $\rightarrow$ Resource
+	\item Text file encoding $\rightarrow$ Other $\rightarrow$ UTF-8
+	\item New text file line delimiter $\rightarrow$ Other $\rightarrow$ Unix
+	\item Apply $\rightarrow$ OK
+\end{itemize}
+
 \begin{center}
-\includegraphics[width=0.7\textwidth]{img/eclipse-encoding}
+\includegraphics[width=0.8\textwidth]{img/eclipse-encoding}
 \end{center}
 \end{frame}
 
@@ -152,8 +189,8 @@ Questi elementi sono stabiliti dal \emph{compositor} e non dallo sviluppatore de
 \item La dimensione di default della finestra va calcolata in base alla dimensione dello schermo.
 \item \`{E} opportuno \underline{non} specificare dimensioni assolute in pixel per i componenti della GUI, ma dimensionarli in termini relativi rispetto al container.
 \item Anche per i layout è opportuno non utilizzare dimensioni fisse in pixel.
-\item Preferire i font di sistema (la JVM in automatico associa il font di default dell'OS).
-\item Preferire la dimensione dei font di default, se se ne sceglie una diversa, renderla relativa alla dimensione corrente della view.
+\item I font possono essere allegati all'applicazione
+\item La dimensione dei font può essere resa relativa alla dimensione corrente della view.
 \end{itemize}
 \end{frame}
 
@@ -297,20 +334,20 @@ Il modo \textbf{\underline{corretto}} di cui importare una libreria in Eclipse �
 \subsection{Caricamento di risorse dal classpath}
 
 \begin{frame}{Risorse caricate dal classpath}
-\begin{itemize}
-\item Abbiamo inserito le nostre risorse nel progetto in maniera tale che vengano copiate nella cartella bin.
-\item Queste risorse ed i file compilati verranno anche inseriti nel JAR eseguibile.
-\item Come possiamo accedere a queste risorse in modo trasparente?
-\begin{itemize}
-\item Ossia caricarle sia che si trovino sul file system, sia che si trovino nel JAR eseguibile, sia che vengano incluse in un JAR di risorse separato.
-\end{itemize} 
-\end{itemize}
-\begin{block}{\texttt{Class.getResource()}}
-\begin{itemize}
-\item Java fornisce un'utilità per caricare risorse dal \textbf{classpath}
-\item Come abbiamo visto usando l'opzione \texttt{-cp} di \texttt{java} e \texttt{javac}, il classpath può contenere indifferentemente dei path o dei JAR
-\end{itemize}
-\end{block}
+	\begin{itemize}
+		\item Abbiamo visto finora il classpath come l'insieme dei percorsi dove la virtual machine va a cercare le classi da caricare
+		\item Esso include anche i contenuti di tutte le cartelle sorgente, che Eclipse copierà dentro la cartella \texttt{bin}, e che includerà nel JAR eseguibile assieme ai file compilati
+		\item Come possiamo accedere a queste risorse in modo trasparente?
+		\begin{itemize}
+			\item Ossia caricarle sia che si trovino sul file system, sia che si trovino nel JAR eseguibile, sia che vengano incluse in un JAR di risorse separato.
+		\end{itemize} 
+	\end{itemize}
+	\begin{block}{\texttt{Class.getResource()}}
+		\begin{itemize}
+			\item Java fornisce un'utilità per caricare risorse dal \textbf{classpath}
+			\item Come abbiamo visto usando l'opzione \texttt{-cp} di \texttt{java} e \texttt{javac}, il classpath può contenere indifferentemente dei path o dei JAR (o anche degli zip)
+		\end{itemize}
+		\end{block}
 \end{frame}
 
 \begin{frame}[fragile]{Risorse caricate dal classpath -- Esempi}
@@ -347,9 +384,9 @@ Spesso un software ha necessità di caricare al primo avvio delle impostazioni d
 \item È norma consolidata creare una cartella \texttt{.nomeprogramma}.
 \end{itemize}
 
-\item Al primo avvio, si verifica se tale cartella esiste e se contiene i file di configurazione previsti.
+\item Al primo avvio, si verifica se tale cartella esista e se contenga i file di configurazione previsti.
 \begin{itemize}
-\item Se non è presente (o se non sono presenti alcuni/tutti) i file oppure se non sono leggibili), si procede a caricare nella cartella di destinazione i file di default usando \texttt{getResource()}.
+\item Se non è presente, o se non sono presenti e leggibili alcuni i file, si procede a caricare nella cartella di destinazione i file di default usando \texttt{getResource()}.
 \end{itemize}
 \end{itemize}
 \end{block}

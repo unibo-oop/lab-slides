@@ -1,18 +1,9 @@
-# first release: create stable as it does not exist yet!
-hg branch stable
-hg tag 0.1.0
-hg up default
-hg merge stable
-hg ci -m "merged stable into default: ready for more development"
+# release
+git checkout master
+git tag -a 0.1.0 -m "New version 0.1.0"
+git checkout develop
+git merge master
+git checkout develop
 
+# More development!
 
-...
-
-# subsequent releases
-hg up stable
-hg merge default
-hg ci -m "release notes for this release"
-hg tag 0.2.0
-hg up default
-hg merge stable
-hg ci -m "merged stable into default"

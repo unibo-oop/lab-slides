@@ -4,8 +4,6 @@ import it.unibo.oop.lab05.ex3.Product;
 import it.unibo.oop.lab05.ex3.Warehouse;
 
 /**
- * @author Mirko Viroli
- * @author Danilo Pianini
  *
  */
 public final class UseWarehouse {

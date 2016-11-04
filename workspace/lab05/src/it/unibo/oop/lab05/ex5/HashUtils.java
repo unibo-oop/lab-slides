@@ -4,7 +4,6 @@
 package it.unibo.oop.lab05.ex5;
 
 /**
- * @author Danilo Pianini
  *
  */
 public final class HashUtils {
@@ -22,8 +21,8 @@ public final class HashUtils {
     private static final int SHIFT3 = 24;
 
     /**
-	 * 
-	 */
+     * 
+     */
     private HashUtils() {
     }
 

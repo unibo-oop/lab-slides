@@ -1,21 +1,22 @@
-hg branch feature/name 
+git checkout -b feature-mynewfeaturename
 
 # work on feature
-
-hg ci -m "message"
+git add mynewfiles
+git add mymodifiedfiles
+git commit -m "my commit message"
 
 # further work on feature
-
 ...
 
-# periodic merge of default into feature
-hg merge default
-hg ci -m "merge default into feature/name"
+# periodic merge of develop into feature
+git pull myrepourl develop
 
+# merge conflict resolution if needed
+...
+
+# further work on feature
 ...
 
 # Close and merge a finished feature
-hg ci --close-branch -m "finished feature" 
-hg update default
-hg merge feature/name 
-hg ci -m "merged finished feature into default"
+git checkout develop
+git merge feature-mynewfeaturename
