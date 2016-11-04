@@ -1,12 +1,13 @@
 # Ex01: simple monolithic GUI
 
 ## Understand
-1. Read the class carefully
+1. Read the class ``MiniGUI.java`` carefully
 2. Read the comments carefully
 5. Note the use of ``Toolkit`` to get the current screen resolution, and dimension the window correctly
 6. Note the use of ``JFrame. setLocationByPlatform()`` to delegate the window positioning to the system composer (the part of the graphical stack in charge of effectively drawing windows, borders, decorations and effects).
 
 ## Do
+Modify the class ``MiniGUI.java`` as follows
 ### Ex 01.01
 1. Create a new JPanel
 2. Use an horizontal BoxLayout as layout
