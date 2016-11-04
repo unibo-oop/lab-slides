@@ -1,6 +1,7 @@
 package it.unibo.oop.lab.gui02;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  * A very simple program using a graphical interface.
@@ -53,6 +55,9 @@ public final class SimpleGUI {
         this.controller = new SimpleController();
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
+        final JTextField textField = new JTextField();
+        textField.setBackground(Color.lightGray);
+        canvas.add(textField, BorderLayout.NORTH);
         final JTextArea textArea = new JTextArea();
         canvas.add(textArea, BorderLayout.CENTER);
         final JPanel southPanel = new JPanel();
@@ -71,7 +76,7 @@ public final class SimpleGUI {
         print.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                controller.setNextStringToPrint(textArea.getText());
+                controller.setNextStringToPrint(textField.getText());
                 controller.printCurrentString();
             }
         });
