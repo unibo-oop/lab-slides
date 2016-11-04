@@ -59,6 +59,7 @@ public final class SimpleGUI {
         textField.setBackground(Color.lightGray);
         canvas.add(textField, BorderLayout.NORTH);
         final JTextArea textArea = new JTextArea();
+        textArea.setEditable(false);
         canvas.add(textArea, BorderLayout.CENTER);
         final JPanel southPanel = new JPanel();
         southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.LINE_AXIS));
