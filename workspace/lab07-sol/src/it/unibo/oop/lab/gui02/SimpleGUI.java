@@ -1,6 +1,7 @@
 package it.unibo.oop.lab.gui02;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  * A very simple program using a graphical interface.
@@ -31,17 +33,17 @@ public final class SimpleGUI {
      * 
      * 2) In its constructor, sets up the whole view
      * 
-     * 3) The graphical interface consists of a JTextArea with two buttons
-     * below: "Print", and "Show history". SUGGESTION: Use a JPanel with
-     * BorderLayout
+     * 3) The graphical interface consists of a JTextField in the upper part of the frame, 
+     * a JTextArea in the center and two buttons below it: "Print", and "Show history". 
+     * SUGGESTION: Use a JPanel with BorderLayout
      * 
      * 4) By default, if the graphical interface is closed the program must exit
      * (call setDefaultCloseOperation)
      * 
      * 5) The behavior of the program is that, if "Print" is pressed, the
-     * controller is asked to show the string on standard output. If
-     * "show history" is pressed instead, the GUI must show all the prints that
-     * have been done to this moment
+     * controller is asked to show the string contained in the text field on standard output. 
+     * If "show history" is pressed instead, the GUI must show all the prints that
+     * have been done to this moment in the text area.
      * 
      */
 
@@ -53,7 +55,11 @@ public final class SimpleGUI {
         this.controller = new SimpleController();
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
+        final JTextField textField = new JTextField();
+        textField.setBackground(Color.lightGray);
+        canvas.add(textField, BorderLayout.NORTH);
         final JTextArea textArea = new JTextArea();
+        textArea.setEditable(false);
         canvas.add(textArea, BorderLayout.CENTER);
         final JPanel southPanel = new JPanel();
         southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.LINE_AXIS));
@@ -71,7 +77,7 @@ public final class SimpleGUI {
         print.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                controller.setNextStringToPrint(textArea.getText());
+                controller.setNextStringToPrint(textField.getText());
                 controller.printCurrentString();
             }
         });
@@ -79,17 +85,16 @@ public final class SimpleGUI {
         showHistory.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
+                final StringBuilder text = new StringBuilder();
                 final List<String> history = controller.getPrintedStringsHistory();
-                String text = "";
-                for (int i = 0; i < history.size(); i++) {
-                    if (i != history.size() - 1) {
-                        text += history.get(i) + "\n";
-                    } else {
-                        text += history.get(i);
-                    }
-
+                for (final String print: history) {
+                    text.append(print);
+                    text.append('\n');
                 }
-                textArea.setText(text);
+                if (!history.isEmpty()) {
+                    text.deleteCharAt(text.length() - 1);
+                }
+                textArea.setText(text.toString());
             }
         });
         /*

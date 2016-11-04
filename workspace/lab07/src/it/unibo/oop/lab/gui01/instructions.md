@@ -17,13 +17,9 @@
 
 ### Ex 01.02
 1. Create a new "Result" text field
-2. Add it to the JPanel created in ``Ex 01.01``
+2. Add it to the external JPanel in such a way that it gets on the top of the frame (Borderlayout.NORTH)
 3. Test your application. Verify that you can see a new Text field, but it is useless
 
 ### Ex 01.03
 1. Modify the application in such a way that the text field displays the same number that gets printed
 2. Test it
-
-**Remember that:**
-* There are some _very handy_  methods in java.nio.Files (e.g. http://docs.oracle.com/javase/7/docs/api/java/nio/file/Files.html#readAllLines(java.nio.file.Path,%20java.nio.charset.Charset)
-* PrintStreams are probably the easiest way to write text on files

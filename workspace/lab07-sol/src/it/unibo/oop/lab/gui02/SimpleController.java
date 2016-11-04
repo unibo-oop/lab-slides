@@ -1,7 +1,8 @@
 package it.unibo.oop.lab.gui02;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 
@@ -9,20 +10,12 @@ import java.util.List;
  */
 public class SimpleController implements Controller {
 
-    private final List<String> stringHistory;
+    private final List<String> stringHistory = new LinkedList<>();
     private String nextString;
-
-    /**
-     * 
-     */
-    public SimpleController() {
-        stringHistory = new ArrayList<>();
-        nextString = "";
-    }
 
     @Override
     public void setNextStringToPrint(final String nextString) {
-        this.nextString = nextString;
+        this.nextString = Objects.requireNonNull(nextString, "This method does not accept null values.");
     }
 
     @Override
@@ -37,6 +30,9 @@ public class SimpleController implements Controller {
 
     @Override
     public void printCurrentString() {
+        if (this.nextString == null) {
+            throw new IllegalStateException("There is no string set");
+        }
         stringHistory.add(this.nextString);
         System.out.println(this.nextString);
     }

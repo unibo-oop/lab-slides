@@ -14,14 +14,16 @@ public interface Controller {
      * Write the interface and implement it in a class class in such a way that
      * it includes:
      * 
-     * 1) A method for setting the next string to print
+     * 1) A method for setting the next string to print. Null values are not
+     * acceptable, and an exception should be produced
      * 
      * 2) A method for getting the next string to print
      * 
      * 3) A method for getting the history of the printed strings (in form of a
      * List of Strings)
      * 
-     * 4) A method that prints the current string.
+     * 4) A method that prints the current string. If the current string is
+     * unset, an IllegalStateException should be thrown
      * 
      */
 
