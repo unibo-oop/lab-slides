@@ -219,6 +219,27 @@ GIT - the stupid content tracker
 			\item \texttt{git config --global user.email "your.email@provider"}
 		}
 	}
+	\bl{Caratteri di newline}{
+		\begin{itemize}
+			\item Git prova ad essere ``smart'' nella configurazione dei caratteri che rappresentano una nuova linea di testo, che differiscono per piattaforma
+			\begin{itemize}
+				\item Come spesso capita, nel tentativo di essere smart fa più danno che utile.
+			\end{itemize}
+			\item Noi useremo una precisa configurazione di Eclipse
+			\item Vogliamo che i nostri file abbiano un terminatore preciso, e vogliamo che tutti i membri del team lo usino correttamente
+			\begin{itemize}
+				\item Evitando di fare mega-salvataggi solo perché cambiano i caratteri di fine linea
+			\end{itemize}
+			\item Linux e MacOS: usa il carattere presente nel testo
+			\begin{itemize}
+				\item \texttt{git config --global core.autocrlf input}
+			\end{itemize}
+			\item Windows: disattiva la conversione automatica a CLRF
+			\begin{itemize}
+				\item \texttt{git config --global core.autocrlf false}
+			\end{itemize}
+		\end{itemize}
+	}
 	\begin{block}{Esercizio}
 		\begin{itemize}
 			\item Si apra un terminale
@@ -432,6 +453,25 @@ Changes to be committed:
 	\begin{block}{In Git}
 		Il sottocomando \texttt{commit} crea il salvataggio
 		\begin{itemize}
+			\item \texttt{git commit -m "A message"}
+			\begin{itemize}
+				\footnotesize
+				\item Esegue un commit di tutte le modifiche aggiunte alla staging area
+				\item Utilizza \texttt{A message} come commit message
+			\end{itemize}
+			\item \texttt{git commit FILE1 FILE2 FILEN -m "A message"}
+			\begin{itemize}
+				\footnotesize
+				\item Esegue un commit salvando tutte le modifiche ai file elencati
+				\item Utilizza \texttt{A message} come commit message
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+	\begin{block}{\texttt{commit} senza specificare il messaggio}
+		\begin{itemize}
+			\item Non è possibile non specificare un messaggio.
+			\item Se l'opzione \texttt{-m} viene omessa, viene aperto un editor per l'inserimento del messaggio
+			\item Se il messaggio viene lasciato vuoto, il commit viene rigettato
 			\item \texttt{git commit}
 			\begin{itemize}
 				\footnotesize
@@ -445,26 +485,15 @@ Changes to be committed:
 				\item Apre l'editor di testo di sistema per l'inserimento del commit message
 				\item Equivalente ad eseguire \texttt{git add FILES} seguito da \texttt{git commit} a partire da una staging area vuota
 			\end{itemize}
-			\item \texttt{git commit -m "A message"}
-			\begin{itemize}
-				\footnotesize
-				\item Esegue un commit di tutte le modifiche aggiunte alla staging area
-				\item Utilizza \texttt{A message} come commit message
-			\end{itemize}
-			\item \texttt{git commit FILES -m "A message"}
-			\begin{itemize}
-				\footnotesize
-				\item Esegue un commit salvando tutte le modifiche ai file elencati
-				\item Utilizza \texttt{A message} come commit message
-			\end{itemize}
 		\end{itemize}
+		Preferite sempre commit con opzione \texttt{-m}, a meno che non abbiate già confidenza con l'editor di sistema
 	\end{block}
 	\begin{block}{Configurare l'editor di testo}
 		Sistemi diversi hanno editor diversi
 		\begin{itemize}
 			\item Di default MacOS X utilizza \texttt{vim}
 			\item In Linux dipende dalla distribuzione, solitamente è uno fra \texttt{vim}, \texttt{nano}, o \texttt{emacs}
-			\item In Windows \textit{dovrebbe} essere \texttt{Notepad.exe}
+			\item In Windows \textit{dovrebbe} essere \texttt{Notepad.exe} (in laboratorio è \texttt{vim})
 		\end{itemize}
 		Non sempre l'editor di default è quello che preferite: è bene configurarlo
 		\begin{itemize}
@@ -559,6 +588,7 @@ Changes to be committed:
 		\begin{itemize}
 			\item I file elencati dentro \texttt{.gitignore} saranno invisibili a Git
 			\item È bene che il file \texttt{.gitignore} venga aggiunto al tracker!
+			\item Nota: il file si chiama \textbf{esattamente} \texttt{.gitignore}, \textbf{non} \texttt{ALTRO.gitignore}
 		\end{itemize}
 	\end{block}
 	\begin{block}{Sintassi di .gitignore}
@@ -590,6 +620,24 @@ doc/
 			\item Se il file viene chiamato \texttt{.gitignore.txt}, o in qualunque modo diverso da \texttt{.gitignore}, non sarà considerato un ignore file valido da Git!
 		\end{itemize}
 		Il problema non si pone su MacOS X e Linux.
+	\end{block}
+	\begin{block}{Creare il file da terminale}
+		\begin{itemize}
+			\item È conveniente usare direttamente il terminale per creare il file \texttt{.gitignore}
+			\item \texttt{echo > .gitignore}
+			\begin{itemize}
+				\item Crea un file di nome \texttt{.gitignore} contenente solo una newline
+				\item Funziona su tutti i sistemi!
+				\item Evita di creare file manualmente
+			\end{itemize}
+			\item \texttt{echo WHAT\_TO\_IGNORE >> .gitignore}
+			\begin{itemize}
+				\item Aggiunge una linea con scritto \texttt{WHAT\_TO\_IGNORE} in coda al file \texttt{.gitignore}
+				\item Funziona su tutti i sistemi!
+				\item Consente di popolare il file \texttt{.gitignore} senza dover usare editor esterni
+				\item e.g. \texttt{echo bin/ >> .gitignore} --- aggiunge alla lista degli ignore la cartella \texttt{bin} e tutto il suo contenuto
+			\end{itemize}
+		\end{itemize}
 	\end{block}
 	\begin{block}{Esercizio}	
 		\begin{itemize}
