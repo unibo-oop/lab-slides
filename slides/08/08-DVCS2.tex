@@ -2,7 +2,7 @@
 \usepackage{../oop-slides-pianini}
 \setbeamertemplate{bibliography item}[text]
 \newcommand{\lessonnr}[0]{06}
-\title[OOP08 -- DCVS, GUI e IO]{08 \\ DVCS, parte II \\ Graphical User Interfaces e Input-Output}
+\title[OOP08 -- DCVS, GUI e IO]{08 \\ DVCS, parte II \\ Input-Output e Reflection}
 
 \begin{document}
 
@@ -147,6 +147,28 @@ public final class HelloWorld {
 			\end{itemize}
 		\end{itemize}
 		Nel caso in cui il repository sia stato clonato e non inizializzato (ossia, il primo comando dato è stato \texttt{git clone} e non \texttt{git init}), un riferimento al repository di origine viene automaticamente inserito fra i remote e configurato come upstream per tutti i branch col nome di \texttt{origin}.
+	\end{block}
+	\begin{block}{Visualizzazione dei branch remoti}
+		Al momento del clone, Git scaricherà solo il branch ``primario'' (normalmente, \texttt{master}). È possibile comunque visualizzare tutti i branch disponibili in remoto:
+		\begin{itemize}
+			\item \texttt{git branch -a}
+			\begin{itemize}
+				\item Elenca tutti i branch, inclusi quelli remoti.
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Importazione di branch remoti}
+		Qualora si voglia importare in locale un branch remoto per lavorarci, occorre creare un ``tracking branch'' locale:
+		\begin{itemize}
+			\item \texttt{git checkout -b localBranchName remoteName/remoteBranchName}
+			\begin{itemize}
+				\item Crea un nuovo branch di nome \texttt{localBranchName}, che avrà i contenuti di \texttt{remoteName/remoteBranchName}
+				\item Sovente si dà al branch locale lo stesso nome del branch remoto
+				\begin{itemize}
+					\item \texttt{git checkout -b develop origin/develop}
+				\end{itemize}
+			\end{itemize}
+		\end{itemize}
 	\end{block}
 \end{frame}
 
