@@ -15,7 +15,7 @@
 * Si tenti di fare il merge del branch `feature` dentro il branch `master`, utilizzando in modo idoneo il sottocomando `merge`
 * Si genera un conflitto di merge!
 * Si utilizzi git status per capire quali file confliggono. Si noti come il suddetto comando espliciti che il problema è derivante dal fatto che `both modified`.
-* Si apra il file che fa conflitto, e lo si modifichi perché stampi sia le informazioni circa l'autore che quelle riguardanti
+* Si apra il file che fa conflitto, e lo si modifichi perché stampi sia le informazioni circa l'autore che quelle riguardanti il numero di processori logici installati sulla macchina.
 * Si verifichi che il file sia stato modificato correttamente compilandolo ed eseguendolo (usando `javac` e `java` da terminale)
 * Si aggiunga la versione modificata e con il conflitto risolto del file al tracker, usando correttamente il sottocomando `add`
 * Si usi `git status` per verificare lo stato della staging area
