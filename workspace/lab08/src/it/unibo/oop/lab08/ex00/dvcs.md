@@ -24,6 +24,6 @@
 * Si correttamente il sottocomando `branch` con l'opzione `-d` per eliminare il branch `feature`
 * Si utilizzi `git push` per caricare sulla propria fork online del repository le modifiche fatte
 * Si osservi online lo stato del repository
-* Si elimini anche online il branch `feature`
+* Si elimini anche online il branch `feature` utilizzando l'interfaccia web di Bitbucket
 
 > Se avete capito chiaramente come operare con un repository remoto e come risolvere i merge conflicts, siete pronti per usare Git su progetti veri! CONSIGLIO: Cominciate ad utilizzarlo a tappeto. Più lo utilizzerete, meglio lo imparerete, meglio lavorerete al progetto con i vostri colleghi!
