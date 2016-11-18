@@ -4,7 +4,7 @@ package it.unibo.oop.rguis.mvc.model;
  * Defines the interface of a counter.
  *
  */
-public interface CounterModel {
+public interface Counter {
 
     /**
      * Increments the counter.

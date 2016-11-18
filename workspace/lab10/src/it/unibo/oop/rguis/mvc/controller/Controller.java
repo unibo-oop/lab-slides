@@ -1,6 +1,6 @@
 package it.unibo.oop.rguis.mvc.controller;
 
-import it.unibo.oop.rguis.mvc.model.CounterModel;
+import it.unibo.oop.rguis.mvc.model.Counter;
 import it.unibo.oop.rguis.mvc.view.CounterView;
 import it.unibo.oop.rguis.mvc.view.CounterViewObserver;
 
@@ -10,7 +10,7 @@ import it.unibo.oop.rguis.mvc.view.CounterViewObserver;
  */
 public class Controller {
 
-    private final CounterModel counter;
+    private final Counter counter;
     private final CounterView view;
     private Agent agent;
 
@@ -22,7 +22,7 @@ public class Controller {
      * @param view
      *            the view
      */
-    public Controller(final CounterModel counter, final CounterView view) {
+    public Controller(final Counter counter, final CounterView view) {
         this.counter = counter;
         this.view = view;
         this.view.addCounterViewObserver(new CounterViewObserver() {

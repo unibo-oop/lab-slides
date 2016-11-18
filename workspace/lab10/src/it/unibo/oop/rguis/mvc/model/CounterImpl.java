@@ -1,10 +1,10 @@
 package it.unibo.oop.rguis.mvc.model;
 
 /**
- * Implementation of {@link CounterModel}}.
+ * Implementation of {@link Counter}}.
  *
  */
-public class CounterImpl implements CounterModel {
+public class CounterImpl implements Counter {
 
     private int counter;
 
