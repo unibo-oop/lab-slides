@@ -1,4 +1,4 @@
-package it.unibo.oop.lab10.ex01;
+package it.unibo.oop.lab.lambda.ex01;
 
 import java.util.ArrayList;
 import java.util.HashMap;

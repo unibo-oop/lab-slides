@@ -1,7 +1,4 @@
-package it.unibo.oop.lab10.ex03;
-
-import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.groupingBy;
+package it.unibo.oop.lab.lambda.ex03;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -9,10 +6,6 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
-import java.util.Arrays;
-import java.util.SortedSet;
-import java.util.StringTokenizer;
-import java.util.TreeSet;
 import java.util.function.Function;
 
 import javax.swing.BorderFactory;
@@ -40,34 +33,9 @@ import javax.swing.JTextArea;
 public final class LambdaFilter extends JFrame {
 
     private static final long serialVersionUID = 1760990730218643730L;
-    private static final String TOKEN_SYMBOLS = " \t\n\r\f,.:;?!¡";
 
     private static enum Command {
-        IDENTITY("No modifications", s -> s), TO_LOWER("Lowercase", s -> s.toLowerCase()), COUNT("Count chars",
-                s -> Integer.toString(s.length())), LINES("Count lines", s -> Long.toString(s.chars()
-                .filter(e -> e == '\n').count() + 1)), WORDS("Sort words in alphabetical order", s -> {
-            final StringTokenizer tk = new StringTokenizer(s, TOKEN_SYMBOLS);
-            final SortedSet<String> set = new TreeSet<>();
-            while (tk.hasMoreElements()) {
-                set.add(tk.nextToken());
-            }
-            System.out.println(" Set : " + set);
-            final StringBuilder sb = new StringBuilder();
-            for (final String word : set) {
-                sb.append(word);
-                sb.append('\n');
-            }
-            return sb.toString();
-        }), WORDCOUNT("Count words", s -> {
-                    final StringBuilder sb = new StringBuilder();
-                    Arrays.asList(s.split("\\W+")).stream().collect(groupingBy(e -> e, counting())).forEach((k, v) -> {
-                        sb.append(k);
-                        sb.append(" -> ");
-                        sb.append(v);
-                        sb.append('\n');
-                    });
-                    return sb.toString();
-                });
+        IDENTITY("No modifications", s -> s);
 
         private final String commandName;
         private final Function<String, String> fun;

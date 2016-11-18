@@ -1,4 +1,4 @@
-package it.unibo.apice.oop.p19lambda.lab.sol2;
+package it.unibo.oop.lab.lambda.ex02;
 
 import java.util.Optional;
 import java.util.OptionalDouble;
