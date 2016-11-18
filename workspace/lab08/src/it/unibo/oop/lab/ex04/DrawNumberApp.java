@@ -1,4 +1,4 @@
-package it.unibo.oop.lab08.ex04;
+package it.unibo.oop.lab.ex04;
 
 /**
  */

@@ -1,4 +1,4 @@
-package it.unibo.oop.lab08.ex03;
+package it.unibo.oop.lab.ex03;
 
 /**
  * A very simple program using a graphical interface.
