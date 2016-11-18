@@ -1,9 +1,0 @@
-# release
-git checkout master
-git tag -a 0.1.0 -m "New version 0.1.0"
-git checkout develop
-git merge master
-git checkout develop
-
-# More development!
-
