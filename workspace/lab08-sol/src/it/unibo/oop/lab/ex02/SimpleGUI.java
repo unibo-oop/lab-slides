@@ -1,4 +1,4 @@
-package it.unibo.oop.lab08.ex02;
+package it.unibo.oop.lab.ex02;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

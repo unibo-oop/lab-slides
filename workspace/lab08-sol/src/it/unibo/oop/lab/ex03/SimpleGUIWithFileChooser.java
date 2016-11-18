@@ -1,4 +1,4 @@
-package it.unibo.oop.lab08.ex03;
+package it.unibo.oop.lab.ex03;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import it.unibo.oop.lab08.ex02.Controller;
+import it.unibo.oop.lab.ex02.Controller;
 
 /**
  * A very simple program using a graphical interface.
