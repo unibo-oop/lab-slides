@@ -37,7 +37,7 @@
             \iz {
                 \item effort necessario per la parte di gestione diventa presto preponderante e insostenibile            
             }
-			\item Ecco perch\'e nella pratica quotidiana, \`e bene adottare un \textbf{workflow collaborativo}
+			\item Ecco perché è bene adottare un \textbf{workflow collaborativo}
             \iz {
                 \item i vostri progetti e i vostri partner di progetto vi ringrazieranno!            
             }
@@ -168,7 +168,7 @@
 
 \fr{Rivediamo ruoli e compiti} {
 \iz{
-\item Developer: 
+\item Sviluppatore: 
     \begin{enumerate}
         \item aprono una nuova \textbf{feature branch} da \texttt{develop} ogni volta che cominciano lo sviluppo di nuova funzionalità
         \item le \textbf{feature} in realtà si aprono solo per funzionalità ``grandi'', altrimenti si lavora su \texttt{develop}
@@ -176,8 +176,7 @@
         \item terminato lo sviluppo della funzionalità effettuano il merge della feature in \texttt{develop}
 %         \item si occupano anche degli hotfix
     \end{enumerate}
-
-\item Technical leader (per i vostri progetti questa figura non esisterà, probabilmente): 
+\item Technical leader: 
     \begin{enumerate}
         \item supervisiona la qualità del codice prodotto
         \item è responsabile della qualità del codice che finisce sulla \texttt{develop} branch       
@@ -194,16 +193,16 @@
 
 \fr{Sulle feature branch} {
 	\iz {
-		\item Ha senso utilizzarle per funzionalità/task grandi
+		\item Ha senso utilizzarle per modifiche grandi o a rischio fallimento
 		\item In particolare in termini di tempo richiesto per completare l'implementazione
-		\item Quando l'attività di analisi abbia già portato ad una classificazione accurata delle funzionalitàe
+		\item Quando l'attività di analisi abbia già portato ad una classificazione accurata delle funzionalità
 		\item Per progetti articolati consente di separare e gestire meglio le attività di sviluppo
 		\iz{
 			\item chi fa cosa
 			\item più sviluppatori impegnati sulla stessa funzionalità/task usano la stessa branch            
 		}
 		\item In contesti articolati può quindi aiutare a tener traccia dello stato di avanzamento di determinate attività
-		\item Per i vostri progetti potrebbe non essere così sensato... 
+% 		\item Per i vostri progetti potrebbe non essere così sensato... 
 	}	
 }
 
@@ -213,68 +212,80 @@
 \sizedcode{\tiny}{code/init.txt}
 }
 
-\fr{Uso di una feature} {
-\sizedcode{\tiny}{code/open-feature.txt}
-}
+\begin{frame}[fragile, allowframebreaks]{Feature branch}
+	\begin{center}
+		\includegraphics[height=.8\textheight]{img/feature}
+	\end{center}
+	\sizedcode{\tiny}{code/open-feature.txt}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Associazione di nomi simbolici ad un commit}
+	\bl{In generale}{
+		È necessario poter associare ad un commit della meta-informazione personalizzata. Ad esempio, per associare un certo commit ad una versione, in modo da poterla facilmente richiamare.
+	}
+	\bl{In Git}{
+		\iz{
+			\item \texttt{git tag -a MyTag -m "My tag information"}
+			Associa al commit corrente il nome simbolico \texttt{MyTag} ed il messaggio aggiuntivo \texttt{My tag information}
+			\begin{itemize}
+				\item Non rimpiazza il commit message, ma lo integra
+				\item È possibile invocare comandi come \texttt{git checkout MyTag} per tornare velocemente ad un tag precedente
+			\end{itemize}
+			\item \texttt{git push --tags}
+			\begin{itemize}
+				\item Fa \texttt{push} delle metaiformazioni aggiunte col comando \texttt{tag}
+				\item La \texttt{push} ``normale'' non invia queste informazioni!
+			\end{itemize}
+		}
+	}
+\end{frame}
+
+
 
 \fr{Fare una release} {
 \sizedcode{\tiny}{code/do-release.txt}
 }
 
-\fr{E la collaborazione?} {
-\iz{
-    \item Finora abbiamo mostrato comandi che si eseguono su un singolo repo
-    \item Vi ricordate come si fa per condividere gli sviluppi con il resto del vostro team?
-    \iz{
-        \item clone
-        \item push
-        \item pull    
-    }
-    \item E' quindi necessario avere un repository remoto ufficiale per il vostro progetto! $\rightarrow$ BitBucket!
-}
-}
-
-\fr{Il repo ufficiale del vostro progetto} {
-\iz{
-    \item Qualcuno di voi agirà come ``repo maintainer''
-    \item Creerà quindi il repo su BitBucket
-    \item I membri del team eseguiranno quindi:
-    \iz{
-        \item hg clone URI\_TO\_OFFICIAL\_REPO   
-    }
-    \item Le attività verranno quindi eseguite sul repo locale (working copy) di ciascun membro del team, con condivisione via official repo tramite \texttt{push} e \texttt{pull}
-}
-}
+\begin{frame}[allowframebreaks]{Il repo ufficiale del vostro progetto}
+	\begin{block}{Workflow raccomandato}
+		\begin{itemize}
+			\item Qualcuno di voi agirà come ``repo maintainer''
+			\item Creerà quindi il repository su BitBucket
+			\item Gli altri membri del team faranno la \texttt{clone}
+			\item Ciascuno lavorerà parallelamente sul proprio repository locale (working copy), condividendo tramite \texttt{push} e \texttt{pull} il proprio lavoro con gli altri
+		\end{itemize}
+	\end{block}
+	\begin{block}{Workflow avanzato}
+		Ottimo per progetti di grosse dimensioni e/o per team molto eterogenei, dove qualcuno deve assicurarsi della qualità del codice prodotto da altri.
+		\begin{itemize}
+			\item Il maintainer crea il repository, ed è l'unico col diritto di scrittura
+			\item Gli altri membri del team hanno una fork a testa
+			\item Ciascuno lavora su una working copy, facendo pull dal repository ``centrale'' e push sulla propria fork
+			\item Quando una feature è completa, o si arriva ad un buon gradi di sviluppo, si apre una \textbf{pull request}
+			\item Il maintainer revisiona il codice, assegna eventuali modifiche, e quando è soddisfatto accetta la pull request facendo il merge del codice nel repository principale
+		\end{itemize}
+		Questo workflow è un overkill per il progetto di OOP
+		\begin{itemize}
+			\item Ma è possibile che vi chiederemo di lavorare così, se farete tesi o un tirocini relativi ad alcuni nostri software
+		\end{itemize}
+	\end{block}
+\end{frame}
 
 \fr{Best practice per la condivisione I} {
-Developer
-\iz{
-    \item In generale, push regolare delle proprie modifiche su repo ufficiale (e pull regolare di quanto presente in remoto)
-    \iz{
-        \item Se il push riguarda la \texttt{develop} branch: le modifiche che condividete via push \textbf{devono compilare}!
-    }
-    \item Eseguire sempre un pull e update tutte le volte che cominciate a lavorare su qualche cosa in una certa branch 
-    \item Per eventuali feature branch? Stesse regole di \texttt{develop} (possiamo rilassare qualche vincolo)
-    \item Spesso per questioni di revisione del codice e quality check non sempre gli sviluppatori hanno il permesso di fare push direttamente su \texttt{develop}
-    \iz{
-        \item Si può gestire richiedendo una ``pull-request'' sul vs. sistema di hosting (e.g. BitBucket). 
-        \item Non ritenuto di particolare utilità per la gestione dei vostri progetti
-    } 
-    \item \texttt{master} non si tocca!
-        \iz{
-        \item Meglio non garantire i diritti di scrittura (pushing) su \texttt{master} agli sviluppatori!
-    } 
-}
-
-}
-
-\fr{Best practice per la condivisione II} {
-
-Release manager
-\iz{
-    \item Pull di \texttt{develop} prima di cominciare una release
-    \item Push di \texttt{master} e \texttt{develop} al termine della release 
-}
+	Sviluppatore
+	\iz{
+		\item In generale, push regolare delle proprie modifiche su repo ufficiale (e pull regolare di quanto presente in remoto)
+		\iz{
+			\item Se il push riguarda la \texttt{develop} branch: le modifiche che condividete via push \textbf{devono compilare}!
+		}
+		\item Eseguire sempre un pull e update tutte le volte che cominciate a lavorare su qualche cosa in una certa branch 
+		\item Per eventuali feature branch? Stesse regole di \texttt{develop}
+	}
+	Release manager
+	\iz{
+		\item Pull di \texttt{develop} prima di cominciare una release
+		\item Push di \texttt{master} e \texttt{develop} al termine della release 
+	}
 }
 
 
