@@ -34,13 +34,13 @@ public final class LambdaFilter extends JFrame {
 
     private static final long serialVersionUID = 1760990730218643730L;
 
-    private static enum Command {
+    private enum Command {
         IDENTITY("No modifications", s -> s);
 
         private final String commandName;
         private final Function<String, String> fun;
 
-        private Command(final String name, final Function<String, String> process) {
+        Command(final String name, final Function<String, String> process) {
             commandName = name;
             fun = process;
         }

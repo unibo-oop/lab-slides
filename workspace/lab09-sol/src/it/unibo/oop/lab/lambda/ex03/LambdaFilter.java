@@ -42,7 +42,7 @@ public final class LambdaFilter extends JFrame {
     private static final long serialVersionUID = 1760990730218643730L;
     private static final String TOKEN_SYMBOLS = " \t\n\r\f,.:;?!¡";
 
-    private static enum Command {
+    private enum Command {
         IDENTITY("No modifications", s -> s), TO_LOWER("Lowercase", s -> s.toLowerCase()), COUNT("Count chars",
                 s -> Integer.toString(s.length())), LINES("Count lines", s -> Long.toString(s.chars()
                 .filter(e -> e == '\n').count() + 1)), WORDS("Sort words in alphabetical order", s -> {
@@ -72,7 +72,7 @@ public final class LambdaFilter extends JFrame {
         private final String commandName;
         private final Function<String, String> fun;
 
-        private Command(final String name, final Function<String, String> process) {
+        Command(final String name, final Function<String, String> process) {
             commandName = name;
             fun = process;
         }
