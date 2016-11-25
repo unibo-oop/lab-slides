@@ -1,4 +1,4 @@
-package it.unibo.oop.lab09.reactivegui3;
+package it.unibo.oop.lab.reactivegui03;
 
 /**
  * TestMatrix class for third reactive GUI.
@@ -28,7 +28,7 @@ public final class Test {
      * 
      */
     public static void main(final String... args) {
-        new C3GUI();
+        new AnotherConcurrentGUI();
 
     }
 }

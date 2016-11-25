@@ -1,9 +1,9 @@
-package it.unibo.oop.lab09.reactivegui3;
+package it.unibo.oop.lab.reactivegui03;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.lang.reflect.InvocationTargetException;
+import java.util.concurrent.ForkJoinPool;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,11 +17,12 @@ import javax.swing.SwingUtilities;
  * 
  *
  */
-public class C3GUI extends JFrame {
+public class AnotherConcurrentGUI extends JFrame {
 
     private static final long serialVersionUID = -6218820567019985015L;
     private static final double WIDTH_PERC = 0.2;
     private static final double HEIGHT_PERC = 0.1;
+    private static final int WAITING_TIME = 10000;
 
     private final JLabel display = new JLabel();
     private final JButton stop = new JButton("stop");
@@ -33,67 +34,44 @@ public class C3GUI extends JFrame {
     /**
      * Builds a C3GUI.
      */
-    public C3GUI() {
-        super();
+    public AnotherConcurrentGUI() {
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize((int) (screenSize.getWidth() * WIDTH_PERC), (int) (screenSize.getHeight() * HEIGHT_PERC));
-
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
         final JPanel panel = new JPanel();
         panel.add(display);
         panel.add(up);
         panel.add(down);
         panel.add(stop);
-
         this.getContentPane().add(panel);
         this.setVisible(true);
-
-        counterAgent.start();
-        new DeadlineAgent().start();
-
-        up.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                counterAgent.upCounting();
+        ForkJoinPool.commonPool().submit(counterAgent);
+        ForkJoinPool.commonPool().submit(() -> {
+            try {
+                Thread.sleep(WAITING_TIME);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
             }
+            AnotherConcurrentGUI.this.stopCounting();
         });
-
-        down.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                counterAgent.downCounting();
-            }
-        });
-
-        stop.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                stopCounting();
-            }
-        });
-
+        up.addActionListener(e -> counterAgent.upCounting());
+        down.addActionListener(e -> counterAgent.downCounting());
+        stop.addActionListener(e -> stopCounting());
     }
 
     private void stopCounting() {
         counterAgent.stopCounting();
-        SwingUtilities.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                stop.setEnabled(false);
-                up.setEnabled(false);
-                down.setEnabled(false);
-            }
+        SwingUtilities.invokeLater(() -> {
+            stop.setEnabled(false);
+            up.setEnabled(false);
+            down.setEnabled(false);
         });
     }
 
-    private class CounterAgent extends Thread {
-
+    private class CounterAgent implements Runnable {
         private volatile boolean stop;
         private volatile boolean up = true;
         private int counter;
-
         public void run() {
             while (!stop) {
                 try {
@@ -105,39 +83,19 @@ public class C3GUI extends JFrame {
                     counter += up ? 1 : -1;
 
                     Thread.sleep(100);
-                } catch (Exception ex) {
-                    // interrupted: added a system.out but there are much better ways to log exceptions
-                    System.out.println("Something went wrong. " + ex);
+                } catch (InterruptedException | InvocationTargetException ex) {
+                    ex.printStackTrace();
                 }
             }
         }
-
         public void stopCounting() {
             this.stop = true;
         }
-
         public void upCounting() {
             this.up = true;
         }
-
         public void downCounting() {
             this.up = false;
         }
-    }
-
-    private class DeadlineAgent extends Thread {
-
-        private static final long DEADLINE = 10000;
-
-        public void run() {
-            try {
-                Thread.sleep(DEADLINE);
-            } catch (Exception ex) {
-             // interrupted: added a system.out but there are much better ways to log exceptions
-                System.out.println("Something went wrong. " + ex);
-            }
-            C3GUI.this.stopCounting();
-        }
-
     }
 }

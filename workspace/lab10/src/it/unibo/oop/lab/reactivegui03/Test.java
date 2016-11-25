@@ -1,7 +1,7 @@
-package it.unibo.oop.lab09.reactivegui3;
+package it.unibo.oop.lab.reactivegui03;
 
 /**
- * TestMatrix class for third reactive GUI.
+ * Third reactive GUI.
  *
  */
 public final class Test {
@@ -10,7 +10,7 @@ public final class Test {
     }
 
     /*
-     * Realizzare una classe C3GUI con costruttore vuoto, che aggiunga
+     * Realizzare una classe AnotherConcurrentGUI con costruttore vuoto, che aggiunga
      * all'esercizio precedente la seguente funzionalità: - dopo 10 secondi
      * dalla partenza dell'applicazione, i pulsanti si disabilitino e il
      * conteggio si fermi comunque - fare attenzione a non creare corse critiche
@@ -22,11 +22,10 @@ public final class Test {
     /**
      * 
      * @param args
-     *            possible args to pass (not used)
+     *            unused
      * 
      */
     public static void main(final String... args) {
-        // new C3GUI();
-
+        // new AnotherConcurrentGUI();
     }
 }
