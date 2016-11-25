@@ -18,7 +18,7 @@ import javax.swing.SwingUtilities;
  * This is a first example on how to realize a reactive GUI.
  *
  */
-public class CGUI extends JFrame {
+public class ConcurrentGUI extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private static final double WIDTH_PERC = 0.2;
@@ -29,7 +29,7 @@ public class CGUI extends JFrame {
     /**
      * Builds a new CGUI.
      */
-    public CGUI() {
+    public ConcurrentGUI() {
         super();
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize((int) (screenSize.getWidth() * WIDTH_PERC), (int) (screenSize.getHeight() * HEIGHT_PERC));
@@ -84,7 +84,7 @@ public class CGUI extends JFrame {
                      */
                     SwingUtilities.invokeAndWait(new Runnable() {
                         public void run() {
-                            CGUI.this.display.setText(Integer.toString(Agent.this.counter));
+                            ConcurrentGUI.this.display.setText(Integer.toString(Agent.this.counter));
                         }
                     });
                     this.counter++;
