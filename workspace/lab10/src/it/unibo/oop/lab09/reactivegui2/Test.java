@@ -1,9 +1,7 @@
 package it.unibo.oop.lab09.reactivegui2;
 
 /**
- * 
- * TestMatrix for second reactive GUI.
- *
+ * Exercise on a reactive GUI.
  */
 public final class Test {
 
@@ -42,6 +40,5 @@ public final class Test {
      */
     public static void main(final String... args) {
         // new C2GUI();
-
     }
 }
