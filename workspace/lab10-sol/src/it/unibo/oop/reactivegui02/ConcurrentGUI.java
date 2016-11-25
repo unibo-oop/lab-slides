@@ -1,4 +1,4 @@
-package it.unibo.oop.lab09.reactivegui2;
+package it.unibo.oop.reactivegui02;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;

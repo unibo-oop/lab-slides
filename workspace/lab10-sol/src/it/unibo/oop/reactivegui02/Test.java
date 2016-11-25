@@ -1,4 +1,4 @@
-package it.unibo.oop.lab09.reactivegui2;
+package it.unibo.oop.reactivegui02;
 
 /**
  * 
