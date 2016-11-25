@@ -1,4 +1,4 @@
-package it.unibo.oop.resourceloading;
+package it.unibo.oop.lab.resourceloading;
 
 import java.io.BufferedReader;
 import java.io.IOException;
