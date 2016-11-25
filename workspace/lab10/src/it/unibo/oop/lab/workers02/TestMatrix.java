@@ -5,28 +5,13 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /**
+ * Implement SumMatrix, which sums the elements of a matrix, with a class
+ * MultiThreadedSumMatrix, that gets the job done in a multithreaded
+ * fashion. Use the previous exercise as an example.
  * 
- * TestMatrix for worker 2.
- *
+ * Split the work as equally as possible.
  */
 public class TestMatrix {
-
-    /*
-     * Si fornisce l'interfaccia ISumMatrix, con un metodo per calcolare la
-     * somma delgi elementi di una matrice.
-     * 
-     * Realizzare una classe MultiThreadedSumMatrix, con costrutto che accetta
-     * un intero positivo 'n', che implementa tale funzionalità in modo
-     * "multi-threaded", con 'n' Worker che si dividano il compito in modo
-     * sufficientemente omogeneo -- non è necessario che l'ammontare dei compiti
-     * dei singoli Worker siano esattamente equivalenti.
-     * 
-     * Si faccia stampare (su System.out) ad ogni Worker una indicazione di che
-     * porzione del lavoro svolge.
-     * 
-     * All'esecuzione del test qui sotto, le chiamate dovranno dare lo stesso
-     * output, ad eccezione ovviamente dei tempi.
-     */
 
     private static final int SIZE = 10000;
     private static final double EXPECTED_DELTA = 0.01;

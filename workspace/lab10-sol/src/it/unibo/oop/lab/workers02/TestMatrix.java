@@ -49,7 +49,7 @@ public class TestMatrix {
         System.out.println("BTW: the sum with " + SIZE + "*" + SIZE + " elements is: " + sum);
         long time;
 
-        ISumMatrix sumMatrix = new MultiThreadedSumMatrix(1);
+        SumMatrix sumMatrix = new MultiThreadedSumMatrix(1);
         time = System.currentTimeMillis();
         assertEquals(sumMatrix.sum(matrix), sum, EXPECTED_DELTA);
         System.out.println("Tried with 1 thread: " + (System.currentTimeMillis() - time) + MSEC);

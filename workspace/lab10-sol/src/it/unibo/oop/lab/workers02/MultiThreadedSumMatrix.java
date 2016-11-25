@@ -1,13 +1,16 @@
 package it.unibo.oop.lab.workers02;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * This is a standard implementation of the calculation.
  * 
  */
 
-public class MultiThreadedSumMatrix implements ISumMatrix {
+public class MultiThreadedSumMatrix implements SumMatrix {
 
     private final int nthread;
 
@@ -39,7 +42,7 @@ public class MultiThreadedSumMatrix implements ISumMatrix {
          * @param nelem
          *            the no. of element for him to sum
          */
-        public Worker(final double[][] matrix, final int startpos, final int nelem) {
+        Worker(final double[][] matrix, final int startpos, final int nelem) {
             super();
             this.matrix = Arrays.copyOf(matrix, matrix.length);
             this.startpos = startpos;
@@ -48,7 +51,6 @@ public class MultiThreadedSumMatrix implements ISumMatrix {
 
         @Override
         public void run() {
-            // System.out.println("Working from row "+startpos+" to row "+(startpos+nelem-1));
             for (int i = startpos; i < matrix.length && i < startpos + nelem; i++) {
                 for (final double d : this.matrix[i]) {
                     this.res += d;
@@ -65,24 +67,21 @@ public class MultiThreadedSumMatrix implements ISumMatrix {
     /**
      * {@inheritDoc}
      */
+    @Override
     public double sum(final double[][] matrix) {
-        double res = 0;
-        Worker[] w = new Worker[nthread];
-        int start = 0;
-        final int size = matrix.length % nthread == 0 ? matrix.length / nthread : matrix.length / nthread + 1;
-        for (int j = 0; j < nthread; j++) {
-            w[j] = new Worker(matrix, start, size);
-            w[j].start();
-            start = start + size;
-        }
-        for (final Worker worker : w) {
+        final int size = matrix.length / nthread + matrix.length % nthread;
+        final List<Worker> workers = IntStream.iterate(0, start -> start + size)
+                .limit(nthread)
+                .mapToObj(start -> new Worker(matrix, start, size))
+                .collect(Collectors.toList());
+        workers.forEach(Thread::start);
+        workers.forEach(t -> {
             try {
-                worker.join();
-            } catch (InterruptedException e) {
-                System.out.println("Something went wrong: " + e);
+                t.join();
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
             }
-            res += worker.getResult();
-        }
-        return res;
+        });
+        return workers.stream().mapToDouble(Worker::getResult).sum();
     }
 }
