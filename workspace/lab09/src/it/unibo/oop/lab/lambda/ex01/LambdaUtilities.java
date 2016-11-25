@@ -59,8 +59,9 @@ public final class LambdaUtilities {
      *            predicate to execute
      * @param <T>
      *            element type
-     * @return a list that intervals each element of the input list with an
-     *         element computed passing the value to the predicate
+     * @return a list where each value is an Optional, holding the previous
+     *         value only if the predicate passes, and an Empty optional
+     *         otherwise.
      */
     public static <T> List<Optional<T>> optFilter(final List<T> list, final Predicate<T> pre) {
         /*
