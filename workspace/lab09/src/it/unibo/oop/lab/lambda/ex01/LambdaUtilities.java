@@ -122,9 +122,9 @@ public final class LambdaUtilities {
          * [1, 101, 2, 102, 3, 103, 4, 104, 5, 105, 6, 106, 7, 107]
          */
 
-        System.out.println(group(li, x -> x % 2 == 0 ? "pari" : "dispari"));
+        System.out.println(group(li, x -> x % 2 == 0 ? "even" : "odd"));
         /*
-         * {dispari=[1, 3, 5, 7], pari=[2, 4, 6]}
+         * {odd=[1, 3, 5, 7], even=[2, 4, 6]}
          */
 
         final List<Optional<Integer>> opt = optFilter(li, x -> x % 3 == 0);
