@@ -1,8 +1,7 @@
 \documentclass[presentation]{beamer}
 \usepackage{../oop-slides-pianini}
 \setbeamertemplate{bibliography item}[text]
-\newcommand{\lessonnr}[0]{06}
-\title[OOP09 -- Deployment and Concurrency]{09\\Deployment di applicazioni, Programmazione multipiattaforma, Profiling e Concorrenza}
+\title[OOP09 -- Deployment, Libraries, Multiplatform]{09\\Deployment di applicazioni, Programmazione multipiattaforma, Librerie, Profiling}
 
 \begin{document}
 
@@ -255,80 +254,69 @@ Per approfondimenti (per implementare il supporto multilingua):
 \end{block}
 \end{frame}
 
-\begin{frame}{Corretta struttura di un progetto -- Dettagli (2/3)}
-\begin{block}{\texttt{res}}
-\begin{itemize}
-\item Contiene le risorse del progetto opportunamente organizzate
-\begin{itemize}
-\item Per risorse si intendono icone, file di testo, video, immagini, modelli 3D e qualunque cosa sia necessaria al corretto funzionamento del programma ma non sia una libreria o un file sorgente.
-\end{itemize}
-
-\item In Eclipse, per far sì che le risorse vengano inserite nel classpath (da cui sarà più facile caricarle), è necessario rendere \texttt{res} una cartella sorgente con la procedura descritta nella slide precedente.
-\end{itemize}
-\end{block}
-
-\begin{block}{\texttt{lib}}
-\begin{itemize}
-\item	Contiene tutte le librerie che si sono usate, che siano in file jar o che siano librerie native in formato .so (o .dll)
-\end{itemize}
-\end{block}
+\begin{frame}[allowframebreaks]{Corretta struttura di un progetto -- Dettagli}
+	\begin{block}{\texttt{res}}
+		\begin{itemize}
+			\item Contiene le risorse del progetto opportunamente organizzate
+			\begin{itemize}
+				\item Per risorse si intendono icone, file di testo, video, immagini, modelli 3D e qualunque cosa sia necessaria al corretto funzionamento del programma ma non sia una libreria o un file sorgente.
+			\end{itemize}
+			\item In Eclipse, per far sì che le risorse vengano inserite nel classpath (da cui sarà più facile caricarle), è necessario rendere \texttt{res} una cartella sorgente con la procedura descritta nella slide precedente.
+		\end{itemize}
+	\end{block}
+	\begin{block}{\texttt{lib}}
+		\begin{itemize}
+			\item	Contiene tutte le librerie che si sono usate, che siano in file jar o che siano librerie native in formato .so (o .dll)
+		\end{itemize}
+	\end{block}
+	\begin{block}{\texttt{doc}}
+		\begin{itemize}
+			\item Contiene la documentazione del progetto.
+			\item Se si decide di inserire sia documentazione di tipo non rigenerabile (e.g. una relazione in pdf) sia quella di tipo rigenerabile (e.g. la javadoc), è bene tenerle separate.
+			\item \textbf{La documentazione rigenerabile non va tracciata col DVCS}
+		\end{itemize}
+	\end{block}
+	\begin{block}{\texttt{bin}}
+		\begin{itemize}
+			\item Contiene la versione compilata del vostro software.
+			\item \textbf{Non va tracciata col DVCS}
+		\end{itemize}
+	\end{block}
+	\begin{block}{\texttt{README.md}}
+		\begin{itemize}
+			\item File con la descrizione del progetto: autori, breve guida d'uso, link a risorse.
+			\begin{itemize}
+				\item Bitbucket e GitHub sono in grado di fare il parse del file e di integrarlo nella pagina del progetto, in modo da dargli una descrizione.
+			\end{itemize} 
+		\end{itemize} 
+	\end{block}
 \end{frame}
 
-\begin{frame}{Corretta struttura di un progetto -- Dettagli (3/3)}
-\begin{block}{\texttt{doc}}
-\begin{itemize}
-\item Contiene la documentazione del progetto.
-\item Sesi decide di inserire sia documentazione di tipo non rigenerabile (e.g. una relazione in pdf) sia quella di tipo rigenerabile (e.g. la javadoc), è bene tenerle separate (facilita il tracking con DVCS).
-\end{itemize}
-\end{block}
-
-\begin{block}{\texttt{bin}}
-\begin{itemize}
-\item Contiene la versione compilata del vostro software.
-\item In Eclipse, la creazione di questa cartella è compito del SDK.
-\end{itemize}
-\end{block}
-
-\begin{block}{\texttt{README.md}}
-\begin{itemize}
-\item File con la descrizione del progetto: autori, breve guida d'uso, link a risorse. \begin{itemize}
-\item Bitbucket e GitHub sono in grado di fare il parse del file e di integrarlo nella pagina del progetto, in modo da dargli una descrizione.
-\end{itemize} 
-\end{itemize}
-\end{block}
-
-\end{frame}
-
-\begin{frame}{Utilizzo di path relativi in Eclipse (1/2)}
-\begin{itemize}\itemsep20pt
-\item Quando si lavora ad un progetto, \textbf{è bene che tutti i path siano relativi alla radice del progetto stesso}.
-\item In caso contrario:
-\begin{itemize}
-\item Gli altri membri del team dovranno continuamente cambiare le impostazioni per adattarle al loro file system.
-\item Il progetto non sarà sviluppabile su piattaforme diverse.
-\item Questo è vero in particolare per le librerie, supponendo che le risorse siano gestite correttamente.
-\item \dots
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Utilizzo di path relativi in Eclipse (2/2)}
-
-\begin{block}{Procedura \textbf{\underline{NON}} corretta}
-Il modo \textbf{\underline{sbagliato}} di cui importare una libreria in Eclipse è: Proprietà del progetto $\rightarrow$ Java Build Path $\rightarrow$ Libraries $\rightarrow$ Add External JARs $\rightarrow$ Selezione dei JAR $\rightarrow$ OK $\rightarrow$ OK
-\begin{itemize}
-\item \`{E} possibile scegliere JAR da qualunque punto del file system.
-\item Vengono generati percorsi assoluti.
-\end{itemize}
-\end{block}
-
-\begin{block}{Procedura \textbf{\underline{corretta}}}
-Il modo \textbf{\underline{corretto}} di cui importare una libreria in Eclipse è: Proprietà del progetto $\rightarrow$ Java Build Path $\rightarrow$ Libraries $\rightarrow$ Add JARs $\rightarrow$ Selezione dei JAR $\rightarrow$ OK $\rightarrow$ OK
-\begin{itemize}
-\item \`{E} possibile scegliere solo JAR file che esistono in una delle cartelle del progetto (e, se il progetto è ben configurato, sono inserite in \texttt{lib}).
-\item Vengono generati percorsi relativi alla root del progetto.
-\end{itemize}
-\end{block}
+\begin{frame}[allowframebreaks]{Utilizzo di path relativi in Eclipse}
+	\begin{itemize}\itemsep20pt
+		\item Quando si lavora ad un progetto, \textbf{è bene che tutti i path siano relativi alla radice del progetto stesso}.
+		\item In caso contrario:
+		\begin{itemize}
+			\item Gli altri membri del team dovranno continuamente cambiare le impostazioni per adattarle al loro file system.
+			\item Il progetto non sarà sviluppabile su piattaforme diverse.
+			\item Questo è vero in particolare per le librerie, supponendo che le risorse siano gestite correttamente.
+			\item \dots
+		\end{itemize}
+	\end{itemize}
+	\begin{block}{Procedura \textbf{\underline{NON}} corretta}
+		Il modo \textbf{\underline{sbagliato}} di cui importare una libreria in Eclipse è: Proprietà del progetto $\rightarrow$ Java Build Path $\rightarrow$ Libraries $\rightarrow$ Add External JARs $\rightarrow$ Selezione dei JAR $\rightarrow$ OK $\rightarrow$ OK
+		\begin{itemize}
+			\item \`{E} possibile scegliere JAR da qualunque punto del file system.
+			\item Vengono generati percorsi assoluti.
+		\end{itemize}
+	\end{block}
+	\begin{block}{Procedura \textbf{\underline{corretta}}}
+		Il modo \textbf{\underline{corretto}} di cui importare una libreria in Eclipse è: Proprietà del progetto $\rightarrow$ Java Build Path $\rightarrow$ Libraries $\rightarrow$ Add JARs $\rightarrow$ Selezione dei JAR $\rightarrow$ OK $\rightarrow$ OK
+		\begin{itemize}
+			\item \`{E} possibile scegliere solo JAR file che esistono in una delle cartelle del progetto (e, se il progetto è ben configurato, sono inserite in \texttt{lib}).
+			\item Vengono generati percorsi relativi alla root del progetto.
+		\end{itemize}
+	\end{block}
 \end{frame}
 
 \subsection{Caricamento di risorse dal classpath}
@@ -463,7 +451,7 @@ Spesso un software ha necessità di caricare al primo avvio delle impostazioni d
 \end{frame}
 
 
-\section{Esercitazione sulla concorrenza}
+\section{Ispezione e Profiling}
 
 \subsection{JVisualVM}
 
@@ -471,7 +459,7 @@ Spesso un software ha necessità di caricare al primo avvio delle impostazioni d
 \begin{itemize}\itemsep10pt
 \item Quando si sviluppa un'applicazione complessa, soprattutto se basata su meccanismi di concorrenza, è opportuno analizzarne il comportamento e monitorarne le performance.
 \begin{itemize}
-\item Spesso il monitoraggio delle performance è essenziale per identificare eventuali problematiche o capire l'origine di problemi che possono essere insorti.
+\item Spesso il monitoraggio delle performance è essenziale per identificare eventuali problematiche o capire l'origine di problemi che possono essere sorti.
 \end{itemize}
 \item Tra gli strumenti che possono essere utilizzati per monitorare l'esecuzione di applicazioni che sono eseguite sulla JVM, due sono distribuiti unitamente al Java Development Kit (JDK).
 \begin{itemize}
@@ -492,7 +480,7 @@ Spesso un software ha necessità di caricare al primo avvio delle impostazioni d
 \item per quanto tempo un thread si trova nello stato di running oppure in stato di blocco o di idle.
 \item \dots
 \end{itemize}
-\item Richiamabile attraverso il comando \texttt{jvisualvm}.
+\item Richiamabile attraverso il comando \texttt{jvisualvm} o \texttt{visualvm} (dipendentemente dalla distribuzione Java).
 \end{itemize}
 \end{frame}
 
@@ -516,256 +504,7 @@ Spesso un software ha necessità di caricare al primo avvio delle impostazioni d
 \includegraphics[width=0.99\textwidth]{img/jvisualvm-3}
 \end{frame}
 
-\subsection{GUI reattive}
-
-\begin{frame}{Esercizi da svolgere in Autonomia}
-\begin{block}{Esercizi sulle GUI reattive}
-\begin{enumerate}
-\item \emph{gui1}: studiare e analizzare il primo esercizio, aiutandosi con i commenti
-\item \emph{gui2}: estensione di \emph{gui1} (seguire le istruzioni riportate nel test dell'esercizio)
-\item \emph{gui3}: ulteriore estensione di \emph{gui3}
-\end{enumerate}
-\end{block}
-
-\begin{block}{Esercizi sui Worker}
-\begin{enumerate}
-\item  \emph{worker1}: studiare e analizzare il primo esercizio, aiutandosi con i commenti
-\item \emph{worker2}: estensione di \emph{worker1} (seguire le istruzioni riportate nel test dell'esercizio)
-\end{enumerate}
-\end{block}
-\end{frame}
-
-\begin{frame}{Approfondimenti}
-\begin{block}{MVC per GUI reattive}
-\begin{enumerate}
-\item \emph{rguis.mvc}: presenta un esempio di implementazione di \emph{gui1} usando il pattern MVC. 
-\item Consideratelo come un esempio di uso di MVC per la progettazione di GUI reattive!
-\item Analizzarne e comprenderne struttura e comportamento.
-\end{enumerate}
-\end{block}
-
-\end{frame}
-
 \end{document}
-
-
-\section{Monitoring e Debugging di Applicazioni Concorrenti}
-
-\fr{Monitoring Thread: JConsole TOOL}{
-	\bl{}{
-	JConsole \cite{jconsole} is the Java Monitoring and Management Console, a graphical tool shipped in J2SE JDK 5.0 (and later versions)
-		\iz{
-			\item It uses the instrumentation of the Java virtual machine to provide information on performance and resource consumption of applications running on the Java platform
-			\item Based on the Java Management Extension (JMX) technology
-		}
-	}
-	\bl{}{
-		Useful (also) to monitor the thread spawned by a running Java programs
-		\iz{ \item Including VM threads, such as the one used for garbage collecting}
-	}
-}
-\fr{Using JConsole 1/2}{
-	\iz{ 
-		\item JDK $<$ 1.6 start the Java application that you want to monitor with the option: 
-			\iz{ 
-				\item \cil{-Dcom.sun.management.jmxremote}
-				\item e.g. \cil{java -Dcom.sun.management.jmxremote -cp bin Test}
-			}
-	}
-	\iz{
-		\item JDK $>=$ 1.6 it just type \cil{jconsole} from the command line
-		\iz{ 
-			\item When JConsole starts, you will be given a choice of all the Java applications that are running locally that JConsole can connect to
-			\item Connections with remote applications is possible as well (e.g. \cil{jconsole hostName:portNum})
-		}
-	}
-}
-\fr{Using JConsole 2/2}{
-	\fg{height=0.6\textheight}{img/jconsole.png} 
-}
-\fr{VisualVM: Am Open-Source Profiler}{
-	\iz{
-		\item Similar to JConsole, VisualVm \cite{visualvm} is a full-fledged profiler allowing to measure and visualize performances of Java programs
-			\iz{
-				\item It uses the instrumentation of the Java virtual machine to provide information on performance and resource consumption of applications running on the Java platform (like JConsole)
-				\item Based on the Java Management Extension (JMX) technology
-				\item Shipped with J2SE JDK 5.0 (and later versions)
-			}
-		}
-	\iz{
-		\item More fine-grained monitoring than JConsole
-			\iz{
-				\item Monitoring \% CPU used by methods, threads
-				\item Monitoring how long a thread is blocked or running
-				\item ...
-			}
-	}
-}
-\section{Somma Concorrente degli Elementi di un Array}
-
-\fr{Concurrent Adder 1/3}{
-	\bl{}{
-		Vogliamo calcolare la somma di tutti gli elementi di un array (elevandoli prima al cubo) in maniera concorrente, sfruttando un certo insieme di worker thread
-			\iz{
-				\item Useremo come riferimento l'architettura del \textit{``concurrent sorter''} visto a lezione
-				\item L'elevamento al cubo è stato introdotto semplicemente al fine di notare uno speedup tra la versione sequenziale e quella concorrente (vedere prossime slide)
-			}
-	}
-	\bl{\cil{oop1314.lab09.adder.ConcurrentAdder}}{
-		A tal fine renderemo concorrente l'implementazione di \cil{oop1314.lab09.adder.SequentialAdder} seguendo i passi riportati nelle prossime slide
-	}
-}
-
-\fr{Concurrent Adder 2/3}{
-	\bl{Passi da Seguire}{
-		\en{
-			\item Creare la classe \cil{ConcurrentAdder}
-			\item Creare al suo interno l'inner static class \cil{AdderWorker} che estenderà la classe \cil{Thread}
-			\item Creare il costruttore \cil{AdderWorker (long[] data, int minIndex, int maxIndex)} 
-			\item Definire il campo \cil{long sum}
-			\item Definire il metodo \cil{run} in \cil{AdderWorker} in cui memorizzare all'interno del campo \cil{sum} la somma elevata al cubo degli elementi di interesse
-				\iz{\item Analogamente a quanto visto per il sorter concorrente}
-			\item Definire il selettore \cil{public long getSum()} in modo che restituisca il valore del campo \cil{sum}
-		}
-	}
-}
-
-\fr{Concurrent Adder 3/3}{
-	\bl{Passi da Seguire}{
-		\en{
-			\item Nel \cil{main} di \cil{ConcurrentAdder} istanziare un numero \cil{nWorker} di \cil{AdderWorker} pari a nCPU + 1
-				\iz{\item nCPU va ricavando utilizzando il metodo statico \cil{Runtime.getRuntime().availableProcessors()}}
-			\item Suddividere equamente il lavoro tra gli \cil{nWorker} (sempre nel \cil{main})
-				\iz{\item Per semplicità, allocare all'ultimo worker eventuali elementi in eccesso derivanti da una suddivisione con resto degli elementi dell'input array}
-			\item Stampare in stdout il tempo necessario ad effettuare la somma (sempre nel \cil{main})
-				\iz{ \item Fare riferimento all'implementazione del main di \cil{SequentialAdder} per capire come calcolare il tempo}
-		}
-	}
-	
-}
-\fr{Concurrent Adder: Testing}{
-	\bl{Testing}{
-		Lanciare il programma e confrontare i tempi di esecuzione tra la versione concorrente e quella sequenziale
-			\iz{ \item Dovremmo sperimentare uno speedup del programma concorrente rispetto alla versione sequenziale}
-	}
-	
-	\bl{Nota}{
-		Se NON si dovesse notare lo speedup, è perché l'infrastruttura di virtualizzazione delle macchine del laboratorio non consente di ottenere dei risultati veritieri (il tempo puo' risultare inficiato da politiche di scheduling del server di virtualizzazione così come da ritardi dovuti alla rete): in questo caso, provare lo stesso test su una macchina fisica (anche a casa)
-	}
-}
-\section{Costruzione di GUI Reattive}
-%\section{Checksum di un File (Calcolato in Maniera Concorrente)}
-\fr{SimpleReactiveGUI}{
-	\bl{}{
-		Saper sviluppare GUI reattive e responsive alle interazioni dell'utente è un aspetto di fondamentale importanza (come visto a lezione)
-	}
-	\bl{Obiettivo}{
-		\iz{
-			\item Rendere la GUI \cil{SimpleReactiveGUI} responsive all'interazione con un generico utente
-			\item In particolare, \cil{SimpleReactiveGUI} dovrà consentire di salvare sul file system un array di 10 milioni di long contenente valori casuali, a seguito del click sul pulsante \cil{Save}
-		}
-	}
-}
-
-\fr{SimpleReactiveGUI 1/2}{
-	\bl{Primo passo}{
-		\iz{
-			\item Implementare l'operazione di salvataggio su file system direttamente nel listener del pulsante \textit{Save}
-			\item Fare il testing dell'applicazione: controllare che il comportamento atteso corrisponda a quello sperimentato 
-		}
-	}
-	
-	\bl{Secondo passo}{
-		Risolvere i problemi relativi all'implementazione precedente introducendo un thread dedicato per il salvataggio su file
-			\iz{
-				\item Appoggiarsi alla creazione di un oggetto thread anonimo all'interno del listener relativo ai click sui bottoni
-			}
-		\sizedcode{\scriptsize}{code/Thread.java}
-	}
-}
-
-\fr{SimpleReactiveGUI 2/2}{
-	\bl{}{
-		Che cosa succede se viene premuto una seconda volta il pulsante \cil{Save} prima che il salvataggio sul file system sia stato effettivamente completato?
-			\iz{ \item Verificarlo in maniera autonoma tramite debugging}
-	}
-
-	\bl{}{
-		Trovare in autonomia ad una soluzione per risolvere il problema
-			\iz{ \item E' una soluzione molto semplice... non vogliamo più ricevere eventi dal bottone \cil{Save} fino a che... e ricominciare poi a riceverli nuovamente una volta che...}
-	}
-}
-
-\section{Sfida tra Robot in un Ambiente Condiviso}
-\fr{Object Search Contest 1/2}{
-	\bl{Quali saranno i robot più veloci a trovare N oggetti nell'ambiente?}{
-		Vogliamo costruire una competizione tra robot (software) per stabilire chi riesce ad individuare più velocemente un certo numero di oggetti
-	}
-	\bl{Punto di partenza: le classi in \cil{oop1314.lab09.robot}}{
-		Cosa è cambiato
-		\iz{
-			\item \cil{RobotEnvironment}: è condiviso da tutti i robot e contiene al suo interno un dato numero (specificato nel costruttore) di oggetti recuperabili dai robot. Metodi aggiunti
-				\iz{
-					\item \cil{addRobot}: agginge un robot alla posizione specificata
-					\item \cil{searchObjFromCurrPoistion}: per cercare un oggetto nelle vicinanze (robotX+-1,robotY+-1) di un robot
-					\item \cil{pickObj}: per recuperare un oggetto alla posizione specificata
-				}
-			\item \cil{Robot}: modificata per allinearsi alle modifiche apportate a \cil{RobotEnvironment}, in particolare aggiunti i metodi \cil{searchObjFromCurrPoistion} e \cil{pick}
-		}
-	}
-}
-
-\fr{Object Search Contest 2/2}{
-	\bl{}{
-		Completare la classe \cil{RobotControllerAgent} che avrà il compito di governare in maniera autonoma il comportamento di un robot seguendo le indicazioni riportate nei commenti
-		\iz{
-			\item Ogni robot sarà quindi governato da un flusso di controllo indipendente, in competizione con gli altri
-		}
-	}
-	
-	\bl{}{
-		Completare la classe \cil{TestingRobot} seguendo le indicazioni riportate nei commenti e lanciare il test
-	}
-}
-\fr{Object Search Contest: Prime Modifiche}{
-	\bl{}{
-		Effettuando il testing del programma notiamo che vengono generate un insieme di eccezioni di tipo \textit{ConcurrentModificationException}
-			\iz{ \item Perchè? Provare di capire il motivo in autonomia, analizzando il messaggio di erore ripotato}
-	}
-	\bl{}{
-		Provare a risolvere in autonomia il problema, ricordando i costrutti di sincronizzazione visti a lezione
-			\iz{\item La keyword \cil{synchronized} in particolare}
-	}
-	\bl{Testing}{
-		Effettuare nuovamente il testing dell'applicazione per verificare la correttezza delle modifiche apportate
-	}
-}
-
-\fr{Object Search Contest: Ulteriori Modifiche}{
-	\bl{}{
-		Miglioriamo la stampa dei rankings
-			\iz{ \item In modo tale da non dover andare a cercare manualmente i messaggi in stdout }
-	}
-	\bl{Passi da seguire}{
-		\iz{
-			\item Completare la classe \cil{Ranker} seguendo le linee guida dei sorgenti, ricordandosi di utilizzare - quando necessario - opportuni meccanismi di sincronizzazione per evitare corse critiche
-			\item Modificare il costruttore di \cil{RobotControllerAgent} come segue
-				\iz{ \item \cil{RobotControllerAgent(Robot r, int nItemsToPick, Ranker ranker)} } 
-			\item Nel metodo \cil{run} di \cil{RobotControllerAgent} appoggiarsi al ranker per notificare la terminazione delle operazioni di ricerca
-			\item Nella classe \cil{TestingRobot} creare il ranker e passarlo ai vari controller, dopodiché quando tutti avranno terminato le ricerche, stampare la classifica appoggiandosi al metodo \cil{printRankings}
-		}
-	}
-}
-
-\section{Esercizi Aggiuntivi}
-\fr{Ultimiamo l'implementazione di SimpleReactiveGUI}{
-	\bl{}{
-		Implementare l'handler del bottone \cil{Checksum} in modo tale che calcoli il checksum relativo al file \cil{data.dat} memorizzato dal bottone \cil{Save} e visualizzi tale risultato nella label visualizzata nella GUI
-	}
-	\bl{Nota}{
-		Calcolare il checksum come semplice somma del valore di tutti i byte contenuti nel file \cil{data.dat}
-	}
-}
 
 \begin{frame}[allowframebreaks]
  \frametitle{Bibliography}
