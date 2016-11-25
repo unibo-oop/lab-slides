@@ -1,34 +1,27 @@
-package it.unibo.oop.lab09.workers1;
+package it.unibo.oop.lab.workers01;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.junit.Test;
 
 /**
  * 
  * TestMatrix for worker 1.
- * 
  *
  */
 public class TestListSum {
 
-    /*
-     * Si fornisce l'interfaccia ISumList, con un metodo per calcolare la somma
-     * degli elementi di una lista. Realizzare una classe MultiThreadedListSum,
-     * con costruttore che accetta un intero positivo 'n', che implementa tale
-     * funzionalità in modo "multi-threaded", con 'n' Worker che si dividono il
-     * compito in modo sufficientemente omogeneo -- non è necessario che
-     * l'ammontare dei compiti dei singoli Worker siano esattamente equivalenti.
-     * Si faccia stampare (su System.out) ad ogni Worker una indicazione di che
-     * porzione del lavoro svolge.
+    /**
+     * SumList and its multithreaded implementation are given as reference
+     * implementation of a software that sums the elements of a list.
      * 
-     * All'esecuzione del test qui sotto, le due chiamate dovranno dare lo
-     * stesso output, ad eccezione ovviamente dei tempi.
+     * Note that it is often impossible to split the load in an exact equal
+     * manner - that's not an issue normally, however.
      */
-
     private static final int SIZE = 10000000;
     private static final String MSEC = " msec";
 
@@ -37,16 +30,19 @@ public class TestListSum {
      */
     @Test
     public void testBasic() {
-        final List<Integer> list = new ArrayList<>(SIZE);
-        long sum = 0;
-        for (int i = 0; i < SIZE; i++) {
-            list.add(i);
-            sum += i;
-        }
+        final List<Integer> list = IntStream
+                .iterate(0, i -> i + 1)
+                .limit(SIZE)
+                .boxed()
+                .collect(Collectors.toList());
+        final long sum = list.stream()
+                .mapToLong(Integer::longValue)
+                .sum();
         System.out.println("BTW: the sum with " + SIZE + " elements is: " + sum);
+
         long time;
 
-        ISumList sumList = new MultiThreadedListSum(1);
+        SumList sumList = new MultiThreadedListSum(1);
         time = System.currentTimeMillis();
         assertEquals(sumList.sum(list), sum);
         System.out.println("Tried with 1 thread: " + (System.currentTimeMillis() - time) + MSEC);
@@ -56,20 +52,20 @@ public class TestListSum {
         assertEquals(sumList.sum(list), sum);
         System.out.println("Tried with 3 threads: " + (System.currentTimeMillis() - time) + MSEC);
 
-        sumList = new MultiThreadedListSum(7);
+        sumList = new MultiThreadedListSum(8);
         time = System.currentTimeMillis();
         assertEquals(sumList.sum(list), sum);
-        System.out.println("Tried with 7 threads: " + (System.currentTimeMillis() - time) + MSEC);
+        System.out.println("Tried with 8 threads: " + (System.currentTimeMillis() - time) + MSEC);
 
         sumList = new MultiThreadedListSum(10);
         time = System.currentTimeMillis();
         assertEquals(sumList.sum(list), sum);
         System.out.println("Tried with 10 threads: " + (System.currentTimeMillis() - time) + MSEC);
 
-        sumList = new MultiThreadedListSum(17);
+        sumList = new MultiThreadedListSum(16);
         time = System.currentTimeMillis();
         assertEquals(sumList.sum(list), sum);
-        System.out.println("Tried with 17 threads: " + (System.currentTimeMillis() - time) + MSEC);
+        System.out.println("Tried with 16 threads: " + (System.currentTimeMillis() - time) + MSEC);
     }
 
 }

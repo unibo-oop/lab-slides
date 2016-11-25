@@ -1,4 +1,4 @@
-package it.unibo.oop.lab09.workers2;
+package it.unibo.oop.lab.workers02;
 
 /**
  * 

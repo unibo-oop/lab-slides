@@ -1,4 +1,4 @@
-package it.unibo.oop.lab09.workers1;
+package it.unibo.oop.lab.workers01;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import java.util.List;
  * An interface defining a method to sum up the elements of a list.
  *
  */
-public interface ISumList {
+public interface SumList {
 
     /**
      * @param list

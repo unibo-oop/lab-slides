@@ -1,4 +1,4 @@
-package it.unibo.oop.lab09.workers2;
+package it.unibo.oop.lab.workers02;
 
 import static org.junit.Assert.assertEquals;
 
@@ -49,22 +49,22 @@ public class TestMatrix {
         System.out.println("BTW: the sum with " + SIZE + "*" + SIZE + " elements is: " + sum);
         long time;
 
-        ISumMatrix sumMatrix = new MultiThreadedSumMatrix(1);
+        SumMatrix sumMatrix = null; // new MultiThreadedSumMatrix(1);
         time = System.currentTimeMillis();
         assertEquals(sumMatrix.sum(matrix), sum, EXPECTED_DELTA);
         System.out.println("Tried with 1 thread: " + (System.currentTimeMillis() - time) + MSEC);
 
-        sumMatrix = new MultiThreadedSumMatrix(3);
+        sumMatrix = null; // new MultiThreadedSumMatrix(3);
         time = System.currentTimeMillis();
         assertEquals(sumMatrix.sum(matrix), sum, EXPECTED_DELTA);
         System.out.println("Tried with 3 threads: " + (System.currentTimeMillis() - time) + MSEC);
 
-        sumMatrix = new MultiThreadedSumMatrix(8);
+        sumMatrix = null; // new MultiThreadedSumMatrix(7);
         time = System.currentTimeMillis();
         assertEquals(sumMatrix.sum(matrix), sum, EXPECTED_DELTA);
-        System.out.println("Tried with 8 threads: " + (System.currentTimeMillis() - time) + MSEC);
+        System.out.println("Tried with 7 threads: " + (System.currentTimeMillis() - time) + MSEC);
 
-        sumMatrix = new MultiThreadedSumMatrix(10);
+        sumMatrix = null; // new MultiThreadedSumMatrix(10);
         time = System.currentTimeMillis();
         assertEquals(sumMatrix.sum(matrix), sum, EXPECTED_DELTA);
         System.out.println("Tried with 10 threads: " + (System.currentTimeMillis() - time) + MSEC);
