@@ -2,9 +2,8 @@ package it.unibo.oop.reactivegui02;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
+import java.util.concurrent.ForkJoinPool;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -35,60 +34,34 @@ public class ConcurrentGUI extends JFrame {
         super();
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize((int) (screenSize.getWidth() * WIDTH_PERC), (int) (screenSize.getHeight() * HEIGHT_PERC));
-
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
         final JPanel panel = new JPanel();
         panel.add(display);
         panel.add(up);
         panel.add(down);
         panel.add(stop);
-
         this.getContentPane().add(panel);
         this.setVisible(true);
-
         final Agent agent = new Agent();
-        agent.start();
-
-        up.addActionListener(new ActionListener() {
-            /**
-             * Action listener.
-             * 
-             * @param evt
-             *            the event to be handled.
-             * 
-             */
-            @Override
-            public void actionPerformed(final ActionEvent evt) {
-                agent.upCounting();
-            }
-        });
-
-        down.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                agent.downCounting();
-            }
-        });
-
-        stop.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
+        /*
+         * Reuse the system common ForkJoinPool!
+         */
+        ForkJoinPool.commonPool().submit(agent);
+        up.addActionListener(e -> agent.upCounting());
+        down.addActionListener(e -> agent.downCounting());
+        stop.addActionListener(e -> {
                 agent.stopCounting();
                 stop.setEnabled(false);
                 up.setEnabled(false);
                 down.setEnabled(false);
-            }
         });
 
     }
 
     private class Agent extends Thread {
-
         private volatile boolean stop;
         private volatile boolean up = true;
         private int counter;
-
         public void run() {
             while (!stop) {
                 try {
@@ -98,11 +71,9 @@ public class ConcurrentGUI extends JFrame {
                         }
                     });
                     counter += up ? 1 : -1;
-
                     Thread.sleep(100);
                 } catch (InvocationTargetException | InterruptedException ex) {
-                    // interrupted: added a system.out but there are much better ways to log exceptions
-                    System.out.println("Something went wrong. " + ex);
+                    ex.printStackTrace();
                 }
             }
         }
