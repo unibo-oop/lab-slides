@@ -1,4 +1,4 @@
-package it.unibo.oop.lab09.reactivegui1;
+package it.unibo.oop.reactivegui01;
 
 /**
  * TestMatrix class for first reactive GUI.

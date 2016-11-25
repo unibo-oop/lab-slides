@@ -1,4 +1,4 @@
-package it.unibo.oop.lab09.reactivegui1;
+package it.unibo.oop.reactivegui01;
 
 
 import java.awt.Dimension;
@@ -20,13 +20,9 @@ import javax.swing.SwingUtilities;
  */
 public class CGUI extends JFrame {
 
-    // JFrame implementa Serializable, ricordarsi di generare l'UID
-    private static final long serialVersionUID = -6218820567019985015L;
-
+    private static final long serialVersionUID = 1L;
     private static final double WIDTH_PERC = 0.2;
     private static final double HEIGHT_PERC = 0.1;
-
-    // I componenti accessibili al Thread di conteggio siano campi
     private final JLabel display = new JLabel();
     private final JButton stop = new JButton("stop");
 
@@ -38,19 +34,21 @@ public class CGUI extends JFrame {
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize((int) (screenSize.getWidth() * WIDTH_PERC), (int) (screenSize.getHeight() * HEIGHT_PERC));
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
         final JPanel panel = new JPanel();
         panel.add(display);
         panel.add(stop);
-
         this.getContentPane().add(panel);
         this.setVisible(true);
-
-        // Si crea l'agent contatore e lo si fa partire
+        /*
+         * Create the counter agent and start it. This is actually not so good:
+         * thread management should be left to
+         * java.util.concurrent.ExecutorService
+         */
         final Agent agent = new Agent();
-        agent.start();
-
-        // Si registra un listener che stoppa il contatore
+        new Thread(agent).start();
+        /*
+         * Register a listener that stops it
+         */
         stop.addActionListener(new ActionListener() {
             /**
              * event handler associated to action event on button stop.
@@ -64,43 +62,39 @@ public class CGUI extends JFrame {
                 agent.stopCounting();
             }
         });
-
     }
 
-    /**
-     * Il contatore è realizzato tramite una member class provata che estende
-     * Thread. Questo consente di tenerla invisibile all'esterno, ben
-     * incapsulata, e le consente di accedere ai campi dell'enclosing instance,
-     * ossia ai componenti della GUI che potrebbe modificare.
-     * 
+    /*
+     * The counter agent is implemented as a nested class. This makes it
+     * invisible outside and incapsulated.
      */
-    private class Agent extends Thread {
-
-        // stop viene modificato "da fuori": sia volatile!!
+    private class Agent implements Runnable {
+        /*
+         * stop is volatile to ensure ordered access
+         */
         private volatile boolean stop;
         private int counter;
 
-        /**
-         * Behavior of thread.
-         */
         public void run() {
-            // Solito ciclo per supportare deferred cancellation
             while (!this.stop) {
                 try {
+                    /*
+                     * All the operations on the GUI must be performed by the
+                     * Event-Dispatch Thread (EDT)!
+                     */
                     SwingUtilities.invokeAndWait(new Runnable() {
                         public void run() {
                             CGUI.this.display.setText(Integer.toString(Agent.this.counter));
-                            // or simply:
-                            // display.setText("" + counter);
                         }
                     });
-                    // Incremento il conteggio e dormo per 100 msec
                     this.counter++;
-
                     Thread.sleep(100);
                 } catch (InvocationTargetException | InterruptedException ex) {
-                    // interrupted: added a system.out but there are much better ways to log exceptions
-                    System.out.println("Something went wrong. " + ex);
+                    /*
+                     * This is just a stack trace print, in a real program there
+                     * should be some logging and decent error reporting
+                     */
+                    ex.printStackTrace();
                 }
             }
         }
