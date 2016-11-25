@@ -84,7 +84,7 @@ public class MusicGroupImpl implements MusicGroup {
         private final double duration;
         private int hash;
 
-        public Song(final String name, final Optional<String> album, final double len) {
+        Song(final String name, final Optional<String> album, final double len) {
             super();
             this.songName = name;
             this.albumName = album;
