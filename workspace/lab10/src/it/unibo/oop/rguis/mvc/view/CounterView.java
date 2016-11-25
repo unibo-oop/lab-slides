@@ -1,14 +1,24 @@
 package it.unibo.oop.rguis.mvc.view;
 
 /**
- * Interface
+ * Interface.
  */
 public interface CounterView {
 
+    /**
+     * Called when a new count is initialized.
+     */
     void init();
 
+    /**
+     * @param value
+     *            the value of the counter
+     */
     void update(int value);
-    
+
+    /**
+     * Called when a count is terminated.
+     */
     void terminate();
 
 }
