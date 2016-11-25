@@ -1,8 +1,5 @@
 package it.unibo.oop.lab.lambda.ex03;
 
-import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.groupingBy;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -10,10 +7,8 @@ import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
 import java.util.Arrays;
-import java.util.SortedSet;
-import java.util.StringTokenizer;
-import java.util.TreeSet;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -40,34 +35,34 @@ import javax.swing.JTextArea;
 public final class LambdaFilter extends JFrame {
 
     private static final long serialVersionUID = 1760990730218643730L;
-    private static final String TOKEN_SYMBOLS = " \t\n\r\f,.:;?!¡";
+    /*
+     * This is a "regular expression". It is a very powerful tool for inspecting
+     * and manipulating strings. Unfortunately, we have no room in this course
+     * to introduce them - but you can read something yourself (start from
+     * https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html),
+     * and test your abilities with https://regex101.com/
+     */
+    private static final String ANY_NON_WORD = "(\\s|\\p{Punct})+";
 
     private enum Command {
-        IDENTITY("No modifications", s -> s), TO_LOWER("Lowercase", s -> s.toLowerCase()), COUNT("Count chars",
-                s -> Integer.toString(s.length())), LINES("Count lines", s -> Long.toString(s.chars()
-                .filter(e -> e == '\n').count() + 1)), WORDS("Sort words in alphabetical order", s -> {
-            final StringTokenizer tk = new StringTokenizer(s, TOKEN_SYMBOLS);
-            final SortedSet<String> set = new TreeSet<>();
-            while (tk.hasMoreElements()) {
-                set.add(tk.nextToken());
-            }
-            System.out.println(" Set : " + set);
-            final StringBuilder sb = new StringBuilder();
-            for (final String word : set) {
-                sb.append(word);
-                sb.append('\n');
-            }
-            return sb.toString();
-        }), WORDCOUNT("Count words", s -> {
-                    final StringBuilder sb = new StringBuilder();
-                    Arrays.asList(s.split("\\W+")).stream().collect(groupingBy(e -> e, counting())).forEach((k, v) -> {
-                        sb.append(k);
-                        sb.append(" -> ");
-                        sb.append(v);
-                        sb.append('\n');
-                    });
-                    return sb.toString();
-                });
+        /**
+         * Commands
+         */
+        IDENTITY("No modifications", Function.identity()),
+        TO_LOWER("Lowercase", String::toLowerCase),
+        COUNT("Count chars", s -> Integer.toString(s.length())),
+        LINES("Count lines", s -> Long.toString(s.chars().filter(e -> e == '\n').count() + 1)),
+        WORDS("Sort words in alphabetical order", s ->
+            Arrays.stream(s.split(ANY_NON_WORD))
+                .sorted()
+                .collect(Collectors.joining("\n"))),
+        WORDCOUNT("Count words", s ->
+            Arrays.stream(s.split(ANY_NON_WORD))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream()
+                .map(e -> e.getKey() + " -> " + e.getValue())
+                .collect(Collectors.joining("\n"))
+        );
 
         private final String commandName;
         private final Function<String, String> fun;
