@@ -9,7 +9,7 @@ public final class Test {
     }
 
     /*
-     * Realizzare una classe C2GUI con costruttore vuoto, tale che quando
+     * Realizzare una classe ConcurrentGUI con costruttore vuoto, tale che quando
      * istanziata crei un JFrame con l'aspetto mostrato nella figura allegata (e
      * contatore inizialmente posto a zero).
      * 
@@ -39,6 +39,6 @@ public final class Test {
      * 
      */
     public static void main(final String... args) {
-        // new C2GUI();
+        // new ConcurrentGUI();
     }
 }

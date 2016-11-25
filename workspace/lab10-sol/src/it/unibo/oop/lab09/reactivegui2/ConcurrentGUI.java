@@ -17,7 +17,7 @@ import javax.swing.SwingUtilities;
  * Second example of reactive GUI.
  *
  */
-public class C2GUI extends JFrame {
+public class ConcurrentGUI extends JFrame {
 
     private static final long serialVersionUID = -6218820567019985015L;
     private static final double WIDTH_PERC = 0.2;
@@ -31,7 +31,7 @@ public class C2GUI extends JFrame {
     /**
      * Construct a C2GUI.
      */
-    public C2GUI() {
+    public ConcurrentGUI() {
         super();
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize((int) (screenSize.getWidth() * WIDTH_PERC), (int) (screenSize.getHeight() * HEIGHT_PERC));
