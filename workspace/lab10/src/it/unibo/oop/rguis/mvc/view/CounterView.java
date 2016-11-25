@@ -1,11 +1,14 @@
 package it.unibo.oop.rguis.mvc.view;
 
+/**
+ * Interface
+ */
 public interface CounterView {
-	
-	void initView();
-	
-	void updateCounter(int value);
-	
-	void addCounterViewObserver(CounterViewObserver view);
+
+    void init();
+
+    void update(int value);
+    
+    void terminate();
 
 }

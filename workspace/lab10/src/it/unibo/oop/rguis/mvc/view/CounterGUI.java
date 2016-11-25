@@ -2,11 +2,7 @@ package it.unibo.oop.rguis.mvc.view;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,81 +10,78 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import it.unibo.oop.rguis.mvc.controller.CounterController;
+
 /**
  * An implementation of {@link CounterView}.
  *
  */
-public class CounterGUI extends JFrame implements CounterView {
+public final class CounterGUI extends JFrame implements CounterView {
 
-    // JFrame implementa Serializable, ricordarsi di generare l'UID
-    private static final long serialVersionUID = -6218820567019985015L;
-
+    private static final long serialVersionUID = 1L;
     private static final double WIDTH_PERC = 0.2;
     private static final double HEIGHT_PERC = 0.1;
-
-    // I componenti accessibili al Thread di conteggio siano campi
     private final JLabel display = new JLabel();
+    private final JButton start = new JButton("start");
     private final JButton stop = new JButton("stop");
 
-    private final Set<CounterViewObserver> observers;
-
     /**
-     * Builds a new CGUI.
+     * Builds a new GUI.
+     * 
+     * @param controller
+     *            the controller to act upon
      */
-    public CounterGUI() {
-        super();
-        this.observers = new HashSet<>();
-
+    public CounterGUI(final CounterController controller) {
         final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         this.setSize((int) (screenSize.getWidth() * WIDTH_PERC), (int) (screenSize.getHeight() * HEIGHT_PERC));
-
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
         final JPanel panel = new JPanel();
         panel.add(display);
+        panel.add(start);
         panel.add(stop);
-
+        start.addActionListener(e -> controller.start());
+        stop.setEnabled(false);
+        stop.addActionListener(e -> controller.stop());
         this.getContentPane().add(panel);
+    }
 
-        // Si registra un listener che stoppa il contatore
-        stop.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                // agent dopra deve essere final
-                for (final CounterViewObserver observer : observers) {
-                    observer.stop();
-                }
-            }
+    /**
+     * {@inheritDoc}}.
+     */
+    @Override
+    public void init() {
+        SwingUtilities.invokeLater(() -> {
+            start.setEnabled(false);
+            stop.setEnabled(true);
+            setText(0);
         });
+    }
 
+    @Override
+    public void terminate() {
+        SwingUtilities.invokeLater(() -> {
+            start.setEnabled(true);
+            stop.setEnabled(false);
+        });
+    }
+
+    private void setText(final int i) {
+        display.setText(Integer.toString(i));
     }
 
     /**
      * {@inheritDoc}}.
      */
-    public void initView() {
-        this.setVisible(true);
+    public void update(final int value) {
+        uncheckedInvokeAndWait(() -> display.setText(Integer.toString(value)));
     }
 
-    /**
-     * {@inheritDoc}}.
-     */
-    public void updateCounter(final int value) {
+    private static void uncheckedInvokeAndWait(final Runnable r) {
         try {
-            SwingUtilities.invokeAndWait(new Runnable() {
-                public void run() {
-                    CounterGUI.this.display.setText(Integer.toString(value));
-                }
-            });
+            SwingUtilities.invokeAndWait(r);
         } catch (InvocationTargetException | InterruptedException e) {
-            e.printStackTrace();
+            throw new IllegalStateException(e);
         }
     }
 
-    /**
-     * {@inheritDoc}}.
-     */
-    public void addCounterViewObserver(final CounterViewObserver view) {
-        this.observers.add(view);
-    }
 }

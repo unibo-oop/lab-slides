@@ -1,6 +1,7 @@
 package it.unibo.oop.rguis.mvc;
 
-import it.unibo.oop.rguis.mvc.controller.Controller;
+import it.unibo.oop.rguis.mvc.controller.ControllerImpl;
+import it.unibo.oop.rguis.mvc.controller.CounterController;
 import it.unibo.oop.rguis.mvc.model.CounterImpl;
 import it.unibo.oop.rguis.mvc.model.Counter;
 import it.unibo.oop.rguis.mvc.view.CounterGUI;
@@ -23,9 +24,26 @@ public final class CounterGUIApp {
      */
     public static void main(final String... args) {
         final Counter model = new CounterImpl();
-        final CounterView view = new CounterGUI();
-        final Controller controller = new Controller(model, view);
-        controller.start();
+        final CounterController controller = new ControllerImpl(model);
+        final CounterGUI view = new CounterGUI(controller);
+        final CounterView stdout = new CounterView() {
+            @Override
+            public void update(final int value) {
+                System.out.println("Count is now " + value);
+            }
+            @Override
+            public void terminate() {
+                System.out.println("Count terminated.");
+            }
+            @Override
+            public void init() {
+                System.out.println("Count restarted.");
+                update(0);
+            }
+        };
+        controller.registerView(view);
+        controller.registerView(stdout);
+        view.setVisible(true);
     }
 
 }

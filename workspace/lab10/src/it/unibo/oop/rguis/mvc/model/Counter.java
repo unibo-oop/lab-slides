@@ -17,5 +17,7 @@ public interface Counter {
      * @return the current value
      */
     int getValue();
+    
+    void reset();
 
 }

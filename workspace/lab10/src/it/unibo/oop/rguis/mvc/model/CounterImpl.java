@@ -12,21 +12,22 @@ public class CounterImpl implements Counter {
      * Constructs a new counter.
      */
     public CounterImpl() {
-        this.counter = 0;
+        counter = 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    @Override
     public void increment() {
-        this.counter++;
+        counter++;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    @Override
     public int getValue() {
-        return this.counter;
+        return counter;
+    }
+
+    @Override
+    public void reset() {
+        counter = 0;
     }
 
 }
