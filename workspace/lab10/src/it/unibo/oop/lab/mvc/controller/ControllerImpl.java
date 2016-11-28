@@ -1,11 +1,11 @@
-package it.unibo.oop.rguis.mvc.controller;
+package it.unibo.oop.lab.mvc.controller;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 
-import it.unibo.oop.rguis.mvc.model.Counter;
-import it.unibo.oop.rguis.mvc.view.CounterView;
+import it.unibo.oop.lab.mvc.model.Counter;
+import it.unibo.oop.lab.mvc.view.CounterView;
 
 /**
  * Reactive gui controller.

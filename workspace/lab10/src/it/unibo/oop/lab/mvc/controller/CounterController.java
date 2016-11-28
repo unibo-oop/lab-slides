@@ -1,6 +1,6 @@
-package it.unibo.oop.rguis.mvc.controller;
+package it.unibo.oop.lab.mvc.controller;
 
-import it.unibo.oop.rguis.mvc.view.CounterView;
+import it.unibo.oop.lab.mvc.view.CounterView;
 
 /**
  * The interface of the controller, that can be used by any user interface

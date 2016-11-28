@@ -1,11 +1,11 @@
-package it.unibo.oop.rguis.mvc;
+package it.unibo.oop.lab.mvc;
 
-import it.unibo.oop.rguis.mvc.controller.ControllerImpl;
-import it.unibo.oop.rguis.mvc.controller.CounterController;
-import it.unibo.oop.rguis.mvc.model.CounterImpl;
-import it.unibo.oop.rguis.mvc.model.Counter;
-import it.unibo.oop.rguis.mvc.view.CounterGUI;
-import it.unibo.oop.rguis.mvc.view.CounterView;
+import it.unibo.oop.lab.mvc.controller.ControllerImpl;
+import it.unibo.oop.lab.mvc.controller.CounterController;
+import it.unibo.oop.lab.mvc.model.Counter;
+import it.unibo.oop.lab.mvc.model.CounterImpl;
+import it.unibo.oop.lab.mvc.view.CounterGUI;
+import it.unibo.oop.lab.mvc.view.CounterView;
 
 /**
  * This is an example of reactive gui adopting a sample MVC implementation.

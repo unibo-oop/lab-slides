@@ -1,4 +1,4 @@
-package it.unibo.oop.rguis.mvc.view;
+package it.unibo.oop.lab.mvc.view;
 
 /**
  * Interface.

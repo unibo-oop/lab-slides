@@ -1,4 +1,4 @@
-package it.unibo.oop.rguis.mvc.model;
+package it.unibo.oop.lab.mvc.model;
 
 /**
  * Defines the interface of a counter.

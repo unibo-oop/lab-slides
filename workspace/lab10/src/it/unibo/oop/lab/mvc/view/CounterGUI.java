@@ -1,4 +1,4 @@
-package it.unibo.oop.rguis.mvc.view;
+package it.unibo.oop.lab.mvc.view;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import it.unibo.oop.rguis.mvc.controller.CounterController;
+import it.unibo.oop.lab.mvc.controller.CounterController;
 
 /**
  * An implementation of {@link CounterView}.
