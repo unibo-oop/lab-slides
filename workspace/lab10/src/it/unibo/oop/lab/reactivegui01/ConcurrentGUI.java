@@ -18,7 +18,7 @@ import javax.swing.SwingUtilities;
  * This is a first example on how to realize a reactive GUI.
  *
  */
-public class ConcurrentGUI extends JFrame {
+public final class ConcurrentGUI extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private static final double WIDTH_PERC = 0.2;
