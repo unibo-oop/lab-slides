@@ -1,0 +1,6 @@
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte3\Engine\bin\Debug\Engine.XML
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte3\Engine\bin\Debug\Engine.dll
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte3\Engine\bin\Debug\Engine.pdb
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte3\Engine\obj\Debug\Engine.csprojResolveAssemblyReference.cache
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte3\Engine\obj\Debug\Engine.dll
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte3\Engine\obj\Debug\Engine.pdb

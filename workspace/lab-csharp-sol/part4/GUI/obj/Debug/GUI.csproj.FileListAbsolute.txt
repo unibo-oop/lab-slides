@@ -1,0 +1,12 @@
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte4\GUI\bin\Debug\GUI.exe.config
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte4\GUI\bin\Debug\GUI.exe
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte4\GUI\bin\Debug\GUI.pdb
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte4\GUI\bin\Debug\Engine.dll
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte4\GUI\bin\Debug\Engine.pdb
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte4\GUI\bin\Debug\Engine.xml
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte4\GUI\obj\Debug\GUI.csprojResolveAssemblyReference.cache
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte4\GUI\obj\Debug\Unibo.ISI.ProgramazioneAdOggetti.Esercitazioni.MainForm.resources
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte4\GUI\obj\Debug\Unibo.ISI.ProgramazioneAdOggetti.Esercitazioni.Properties.Resources.resources
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte4\GUI\obj\Debug\GUI.csproj.GenerateResource.Cache
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte4\GUI\obj\Debug\GUI.exe
+C:\Users\angel\Desktop\LabC#-Code\Soluzioni\SoluzioneParte4\GUI\obj\Debug\GUI.pdb
