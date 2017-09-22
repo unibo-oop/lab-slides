@@ -5,47 +5,121 @@
 
 \title[OOP01 -- Intro]{01 \\ Introduzione al Laboratorio e Tool di Base}
 
-\author[Pianini]{Danilo Pianini \\ Angelo Croatti, Simone Grotti, Mirko Viroli}
+\author[Pianini]{Danilo Pianini \\ Angelo Croatti, Giovanni Ciatto, Mirko Viroli}
 
 \institute[Università di Bologna]
 {C.D.L. Ingegneria e Scienze Informatiche \\\textsc{Alma Mater Studiorum}---Università di Bologna, Cesena}
 
 \date[\today]{\today}
 
-
 \begin{document}
 
 \frame[label=coverpage]{\titlepage}
 
-\begin{frame}[fragile]{Come funziona il laboratorio di OOP}
-	\begin{block}{Organizzazione}
-		\begin{itemize}
-			\item Introduzione di nuovi metodi e strumenti da parte del docente
-			\item Esercizi di difficoltà crescente
-			\item Esercizi ``aggiuntivi'' (che non sono opzionali)
-		\end{itemize}
-	\end{block}
-	\begin{block}{Come svolgere gli esercizi}
-		\begin{itemize}
-			\item Provate da soli. Se bloccati per qualche minuto, chiamate il docente
-			\item Fate riferimento alle slides del corso, tenetele con voi. Specialmente all'inizio, \textbf{evitate} di andare a prendere pezzi di codice online, assicuratevi di avere sempre chiaro cosa stiate facendo e perché
-			\item Una volta terminato, chiamate il docente per la correzione
-			\item Riuscire a completare anche gli esercizi ``aggiuntivi'' nelle quattro ore è indice di buona preparazione. Non riuscirci non è preoccupante, ma raccomandiamo caldamente di terminarli a casa \textbf{prima} del laboratorio successivo.
-		\end{itemize}
-	\end{block}
+\fr{Il Laboratorio di OOP}{
+  \bl{Titolare del corso: Prof. Mirko Viroli}{
+    \iz{ 
+      \item e-mail | \texttt{mirko.viroli@unibo.it}
+      \item homepage | \texttt{http://mirkoviroli.apice.unibo.it}
+    }
+  }
+  \bl{Referente di laboratorio: Prof. Danilo Pianini}{
+    \iz{ 
+      \item e-mail | \texttt{danilo.pianini@unibo.it}
+      \item homepage | \texttt{http://apice.unibo.it/xwiki/bin/view/DaniloPianini/}
+      \item orario di ricevimento | Martedì, dalle ore 17:00
+    }
+  }
+  \bl{Tutors: Ing. Angelo Croatti \& Ing. Giovanni Ciatto}{
+    \iz{ 
+      \item e-mail | \texttt{a.croatti@unibo.it} \& \texttt{giovanni.ciatto@unibo.it} 
+    }
+  }
+}
+
+\begin{frame}{Obiettivi}
+\begin{enumerate}\itemsep20pt
+\item Apprendere ulteriori aspetti metodologici e pratici, oltre a quanto visto nel corso delle lezioni in aula.
+\item Svolgere esercizi necessari per la comprensione e la sperimentazione dei contenuti del corso.
+\item Confrontarsi con il docente e i tutor per delucidazioni in merito allo svolgimento degli esercizi proposti.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Organizzazione}
+\begin{block}{Orario A.A. 2017--2018}
+\begin{itemize}
+\item Primo Turno : Lunedì, 09:00 -- 13:00, Lab. VeLa
+\item Secondo Turno : Martedì, 13:00 -- 17:00, Lab. VeLa
+\end{itemize}
+\end{block}
+\vspace{10pt}
+\begin{block} {Organizzazione}
+\begin{itemize}
+\item Introduzione di nuovi metodi e strumenti da parte del docente 
+\item Esercizi di difficoltà crescente
+\item Esercizi ``aggiuntivi'' (che \textbf{non} sono opzionali)
+\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Come svolgere gli esercizi...}
+\begin{enumerate}
+\item Leggere attentamente la consegna e provare in autonomia a risolvere ciascun esercizio.
+\begin{itemize}
+\item Se dopo alcuni minuti non avete nessuna idea su come procedere per ottenere la soluzione, chiamate il docente o il tutor.
+\end{itemize}
+%
+\item Fare riferimento alle slide del corso (da tenere a portata di mano, per una facile consultazione)
+\begin{itemize}
+\item In modo particolare nei primi laboratori -- ma in generale vale per tutti i laboratori -- \textbf{evitate} di cercare porzioni  di codice online.
+\item Assicuratevi di avere sempre chiaro cosa stiate facendo e perché.
+\end{itemize}
+%
+\item Concluso ciascun esercizio, chiamare il docente per la correzione e la discussione.
+%
+\end{enumerate}
+%
+NOTA --- Riuscire a completare anche gli esercizi ``aggiuntivi'' nelle quattro ore è indice di buona preparazione. Non riuscirci non è preoccupante, ma si raccomanda caldamente di terminarli a casa \textbf{prima} del laboratorio successivo.
+%
+\end{frame}
+
+\begin{frame}{Il ruolo del Forum Studenti}
+\begin{itemize}
+\item Accessibile dal sito del corso (link \textbf{Forum Studenti} in homepage)
+\end{itemize}
+%
+\begin{block}{}
+\url{https://elearning-cds.unibo.it/mod/forum/view.php?id=71223}
+\end{block}
+%
+\begin{itemize}\itemsep10pt
+\item \`{E} il punto di coordinamento per il laboratorio, e per tutto il corso di OOP.
+%
+\item Stimola il confronto e la discussione tra gli studenti.
+%
+\begin{itemize}
+\item Per ciascuna questione posta sul forum, oltre ai docenti, anche gli studenti possono rispondere confrontandosi su soluzioni e problematiche nell'ambito del corso.
+\end{itemize}
+%
+\item \`{E} preferibile chiedere supporto tramite il forum piuttosto che avvalersi del ricevimento
+\begin{itemize}
+\item La riposta data ad uno studente può essere utile anche per gli altri.
+\end{itemize}
+\end{itemize}
 \end{frame}
 
 %====================
 %Outline
 %====================
 \fr{Outline}{
-  \bl{Goal della lezione}{
-    \iz{ 
-			\item Overview su Java (linguaggio + piattaforma)
-			\item Compilazione ed esecuzione di programmi Java a riga di comando
-      \item Ingegnerizzazione e test di semplici classi
-    }
-  }
+\bl{Goal della lezione}{
+\iz{ 
+\item Java Overview (linguaggio + piattaforma)
+\item Compilazione ed esecuzione di programmi Java a riga di comando
+\item Ingegnerizzazione e test di semplici classi
+}
+}
 }
 \begin{frame}<beamer>
 	\frametitle{Outline}
