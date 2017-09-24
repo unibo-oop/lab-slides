@@ -1,5 +1,4 @@
-public class TestScopes {
-
+class TestScopes {
     int a;
     int b;
 
@@ -25,12 +24,5 @@ public class TestScopes {
         System.out.print(" the input parameter a (" + a + "),");
         System.out.print(" and the local variable b (" + b + ").");
         System.out.println("I have no access to c, dummyMethod's input parameter.");
-    }
-
-    public static void main(String[] argv) {
-        TestScopes testObj = new TestScopes();
-        testObj.build(1, 2);
-        testObj.dummyMethod(3);
-        testObj.dummyMethod2(4);
     }
 }

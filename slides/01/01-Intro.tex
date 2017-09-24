@@ -336,7 +336,7 @@ NOTA --- Riuscire a completare anche gli esercizi ``aggiuntivi'' nelle quattro o
 		\item Accendere il PC
 		\item Loggarsi sul sito del corso
 		\iz{
-			\item \textcolor{blue}{\url{bit.ly/oop2016cesena}}
+			\item \textcolor{blue}{\url{https://elearning-cds.unibo.it/course/view.php?id=11689}}
 		}
 		\item Scaricare dalla sezione dedicata a questa settimana il materiale dell'esercitazione odierna
 		\item Spostare il file scaricato sul Desktop
@@ -458,7 +458,7 @@ NOTA --- Riuscire a completare anche gli esercizi ``aggiuntivi'' nelle quattro o
 }
 
 	
-\fr{Costruzione di Semplici Classi 1/6}{
+\fr{Costruzione di Semplici Classi 1/5}{
 	\bl{}{
 		Completare la classe \cil{Student} caratterizzata da
 		\iz{
@@ -484,7 +484,7 @@ NOTA --- Riuscire a completare anche gli esercizi ``aggiuntivi'' nelle quattro o
 	}
 }
 
-\fr{Costruzione di Semplici Classi 2/6}{
+\fr{Costruzione di Semplici Classi 2/5}{
 	\bl{}{
 		Completare la classe \cil{ComplexNum} caratterizzata da
 		\iz{
@@ -519,7 +519,7 @@ NOTA --- Riuscire a completare anche gli esercizi ``aggiuntivi'' nelle quattro o
 	}
 }
 
-\fr{Costruzione di Semplici Classi 3/6}{
+\fr{Costruzione di Semplici Classi 3/5 (A)}{
 	\bl{}{
 		Implementare da zero la classe \texttt{Calculator} che realizzi il comportamento di una semplice calcolatrice in grado di lavorare su numeri \cil{double}
 	}
@@ -528,7 +528,7 @@ NOTA --- Riuscire a completare anche gli esercizi ``aggiuntivi'' nelle quattro o
 			\item Campi: - (nessuno) (il che la rende una classe ``degenere'' dal punto di vista dell'OOP)
 			\item Metodi (oltre al \texttt{main})
 			\iz{
-				\item \cil{sum/sub/mul/div}
+				\item \cil{add/sub/mul/div}
 					\iz{
 						\item Input: \cil{double n1, double n2}
 						\item Returns: \cil{double} (risultato dell'operazione)
@@ -541,14 +541,14 @@ NOTA --- Riuscire a completare anche gli esercizi ``aggiuntivi'' nelle quattro o
 	}
 }
 
-\fr{Costruzione di Semplici Classi 3/6}{
+\fr{Costruzione di Semplici Classi 3/5 (B)}{
 	\bl{Test della classe \texttt{Calculator}}{
 		\sizedcode{\tiny}{code/testCalculator.txt}
 	}
 }
 
 
-\fr{Costruzione di Semplici Classi 4/6}{
+\fr{Costruzione di Semplici Classi 4/5}{
 	\bl{Modificare la classe \texttt{Calculator} costruita in precedenza}{
 		\iz{
 			\item Aggiungere due campi
@@ -568,55 +568,71 @@ NOTA --- Riuscire a completare anche gli esercizi ``aggiuntivi'' nelle quattro o
 	}
 }
 
-\fr{Costruzione di Semplici Classi 5/6}{
-	\bl{}{
-		Implementare le classi \cil{UseComplex} e \cil{UseCalculator} composte dal solo metodo \cil{main} in cui testare il corretto comportamento di \cil{ComplexNum} e \cil{Calculator} realizzate in precedenza
-	}
-			
-	\bl{Esempi di possibili test}{
-		\iz{
-			\item Costruire e calcolare la somma di più numeri complessi
-			\item Verificare il corretto comportamento del metodo \cil{equal} della classe \cil{ComplexNum}
-			\item Verificare il corretto funzionamento dei vari metodi forniti dalla classe \cil{Calculator} per diversi valori di input
-			\item Provare ad eseguire il metodo \cil{div} fornendo come valore per il secondo parametro 0. Cosa succede?
-			\item ...
-		}
-	}
-}
+%\fr{Costruzione di Semplici Classi 5/6}{
+%	\bl{}{
+%		Implementare le classi \cil{UseComplex} e \cil{UseCalculator} composte dal solo metodo \cil{main} in cui testare il corretto comportamento di \cil{ComplexNum} e \cil{Calculator} realizzate in precedenza
+%	}
+%			
+%	\bl{Esempi di possibili test}{
+%		\iz{
+%			\item Costruire e calcolare la somma di più numeri complessi
+%			\item Verificare il corretto comportamento del metodo \cil{equal} della classe \cil{ComplexNum}
+%			\item Verificare il corretto funzionamento dei vari metodi forniti dalla classe \cil{Calculator} per diversi valori di input
+%			\item Provare ad eseguire il metodo \cil{div} fornendo come valore per il secondo parametro 0. Cosa succede?
+%			\item ...
+%		}
+%	}
+%}
 
-\fr{Costruzione di Semplici Classi 6/6 (segue)}{
+\fr{Costruzione di Semplici Classi 5/5 (A)}{
 	\bl{}{
 		Implementare una classe Java che modelli il concetto di treno
 	}
-	\bl{Caratteristiche della classe \cil{Train}:}{ 
-		\iz{
-			\item Campi
-			\iz{
-				\item \cil{int nTotSeats} (n. posti totale = nFCSeats+nSCSeats)
-				\item \cil{int nFCSeats/nSCSeats} n. posti in prima/seconda (FC/SC) classe
-				\item \cil{int nFCReservedSeats/nSCReservedSeats} n. di posti prenotati in prima/seconda classe
-			}
-			\item Metodi (prevedere \cil{build} per l'inizializzazione dei campi)
-			\iz{
-				\item \cil{reserveFCSeats/reserveSCSeats}
+\bl{Caratteristiche della classe \cil{Train} - Campi}{ 
+\iz{
+\item \cil{int nTotSeats} (n. posti totali del treno)
+\item \cil{int nFirstClassSeats} n. posti in prima classe
+\item \cil{int nSecondClassSeats} n. posti in seconda classe
+\item \cil{int nFirstClassReservedSeats} n. di posti prenotati in prima classe
+\item \cil{int nSecondClassClassReservedSeats} n. di posti prenotati in seconda classe
+}
+}
+}
+
+\fr{Costruzione di Semplici Classi 5/5 (B)}{
+\bl{Caratteristiche della classe \cil{Train} - Metodi}{ 
+\iz{
+\item \cil{build} per l'inizializzazione opportuna dei campi. Nota: valutare quale sia l'input minimo necessario per il metodo build.)
+
+\item \cil{reserveFirstClassSeats}
 				\iz{
 					\item Input: \cil{int nSeats}
 				}
+\item \cil{reserveSecondClassSeats}
+				\iz{
+					\item Input: \cil{int nSeats}
+				}				
+				
 				\item \cil{getTotOccupancyRatio}
 				\iz{
 					\item Returns: \cil{double} (percentuale globale di posti occupati)
 				}
-				\item \cil{getFCOccupancyRatio/getSCOccupancyRatio}
+				\item \cil{getFirstClassOccupancyRatio}
 				\iz{
-					\item Returns: \cil{double} (percentuale posti occupati in FC/SC)
+					\item Returns: \cil{double} (percentuale posti occupati in prima classe)
+				}
+				
+								\item  \cil{getSecondClassOccupancyRatio}
+				\iz{
+					\item Returns: \cil{double} (percentuale posti occupati in seconda classe)
 				}
 				\item \cil{deleteAllReservations} (azzera tutti i posti prenotati)
 			}
 		}
-	}
+	
 }
 
-\fr{Costruzioni di Semplici Classi 6/6 (seguito)}{
+\fr{Costruzioni di Semplici Classi 5/5 (C)}{
 	\bl{Testing}{
 		\iz{
 			\item Da realizzare all'interno della classe \cil{UseTrain}, fornita tra il materiale di questa prima esercitazione 
@@ -628,72 +644,72 @@ NOTA --- Riuscire a completare anche gli esercizi ``aggiuntivi'' nelle quattro o
 		Gestire la conversione da \cil{int a double} come siete abituati a fare in C per quanto riguarda il calcolo delle percentuali di posti occupati
 	}		
 }
-\subsection{Approfondimento: Passaggio dei Parametri}
-
-
-\fr{Richiamo dalla Teoria}{
-	\bl{Passaggio dei Parametri}{
-		Java gestisce in maniera diversa da C il passaggio dei parametri
-		\iz{
-			\item In particolare
-			\iz{
-				\item Tutti i tipi di dato primitivi (\cil{int, long, double}, etc.) sono passati per valore
-				\item Gli oggetti invece sono \textcolor{blue}{\textit{sempre}} passati per riferimento
-			}
-			\item E' importante tenere conto di questo aspetto durante la realizzazione di programmi Java per non incorrere in side-effect
-		}
-	}
-}
-
-\fr{Test Passaggio Per Valore}{
-	\sizedcode{\scriptsize}{code/CallByValueExample.java}
-	\bl{}{
-		\en{
-			\item Analizzare la classe \cil{CallByValueExample}
-			\item Cercare di prevedere l'output
-			\item Compilare ed eseguire il programma. L'output ottenuto corrisponde a quanto preventivato?
-			\item In caso di risultato diverso da quanto aspettato contattare il docente
-		}
-	}
-}
-
-
-
-\fr{Point3D}{
-	\bl{}{
-		Nel prossimo esempio si utilizzerà la classe \cil{Point3D} già vista a lezione
-		\iz{
-			\item Quindi, prima di procedere, compilarla con il comando
-			\iz{
-				\item \texttt{javac Point3D.java}
-			}
-		}
-	}
-}
-
-\fr{Test Passaggio Per Riferimento 1/2}{
-	\sizedcode{\tiny}{code/CallByReferenceExample1.java}
-	\bl{}{
-		\en{
-			\item Analizzare la classe \cil{CallByReferenceExample1}
-			\item Cercare di prevedere l'output
-			\item Compilare ed eseguire il programma. L'output ottenuto corrisponde a quanto preventivato?
-			\item In caso di risultato diverso da quanto aspettato contattare il docente
-		}
-	}
-}
-
-\fr{Test Passaggio Per Riferimento 2/2}{
-	\sizedcode{\tiny}{code/CallByReferenceExample2.java}
-	\bl{}{
-		\en{
-			\item Analizzare la classe \cil{CallByReferenceExample2}, cercando di prevederne l'output
-			\item Compilare ed eseguire il programma 
-			\item L'output ottenuto presenta ``side-effect''? Qual è la spiegazione per il risultato ottenuto?
-			\item Per chiarimenti e approfondimenti contattare il docente
-		}
-	}
-}
+%\subsection{Approfondimento: Passaggio dei Parametri}
+%
+%
+%\fr{Richiamo dalla Teoria}{
+%	\bl{Passaggio dei Parametri}{
+%		Java gestisce in maniera diversa da C il passaggio dei parametri
+%		\iz{
+%			\item In particolare
+%			\iz{
+%				\item Tutti i tipi di dato primitivi (\cil{int, long, double}, etc.) sono passati per valore
+%				\item Gli oggetti invece sono \textcolor{blue}{\textit{sempre}} passati per riferimento
+%			}
+%			\item E' importante tenere conto di questo aspetto durante la realizzazione di programmi Java per non incorrere in side-effect
+%		}
+%	}
+%}
+%
+%\fr{Test Passaggio Per Valore}{
+%	\sizedcode{\scriptsize}{code/CallByValueExample.java}
+%	\bl{}{
+%		\en{
+%			\item Analizzare la classe \cil{CallByValueExample}
+%			\item Cercare di prevedere l'output
+%			\item Compilare ed eseguire il programma. L'output ottenuto corrisponde a quanto preventivato?
+%			\item In caso di risultato diverso da quanto aspettato contattare il docente
+%		}
+%	}
+%}
+%
+%
+%
+%\fr{Point3D}{
+%	\bl{}{
+%		Nel prossimo esempio si utilizzerà la classe \cil{Point3D} già vista a lezione
+%		\iz{
+%			\item Quindi, prima di procedere, compilarla con il comando
+%			\iz{
+%				\item \texttt{javac Point3D.java}
+%			}
+%		}
+%	}
+%}
+%
+%\fr{Test Passaggio Per Riferimento 1/2}{
+%	\sizedcode{\tiny}{code/CallByReferenceExample1.java}
+%	\bl{}{
+%		\en{
+%			\item Analizzare la classe \cil{CallByReferenceExample1}
+%			\item Cercare di prevedere l'output
+%			\item Compilare ed eseguire il programma. L'output ottenuto corrisponde a quanto preventivato?
+%			\item In caso di risultato diverso da quanto aspettato contattare il docente
+%		}
+%	}
+%}
+%
+%\fr{Test Passaggio Per Riferimento 2/2}{
+%	\sizedcode{\tiny}{code/CallByReferenceExample2.java}
+%	\bl{}{
+%		\en{
+%			\item Analizzare la classe \cil{CallByReferenceExample2}, cercando di prevederne l'output
+%			\item Compilare ed eseguire il programma 
+%			\item L'output ottenuto presenta ``side-effect''? Qual è la spiegazione per il risultato ottenuto?
+%			\item Per chiarimenti e approfondimenti contattare il docente
+%		}
+%	}
+%}
 
 \section{Esercizi Aggiuntivi}
 
