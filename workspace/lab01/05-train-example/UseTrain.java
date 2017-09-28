@@ -1,5 +1,4 @@
-public class UseTrain {
-
+class UseTrain {
     public static void main(String[] args) {
         /*
          * Premesse per un corretto testing della classe. Per ragioni di

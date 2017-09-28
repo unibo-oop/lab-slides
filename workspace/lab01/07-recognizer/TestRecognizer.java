@@ -1,4 +1,4 @@
-class Recognizer {
+class TestRecognizer {
    public static void main(String args[]) {
         /*
          * 1) Creare un oggetto della classe Recognizer

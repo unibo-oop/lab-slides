@@ -1,4 +1,4 @@
-class TestClaculator {
+class TestCalculator {
   public static void main(String[] args) {
       Calculator calc = new Calculator();
       System.out.println("1+2=" + calc.add(1, 2));
