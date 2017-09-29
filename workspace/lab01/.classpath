@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="00-hello-world"/>
+	<classpathentry kind="src" path="01-test-scopes"/>
+	<classpathentry kind="src" path="02-student-example"/>
+	<classpathentry kind="src" path="03-complexNum-example"/>
+	<classpathentry kind="src" path="04-calculator-example"/>
+	<classpathentry kind="src" path="05-train-example"/>
+	<classpathentry kind="src" path="06-complexNumCalculator"/>
+	<classpathentry kind="src" path="07-recognizer"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
