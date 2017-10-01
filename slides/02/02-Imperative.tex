@@ -2,7 +2,7 @@
 \usepackage{../oop-slides-pianini}
 \setbeamertemplate{bibliography item}[text]
 \title[OOP02 -- Imperative]{02 \\ Stile, classpath, passaggio di argomenti, programmazione imperativa e costruttori}
-\author[Pianini]{Danilo Pianini \\ Angelo Croatti, Simone Grotti, Mirko Viroli}
+\author[Pianini]{Danilo Pianini \\ Angelo Croatti, Giovanni Ciatto, Mirko Viroli}
 
 \begin{document}
 
@@ -39,24 +39,8 @@
 			\item È importante scrivere software immediatamente comprensibile
 			\item ``gira'' non è una sufficente metrica di qualità
 		\end{itemize}
-% 		\item Ogni linguaggio ha le sue prassi
-% 		\begin{itemize}
-% 			\item Quelle Java di riferimento sono disponibili qui:
-% 			\begin{itemize}
-% 				\item \url{https://web.archive.org/web/20060228095122/http://developers.sun.com/prodtech/cc/products/archive/whitepapers/java-style.pdf}
-% 				\item \url{https://web.archive.org/web/20080513084244/http://java.sun.com/docs/codeconv/CodeConventions.pdf}
-% 				\item \url{http://www.oracle.com/technetwork/java/codeconvtoc-136057.html}
-% 			\end{itemize}
-% 		\end{itemize}
-% 		\item Ogni azienda poi è libera di darsi altre regole interne
-% 		\begin{itemize}
-% 			\item Google: \url{https://google.github.io/styleguide/javaguide.html}
-% 			\item Twitter: \url{https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/styleguide.md}
-% 			\item Mozilla: \url{https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Coding_Style#Java_practices}
-% 		\end{itemize}
 		\item È importante adottare uno stile consistente!
 		\item Ma bisogna sempre essere consistenti
-		\item Nel corso useremo un'estensione di JCC
 	\end{itemize}
 	\vspace{1cm}
 	\begin{quote}
@@ -79,39 +63,17 @@
 	Ogni azienda poi è libera di darsi altre regole interne, ad esempio:
 	\footnotesize
 	\begin{itemize}
-		\item Google: \url{https://google.github.io/styleguide/javaguide.html}
- 		\item Twitter: \url{https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/styleguide.md}
- 		\item Mozilla: \url{https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Coding_Style\#Java_practices}
+		\item Google: \url{http://archive.is/a0Jhz}
+ 		\item Twitter: \url{http://archive.is/aa1tE}
+ 		\item Mozilla: \url{http://archive.is/rs3Ns}
 	\end{itemize}
 	\normalsize
 	Notare che sono sempre \textbf{consistenti}!
-	\begin{center}
-		\textbf{Nel corso useremo un'estensione delle JCC}
-	\end{center}
-\end{frame}
-
-\begin{frame}{Stili}
-	Ogni linguaggio ha le sue prassi
 	\begin{itemize}
-		\item Quelle Java di riferimento sono disponibili qui:
-		\tiny
-		\begin{itemize}
-			\item \url{http://bit.ly/java-style-guide}
-			\item \url{http://bit.ly/java-code-conventions}
-			\item \url{http://bit.ly/oracle-java-code-conventions}
-		\end{itemize}
+		\item E che sono tipicamente restrizioni delle convenzioni, non modifiche!
 	\end{itemize}
-	Ogni azienda poi è libera di darsi altre regole interne, ad esempio:
-	\footnotesize
-	\begin{itemize}
-		\item Google: \url{https://google.github.io/styleguide/javaguide.html}
- 		\item Twitter: \url{https://github.com/twitter/commons/blob/master/src/java/com/twitter/common/styleguide.md}
- 		\item Mozilla: \url{https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Coding_Style\#Java_practices}
-	\end{itemize}
-	\normalsize
-	Notare che sono sempre \textbf{consistenti}!
 	\begin{center}
-		\textbf{Nel corso useremo un'estensione delle JCC}
+		\textbf{Nel corso useremo un'estensione delle Java Code Conventions}
 	\end{center}
 \end{frame}
 
@@ -121,7 +83,7 @@
 			\item Aumentano la manutenibilità del codice
 			\item È facile che nella fretta si modifichi il codice in modo sbagliato
 			\item È facile che alcuni tool automatici si sbaglino quando ``uniscono'' pezzi di codice scritti da diverse persone
-			\item Apple iOS soffrì di un grave bug a SSL/TLS causato da questa cattiva pratica \url{https://www.imperialviolet.org/2014/02/22/applebug.html}
+			\item Apple iOS soffrì di un grave bug a SSL/TLS causato da questa cattiva pratica \url{http://archive.is/KQp8E}
 		\end{itemize}
 	\end{block}
 	\begin{block}{Le parentesi graffe vanno sempre ``all'egiziana'' (Egyptian brackets)}
@@ -210,6 +172,75 @@
   \end{itemize}
 }
 
+\begin{frame}[allowframebreaks]{Il classpath in Java}
+	\begin{itemize}
+		\item Il risultato della compilazione di sorgenti Java sono una o più \textbf{classi}
+		\item Quando si va ad eseguire, si eseguono \textbf{classi}, non files
+		\begin{itemize}
+			\item Infatti la virtual machine si aspetta il nome completo di una classe in input
+			\begin{itemize}
+				\item Non il file dov'è scritta
+				\item Né il file dov'è compilata
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+	\begin{block}{Come fa la JVM a risolvere le classi?}
+		\begin{itemize}
+			\item Possiede un elenco di percorsi che contengono i file compilati
+			\begin{itemize}
+				\item All'interno di questi percorsi, i file devono essere opportunamente organizzati
+				\item Ad esempio, la struttura delle cartelle deve replicare quella dei package
+			\end{itemize}
+			\item Cerca (in ordine) nei suddetti percorsi la classe che gli serve
+			\item I percorsi possono essere directory, file compressi, o indirizzi di rete
+			\item Per approfondire: \url{http://archive.is/0ziau}
+		\end{itemize}
+	\end{block}
+	\begin{center}
+		L'insieme ordinato dei percorsi prende il nome di \textbf{classpath}
+	\end{center}
+	\begin{block}{Default classpath}
+		Se non specificato, il classpath di Java include automaticamente:
+		\begin{itemize}
+			\item I file jar del Java Runtime Environment
+			\begin{itemize}
+				\item \texttt{rt.jar} ed altri file importanti
+				\item Contengono ad esempio \texttt{java.lang.Math}
+			\end{itemize}
+			\item La directory corrente
+		\end{itemize}
+	\end{block}
+	\begin{block}{Aggiungere directory al classpath}
+		Possono essere aggiunte directory al classpath
+		\begin{itemize}
+			\item Si usa l'opzione \texttt{-cp} (o, equivalentemente, \texttt{-classpath}), seguita da un elenco di percorsi
+			\begin{itemize}
+				\item separati dal simbolo \texttt{:} (Unix)
+				\item o dal simbolo \texttt{;} (Windows)
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Più cartelle nel classpath}
+	Il classpath non è composto da una sola cartella, ma può contenere più cartelle, oltre a file compressi contenenti bytecode e risorse, come zip o jar (li vedremo in futuro).
+	\begin{block}{}
+		Si possono specificare più cartelle utilizzando come separatore il simbolo ``\texttt{:}'' (per sistemi Unix) oppure ``\texttt{;}'' (per sistemi Windows)
+		\begin{itemize}
+			\item \texttt{javac -d bin -cp lib1:lib2:lib3 src/*.java}
+			\begin{itemize}
+				\item Compila tutti i file con estensione java che si trovano nella cartella \texttt{src}, mettendo i compilati dentro \texttt{bin}. In compilazione, potrà linkare tutte le classi che si trovano nelle cartelle \texttt{lib1}, \texttt{lib2} e \texttt{lib3}: nel caso in cui alcuni sorgenti in src stiano usando delle classi definite dentro queste cartelle, la compilazione avrà successo.
+				\item \scriptsize{Equivalente Windows: \texttt{javac -d bin -cp lib1;lib2;lib3 src/*.java}}
+		\end{itemize}
+			\item \texttt{java -cp bin:lib1:lib2:lib3 MyClass}
+			\begin{itemize}
+				\item Esegue il main della classe \texttt{MyClass}. Cercherà questa classe e tutte quelle collegate all'interno delle cartelle \texttt{bin}, \texttt{lib1}, \texttt{lib2} e \texttt{lib3}.
+				\item \scriptsize{Equivalente Windows: \texttt{java -cp bin;lib1;lib2;lib3 MyClass}}
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
 \fr{Esempio 1: Esecuzione di \texttt{Calculator} }{
   \iz{
       \item Possiamo usare la ``strategia'' già vista nello scorso laboratorio:
@@ -233,36 +264,6 @@
       }
   }
 }
-\fr{Il classpath in dettaglio}{
-	\iz{
-		\item Il classpath è l'insieme delle directory in cui Java cerca le classi
-		\item Sia \cil{java} che \cil{javac} consentono di specificarlo con l'opzione \cil{-cp}
-	}
-	\bl{In \cil{java}}{
-		Il classpath indica dove verranno cercate le classi necessarie affinché il programma sia eseguito correttamente
-	}
-	\bl{In \cil{javac}}{
-		Il classpath indica dove verranno cercate le classi necessarie affinché il programma sia compilato
-	}
-}
-\begin{frame}{Più cartelle nel classpath}
-	Il classpath non è composto da una sola cartella, ma può contenere più cartelle, oltre a file compressi contenenti bytecode e risorse, come zip o jar (li vedremo in futuro).
-	\begin{block}{}
-		Si possono specificare più cartelle utilizzando come separatore il simbolo ``\texttt{:}'' (per sistemi Unix) oppure ``\texttt{;}'' (per sistemi Windows)
-		\begin{itemize}
-			\item \texttt{javac -d bin -cp lib1:lib2:lib3 src/*.java}
-			\begin{itemize}
-				\item Compila tutti i file con estensione java che si trovano nella cartella \texttt{src}, mettendo i compilati dentro \texttt{bin}. In compilazione, potrà linkare tutte le classi che si trovano nelle cartelle \texttt{lib1}, \texttt{lib2} e \texttt{lib3}: nel caso in cui alcuni sorgenti in src stiano usando delle classi definite dentro queste cartelle, la compilazione avrà successo.
-				\item \scriptsize{Equivalente Windows: \texttt{javac -d bin -cp lib1;lib2;lib3 src/*.java}}
-		\end{itemize}
-			\item \texttt{java -cp bin:lib1:lib2:lib3 MyClass}
-			\begin{itemize}
-				\item Esegue il main della classe \texttt{MyClass}. Cercherà questa classe e tutte quelle collegate all'interno delle cartelle \texttt{bin}, \texttt{lib1}, \texttt{lib2} e \texttt{lib3}.
-				\item \scriptsize{Equivalente Windows: \texttt{java -cp bin;lib1;lib2;lib3 MyClass}}
-			\end{itemize}
-		\end{itemize}
-	\end{block}
-\end{frame}
 
 \subsubsection{Esempio 2}
 \begin{frame}{Esempio 2: Compilazione ed esecuzione di classi strutturate in package}
@@ -363,7 +364,7 @@
 
 \fr{Esempio 3: compilazione}{
   \en{
-      \item Spostarsi (se non li si è già fatto) in \texttt{esempio3}
+      \item Spostarsi (se non lo si è già fatto) in \texttt{esempio3}
       \item Eseguire la compilazione:
       \iz {
 	\item Su sistemi UNIX (Linux, Mac OSX, BSD):\\ \textbf{\texttt{javac -d bin src/oop/lab02/math/UseComplex.java}}
@@ -417,7 +418,7 @@
        }
      }
 }
-\fr{Esempio 3: secuzione di \texttt{UseComplex}}{
+\fr{Esempio 3: Esecuzione di \texttt{UseComplex}}{
   \iz{
       \item Eseguiamo il comando:
       \iz {
@@ -506,7 +507,7 @@
 \begin{frame}{Argomenti in Java}
 	\begin{itemize}
 		\item Gli argomenti con cui il programma Java viene invocato vengono inseriti dentro lo \texttt{String[]} che il \texttt{main} prende in ingresso
-		\item Questo è un normalissimo array di \texttt{String}, uguale a qualunque altro array di \texttt{String}, e senza alcuna specialità
+		\item Questo è un normalissimo \texttt{String[]}, uguale a qualunque altro \texttt{String[]}, e senza alcuna specialità
 	\end{itemize}
 	Provate a svolgere l'esercizio proposto come esempio 5 nel codice!
 \end{frame}
@@ -706,7 +707,7 @@
 		\iz{
 			\item \cil{public static int[] revertUpTo(int[] array,int stopEl)}
 				\iz{
-					\item Inverte gli elementi di \cil{array} dall'inizio fino all'elemento \cil{stopElem} \textbf{incluso}. Gli elementi successivi a \cil{stopEl} devono rimanere invariati
+					\item Inverte gli elementi di \cil{array} dall'inizio fino all'elemento \cil{stopEl} \textbf{incluso}. Gli elementi successivi a \cil{stopEl} devono rimanere invariati
 					\item p.e. revertUpTo([1,2,3,4,5,6,7],5) $\rightarrow$ [5,4,3,2,1,6,7]
 				}		
 			\item \cil{public static int[] dupElems(int[] array, int nTimes)}
