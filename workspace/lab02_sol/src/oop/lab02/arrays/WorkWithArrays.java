@@ -15,37 +15,43 @@ public class WorkWithArrays {
     }
 
     public static int[] evenElems(final int[] array) {
-        final int returnArraySize = array.length % 2 == 0 ? array.length / 2 : (array.length / 2) + 1;
-        int[] returnValue = new int[returnArraySize];
+        final int resultLength = array.length % 2 == 0 ? array.length / 2  : array.length / 2 + 1;
+        final int[] resultArray = new int[resultLength];
         int j = 0;
         for (int i = 0; i < array.length; i++) {
             if (i % 2 == 0) {
-                returnValue[j++] = array[i];
+                resultArray[j++] = array[i];
             }
         }
-        return returnValue;
+        return resultArray;
     }
 
     public static int[] oddElems(final int[] array) {
-        int[] returnValue = new int[array.length / 2];
+        final int[] resultArray = new int[array.length / 2];
         int j = 0;
         for (int i = 0; i < array.length; i++) {
             if (i % 2 != 0) {
-                returnValue[j++] = array[i];
+                resultArray[j++] = array[i];
             }
         }
-        return returnValue;
-
+        return resultArray;
     }
 
     public static int getMostRecurringElem(final int[] array) {
         int maxNumOccur = 0;
         int currMostRecurring = 0;
-        Arrays.sort(array);
-        for (int d = 0; d < array.length; d++) {
-            final int curr = array[d];
+        final int[] temp = Arrays.copyOf(array, array.length);
+        Arrays.sort(temp);
+        /*
+        * The Arrays.sort(...) method modifies its input array.
+        * Modifying some method input array if considered a bad practice.
+        * To avoid this, we will sort the `temp` array which is actually
+        * a clone of this method input array.
+        */
+        for (int i = 0; i < temp.length;) {
+            final int curr = temp[i];
             int numOccur = 0;
-            for (int i = d; i < array.length && array[i] == curr; i++, numOccur++);
+            for (i++; i < temp.length && temp[i] == curr; i++, numOccur++);
             if (numOccur > maxNumOccur) {
                 maxNumOccur = numOccur;
                 currMostRecurring = curr;
@@ -60,26 +66,11 @@ public class WorkWithArrays {
         while (swap) {
             swap = false;
             for (int i = 0; i < array.length - 1; i++) {
-                if (desc) {
-                    /*
-                     * Descending sort
-                     */
-                    if (array[i] < array[i + 1]) {
-                        temp = array[i];
-                        array[i] = array[i + 1];
-                        array[i + 1] = temp;
-                        swap = true;
-                    }
-                } else {
-                    /*
-                     * Ascending sort
-                     */
-                    if (array[i] > array[i + 1]) {
-                        temp = array[i];
-                        array[i] = array[i + 1];
-                        array[i + 1] = temp;
-                        swap = true;
-                    }
+                if ((desc && array[i] < array[i + 1]) || (!desc && array[i] > array[i + 1])) { // descending sort || ascending sort
+                    temp = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = temp;
+                    swap = true;
                 }
             }
         }
@@ -102,27 +93,20 @@ public class WorkWithArrays {
 
     public static int[] revertUpTo(final int[] array, final int elem) {
         int elemPos = 0;
-        int[] returnValue;
-        returnValue = new int[array.length];
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == elem) {
-                elemPos = i;
-                break;
-            }
-        }
+        final int[] returnValue = new int[array.length];
+        for (; elemPos < array.length && array[elemPos] != elem; elemPos++);
         int i = 0;
+        for (; i <= elemPos; i++) {
+            returnValue[i] = array[elemPos - i];
+        }
         for (; i < array.length; i++) {
-            if (i <= elemPos) {
-                returnValue[i] = array[elemPos - i];
-            } else {
-                returnValue[i] = array[i];
-            }
+            returnValue[i] = array[i];
         }
         return returnValue;
     }
 
     public static int[] dupElems(final int[] array, final int nTimes) {
-        int[] returnValue = new int[array.length * nTimes];
+        final int[] returnValue = new int[array.length * nTimes];
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < nTimes; j++) {
                 returnValue[i * nTimes + j] = array[i];
@@ -185,7 +169,7 @@ public class WorkWithArrays {
         return arrayEquals(revertUpTo(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, 5), new int[] { 5, 4, 3, 2, 1, 6, 7,
                 8, 9, 10 })
                 && arrayEquals(revertUpTo(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, 3), new int[] { 3, 2, 1, 4, 5,
-                        6, 7, 8, 9, 10 }) 
+                        6, 7, 8, 9, 10 })
                 && arrayEquals(revertUpTo(new int[] { 1, 2, 3 }, 3), new int[] { 3, 2, 1 });
     }
 
