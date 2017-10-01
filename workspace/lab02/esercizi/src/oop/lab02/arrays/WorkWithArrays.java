@@ -2,6 +2,16 @@ package oop.lab02.arrays;
 
 public class WorkWithArrays {
 
+    /*
+    * ADVICE:
+    * If your method implements an algorithm, it doesn't necessarly need to contain
+    * the whole code! You can decomopose your problem into simpler (non-trivial) ones,
+    * writing a *private* utility method for each sub problem.
+    * Moreover, if your utility method solves a common sub-problem, it may be
+    * re-used by other methods within the same class.
+    */
+
+
     public static int countOccurr(final int[] array, final int elem) {
         int nOccur = 0;
         for (final int currElem : array) {
