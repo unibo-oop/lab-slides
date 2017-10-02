@@ -17,22 +17,16 @@ public class WorkWithArrays {
     public static int[] evenElems(final int[] array) {
         final int resultLength = array.length % 2 == 0 ? array.length / 2  : array.length / 2 + 1;
         final int[] resultArray = new int[resultLength];
-        int j = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (i % 2 == 0) {
-                resultArray[j++] = array[i];
-            }
+        for (int i = 0; i < array.length; i += 2) {
+            resultArray[i / 2] = array[i];
         }
         return resultArray;
     }
 
     public static int[] oddElems(final int[] array) {
         final int[] resultArray = new int[array.length / 2];
-        int j = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (i % 2 != 0) {
-                resultArray[j++] = array[i];
-            }
+        for (int i = 1; i < array.length; i += 2) {
+            resultArray[i / 2] = array[i];
         }
         return resultArray;
     }
