@@ -82,7 +82,6 @@
 	<rule ref="rulesets/java/empty.xml/EmptyFinallyBlock" />
 	<rule ref="rulesets/vm/basic.xml/EmptyForeachStmt" />
 	<rule ref="rulesets/java/empty.xml/EmptyIfStmt" />
-	<rule ref="rulesets/vm/basic.xml/EmptyIfStmt" />
 	<rule ref="rulesets/java/empty.xml/EmptyInitializer" />
 	<rule ref="rulesets/java/empty.xml/EmptyStatementBlock" />
 	<rule ref="rulesets/java/empty.xml/EmptyStatementNotInLoop" />
