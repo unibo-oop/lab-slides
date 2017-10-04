@@ -3,27 +3,27 @@ package oop.lab02.arrays;
 public class MyCircularArray {
 
     public static final int ARRAY_DEF_SIZE = 10;
-    int[] array;
-    int nextPos;
-    int numStoredElems;
+    private int[] array;
+    private int nextPosition;
+    private int inStore;
 
     public MyCircularArray() {
         this.array = new int[ARRAY_DEF_SIZE];
-        this.nextPos = 0;
-        this.numStoredElems = 0;
+        this.nextPosition = 0;
+        this.inStore = 0;
     }
 
     public MyCircularArray(final int size) {
         this.array = new int[size];
-        this.nextPos = 0;
-        this.numStoredElems = 0;
+        this.nextPosition = 0;
+        this.inStore = 0;
     }
 
     public void add(final int elem) {
-        this.array[nextPos] = elem;
-        this.nextPos = (this.nextPos + 1) % this.array.length;
-        if (this.numStoredElems < this.array.length) {
-            this.numStoredElems++;
+        this.array[nextPosition] = elem;
+        this.nextPosition = (this.nextPosition + 1) % this.array.length;
+        if (this.inStore < this.array.length) {
+            this.inStore++;
         }
     }
 
@@ -31,8 +31,8 @@ public class MyCircularArray {
         for (int i = 0; i < this.array.length; i++) {
             this.array[i] = 0;
         }
-        this.numStoredElems = 0;
-        this.nextPos = 0;
+        this.inStore = 0;
+        this.nextPosition = 0;
     }
 
     public void printArray() {

@@ -3,31 +3,37 @@ package oop.lab02.arrays;
 import oop.lab02.constructors.Smartphone;
 
 public class PlayWithSmartphoneArrays {
+	
+	/*
+	 * All methods are static: this class must never get instanced
+	 */
+	private PlayWithSmartphoneArrays() {
+	}
 
-    static int search(final Smartphone[] array, final String brand) {
+	public static int search(final Smartphone[] array, final String brand) {
         int returnValue = 0;
         for (final Smartphone phone : array) {
-            if (phone.brand.equals(brand)) {
+            if (phone.getBrand().equals(brand)) {
                 returnValue++;
             }
         }
         return returnValue;
     }
 
-    static int search(final Smartphone[] array, final boolean hasNFC, final boolean hasGPS) {
+	public static int search(final Smartphone[] array, final boolean hasNFC, final boolean hasGPS) {
         int returnValue = 0;
         for (final Smartphone phone : array) {
-            if (phone.hasNFC == hasNFC && phone.hasGPS == hasGPS) {
+            if (phone.hasNFC() == hasNFC && phone.hasGPS() == hasGPS) {
                 returnValue++;
             }
         }
         return returnValue;
     }
 
-    static int search(final Smartphone[] array, final int nCPUs, final int sdSize, final boolean has3G) {
+	public static int search(final Smartphone[] array, final int nCPUs, final int sdSize, final boolean has3G) {
         int returnValue = 0;
         for (final Smartphone phone : array) {
-            if (phone.nCPU == nCPUs && phone.sdSize == sdSize && phone.has3G == has3G) {
+            if (phone.getCPUs() == nCPUs && phone.getSdSize() == sdSize && phone.has3G() == has3G) {
                 returnValue++;
             }
         }

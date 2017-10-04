@@ -3,6 +3,9 @@ package oop.lab02.arrays;
 import java.util.Arrays;
 
 public class WorkWithArrays {
+	
+	private WorkWithArrays() {
+	}
 
     public static int countOccurr(final int[] array, final int elem) {
         int nOccur = 0;
