@@ -39,8 +39,12 @@
 			\item È importante scrivere software immediatamente comprensibile
 			\item ``gira'' non è una sufficente metrica di qualità
 		\end{itemize}
-		\item È importante adottare uno stile consistente!
-		\item Ma bisogna sempre essere consistenti
+		\item È importante adottare uno stile
+		\begin{itemize}
+			\item chiaro
+			\item condiviso
+			\item consistente
+		\end{itemize}
 	\end{itemize}
 	\vspace{1cm}
 	\begin{quote}
@@ -279,8 +283,8 @@
 \end{frame}
 
 \fr{Esempio 2: la classe \texttt{ComplexNum}}{
-   \sizedcode{\small}{code/esempio2/src/oop/lab02/math/ComplexNumShort.java}
    \bx{\center{\textbf{\texttt{ComplexNum} è ora definita all'interno di un package}}}
+   \sizedcode{\tiny}{../../workspace/lab02/esempio2/src/oop/lab02/math/ComplexNum.java}
 }
 
 \begin{frame}{Esempio 2: compilazione/utilizzo di javac}
@@ -310,7 +314,6 @@
       }
    }
    \bx{\center{La classe viene eseguita?}}
-   
 }
 
 \fr{Esempio 2: esecuzione/uso di java}{
@@ -332,7 +335,6 @@
 		\item Ossia, per il modo in cui sono rappresentate le classi nel file system, cercherebbe un file \texttt{ComplexNum.class} dentro \texttt{bin}
 	\end{itemize}
    \bx{\center{Qual è dunque il metodo corretto per eseguire con successo \texttt{ComplexNum}?}} 
-
 \end{frame}
 
 \fr{Esempio 2: esecuzione/uso di java}{
@@ -358,8 +360,7 @@
 }
 
 \fr{Esempio 3: la classe \texttt{UseComplex}}{
-
-   \sizedcode{\tiny}{code/esempio3/src/oop/lab02/math/UseComplex.java}
+   \sizedcode{\tiny}{../../workspace/lab02/esempio3/src/oop/lab02/math/UseComplex.java}
 }
 
 \fr{Esempio 3: compilazione}{
@@ -372,8 +373,6 @@
       }
       \item Otteniamo un errore!
    }
-   \bl{Comprensione degli errori}{\sizedcode{\tiny}{code/esempio3/src/oop/lab02/math/error.txt}}
-   
 }
 
 \fr{Esempio 3: compilazione}{
@@ -438,7 +437,7 @@
 
 \fr{Esempio 4: la classe \texttt{UseCalculator}}{
 
-   \sizedcode{\small}{code/esempio4/src/UseCalculator.java}
+   \sizedcode{\small}{../../workspace/lab02/esempio4/src/UseCalculator.java}
    \bx{Esegue il test di \texttt{Calculator}}
 }
 
@@ -515,11 +514,10 @@
 
 \section{Esercizi in laboratorio}
 
-
-\fr{Modalità di Lavoro (A)}{
-	\bl{}{
-               Gli esercizi si trovano nella cartella \texttt{esercizi}
-		\en{
+\begin{frame}[allowframebreaks]{Metodologia di lavoro}
+	\begin{block}{}
+		Gli esercizi si trovano nella cartella \texttt{esercizi}
+		\begin{enumerate}
 			\item Leggere la consegna
 			\item Risolvere l'esercizio in autonomia
 			\item Cercare di risolvere autonomamente eventuali piccoli problemi che possono verificarsi durante lo svolgimento degli esercizi
@@ -527,17 +525,10 @@
 			\item Contattare i docenti nel caso vi troviate a lungo bloccati nella risoluzione di uno specifico esercizio
 			\item A esercizio ultimato contattare i docenti per un rapido controllo della soluzione realizzata
 			\item Proseguire con l'esercizio seguente
-		}
-	}
-}
-
-%\iz {
-%	\item \textbf{Si prega di non modificare, quando esplicitamente forniti, i nomi dei metodi, né i loro tipi in ingresso o di ritorno}
-%}
-
-\fr{Modalità di Lavoro (B)}{
-	\bl{}{
-		Alcune note:
+		\end{enumerate}
+	\end{block}
+	\begin{block}{}
+		Alcune note: 
 		\iz{
 			\item \textbf{Si prega di non modificare, quando esplicitamente forniti, i nomi dei metodi, né i loro tipi in ingresso o di ritorno}
 			\item È consigliabile, qualora lo si ritenga necessario, creare dei metodi d'appoggio per semplificare la scrittura e/o la risoluzione degli esercizi.
@@ -547,8 +538,8 @@
 				\item \texttt{java.lang.Math}\footnote{\tiny{\url{https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html}}}
 			}
 		}
-	}
-}
+	\end{block}
+\end{frame}
 
 \subsection{Uso dei costruttori}
 
