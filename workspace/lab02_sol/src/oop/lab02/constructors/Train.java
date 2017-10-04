@@ -2,62 +2,74 @@ package oop.lab02.constructors;
 
 public class Train {
 
-    private static final int DEFAULT_N_SC_SEATS = 100;
     private static final int DEFAULT_N_FC_SEATS = 50;
+    private static final int DEFAULT_N_SC_SEATS = 100;
     private static final int DEFAULT_TOT_SEATS = 150;
-    int nTotSeats;
-    int nFCSeats;
-    int nSCSeats;
-
-    int nFCReservedSeats;
-    int nSCReservedSeats;
-
-    public Train(final int nTotSeats, final int nFCSeats, final int nSCSeats) {
-        this.nTotSeats = nTotSeats;
-        this.nFCSeats = nFCSeats;
-        this.nSCSeats = nSCSeats;
-        this.nFCReservedSeats = 0;
-        this.nFCReservedSeats = 0;
-    }
+    private final int seats;
+	private final int firstClassSeats;
+    private final int secondClassSeats;
+    private int firstClassReserved;
+    private int secondClassReserved;
 
     public Train() {
-        this.nTotSeats = DEFAULT_TOT_SEATS;
-        this.nFCSeats = DEFAULT_N_FC_SEATS;
-        this.nSCSeats = DEFAULT_N_SC_SEATS;
-        this.nFCReservedSeats = 0;
-        this.nFCReservedSeats = 0;
+        this.seats = DEFAULT_TOT_SEATS;
+        this.firstClassSeats = DEFAULT_N_FC_SEATS;
+        this.secondClassSeats = DEFAULT_N_SC_SEATS;
+        this.firstClassReserved = 0;
+        this.firstClassReserved = 0;
     }
 
-    void reserveFCSeats(final int nSeats) {
-        this.nFCReservedSeats += nSeats;
+    public Train(final int nTotSeats, final int nFCSeats, final int nSCSeats) {
+        this.seats = nTotSeats;
+        this.firstClassSeats = nFCSeats;
+        this.secondClassSeats = nSCSeats;
+        this.firstClassReserved = 0;
+        this.firstClassReserved = 0;
     }
 
-    void reserveSCSeats(final int nSeats) {
-        this.nSCReservedSeats += nSeats;
+    public void deleteAllReservations() {
+        this.firstClassReserved = 0;
+        this.secondClassReserved = 0;
     }
 
-    double getTotOccupancyRatio() {
-        return (this.nFCReservedSeats + this.nSCReservedSeats) * 100d / this.nTotSeats;
+    public double getFirstClassOccupancyRatio() {
+        return this.firstClassReserved * 100d / this.firstClassSeats;
     }
 
-    double getFCOccupancyRatio() {
-        return this.nFCReservedSeats * 100d / this.nFCSeats;
+    public int getFirstClassSeats() {
+		return firstClassSeats;
+	}
+
+    public int getSecondClassSeats() {
+		return secondClassSeats;
+	}
+
+    public double getOccupancyRatio() {
+        return (this.firstClassReserved + this.secondClassReserved) * 100d / this.seats;
     }
 
-    double getSCOccupancyRatio() {
-        return this.nSCReservedSeats * 100 / this.nSCSeats;
+    public double getSecondClassOccupancyRatio() {
+        return this.secondClassReserved * 100 / this.secondClassSeats;
+    }
+    
+    public int getTotalSeats() {
+		return seats;
+	}
+
+	public void printTrainInfo() {
+        System.out.println("Train info:\n-nTotSeats: " + this.seats);
+        System.out.println("-nFCSeats: " + this.firstClassSeats);
+        System.out.println("-nFCSeats: " + this.secondClassSeats);
+        System.out.println("-nFCReservedSeats: " + this.firstClassReserved);
+        System.out.println("-nSCReservedSeats: " + this.secondClassReserved + "\n");
     }
 
-    void deleteAllReservations() {
-        this.nFCReservedSeats = 0;
-        this.nSCReservedSeats = 0;
+	public void reserveFirstClassSeats(final int nSeats) {
+        this.firstClassReserved += nSeats;
     }
 
-    public void printTrainInfo() {
-        System.out.println("Train info:\n-nTotSeats: " + this.nTotSeats);
-        System.out.println("-nFCSeats: " + this.nFCSeats);
-        System.out.println("-nFCSeats: " + this.nSCSeats);
-        System.out.println("-nFCReservedSeats: " + this.nFCReservedSeats);
-        System.out.println("-nSCReservedSeats: " + this.nSCReservedSeats + "\n");
+
+    public void reserveSecondClassSeats(final int nSeats) {
+        this.secondClassReserved += nSeats;
     }
 }

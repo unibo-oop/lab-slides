@@ -56,7 +56,7 @@ public class UseConstructors {
          */
         final Train t4 = new Train();
         t4.printTrainInfo();
-        System.out.println(t4.nTotSeats > 0 ? "OK!" : "There is a bug.");
-        System.out.println(t4.nTotSeats == t4.nFCSeats + t4.nSCSeats ? "OK!" : "There is a bug.");
+        System.out.println(t4.getTotalSeats() > 0 ? "OK!" : "There is a bug.");
+        System.out.println(t4.getTotalSeats() == t4.getFirstClassSeats() + t4.getSecondClassSeats() ? "OK!" : "There is a bug.");
     }
 }

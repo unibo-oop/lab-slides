@@ -2,17 +2,33 @@ package oop.lab02.constructors;
 
 public class Student {
 
-    String name;
-    String surname;
-    int id;
-    int matriculationYear;
+    private final String name;
+    private final String surname;
+    private final int id;
+    private final int matriculationYear;
 
-    Student(final int id, final String name, final String surname, final int matriculationYear) {
+	Student(final int id, final String name, final String surname, final int matriculationYear) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.matriculationYear = matriculationYear;
     }
+
+    public String getName() {
+		return name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public int getMatriculationYear() {
+		return matriculationYear;
+	}
 
     void printStudentInfo() {
         System.out.println("Student id: " + this.id);
