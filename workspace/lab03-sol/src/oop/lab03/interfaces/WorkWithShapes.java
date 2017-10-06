@@ -20,9 +20,9 @@ public class WorkWithShapes {
     public static void main(final String[] args) {
         final Shape circle = new Circle(CIRCLE_RADIUS);
 
-        final IShapeWithLimitedEdges square = new Square(SQUARE_EDGE);
-        final IShapeWithLimitedEdges rectangle = new Rectangle(RECT_WIDTH, RECT_HEIGHT);
-        final IShapeWithLimitedEdges scaleneTriangle = new ScaleneTriangle(TRIANGLE_EDGE_1, TRIANGLE_EDGE_2,
+        final Polygon square = new Square(SQUARE_EDGE);
+        final Polygon rectangle = new Rectangle(RECT_WIDTH, RECT_HEIGHT);
+        final Polygon scaleneTriangle = new Triangle(TRIANGLE_EDGE_1, TRIANGLE_EDGE_2,
                 TRIANGLE_EDGE_3, TRIANGLE_H);
 
         System.out.println("Circle with radius " + CIRCLE_RADIUS + ": " + shapeDetails(circle));

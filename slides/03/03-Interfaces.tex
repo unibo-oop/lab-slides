@@ -8,62 +8,46 @@
 	
 \frame[label=coverpage]{\titlepage}
 
-%====================
-%Outline
-%====================
-\fr{Outline}{
-\bl{Goal della lezione}{
-\iz{ 
-\item Introduzione ad Eclipse
-\item Costruzione e test di classi con incapsulamento
-\item Costruzione di classi con relazione di composizione e d'uso verso una interfaccia
-}
-}
-}
-
 \begin{frame}<beamer>
 	\frametitle{Outline}
 	\tableofcontents[]
 \end{frame}
 
-\section{Eclipse Overview}
+\section{Eclipse IDE}
 \subsection{Introduzione}
 
 \begin{frame}{Integrated Development Environment (IDE)}
-
-\begin{block}{}
-\emph{A software suite that consolidates the basic tools developers need to write and test software. An IDE contains a code editor, a compiler and a debugger that the developer accesses through a single user interface.}
-\end{block}
-
-\begin{itemize}
-\item Ambiente integrato per la creazione e la gestione di progetti software.
-\begin{itemize}
-\item Un progetto, per un IDE, è composto da una collezione organizzata di risorse: sorgenti, librerie, compilati, documentazione, \dots
-\end{itemize}
-\item Componenti tipici di un IDE:
-\begin{itemize}
-\item Editor di testo con Syntax Highlighting (e Code Completion)
-\item Compilatore
-\item Macchina(e) virtuale per l'esecuzione e il debugging delle applicazioni
-\item Strumenti per agevolare il deployment (distribuzione) delle applicazioni
-\item \dots
-\end{itemize}
-\item Esempi di IDE:
-\begin{itemize}
-\item Eclipse, NetBeans, IntelliJ IDEA, Microsoft Visual Studio, XCode, \dots
-\end{itemize}
-\end{itemize}
+	\begin{block}{}
+		\emph{A software suite that consolidates the basic tools developers need to write and test software. An IDE contains a code editor, a compiler and a debugger that the developer accesses through a single user interface.}
+	\end{block}
+	\begin{itemize}
+		\item Ambiente integrato per la creazione e la gestione di progetti software.
+		\begin{itemize}
+			\item Un progetto, per un IDE, è composto da una collezione organizzata di risorse: sorgenti, librerie, compilati, documentazione, \dots
+		\end{itemize}
+		\item Componenti tipici di un IDE:
+		\begin{itemize}
+			\item Editor di testo con syntax highlighting (e code completion)
+			\item Compilatore
+			\item Macchina(e) virtuale per l'esecuzione e il debugging delle applicazioni
+			\item Strumenti per agevolare il deployment (distribuzione) delle applicazioni
+		\end{itemize}
+		\item Esempi di IDE:
+		\begin{itemize}
+			\item Eclipse, NetBeans, IntelliJ IDEA, Microsoft Visual Studio, XCode, \dots
+		\end{itemize}
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Diffusione dei principali IDE}
-\fg{height=0.7\textheight}{img/topIDE2015.png}
-Dati aggiornati a Luglio 2015\\\footnotesize{(fonte: \url{knoema.com/jtieieg/popularity-of-programming-languages})}
+	\begin{center}
+		\includegraphics[width=\textwidth]{img/ide2017world.png}
+	\end{center}
 \end{frame}
 
 
 
 \fr{Eclipse Overview}{
-
 	\bl{Overview}{
 		\iz{
 			\item Eclipse è un IDE open-source scritto in Java 
@@ -74,22 +58,58 @@ Dati aggiornati a Luglio 2015\\\footnotesize{(fonte: \url{knoema.com/jtieieg/pop
 				}
 			}
 	}
-	
 	\bl{Un po' di storia}{
 		\iz{
 			\item Nato nei laboratori di ricerca IBM (alphaWorks) 
-			\item	Successivamente	donato alla comunità open-source che ora ne cura lo sviluppo per mezzo di una apposita fondazione
+			\item	Successivamente	donato alla comunità open-source che ora ne cura lo sviluppo per mezzo di un'apposita fondazione
 			\item Correntemente supportato/utilizzato da un vasto numero di sviluppatori, sia in ambito accademico che industriale
 		}
 	}
-	
-	\bl{Sito di riferimento}{\iz{ \item \color{blue} \url{www.eclipse.org}}}
 }
 
-\subsection{Operazioni Base per lo Sviluppo di Progetti Java}
+\begin{frame}[allowframebreaks]{Astrazioni di base}
+	\begin{block}{Workspace}
+		Directory dove Eclipse salva e carica le impostazioni di un certo numero di progetti. Tipicamente contiene anche i progetti (che possono però anche essere importati da altre directory)
+	\end{block}
+	\begin{block}{Progetto}
+		Directory contenente una collezione di risorse opportunamente organizzate, tipicamente rappresentanti un software o una parte di un software
+	\end{block}
+	\begin{block}{Plug-in}
+		Software installabile opzionalmente che estende le capacità dell'IDE, ad esempio:
+		\begin{itemize}
+			\item controllare la qualità del codice Java;
+			\item aggiungere supporto ad ulteriori linguaggi;
+			\item usare sistemi di build diversi da quello predefinito (Gradle, Maven...);
+		\end{itemize}
+	\end{block}
+	\begin{block}{View}
+		Componente dell'interfaccia di Eclipse.
+		\begin{itemize}
+			\item Tipicamente numerose view sono aperte contemporaneamente;
+			\item Ciascuna offre una micro-funzionalità, ad esempio:
+			\begin{itemize}
+				\item Package Explorer --- fornisce una vista dei progetti e della loro struttura;
+				\item Console --- consente di usare un terminale interno all'IDE invece del terminale di sistema;
+				\item Outline --- mostra un riassunto dei componenti della classe attualmente aperta, elencando i membri, consentendo di filtrarli (ad esempio, nascondendo i privati) e di ordinarli (ad esempio in ordine alfabetico);
+				\item Problems --- elenca gli eventuali problemi che affliggono il progetto (errori di configurazione, sorgenti che non compilano, warnings...)
+				\item 
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Perspective}
+		Insieme di view che vengono. Cambiare perspective consente di cambiare rapidamente le view attive. Tipicamente, si usano perspective diverse per fasi diverse dello sviluppo. Ne vedremo sicuramente due:
+		\begin{itemize}
+			\item Java --- per lo sviluppo di applicazioni Java
+			\item Debug --- per il debug di applicazioni (prossima lezione!)
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\subsection{Avvio e creazione di progetti}
 
 \fr{Avvio di Eclipse: Scelta del Workspace}{
-	\fg{height=0.8\textheight}{img/eclipse_startup.png}	
+	\fg{width=\textwidth}{img/eclipse_startup.png}	
 }
 \fr{Creazione di Progetti Java 1/3}{
 	\fg{height=0.85\textheight}{img/new_prj1.png}
@@ -109,12 +129,12 @@ Dati aggiornati a Luglio 2015\\\footnotesize{(fonte: \url{knoema.com/jtieieg/pop
 		\iz{
 			\item Compilazione automatica
 			\iz{
-				\item Il compilatore (comando \cil{javac}) viene invocato automaticamente dall'IDE ad ogni modifica (salvata) ai sorgenti del progetto
+				\item Il compilatore viene invocato automaticamente dall'IDE ad ogni modifica (salvata) ai sorgenti del progetto
 			}
 			\item Compilazione manuale
 			\iz{
 				\item Attiva quando è disabilitata la compilazione automatica
-				\item Il compilatore (\cil{javac}) viene invocato a seguito di un esplicito click dello sviluppatore su \textit{``Build All''}
+				\item Il compilatore viene invocato a seguito di un esplicito click dello sviluppatore su \textit{``Build All''}
 			}
 		}
 	}
@@ -170,7 +190,7 @@ Dati aggiornati a Luglio 2015\\\footnotesize{(fonte: \url{knoema.com/jtieieg/pop
 	
 	\bl{Eclipse ha una architettura organizzata a plug-in}{
 		\iz{
-			\item Un plug-in è un modulo (classi + meta-informazioni + manifest file) auto-contenuto (sviluppato in Java) che incapsula una certa funzionalità
+			\item Un plug-in è un modulo (classi + meta-informazioni + manifest file) auto-contenuto che incapsula una certa funzionalità
 				\iz{
 						\item File editor specifici, wizard, build, compilazione e debugging di sorgenti
 						\item Costituisce l'unità funzionale elementare dell'architettura
@@ -238,7 +258,7 @@ Dati aggiornati a Luglio 2015\\\footnotesize{(fonte: \url{knoema.com/jtieieg/pop
 \item Accendere il PC
 \item Loggarsi sul sito del corso
 \iz{
-\item\textcolor{blue}{\url{https://bit.ly/oop2016cesena}}
+\item\textcolor{blue}{\url{https://bit.ly/oop2017cesena}}
 }
 \item Scaricare dalla sezione \texttt{lab} del sito il file \texttt{lab03.zip} contenente il materiale dell'esercitazione odierna
 \item Spostare il file scaricato sul Desktop
@@ -272,7 +292,7 @@ Dati aggiornati a Luglio 2015\\\footnotesize{(fonte: \url{knoema.com/jtieieg/pop
 }
 
 
-\section{Warming Up: Miglioramento di Classi già Implementate}
+\section{Warm up: miglioramento di classi già implementate}
 
 \fr{Applichiamo il Principio di Incapsulamento 1/2}{
 	\bl{Analizzare la classe \cil{oop.lab03.encapsulation.Student}}{
@@ -283,7 +303,7 @@ Dati aggiornati a Luglio 2015\\\footnotesize{(fonte: \url{knoema.com/jtieieg/pop
 				\en{
 					\item I campi della classe ora sono tutti privati
 					\iz{
-						\item Non c'è necessità di renderli direttamente accessibili: \alert{così il cliente di una classe non è mai influenzato da possibile modifiche future riguardanti meri aspetti realizzativi} (modulo 05-Encapsulation)
+						\item Non c'è necessità di renderli direttamente accessibili: \alert{così il cliente di una classe non è mai influenzato da possibile modifiche future riguardanti meri aspetti realizzativi}
 					}
 					\item Introduzione di selettori per leggere le informazioni di stato
 					\iz{
@@ -307,7 +327,7 @@ Dati aggiornati a Luglio 2015\\\footnotesize{(fonte: \url{knoema.com/jtieieg/pop
 	}
 }
 
-\section{Esercizi Base da Svolgere in Autonomia}
+\section{Esercizi base}
 
 \fr{\cil{oop.lab03.encapsulation.AccountHolder}}{
 	\bl{}{
@@ -323,8 +343,7 @@ Dati aggiornati a Luglio 2015\\\footnotesize{(fonte: \url{knoema.com/jtieieg/pop
 	\bl{}{
 		Implementare il metodo \cil{String toString()} lasciato incompleto
 			\iz{
-				\item Metodo utilizzato convenzionalmente dalle librerie Java e dall'operatore di concatenazione \textbf{+} tra stringhe, al fine di restituire la rappresentazione testuale di un oggetto
-				\item Ogni classe dovrebbe implementarlo
+				\item Metodo utilizzato convenzionalmente dalle librerie Java e dall'operatore di concatenazione \texttt{+} tra stringhe, al fine di restituire la rappresentazione testuale di un oggetto
 			}
 	}
 }
@@ -425,18 +444,14 @@ Dati aggiornati a Luglio 2015\\\footnotesize{(fonte: \url{knoema.com/jtieieg/pop
 		}
 }
 
-\section{ACME-Exams: Un Sistema SW per la Gestione di Appelli Universitari}
+\section{ACME-Exams}
 
 \fr{ACME-Exams: Sistema SW per Gestire Appelli Universitari}{
-	\bl{}{
-			Scenario applicativo che useremo più volte nel corso (parte di laboratorio) per vedere in concreto alcuni aspetti visti in aula
-	}
 	\bl{Requisiti}{
 		\iz{
 			\item Target di utenza: studenti e docenti
 			\item Gli studenti possono: vedere gli esami esistenti, registrarsi, visualizzare i voti di esami conclusi, visualizzare statistiche relative ai loro esami
 			\item I docenti possono: creare nuovi appelli, inserire voti per esami passati, visualizzare statistiche relative agli appelli
-			\item ... (aggiungeremo altri requisiti di volta in volta, al bisogno)
 		}
 	}	
 }
@@ -485,7 +500,7 @@ Dati aggiornati a Luglio 2015\\\footnotesize{(fonte: \url{knoema.com/jtieieg/pop
 	}
 }
 
-\fr{Forme di Dipendenza tra Classi: Composizione 1/2}{
+\begin{frame}[allowframebreaks]{Composizione}
 	\bl{Implementare la classe \cil{oop.lab03.acme.Exam}}{
 		Modella un generico appello d'esame all'interno di ACME-Exams
 		\iz{
@@ -498,14 +513,11 @@ Dati aggiornati a Luglio 2015\\\footnotesize{(fonte: \url{knoema.com/jtieieg/pop
 			}
 			\item Un solo costruttore
 			\iz{
-				\item Specifica i parametri necessari ad inizializzare tutti i campi tranne \cil{nRegisteredStudent} (da inizializzare a zero) e \cil{students} (vedere la prossima slide per istruzioni circa la sua inizializzazione)
+				\item Specifica i parametri necessari ad inizializzare tutti i campi tranne \cil{nRegisteredStudent} (da inizializzare a zero) e \cil{students}
 			}
-			\item Selettori
+			\item Metodi
 			\iz{
-				\item Uno per campo (p.e. \cil{public int getId()})
-			}
-			\item Modificatori
-			\iz{
+				\item Un selettore per campo (p.e. \cil{public int getId()})
 				\item \cil{public void registerStudent(Student student)}
 				\iz{
 					\item Iscrive lo studente all'appello. Qualora si sia raggiunto il limite massimo di studenti per l'appello non fa nulla.
@@ -513,9 +525,6 @@ Dati aggiornati a Luglio 2015\\\footnotesize{(fonte: \url{knoema.com/jtieieg/pop
 			}
 		}
 	}
-}
-
-\fr{Forme di Dipendenza tra Classi: Composizione 2/2}{
 	\bl{Altri Metodi}{
 		\iz{
 			\item \cil{String toString()}
@@ -536,7 +545,7 @@ Dati aggiornati a Luglio 2015\\\footnotesize{(fonte: \url{knoema.com/jtieieg/pop
 				}
 		}
 	}
-}
+\end{frame}
 
 \fr{\cil{oop.lab03.acme.Testing}}{
 	\bl{}{
@@ -566,25 +575,25 @@ Dati aggiornati a Luglio 2015\\\footnotesize{(fonte: \url{knoema.com/jtieieg/pop
 	
 \fr{Estensione per Figure con Lati Limitati}{
 
-	\bl{Realizzare \cil{oop.lab03.interfaces.ShapeWithLimitedEdges} che estende \cil{Shape}}{
+	\bl{Realizzare \cil{oop.lab03.interfaces.Polygon} che estende \cil{Shape}}{
 		\iz{
 			\item definire il metodo \cil{int getNumEdges()} che restituisce il numero di lati della forma geometrica
 			\item I metodi definiti in \cil{Shape} vengono perciò \textit{ereditati}
-			\item Pertanto, le classi che implementeranno \cil{ShapeWithLimitedEdges} dovranno obbligatoriamente definire 3 metodi relativi a questa interfaccia
+			\item Pertanto, le classi che implementeranno \cil{Polygon} dovranno obbligatoriamente definire 3 metodi relativi a questa interfaccia
 		}
 	}	
 }
 
-\fr{Square, Rectangle and ScaleneTriangle}{
-	\bl{Implementare le classi \cil{Square}, \cil{Rectangle} e \cil{ScaleneTriangle}}{
+\fr{Square, Rectangle and Triangle}{
+	\bl{Implementare le classi \cil{Square}, \cil{Rectangle} e \cil{Triangle}}{
 		\iz{
-			\item Le tre classi dovranno implementare \cil{ShapeWithLimitedEdges}
+			\item Le tre classi dovranno implementare \cil{Polygon}
 			\item Implementare opportunamente i metodi dell'interfaccia
 		}
 	}
 	
 	\bl{}{
-		Per semplicità, per la classe \cil{ScaleneTriangle} implementare un costruttore che richiede in input anche l'altezza relativa ad uno dei tre cateti (sarà banale in questo modo calcolare l'area)
+		Per semplicità, per la classe \cil{Triangle} implementare un costruttore che richiede in input anche l'altezza relativa ad uno dei tre lati (sarà banale in questo modo calcolare l'area)
 	}
 }
 

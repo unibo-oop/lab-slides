@@ -1,6 +1,6 @@
 package oop.lab03.interfaces;
 
-public class Square implements IShapeWithLimitedEdges {
+public class Square implements Polygon {
     private static final int N_EDGES = 4;
     private final double edgeLength;
 
@@ -16,7 +16,7 @@ public class Square implements IShapeWithLimitedEdges {
         return this.edgeLength * N_EDGES;
     }
 
-    public int getNumEdges() {
+    public int getEdgeCount() {
         return Square.N_EDGES;
     }
 }
