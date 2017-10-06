@@ -2,7 +2,7 @@
 \usepackage{../oop-slides-pianini}
 \setbeamertemplate{bibliography item}[text]
 \title[OOP03 -- Interfaces]{03\\Eclipse IDE, Incapsulamento e Interfacce}
-\author[Pianini]{Danilo Pianini\\Angelo Croatti, Simone Grotti, Mirko Viroli}
+\author[Pianini]{Danilo Pianini\\Giovanni Ciatto, Angelo Croatti, Mirko Viroli}
 
 \begin{document}
 	
@@ -360,7 +360,6 @@
 		  \item \cil{int usrID // Id AccountHolder}
 		  \item \cil{int nTransactions // N. prelievi/depositi}
 		  \item \cil{double ATM_TRANSACTION_FEE = 1 // Costante relativa al costo aggiuntivo delle operazioni via ATM}
-%		  \item \cil{END_OF_MONTH_FEE // Costante relativa alle spese di gestione di fine mese}
 		}
 	}
 	
@@ -380,7 +379,6 @@
 			\item \cil{public void withdraw(int usrID, double amount)}
 			\item \cil{public void depositFromATM(int usrID, double amount)}
 			\item \cil{public void withdrawFromATM(int usrID, double amount)}
-			%\item \cil{public void computeEndOfMonthFees()}
 			\item \cil{private boolean checkUser(int id) //Già implementato}
 		}
 	}
@@ -397,17 +395,14 @@
 	}
 }
 
-\fr{\cil{oop.lab03.interfaces.BankAccount} 1/2}{
+\begin{frame}[allowframebreaks]{\texttt{oop.lab03.interfaces.BankAccount}}
 	\bl{}{
 		Modificare la classe \cil{SimpleBankAccount} in modo da implementare l'interfaccia \cil{BankAccount}
                 \iz{ \item realizzare solamente i metodi necessari alla corretta implementazione dell'interfaccia da parte di \cil{SimpleBankAccount}}
 	}
 	\bl{\cil{oop.lab03.interfaces.BankAccount}}{
-		\sizedcode{\scriptsize}{code/BankAccount.java}
+		\sizedcode{\scriptsize}{../../workspace/lab03/src/oop/lab03/interfaces/BankAccount.java}
 	}
-}	
-
-\fr{\cil{oop.lab03.interfaces.BankAccount} 2/2}{
 	\bl{Requisiti per implementare il metodo \cil{void computeManagementFees(int usrID)}}{
 		\en{
 			\item Il metodo, quando invocato, dovrà detrarre dal conto le \emph{spese di gestione} previste dalla banca  
@@ -417,7 +412,7 @@
 				}
 		}
 	}
-}
+\end{frame}
 
 \fr{\cil{oop.lab03.interfaces.StrictBankAccount}}{	
 	\bl{}{Implementare in autonomia la classe \cil{StrictBankAccount}}
@@ -464,7 +459,7 @@
 		}
 	}
 	\bl{\cil{oop.lab03.acme.User}}{
-		\sizedcode{\scriptsize}{code/User.java}
+		\sizedcode{\scriptsize}{../../workspace/lab03/src/oop/lab03/acme/User.java}
 	}
 }
 
