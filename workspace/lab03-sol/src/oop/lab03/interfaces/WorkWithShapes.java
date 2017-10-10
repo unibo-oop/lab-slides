@@ -9,7 +9,7 @@ public class WorkWithShapes {
     private static final double TRIANGLE_EDGE_1 = 4d;
     private static final double TRIANGLE_EDGE_2 = 3d;
     private static final double TRIANGLE_EDGE_3 = 5.2;
-    private static final double TRIANGLE_H = 3d;
+    private static final double TRIANGLE_H = 3d; // approximation
 
     private WorkWithShapes() { }
 
@@ -24,6 +24,8 @@ public class WorkWithShapes {
         final Polygon rectangle = new Rectangle(RECT_WIDTH, RECT_HEIGHT);
         final Polygon scaleneTriangle = new Triangle(TRIANGLE_EDGE_1, TRIANGLE_EDGE_2,
                 TRIANGLE_EDGE_3, TRIANGLE_H);
+        final Polygon scaleneTriangle2 = new Triangle2(TRIANGLE_EDGE_1, TRIANGLE_EDGE_2,
+                TRIANGLE_EDGE_3);
 
         System.out.println("Circle with radius " + CIRCLE_RADIUS + ": " + shapeDetails(circle));
         System.out.println("Square with edge " + SQUARE_EDGE + ": " + shapeDetails(square));
@@ -31,5 +33,7 @@ public class WorkWithShapes {
                 + shapeDetails(rectangle));
         System.out.println("Scalene triangle with parameters (" + TRIANGLE_EDGE_1 + ", " + TRIANGLE_EDGE_2 + ", "
                 + TRIANGLE_EDGE_3 + ", " + TRIANGLE_H + "): " + shapeDetails(scaleneTriangle));
+        System.out.println("Scalene triangle with parameters (" + TRIANGLE_EDGE_1 + ", " + TRIANGLE_EDGE_2 + ", "
+                + TRIANGLE_EDGE_3 + "): " + shapeDetails(scaleneTriangle2));
     }
 }
