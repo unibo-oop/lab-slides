@@ -8,13 +8,11 @@ public class Exam {
     private final int nMaxStudents;
     private int nRegisteredStudents;
     private final String courseName;
-
-    private Student[] students;
+    private Student[] students; // Expanding array!
     private final Professor professor;
     private final ExamRoom room;
 
-    public Exam(final int id, final int nMaxStudents, final String courseName, final Professor professor,
-            final ExamRoom room) {
+    public Exam(final int id, final int nMaxStudents, final String courseName, final Professor professor, final ExamRoom room) {
         this.id = id;
         this.nMaxStudents = nMaxStudents;
         this.nRegisteredStudents = 0;
