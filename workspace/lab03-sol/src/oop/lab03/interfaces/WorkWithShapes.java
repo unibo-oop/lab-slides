@@ -22,9 +22,9 @@ public class WorkWithShapes {
 
         final Polygon square = new Square(SQUARE_EDGE);
         final Polygon rectangle = new Rectangle(RECT_WIDTH, RECT_HEIGHT);
-        final Polygon scaleneTriangle = new Triangle(TRIANGLE_EDGE_1, TRIANGLE_EDGE_2,
+        final Polygon scaleneTriangle = new SimpleTriangle(TRIANGLE_EDGE_1, TRIANGLE_EDGE_2,
                 TRIANGLE_EDGE_3, TRIANGLE_H);
-        final Polygon scaleneTriangle2 = new Triangle2(TRIANGLE_EDGE_1, TRIANGLE_EDGE_2,
+        final Polygon scaleneTriangle2 = new Triangle(TRIANGLE_EDGE_1, TRIANGLE_EDGE_2,
                 TRIANGLE_EDGE_3);
 
         System.out.println("Circle with radius " + CIRCLE_RADIUS + ": " + shapeDetails(circle));
