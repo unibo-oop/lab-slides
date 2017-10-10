@@ -65,6 +65,6 @@ public class StrictBankAccount implements BankAccount {
     }
 
     private boolean isWithdrawAllowed(final double amount) {
-        return balance > amount;
+        return balance >= amount;
     }
 }
