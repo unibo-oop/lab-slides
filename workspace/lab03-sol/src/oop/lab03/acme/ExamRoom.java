@@ -14,7 +14,7 @@ public class ExamRoom {
         this.networkAvailable = isNetworkAvailable;
     }
 
-    public int getnSeats() {
+    public int getNSeats() {
         return nSeats;
     }
 
