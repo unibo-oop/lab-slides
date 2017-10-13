@@ -3,7 +3,7 @@
 \usepackage{url}
 \setbeamertemplate{bibliography item}[text]
 \title[OOP04 -- Ereditarietà]{04 \\Uso avanzato di Eclipse, ereditarietà e classi astratte}
-\author[Pianini]{Danilo Pianini\\Angelo Croatti, Simone Grotti, Mirko Viroli}
+\author[Pianini]{Danilo Pianini \\ Giovanni Ciatto, Angelo Croatti, Mirko Viroli}
 
 \begin{document}
 
@@ -33,34 +33,39 @@
 \section{Eclipse: Aspetti Avanzati}
 \subsection{Debugging di Applicazioni}
 \begin{frame}[allowframebreaks]{Debugging di Applicazioni \cite{debugger,debugging}}
-\begin{block}{Motivazioni}
-\begin{itemize}
-\item Difficilmente le applicazioni software risultano essere totalmente esenti da problemi/errori alla prima stesura del codice sorgente
-\item Spesso lo sviluppatore tende a sottovalutare e/o ignora alcuni effetti collaterali (\emph{side-effects}) che porzioni di codice sorgente possono provocare
-\item In genere, un software privo di errori lo si ottiene step-by-step
-\begin{itemize}
-\item Una buona progettazione a priori consente di ridurre il numero di bug che si potrebbero inserire nel codice sorgente, tuttavia\dots
-\item \dots qualche bug sarà inevitabilmente presente, e dovrà essere identificato e corretto!
-\end{itemize}
-\end{itemize}
-\end{block}
-
-\begin{block}{Approcci}
-\begin{enumerate}
-\item \textcolor{blue}{Meccanismi di logging}
-\begin{itemize}
-\item Si aggiunge al codice sorgente la possibilità di fare logging (su file, su std output,\dots) in modo da tracciare lo stato interno del programma in fase di esecuzione: valore corrente di variabili, campi, parametri,\dots
-\item Utile in alcuni casi, ma in generale \textbf{da evitare}!
-\item Possono portare al fenomeno degli Heisenbug \cite{heisenbug}
-\end{itemize}
-\item \textcolor{blue}{Utilizzo di strumenti di debugging forniti dall'IDE}
-\begin{itemize}
-\item Consentono di avere un controllo efficace sull'esecuzione dell'applicazione
-\item Il programma diventa ``ispezionabile'' a run-time: mediante l'uso di breakpoint
-\item \`{E} l'approccio che si dovrebbe preferire
-\end{itemize}
-\end{enumerate}
-\end{block}
+	\begin{block}{Motivazioni}
+		\begin{itemize}
+			\item Difficilmente le applicazioni software risultano essere totalmente esenti da problemi/errori alla prima stesura del codice sorgente
+			\item Spesso lo sviluppatore tende a sottovalutare e/o ignora alcuni effetti collaterali (\emph{side-effects}) che porzioni di codice sorgente possono provocare
+			\item In genere, un software privo di errori lo si ottiene step-by-step
+			\begin{itemize}
+				\item Una buona progettazione a priori consente di ridurre il numero di bug che si potrebbero inserire nel codice sorgente, tuttavia\dots
+				\item \dots qualche bug sarà inevitabilmente presente, e dovrà essere identificato e corretto!
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Approcci}
+		\begin{enumerate}
+			\item \textcolor{blue}{Meccanismi di logging}
+			\begin{itemize}
+				\item Si aggiunge al codice sorgente la possibilità di fare logging in modo da tracciare lo stato interno del programma in fase di esecuzione: valore corrente di variabili, campi, parametri, \dots
+				\item Utile in alcuni casi, ma in generale \textbf{da evitare}!
+				\item Appesantisce il sorgente
+				\item Appesantisce il software (a meno di non usare opportune librerie)
+				\item Basta un side effect per generare un Heisenbug \cite{heisenbug}
+			\end{itemize}
+			\item \textcolor{blue}{Utilizzo di strumenti di debugging forniti dall'IDE}
+			\begin{itemize}
+				\item Controllo efficace sull'esecuzione dell'applicazione
+				\item Ispezionabilità a run-time
+				\item Potenti strumenti per indagare cosa succede nel programma
+				\item Molto difficile che causi Heisenbugs
+				\begin{itemize}
+					\item Finché non si mette in mezzo la concorrenza...
+				\end{itemize}
+			\end{itemize}
+		\end{enumerate}
+	\end{block}
 \end{frame}
 
 
@@ -114,6 +119,23 @@
 	\begin{block}{Valutazione di espressioni}
 		È possibile, nella tab ``Expressions'', scrivere un'espressione java valida nel contesto (quindi, con accesso alle variabili locali e ai campi). L'IDE la valuterà e scriverà il risultato. Molto utile per visualizzare valori che richiederebbero altrimenti l'inserimento di una stampa ed il riavvio del debug, oppure un uso complicato dell'osservazione dentro Variables.
 	\end{block}
+	\begin{block}{Iniezione di codice a caldo}
+		Nel caso in cui si effettui una modifica al software mentre è in esecuzione in modalità debug e lo si ricompili (o si abbia la modalità di autocompilazione attivata), Eclipse tenterà di ``iniettare'' i nuovi compilati all'interno della JVM in esecuzione:
+		\begin{itemize}
+			\item Viene ``scaricata'' la classe precedentemente inserita nel classpath
+			\item Viene ``iniettata'' la nuova classe
+		\end{itemize}
+		L'operazione può fallire, nel qual caso l'IDE notificherà che ci sono in esecuzione classi e metodi obsoleti. Per massimizzare la riuscita:
+		\begin{enumerate}
+			\item Scegliere uno stack frame precedente all'uso della classe da sostituire;
+			\item Usare la funzione ``Drop to frame'' per riportare il flusso di controllo all'inizio dello stack frame che si sta eseguendo;
+			\begin{itemize}
+				\item Eventuali side effects non vengono cancellati!
+				\item (altro esempio in cui l'immutabilità è d'aiuto)
+			\end{itemize}
+			\item Solo a questo punto salvare il sorgente modificato.
+		\end{enumerate}
+	\end{block}
 \end{frame}
 
 
@@ -159,13 +181,15 @@
 			\item Diminuiscono la probabilità di \textit{``infortuni''} legati all'uso del mouse
 			\iz{
 				\item I tennisti hanno problemi al gomito, gli informatici al tunnel carpale
-			}			
+				\item (più terminale $\Rightarrow$ più salute)
+			}
 		}
 	}
 	\bl{Principali shortcut (per Mac OSX sostiuire CMD a CTRL)}{
 		\iz{
 			\item \alert{CTRL+1}: quick-fix contestuale per errori (molto potente)
 			\item \alert{ALT+SHIFT+R}: refactoring di campi/metodi/classi
+			\item \alert{CTRL+SHIFT+/}: commento delle linee selezionate
 			\item \alert{CTRL+PGUP/PGDOWN}: per muoversi di uno step avanti (PGUP) o indietro (PGDOWN) tra la lista di sorgenti correntemente aperti
 			\item \alert{F3} (o \alert{CTRL+CLICK}): ci sposta alla definizione di un dato elemento 
 			\item \alert{CTRL+SHIFT+L}: lista delle shortcut disponibili per il dato contesto 
