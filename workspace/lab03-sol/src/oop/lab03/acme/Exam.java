@@ -23,6 +23,11 @@ public class Exam {
     }
 
     private void expand() {
+    	/*
+    	 * We need to copy the whole array every time... pretty expensive...
+    	 * 
+    	 * (any better idea, students?)
+    	 */
         students = Arrays.copyOf(students, students.length + 1);
     }
 
@@ -35,10 +40,13 @@ public class Exam {
     }
 
     public String toString() {
-        return "Exam [id=" + this.id + ", nMaxStudents=" + this.nMaxStudents + ", nRegisteredStudents="
-                + this.nRegisteredStudents + ", courseName=" + this.courseName + ", students="
-                + Arrays.toString(this.students) + ", professor=" + this.professor + ", room=" + this.room.toString()
-                + "]";
+        return "Exam [id=" + this.id
+                + ", nMaxStudents=" + this.nMaxStudents
+                + ", nRegisteredStudents=" + this.nRegisteredStudents
+                + ", courseName=" + this.courseName
+                + ", students=" + Arrays.toString(this.students)
+                + ", professor=" + this.professor
+                + ", room=" + this.room.toString() + "]";
     }
 
     public int getId() {
