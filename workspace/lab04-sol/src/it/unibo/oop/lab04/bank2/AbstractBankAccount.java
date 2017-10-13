@@ -52,7 +52,7 @@ public abstract class AbstractBankAccount implements BankAccount {
         this.nTransactions++;
     }
 
-    protected abstract boolean isWithdrawAllowed(final double amount);
+    protected abstract boolean isWithdrawAllowed(double amount);
 
     protected final void resetTransactions() {
         this.nTransactions = 0;
