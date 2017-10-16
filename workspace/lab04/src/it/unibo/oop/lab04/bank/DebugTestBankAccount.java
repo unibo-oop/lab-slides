@@ -1,6 +1,5 @@
 package it.unibo.oop.lab04.bank;
 
-// CHECKSTYLE:OFF
 public class DebugTestBankAccount {
 
     private DebugTestBankAccount() {}
