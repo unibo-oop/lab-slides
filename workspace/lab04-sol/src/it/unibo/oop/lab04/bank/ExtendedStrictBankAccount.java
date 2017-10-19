@@ -9,7 +9,7 @@ public class ExtendedStrictBankAccount extends SimpleBankAccount {
     }
 
     public void computeManagementFees(final int usrID) {
-        final double feeAmount = MANAGEMENT_FEE + (getNTransactions() * TRANSACTION_FEE);
+        final double feeAmount = MANAGEMENT_FEE + getNTransactions() * TRANSACTION_FEE;
         if (checkUser(usrID) && isWithdrawAllowed(feeAmount)) {
             setBalance(getBalance() - feeAmount);
             resetTransactions();
