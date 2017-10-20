@@ -15,8 +15,6 @@
 \usepackage{fancyvrb}
 \usepackage{listings}
 \usepackage{color}
-\usepackage{ragged2e}
-\usepackage{cleveref}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
@@ -54,13 +52,16 @@
       {ù}{{\`u}}1
 }
 
-\author[M. Casadei]
-{Matteo Casadei\\ \texttt{m.casadei@unibo.it}}
+\author[Casadei, Pianini, Croatti]
+{Matteo Casadei\\ \texttt{m.casadei@unibo.it}
+\\ ~ \\
+Danilo Pianini, Angelo Croatti\\ \texttt{\{danilo.pianini,a.croatti\}@unibo.it}
+}
 
-\institute[Università di Bologna]
+\institute[UniBo]
 {C.D.L. Ingegneria e Scienze Informatiche \\\textsc{Alma Mater Studiorum}---Università di Bologna, Cesena}
 
-\date[\today]{\today}
+\date[a.a. 2015/2016]{a.a. 2015/2016}
 
 
 \AtBeginSection[]
@@ -80,6 +81,7 @@
 
 \setbeamertemplate{blocks}[rounded][shadow=true]
 
+\newcommand{\moodleurl}[0]{\url{https://elearning-cds.unibo.it/course/view.php?id=5844}}
 \newcommand{\fr}[2]{\begin{frame}\frametitle{#1}#2\end{frame}}
 %\newcommand{\ffr}[2]{\begin{frame}[fragile]\frametitle{#1}#2\end{frame}}
 \newcommand{\bl}[2]{\begin{block}{#1}#2\end{block}}
@@ -94,7 +96,4 @@
 \newcommand{\fg}[2]{\vspace{-5pt}\begin{center}\includegraphics[#1]{#2}\end{center}}
 \newcommand{\myurl}[1]{{\footnotesize\ttfamily #1}}
 \newcommand{\ssmall}[0]{\fontsize{7pt}{8pt}\selectfont}
-\newcommand{\ditto}{\texttt{\char`\"}}
 
-\addtobeamertemplate{block begin}{}{\justifying}
-\addtobeamertemplate{frame begin}{}{\justifying}
