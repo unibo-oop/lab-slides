@@ -3,8 +3,6 @@ package it.unibo.oop.lab05.ex5;
 import java.util.Collection;
 
 /**
- * @author Mirko Viroli
- * @author Danilo Pianini
  *
  */
 public final class Utilities {
