@@ -2,9 +2,6 @@ package it.unibo.oop.lab05.ex2;
 
 /**
  * 
- * @author Mirko Viroli
- * @author Danilo Pianini
- *
  */
 public final class UseSetWithOrder {
 
@@ -16,7 +13,6 @@ public final class UseSetWithOrder {
      *            ignored
      */
     public static void main(final String[] args) {
-
         /*
          * Write a program which:
          * 

@@ -5,9 +5,6 @@ import java.util.Set;
 /**
  * Example class using {@link Set}.
  * 
- * @author Mirko Viroli
- * @author Danilo Pianini
- *
  */
 public final class UseSet {
 

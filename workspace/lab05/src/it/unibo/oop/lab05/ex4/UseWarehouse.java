@@ -18,7 +18,11 @@ public final class UseWarehouse {
     public static void main(final String[] args) {
 
         /*
-         * Modify the previous exercise in such a way that:
+         * Provide a different solution to the previous exercise by implementing
+         * two classes: ComparableProduct and OrderedWarehouse. Classes from the
+         * previous exercise can be extended and reused, but not modified.
+         * 
+         * The new solution must comply to these new requirements:
          * 
          * 1) allProducts() returns the products alphabetically ordered. Prefer
          * solutions that reuse existing code.

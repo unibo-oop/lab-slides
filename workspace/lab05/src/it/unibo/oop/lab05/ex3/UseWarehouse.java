@@ -18,7 +18,7 @@ public final class UseWarehouse {
          * Realize the classes:
          * 
          * 1) WarehouseImpl implements Warehouse. Such class should use
-         * internally a java.util.HashSet.
+         * internally a java.util.LinkedHashSet.
          * 
          * 2) ProductImpl implements Product. Remember that two products are the
          * same if their name is the same.

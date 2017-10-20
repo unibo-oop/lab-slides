@@ -5,13 +5,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
-//CHECKSTYLE:OFF
 /**
  * Example class using {@link java.util.Collection}.
  * 
- * @author Mirko Viroli
- * @author Danilo Pianini
- *
  */
 public final class UseCollection {
 
