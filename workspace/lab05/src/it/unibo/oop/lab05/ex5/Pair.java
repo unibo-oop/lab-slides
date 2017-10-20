@@ -54,16 +54,19 @@ public final class Pair<X, Y> {
     }
 
     /**
-     * Returns the hashcode for this pair, calculated via
-     * {@link it.unibo.oop.lab05.ex5.HashUtils#djb2int32}.
-     * 
-     * @return the hascode of this pair.
+     * {@inheritDoc}
      */
     public int hashCode() {
         /*
-         * DJB-2.
+         * Xor of hashes. It is usually a decent hashing method, and it is
+         * easier to understand than the auto-generated hashCode() by Eclipse.
+         * However, for serious usages, a good hashing library and algorithm is
+         * warmly recommended. For instance, Google Guava provides a number of
+         * good and fast hashing algorithms (Murmur 3 is an extremely good
+         * solution), and the Boilerplate library provides a Facade on it that
+         * exposes the hashing functionalities as static methods.
          */
-        return HashUtils.djb2int32(first.hashCode(), second.hashCode());
+        return first.hashCode() ^ second.hashCode();
     }
 
     /**
