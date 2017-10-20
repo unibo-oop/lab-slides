@@ -2,6 +2,12 @@ package it.unibo.oop.lab05.ex5;
 
 /**
  * A class used to enclose two objects.
+ * 
+ * Important note: when creating real projects, it is much, much, much better
+ * to rely on widely used libraries than to write tons of boilerplate code
+ * yourself (or copy the code we provide you). Good implementations of mutable
+ * and immutable pairs are available in Apache Commons Lang, Apache Commons
+ * Math, and Jool (joo-lambda by Jooq).
  *
  * @param <X>
  *            type of the first {@link Object}
