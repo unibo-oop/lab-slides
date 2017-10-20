@@ -542,16 +542,16 @@ Changes to be committed:
 		\end{itemize}
 	\end{block}
 	\begin{block}{In Git}
-		Il sottocomando \texttt{reset} rimuove delle modifiche dalla staging area
+		Il sottocomando \texttt{reset} rimuove delle modifiche \textit{dalla staging area} (non dai files, a meno di non specificare apposite opzioni)
 		\begin{itemize}
 			\item \texttt{git reset PATH\_TO\_FILE}
 			\begin{itemize}
-				\item Rimuove le modifiche fatte al file selezionato dalla staging area (non dal tracking!)
+				\item Rimuove dalla staging area le modifiche fatte al file indicato (non dal tracking!)
 				\item Il file potrebbe anche non esistere, ad esempio se abbiamo cancellato un file e aggiunto la modifica alla staging area.
 			\end{itemize}
 			\item \texttt{git reset PATH\_TO\_FILE\_1 PATH\_TO\_FILE\_2 PATH\_TO\_FILE\_N}
 			\begin{itemize}
-				\item Rimuove le modifiche fatte a tutti i file indicati dalla staging area.
+				\item Rimuove dalla staging area le modifiche fatte a tutti i file indicati.
 			\end{itemize}
 		\end{itemize}
 	\end{block}
@@ -573,7 +573,7 @@ Changes to be committed:
 		\begin{itemize}
 			\item I file elencati dentro \texttt{.gitignore} saranno invisibili a Git
 			\item È bene che il file \texttt{.gitignore} venga aggiunto al tracker!
-			\item Nota: il file si chiama \textbf{esattamente} \texttt{.gitignore}, \textbf{non} \texttt{ALTRO.gitignore}
+			\item Nota: il file si chiama \textbf{esattamente} \texttt{.gitignore}, \textbf{non} \texttt{ALTRO.gitignore}, \texttt{.gitignore.txt}, \texttt{gitignore.gitignore}, o altre stravaganti forme.
 		\end{itemize}
 	\end{block}
 	\begin{block}{Sintassi di .gitignore}
