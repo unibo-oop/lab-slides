@@ -7,8 +7,6 @@ import it.unibo.oop.lab04.robot.components.RobotPart;
  * collection has an iterator, namely it allows other classes to run through its
  * elements. There is no guarantee on ordering.
  * 
- * @author Danilo Pianini
- *
  */
 public interface RobotPartCollection {
 
