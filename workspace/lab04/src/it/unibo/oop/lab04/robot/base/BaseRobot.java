@@ -3,6 +3,7 @@ package it.unibo.oop.lab04.robot.base;
 /**
  * Models a generic Robot
  * 
+ * @author Andrea Santi
  * @author Danilo Pianini
  *
  */
@@ -45,8 +46,12 @@ public class BaseRobot implements Robot {
      * Consume the amount of energy required to move the robot substracting it
      * from the current battery level
      */
-    protected void consumeBatteryForMovement() {
-        consumeBattery(MOVEMENT_DELTA_CONSUMPTION);
+    private void consumeBatteryForMovement() {
+        consumeBattery(getBatteryRequirementForMovement());
+    }
+    
+    protected double getBatteryRequirementForMovement() {
+        return MOVEMENT_DELTA_CONSUMPTION;
     }
 
     /**
@@ -84,7 +89,7 @@ public class BaseRobot implements Robot {
     }
 
     private boolean move(final int dx, final int dy) {
-        if (isBatteryEnough(MOVEMENT_DELTA_CONSUMPTION)) {
+        if (isBatteryEnough(getBatteryRequirementForMovement())) {
             if (environment.move(dx, dy)) {
                 consumeBatteryForMovement();
                 log("Moved to position " + environment.getPosition() + ". Battery: " + getBatteryLevel() + "%.");
@@ -93,8 +98,8 @@ public class BaseRobot implements Robot {
             log("Can not move of (" + dx + "," + dy
                     + ") the robot is touching the world boundary: current position is " + environment.getPosition());
         } else {
-            log("Can not move, not enough battery. Required: " + MOVEMENT_DELTA_CONSUMPTION + ", available: "
-                    + batteryLevel + " (" + getBatteryLevel() + "%)");
+            log("Can not move, not enough battery. Required: " + getBatteryRequirementForMovement()
+                + ", available: " + batteryLevel + " (" + getBatteryLevel() + "%)");
         }
         return false;
     }

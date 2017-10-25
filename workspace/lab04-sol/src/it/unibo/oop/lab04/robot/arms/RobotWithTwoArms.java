@@ -27,23 +27,17 @@ public class RobotWithTwoArms extends BaseRobot implements RobotWithArms {
         rightArm = new BasicArm("Right arm");
     }
 
-    /**
-     * Consume the energy required for moving from the battery, taking into the
-     * account the number of object currently grabbed by the robot
-     */
-    protected void consumeBatteryForMovement() {
-        super.consumeBatteryForMovement();
-        super.consumeBattery(getItemsCarried() * TRANSPORT_OBJECT_CONSUMPTION);
+    protected double getBatteryRequirementForMovement() {
+        return super.getBatteryRequirementForMovement() + getItemsCarried() * TRANSPORT_OBJECT_CONSUMPTION;
     }
-
+    
     private void doPick(final BasicArm arm) {
         if (isBatteryEnough(arm.getConsuptionForPickUp()) && !arm.isGrabbing()) {
             log(arm + " is picking an object");
             arm.pickUp();
             consumeBattery(arm.getConsuptionForPickUp());
         } else {
-            log("Can not grab (batteryLevel=" + this.getBatteryLevel() + "," + arm + " isGrabbing=" + arm.isGrabbing()
-                    + ")");
+            log("Can not grab (battery=" + this.getBatteryLevel() + "," + arm + " isGrabbing=" + arm.isGrabbing() + ")");
         }
     }
 
