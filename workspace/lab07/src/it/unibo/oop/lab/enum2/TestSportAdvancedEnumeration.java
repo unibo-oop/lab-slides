@@ -3,7 +3,7 @@
  */
 package it.unibo.oop.lab.enum2;
 
-import it.unibo.oop.lab.collections2.User;
+import it.unibo.oop.lab.socialnetwork.User;
 
 /**
  * 
@@ -19,7 +19,7 @@ public final class TestSportAdvancedEnumeration {
 
     /**
      * This is going to act as a test for
-     * {@link it.unibo.oop.lab.collections2.SocialNetworkUserImpl}.
+     * {@link it.unibo.oop.lab.socialnetwork.SocialNetworkUserImpl}.
      * 
      * @param args
      *            ignored
