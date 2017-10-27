@@ -1,57 +1,51 @@
 # Instructions
 
-## BaseRobotTest
-Read the class very carefully. It uses JUnit as a test suite 
+## `BaseRobotTest`
+Read the class very carefully.
+It leverages JUnit as test suite.
+See how assertions can be used to verify properties about the system, and in particular:
 
-== Test BaseRobotTest ==
-- Analizzare ed eseguire il test JUnit BaseRobotTest
+* `assertTrue` and `assertFalse` verify that a boolean conditions holds (or does not)
+* `assertEquals` verifies that some object equals the expected value (that must be passed as first argument)
+* `assertNotNull` verifies that some object is not null
+* `fail` makes the test fail early in case some unexpected event happened (e.g. an exception was expected but was not thrown)
 
-== Metodo move su RobotEnvironment ==
-Modificare il metodo move della classe RobotEnvironment in modo che generi l’eccezione 
-PositionOutOfBoundException (fornita) nel caso in cui si cerchi di spostarsi al di 
-fuori dei limiti dell’ambiente.
+Execute the test within Eclipse.
 
-Linee guida
-- Cambiare il valore di ritorno in void
-- Aggiungere la clausola throws PositionOutOfBoundException alla signature del metodo
-- Gestire nel codice il lancio dell’eccezione per il caso di interesse
+## Use existing exceptions
 
+### `RobotEnvironment.move()`
 
-== Modifica a Robot ==
-Modificare adeguatamente la classe it.unibo.oop.lab07.exercise01.Robot a seguito della 
-modifica apportata a RobotEnvironment.
+Modify the `move` method in RobotEnvironment in such a way that a `PositionOutOfBoundsException` (already provided) is thrown in case the robot gets outside the environment limits
 
-Linee guida
-- Aggiungere la clausola throws PositionOutOfBoundException alla signature del metodo 
-  moveToPosition: non sarà compito della classe Robot gestire l’eccezione 
-  PositionOutOfBoundException, bensì dei suoi utilizzatori.
-- Rifattorizzare adeguatamente il comportamento del metodo moveToPosition.
-- In cascata, rifattorizzare anche i vari moveUp/moveDown che
-  utilizzano moveToPosition.
-- Aggiungere la clausola throws PositionOutOfBoundException alle signature dei vari 
-  metodi.
+#### Guideline
+
+* Make the method return `void`
+
+### `Robot`
+
+Modify `Robot` to make it work with `RobotEnvironment`
+
+#### Guideline
+
+* `moveToPosition` must not deal with the exception directly. In fact, we don't expect `Robot` to deal with the exception at all, but those who use it!
+* `moveToPosition` must be changed to account for the changes in `RobotEnvironment.move()`
+* `moveUp` and `moveDown` need a refactoring as well
+
+### `BaseRobotTest`
+
+* Modify `BaseRobotTest.testRobotMovementBase` in order to verify that the exceptions are correctly thrown
+* **HINT**: Use `Assert.fail()` in the try block, and `Assert.assertNotNull()` to verify that the exception message is present
+ 
+## Design a new exception
+
+Design and realize `NotEnoughBatteryException`, to be thrown when the robot is asked to move (whatever the direction) in case the battery is not sufficient
+
+### Guideline
+
+* Extend one among: `Exception`, `RuntimeException`, or `IllegalStateException`. Prepare yourself to explain the professor the reason behind your choice.
+* Change the behavior of `moveToPosition` (it must return `void`)
+* Throw an exception if there is not enough battery)
+* Refactor `moveUp` and `moveDown`
+* Modify `BaseRobotTest.testRobotBatteryBase()` to verify that the exception is correctly implemented and thrown
   
-== Test BaseRobotTest.testRobotMovementBase() ==
-- Modificare il test testRobotMovementBase in BaseRobotTest, in modo da verificare la 
-  corretta implementazione dell'eccezione PositionOutOfBoundException.
-
-= SUGGERIMENTO =
-Utilizzare l'assertion "assertTrue" per verificare che l'esecuzione del metodo entri o meno
-all'iterno del blocco catch dell'eccezione.
-
-  
-== Eccezione NotEnoughBatteryException ==
-Realizzare l'eccezione NotEnoughBatteryException, lanciata tutte le volte che viene
-chiesto al robot di muoversi (in una qualunque direzione) in presenza di un livello di 
-batteria non sufficiente.
-
-Linee guida
-- NotEnoughBatteryException dovrà estendere Exception
-- Rifattorizzare adeguatamente il comportamento del metodo moveToPosition (valore di 
-  ritorno void e aggiungere NotEnoughBatteryException alla clausola throws)
-- Utilizzare il costrutto throw per lanciare una eccezione quando richiesto
-- Rifattorizzare i metodi moveUp/moveDown
-
-== Test BaseRobotTest.testRobotBatteryBase() ==
-- Modificare il test testRobotBatteryBase() in BaseRobotTest, in modo da verificare la 
-  corretta implementazione dell'eccezione NotEnoughBatteryException 
