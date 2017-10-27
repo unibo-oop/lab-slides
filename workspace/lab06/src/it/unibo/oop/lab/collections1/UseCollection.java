@@ -17,7 +17,6 @@ public final class UseCollection {
      *            unused
      */
     public static void main(final String... s) {
-
         /*
          * 1) Create a new ArrayList<Integer>, and populate it with the numbers
          * from 1000 (included) to 2000 (excluded).
@@ -62,6 +61,5 @@ public final class UseCollection {
          * 
          * 8) Compute the population of the world
          */
-
     }
 }
