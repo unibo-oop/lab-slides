@@ -1,12 +1,12 @@
 /**
  * 
  */
-package it.unibo.oop.lab06.exercise1;
+package it.unibo.oop.lab.collections2;
 
 import java.util.Collection;
 
 /**
- * Test for {@link it.unibo.oop.lab06.exercise1.SocialNetworkUserImpl}.
+ * Test for {@link it.unibo.oop.lab.collections2.SocialNetworkUserImpl}.
  * 
  * 1) Complete the test as per comments below
  * 
@@ -20,7 +20,7 @@ public final class TestSocialNetworkUser {
 
     /**
      * This is going to act as a test for
-     * {@link it.unibo.oop.lab06.exercise1.SocialNetworkUserImpl}.
+     * {@link it.unibo.oop.lab.collections2.SocialNetworkUserImpl}.
      * 
      * @param args
      *            ignored
