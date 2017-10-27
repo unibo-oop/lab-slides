@@ -51,18 +51,15 @@ public final class TestAnonymousComparator {
      *            ignored
      */
     public static void main(final String... args) {
-
         /*
          * create 6 social network users
          */
         final SocialNetworkUser<User> kbacon = new SocialNetworkUserImpl<>("Kevin", "Bacon", "kbacon", 56);
-        final SocialNetworkUser<User> dwashington = new SocialNetworkUserImpl<>("Denzel", "Washington", "dwashington",
-                59);
+        final SocialNetworkUser<User> dwashington = new SocialNetworkUserImpl<>("Denzel", "Washington", "dwashington", 59);
         final SocialNetworkUser<User> mgladwell = new SocialNetworkUserImpl<>("Malcom", "Gladwell", "mgladwell", 51);
         final SocialNetworkUser<User> ntaleb = new SocialNetworkUserImpl<>("Nicholas", "Taleb", "ntaleb", 54);
         final SocialNetworkUser<User> mrossi = new SocialNetworkUserImpl<>("Mario", "Rossi", "mrossi", 31);
         final SocialNetworkUser<User> pverdi = new SocialNetworkUserImpl<>("Paolo", "Verdi", "pverdi", 24);
-
         // TEST on DENZEL
         dwashington.addFollowedUser("relatives", mrossi);
         dwashington.addFollowedUser("relatives", pverdi);
@@ -70,7 +67,6 @@ public final class TestAnonymousComparator {
         dwashington.addFollowedUser("writers", mgladwell);
         dwashington.addFollowedUser("writers", ntaleb);
         final List<User> denzelUsers = dwashington.getFollowedUsers();
-
         /*
          * Order denzel's followed users incrementally by age:
          * 
@@ -82,7 +78,6 @@ public final class TestAnonymousComparator {
          * REFER TO LESSON 12-Advanced-Mechanisms.pdf, slide 39
          */
         // TODO
-
         /*
          * expected Result
          */
@@ -92,30 +87,28 @@ public final class TestAnonymousComparator {
         expectedResult.add(mgladwell);
         expectedResult.add(ntaleb);
         expectedResult.add(kbacon);
-
         System.out.println("[Order by age (increasing) Denzel friends] [TEST] [START]");
         System.out.println("[Order by age (increasing) Denzel friends] [TEST] [RESULT] "
                 + checkUserOrder(expectedResult, denzelUsers));
         System.out.println("[Order by age (increasing) Denzel friends] [TEST] [END]");
-
-        // TEST on MARIO ROSSI
+        /*
+         * TEST on MARIO ROSSI
+         */
         mrossi.addFollowedUser("relatives", pverdi);
         mrossi.addFollowedUser("actors i like", kbacon);
         mrossi.addFollowedUser("science writers", mgladwell);
         mrossi.addFollowedUser("economists", ntaleb);
         mrossi.addFollowedUser("actors i like", dwashington);
         final List<User> rossiUsers = mrossi.getFollowedUsers();
-
         /*
          * Order rossi's followed users by age in decreasing order:
          * 
-         * - define an anonymous comparator to sort by age decrementally
+         * - define an anonymous comparator to sort by decrementing age
          * 
          * NOTE: in order to sort a list think about a method of the utility
          * class Collections
          */
         // TODO
-
         /*
          * expected Result
          */
@@ -125,7 +118,6 @@ public final class TestAnonymousComparator {
         expectedResult.add(ntaleb);
         expectedResult.add(mgladwell);
         expectedResult.add(pverdi);
-
         System.out.println("[Order by age (decreasing) Rossi friends] [TEST] [START]");
         System.out.println("[Order by age (decreasing) Rossi friends] [TEST] [RESULT] "
                 + checkUserOrder(expectedResult, rossiUsers));
