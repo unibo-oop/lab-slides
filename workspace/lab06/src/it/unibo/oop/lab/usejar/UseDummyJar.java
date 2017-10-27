@@ -1,4 +1,4 @@
-package it.unibo.oop.lab06.usejar;
+package it.unibo.oop.lab.usejar;
 
 /**
  * 
