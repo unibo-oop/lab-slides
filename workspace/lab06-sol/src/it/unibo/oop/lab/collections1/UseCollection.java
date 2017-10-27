@@ -1,4 +1,4 @@
-package it.unibo.oop.lab06.exercise0;
+package it.unibo.oop.lab.collections1;
 
 import java.util.ArrayList;
 import java.util.HashMap;
