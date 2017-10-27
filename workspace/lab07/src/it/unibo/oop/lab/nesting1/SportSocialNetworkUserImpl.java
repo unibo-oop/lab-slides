@@ -1,13 +1,13 @@
 /**
  * 
  */
-package it.unibo.oop.lab.collections3;
+package it.unibo.oop.lab.nesting1;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import it.unibo.oop.lab.collections2.SocialNetworkUserImpl;
-import it.unibo.oop.lab.collections2.User;
+import it.unibo.oop.lab.socialnetwork.SocialNetworkUserImpl;
+import it.unibo.oop.lab.socialnetwork.User;
 
 /**
  * 
@@ -22,7 +22,6 @@ import it.unibo.oop.lab.collections2.User;
  * @param <U>
  *            specific {@link User} type
  */
-// CHECKSTYLE:OFF
 public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUserImpl<U> {
 
     /**
@@ -137,7 +136,6 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
      * with its bare name.
      */
     public static class Sport {
-
         /*
          * TODO
          * 

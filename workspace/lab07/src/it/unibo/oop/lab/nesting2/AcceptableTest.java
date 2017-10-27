@@ -1,4 +1,4 @@
-package it.unibo.oop.lab.nesting1;
+package it.unibo.oop.lab.nesting2;
 
 import static org.junit.Assert.fail;
 import static org.junit.Assert.assertNotNull;
@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.Test;
 
 /**
- * This is the JUnit test for {@link Acceptable}
+ * This is the JUnit test for {@link it.unibo.oop.lab.nesting2.Acceptable}
  * implementation.
  * 
  */
@@ -20,12 +20,15 @@ public class AcceptableTest {
      */
     @Test
     public void test1() {
-        // test di una accettazione corretta:
-        // accettazione della lista 10, 20, 30, 40
+        /*
+         * Correct acceptance of [10, 20, 30, 40]
+         */
         try {
             final List<Integer> list = Arrays.asList(10, 20, 30, 40);
-            // the following has to be instantiated
-            final Acceptable<Integer> acc = new OneListAcceptable<>(list);
+            /*
+             * the following needs instantiation
+             */
+            final Acceptable<Integer> acc = null;
             final Acceptor<Integer> acceptor = acc.acceptor();
             for (final Integer el: list) {
                 acceptor.accept(el);
@@ -42,10 +45,11 @@ public class AcceptableTest {
      */
     @Test
     public void test2() {
-        // eccezione per via di un elemento accetatto in più
+        /*
+         * Failing acceptance
+         */
         final List<Integer> list = Arrays.asList(10, 20, 30, 40);
-        // the following has to be instantiated
-        final Acceptable<Integer> acc = new OneListAcceptable<>(list);
+        final Acceptable<Integer> acc = null;
         final Acceptor<Integer> acceptor = acc.acceptor();
         try {
             for (final Integer el: list) {
@@ -68,15 +72,16 @@ public class AcceptableTest {
 
     /**
      * Test raising
-     * {@link it.unibo.oop.lab.nesting1.Acceptor.EndNotAcceptedException}.
+     * {@link it.unibo.oop.lab.nesting2.Acceptor.EndNotAcceptedException}.
      * 
      */
     @Test
     public void test3() {
-        // eccezione per via di una fine anticipata
+        /*
+         * Exception due to early end
+         */
         final List<Integer> list = Arrays.asList(10, 20, 30, 40);
-        // the following has to be instantiated
-        final Acceptable<Integer> acc = new OneListAcceptable<>(list);
+        final Acceptable<Integer> acc = null;
         final Acceptor<Integer> acceptor = acc.acceptor();
         try {
             acceptor.accept(10);

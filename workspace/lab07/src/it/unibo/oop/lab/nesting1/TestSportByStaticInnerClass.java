@@ -1,10 +1,10 @@
-package it.unibo.oop.lab.collections3;
+package it.unibo.oop.lab.nesting1;
 
-import it.unibo.oop.lab.collections2.User;
+import it.unibo.oop.lab.socialnetwork.User;
 
 /**
  * This is going to act as a test for
- * {@link it.unibo.oop.lab.collections3.SportSocialNetworkUserImpl}
+ * {@link it.unibo.oop.lab.nesting1.SportSocialNetworkUserImpl}
  * 
  * 1) Complete the test as per comments below
  * 

@@ -1,11 +1,5 @@
-Testo del problema 
+# INSTRUCTIONS
 
-Le interfacce Acceptable and Acceptor sono il duale di Iterable e Iterator: gestiscono 
-il caso di oggetti che ricevono (invece che producono) sequenze finite di elementi. 
+1. Complete SportSocialNetworkUserImpl with a definition of a nested static class as described in its comments.
 
-Realizzare la classe OneListAcceptable<T> con un costruttore che accetta una 
-java.util.List<T> e implementa Acceptable<T>, in modo che accetti esattamente la sequenza 
-di elementi contenuta nella lista. 
-
-Si utilizzino i 3 test in AcceptableTest per capire quale funzionamento 
-dovrà avere.
+2. Make the included tests conclude with success (they must return true)
