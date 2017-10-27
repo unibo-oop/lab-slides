@@ -6,8 +6,8 @@ package it.unibo.oop.lab.enum2;
 import java.util.HashSet;
 import java.util.Set;
 
-import it.unibo.oop.lab.collections2.SocialNetworkUserImpl;
-import it.unibo.oop.lab.collections2.User;
+import it.unibo.oop.lab.socialnetwork.SocialNetworkUserImpl;
+import it.unibo.oop.lab.socialnetwork.User;
 
 /**
  * 

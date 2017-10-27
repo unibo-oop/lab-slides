@@ -8,9 +8,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import it.unibo.oop.lab.collections2.SocialNetworkUser;
-import it.unibo.oop.lab.collections2.SocialNetworkUserImpl;
-import it.unibo.oop.lab.collections2.User;
+import it.unibo.oop.lab.socialnetwork.SocialNetworkUser;
+import it.unibo.oop.lab.socialnetwork.SocialNetworkUserImpl;
+import it.unibo.oop.lab.socialnetwork.User;
 
 /**
  * Instruction: define two comparators as anonymous classes in oder to sort a

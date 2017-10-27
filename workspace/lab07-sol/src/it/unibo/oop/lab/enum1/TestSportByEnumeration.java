@@ -3,7 +3,7 @@
  */
 package it.unibo.oop.lab.enum1;
 
-import it.unibo.oop.lab.collections2.User;
+import it.unibo.oop.lab.socialnetwork.User;
 
 /**
  * This is going to act as a test for

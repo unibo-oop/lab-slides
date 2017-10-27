@@ -5,11 +5,11 @@ package it.unibo.oop.lab.enum2;
 
 import java.util.Set;
 
-import it.unibo.oop.lab.collections2.User;
+import it.unibo.oop.lab.socialnetwork.User;
 
 /**
  * This is going to act as a test for
- * {@link it.unibo.oop.lab.collections2.SocialNetworkUserImpl}.
+ * {@link it.unibo.oop.lab.socialnetwork.SocialNetworkUserImpl}.
  * 
  */
 public final class TestSportAdvancedEnumeration {
@@ -20,7 +20,7 @@ public final class TestSportAdvancedEnumeration {
 
     /**
      * This is going to act as a test for
-     * {@link it.unibo.oop.lab.collections2.SocialNetworkUserImpl}.
+     * {@link it.unibo.oop.lab.socialnetwork.SocialNetworkUserImpl}.
      * 
      * @param args
      *            ignored
