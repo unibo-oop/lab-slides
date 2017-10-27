@@ -47,7 +47,7 @@ public class RobotEnvironment {
      * @throws PositionOutOfBoundException
      *             in case of stepping out of the world
      */
-    public void move(final int newX, final int newY) throws PositionOutOfBoundException {
+    public void move(final int newX, final int newY) {
         if ((newX >= RobotEnvironment.WORLD_X_LOWER_LIMIT && newX <= RobotEnvironment.WORLD_X_UPPER_LIMIT)
                 && (newY >= RobotEnvironment.WORLD_Y_LOWER_LIMIT && newY <= RobotEnvironment.WORLD_Y_UPPER_LIMIT)) {
             this.position.setX(newX);

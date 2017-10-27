@@ -36,7 +36,7 @@ public class Robot {
      * @throws NotEnoughBatteryException
      *             if battery is not enough
      */
-    public void moveUp() throws PositionOutOfBoundException, NotEnoughBatteryException {
+    public void moveUp() {
         moveToPosition(environment.getCurrPosX(), this.environment.getCurrPosY() + Robot.MOVEMENT_DELTA);
     }
 
@@ -48,7 +48,7 @@ public class Robot {
      * @throws NotEnoughBatteryException
      *             if battery is not enough
      */
-    public void moveDown() throws PositionOutOfBoundException, NotEnoughBatteryException {
+    public void moveDown() {
         this.moveToPosition(this.environment.getCurrPosX(), environment.getCurrPosY() - Robot.MOVEMENT_DELTA);
     }
 
@@ -60,7 +60,7 @@ public class Robot {
      * @throws NotEnoughBatteryException
      *             if battery is not enough
      */
-    public void moveLeft() throws PositionOutOfBoundException, NotEnoughBatteryException {
+    public void moveLeft() {
         this.moveToPosition(this.environment.getCurrPosX() - Robot.MOVEMENT_DELTA, this.environment.getCurrPosY());
     }
 
@@ -72,7 +72,7 @@ public class Robot {
      * @throws NotEnoughBatteryException
      *             if battery is not enough
      */
-    public void moveRight() throws PositionOutOfBoundException, NotEnoughBatteryException {
+    public void moveRight() {
         this.moveToPosition(this.environment.getCurrPosX() + Robot.MOVEMENT_DELTA, this.environment.getCurrPosY());
     }
 

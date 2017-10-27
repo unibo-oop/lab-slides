@@ -5,7 +5,7 @@ package it.unibo.oop.lab.exception1;
  * its environment.
  * 
  */
-public class PositionOutOfBoundException extends Exception {
+public class PositionOutOfBoundException extends IllegalStateException {
 
     /**
      * 

@@ -42,7 +42,7 @@ public class StrictBankAccountImpl implements BankAccount {
      * @throws WrongAccountHolderException
      *             if an unauthorized user tries to withdraw
      */
-    public void deposit(final int usrID, final double amount) throws WrongAccountHolderException {
+    public void deposit(final int usrID, final double amount) {
         if (checkUser(usrID)) {
             this.balance += amount;
             incTransactions();
@@ -62,7 +62,7 @@ public class StrictBankAccountImpl implements BankAccount {
      * @throws NotEnoughFoundsException
      *             if the balance is less than the amount to withdraw
      */
-    public void withdraw(final int usrID, final double amount) throws WrongAccountHolderException, NotEnoughFoundsException {
+    public void withdraw(final int usrID, final double amount) {
         if (checkUser(usrID)) {
             if (isWithdrawAllowed(amount)) {
                 this.balance -= amount;
@@ -88,8 +88,7 @@ public class StrictBankAccountImpl implements BankAccount {
      * @throws TransactionsOverQuotaException
      *             max no. of ATM transaction reached
      */
-    public void depositFromATM(final int usrID, final double amount) throws WrongAccountHolderException,
-            TransactionsOverQuotaException {
+    public void depositFromATM(final int usrID, final double amount) {
         if (nAtmTransactions < nMaxATMTransactions) {
             this.deposit(usrID, amount - StrictBankAccountImpl.ATM_TRANSACTION_FEE);
             nAtmTransactions++;
@@ -112,8 +111,7 @@ public class StrictBankAccountImpl implements BankAccount {
      * @throws NotEnoughFoundsException
      *             if not enough funds are available
      */
-    public void withdrawFromATM(final int usrID, final double amount) throws WrongAccountHolderException,
-            NotEnoughFoundsException, TransactionsOverQuotaException {
+    public void withdrawFromATM(final int usrID, final double amount) {
         if (nAtmTransactions < nMaxATMTransactions) {
             this.withdraw(usrID, amount + StrictBankAccountImpl.ATM_TRANSACTION_FEE);
             nAtmTransactions++;

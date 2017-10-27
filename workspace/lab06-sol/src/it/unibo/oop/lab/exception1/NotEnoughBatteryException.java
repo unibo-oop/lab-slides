@@ -3,7 +3,7 @@ package it.unibo.oop.lab.exception1;
 /**
  * 
  */
-public class NotEnoughBatteryException extends Exception {
+public class NotEnoughBatteryException extends IllegalStateException {
 
     /**
      * 
