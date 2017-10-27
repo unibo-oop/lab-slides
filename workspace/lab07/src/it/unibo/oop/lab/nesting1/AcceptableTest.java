@@ -1,4 +1,4 @@
-package it.unibo.oop.lab.exception3;
+package it.unibo.oop.lab.nesting1;
 
 import static org.junit.Assert.fail;
 import static org.junit.Assert.assertNotNull;
@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.Test;
 
 /**
- * This is the JUnit test for {@link it.unibo.oop.lab.exception3.Acceptable}
+ * This is the JUnit test for {@link it.unibo.oop.lab.nesting1.Acceptable}
  * implementation.
  * 
  */
@@ -72,7 +72,7 @@ public class AcceptableTest {
 
     /**
      * Test raising
-     * {@link it.unibo.oop.lab.exception3.Acceptor.EndNotAcceptedException}.
+     * {@link it.unibo.oop.lab.nesting1.Acceptor.EndNotAcceptedException}.
      * 
      */
     @Test

@@ -1,4 +1,4 @@
-package it.unibo.oop.lab.exception3;
+package it.unibo.oop.lab.nesting1;
 
 /**
  * 
@@ -12,7 +12,7 @@ public interface Acceptor<T> {
     /**
      * Accept a new element. In case the element is not part of the set
      * sequence, returns a
-     * {@link it.unibo.oop.lab.exception3.Acceptor.ElementNotAcceptedException}
+     * {@link it.unibo.oop.lab.nesting1.Acceptor.ElementNotAcceptedException}
      * .
      * 
      * @param newElement
@@ -25,7 +25,7 @@ public interface Acceptor<T> {
     /**
      * Terminate to input new elements. If more elements have still to be
      * inserted, throws an
-     * {@link it.unibo.oop.lab.exception3.Acceptor.EndNotAcceptedException}.
+     * {@link it.unibo.oop.lab.nesting1.Acceptor.EndNotAcceptedException}.
      * 
      * @throws EndNotAcceptedException
      *             if more elements still need to be accepted

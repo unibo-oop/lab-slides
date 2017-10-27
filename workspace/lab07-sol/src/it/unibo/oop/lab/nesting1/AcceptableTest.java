@@ -1,4 +1,4 @@
-package it.unibo.oop.lab.exception3;
+package it.unibo.oop.lab.nesting1;
 
 import static org.junit.Assert.fail;
 import static org.junit.Assert.assertNotNull;
@@ -68,7 +68,7 @@ public class AcceptableTest {
 
     /**
      * Test raising
-     * {@link it.unibo.oop.lab.exception3.Acceptor.EndNotAcceptedException}.
+     * {@link it.unibo.oop.lab.nesting1.Acceptor.EndNotAcceptedException}.
      * 
      */
     @Test
