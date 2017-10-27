@@ -22,7 +22,7 @@ public class TestWithExceptions {
             Class.forName("java.util.ArrayList").newInstance();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             /*
-             * Same behaviour for any exception: use multi-catch.
+             * Same behavior for any exception: use multi-catch.
              * 
              * Do not catch generic Exceptions: if they are unforeseen, it is
              * better to let the test fail badly, so that the developer is

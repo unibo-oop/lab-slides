@@ -70,7 +70,6 @@ public final class BaseRobotTest {
         // 1) Creare il robot SimpleRobot2, istanza della classe Robot con
         // batteria=20
         final Robot r2 = new Robot("SimpleRobot2", 20);
-
         /*
          * 2) Muovere ripetutamente il robot su di una posizione e giù di una
          * posizione fino a scaricare completamente la batteria e gestendo
@@ -78,7 +77,6 @@ public final class BaseRobotTest {
          * Utilizzare inoltre il blocco finally per ricaricare la batteria del
          * robot dopo che è stata consumata completamente.
          */
-
         while (r2.getBatteryLevel() > 0) {
             r2.moveUp();
             r2.moveDown();

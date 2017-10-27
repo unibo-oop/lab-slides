@@ -1,3 +1,8 @@
+# Instructions
+
+## BaseRobotTest
+Read the class very carefully. It uses JUnit as a test suite 
+
 == Test BaseRobotTest ==
 - Analizzare ed eseguire il test JUnit BaseRobotTest
 

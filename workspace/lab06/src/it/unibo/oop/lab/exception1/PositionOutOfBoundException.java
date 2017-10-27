@@ -5,9 +5,13 @@ package it.unibo.oop.lab.exception1;
  * its environment.
  * 
  */
-@SuppressWarnings("serial")
-public class PositionOutOfBoundException extends Exception {
+public class PositionOutOfBoundException extends IllegalStateException {
 
+    /**
+     * The reason why this strange long field exists will be clear after the lesson
+     * about I/O in Java...
+     */
+    private static final long serialVersionUID = 1L;
     private final int x;
     private final int y;
 
