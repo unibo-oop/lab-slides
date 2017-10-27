@@ -469,16 +469,81 @@ public final class HelloWorld {
 	\begin{block}{Generalità}
 		JUnit è il framework per lo unit testing più usato nel mondo Java
 		\begin{itemize}
-			\item Nello unit testing, ciascun test verifica la funzionalità di uno ed solo componente 
+			\item Probabilmente, la libreria Java (escluso il JDK) più usata in assoluto
+			\item Sfrutta alcune funzionalità di Java che conoscerete solo a fine corso
 			\begin{itemize}
-				\item In realtà, viene spesso ``abusato'' per testare aspetti più vasti
+				\item Reflection e annotazioni
 			\end{itemize}
 		\end{itemize}
 	\end{block}
-
+	\begin{block}{Funzionamento}
+		\begin{itemize}
+			\item Si crea una classe di test
+			\begin{itemize}
+				\item Normalissima classe Java, come tutte le altre
+			\end{itemize}
+			\item Si creano uno o più metodi con:
+			\begin{itemize}
+				\item Modificatore di visibilità \texttt{public}
+				\item Tipo di ritorno \texttt{void}
+				\item Nome a piacere (formato suggerito: ``\texttt{testThingYouAreTesting}'')
+				\item Nessun argomento
+				\item Annotazione \texttt{@Test}
+				\begin{itemize}
+					\item Ossia, si scrive \texttt{@Test} prima di \texttt{public}
+					\item L'annotazione va importata
+				\end{itemize}
+			\end{itemize}
+			\item Nel corpo dei metodi:
+			\begin{itemize}
+				\item Si creano e usano le entità che si vogliono testare
+				\item Si verificano le proprietà usando le \textit{asserzioni} fornite da JUnit
+			\end{itemize}
+			\item I metodi annotati saranno eseguiti senza necessità di alcun \texttt{main}
+		\end{itemize}
+	\end{block}
+	\begin{block}{Asserzioni}
+		Sono particolari metodi che verificano una certa condizione, e fanno fallire il test se non è rispettata		
+		\begin{itemize}
+			\item Metodi statici della classe \texttt{org.junit.Assert}
+			\item \texttt{assertTrue(boolean)} --- verifica che la condizione passata sia \texttt{true}
+			\item \texttt{assertFalse(boolean)} --- verifica che la condizione passata sia \texttt{false}
+			\item \texttt{assertEquals(Object, Object)} --- verifica che i due argomenti passati siano uguali (chiama la \texttt{equals})
+			\item \texttt{assertEquals(double, double, double)} --- verifica che il modulo della differenza fra i primi due argomenti sia inferiore al terzo
+			\begin{itemize}
+				\item Non si deve mai fare \texttt{==} fra numeri in virgola mobile
+			\end{itemize}
+			\item \texttt{assertNotEquals} --- reciproco di \texttt{assertEquals}
+			\item \texttt{fail()} --- Fa fallire il test immediatamente
+			\begin{itemize}
+				\item Ad esempio se non viene generata una eccezione che ci si sarebbe attesa
+			\end{itemize}
+		\end{itemize}
+	\end{block}
 \end{frame}
-
-
+\begin{frame}[allowframebreaks]{Junit in Eclipse}
+	Per usare una libreria in Eclipse, occorre segnalare all'IDE che vogliamo inserirla nel classpath. Per JUnit, esiste un percorso ``di favore'' (viene fornita con Eclipse, non occorre installare alcunché).
+  \begin{center}
+    \includegraphics[width=0.9\textwidth]{junit/e1}\\
+    click su ``Add library''
+  \end{center}
+  \begin{center}
+    \includegraphics[width=0.65\textwidth]{junit/e2}\\
+    click su ``Next''
+  \end{center}
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{junit/e3}\\
+    click su ``Finish''
+  \end{center}
+  \begin{center}
+    \includegraphics[width=0.9\textwidth]{junit/e4}\\
+    La libreria appare nel classpath. Click su ``Apply and Close''
+  \end{center}
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{junit/run}\\
+    Per eseguire, si usa ``Run As'' -- ``Junit Test''
+  \end{center}
+\end{frame}
 
 \end{document}
 
