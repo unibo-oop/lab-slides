@@ -73,7 +73,7 @@ public final class CounterGUI extends JFrame implements CounterView {
      * {@inheritDoc}}.
      */
     public void update(final int value) {
-        uncheckedInvokeAndWait(() -> display.setText(Integer.toString(value)));
+        uncheckedInvokeAndWait(() -> setText(value));
     }
 
     private static void uncheckedInvokeAndWait(final Runnable r) {
