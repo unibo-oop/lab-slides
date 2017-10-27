@@ -404,7 +404,7 @@ public final class HelloWorld {
   }
 }
 
-\begin{frame}{Nel prossimo episodio}
+\begin{frame}{Nel prossimo episodio (verso fine corso)}
 	\begin{itemize}
 		\item Abbiamo in mano uno strumento formidabile per la gestione di progetti
 		\item Non ci resta che trovare una strategia efficace per massimizzarne l'efficacia
@@ -412,119 +412,73 @@ public final class HelloWorld {
 	\end{itemize}
 \end{frame}
 
+\section{Testing con JUnit}
+
+\begin{frame}{Importanza del testing}
+	(Tutte cose che discuterete meglio a lezione)
+	\begin{itemize}
+		\item Il testing è importante quanto il sistema stesso
+		\item Si dovrebbero scrivere \textbf{prima} i test, e solo dopo realizzare il sistema
+		\begin{itemize}
+			\item Consente di dare una specifica formale del comportamento delle entità che si stanno modellando
+			\item Consente di intercettare immediatamente eventuali problemi in fase di sviluppo
+			\item Fornisce una base per effettuare ``regression testing'', ossia per evitare che nuove funzionalità introducano dei bug
+			\item È vero per tutte le branche dell'ingegneria: prima ancora di realizzare un motore, si prepara il suo banco prova
+		\end{itemize}
+		\item Esistono degli strumenti appositi che facilitano il testing!
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Unit vs integration}
+	\begin{block}{Unit testing}
+		\begin{itemize}
+			\item Scopo ristretto: testa ``piccole parti di codice''
+			\begin{itemize}
+				\item idealmente, una sola ``unità'', ad esempio una sola implementazione di una sola interfaccia
+			\end{itemize}
+			\item Servono a supportare lo sviluppatore
+			\begin{itemize}
+				\item L'utente ne beneficia indirettamente, ottenendo software con meno difetti
+			\end{itemize}
+			\item Non hanno dipendenze da sistemi esterni a quello in test
+			\item Testano la consistenza interna
+		\end{itemize}
+	\end{block}
+	\begin{block}{Integration testing}
+		\begin{itemize}
+			\item Scopo generale: verifica che diverse parti del sistema lavorino bene insieme
+			\item Hanno frequentemente dipendenze da sistemi esterni
+			\item Molto più impegnativi da realizzare
+			\begin{itemize}
+				\item Possono richiedere anche risorse esterne
+				\begin{itemize}
+					\item Database
+					\item Hardware apposito
+					\item Macchine virtuali
+				\end{itemize}
+			\end{itemize}
+			\item Testano il funzionamento globale del sistema
+			\begin{itemize}
+				\item Tanto che a volte si fanno dei veri e propri dimostratori...
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{JUnit}
+	\begin{block}{Generalità}
+		JUnit è il framework per lo unit testing più usato nel mondo Java
+		\begin{itemize}
+			\item Nello unit testing, ciascun test verifica la funzionalità di uno ed solo componente 
+			\begin{itemize}
+				\item In realtà, viene spesso ``abusato'' per testare aspetti più vasti
+			\end{itemize}
+		\end{itemize}
+	\end{block}
+
+\end{frame}
+
+
 
 \end{document}
-
-\subsection{Workflow}
-
-\fr{Shared repository}{
-  \iz {
-    \item Funziona bene se:
-    \iz {
-      \item Il progetto è piccolo
-      \item Ci sono pochi membri nel team
-      \item I membri del team possono interagire con facilità
-      \item Non c'è un maintainer/leader vero e proprio
-    }
-    \item Come funziona:
-    \iz {
-      \item Un solo repository online ``di riferimento''
-      \item Tutti i membri fanno pull e push su quello
-    }
-    \item Regole per farlo funzionare bene:
-    \iz {
-      \item Ciascun membro deve fare pull prima di fare push
-      \item Nel caso in cui la pull richieda di eseguire un'operazione di merge, è responsabilità di chi ha fatto la pull eseguire il merge correttamente prima di fare push
-    }
-    \item Difetti:
-    \iz {
-      \item Un solo membro che lavora male può compromettere il repository
-      \item Gara a chi fa push per primo per evitare di dover eseguire i merge
-    }
-  }
-}
-
-\fr{Shared repository}{
-  \begin{center}
-    \includegraphics[width=0.99\textwidth]{img/shared}
-  \end{center}
-}
-
-\fr{Multiple forks and pull requests}{
-  \iz {
-    \item Funziona bene se:
-    \iz {
-      \item Il progetto è grande
-      \item I membri del team non riescono a tenersi in contatto, ad esempio perché non lavorano nello stesso ufficio
-      \item C'è un maintainer o un responsabile
-    }
-    \item Come funziona:
-    \iz {
-      \item Un repository online ``di riferimento'', gestito dal maintainer
-      \item Ogni sviluppatore fa una fork del repository principale
-      \item Gli sviluppatori pull-ano dal repository principale e push-ano sulla loro fork
-      \item Quando la funzionalità che si voleva integrare è pronta per la consegna, lo sviluppatore apre una pull request verso il main repo
-      \item Il maintainer può analizzare il codice che verrebbe modificato, se accetta le modifiche il main repo viene portato nello stesso stato della fork.
-    }
-    \item Regole per farlo funzionare bene:
-    \iz {
-      \item Il maintainer deve essere in grado di effettuare code review
-    }
-    \item Difetti:
-    \iz {
-      \item Più complicato di un singolo repository condiviso
-    }
-  }
-}
-
-\fr{Multiple forks and pull requests}{
-  \begin{center}
-    \includegraphics[width=0.99\textwidth]{img/forks}
-  \end{center}
-}
-
-
-
-\fr{Esercizio con Mercurial} {
-	\iz{
-		\item Si acceda a \url{https://bitbucket.org/}
-		\item Ci si logghi con il proprio utente
-		\item Si vada al progetto che si trova alla pagina \url{https://bitbucket.org/danysk/courses-oop-merge-conflict-test}
-		\item Dall'interfaccia web di Bitbucket, si crei una propria fork del progetto
-		\item Utilizzando il comando \texttt{hg clone}, si cloni \textbf{la propria fork del progetto} all'interno di una nuova directory
-		\item Utilizzando il comando \texttt{hg heads}, si verifichi che il progetto ha due teste
-		\item Si tenti di fare il merge utilizzando \texttt{hg merge} 
-		\item Si osservi l'output di Mercurial: il merge ha generato un conflitto
-		\item Si utilizzi il comando \texttt{ls -ahl} (su Windows si usi l'equivalente \texttt{dir}) per vedere l'elenco dei file
-		\item Si noti che è stato creato un file \texttt{.origin}
-	}
-}
-
-\fr{Esercizio con Mercurial} {
-	\iz{
-		\item Utilizzando il comando \texttt{cat} (in Windows si usi il comando equivalente \texttt{type}) si osservi il contenuto dei file \texttt{HelloWorld.java.orig} e \texttt{HelloWorld.java}
-		\item Si modifichi HelloWorld.java in modo che stampi le informazioni riguardanti l'autore (non si modifichi l'autore al momento) e che stampi nella linea successiva l'informazione sul numero di processori installati.
-		\item Si compili nella cartella \texttt{bin} il file \texttt{HelloWorld.java}
-		\item Se ne testi il funzionamento
-		\item Una volta che il programma è funzionante, si usi hg status per vedere lo stato del repository. Si noti che il file \texttt{.orig} è in stato \texttt{?}
-		\item Si elimini il file \texttt{.orig}
-		\item Si dichiari risolto il conflitto di merge di \texttt{HelloWorld.java} utilizzando propriamente il comando \texttt{hg resolve -m}
-		\item Si salvi il merge con \texttt{hg commit}
-	}
-}
-
-\fr{Esercizio con Mercurial} {
-	\iz{
-		\item Dall'interfaccia web di Bitbucket, si crei un nuovo repository online
-		\item Si faccia \texttt{hg push} del repository locale verso il nuovo repository online
-		\item Si osservi, nell'interfaccia web di Bitbucket, la storia dei commit ed il grafo che mostra l'evoluzione dei flussi di lavoro
-		\item Si modifichi \texttt{HelloWorld.java} in modo tale che stampi il nome e cognome dello studente
-		\item Si esegua commit
-		\item In una nuova cartella \textbf{fuori dal repository corrente}, si cloni la precedente fork del repository (che avrà ancora le due teste separate)
-		\item Si modifichi il file \texttt{.hg/hgrc} facendo sì che punti al nuovo repository creato su Bitbucket
-		\item Si eseguano \texttt{hg pull} e \texttt{hg update}
-		\item Si verifichi con \texttt{hg log} e \texttt{hg heads} che il nuovo repository locale ha incorporato le modifiche fatte in precedenza. 
-	}
-}
-
 
