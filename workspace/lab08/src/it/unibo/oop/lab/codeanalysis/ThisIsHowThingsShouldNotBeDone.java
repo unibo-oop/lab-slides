@@ -1,4 +1,4 @@
-package it.unibo.oop.lab06.codeanalysis;
+package it.unibo.oop.lab.codeanalysis;
 
 import java.util.ArrayList;
 import java.util.Collection;
