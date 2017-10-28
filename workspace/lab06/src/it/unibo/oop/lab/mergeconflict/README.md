@@ -2,7 +2,7 @@
 
 * Si acceda a [Bitbucket](https://bitbucket.org/)
 * Ci si logghi con il proprio utente
-* Si vada al [progetto di test](git@bitbucket.org:danysk/courses-oop-git-merge-conflict-test.git)
+* Si vada al [progetto di test](https://bitbucket.org/danysk/courses-oop-git-merge-conflict-test)
 * Dall'interfaccia web di Bitbucket, si crei una propria fork del progetto
 * Utilizzando il comando ``git clone`` appropriatamente, si cloni **la propria fork del progetto** all'interno di una nuova directory
 * Si verifichi di aver clonato correttamente con `git status`
