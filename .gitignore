@@ -19,3 +19,4 @@
 **/bin/
 *.synctex.gz
 *.kate-swp
+*.cache
