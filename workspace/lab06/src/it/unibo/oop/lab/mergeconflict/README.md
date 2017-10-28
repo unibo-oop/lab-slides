@@ -10,7 +10,7 @@
 * Si noti l'esistenza di un branch remoto di nome `feature`
 * Si crei un branch locale `feature` che faccia tracking del branch remoto con il medesimo nome
 * Si usi `git branch` per verificare che siano ora presenti due branch locali (`master` e `feature`)
-* Si si assicuri di essere sul branch `master`. Se non si è su quel branch, si usi correttamente il sottocomando `checkout` per tornarci
+* Ci si assicuri di essere sul branch `master`. Se non si è su quel branch, si usi correttamente il sottocomando `checkout` per tornarci
 * Si utilizzi `git log --graph --all` per capire esattamente come sia strutturato il repository
 * Si tenti di fare il merge del branch `feature` dentro il branch `master`, utilizzando in modo idoneo il sottocomando `merge`
 * Si genera un conflitto di merge!
