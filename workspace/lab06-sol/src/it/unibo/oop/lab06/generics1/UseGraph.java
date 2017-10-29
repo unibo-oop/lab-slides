@@ -46,7 +46,8 @@ public final class UseGraph {
         System.out.println(g.linkedNodes("c"));
         // ["d","a"].. in any order
         System.out.println(g.getPath("a", "h"));
-        // either the path b,c,a or b,c,d,e,a
+        // the path a,b,d,f,g,h or the path a,b,d,j,i,h or the path a,b,d,c,e,f,g,h or the path a,b,d,c,e,g,h
 
+        // Try to change the search strategy in GraphImpl.getPath()
     }
 }
