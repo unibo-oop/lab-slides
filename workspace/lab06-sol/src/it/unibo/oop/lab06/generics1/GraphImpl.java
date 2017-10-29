@@ -1,85 +1,147 @@
-/**
- * 
- */
 package it.unibo.oop.lab06.generics1;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Implementation of a graph.
- *
- * @param <N>
- *            node type
- */
 public class GraphImpl<N> implements Graph<N> {
 
-    private final Map<N, Set<N>> graph = new HashMap<>();
+	private enum SearchStrategies {
+		BREADTH_FIRST, DEPTH_FIRST;
+	}
 
-    @Override
-    public void addNode(final N node) {
-        graph.putIfAbsent(node, new HashSet<>());
-    }
+	private class Step {
+		private final Step prevStep;
+		private final N position;
 
-    @Override
-    public void addEdge(final N source, final N target) {
-        if (graph.containsKey(source) && graph.containsKey(target)) {
-            graph.get(source).add(target);
-        } else {
-            System.out.println("WARNING: edge added between unexisting nodes ("
-                    + source + ", " + target + "). Edge will be ignored");
-        }
-    }
+		public Step(final N to) {
+			this(null, to);
+		}
 
-    @Override
-    public Set<N> nodeSet() {
-        return new HashSet<>(graph.keySet());
-    }
+		public Step(final Step from, final N to) {
+			this.prevStep = from;
+			this.position = to;
+		}
 
-    @Override
-    public Set<N> linkedNodes(final N node) {
-        return new HashSet<>(graph.get(node));
-    }
+		public List<N> getPath() {
+			final List<N> result = new LinkedList<>();
+			Step curr = this;
+			do {
+				result.add(0, curr.position);
+				curr = curr.prevStep;
+			} while (curr != null);
+			return result;
+		}
 
-    @Override
-    public List<N> getPath(final N source, final N target) {
-        if (graph.containsKey(source) && graph.containsKey(target)) {
-            final List<N> startList = new ArrayList<>();
-            startList.add(source);
-            return buildPath(source, target, startList);
-        }
-        System.out.println("Cannot compute path between nodes which are not in the graph ("
-                + source + ", " + target + "). Edge will be ignored");
-        return Collections.emptyList();
-    }
+		public N getPosition() {
+			return position;
+		}
 
-    private List<N> buildPath(final N source, final N target, final List<N> path) {
-        if (source.equals(target)) {
-            final List<N> res = new ArrayList<>();
-            res.add(source);
-            return res;
-        }
-        final Set<N> steps = graph.get(source);
-        if (steps.contains(target)) {
-            path.add(target);
-            return path;
-        }
-        for (final N step : steps) {
-            if (!path.contains(step)) {
-                path.add(step);
-                final List<N> possibleResult = buildPath(step, target, path);
-                if (target.equals(possibleResult.get(possibleResult.size() - 1))) {
-                    return possibleResult;
-                }
-                path.remove(path.size() - 1);
-            }
-        }
-        return Collections.emptyList();
-    }
+		@Override
+		public String toString() {
+			final List<String> elements = new LinkedList<>();
+			for (final N node : getPath()) {
+				elements.add(node.toString());
+			}
+			return String.join(" -> ", elements);
+		}
 
+	}
+
+	private final Map<N, Set<N>> edges = new HashMap<N, Set<N>>();
+
+	@Override
+	public void addEdge(final N source, final N target) {
+		if (ensureNodesExist(source, target)) {
+			final Set<N> sourceOutgoingEdges = edges.get(source);
+			if (!sourceOutgoingEdges.contains(target)) {
+				sourceOutgoingEdges.add(target);
+			}
+		}
+	}
+
+	@Override
+	public void addNode(final N node) {
+		edges.putIfAbsent(node, new HashSet<N>());
+	}
+
+	private boolean ensureNodesExist(final N... nodes) {
+		for (final N node : nodes) {
+			if (!edges.containsKey(node)) {
+				throw new IllegalArgumentException("No such a node: " + node);
+			}
+		}
+		
+		return true;
+	}
+
+	private int getNodesCount() {
+		return edges.keySet().size();
+	}
+
+	@Override
+	public List<N> getPath(final N source, final N target) {
+		if (ensureNodesExist(source, target)) {
+			return graphSearch(source, target, SearchStrategies.BREADTH_FIRST);
+		} else {
+			return Collections.emptyList();
+		}
+		
+	}
+
+	/**
+	 *
+	 * @see http://artint.info/html/ArtInt_51.html
+	 */
+	private List<N> graphSearch(final N source, final N target, final SearchStrategies strategy) {
+		final Deque<Step> fringe = new LinkedList<>();
+		fringe.add(new Step(source));
+		final Set<N> alreadyVisited = new HashSet<>();
+
+		while (!fringe.isEmpty() && alreadyVisited.size() < getNodesCount()) {
+			final Step lastStep = fringe.poll();
+			final N currentNode = lastStep.getPosition();
+
+			if (currentNode.equals(target)) {
+				return lastStep.getPath();
+			} else if (!alreadyVisited.contains(currentNode)) {
+				alreadyVisited.add(currentNode);
+
+				updateFringe(strategy, fringe, lastStep);
+			}
+		}
+
+		return Collections.emptyList();
+	}
+
+	@Override
+	public Set<N> linkedNodes(final N node) {
+		return edges.get(node);
+	}
+
+	@Override
+	public Set<N> nodeSet() {
+		return new HashSet<>(edges.keySet());
+	}
+
+	private void updateFringe(final SearchStrategies strategy, final Deque<Step> fringe, final Step lastStep) {
+		final N currentNode = lastStep.getPosition();
+		switch (strategy) {
+		case BREADTH_FIRST:
+			for (final N reachableNode : linkedNodes(currentNode)) {
+				fringe.addLast(new Step(lastStep, reachableNode));
+			}
+			break;
+		case DEPTH_FIRST:
+			for (final N reachableNode : linkedNodes(currentNode)) {
+				fringe.addFirst(new Step(lastStep, reachableNode));
+			}
+			break;
+		}
+	}
 }
