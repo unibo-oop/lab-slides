@@ -88,7 +88,6 @@ public final class BaseRobotTest {
          * batteria=20
          */
         final Robot r2 = new Robot("SimpleRobot2", TEST_BATTERY_LEVEL);
-
         /*
          * 2) Muovere ripetutamente il robot su di una posizione e giù di una
          * posizione fino a scaricare completamente la batteria e gestendo
