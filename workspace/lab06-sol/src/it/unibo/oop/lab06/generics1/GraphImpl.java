@@ -9,6 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Implementation of {@link Graph} only storing explicitly defined arcs.
+ * It is the ideal choice when handling poorly connected graphs.
+ *
+ * @param <N> the type of the nodes of the graph
+ */
 public class GraphImpl<N> implements Graph<N> {
 
     private final Map<N, Set<N>> edges = new HashMap<N, Set<N>>();
@@ -53,6 +59,7 @@ public class GraphImpl<N> implements Graph<N> {
     }
 
     /**
+     * Implements a fringe-based, pluggable-strategy, uninformed search algorithm
      *
      * @see http://artint.info/html/ArtInt_51.html
      */
