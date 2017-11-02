@@ -28,7 +28,8 @@ public class GraphImpl<N> implements Graph<N> {
         edges.putIfAbsent(node, new HashSet<N>());
     }
 
-    private boolean ensureNodesExist(final N... nodes) {
+    @SafeVarargs
+    private final boolean ensureNodesExist(final N... nodes) {
         for (final N node : nodes) {
             if (!edges.containsKey(node)) {
                 throw new IllegalArgumentException("No such a node: " + node);
