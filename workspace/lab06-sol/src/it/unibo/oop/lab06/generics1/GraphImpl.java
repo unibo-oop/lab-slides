@@ -34,13 +34,13 @@ public class GraphImpl<N> implements Graph<N> {
         edges.putIfAbsent(node, new HashSet<N>());
     }
 
-    private boolean ensureNodesExist(final N... nodes) {
+    @SafeVarargs
+    private final boolean ensureNodesExist(final N... nodes) {
         for (final N node : nodes) {
             if (!edges.containsKey(node)) {
                 throw new IllegalArgumentException("No such a node: " + node);
             }
         }
-
         return true;
     }
 
@@ -55,7 +55,6 @@ public class GraphImpl<N> implements Graph<N> {
         } else {
             return Collections.emptyList();
         }
-
     }
 
     /**
@@ -67,7 +66,6 @@ public class GraphImpl<N> implements Graph<N> {
         final Deque<Step<N>> fringe = new LinkedList<>();
         fringe.add(new Step<>(source));
         final Set<N> alreadyVisited = new HashSet<>();
-
         while (!fringe.isEmpty() && alreadyVisited.size() < getNodesCount()) {
             final Step<N> lastStep = fringe.poll();
             final N currentNode = lastStep.getPosition();
@@ -80,7 +78,6 @@ public class GraphImpl<N> implements Graph<N> {
                 updateFringe(strategy, fringe, lastStep);
             }
         }
-
         return Collections.emptyList();
     }
 
