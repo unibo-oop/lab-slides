@@ -100,6 +100,8 @@ public class GraphImpl<N> implements Graph<N> {
                 fringe.addFirst(new Step<>(lastStep, reachableNode));
             }
             break;
+        default:
+            throw new IllegalStateException("There is a new strategy that has not been implemented yet: " + strategy);
         }
     }
 }
