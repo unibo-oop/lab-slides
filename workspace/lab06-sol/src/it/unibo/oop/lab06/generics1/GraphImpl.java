@@ -11,48 +11,6 @@ import java.util.Set;
 
 public class GraphImpl<N> implements Graph<N> {
 
-	private enum SearchStrategies {
-		BREADTH_FIRST, DEPTH_FIRST;
-	}
-
-	private class Step {
-		private final Step prevStep;
-		private final N position;
-
-		public Step(final N to) {
-			this(null, to);
-		}
-
-		public Step(final Step from, final N to) {
-			this.prevStep = from;
-			this.position = to;
-		}
-
-		public List<N> getPath() {
-			final List<N> result = new LinkedList<>();
-			Step curr = this;
-			do {
-				result.add(0, curr.position);
-				curr = curr.prevStep;
-			} while (curr != null);
-			return result;
-		}
-
-		public N getPosition() {
-			return position;
-		}
-
-		@Override
-		public String toString() {
-			final List<String> elements = new LinkedList<>();
-			for (final N node : getPath()) {
-				elements.add(node.toString());
-			}
-			return String.join(" -> ", elements);
-		}
-
-	}
-
 	private final Map<N, Set<N>> edges = new HashMap<N, Set<N>>();
 
 	@Override
@@ -99,12 +57,12 @@ public class GraphImpl<N> implements Graph<N> {
 	 * @see http://artint.info/html/ArtInt_51.html
 	 */
 	private List<N> graphSearch(final N source, final N target, final SearchStrategies strategy) {
-		final Deque<Step> fringe = new LinkedList<>();
-		fringe.add(new Step(source));
+		final Deque<Step<N>> fringe = new LinkedList<>();
+		fringe.add(new Step<>(source));
 		final Set<N> alreadyVisited = new HashSet<>();
 
 		while (!fringe.isEmpty() && alreadyVisited.size() < getNodesCount()) {
-			final Step lastStep = fringe.poll();
+			final Step<N> lastStep = fringe.poll();
 			final N currentNode = lastStep.getPosition();
 
 			if (currentNode.equals(target)) {
@@ -129,17 +87,17 @@ public class GraphImpl<N> implements Graph<N> {
 		return new HashSet<>(edges.keySet());
 	}
 
-	private void updateFringe(final SearchStrategies strategy, final Deque<Step> fringe, final Step lastStep) {
+	private void updateFringe(final SearchStrategies strategy, final Deque<Step<N>> fringe, final Step<N> lastStep) {
 		final N currentNode = lastStep.getPosition();
 		switch (strategy) {
 		case BREADTH_FIRST:
 			for (final N reachableNode : linkedNodes(currentNode)) {
-				fringe.addLast(new Step(lastStep, reachableNode));
+				fringe.addLast(new Step<>(lastStep, reachableNode));
 			}
 			break;
 		case DEPTH_FIRST:
 			for (final N reachableNode : linkedNodes(currentNode)) {
-				fringe.addFirst(new Step(lastStep, reachableNode));
+				fringe.addFirst(new Step<>(lastStep, reachableNode));
 			}
 			break;
 		}
