@@ -39,8 +39,7 @@ public final class TestAnonymousComparator {
     public static boolean checkUserOrder(final List<User> expected, final List<User> result) {
         for (int i = 0; i < expected.size(); i++) {
             if (!expected.get(i).equals(result.get(i))) {
-                System.out.println("    [EXCEPTION] [POS. " + i + "] [EXPECTED] " + expected.get(i) + " [GOT] "
-                        + result.get(i));
+                System.out.println("[EXCEPTION] [POS. " + i + "] [EXPECTED] " + expected.get(i) + " [GOT] " + result.get(i));
                 return false;
             }
         }
