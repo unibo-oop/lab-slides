@@ -2,8 +2,8 @@ package it.unibo.oop.lab06.generics1;
 
 import java.util.Collections;
 import java.util.Deque;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -17,18 +17,30 @@ import java.util.Set;
  */
 public class GraphImpl<N> implements Graph<N> {
 
-    private static final int STRATEGY_BREADTH_FIRST = 0;
-    private static final int STRATEGY_DEPTH_FIRST = 1;
+    private final Map<N, Set<N>> edges = new LinkedHashMap<N, Set<N>>();
+    private final FringeAccumulationStrategy<Step<N>> strategy;
 
-    private final Map<N, Set<N>> edges = new HashMap<N, Set<N>>();
+    /**
+     * Builds a new Graph with the provided strategy.
+     * 
+     * @param strategy
+     *            the strategy to be used to search in the graph
+     */
+    public GraphImpl(final FringeAccumulationStrategy<Step<N>> strategy) {
+        this.strategy = strategy;
+    }
+
+    /**
+     * Builds a new Graph with depth-first strategy.
+     */
+    public GraphImpl() {
+        this(DepthFirst.getInstance());
+    }
 
     @Override
     public void addEdge(final N source, final N target) {
-        if (ensureNodesExist(source, target)) {
-            final Set<N> sourceOutgoingEdges = edges.get(source);
-            if (!sourceOutgoingEdges.contains(target)) {
-                sourceOutgoingEdges.add(target);
-            }
+        if (nodesExist(source, target)) {
+            edges.get(source).add(target);
         }
     }
 
@@ -38,10 +50,10 @@ public class GraphImpl<N> implements Graph<N> {
     }
 
     @SafeVarargs
-    private final boolean ensureNodesExist(final N... nodes) {
+    private final boolean nodesExist(final N... nodes) {
         for (final N node : nodes) {
             if (!edges.containsKey(node)) {
-                throw new IllegalArgumentException("No such a node: " + node);
+                throw new IllegalArgumentException("No such node: " + node);
             }
         }
         return true;
@@ -53,8 +65,8 @@ public class GraphImpl<N> implements Graph<N> {
 
     @Override
     public List<N> getPath(final N source, final N target) {
-        if (ensureNodesExist(source, target)) {
-            return graphSearch(source, target, STRATEGY_BREADTH_FIRST);
+        if (nodesExist(source, target)) {
+            return graphSearch(source, target);
         } else {
             return Collections.emptyList();
         }
@@ -65,7 +77,7 @@ public class GraphImpl<N> implements Graph<N> {
      *
      * @see http://artint.info/html/ArtInt_51.html
      */
-    private List<N> graphSearch(final N source, final N target, final int strategy) {
+    private List<N> graphSearch(final N source, final N target) {
         final Deque<Step<N>> fringe = new LinkedList<>();
         fringe.add(new Step<>(source));
         final Set<N> alreadyVisited = new HashSet<>();
@@ -77,8 +89,7 @@ public class GraphImpl<N> implements Graph<N> {
                 return lastStep.getPath();
             } else if (!alreadyVisited.contains(currentNode)) {
                 alreadyVisited.add(currentNode);
-
-                updateFringe(strategy, fringe, lastStep);
+                updateFringe(fringe, lastStep);
             }
         }
         return Collections.emptyList();
@@ -94,21 +105,10 @@ public class GraphImpl<N> implements Graph<N> {
         return new HashSet<>(edges.keySet());
     }
 
-    private void updateFringe(final int strategy, final Deque<Step<N>> fringe, final Step<N> lastStep) {
+    private void updateFringe(final Deque<Step<N>> fringe, final Step<N> lastStep) {
         final N currentNode = lastStep.getPosition();
-        switch (strategy) {
-        case STRATEGY_BREADTH_FIRST:
-            for (final N reachableNode : linkedNodes(currentNode)) {
-                fringe.addLast(new Step<>(lastStep, reachableNode));
-            }
-            break;
-        case STRATEGY_DEPTH_FIRST:
-            for (final N reachableNode : linkedNodes(currentNode)) {
-                fringe.addFirst(new Step<>(lastStep, reachableNode));
-            }
-            break;
-        default:
-            throw new IllegalStateException("There is a new strategy that has not been implemented yet: " + strategy);
+        for (final N reachableNode : linkedNodes(currentNode)) {
+            strategy.addToFringe(fringe, new Step<>(lastStep, reachableNode));
         }
     }
 }
