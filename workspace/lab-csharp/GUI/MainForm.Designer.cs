@@ -1,4 +1,4 @@
-﻿namespace Unibo.ISI.ProgramazioneAdOggetti.Esercitazioni
+namespace Unibo.ISI.ProgramazioneAdOggetti.Esercitazioni
 {
   partial class MainForm
   {
