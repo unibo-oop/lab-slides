@@ -18,5 +18,6 @@
 **/.recommenders/*
 **/bin/
 *.synctex.gz
+*.synctex*
 *.kate-swp
 *.cache
