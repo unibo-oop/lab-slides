@@ -1,11 +1,7 @@
-Testo del problema 
+# Instructions
 
-Le interfacce Acceptable and Acceptor sono il duale di Iterable e Iterator: gestiscono 
-il caso di oggetti che ricevono (invece che producono) sequenze finite di elementi. 
+`Acceptable` and `Acceptor` are the dual of `Iterable` and `Iterator`: they deal with object producing (rather than consuming) finite sequences of elements.
 
-Realizzare la classe OneListAcceptable<T> con un costruttore che accetta una 
-java.util.List<T> e implementa Acceptable<T>, in modo che accetti esattamente la sequenza 
-di elementi contenuta nella lista. 
+Create a new class `OneListAcceptable<T> implements Acceptable<T>` with a constructor accepting a `java.util.List<T>`, in such a way that it accepts exactly the sequence of elements contained in the list.
 
-Si utilizzino i 3 test in AcceptableTest per capire quale funzionamento 
-dovrà avere.
+Use the three tests in `AcceptableTest` to better understand the expected behavior of `OneListAcceptable`.
