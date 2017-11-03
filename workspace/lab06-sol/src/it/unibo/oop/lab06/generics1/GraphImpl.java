@@ -17,6 +17,9 @@ import java.util.Set;
  */
 public class GraphImpl<N> implements Graph<N> {
 
+    private static final int STRATEGY_BREADTH_FIRST = 0;
+    private static final int STRATEGY_DEPTH_FIRST = 1;
+
     private final Map<N, Set<N>> edges = new HashMap<N, Set<N>>();
 
     @Override
@@ -51,7 +54,7 @@ public class GraphImpl<N> implements Graph<N> {
     @Override
     public List<N> getPath(final N source, final N target) {
         if (ensureNodesExist(source, target)) {
-            return graphSearch(source, target, SearchStrategies.BREADTH_FIRST);
+            return graphSearch(source, target, STRATEGY_BREADTH_FIRST);
         } else {
             return Collections.emptyList();
         }
@@ -62,7 +65,7 @@ public class GraphImpl<N> implements Graph<N> {
      *
      * @see http://artint.info/html/ArtInt_51.html
      */
-    private List<N> graphSearch(final N source, final N target, final SearchStrategies strategy) {
+    private List<N> graphSearch(final N source, final N target, final int strategy) {
         final Deque<Step<N>> fringe = new LinkedList<>();
         fringe.add(new Step<>(source));
         final Set<N> alreadyVisited = new HashSet<>();
@@ -91,15 +94,15 @@ public class GraphImpl<N> implements Graph<N> {
         return new HashSet<>(edges.keySet());
     }
 
-    private void updateFringe(final SearchStrategies strategy, final Deque<Step<N>> fringe, final Step<N> lastStep) {
+    private void updateFringe(final int strategy, final Deque<Step<N>> fringe, final Step<N> lastStep) {
         final N currentNode = lastStep.getPosition();
         switch (strategy) {
-        case BREADTH_FIRST:
+        case STRATEGY_BREADTH_FIRST:
             for (final N reachableNode : linkedNodes(currentNode)) {
                 fringe.addLast(new Step<>(lastStep, reachableNode));
             }
             break;
-        case DEPTH_FIRST:
+        case STRATEGY_DEPTH_FIRST:
             for (final N reachableNode : linkedNodes(currentNode)) {
                 fringe.addFirst(new Step<>(lastStep, reachableNode));
             }
