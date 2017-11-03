@@ -79,7 +79,7 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
 
     /**
      *
-     * [NOTE] If no group with groupName exists yet, this implementation must
+     * If no group with groupName exists yet, this implementation must
      * return an empty Collection.
      * 
      * {@inheritDoc}
