@@ -4,7 +4,7 @@ Every exercise contains a `README.md` file with instructions on what to do.
 Solve the exercise in the following order: 
 
 1. `anonymous1`
-2. `enum1`
-1. `nesting1`
-2. `enum2`
-1. `nesting2`
+2. `nesting1`
+3. `enum1`
+4. `enum2`
+5. `nesting2`
