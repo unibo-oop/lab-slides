@@ -75,7 +75,7 @@ public final class TestAnonymousComparator {
          * NOTE: in order to sort a list think about a method of the utility
          * class java.util.Collections
          * 
-         * REFER TO LESSON 12-Advanced-Mechanisms.pdf, slide 39
+         * REFER TO LESSON 13-Advanced-Mechanisms.pdf, slide 39
          */
         // TODO
         /*
