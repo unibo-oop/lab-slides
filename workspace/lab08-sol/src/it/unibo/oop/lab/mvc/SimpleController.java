@@ -1,4 +1,4 @@
-package it.unibo.oop.lab.gui02;
+package it.unibo.oop.lab.mvc;
 
 import java.util.LinkedList;
 import java.util.List;

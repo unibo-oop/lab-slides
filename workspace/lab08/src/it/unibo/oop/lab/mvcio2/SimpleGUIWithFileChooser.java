@@ -1,4 +1,4 @@
-package it.unibo.oop.lab.mvc2;
+package it.unibo.oop.lab.mvcio2;
 
 /**
  * A very simple program using a graphical interface.
@@ -7,7 +7,7 @@ package it.unibo.oop.lab.mvc2;
 public final class SimpleGUIWithFileChooser {
 
     /*
-     * TODO: Starting from the application in mvciogui:
+     * TODO: Starting from the application in mvcio:
      * 
      * 1) Add a JTextField and a button "Browse..." on the upper part of the
      * graphical interface.
