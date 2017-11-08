@@ -1,4 +1,4 @@
-package it.unibo.oop.lab.gui2;
+package it.unibo.oop.lab.mvcio;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;

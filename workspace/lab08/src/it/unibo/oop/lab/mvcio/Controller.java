@@ -1,4 +1,4 @@
-package it.unibo.oop.lab.gui2;
+package it.unibo.oop.lab.mvcio;
 
 /**
  * 

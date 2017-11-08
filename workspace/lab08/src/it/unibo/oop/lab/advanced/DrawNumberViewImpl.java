@@ -1,4 +1,4 @@
-package it.unibo.oop.lab.ex04;
+package it.unibo.oop.lab.advanced;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;

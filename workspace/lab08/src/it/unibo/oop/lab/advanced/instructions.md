@@ -3,13 +3,11 @@
 This application is the same you have already encountered in the course, with minor improvements (the code here is not required to fit to few slides). Refer to to slides to understand how the application works.
 We will enrich the example by adding I/O.
 
-
 ## Prepare the UI to show errors
 
 The I/O access is source of new possible unpredicted situations, that should be reported to the user as errors via the UI. As a first step, we will add to the view the ability to display errors generated in the controller.
 
 * Add a method void displayError(String message) in DrawNumberView
-
 * Implement the method in DrawNumberViewImpl, using JOptionPane.showMessageDialog() to display the error
 
 ## Configuration file
@@ -25,7 +23,6 @@ Currently, the game settings (minimum, maximum, and number of allowed attempts) 
 * Do not make the View operate on the file system. More precisely, the controller in its constructor must be able to read the provided configuration file, and import the three constants. Even better, an external utility (either a method or another class) could be responsible for that. The reason is that the interaction with the file system is not part of the domain model, nor, in this case, is part of the view.
 
 * You can use ``StringTokenizer`` to split a ``String`` in parts. Another option, available for this very case, is ``String.split()``, passing ``":"`` as argument. Beware of ``split()``: the input ``String`` is actually a regular expression. Regular expressions (regex) are a very powerful tool, but we can not cover them in this course: ``StringTokenizer`` is recommended unless you already know regex.
-
 
 ## Multiple views
 
