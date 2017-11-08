@@ -26,8 +26,7 @@ import it.unibo.oop.lab.socialnetwork.User;
  * @param <U>
  *            specific user type
  */
-public class SportSocialNetworkUserImpl<U extends User> extends
-        SocialNetworkUserImpl<U> {
+public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUserImpl<U> {
 
     private final Set<Sport> sports;
 
@@ -60,8 +59,11 @@ public class SportSocialNetworkUserImpl<U extends User> extends
      *            alias of the user, i.e. the way a user is identified on an
      *            application
      */
-    public SportSocialNetworkUserImpl(final String name, final String surname,
-            final String user, final int userAge) {
+    public SportSocialNetworkUserImpl(
+            final String name,
+            final String surname,
+            final String user,
+            final int userAge) {
         super(name, surname, user, userAge);
         this.sports = new HashSet<>();
     }
