@@ -1,4 +1,4 @@
-package it.unibo.oop.lab.ex02;
+package it.unibo.oop.lab.mvcio;
 
 import java.io.File;
 import java.io.FileOutputStream;
