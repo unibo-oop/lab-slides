@@ -14,8 +14,7 @@ import it.unibo.oop.lab.socialnetwork.User;
  */
 public final class TestSportAdvancedEnumeration {
 
-    private TestSportAdvancedEnumeration() {
-    }
+    private TestSportAdvancedEnumeration() { }
 
     /**
      * This is going to act as a test for
@@ -25,7 +24,6 @@ public final class TestSportAdvancedEnumeration {
      *            ignored
      */
     public static void main(final String... args) {
-
         /*
          * create 2 social network users (Sport2SocialNetworkUser): - Davide
          * Cassani , dcassani, 53 - Fernando Alonso, falonso, 34
@@ -34,16 +32,13 @@ public final class TestSportAdvancedEnumeration {
                 new Sport2SocialNetworkUserImpl<>("Davide", "Cassani", "dcassani", 53);
         final Sport2SocialNetworkUserImpl<User> falonso =
                 new Sport2SocialNetworkUserImpl<>("Fernando", "Alonso", "falonso", 34);
-
         // ONCE YOU HAVE COMPLETED EVERY CLASS, UNCOMMENT THE INSTRUCTION BELOW
         // IN ORDER TO COMPLETE THE TEST
-
         // alonso in a fan of soccer and bike and practices F1:
         /*
          * falonso.addSport(Sport.F1); falonso.addSport(Sport.SOCCER);
          * falonso.addSport(Sport.BIKE);
          */
-
         // TEST getIndividualSports()
         /*
          * Set<Sport> individual = falonso.getIndividualSports();
@@ -52,13 +47,11 @@ public final class TestSportAdvancedEnumeration {
          * System.out.println("[Alonso] [Individual] [not TENNIS]: " +
          * !individual. contains(Sport.TENNIS));
          */
-
         // Cassani practiced bike and loves F1 and MotoGP:
         /*
          * dcassani.addSport(Sport.BIKE); dcassani.addSport(Sport.F1);
          * dcassani.addSport(Sport.MOTOGP);
          */
-
         // TEST getIndividualSports()
         /*
          * individual = dcassani.getIndividualSports();
@@ -67,7 +60,6 @@ public final class TestSportAdvancedEnumeration {
          * System.out.println("[Cassani] [Individual] [not TENNIS]: " +
          * !individual.contains(Sport.TENNIS));
          */
-
         // TEST getSportPracticedInPlace(Place)
         /*
          * sportsInPlace = dcassani.getSportPracticedInPlace(Place.OUTDOOR);
@@ -75,5 +67,4 @@ public final class TestSportAdvancedEnumeration {
          * (sportsInPlace.size()==3));
          */
     }
-
 }
