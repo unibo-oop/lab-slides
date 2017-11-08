@@ -12,8 +12,12 @@ package it.unibo.oop.lab.enum2;
 public enum Place {
 
     /**
-     * 
+     * Indoor.
      */
-    INDOOR, OUTDOOR
+    INDOOR,
+    /**
+     * Outdoor.
+     */
+    OUTDOOR
 
 }
