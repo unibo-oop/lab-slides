@@ -1,6 +1,3 @@
-/**
- * 
- */
 package it.unibo.oop.lab.anonymous1;
 
 import java.util.ArrayList;
@@ -14,17 +11,17 @@ import it.unibo.oop.lab.socialnetwork.User;
  * Instruction: define two comparators as anonymous classes in oder to sort a
  * list of user in the appropriate way.
  * 
- * 1) Study carefully the test in order to understand it 2) Introduce the
- * anonymous comparator where required in order to make the test succeed.
+ * 1) Study carefully the test in order to understand it
+ *
+ * 2) Introduce the anonymous comparator where required in order to make the
+ * test succeed.
  * 
- * (Refer to: 12-Advanced-Mechanisms.pdf, slide 39)
+ * (Refer to: 13-Advanced-Mechanisms.pdf, slide 39)
  * 
  */
 public final class TestAnonymousComparator {
 
-    private TestAnonymousComparator() {
-
-    }
+    private TestAnonymousComparator() { }
 
     /**
      * Check whether the users in result list are in the same order as those in
@@ -75,7 +72,7 @@ public final class TestAnonymousComparator {
          * NOTE: in order to sort a list think about a method of the utility
          * class java.util.Collections
          * 
-         * REFER TO LESSON 12-Advanced-Mechanisms.pdf, slide 39
+         * REFER TO LESSON 13-Advanced-Mechanisms.pdf, slide 39
          */
         // TODO
         /*
@@ -122,7 +119,5 @@ public final class TestAnonymousComparator {
         System.out.println("[Order by age (decreasing) Rossi friends] [TEST] [RESULT] "
                 + checkUserOrder(expectedResult, rossiUsers));
         System.out.println("[Order by age (decreasing) Rossi friends] [TEST] [END]");
-
     }
-
 }
