@@ -43,9 +43,6 @@ public interface Acceptor<T> {
      */
     class ElementNotAcceptedException extends Exception {
 
-        /**
-         * 
-         */
         private static final long serialVersionUID = -3064859728330027691L;
         private final Object element;
 
@@ -66,20 +63,13 @@ public interface Acceptor<T> {
         public Object getElement() {
             return element;
         }
-
     }
 
     /**
      * Occurring when trying to terminate accepting new elements, but still
      * other elements have to accepted.
-     *
      */
     class EndNotAcceptedException extends Exception {
-
-        /**
-         * 
-         */
         private static final long serialVersionUID = -9112482421243100402L;
     }
-
 }
