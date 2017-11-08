@@ -131,7 +131,10 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
          * {@inheritDoc}
          */
         public boolean equals(final Object o) {
-            if (o instanceof Sport) {
+            if (o == null) {
+                return false;
+            }
+            if (getClass().equals(o.getClass())) {
                 return n.equals(((Sport) o).n);
             }
             return false;
