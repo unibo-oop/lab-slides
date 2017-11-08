@@ -1,10 +1,10 @@
-# Ex01: simple monolithic GUI
+# Simple monolithic GUI
 
 ## Understand
 1. Read the class carefully
 2. Read the comments carefully
 3. Note how ``System.getProperties()`` is used to obtain properties of the current system
-4. Note how these properties are used to produce multiplatform code
+4. Note how these properties are used to produce multi-platform code
    **NOTE**: ``write once, run everywhere`` is true only if the code is maeant to be multiplatform!
 5. Note the use of ``Toolkit`` to get the current screen resolution, and dimension the window correctly
 6. Note the use of ``JFrame. setLocationByPlatform()`` to delegate the window positioning to the system composer (the part of the graphical stack in charge of effectively drawing windows, borders, decorations and effects).

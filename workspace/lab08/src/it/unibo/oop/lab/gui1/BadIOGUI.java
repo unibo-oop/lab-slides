@@ -1,7 +1,7 @@
 /**
  * 
  */
-package it.unibo.oop.lab.ex01;
+package it.unibo.oop.lab.gui1;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
