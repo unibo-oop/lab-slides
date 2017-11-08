@@ -124,5 +124,4 @@ public final class TestAnonymousComparator {
                 + checkUserOrder(expectedResult, rossiUsers));
         System.out.println("[Order by age (decreasing) Rossi friends] [TEST] [END]");
     }
-
 }
