@@ -1,7 +1,7 @@
 /**
  * 
  */
-package it.unibo.oop.lab.ex01;
+package it.unibo.oop.lab.iogui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -54,7 +54,6 @@ public class BadIOGUI {
         canvas.add(center, BorderLayout.CENTER);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         /*
          * Handlers
          */
@@ -68,7 +67,7 @@ public class BadIOGUI {
                  * operation. I/O operations may take a long time, during which
                  * your UI becomes completely unresponsive.
                  */
-                try (final PrintStream ps = new PrintStream(PATH)) {
+                try (PrintStream ps = new PrintStream(PATH)) {
                     ps.print(rng.nextInt());
                 } catch (FileNotFoundException e1) {
                     JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
@@ -105,17 +104,15 @@ public class BadIOGUI {
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
         frame.setSize(sw / PROPORTION, sh / PROPORTION);
-
         /*
          * Instead of appearing at (0,0), upper left corner of the screen, this
          * flag makes the OS window manager take care of the default positioning
          * on screen. Results may vary, but it is generally the best choice.
          */
         frame.setLocationByPlatform(true);
-
         frame.pack();
         /*
-         * OK, ready to pull the frame onscreen
+         * OK, ready to push the frame onscreen
          */
         frame.setVisible(true);
     }
@@ -126,5 +123,4 @@ public class BadIOGUI {
     public static void main(final String... args) {
        new BadIOGUI().display();
     }
-
 }
