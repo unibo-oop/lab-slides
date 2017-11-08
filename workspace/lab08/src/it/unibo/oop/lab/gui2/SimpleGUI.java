@@ -1,4 +1,4 @@
-package it.unibo.oop.lab.ex02;
+package it.unibo.oop.lab.gui2;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -37,7 +37,6 @@ public final class SimpleGUI {
      * builds a new {@link SimpleGUI}.
      */
     public SimpleGUI() {
-
         /*
          * Make the frame half the resolution of the screen. This very method is
          * enough for a single screen setup. In case of multiple monitors, the
@@ -52,7 +51,6 @@ public final class SimpleGUI {
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
         frame.setSize(sw / 2, sh / 2);
-
         /*
          * Instead of appearing at (0,0), upper left corner of the screen, this
          * flag makes the OS window manager take care of the default positioning

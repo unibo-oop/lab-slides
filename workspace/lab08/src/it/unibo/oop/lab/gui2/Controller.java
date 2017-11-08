@@ -1,4 +1,4 @@
-package it.unibo.oop.lab.ex02;
+package it.unibo.oop.lab.gui2;
 
 /**
  * 
