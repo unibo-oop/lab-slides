@@ -4,6 +4,7 @@
 * Take a look at `it.unibo.oop.lab.resourceloading`: there is an example of accessing the contents of the classpath - namely, you can load files transparently regardless that you are accessing the file system or a compressed jar or zip file! Avoid use files directly whenever possible!
 
 Solve the exercises in order:
+
 1. simplegui
 2. iogui
 3. mvcio
