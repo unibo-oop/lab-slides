@@ -127,56 +127,6 @@
 	\end{block}
 \end{frame}
 
-
-\subsection{Font ed encoding}
-
-\begin{frame}{Font ed encoding}
-	Le più note piattaforme utilizzano di default encoding diversi:
-	\begin{itemize}
-		\item \textbf{UTF-8} --- default su Linux, può essere considerato lo standard de-facto.
-		\item \textbf{MacRoman} --- default su MacOS, raramente causa artefatti se riconvertito ad altri formati.
-		\item \textbf{ISO-8859-1} --- default su Windows, può causare artefatti su quasi tutti i caratteri non ASCII se convertito a UTF-8.
-	\end{itemize}
-	\begin{block}{Encoding per il codice sorgente}
-		Solitamente, il codice sorgente si sviluppa utilizzando la codifica UTF-8
-		\begin{itemize}
-			\item Essenziale se si utilizzano caratteri non inclusi nella tabella ASCII (caratteri accentati, ad esempio).
-		\end{itemize}
-	\end{block}
-\end{frame}
-
-\begin{frame}[allowframebreaks]{Carattere di new line}
-	Unix e Windows differiscono anche per il carattere di newline
-	\begin{itemize}
-		\item \texttt{\textbackslash{}n} --- Su Linux e MacOS X (e su tutti i sistemi non Windows).
-		\item \texttt{\textbackslash{}r} --- Su MacOS 9 e precedenti
-		\item \texttt{\textbackslash{}r\textbackslash{}n} --- Windows
-	\end{itemize}
-	\begin{block}{Pillola di storia}
-		\begin{itemize}
-			\item Il ``carriage report'' è un'eredità dovuta alla compatibilità con MS-DOS
-			\item Che a sua ha ereditato la cosa dalla compatibilità con CP/M-80
-			\item A quel tempo, le stampanti erano macchine da scrivere elettromeccaniche
-			\item \texttt{\textbackslash{}r} riportava il rullo con la carta al margine sinistro
-			\item Anche se queste stampanti non sono più in uso, alcuni produttori (come HP) mantengono la compatibilità su alcuni prodotti
-			\item Ad oggi, si usa \texttt{\textbackslash{}r} solo per realizzare animazioni su terminale (far sì che la nuova linea cancelli la precedente)
-		\end{itemize}
-	\end{block}
-	\begin{block}{Standardizzazione}
-		\begin{itemize}
-			\item Entrambi i sistemi ``digeriscono'' entrambi i newline
-			\item Ma se due membri del team usano impostazioni diverse, il DVCS considererà ogni file modificato come integralmente cambiato ad ogni salvataggio 
-			\begin{itemize}
-				\item Diff incomprensibili
-				\item Storia del progetto compromessa
-				\item Difficoltà di produrre patch e ripristinare il lavoro precedente
-			\end{itemize}
-			\item Facciamo una scelta, e utilizziamo un solo formato
-			\item La nostra scelta sarà \texttt{\textbackslash{}n} (Unix newline)
-		\end{itemize}
-	\end{block}
-\end{frame}
-
 \subsection{GUI scalabili e internazionalizzazione}
 
 \begin{frame}{GUI scalabili -- Motivazioni}
@@ -334,7 +284,56 @@ Per approfondimenti (per implementare il supporto multilingua):
 	\end{center}
 \end{frame}
 
-\begin{frame}{Configurazione di font ed encoding in Eclipse}
+\subsection{Font ed encoding}
+
+\begin{frame}{Font ed encoding}
+	Le più note piattaforme utilizzano di default encoding diversi:
+	\begin{itemize}
+		\item \textbf{UTF-8} --- default su Linux, può essere considerato lo standard de-facto.
+		\item \textbf{MacRoman} --- default su MacOS, raramente causa artefatti se riconvertito ad altri formati.
+		\item \textbf{ISO-8859-1} --- default su Windows, può causare artefatti su quasi tutti i caratteri non ASCII se convertito a UTF-8.
+	\end{itemize}
+	\begin{block}{Encoding per il codice sorgente}
+		Solitamente, il codice sorgente si sviluppa utilizzando la codifica UTF-8
+		\begin{itemize}
+			\item Essenziale se si utilizzano caratteri non inclusi nella tabella ASCII (caratteri accentati, ad esempio).
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Carattere di new line}
+	Unix e Windows differiscono anche per il carattere di newline
+	\begin{itemize}
+		\item \texttt{\textbackslash{}n} --- Su Linux e MacOS X (e su tutti i sistemi non Windows).
+		\item \texttt{\textbackslash{}r} --- Su MacOS 9 e precedenti
+		\item \texttt{\textbackslash{}r\textbackslash{}n} --- Windows
+	\end{itemize}
+	\begin{block}{Pillola di storia}
+		\begin{itemize}
+			\item Il ``carriage report'' è un'eredità dovuta alla compatibilità con MS-DOS
+			\item Che a sua ha ereditato la cosa dalla compatibilità con CP/M-80
+			\item A quel tempo, le stampanti erano macchine da scrivere elettromeccaniche
+			\item \texttt{\textbackslash{}r} riportava il rullo con la carta al margine sinistro
+			\item Anche se queste stampanti non sono più in uso, alcuni produttori (come HP) mantengono la compatibilità su alcuni prodotti
+			\item Ad oggi, si usa \texttt{\textbackslash{}r} solo per realizzare animazioni su terminale (far sì che la nuova linea cancelli la precedente)
+		\end{itemize}
+	\end{block}
+	\begin{block}{Standardizzazione}
+		\begin{itemize}
+			\item Entrambi i sistemi ``digeriscono'' entrambi i newline
+			\item Ma se due membri del team usano impostazioni diverse, il DVCS considererà ogni file modificato come integralmente cambiato ad ogni salvataggio 
+			\begin{itemize}
+				\item Diff incomprensibili
+				\item Storia del progetto compromessa
+				\item Difficoltà di produrre patch e ripristinare il lavoro precedente
+			\end{itemize}
+			\item Facciamo una scelta, e utilizziamo un solo formato
+			\item La nostra scelta sarà \texttt{\textbackslash{}n} (Unix newline)
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Configurazione di encoding e newline in Eclipse}
 	\begin{itemize}
 		\item Selezione del progetto $\rightarrow$ Click destro $\rightarrow$ Preferences $\rightarrow$ Resource
 		\item Text file encoding $\rightarrow$ Other $\rightarrow$ UTF-8
@@ -527,9 +526,9 @@ Spesso un software ha necessità di caricare al primo avvio delle impostazioni d
 	\end{center}
 \end{frame}
 
-\fr{FindBugs} {
+\fr{SpotBugs (ex FindBugs)} {
   \bl{Cos'è} {
-      FindBugs scansiona il bytecode generato dal compilatore, e dalla sua analisi cerca di scoprire potenziali bug nel sorgente, ad esempio:
+      SpotBugs scansiona il bytecode generato dal compilatore, e dalla sua analisi cerca di scoprire potenziali bug nel sorgente, ad esempio:
       \iz {
         \item Uguaglianza esatta fra \texttt{float} o \texttt{double}
         \item Utilizzo di \texttt{==} invece di \texttt{equals()}
@@ -541,13 +540,13 @@ Spesso un software ha necessità di caricare al primo avvio delle impostazioni d
   }
 }
 
-\fr{FindBugs --- Configurazione globale} {
+\fr{SpotBugs --- Configurazione globale} {
 	\centering
 	\includegraphics[width=0.99\textwidth]{img/findbugsconf}
 }
 
-\fr{FindBugs --- Configurazione del progetto} {
-  In FindBugs, la configurazione locale \textbf{è più prioritaria} di quella globale.
+\fr{SpotBugs --- Configurazione del progetto} {
+  In SpotBugs, la configurazione locale \textbf{è più prioritaria} di quella globale.
   \centering
   \includegraphics[width=0.9\textwidth]{img/findbugsproj}
 }
