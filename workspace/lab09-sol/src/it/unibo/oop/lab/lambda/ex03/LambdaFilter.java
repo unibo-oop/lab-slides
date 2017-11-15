@@ -86,14 +86,11 @@ public final class LambdaFilter extends JFrame {
     private LambdaFilter() {
         super("Lambda filter GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         final JPanel panel1 = new JPanel();
         final LayoutManager layout = new BorderLayout();
         panel1.setLayout(layout);
-
         final JComboBox<Command> combo = new JComboBox<>(Command.values());
         panel1.add(combo, BorderLayout.NORTH);
-
         final JPanel centralPanel = new JPanel(new GridLayout(1, 2));
         final JTextArea left = new JTextArea();
         left.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -102,20 +99,15 @@ public final class LambdaFilter extends JFrame {
         right.setEditable(false);
         centralPanel.add(left);
         centralPanel.add(right);
-
         panel1.add(centralPanel, BorderLayout.CENTER);
-
         final JButton apply = new JButton("Apply");
         apply.addActionListener((ev) -> right.setText(((Command) combo.getSelectedItem()).translate(left.getText())));
         panel1.add(apply, BorderLayout.SOUTH);
-
         setContentPane(panel1);
-
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
         setSize(sw / 4, sh / 4);
-
         setLocationByPlatform(true);
     }
 

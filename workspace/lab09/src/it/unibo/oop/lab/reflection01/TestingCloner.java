@@ -15,14 +15,16 @@ public class TestingCloner {
     @Test
     public void testInstanceCloning() {
         /*
-         * 1) Creare una istanza di ClonableClass
-         * 
-         * 2) Invocare i vari setter per memorizzare dei valori nei campi
-         * 
-         * 3) Clonare l'oggetto usando il metodo cloneObj di ObjectClonerUtil
-         * 
-         * 4) verificare che i campi dell'oggetto clonato coincidano a quelli
-         * dell'oggetto di partenza
+         * 1) Create an instance of ClonableClass
+         */
+        /*
+         * 2) Invoke the setters to configure the object
+         */
+        /*
+         * 3) Clone the object leveraging ObjectClonerUtil.cloneObj
+         */
+        /*
+         * 4) Use the getters to test the equivalence of the two objects
          */
     }
 }

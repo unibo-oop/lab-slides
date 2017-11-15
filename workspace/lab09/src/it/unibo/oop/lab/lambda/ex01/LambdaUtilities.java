@@ -65,7 +65,7 @@ public final class LambdaUtilities {
      */
     public static <T> List<Optional<T>> optFilter(final List<T> list, final Predicate<T> pre) {
         /*
-         * Suggerimento: valutare l'uso di Optional.filter
+         * Suggestion: consider Optional.filter
          */
         return null;
     }
@@ -84,7 +84,7 @@ public final class LambdaUtilities {
      */
     public static <R, T> Map<R, Set<T>> group(final List<T> list, final Function<T, R> op) {
         /*
-         * Suggerimento: valutare l'uso di Map.merge
+         * Suggestion: consider Map.merge
          */
         return null;
     }
@@ -103,9 +103,9 @@ public final class LambdaUtilities {
      */
     public static <K, V> Map<K, V> fill(final Map<K, Optional<V>> map, final Supplier<V> def) {
         /*
-         * Suggerimento: valutare l'uso di Optional.orElse
+         * Suggestion: consider Optional.orElse
          * 
-         * Si ricordi che si può iterare una mappa col suo metodo forEach
+         * Keep in mind that a map can be iterated through its forEach method
          */
         return null;
     }
@@ -115,35 +115,28 @@ public final class LambdaUtilities {
      *            ignored
      */
     public static void main(final String[] args) {
-
         final List<Integer> li = IntStream.range(1, 8).mapToObj(i -> Integer.valueOf(i)).collect(Collectors.toList());
-
         System.out.println(dup(li, x -> x + 100));
         /*
          * [1, 101, 2, 102, 3, 103, 4, 104, 5, 105, 6, 106, 7, 107]
          */
-
         System.out.println(group(li, x -> x % 2 == 0 ? "even" : "odd"));
         /*
          * {odd=[1, 3, 5, 7], even=[2, 4, 6]}
          */
-
         final List<Optional<Integer>> opt = optFilter(li, x -> x % 3 == 0);
         System.out.println(opt);
         /*
          * [Optional.empty, Optional.empty, Optional[3], Optional.empty,
          * Optional.empty, Optional[6], Optional.empty]
          */
-
         final Map<Integer, Optional<Integer>> map = new HashMap<>();
         for (int i = 0; i < opt.size(); i++) {
             map.put(i, opt.get(i));
         }
-
         System.out.println(fill(map, () -> (int) (-Math.random() * 10)));
         /*
          * {0=-2, 1=-7, 2=3, 3=-3, 4=-7, 5=6, 6=-3}
          */
-
     }
 }

@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 /*
  * CHECKSTYLE:OFF
- * The above comment shuts down checkstyle: in a test suite, magic numbers are tolerated.
+ * The above comment shuts down checkstyle: in a test suite, magic numbers are sometimes tolerated.
  */
 /**
  * 
