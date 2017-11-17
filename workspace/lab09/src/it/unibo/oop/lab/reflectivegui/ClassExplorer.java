@@ -48,6 +48,9 @@ public class ClassExplorer extends JPanel {
              * For each method in the class, add a new MethodPable to center
              */
             add(new JScrollPane(center), BorderLayout.CENTER);
+            /*
+             * This is necessary for the GUI to understand that something's changed
+             */
             revalidate();
         });
         north.add(load);
