@@ -30,9 +30,11 @@ public final class ObjectClonerUtil {
         final T returnValue = null;
         /*
          * 1) Retrieve the constructor from theClass
-         * 
+         */
+        /*
          * 2) Cycle all the methods found in theClass
-         * 
+         */
+        /*
          * 3) If the method is a getter (starts with GETTER_PREFIX) of the
          * current class (i.e. is not a getter defined in a super class: use the
          * getDeclaringClass method for this check) find the corresponding
@@ -45,12 +47,15 @@ public final class ObjectClonerUtil {
          * 
          * - The getReturnType method of the class Method returns the return
          *   type of a method
-         * 
+         */
+        /*
          * 4) Invoke the getter on obj and store the value in a temp var (tmp)
-         * 
+         */
+        /*
          * 5) Invoke the corresponding setter on returnValue providing parameter
          * tmp
-         * 
+         */
+        /*
          * 6) Return the cloned object
          */
         return returnValue;
