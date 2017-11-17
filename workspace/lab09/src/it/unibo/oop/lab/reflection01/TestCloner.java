@@ -6,7 +6,7 @@ import org.junit.Test;
  * Used to test reflection on ClonableClass.
  * 
  */
-public class TestingCloner {
+public class TestCloner {
 
     /**
      * Used to test reflection on a ClonableClass instance.

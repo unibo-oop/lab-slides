@@ -1,13 +1,12 @@
-# Terminare l'implementazione del metodo classe ObjectClonerUtil seguendo le linee guida riportate nei commenti:
+# Complete the implementation of `ObjectClonerUtil`
 
-Il metodo dovrà restituire una versione clonata di un oggetto (con opportune caratteristiche, vedere sotto) fornito in input
+Follow the comments in the class file.
 
-## Assunzioni
-La classe dell'oggetto da clonare ha:
-* Un costruttore con zero argomenti
-* Un insieme completo di getter/setter
-  
-Questi elementi serviranno per eseguire il cloning via reflection
+## Assumptions
+The class to be cloned provides:
+
+* A 0-ary constructor
+* A setter for every getter
 
 ## Completare ObjectCloneUtil
 Passi da seguire:
@@ -19,4 +18,4 @@ Passi da seguire:
   * Appoggiarsi al metodo getReturnType della classe Method per recuperare il valore di ritorno di un metodo.
 
 ## TEST
-Completare l'implementazione della classe di test JUnit, TestingCloner, per effettuare il test della classe ObjectClonerUtil.
+Complete the implementation of the JUnit test class `TestCloner`. **Suggestion**: do it before finishing the implementation of ObjectClonerUtil.
