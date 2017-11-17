@@ -14,18 +14,12 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
- * Questa classe dovrà contenere 4 funzioni di utilità su liste e mappe, di cui
- * la prima è fornita a titolo di esempio.
+ * This class will contain four utility functions on lists and maps, of which the first one is provided as exmaple.
  * 
- * Tutte queste hanno come secondo argomento una interfaccia funzionale di
- * libreria (package java.util.function) da trovare, così che potranno essere
- * chiamate con delle lambda, come mostrato dal main in fondo (da
- * "scommentare").
+ * All such methods take as second argument a functional interface from the Java library (java.util.function).
+ * This enables calling them by using the concise lambda syntax, as it's done in the main function.
  * 
- * Realizzare i tre metodi statici qui sotto senza fare uso degli stream, ma
- * possibilmente usando il più possibile le funzionalità delle lambda, secondo
- * le indicazioni fornite.
- * 
+ * Realize the three methods **WITHOUT** using the Stream library, but only leveraging the lambdas.
  *
  */
 public final class LambdaUtilities {
