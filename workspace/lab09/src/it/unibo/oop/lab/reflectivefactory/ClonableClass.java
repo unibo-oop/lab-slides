@@ -1,4 +1,4 @@
-package it.unibo.oop.lab.reflection01;
+package it.unibo.oop.lab.reflectivefactory;
 
 /**
  * A dummy clonable class.
