@@ -2,7 +2,7 @@
 \usepackage{../oop-slides-pianini}
 \setbeamertemplate{bibliography item}[text]
 \newcommand{\lessonnr}[0]{10}
-\title[OOP10 -- DVCS Workflow and Lambdas]{10\\ Workflow per DVCS \\ Lambda expression e Stream}
+\title[OOP10 -- DVCS Workflow]{10\\ Strategie di uso efficace dei \\ Decentralized Version Control Systems}
 
 \begin{document}
 
@@ -16,6 +16,54 @@
  	\tableofcontents[]
 \end{frame}
 
+\section{Preparazione al laboratorio}
+
+\begin{frame}{Preparazione dell'ambiente di lavoro}
+	\begin{enumerate}
+		\item Clonare il repository degli esercizi
+		\begin{itemize}
+			\item \url{https://bitbucket.org/danysk/courses-2017-oop-lab-09}
+			\begin{itemize}
+				\item Opzionalmente, si fork-i il repository
+			\end{itemize}
+			\item Si copi la URI con cui effettuare il clone dall'interfaccia web di Bitbucket
+		\end{itemize}
+		\item Importare il repository in Eclipse come progetto Java
+		\begin{enumerate}
+			\item File
+			\item Import
+			\item General
+			\item Existing project into workspace
+			\item Si selezioni la cartella del progetto
+			\item Si confermi l'import
+		\end{enumerate}
+		\item Configurare correttamente Eclipse, abilitare e configurare i plugin per il controllo di qualità del codice
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Modalità di lavoro}
+	\begin{enumerate}
+		\item Seguire le istruzioni del file README.md nella root del repository
+		\item Tentare di capire l'esercizio in autonomia
+		\begin{itemize}
+			\item Contattare il docente se qualcosa non è chiaro
+		\end{itemize}
+		\item Risolvere l'esercizio in autonomia
+		\begin{itemize}
+			\item Contattare il docente se si rimane bloccati
+		\end{itemize}
+		\item Utilizzare le funzioni di test per verificare la soluzione realizzata
+		\item Cercare di risolvere autonomamente eventuali piccoli problemi che possono verificarsi durante lo svolgimento degli esercizi
+		\begin{itemize}
+			\item Contattare il docente se, anche \textbf{dopo aver usato il debugger}, non si è riusciti a risalire all'origine del problema
+		\end{itemize}
+		\item Scrivere la Javadoc per l'esercizio svolto
+		\item Assicurarsi che non ci siano warning nel proprio codice
+		\item Effettuare \textit{almeno} un commit ad esercizio completato
+		\item \textbf{A esercizio ultimato sottoporre la soluzione al docente}
+		\item Proseguire con l'esercizio seguente
+	\end{enumerate}
+\end{frame}
 
 
 \section{DVCS Workflow}
@@ -49,7 +97,7 @@
 	\bl{Cos'è} {
         \iz {
 			\item E' una sorta di ``protocollo'', un insieme di regole e passi da seguire quando si utilizza un DVCS
-			\item Essendo \textbf{collaborativo} by definition, ciascun team member vi partecipa con un \textbf{ruolo}
+			\item Essendo per definizione \textbf{collaborativo}, ciascun team member vi partecipa con un \textbf{ruolo}
 			\item Associa le diverse fasi del ciclo di vita del software a una serie di attività
             \iz {
                 \item Ogni ruolo ha la/le proprie attività, ognuna codificata in un insieme di passi da seguire         
@@ -73,7 +121,7 @@
 
 \fr{L'importanza dei ruoli} {
         \iz {
-			\item Occupandosi di team collaboration, è naturale che il workflow definisca dei ruoli
+			\item Occupandosi di collaborazione in un team, è naturale che il workflow definisca dei ruoli
 			\item Nei progetti del ``mondo reale'' il set minimo di ruoli è composto da:
             \iz{
                 \item i \textbf{developer}: sviluppano codice, implementano nuove funzionalità, bugfixing di funzionalità già rilasciate
@@ -150,10 +198,10 @@
         }
     }
 
-    \bl{Le branch} {
+    \bl{I branch} {
 		\iz {
 			\item Sono il supporto fondamentale alle fasi del ciclo di vita del software 
-			\item Ogni fase la propria branch! 
+			\item Ogni fase ha il proprio branch! 
 			\item Branching e merging all'ordine del giorno!
 		}
 	}
@@ -170,9 +218,9 @@
 \iz{
 \item Sviluppatore: 
     \begin{enumerate}
-        \item aprono una nuova \textbf{feature branch} da \texttt{develop} ogni volta che cominciano lo sviluppo di nuova funzionalità
+        \item aprono un nuovo \textbf{feature branch} da \texttt{develop} ogni volta che cominciano lo sviluppo di nuova funzionalità
         \item le \textbf{feature} in realtà si aprono solo per funzionalità ``grandi'', altrimenti si lavora su \texttt{develop}
-        \item effettuano commit regolari sulla feature branch
+        \item effettuano commit regolari sul feature branch
         \item terminato lo sviluppo della funzionalità effettuano il merge della feature in \texttt{develop}
 %         \item si occupano anche degli hotfix
     \end{enumerate}
@@ -192,18 +240,20 @@
 }
 
 \fr{Sulle feature branch} {
+	Ha senso utilizzarle:
 	\iz {
-		\item Ha senso utilizzarle per modifiche grandi o a rischio fallimento
+		\item per modifiche grandi o a rischio fallimento
+		\begin{itemize}
 		\item In particolare in termini di tempo richiesto per completare l'implementazione
+		\end{itemize}
 		\item Quando l'attività di analisi abbia già portato ad una classificazione accurata delle funzionalità
-		\item Per progetti articolati consente di separare e gestire meglio le attività di sviluppo
+		\item Per separare e gestire meglio le attività di sviluppo in progetti articolati 
 		\iz{
 			\item chi fa cosa
-			\item più sviluppatori impegnati sulla stessa funzionalità/task usano la stessa branch            
+			\item più sviluppatori impegnati sulla stessa funzionalità usano lo stessa branch            
 		}
-		\item In contesti articolati può quindi aiutare a tener traccia dello stato di avanzamento di determinate attività
-% 		\item Per i vostri progetti potrebbe non essere così sensato... 
 	}	
+	In contesti articolati può quindi aiutare a tener traccia dello stato di avanzamento di determinate attività
 }
 
 \subsection{Comandi}
@@ -261,7 +311,7 @@
 			\item Il maintainer crea il repository, ed è l'unico col diritto di scrittura
 			\item Gli altri membri del team hanno una fork a testa
 			\item Ciascuno lavora su una working copy, facendo pull dal repository ``centrale'' e push sulla propria fork
-			\item Quando una feature è completa, o si arriva ad un buon gradi di sviluppo, si apre una \textbf{pull request}
+			\item Quando una feature è completa, o si arriva ad un buon grado di sviluppo, si apre una \textbf{pull request}
 			\item Il maintainer revisiona il codice, assegna eventuali modifiche, e quando è soddisfatto accetta la pull request facendo il merge del codice nel repository principale
 		\end{itemize}
 		Questo workflow è un overkill per il progetto di OOP
@@ -276,7 +326,7 @@
 	\iz{
 		\item In generale, push regolare delle proprie modifiche su repo ufficiale (e pull regolare di quanto presente in remoto)
 		\iz{
-			\item Se il push riguarda la \texttt{develop} branch: le modifiche che condividete via push \textbf{devono compilare}!
+			\item Se il push riguarda il \texttt{develop} branch: le modifiche che condividete via push \textbf{devono compilare}!
 		}
 		\item Eseguire sempre un pull e update tutte le volte che cominciate a lavorare su qualche cosa in una certa branch 
 		\item Per eventuali feature branch? Stesse regole di \texttt{develop}
@@ -288,15 +338,8 @@
 	}
 }
 
-
-
-
-
-
-
 \fr{Per approfondimenti...} {
 A successful git branching model:\\
-
 \url{http://nvie.com/posts/a-successful-git-branching-model/}
 }
 \end{document}
