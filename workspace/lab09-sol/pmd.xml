@@ -49,8 +49,6 @@
 	<rule ref="rulesets/java/controversial.xml/BooleanInversion" />
 	<rule ref="rulesets/java/basic.xml/BrokenNullCheck" />
 	<rule ref="rulesets/java/migrating.xml/ByteInstantiation" />
-	<rule ref="rulesets/java/android.xml/CallSuperFirst" />
-	<rule ref="rulesets/java/controversial.xml/CallSuperInConstructor" />
 	<rule ref="rulesets/java/android.xml/CallSuperLast" />
 	<rule ref="rulesets/java/basic.xml/CheckResultSet" />
 	<rule ref="rulesets/java/basic.xml/CheckSkipResult" />
