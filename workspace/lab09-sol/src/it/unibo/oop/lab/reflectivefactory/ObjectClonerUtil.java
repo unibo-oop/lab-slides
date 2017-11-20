@@ -1,4 +1,4 @@
-package it.unibo.oop.lab.reflection01;
+package it.unibo.oop.lab.reflectivefactory;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

@@ -1,4 +1,4 @@
-package it.unibo.oop.lab.reflection01;
+package it.unibo.oop.lab.reflectivefactory;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
