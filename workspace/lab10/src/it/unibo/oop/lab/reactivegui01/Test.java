@@ -11,8 +11,7 @@ public final class Test {
     }
 
     /**
-     * Analizzare il comportamento di CGUI e testarne il funzionamento eseguendo
-     * questo test.
+     * Analyze the behavior of the CGUI.java file executing this test
      * 
      * @param args
      *            possible command line arguments (not used)

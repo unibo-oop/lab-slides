@@ -11,7 +11,7 @@ public final class Test {
 
     /*
      * Realizzare una classe AnotherConcurrentGUI con costruttore vuoto, che aggiunga
-     * all'esercizio precedente la seguente funzionalit√†: - dopo 10 secondi
+     * all'esercizio precedente la seguente funzionalit‡†: - dopo 10 secondi
      * dalla partenza dell'applicazione, i pulsanti si disabilitino e il
      * conteggio si fermi comunque - fare attenzione a non creare corse critiche
      * 

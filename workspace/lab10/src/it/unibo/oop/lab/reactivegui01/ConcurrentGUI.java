@@ -14,9 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 /**
- * 
  * This is a first example on how to realize a reactive GUI.
- *
  */
 public final class ConcurrentGUI extends JFrame {
 
@@ -58,7 +56,7 @@ public final class ConcurrentGUI extends JFrame {
              */
             @Override
             public void actionPerformed(final ActionEvent e) {
-                // agent dopra deve essere final
+                // Agent should be final
                 agent.stopCounting();
             }
         });
@@ -66,7 +64,7 @@ public final class ConcurrentGUI extends JFrame {
 
     /*
      * The counter agent is implemented as a nested class. This makes it
-     * invisible outside and incapsulated.
+     * invisible outside and encapsulated.
      */
     private class Agent implements Runnable {
         /*
@@ -100,7 +98,7 @@ public final class ConcurrentGUI extends JFrame {
         }
 
         /**
-         * Excternal command to stop counting.
+         * External command to stop counting.
          */
         public void stopCounting() {
             this.stop = true;
