@@ -3,7 +3,7 @@
 	xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
-	<description>Alchemist PMD Plugin preferences rule set</description>
+	<description>OOP PMD Plugin preferences rule set</description>
 	<rule ref="rulesets/java/design.xml/AbstractClassWithoutAbstractMethod" />
 	<rule ref="rulesets/java/design.xml/AbstractClassWithoutAnyMethod" />
 	<rule ref="rulesets/java/design.xml/AccessorClassGeneration" />
@@ -29,7 +29,6 @@
 	<rule ref="rulesets/java/design.xml/AvoidInstanceofChecksInCatchClause" />
 	<rule ref="rulesets/java/strictexception.xml/AvoidLosingExceptionInformation" />
 	<rule ref="rulesets/java/basic.xml/AvoidMultipleUnaryOperators" />
-	<rule ref="rulesets/java/logging-java.xml/AvoidPrintStackTrace" />
 	<rule ref="rulesets/java/design.xml/AvoidProtectedFieldInFinalClass" />
 	<rule ref="rulesets/java/design.xml/AvoidProtectedMethodInFinalClassNotExtending" />
 	<rule ref="rulesets/vm/basic.xml/AvoidReassigningParameters" />
@@ -50,8 +49,6 @@
 	<rule ref="rulesets/java/controversial.xml/BooleanInversion" />
 	<rule ref="rulesets/java/basic.xml/BrokenNullCheck" />
 	<rule ref="rulesets/java/migrating.xml/ByteInstantiation" />
-	<rule ref="rulesets/java/android.xml/CallSuperFirst" />
-	<rule ref="rulesets/java/controversial.xml/CallSuperInConstructor" />
 	<rule ref="rulesets/java/android.xml/CallSuperLast" />
 	<rule ref="rulesets/java/basic.xml/CheckResultSet" />
 	<rule ref="rulesets/java/basic.xml/CheckSkipResult" />
@@ -124,10 +121,8 @@
 	<rule ref="rulesets/java/migrating.xml/JUnit4TestShouldUseAfterAnnotation" />
 	<rule ref="rulesets/java/migrating.xml/JUnit4TestShouldUseBeforeAnnotation" />
 	<rule ref="rulesets/java/migrating.xml/JUnit4TestShouldUseTestAnnotation" />
-	<rule ref="rulesets/java/junit.xml/JUnitAssertionsShouldIncludeMessage" />
 	<rule ref="rulesets/java/junit.xml/JUnitSpelling" />
 	<rule ref="rulesets/java/junit.xml/JUnitStaticSuite" />
-	<rule ref="rulesets/java/junit.xml/JUnitTestsShouldIncludeAssert" />
 	<rule ref="rulesets/java/migrating.xml/JUnitUseExpected" />
 	<rule ref="rulesets/jsp/basic.xml/JspEncoding" />
 	<rule ref="rulesets/java/basic.xml/JumbledIncrementer" />
