@@ -16,111 +16,6 @@
 
 \frame[label=coverpage]{\titlepage}
 
-\fr{Il Laboratorio di OOP}{
-  \bl{Titolare del corso: Prof. Mirko Viroli}{
-    \iz{ 
-      \item e-mail | \texttt{mirko.viroli@unibo.it}
-      \item homepage | \texttt{http://mirkoviroli.apice.unibo.it}
-    }
-  }
-  \bl{Titolare del corso di laboratorio: Ing. Danilo Pianini}{
-    \iz{ 
-      \item e-mail | \texttt{danilo.pianini@unibo.it}
-      \item homepage | \texttt{http://danilopianini.apice.unibo.it}
-      \item orario di ricevimento | Martedì, dalle ore 17:00
-    }
-  }
-  \bl{Tutors: Ing. Angelo Croatti \& Ing. Giovanni Ciatto}{
-    \iz{ 
-      \item e-mail | \texttt{a.croatti@unibo.it} \& \texttt{giovanni.ciatto@unibo.it} 
-    }
-  }
-}
-
-\begin{frame}{Obiettivi}
-\begin{enumerate}\itemsep20pt
-\item Apprendere ulteriori aspetti metodologici e pratici, oltre a quanto visto nel corso delle lezioni in aula.
-\item Svolgere esercizi necessari per la comprensione e la sperimentazione dei contenuti del corso.
-\item Confrontarsi con il docente e i tutor per delucidazioni in merito allo svolgimento degli esercizi proposti.
-\end{enumerate}
-\end{frame}
-
-\begin{frame}{Organizzazione}
-\begin{block}{Orario A.A. 2017--2018}
-\begin{itemize}
-\item Primo Turno : Lunedì, 09:00 -- 13:00, Lab. VeLa
-\item Secondo Turno : Martedì, 13:00 -- 17:00, Lab. VeLa
-\end{itemize}
-\end{block}
-\vspace{10pt}
-\begin{block} {Organizzazione}
-\begin{itemize}
-\item Introduzione di nuovi metodi e strumenti da parte del docente 
-\item Esercizi di difficoltà crescente
-\item Esercizi ``aggiuntivi'' (che \textbf{non} sono opzionali)
-\end{itemize}
-\end{block}
-\end{frame}
-
-
-\begin{frame}{Come svolgere gli esercizi...}
-\begin{enumerate}
-\item Leggere attentamente la consegna e provare in autonomia a risolvere ciascun esercizio.
-\begin{itemize}
-\item Se dopo alcuni minuti non avete nessuna idea su come procedere per ottenere la soluzione, chiamate il docente o il tutor.
-\end{itemize}
-%
-\item Fare riferimento alle slide del corso (da tenere a portata di mano, per una facile consultazione)
-\begin{itemize}
-\item In modo particolare nei primi laboratori -- ma in generale vale per tutti i laboratori -- \textbf{evitate} di cercare porzioni  di codice online.
-\item Assicuratevi di avere sempre chiaro cosa stiate facendo e perché.
-\end{itemize}
-%
-\item Concluso ciascun esercizio, chiamare il docente per la correzione e la discussione.
-%
-\end{enumerate}
-%
-NOTA --- Riuscire a completare anche gli esercizi ``aggiuntivi'' nelle quattro ore è indice di buona preparazione. Non riuscirci non è preoccupante, ma si raccomanda caldamente di terminarli a casa \textbf{prima} del laboratorio successivo.
-%
-\end{frame}
-
-\begin{frame}{Il ruolo del Forum Studenti}
-\begin{itemize}
-\item Accessibile dal sito del corso (link \textbf{Forum Studenti} in homepage)
-\end{itemize}
-%
-\begin{block}{}
-\url{https://elearning-cds.unibo.it/mod/forum/view.php?id=71223}
-\end{block}
-%
-\begin{itemize}\itemsep10pt
-\item \`{E} il punto di coordinamento per il laboratorio, e per tutto il corso di OOP.
-%
-\item Stimola il confronto e la discussione tra gli studenti.
-%
-\begin{itemize}
-\item Per ciascuna questione posta sul forum, oltre ai docenti, anche gli studenti possono rispondere confrontandosi su soluzioni e problematiche nell'ambito del corso.
-\end{itemize}
-%
-\item \`{E} preferibile chiedere supporto tramite il forum piuttosto che avvalersi del ricevimento
-\begin{itemize}
-\item La riposta data ad uno studente può essere utile anche per gli altri.
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-%====================
-%Outline
-%====================
-\fr{Outline}{
-\bl{Goal della lezione}{
-\iz{ 
-\item Java Overview (linguaggio + piattaforma)
-\item Compilazione ed esecuzione di programmi Java a riga di comando
-\item Ingegnerizzazione e test di semplici classi
-}
-}
-}
 \begin{frame}<beamer>
 	\frametitle{Outline}
 	\tableofcontents[]
@@ -128,15 +23,6 @@ NOTA --- Riuscire a completare anche gli esercizi ``aggiuntivi'' nelle quattro o
   
 \section{Java Overview}
 
-%====================
-%Java nel mondo del lavoro
-%====================
-\begin{frame}[fragile, allowframebreaks]{Java nel mondo ``reale''}
-	\fg{height=0.80\textheight}{img/javaTrend.png}
-	\fg{height=0.80\textheight}{img/javaTrend_highlight.png}
-	\fg{height=0.80\textheight}{img/tiobe2016}
-\end{frame}
-		
 %====================
 %Architettura a Runtime
 %====================
@@ -161,7 +47,9 @@ NOTA --- Riuscire a completare anche gli esercizi ``aggiuntivi'' nelle quattro o
 		\end{description}
 	}
 	
-	\bl{Noi faremo riferimento al JDK}{Include il necessario per eseguire applicazioni	Java (JRE), i tool (e librerie) per sviluppare applicazioni e la relativa  documentazione}
+	\bl{Noi faremo riferimento al JDK}{Include il necessario per eseguire applicazioni
+	Java (JRE), i tool (e molte librerie) per sviluppare applicazioni,
+	e la relativa  documentazione}
 	
 	\bl{I Principali Tool}{
 		\begin{description}
@@ -176,7 +64,8 @@ NOTA --- Riuscire a completare anche gli esercizi ``aggiuntivi'' nelle quattro o
 \section{Richiamo: il file system}
 \begin{frame}{Elementi base del file system}
   \begin{itemize}
-    \item I sistemi operativi odierni consentono di memorizzare permanentemente le informazioni su supporti di memorizzazione di massa (dischi magnetici, dispositivi a stato solido), unità ottiche (CD, DVD, Blu-Ray), memory stick, ecc...
+    \item I sistemi operativi odierni consentono di memorizzare permanentemente le informazioni su 
+supporti di memorizzazione di massa (dischi magnetici, dispositivi a stato solido...)
     \item Le informazioni su questi supporti sono organizzate in file e cartelle:
       \begin{itemize}
         \item i file contengono le informazioni
@@ -185,20 +74,26 @@ NOTA --- Riuscire a completare anche gli esercizi ``aggiuntivi'' nelle quattro o
     \item La cartella più esterna, che contiene tutte le altre, è detta root. Essa rappresenta il livello gerarchico più alto del file system
       \begin{itemize}
         \item In *nix (Linux, MacOS, BSD, Solaris...), vi è una unica radice, ossia \texttt{/}
-        \item In Windows, ciascun file system ha come root una lettera di unità (e.g. \texttt{C:}, \texttt{D:})
+        \item In Windows, c'è una root per file system identificata da una lettera di unità (e.g. 
+\texttt{C:}, \texttt{D:})
       \end{itemize}
-    \item La stringa che descrive un intero percorso dalla root fino ad un elemento del file system prende il nome di \emph{percorso} (e.g. \texttt{C:\textbackslash{}Windows\textbackslash{}win32.dll}, \texttt{/home/user/frameworkFS.jar})
+    \item La stringa che descrive un intero percorso dalla root fino ad un elemento del file system
+prende il nome di \emph{percorso}, e.g.:
+    \begin{itemize}
+        \item \texttt{/home/user/frameworkFS.jar} (percorso Unix)
+        \item \texttt{C:\textbackslash{}Windows\textbackslash{}win32.dll} (percorso Windows)
+    \end{itemize}
   \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]{Manipolare il file system}
   L'utente può osservare e manipolare il file system:
   \begin{itemize}
-    \item sapere quali files e cartelle contiene una cartella
-    \item creare nuovi files e cartelle
+    \item sapere quali file e cartelle contiene una cartella
+    \item creare nuovi file e cartelle
     \item spostare file e cartelle dentro altre cartelle
-    \item rinominare files e cartelle
-    \item eliminare files e cartelle
+    \item rinominare file e cartelle
+    \item eliminare file e cartelle
   \end{itemize}
   Il software che consente di osservare e manipolare il file system prende il nome di \alert{file manager}.
   \begin{itemize}
@@ -273,7 +168,7 @@ NOTA --- Riuscire a completare anche gli esercizi ``aggiuntivi'' nelle quattro o
     \iz{
       \item Eredita in realtà sintassi e funzionalità della maggior parte dei comandi del vecchio MSDOS
       \item Versioni recenti hanno introdotto PowerShell, basato su .NET e C\#
-      \item Windows 10 ha introdotto il supporto a bash tramite Linux Subsystem for Linux
+      \item Windows 10 ha introdotto il supporto a bash tramite Linux Subsystem for Windows
     }
   }
   \fg{height=0.4\textheight}{img/prompt.png}
