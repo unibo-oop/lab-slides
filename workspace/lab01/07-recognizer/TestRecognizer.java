@@ -4,7 +4,7 @@ class TestRecognizer {
          * 1) Creare un oggetto della classe Recognizer
          *
          * 2) Realizzare i metodi check1, check2, check3 e check4, che accettano
-         * in ingresso un intero, ritornando true soltanto se il valore passato
+         * in ingresso un intero, restituendo true soltanto se il valore passato
          * e uguale rispettivamente a 1, 2, 3, 4
          *
          * 3) Invocare i metodi check1, check2, ... passando in input una
