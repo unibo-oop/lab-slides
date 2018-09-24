@@ -36,4 +36,5 @@ Si tengano a portata di consultazione le slide del modulo 02 usato a lezione.
 8. Si ricompili il sorgente
 9. Si esegua il programma e se ne verifichi il corretto funzionamento
 10. Si aggiunga al messaggio modificato anche la stampa della computazione di 50 + 50 * 50. *Nota*: la computazione deve essere svolta dall'interprete Java!
+  - Nota: l'esercizio deve essere risolto in una sola riga di codice: non si possono dichiarare variabili, e  tutte le operazioni vanno svolte *internamente* alla chiamata a `println`
 11. Si compili e si esegua, verificando il funzionamento
