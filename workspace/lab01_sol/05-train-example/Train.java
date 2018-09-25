@@ -5,8 +5,8 @@ public class Train {
     int nFirstClassReservedSeats;
     int nSecondClassReservedSeats;
 
-    void build(int nTotSeats, int nFirstClassSeats, int nSecondClassSeats) {
-        this.nTotSeats = nTotSeats;
+    void build(int nFirstClassSeats, int nSecondClassSeats) {
+        this.nTotSeats = nFirstClassSeats + nSecondClassSeats;
         this.nFirstClassSeats = nFirstClassSeats;
         this.nSecondClassSeats = nSecondClassSeats;
         this.nFirstClassReservedSeats = 0;
@@ -14,7 +14,7 @@ public class Train {
     }
 
     void reserveFirstClassSeats(int nSeats) {
-        nFirstClassSeats += nSeats;
+        nFirstClassReservedSeats += nSeats;
     }
 
     void reserveSecondClassSeats(int nSeats) {
@@ -22,15 +22,15 @@ public class Train {
     }
 
     double getTotOccupancyRatio() {
-        return ((double) (nFirstClassReservedSeats + nSecondClassReservedSeats) / nTotSeats) * 100;
+        return (nFirstClassReservedSeats + nSecondClassReservedSeats) * 100.0 / nTotSeats;
     }
 
     double getFirstClassOccupancyRatio() {
-        return (((double) nFirstClassReservedSeats) / nFirstClassSeats) * 100;
+        return nFirstClassReservedSeats * 100.0 / nFirstClassSeats;
     }
 
     double getSecondClassOccupancyRatio() {
-        return (((double) nSecondClassReservedSeats) / nSecondClassSeats) * 100;
+        return nSecondClassReservedSeats * 100d / nSecondClassSeats;
     }
 
     void deleteAllReservations() {

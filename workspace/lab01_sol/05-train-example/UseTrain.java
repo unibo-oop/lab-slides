@@ -4,7 +4,7 @@ class UseTrain {
        * 1) Creare un oggetto della classe Train
        */
       Train train = new Train();
-      train.build(150, 50, 100);
+      train.build(50, 100);
 
       /*
        * 2) Effettuare delle prenotazioni in prima e seconda classe
@@ -18,8 +18,8 @@ class UseTrain {
        * occupazione totale e per ciascuna classe.
        */
       System.out.println("Total occupancy ration: " + train.getTotOccupancyRatio() + "%");
-      System.out.println("First class occupancy ration: " + train.getFirstClassOccupancyRatio() + "%");
-      System.out.println("Second class occupancy ration: " + train.getSecondClassOccupancyRatio() + "%\n");
+      System.out.println("First class occupancy ratio: " + train.getFirstClassOccupancyRatio() + "%");
+      System.out.println("Second class occupancy ratio: " + train.getSecondClassOccupancyRatio() + "%\n");
 
       /*
        * 4) Cancellare tutte le prenotazioni
@@ -34,7 +34,7 @@ class UseTrain {
       train.reserveFirstClassSeats(25);
       train.reserveSecondClassSeats(100);
       System.out.println("Total occupancy ration: " + train.getTotOccupancyRatio() + "%");
-      System.out.println("First class occupancy ration: " + train.getFirstClassOccupancyRatio() + "%");
-      System.out.println("Second class occupancy ration: " + train.getSecondClassOccupancyRatio() + "%\n");
+      System.out.println("First class occupancy ratio: " + train.getFirstClassOccupancyRatio() + "%");
+      System.out.println("Second class occupancy ratio: " + train.getSecondClassOccupancyRatio() + "%\n");
   }
 }

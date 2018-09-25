@@ -8,25 +8,23 @@ public class CalculatorV2 {
     }
 
     double add(double n1, double n2) {
-        lastRes = n1 + n2;
-        nOpDone++;
-        return lastRes;
+        return doOp(n1 + n2);
     }
 
     double sub(double n1, double n2) {
-        lastRes = n1 - n2;
-        nOpDone++;
-        return lastRes;
+        return doOp(n1 - n2);
     }
 
     double mul(double n1, double n2) {
-        lastRes = n1 * n2;
-        nOpDone++;
-        return lastRes;
+        return doOp(n1 * n2);
     }
 
     double div(double n1, double n2) {
-        lastRes = n1 / n2;
+        return doOp(n1 / n2);
+    }
+    
+    double doOp(double result) {
+        lastRes = result;
         nOpDone++;
         return lastRes;
     }

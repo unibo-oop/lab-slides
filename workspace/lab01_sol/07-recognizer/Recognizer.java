@@ -8,34 +8,26 @@ public class Recognizer {
     }
 
     boolean check1(int n) {
-        nextNum = 2;
-        if (n != 1) {
-            success = false;
-        }
-        return success;
+        return check(n, 2);
     }
 
     boolean check2(int n) {
-        nextNum = 3;
-        if (n != 2) {
-            success = false;
-        }
-        return success;
+        return check(n, 3);
     }
 
     boolean check3(int n) {
-        nextNum = 4;
-        if (n != 3) {
-            success = false;
-        }
-        return success;
+        return check(n, 4);
     }
 
     boolean check4(int n) {
-        nextNum = 1;
-        if (n != 4) {
+        return check(n, 1);
+    }
+    
+    boolean check(int actual, int next) {
+        if (actual != this.nextNum) {
             success = false;
         }
+        this.nextNum = next;
         return success;
     }
 
