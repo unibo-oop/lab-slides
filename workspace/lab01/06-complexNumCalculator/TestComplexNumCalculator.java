@@ -8,7 +8,7 @@ class TestComplexNumCalculator {
          *
          * - sub(4+5i, 6+7i) = -2-2i
          *
-         * - mul(8+2i, 3-i) = 24-2i
+         * - mul(8+2i, 3-i) = 26 - 2i
          *
          * - ... altre a piacere
          *
