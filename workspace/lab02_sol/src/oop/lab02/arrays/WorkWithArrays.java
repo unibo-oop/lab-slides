@@ -3,9 +3,9 @@ package oop.lab02.arrays;
 import java.util.Arrays;
 
 public class WorkWithArrays {
-	
-	private WorkWithArrays() {
-	}
+
+    private WorkWithArrays() {
+    }
 
     public static int countOccurrencies(final int[] array, final int elem) {
         int nOccur = 0;
@@ -63,7 +63,8 @@ public class WorkWithArrays {
         while (swap) {
             swap = false;
             for (int i = 0; i < array.length - 1; i++) {
-                if ((desc && array[i] < array[i + 1]) || (!desc && array[i] > array[i + 1])) { // descending sort || ascending sort
+                // Descending || Ascending
+                if ((desc && array[i] < array[i + 1]) || (!desc && array[i] > array[i + 1])) {
                     temp = array[i];
                     array[i] = array[i + 1];
                     array[i + 1] = temp;
@@ -116,27 +117,30 @@ public class WorkWithArrays {
 
     /* Utility method for testing countOccurr method */
     public static boolean testCountOccurrencies() {
-        return countOccurrencies(new int[] { 1, 2, 3, 4 }, 1) == 1 && countOccurrencies(new int[] { 0, 2, 3, 4 }, 1) == 0
+        return countOccurrencies(new int[] { 1, 2, 3, 4 }, 1) == 1
+                && countOccurrencies(new int[] { 0, 2, 3, 4 }, 1) == 0
                 && countOccurrencies(new int[] { 7, 4, 1, 9, 3, 1, 5 }, 2) == 0
                 && countOccurrencies(new int[] { 1, 2, 1, 3, 4, 1 }, 1) == 3;
     }
 
     /* Utility method for testing evenElems method */
     public static boolean testEvenElements() {
-        return arrayEquals(evenElements(new int[] { 1, 2, 3, 4 }), new int[] { 1, 3 })
-                && arrayEquals(evenElements(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }), new int[] { 1, 3, 5, 7, 9 })
-                && arrayEquals(evenElements(new int[] { 4, 6, 7, 9, 1, 5, 23, 11, 73 }), new int[] { 4, 7, 1, 23, 73 })
-                && arrayEquals(evenElements(new int[] { 7, 5, 1, 24, 12, 46, 23, 11, 54, 81 }), new int[] { 7, 1, 12, 23,
-                        54 });
+        return Arrays.equals(evenElements(new int[] { 1, 2, 3, 4 }), new int[] { 1, 3 })
+                && Arrays.equals(evenElements(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }), new int[] { 1, 3, 5, 7, 9 })
+                && Arrays.equals(evenElements(new int[] { 4, 6, 7, 9, 1, 5, 23, 11, 73 }), new int[] { 4, 7, 1, 23, 73 })
+                && Arrays.equals(
+                    evenElements(new int[] { 7, 5, 1, 24, 12, 46, 23, 11, 54, 81 }),
+                    new int[] { 7, 1, 12, 23, 54 });
     }
 
     /* Utility method for testing oddElems method */
     public static boolean testOddElements() {
-        return arrayEquals(oddElements(new int[] { 1, 2, 3, 4 }), new int[] { 2, 4 })
-                && arrayEquals(oddElements(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }), new int[] { 2, 4, 6, 8 })
-                && arrayEquals(oddElements(new int[] { 4, 6, 7, 9, 1, 5, 23, 11, 73 }), new int[] { 6, 9, 5, 11 })
-                && arrayEquals(oddElements(new int[] { 7, 5, 1, 24, 12, 46, 23, 11, 54, 81 }), new int[] { 5, 24, 46, 11,
-                        81 });
+        return Arrays.equals(oddElements(new int[] { 1, 2, 3, 4 }), new int[] { 2, 4 })
+                && Arrays.equals(oddElements(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }), new int[] { 2, 4, 6, 8 })
+                && Arrays.equals(oddElements(new int[] { 4, 6, 7, 9, 1, 5, 23, 11, 73 }), new int[] { 6, 9, 5, 11 })
+                && Arrays.equals(
+                    oddElements(new int[] { 7, 5, 1, 24, 12, 46, 23, 11, 54, 81 }),
+                    new int[] { 5, 24, 46, 11, 81 });
     }
 
     /* Utility method for testing getMostRecurringElem method */
@@ -149,45 +153,37 @@ public class WorkWithArrays {
 
     /* Utility method for testing sortArray method */
     public static boolean testSortArray() {
-        return arrayEquals(sortArray(new int[] { 3, 2, 1 }, false), new int[] { 1, 2, 3 })
-                && arrayEquals(sortArray(new int[] { 1, 2, 3 }, true), new int[] { 3, 2, 1 })
-                && arrayEquals(sortArray(new int[] { 7, 4, 1, 5, 9, 3, 5, 6 }, false), new int[] { 1, 3, 4, 5, 5, 6, 7,
-                        9 });
+        return Arrays.equals(sortArray(new int[] { 3, 2, 1 }, false), new int[] { 1, 2, 3 })
+                && Arrays.equals(sortArray(new int[] { 1, 2, 3 }, true), new int[] { 3, 2, 1 })
+                && Arrays.equals(
+                    sortArray(new int[] { 7, 4, 1, 5, 9, 3, 5, 6 }, false),
+                    new int[] { 1, 3, 4, 5, 5, 6, 7, 9 });
     }
 
     /* Utility method for testing computeVariance method */
     public static boolean testComputeVariance() {
-        return computeVariance(new int[] { 1, 2, 3, 4 }) == 1.25 && computeVariance(new int[] { 1, 1, 1, 1 }) == 0
+        return computeVariance(new int[] { 1, 2, 3, 4 }) == 1.25
+                && computeVariance(new int[] { 1, 1, 1, 1 }) == 0
                 && computeVariance(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }) == 8.25;
     }
 
     /* Utility method for testing revertUpTo method */
     public static boolean testRevertUpTo() {
-        return arrayEquals(revertUpTo(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, 5), new int[] { 5, 4, 3, 2, 1, 6, 7,
-                8, 9, 10 })
-                && arrayEquals(revertUpTo(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, 3), new int[] { 3, 2, 1, 4, 5,
-                        6, 7, 8, 9, 10 })
-                && arrayEquals(revertUpTo(new int[] { 1, 2, 3 }, 3), new int[] { 3, 2, 1 });
+        return Arrays.equals(
+                    revertUpTo(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, 5),
+                    new int[] { 5, 4, 3, 2, 1, 6, 7, 8, 9, 10 })
+                && Arrays.equals(
+                    revertUpTo(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, 3),
+                    new int[] { 3, 2, 1, 4, 5, 6, 7, 8, 9, 10 })
+                && Arrays.equals(
+                    revertUpTo(new int[] { 1, 2, 3 }, 3),
+                    new int[] { 3, 2, 1 });
     }
 
     /* Utility method for testing dupElems method */
     public static boolean testDuplicateElements() {
-        return arrayEquals(duplicateElements(new int[] { 1, 2, 3 }, 2), new int[] { 1, 1, 2, 2, 3, 3 })
-                && arrayEquals(duplicateElements(new int[] { 1, 2 }, 5), new int[] { 1, 1, 1, 1, 1, 2, 2, 2, 2, 2 });
-    }
-
-    /* Utility method used to check if two int arrays are equals */
-    private static boolean arrayEquals(final int[] array1, final int[] array2) {
-        if (array1.length == array2.length) {
-            for (int i = 0; i < array1.length; i++) {
-                if (array1[i] != array2[i]) {
-                    return false;
-                }
-            }
-            return true;
-        } else {
-            return false;
-        }
+        return Arrays.equals(duplicateElements(new int[] { 1, 2, 3 }, 2), new int[] { 1, 1, 2, 2, 3, 3 })
+                && Arrays.equals(duplicateElements(new int[] { 1, 2 }, 5), new int[] { 1, 1, 1, 1, 1, 2, 2, 2, 2, 2 });
     }
 
     public static void main(final String[] args) {

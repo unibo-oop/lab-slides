@@ -1,9 +1,9 @@
 package oop.lab02.arrays;
 
 public class SeqRecognizer {
-	
-	private SeqRecognizer() {
-	}
+
+    private SeqRecognizer() {
+    }
 
     public static boolean checkSeq1(final int[] array) {
         int i = 0;

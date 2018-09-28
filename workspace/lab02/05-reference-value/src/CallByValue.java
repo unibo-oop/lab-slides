@@ -4,7 +4,7 @@ class CallByValue {
         a++;
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         int x = 1;
         CallByValue cbv = new CallByValue();
         cbv.increment(x);

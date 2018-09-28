@@ -3,7 +3,7 @@ class Point3D {
     double y;
     double z;
 
-    void build(double a, double b, double c) {
+    void build(final double a, final double b, final double c) {
         this.x = a;
         this.y = b;
         this.z = c;
@@ -13,11 +13,11 @@ class Point3D {
         return this.x * this.x + this.y * this.y + this.z * this.z;
     }
 
-    boolean equal(Point3D q) {
+    boolean equal(final Point3D q) {
         return this.x == q.x && this.y == q.y && this.z == q.z;
     }
 
-    public static void main(String[] s) {
+    public static void main(final String[] s) {
         Point3D p = new Point3D();
         p.build(10.0, 20.0, 30.0);
         Point3D q = new Point3D();

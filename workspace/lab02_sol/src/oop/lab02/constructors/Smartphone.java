@@ -10,15 +10,15 @@ public class Smartphone {
     public static final int DEF_SD_SIZE = 8192;
 
     private final String brand;
-	private final boolean dataNetwork;
-	private final boolean gps;
-	private final boolean nfc;
-	private final String model;
-	private final int nCPU;
-	private final int ram;
-	private final int sdSize;
+    private final boolean dataNetwork;
+    private final boolean gps;
+    private final boolean nfc;
+    private final String model;
+    private final int nCPU;
+    private final int ram;
+    private final int sdSize;
 
-	public Smartphone(final int nCPU, final int ram, final int sdSize, final String brand, final String model,
+    public Smartphone(final int nCPU, final int ram, final int sdSize, final String brand, final String model,
             final boolean hasGPS, final boolean has3G, final boolean hasNFC) {
         this.nCPU = nCPU;
         this.ram = ram;
@@ -29,48 +29,55 @@ public class Smartphone {
         this.dataNetwork = has3G;
         this.nfc = hasNFC;
     }
+
     public Smartphone(final String brand, final String model) {
         this(DEF_N_CPU, DEF_RAM_SIZE, DEF_SD_SIZE, brand, model, DEF_HAS_GPS, DEF_HAS_3G, DEF_HAS_NFC);
     }
+
     public Smartphone(final String brand, final String model, final boolean hasNFC) {
         this(DEF_N_CPU, DEF_RAM_SIZE, DEF_SD_SIZE, brand, model, DEF_HAS_GPS, DEF_HAS_3G, hasNFC);
     }
+
     public Smartphone(final String brand, final String model, final boolean hasGPS, final boolean has3G) {
         this(DEF_N_CPU, DEF_RAM_SIZE, DEF_SD_SIZE, brand, model, hasGPS, has3G, DEF_HAS_NFC);
     }
+
     public Smartphone(final String brand, final String model, final int sdSize) {
         this(DEF_N_CPU, DEF_RAM_SIZE, sdSize, brand, model, DEF_HAS_GPS, DEF_HAS_3G, DEF_HAS_NFC);
     }
+
     public String getBrand() {
-		return brand;
-	}
+        return brand;
+    }
+
     public int getCPUs() {
-		return nCPU;
-	}
+        return nCPU;
+    }
+
     public String getModelName() {
-		return model;
-	}
+        return model;
+    }
 
     public int getRam() {
-		return ram;
-	}
+        return ram;
+    }
 
     public int getSdSize() {
-		return sdSize;
-	}
+        return sdSize;
+    }
 
     public boolean has3G() {
-		return dataNetwork;
-	}
+        return dataNetwork;
+    }
 
     public boolean hasGPS() {
-		return gps;
-	}
+        return gps;
+    }
 
     public boolean hasNFC() {
-		return nfc;
-	}
-    
+        return nfc;
+    }
+
     public void printStringRep() {
         System.out.println("n CPU(s): " + nCPU);
         System.out.println("RAM amount: " + ram);

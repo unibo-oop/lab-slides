@@ -7,7 +7,7 @@ public class Student {
     private final int id;
     private final int matriculationYear;
 
-	Student(final int id, final String name, final String surname, final int matriculationYear) {
+    Student(final int id, final String name, final String surname, final int matriculationYear) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -15,20 +15,20 @@ public class Student {
     }
 
     public String getName() {
-		return name;
-	}
+        return name;
+    }
 
-	public String getSurname() {
-		return surname;
-	}
+    public String getSurname() {
+        return surname;
+    }
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public int getMatriculationYear() {
-		return matriculationYear;
-	}
+    public int getMatriculationYear() {
+        return matriculationYear;
+    }
 
     void printStudentInfo() {
         System.out.println("Student id: " + this.id);
