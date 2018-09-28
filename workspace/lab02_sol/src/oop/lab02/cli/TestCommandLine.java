@@ -1,9 +1,9 @@
 package oop.lab02.cli;
 
 public class TestCommandLine {
-	
-	private TestCommandLine() {
-	}
+
+    private TestCommandLine() {
+    }
 
     public static void main(final String[] args) {
         /*
