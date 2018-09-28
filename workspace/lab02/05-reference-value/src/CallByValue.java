@@ -1,4 +1,4 @@
-class CallByValueExample {
+class CallByValue {
 
     void increment(int a) {
         a++;
@@ -6,7 +6,7 @@ class CallByValueExample {
 
     public static void main(String[] args) {
         int x = 1;
-        CallByValueExample cbv = new CallByValueExample();
+        CallByValue cbv = new CallByValue();
         cbv.increment(x);
         System.out.println("x=" + x);
     }

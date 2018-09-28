@@ -27,7 +27,7 @@ public class UseConstructors {
          * 8) Creare un treno con numero di posti di default
          * 
          * 9) Per verificare la correttezza dei costruttori implementati
-         * stampare a video le informaizioni relative agli studenti (metodo
+         * stampare a video le informazioni relative agli studenti (metodo
          * printStudentInfo) e ai treni (a tal fine implementare un metodo
          * printTrainInfo nella classe Train). Verificare che il numero di posti
          * di default sia consistente (ossia che ci sia un numero positivo di

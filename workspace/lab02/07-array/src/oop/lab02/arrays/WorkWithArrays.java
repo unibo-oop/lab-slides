@@ -12,7 +12,7 @@ public class WorkWithArrays {
     */
 
 
-    public static int countOccurr(final int[] array, final int elem) {
+    public static int countOccurrencies(final int[] array, final int elem) {
         int nOccur = 0;
         for (final int currElem : array) {
             if (currElem == elem) {
@@ -22,15 +22,15 @@ public class WorkWithArrays {
         return nOccur;
     }
 
-    public static int[] evenElems(final int[] array) {
+    public static int[] evenElements(final int[] array) {
         return new int[] {};
     }
 
-    public static int[] oddElems(final int[] array) {
+    public static int[] oddElements(final int[] array) {
         return new int[] {};
     }
 
-    public static int getMostRecurringElem(final int[] array) {
+    public static int mostRecurringElement(final int[] array) {
         return 0;
     }
 
@@ -40,50 +40,54 @@ public class WorkWithArrays {
      * Utility method for testing countOccurr method
      */
     public static boolean testCountOccurr() {
-        return countOccurr(new int[] { 1, 2, 3, 4 }, 1) == 1
-                && countOccurr(new int[] { 0, 2, 3, 4 }, 1) == 0
-                && countOccurr(new int[] { 7, 4, 1, 9, 3, 1, 5 }, 2) == 0
-                && countOccurr(new int[] { 1, 2, 1, 3, 4, 1 }, 1) == 3;
+        return countOccurrencies(new int[] { 1, 2, 3, 4 }, 1) == 1
+                && countOccurrencies(new int[] { 0, 2, 3, 4 }, 1) == 0
+                && countOccurrencies(new int[] { 7, 4, 1, 9, 3, 1, 5 }, 2) == 0
+                && countOccurrencies(new int[] { 1, 2, 1, 3, 4, 1 }, 1) == 3;
     }
 
     /*
      * Utility method for testing testEvenElems method
      */
     public static boolean testEvenElems() {
-        return arrayEquals(evenElems(new int[] { 1, 2, 3, 4 }), new int[] { 1,
+        return arrayEquals(evenElements(new int[] { 1, 2, 3, 4 }), new int[] { 1,
                 3 })
                 && arrayEquals(
-                        evenElems(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }),
+                        evenElements(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }),
                         new int[] { 1, 3, 5, 7, 9 })
-                && arrayEquals(evenElems(new int[] { 4, 6, 7, 9, 1, 5, 23, 11,
-                        73 }), new int[] { 4, 7, 1, 23, 73 })
-                && arrayEquals(evenElems(new int[] { 7, 5, 1, 24, 12, 46, 23,
-                        11, 54, 81 }), new int[] { 7, 1, 12, 23, 54 });
+                && arrayEquals(
+                		evenElements(new int[] { 4, 6, 7, 9, 1, 5, 23, 11, 73 }),
+                		new int[] { 4, 7, 1, 23, 73 })
+                && arrayEquals(
+                		evenElements(new int[] { 7, 5, 1, 24, 12, 46, 23, 11, 54, 81 }),
+                		new int[] { 7, 1, 12, 23, 54 });
     }
 
     /*
      * Utility method for testing testOddElems method
      */
     public static boolean testOddElems() {
-        return arrayEquals(oddElems(new int[] { 1, 2, 3, 4 }),
+        return arrayEquals(oddElements(new int[] { 1, 2, 3, 4 }),
                 new int[] { 2, 4 })
                 && arrayEquals(
-                        oddElems(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }),
+                        oddElements(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 }),
                         new int[] { 2, 4, 6, 8 })
-                && arrayEquals(oddElems(new int[] { 4, 6, 7, 9, 1, 5, 23, 11,
-                        73 }), new int[] { 6, 9, 5, 11 })
-                && arrayEquals(oddElems(new int[] { 7, 5, 1, 24, 12, 46, 23,
-                        11, 54, 81 }), new int[] { 5, 24, 46, 11, 81 });
+                && arrayEquals(
+                		oddElements(new int[] { 4, 6, 7, 9, 1, 5, 23, 11, 73 }),
+                		new int[] { 6, 9, 5, 11 })
+                && arrayEquals(
+                		oddElements(new int[] { 7, 5, 1, 24, 12, 46, 23, 11, 54, 81 }),
+                		new int[] { 5, 24, 46, 11, 81 });
     }
 
     /*
      * Utility method for testing testGetMostRecurringElem method
      */
     public static boolean testGetMostRecurringElem() {
-        return getMostRecurringElem(new int[] { 1, 2, 1, 3, 4 }) == 1
-                && getMostRecurringElem(new int[] { 7, 1, 5, 7, 7, 9 }) == 7
-                && getMostRecurringElem(new int[] { 1, 2, 3, 1, 2, 3, 3 }) == 3
-                && getMostRecurringElem(new int[] { 5, 11, 2, 11, 7, 11 }) == 11;
+        return mostRecurringElement(new int[] { 1, 2, 1, 3, 4 }) == 1
+                && mostRecurringElement(new int[] { 7, 1, 5, 7, 7, 9 }) == 7
+                && mostRecurringElement(new int[] { 1, 2, 3, 1, 2, 3, 3 }) == 3
+                && mostRecurringElement(new int[] { 5, 11, 2, 11, 7, 11 }) == 11;
     }
 
     /*

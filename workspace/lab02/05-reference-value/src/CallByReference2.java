@@ -1,4 +1,4 @@
-class CallByReferenceExample2 {
+class CallByReference2 {
 
     void increment(Point3D point) {
         point = new Point3D();
@@ -9,7 +9,7 @@ class CallByReferenceExample2 {
     public static void main(String[] args) {
         Point3D p1 = new Point3D();
         p1.build(1, 2, 3);
-        CallByReferenceExample2 cbr2 = new CallByReferenceExample2();
+        CallByReference2 cbr2 = new CallByReference2();
         cbr2.increment(p1);
         System.out.println("[main] x=" + p1.x + ";y=" + p1.y + ";z=" + p1.z);
     }

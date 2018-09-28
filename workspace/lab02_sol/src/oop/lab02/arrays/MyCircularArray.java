@@ -5,33 +5,26 @@ public class MyCircularArray {
     public static final int ARRAY_DEF_SIZE = 10;
     private int[] array;
     private int nextPosition;
-    private int inStore;
 
     public MyCircularArray() {
         this.array = new int[ARRAY_DEF_SIZE];
         this.nextPosition = 0;
-        this.inStore = 0;
     }
 
     public MyCircularArray(final int size) {
         this.array = new int[size];
         this.nextPosition = 0;
-        this.inStore = 0;
     }
 
     public void add(final int elem) {
         this.array[nextPosition] = elem;
         this.nextPosition = (this.nextPosition + 1) % this.array.length;
-        if (this.inStore < this.array.length) {
-            this.inStore++;
-        }
     }
 
     public void reset() {
         for (int i = 0; i < this.array.length; i++) {
             this.array[i] = 0;
         }
-        this.inStore = 0;
         this.nextPosition = 0;
     }
 
@@ -61,7 +54,7 @@ public class MyCircularArray {
          * 3) Aggiungere gli elementi da 11 a 15 e stampare il contenuto
          * dell'array circolare
          */
-        for (int i = 5; i > 0; i--) {
+        for (int i = 11; i <= 15; i++) {
             circularArray.add(i);
         }
         circularArray.printArray();
