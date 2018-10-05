@@ -3,6 +3,25 @@ package it.unibo.oop.lab03.encapsulation;
 public class SimpleBankAccount {
 
     private int usrID;
+    /*
+     * Aggiungere i seguenti campi:
+     * - double balace: ammontare del conto
+     * - int userID: id del possessore del conto
+     * - int nTransactions: numero delle operazioni effettuate
+     * - static double ATM_TRANSACTION_FEE = 1: costo delle operazioni via ATM
+     */
+
+    /*
+     * Creare un costruttore pubblico che prenda in ingresso un intero (ossia l'id
+     * dell'utente) ed un double (ossia, l'ammontare iniziale del conto corrente).
+     */
+
+    /*
+     * Si aggiungano selettori per: 
+     * - ottenere l'id utente del possessore del conto
+     * - ottenere il numero di transazioni effettuate
+     * - ottenere l'ammontare corrente del conto.
+     */
 
     public void deposit(final int usrID, final double amount) {
         /*
