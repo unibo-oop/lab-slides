@@ -2,7 +2,7 @@ package it.unibo.oop.lab03.interfaces;
 
 public class Triangle implements Polygon {
 
-	private static final int N_EDGES = 3;
+    private static final int N_EDGES = 3;
     private final double l1;
     private final double l2;
     private final double l3;

@@ -23,11 +23,11 @@ public class Exam {
     }
 
     private void expand() {
-    	/*
-    	 * We need to copy the whole array every time... pretty expensive...
-    	 * 
-    	 * (any better idea, students?)
-    	 */
+        /*
+         * We need to copy the whole array every time... pretty expensive...
+         * 
+         * (any better idea, students?)
+         */
         students = Arrays.copyOf(students, students.length + 1);
     }
 

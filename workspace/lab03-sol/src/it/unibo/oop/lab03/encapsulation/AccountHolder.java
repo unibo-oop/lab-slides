@@ -1,6 +1,5 @@
 package it.unibo.oop.lab03.encapsulation;
 
-
 public class AccountHolder {
 
     private final String name;

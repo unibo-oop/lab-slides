@@ -10,7 +10,7 @@ public class Circle implements Shape {
 
     public double getArea() {
         /*
-         * Math.pow() could be used, but is much slower, altough more precise.
+         * Math.pow() could be used, but is much slower, although more precise.
          */
         return Math.PI * this.radius * this.radius;
     }
