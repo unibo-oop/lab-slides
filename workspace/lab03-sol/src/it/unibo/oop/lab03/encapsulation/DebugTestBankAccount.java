@@ -1,9 +1,11 @@
-package it.unibo.oop.lab04.bank;
+package it.unibo.oop.lab03.encapsulation;
+
+import it.unibo.oop.lab03.interfaces.BankAccount;
 
 public class DebugTestBankAccount {
 
-    private DebugTestBankAccount() {}
-    
+    private DebugTestBankAccount() { }
+
     public static void main(final String[] args) {
         final AccountHolder mRossi = new AccountHolder("Mario", "Rossi", 1);
         final AccountHolder arsenioLupin = new AccountHolder("Arsenio", "Lupin", 2);
