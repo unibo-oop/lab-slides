@@ -25,9 +25,6 @@ public class SeqRecognizer {
         if (array.length >= 2 && array[0] == 1) {
             int i = 1;
             for (; i < array.length - 1 && array[i] == 2; i++);
-            if (array[i] == 3 && i == array.length) {
-                return true;
-            }
             if (array[i] == 3) {
                 for (i++; i < array.length && array[i] == 4; i++);
                 return i == array.length || i == array.length - 1 && array[array.length - 1] == 5;
@@ -76,6 +73,8 @@ public class SeqRecognizer {
                 && checkSeq3(new int[] { 1, 2, 2, 2, 2, 2, 2, 3 })
                 && checkSeq3(new int[] { 1, 2, 3, 4, 5 })
                 && checkSeq3(new int[] { 1, 2, 2, 3, 4, 4, 4, 5 })
+                && checkSeq3(new int[] { 1, 2, 2, 2, 3 })
+                && !checkSeq3(new int[] { 1, 2, 2, 2 })
                 && !checkSeq3(new int[] { 2, 2, 3, 4, 4, 4 })
                 && !checkSeq3(new int[] { 1, 2, 2, 3, 4, 4, 4, 5, 6 });
     }
