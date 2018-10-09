@@ -62,8 +62,8 @@ public class TestBankAccount {
         /*
          * 10) Invocare il metodo computeManagementFees su entrambi i conti
          */
-        rossisAccount.computeManagementFees(mRossi.getUserID());
-        bianchisAccount.computeManagementFees(lBianchi.getUserID());
+        rossisAccount.chargeManagementFees(mRossi.getUserID());
+        bianchisAccount.chargeManagementFees(lBianchi.getUserID());
         /*
          * 11) Stampare a video l'ammontare corrente
          */

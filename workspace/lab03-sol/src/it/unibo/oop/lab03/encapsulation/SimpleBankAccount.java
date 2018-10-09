@@ -44,7 +44,7 @@ public class SimpleBankAccount implements BankAccount {
         this.nTransactions++;
     }
 
-    public void computeManagementFees(final int usrID) {
+    public void chargeManagementFees(final int usrID) {
         if (checkUser(usrID)) {
             this.balance -= SimpleBankAccount.MANAGEMENT_FEE;
         }

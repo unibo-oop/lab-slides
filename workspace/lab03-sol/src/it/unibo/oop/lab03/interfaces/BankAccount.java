@@ -9,7 +9,7 @@ public interface BankAccount {
 
     void withdrawFromATM(int usrID, double amount);
 
-    void computeManagementFees(int usrID);
+    void chargeManagementFees(int usrID);
 
     double getBalance();
 
