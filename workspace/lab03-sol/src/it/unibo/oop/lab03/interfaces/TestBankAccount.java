@@ -11,41 +11,71 @@ public class TestBankAccount {
     }
 
     public static void main(final String[] args) {
-
-        // 1) Creare l' AccountHolder relativo a Mario Rossi con id 1
-        final AccountHolder usr1 = new AccountHolder("Mario", "Rossi", 1);
-        // 2) Creare l' AccountHolder relativo a Luigi Bianchi con id 2
-        final AccountHolder usr2 = new AccountHolder("Luigi", "Bianchi", 2);
-
-        // 3) Dichiarare due variabili (acc1 e acc2) di tipo BankAccount
-        final BankAccount acc1, acc2;
         /*
-         * 4) Creare in acc1 un nuovo oggetto di tipo BankAccount relativo al
-         * conto di Mario Rossi (ammontare iniziale = 0)
+         * 1) Creare l' AccountHolder relativo a Mario Rossi con id 1
          */
-        acc1 = new SimpleBankAccount(usr1.getUserID(), 0);
+        final AccountHolder mRossi = new AccountHolder("Mario", "Rossi", 1);        /*
+         * 2) Creare l' AccountHolder relativo a Luigi Bianchi con id 2
+         */
+        final AccountHolder lBianchi = new AccountHolder("Luigi", "Bianchi", 2);
         /*
-         * 5) Creare in acc2 un nuovo oggetto di tipo StrictBankAccount relativo
-         * al conto di Luigi Bianchi (ammontare iniziale = 0)
+         * 3) Dichiarare due variabili di tipo BankAccount ed inizializzarle,
+         * rispettivamente, con oggetti di tipo SimpleBankAccount per il conto di Mario
+         * Rossi (ammontare iniziale = 0), e di tipo StrictBankAccount per il conto di
+         * Luigi Bianchi (ammontare iniziale = 0)
          */
-        acc2 = new StrictBankAccount(usr2.getUserID(), 0);
-        // 7) Depositare 10000$ in entrambi i conti
-        acc1.deposit(usr1.getUserID(), INTIAL_AMOUNT);
-        acc2.deposit(usr2.getUserID(), INTIAL_AMOUNT);
-        // 8) Prelevare 15000$ in entrambi i conti
-        acc1.withdraw(usr1.getUserID(), WITHDRAW_AMOUNT);
-        acc2.withdraw(usr2.getUserID(), WITHDRAW_AMOUNT);
-        // 9) Stampare in stdout l'ammontare corrente
-        System.out.println("Mario Rossi account balance is " + acc1.getBalance());
-        System.out.println("Luigi Bianchi account balance is " + acc2.getBalance());
-        // 11) Depositare nuovamente 10000$ in entrambi i conti
-        acc1.deposit(usr1.getUserID(), INTIAL_AMOUNT);
-        acc2.deposit(usr2.getUserID(), INTIAL_AMOUNT);
-        // 11) Invocare il metodo computeManagementFees su entrambi i conti
-        acc1.computeManagementFees(usr1.getUserID());
-        acc2.computeManagementFees(usr2.getUserID());
-        // 12) Stampare a video l'ammontare corrente
-        System.out.println("Mario Rossi account balance is " + acc1.getBalance());
-        System.out.println("Luigi Bianchi account balance is " + acc2.getBalance());
+        final BankAccount rossisAccount = new SimpleBankAccount(mRossi.getUserID(), 0);
+        final BankAccount bianchisAccount = new StrictBankAccount(lBianchi.getUserID(), 0);
+        /*
+         * 4) Prima riflessione: perché è stato possibile fare la new di due classi
+         * diverse in variabili dello stesso tipo?
+         * 
+         * Entrambe implementano la stessa interfaccia!
+         */
+        /*
+         * 5) Depositare €10000 in entrambi i conti
+         */
+        rossisAccount.deposit(mRossi.getUserID(), INTIAL_AMOUNT);
+        bianchisAccount.deposit(lBianchi.getUserID(), INTIAL_AMOUNT);
+        /*
+         * 6) Prelevare €15000$ da entrambi i conti
+         */
+        rossisAccount.withdraw(mRossi.getUserID(), WITHDRAW_AMOUNT);
+        bianchisAccount.withdraw(lBianchi.getUserID(), WITHDRAW_AMOUNT);
+        /*
+         * 7) Stampare in stdout l'ammontare corrente
+         */
+        System.out.println(mRossi.getName() + " " + mRossi.getSurname()
+            + "'s account balance is " + rossisAccount.getBalance());
+        System.out.println(lBianchi.getName() + " " + lBianchi.getSurname()
+            + "'s account balance is " + bianchisAccount.getBalance());
+        /*
+         * 8) Qual è il risultato e perché?
+         * 
+         * Nel conto di Bianchi non si può andare in rosso
+         */
+        /*
+         * 9) Depositare nuovamente €10000 in entrambi i conti
+         */
+        rossisAccount.deposit(mRossi.getUserID(), INTIAL_AMOUNT);
+        bianchisAccount.deposit(lBianchi.getUserID(), INTIAL_AMOUNT);
+        /*
+         * 10) Invocare il metodo computeManagementFees su entrambi i conti
+         */
+        rossisAccount.computeManagementFees(mRossi.getUserID());
+        bianchisAccount.computeManagementFees(lBianchi.getUserID());
+        /*
+         * 11) Stampare a video l'ammontare corrente
+         */
+        System.out.println(mRossi.getName() + " " + mRossi.getSurname()
+            + "'s account balance is " + rossisAccount.getBalance());
+        System.out.println(lBianchi.getName() + " " + lBianchi.getSurname()
+            + "'s account balance is " + bianchisAccount.getBalance());
+        /*
+         * 12) Qual è il risultato e perché?
+         * 
+         * Non essendo stati scalati i soldi, Bianchi ha quasi 20000 euro. Quasi perché
+         * ha costi di gestione.
+         */
     }
 }
