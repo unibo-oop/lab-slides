@@ -48,7 +48,7 @@ public class StrictBankAccount implements BankAccount {
         return this.balance;
     }
 
-    public int getNTransactions() {
+    public int getTransactionsCount() {
         return nTransactions;
     }
 

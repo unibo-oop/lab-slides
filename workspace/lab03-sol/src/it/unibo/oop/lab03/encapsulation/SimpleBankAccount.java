@@ -54,7 +54,7 @@ public class SimpleBankAccount implements BankAccount {
         return this.balance;
     }
 
-    public int getNTransactions() {
+    public int getTransactionsCount() {
         return this.nTransactions;
     }
 
