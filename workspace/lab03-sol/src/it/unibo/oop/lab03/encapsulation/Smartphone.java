@@ -9,12 +9,11 @@ public class Smartphone {
     private static final int DEF_RAM_SIZE = 1024;
     private static final int DEF_N_CPU = 2;
 
-    private int nCPU;
-    private int ram;
-    private int sdSize;
-
-    private String brand;
-    private String model;
+    private final int nCPU;
+    private final int ram;
+    private final int sdSize;
+    private final String brand;
+    private final String model;
     private final boolean hasGPS;
     private final boolean has3G;
     private final boolean hasNFC;

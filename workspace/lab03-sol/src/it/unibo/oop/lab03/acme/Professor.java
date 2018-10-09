@@ -11,7 +11,8 @@ public class Professor implements User {
     private final String password;
     private String[] courses;
 
-    public Professor(final Integer id, final String name, final String surname, final String password,
+    public Professor(final Integer id,
+            final String name, final String surname, final String password,
             final String[] courses) {
         this.id = id;
         this.name = name;
@@ -47,8 +48,10 @@ public class Professor implements User {
     }
 
     public String toString() {
-        return "Professor [id=" + this.id + ", name=" + this.name + ", surname=" + this.surname + ", subjects="
-                + Arrays.toString(this.courses) + "]";
+        return "Professor [id=" + this.id
+                + ", name=" + this.name
+                + ", surname=" + this.surname
+                + ", subjects=" + Arrays.toString(this.courses) + "]";
     }
 
     public String getUsername() {

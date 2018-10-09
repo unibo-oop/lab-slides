@@ -10,11 +10,11 @@ public class Calculator {
         this.lastRes = 0;
     }
 
-    public int getNOpDone() {
+    public int getOperationsCount() {
         return this.nOpDone;
     }
 
-    public double getLastRes() {
+    public double getLastResult() {
         return this.lastRes;
     }
 
