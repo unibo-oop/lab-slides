@@ -6,6 +6,7 @@ import it.unibo.oop.lab03.encapsulation.SimpleBankAccount;
 public class TestBankAccount {
     private static final int INTIAL_AMOUNT = 10000;
     private static final int WITHDRAW_AMOUNT = 15000;
+    private static final String ACCOUNT = "'s account balance is ";
 
     private TestBankAccount() {
     }
@@ -14,7 +15,8 @@ public class TestBankAccount {
         /*
          * 1) Creare l' AccountHolder relativo a Mario Rossi con id 1
          */
-        final AccountHolder mRossi = new AccountHolder("Mario", "Rossi", 1);        /*
+        final AccountHolder mRossi = new AccountHolder("Mario", "Rossi", 1);
+        /*
          * 2) Creare l' AccountHolder relativo a Luigi Bianchi con id 2
          */
         final AccountHolder lBianchi = new AccountHolder("Luigi", "Bianchi", 2);
@@ -46,9 +48,9 @@ public class TestBankAccount {
          * 7) Stampare in stdout l'ammontare corrente
          */
         System.out.println(mRossi.getName() + " " + mRossi.getSurname()
-            + "'s account balance is " + rossisAccount.getBalance());
+            + ACCOUNT + rossisAccount.getBalance());
         System.out.println(lBianchi.getName() + " " + lBianchi.getSurname()
-            + "'s account balance is " + bianchisAccount.getBalance());
+            + ACCOUNT + bianchisAccount.getBalance());
         /*
          * 8) Qual è il risultato e perché?
          * 
@@ -68,9 +70,9 @@ public class TestBankAccount {
          * 11) Stampare a video l'ammontare corrente
          */
         System.out.println(mRossi.getName() + " " + mRossi.getSurname()
-            + "'s account balance is " + rossisAccount.getBalance());
+            + ACCOUNT + rossisAccount.getBalance());
         System.out.println(lBianchi.getName() + " " + lBianchi.getSurname()
-            + "'s account balance is " + bianchisAccount.getBalance());
+            + ACCOUNT + bianchisAccount.getBalance());
         /*
          * 12) Qual è il risultato e perché?
          * 
