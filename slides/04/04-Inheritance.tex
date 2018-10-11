@@ -9,29 +9,6 @@
 
 \frame[label=coverpage]{\titlepage}
 
-%====================
-%Outline
-%====================
-\fr{Outline}{
-\bl{Goal della lezione}{
-\iz{ 
-\item Utilizzo avanzato di Eclipse
-\iz{
-\item Debugging
-\item Refactoring
-\item Keyboard Shortcuts
-}
-\item Imparare a costruire classi sfruttando l'ereditarietà
-\iz{
-\item Scrittura ed estensione di (1) classi e (2) classi astratte
-}
-\item Ragionamenti sul (buon) design di Software OOP-oriented
-}
-}
-}
-
-\section{Eclipse: Aspetti Avanzati}
-
 \section{Lab Startup}
 
 \fr{Preparazione Ambiente di Lavoro 1/2}{
@@ -69,99 +46,7 @@
   }
 }
 
-\section{Ereditarietà}
-
-\subsection{Refactoring di un esercizio precedente}
-
-\fr{SimpleBankAccount e StrictBankAccount}{
-  \bl{Miglioriamo la precedente esercitazione}{
-    \iz{
-      \item Nelle soluzioni dell'esercizio della volta scorsa, c'è molto codice duplicato fra \texttt{SimpleBankAccount} e \texttt{StrictBankAccount}
-      \item Si crei la classe \texttt{ExtendedStrictBankAccount extends SimpleBankAccount}, con lo stesso comportamento di StrictBankAccount, cercando di ottimizzare il riuso di codice.
-		\item È \textbf{proibito} apportare modifiche a \texttt{SimpleBankAccount}, di qualunque tipo.
-		\item Si mostri il risultato al docente per una correzione
-    }
-  }
-  \bl{Una nuova architettura}{
-    \iz{
-      \item La soluzione precedente è stata ottenuta per modifica di un design sub-ottimo (non conoscevamo ancora l'ereditarietà!)
-      \item Come sarebbe stato il design dell'applicazione se avessimo conosciuto fin dall'inizio il meccanismo di ereditarietà?
-    }
-  }
-}
-  
-\fr{SimpleBankAccount e StrictBankAccount}{
-  \bl{Una nuova architettura}{
-    \iz{
-      \item All'interno del package \texttt{it.unibo.oop.lab04.bank2}, si creino le seguenti classi:
-      \iz{
-        \item \texttt{abstract AbstractBankAccount implements BankAccount}
-        \iz{
-          \item dovrà contenere elementi comuni a \textbf{tutti} i conti correnti
-          \item \textbf{tutti} i campi della classe dovranno essere privati
-          \item la classe dovrà esporre come metodi \texttt{public} tutti e soli i metodi dell'interfaccia \texttt{BankAccount}
-          \item deve definire  ed utilizzare due metodi \texttt{protected abstract}: \texttt{boolean isWithdrawAllowed(double)} (\texttt{true} se se è possibile prelevare dal conto il valore passato) e \texttt{double computeFee()} (ritorna l'ammontare complessivo dei costi di gestione)
-        }
-        \item \texttt{ClassicBankAccount extends AbstractBankAccount}
-        \iz{
-          \item Implementa lo stesso comportamento di \texttt{SimpleBankAccount}
-        }
-        \item \texttt{RestrictedBankAccount extends AbstractBankAccount}
-        \iz{
-          \item Implementa lo stesso comportamento di \texttt{StrictBankAccount}
-        }
-      }
-      \item In cosa è migliore della soluzione precedente?
-    }
-  }
-}
-
-\subsection{Nuovo scenario: robot}
-
-\fr{Costruzione e Testing di Robot}{
-  \bl{}{
-    Nella lezione di oggi studieremo in pratica l'ereditarietà e le classi astratte usando come scenario di riferimento la modellazione e il testing di robot
-  }
-  
-  \iz{ \item \cil{package it.unibo.oop.lab04.robot.base}: set di interfacce e classi fornite }
-    \iz{
-      \item \cil{Robot}
-      \item \cil{Position2D}
-      \item \cil{BaseRobot}
-      \item \cil{RobotPosition}
-      \item \cil{RobotEnvironment}
-    }
-  Si utilizzi \texttt{TestRobots} per capire il funzionamento delle classi suddette
-}
-
-\fr{Costruzione e Testing di Robot}{
-  \fg{width=0.99\textwidth}{img/robots_core.png}
-}
-
-\subsection{Robot con braccia}
-
-\fr{Suggested design}{
-  \fg{width=0.99\textwidth}{img/arms}
-}
-
-\fr{Design guidato}{
-  Sfruttando le classi base già definite, e facendo riferimento allo schema UML allegato nella slide precedente, si realizzino nel \cil{package it.unibo.oop.lab04.robot.arms}:
-  \iz{
-    \scriptsize
-    \item \cil{interface RobotWithArms}: descrive un robot dotato di braccia. Presenta tre metodi:
-    \iz{
-      \scriptsize
-      \item \cil{boolean pickUp()} raccoglie un oggetto, restituisce \cil{true} se ha successo
-      \item \cil{boolean dropDown()} rilascia un oggetto, restituisce \cil{true} se ha successo
-      \item \cil{int getItemsCarried()} restituisce il numero di oggetti che si stanno trasportando.
-    }
-    \item \cil{class BasicArm}: modella un singolo braccio robot. Si faccia riferimento allo schema UML precedente, sapendo che ciascun braccio è in grado di sollevare un solo oggetto alla volta, che ha un consumo per prendere un oggetto e per lasciarlo.
-    \item \cil{class RobotWithTwoArms extends BaseRobot implements RobotWithArms}: modella un robot con due braccia. Al comando \cil{pickUp()}, il robot preleva un oggetto, aumentando il numero di oggetti che sta trasportando, ed occupando una delle braccia. Quando tutte le braccia sono occupate, \cil{pickUp()} fallisce (restituisce \cil{false}). Allo stesso modo, quando le braccia sono vuote, \cil{dropDown()} fallisce. Quando il robot sta trasportando oggetti, il suo consumo di batteria è superiore.
-  }
-  Si utilizzi \texttt{TestRobots} per capire il funzionamento delle classi suddette
-}
-
-\section{Design}
+\section{Consigli per l'esercitazione odierna}
 
 \fr{Design di una applicazione}{
   \iz {
@@ -172,75 +57,6 @@
     \item \textbf{SUGGERIMENTO} --- Prima di iniziare a ``sporcarsi le mani'' col codice, prendete carta e penna e cercate di ottenere un design chiaro dei componenti che realizzerete: nessuno costruisce un'automobile partendo con l'assemblare i bulloni, ma decide prima quali saranno i componenti e come andranno connessi fra loro.
   }
 }
-
-\subsection{Robot componibili}
-
-\fr{Requisiti: robot componibile}{
-  \iz {
-    \item Si desidera realizzare un robot di tipo componibile.
-    \item Un robot componibile è un robot al quale possono essere aggiunti o rimossi nuovi componenti arbitrari.
-    \item Il robot componibile espone una funzionalità che consente di mettere in moto e far funzionare tutti i componenti connessi, a patto ovviamente che siano accesi.
-    \item Quando tale funzionalità viene chiamata, il robot mette in funzione in ordine, per una sola volta, tutti i componenti ad esso connessi.
-  }
-}
-
-\fr{Requisiti: componenti di robot}{
-  \iz {
-    \item Un componente per robot è un'entità che può essere accesa o spenta.
-    \item Il componente può essere non connesso oppure connesso ad un solo robot.
-    \item Il componente è in grado di compiere operazioni sul robot.
-    \item Ciascun componente ha un proprio consumo di energia.
-    \item Quando il robot a componenti fa uso del componente, deve scalare il consumo di energia del componente dalla propria batteria.
-    \item Alcuni componenti sono in grado di supportare dei comandi.
-    \item Ciascun componente comandabile ha il proprio set di comandi
-    \item Il componente comandabile può ricevere un comando
-    \item Alla ricezione del comando, se il comando corrisponde ad uno dei comandi supportati, il componente comandabile cambia il proprio comportamento in maniera tale da eseguire il comando richiesto.
-  }
-}
-
-\fr{Requisiti: test}{
-  Si desidera testare l'infrastruttura creando un robot componibile ed assegnandogli i seguenti componenti:
-  \iz {
-    \item Batteria atomica:
-    \iz {
-      \scriptsize
-      \item Componente non comandabile.
-      \item Batteria alimentata ad Uranio-239, che ricarica istantaneamente il robot.
-      \item In fase di test, per evitare il surriscaldamento, si attivi la batteria atomica solo nel caso in cui la batteria del robot sia al di sotto del 50\%.
-    }
-    \item Navigatore di confine:
-    \iz {
-      \scriptsize
-      \item Componente non comandabile.
-      \item Una volta avviato, fa sì che il robot raggiunga il bordo del \texttt{RobotEnvironment} e continui ad esplorarlo.
-    }
-    \item Due braccia prensili:
-    \iz {
-      \scriptsize
-      \item Componente comandabile, con comandi ``pick'' e ``drop''.
-      \item Se è attivo il comando ``pick'' e il braccio non ha alcun oggetto in mano, allora ne viene preso uno.
-      \item Se è attivo il comando ``pick'' e il braccio ha già un oggetto in mano, allora non viene fatta alcuna azione.
-      \item Se è attivo il comando ``drop'' e il braccio ha già un oggetto in mano, allora l'oggetto viene lasciato.
-      \item Se è attivo il comando ``drop'' e il braccio non ha alcun alcun oggetto in mano, allora non viene fatta alcuna azione.
-    }
-  }
-}
-
-%\fr{Badge: Pimp by bot} {
-%  \iz {
-%    \item Chi riesce a completare un robot componibile dotato di tutte le componenti sopra indicate può creare un nuovo componente personalizzato.
-%    \item I componenti innovativi e di buona qualità che verranno postati sul forum studenti vinceranno un badge del corso.
-%  }
-%}
-
-
-\begin{frame}[allowframebreaks]
- \frametitle{Bibliography}
-  \bibliographystyle{plain}
-  \small
- \bibliography{biblio}
-\end{frame}
-
 
 \end{document}
 
