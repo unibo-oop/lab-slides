@@ -3,7 +3,6 @@ package it.unibo.oop.lab04.robot.components;
 import java.util.Arrays;
 
 /**
- * @author Danilo Pianini
  *
  */
 public abstract class AbstractPartWithCommands extends AbstractPart implements CommandableRobotPart {

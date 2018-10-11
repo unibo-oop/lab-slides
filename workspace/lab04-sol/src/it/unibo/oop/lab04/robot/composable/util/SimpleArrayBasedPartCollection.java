@@ -7,7 +7,7 @@ import it.unibo.oop.lab04.robot.components.RobotPart;
 public class SimpleArrayBasedPartCollection extends AbstractArrayBasedPartCollection {
 
     private RobotPart[] parts = new RobotPart[0];
-    
+
     @Override
     public void add(final RobotPart rp) {
         parts = Arrays.copyOf(parts, parts.length + 1);
@@ -23,7 +23,7 @@ public class SimpleArrayBasedPartCollection extends AbstractArrayBasedPartCollec
     protected RobotPart getPart(final int i) {
         return parts[i];
     }
-    
+
     @Override
     protected void removePartAt(final int index) {
         final RobotPart[] na = new RobotPart[parts.length - 1];

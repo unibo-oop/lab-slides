@@ -6,8 +6,6 @@ import it.unibo.oop.lab04.robot.composable.ComposableRobot;
 /**
  * Abstract class to use as a basis to implement a robotic part that can perform
  * move operation (e.g. actuators)
- * 
- * @author Danilo Pianini
  *
  */
 public abstract class AbstractPart implements RobotPart {
@@ -65,5 +63,4 @@ public abstract class AbstractPart implements RobotPart {
     }
 
     public abstract String toString();
-
 }

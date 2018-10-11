@@ -1,11 +1,8 @@
 package it.unibo.oop.lab04.robot.base;
 
 /**
- * Models the environment in which a
- * {@link it.unibo.oop.lab04.robot.base.BaseRobot.Robot} is situated
- * 
- * @author Andrea Santi
- * @author Danilo Pianini
+ * Models the environment in which a {@link it.unibo.oop.lab04.robot.base.Robot}
+ * is situated
  *
  */
 public class RobotEnvironment {

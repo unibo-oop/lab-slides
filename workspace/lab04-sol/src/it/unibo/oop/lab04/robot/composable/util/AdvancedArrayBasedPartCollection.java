@@ -7,8 +7,6 @@ import it.unibo.oop.lab04.robot.components.RobotPart;
 /**
  * More efficient {@link RobotPartCollection} implementation. Starts with a
  * small array, grows it only when required to reduce the number of copies.
- * 
- * @author Danilo Pianini
  *
  */
 public class AdvancedArrayBasedPartCollection extends AbstractArrayBasedPartCollection {

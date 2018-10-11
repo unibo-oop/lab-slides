@@ -2,9 +2,6 @@ package it.unibo.oop.lab04.robot.components;
 
 /**
  * Models a robotic arm
- * 
- * @author Andrea Santi
- * @author Danilo Pianini
  *
  */
 public class RobotArm extends AbstractPartWithCommands {
@@ -42,5 +39,4 @@ public class RobotArm extends AbstractPartWithCommands {
     public String toString() {
         return "RobotArm";
     }
-
 }

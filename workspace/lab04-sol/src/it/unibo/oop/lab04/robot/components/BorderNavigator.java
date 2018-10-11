@@ -6,7 +6,6 @@ package it.unibo.oop.lab04.robot.components;
 import it.unibo.oop.lab04.robot.base.BaseRobot;
 
 /**
- * @author Danilo Pianini
  *
  */
 public class BorderNavigator extends AbstractPart {

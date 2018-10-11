@@ -9,7 +9,6 @@ import it.unibo.oop.lab04.robot.composable.util.RobotPartCollection;
 // import it.unibo.oop.lab04.robot.composable.util.SimpleArrayBasedPartCollection;
 
 /**
- * @author Danilo Pianini
  *
  */
 public class SimpleComposableRobot extends BaseRobot implements ComposableRobot {

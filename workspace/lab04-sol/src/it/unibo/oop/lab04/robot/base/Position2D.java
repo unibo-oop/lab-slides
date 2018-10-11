@@ -1,11 +1,7 @@
-/**
- * 
- */
 package it.unibo.oop.lab04.robot.base;
 
 /**
- * @author Danilo Pianini
- *
+ * A position in a bidimensional space
  */
 public interface Position2D {
 

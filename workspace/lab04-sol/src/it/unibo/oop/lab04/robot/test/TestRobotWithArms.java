@@ -8,7 +8,6 @@ import it.unibo.oop.lab04.robot.base.RobotPosition;
 /**
  * Utility class for testing componible robots
  * 
- * @author Danilo Pianini
  */
 public final class TestRobotWithArms {
 
@@ -19,57 +18,48 @@ public final class TestRobotWithArms {
 
     private static void assertEquality(final String propertyName, final Object expected, final Object actual) {
         if (actual == null || !actual.equals(expected)) {
-            System.out.println(propertyName + " was expected to be " + expected + ", but it yields " + actual
-                    + " (ERROR!)");
+            System.out.println(propertyName + " was expected to be " + expected
+                    + ", but it yields " + actual + " (ERROR!)");
         } else {
             System.out.println(propertyName + ": " + actual + " (CORRECT)");
         }
     }
 
     public static void main(final String[] args) {
-
-        final RobotWithArms r0 = new RobotWithTwoArms("Wall-e");
-        final String r0pos = r0 + "'s position";
-        final String r0arm = r0 + "'s items carried";
-        final String r0bat = r0 + "'s consumption is correct";
-
-        assertEquality(r0pos, new RobotPosition(0, 0), r0.getPosition());
-        assertEquality(r0bat, BaseRobot.BATTERY_FULL, r0.getBatteryLevel());
-
-        double consumptionEmpty = r0.getBatteryLevel();
+        final RobotWithArms walle = new RobotWithTwoArms("Wall-e");
+        final String wallePosition = walle + "'s position";
+        final String walleItems = walle + "'s items carried";
+        final String walleConsumption = walle + "'s consumption is correct";
+        assertEquality(wallePosition, new RobotPosition(0, 0), walle.getPosition());
+        assertEquality(walleConsumption, BaseRobot.BATTERY_FULL, walle.getBatteryLevel());
+        double consumptionEmpty = walle.getBatteryLevel();
         for (int i = 0; i < CYCLES; i++) {
-            r0.moveRight();
+            walle.moveRight();
         }
-        consumptionEmpty -= r0.getBatteryLevel();
-
-        r0.pickUp();
-        assertEquality(r0arm, 1, r0.getItemsCarried());
-
-        double consumption1Item = r0.getBatteryLevel();
+        consumptionEmpty -= walle.getBatteryLevel();
+        walle.pickUp();
+        assertEquality(walleItems, 1, walle.getItemsCarried());
+        double consumption1Item = walle.getBatteryLevel();
         for (int i = 0; i < CYCLES; i++) {
-            r0.moveUp();
+            walle.moveUp();
         }
-        consumption1Item -= r0.getBatteryLevel();
-        assertEquality(r0bat, true, consumption1Item > consumptionEmpty);
-
-        r0.pickUp();
-        assertEquality(r0arm, 2, r0.getItemsCarried());
-
-        double consumption2Item = r0.getBatteryLevel();
+        consumption1Item -= walle.getBatteryLevel();
+        assertEquality(walleConsumption, true, consumption1Item > consumptionEmpty);
+        walle.pickUp();
+        assertEquality(walleItems, 2, walle.getItemsCarried());
+        double consumption2Item = walle.getBatteryLevel();
         for (int i = 0; i < CYCLES; i++) {
-            r0.moveUp();
+            walle.moveUp();
         }
-        consumption2Item -= r0.getBatteryLevel();
-        assertEquality(r0bat, true, consumption2Item > consumption1Item);
-
-        r0.pickUp();
-        assertEquality(r0arm, 2, r0.getItemsCarried());
-        r0.dropDown();
-        assertEquality(r0arm, 1, r0.getItemsCarried());
-        r0.dropDown();
-        assertEquality(r0arm, 0, r0.getItemsCarried());
-        r0.dropDown();
-        assertEquality(r0arm, 0, r0.getItemsCarried());
-
+        consumption2Item -= walle.getBatteryLevel();
+        assertEquality(walleConsumption, true, consumption2Item > consumption1Item);
+        walle.pickUp();
+        assertEquality(walleItems, 2, walle.getItemsCarried());
+        walle.dropDown();
+        assertEquality(walleItems, 1, walle.getItemsCarried());
+        walle.dropDown();
+        assertEquality(walleItems, 0, walle.getItemsCarried());
+        walle.dropDown();
+        assertEquality(walleItems, 0, walle.getItemsCarried());
     }
 }

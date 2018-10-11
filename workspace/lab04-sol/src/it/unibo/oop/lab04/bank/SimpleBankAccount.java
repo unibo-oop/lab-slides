@@ -67,5 +67,4 @@ public class SimpleBankAccount implements BankAccount {
     public void withdrawFromATM(final int usrID, final double amount) {
         this.withdraw(usrID, amount + SimpleBankAccount.ATM_TRANSACTION_FEE);
     }
-
 }

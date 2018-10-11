@@ -1,11 +1,7 @@
 package it.unibo.oop.lab04.robot.base;
 
 /**
- * Models a (x,y) position for a
- * {@link it.unibo.oop.lab04.robot.base.BaseRobot.Robot}
- * 
- * @author Andrea Santi
- * @author Danilo Pianini
+ * Models a (x,y) position for a {@link it.unibo.oop.lab04.robot.base.Robot}
  *
  */
 public class RobotPosition implements Position2D {
@@ -58,5 +54,4 @@ public class RobotPosition implements Position2D {
     public String toString() {
         return "[" + x + ", " + y + "]";
     }
-
 }

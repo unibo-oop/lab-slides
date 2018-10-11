@@ -2,8 +2,6 @@ package it.unibo.oop.lab04.robot.arms;
 
 /**
  * Models a robotic arm
- * 
- * @author Danilo Pianini
  *
  */
 public class BasicArm {
@@ -40,5 +38,4 @@ public class BasicArm {
     public String toString() {
         return name;
     }
-
 }

@@ -3,6 +3,9 @@ package it.unibo.oop.lab04.bank;
 //CHECKSTYLE:OFF
 public final class TestBankAccount {
 
+    private static final int DEPOSIT = 10000;
+    private static final int WITHDRAW = 15000;
+
     private TestBankAccount() {
     }
 
@@ -19,16 +22,16 @@ public final class TestBankAccount {
          */
         final BankAccount acc2 = new ExtendedStrictBankAccount(usr2.getUserID(), 0);
 
-        acc1.deposit(usr1.getUserID(), 10000);
-        acc2.deposit(usr2.getUserID(), 10000);
-        acc1.withdraw(usr1.getUserID(), 15000);
-        acc2.withdraw(usr2.getUserID(), 15000);
+        acc1.deposit(usr1.getUserID(), DEPOSIT);
+        acc2.deposit(usr2.getUserID(), DEPOSIT);
+        acc1.withdraw(usr1.getUserID(), WITHDRAW);
+        acc2.withdraw(usr2.getUserID(), WITHDRAW);
 
         System.out.println("Mario Rossi account balance is " + acc1.getBalance());
         System.out.println("Luigi Bianchi account balance is " + acc2.getBalance());
 
-        acc1.deposit(usr1.getUserID(), 10000);
-        acc2.deposit(usr2.getUserID(), 10000);
+        acc1.deposit(usr1.getUserID(), DEPOSIT);
+        acc2.deposit(usr2.getUserID(), DEPOSIT);
         acc1.computeManagementFees(usr1.getUserID());
         acc2.computeManagementFees(usr2.getUserID());
 

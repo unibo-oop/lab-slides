@@ -1,7 +1,7 @@
 package it.unibo.oop.lab04.robot.base;
 
 /**
- * @author Danilo Pianini
+ * A robot that can move
  *
  */
 public interface Robot {

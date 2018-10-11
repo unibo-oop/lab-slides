@@ -4,9 +4,6 @@ import it.unibo.oop.lab04.robot.base.BaseRobot;
 
 /**
  * Models a robot with two {@link BasicArm}
- * 
- * @author Andrea Santi
- * @author Danilo Pianini
  *
  */
 public class RobotWithTwoArms extends BaseRobot implements RobotWithArms {
@@ -30,7 +27,7 @@ public class RobotWithTwoArms extends BaseRobot implements RobotWithArms {
     protected double getBatteryRequirementForMovement() {
         return super.getBatteryRequirementForMovement() + getItemsCarried() * TRANSPORT_OBJECT_CONSUMPTION;
     }
-    
+
     private void doPick(final BasicArm arm) {
         if (isBatteryEnough(arm.getConsuptionForPickUp()) && !arm.isGrabbing()) {
             log(arm + " is picking an object");
@@ -79,5 +76,4 @@ public class RobotWithTwoArms extends BaseRobot implements RobotWithArms {
         }
         return true;
     }
-
 }

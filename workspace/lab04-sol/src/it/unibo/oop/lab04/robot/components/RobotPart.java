@@ -5,9 +5,6 @@ import it.unibo.oop.lab04.robot.composable.ComposableRobot;
 
 /**
  * Models a generic robot part
- * 
- * @author Andrea Santi
- * @author Danilo Pianini
  *
  */
 public interface RobotPart {

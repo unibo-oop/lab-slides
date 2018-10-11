@@ -4,7 +4,6 @@
 package it.unibo.oop.lab04.robot.components;
 
 /**
- * @author Danilo Pianini
  *
  */
 public class AtomicBattery extends AbstractPart {

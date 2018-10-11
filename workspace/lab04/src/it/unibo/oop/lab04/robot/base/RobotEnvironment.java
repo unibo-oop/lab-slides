@@ -3,8 +3,6 @@ package it.unibo.oop.lab04.robot.base;
 /**
  * Models the environment in which a {@link it.unibo.oop.lab04.robot.base.Robot}
  * is situated
- * 
- * @author Danilo Pianini
  *
  */
 public class RobotEnvironment {

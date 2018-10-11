@@ -2,9 +2,6 @@ package it.unibo.oop.lab04.robot.base;
 
 /**
  * Models a generic Robot
- * 
- * @author Andrea Santi
- * @author Danilo Pianini
  *
  */
 public class BaseRobot implements Robot {
@@ -49,7 +46,7 @@ public class BaseRobot implements Robot {
     private void consumeBatteryForMovement() {
         consumeBattery(getBatteryRequirementForMovement());
     }
-    
+
     protected double getBatteryRequirementForMovement() {
         return MOVEMENT_DELTA_CONSUMPTION;
     }
@@ -150,5 +147,4 @@ public class BaseRobot implements Robot {
     public String toString() {
         return robotName;
     }
-
 }
