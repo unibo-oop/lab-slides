@@ -221,20 +221,27 @@ istituzionale
 \subsection{Operazioni di base sul repository}
 
 \begin{frame}[allowframebreaks]{Inizializzazione di un repository}
-	\bl{In generale}{
-		È necessario esplicitare che, da un certo punto del file system, si desidera utilizzare il 
-DVCS per tener traccia dei cambiamenti dei file contenuti da quel punto del file system.
+    \bl{In generale}{
+        È necessario esplicitare che, da un certo punto del file system, si desidera utilizzare il 
+        DVCS per tener traccia dei cambiamenti dei file contenuti da quel punto del file system.
+        \begin{itemize}
+            \item Il DVCS dovrà salvare dei metadati che consentano di ricostruire gli stati 
+            precedenti del sistema
+            \item Bisognerà prestare attenzione a quale cartella si inizializza: inizializzare il 
+            punto sbagliato implicherà repository enormi ed ingestibili!
+        \end{itemize}
 	}
 	\bl{In Git}{
 		\iz{
 			\item \texttt{git init}
 		}
 		Marca la cartella corrente come repository Git. Crea una sottocartella nascosta 
-\texttt{.git} nella quale saranno salvati i metadati. Fintanto che la cartella \texttt{.git} è 
-integra, sarà possibile ripristinare lo stato dei file del repository a qualunque versione.
+\texttt{.git} nella quale saranno salvati i metadati.
+% Fintanto che la cartella \texttt{.git} è integra, sarà possibile ripristinare lo stato dei file 
+% del repository a qualunque versione.
 		
 		È possibile settare username ed email personalizzati per ogni repository, usando i comandi 
-visti prima privati dell'argomento \texttt{--global}, e.g.:\\
+visti prima privati dell'argomento \texttt{--global}, e.g.:
 		\begin{center}
 			\texttt{git config user.email "your.second@email"}
 		\end{center}
