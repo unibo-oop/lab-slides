@@ -7,9 +7,6 @@ import java.util.TreeSet;
 /**
  * Example class using {@link Set}.
  * 
- * @author Mirko Viroli
- * @author Danilo Pianini
- *
  */
 public final class UseSet {
 
@@ -19,7 +16,7 @@ public final class UseSet {
     }
 
     /**
-     * @param s
+     * @param args
      *            ignored
      */
     public static void main(final String[] args) {

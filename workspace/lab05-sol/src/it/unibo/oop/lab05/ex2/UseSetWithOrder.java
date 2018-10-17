@@ -5,9 +5,6 @@ import java.util.TreeSet;
 
 /**
  * 
- * @author Mirko Viroli
- * @author Danilo Pianini
- *
  */
 public final class UseSetWithOrder {
 
