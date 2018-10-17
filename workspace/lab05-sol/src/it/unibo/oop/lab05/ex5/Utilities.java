@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.Random;
 
 /**
- * @author Mirko Viroli
- * @author Danilo Pianini
  *
  */
 public final class Utilities {
