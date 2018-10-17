@@ -4,7 +4,6 @@ import it.unibo.oop.lab05.ex3.Product;
 import it.unibo.oop.lab05.ex3.ProductImpl;
 
 /**
- * @author Danilo Pianini
  *
  */
 public class ComparableProduct extends ProductImpl implements Comparable<Product> {
@@ -19,6 +18,9 @@ public class ComparableProduct extends ProductImpl implements Comparable<Product
         super(name, quantity);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public int compareTo(final Product o) {
         return getName().compareTo(o.getName());
     }
