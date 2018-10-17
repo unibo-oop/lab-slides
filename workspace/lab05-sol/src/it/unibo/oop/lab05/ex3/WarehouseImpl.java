@@ -6,18 +6,21 @@ import java.util.Set;
 /**
  * Implementation of a warehouse.
  * 
- * @author Mirko Viroli
- * @author Danilo Pianini
- *
  */
 public class WarehouseImpl implements Warehouse {
 
     private final Set<Product> set = new HashSet<>();
 
-    public void addProduct(final Product p) {
+    /**
+     * {@inheritDoc}
+     */
+    public final void addProduct(final Product p) {
         this.set.add(p);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Set<String> allNames() {
         final Set<String> s = new HashSet<>();
         for (final Product p : this.set) {
@@ -26,21 +29,29 @@ public class WarehouseImpl implements Warehouse {
         return s;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Set<Product> allProducts() {
         return new HashSet<>(this.set);
     }
 
-    public boolean containsProduct(final Product p) {
+    /**
+     * {@inheritDoc}
+     */
+    public final boolean containsProduct(final Product p) {
         return set.contains(p);
     }
 
-    public double getQuantity(final String name) {
+    /**
+     * {@inheritDoc}
+     */
+    public final double getQuantity(final String name) {
         for (final Product p : this.set) {
             if (p.getName().equals(name)) {
                 return p.getQuantity();
             }
         }
-        return -1;
+        return 0;
     }
-
 }

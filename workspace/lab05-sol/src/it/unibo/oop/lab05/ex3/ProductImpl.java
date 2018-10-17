@@ -3,9 +3,6 @@ package it.unibo.oop.lab05.ex3;
 /**
  * Product implementation.
  * 
- * @author Mirko Viroli
- * @author Danilo Pianini
- *
  */
 public class ProductImpl implements Product {
 
@@ -24,18 +21,30 @@ public class ProductImpl implements Product {
         this.quantity = q;
     }
 
-    public String getName() {
+    /**
+     * {@inheritDoc}
+     */
+    public final String getName() {
         return name;
     }
 
-    public double getQuantity() {
+    /**
+     * {@inheritDoc}
+     */
+    public final double getQuantity() {
         return quantity;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public int hashCode() {
         return name.hashCode();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean equals(final Object obj) {
         if (obj instanceof Product) {
             final Product pr = (Product) obj;
@@ -44,7 +53,10 @@ public class ProductImpl implements Product {
         return false;
     }
 
-    public String toString() {
+    /**
+     * {@inheritDoc}
+     */
+    public final String toString() {
         return "ProductImpl [name=" + name + ", quantity=" + quantity + "]";
     }
 
