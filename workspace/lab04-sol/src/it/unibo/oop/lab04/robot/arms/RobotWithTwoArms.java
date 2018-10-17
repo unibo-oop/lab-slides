@@ -25,7 +25,7 @@ public class RobotWithTwoArms extends BaseRobot implements RobotWithArms {
     }
 
     protected double getBatteryRequirementForMovement() {
-        return super.getBatteryRequirementForMovement() + getItemsCarried() * TRANSPORT_OBJECT_CONSUMPTION;
+        return super.getBatteryRequirementForMovement() + getCarriedItemsCount() * TRANSPORT_OBJECT_CONSUMPTION;
     }
 
     private void doPick(final BasicArm arm) {
@@ -61,7 +61,7 @@ public class RobotWithTwoArms extends BaseRobot implements RobotWithArms {
         return false;
     }
 
-    public int getItemsCarried() {
+    public int getCarriedItemsCount() {
         return (leftArm.isGrabbing() ? 1 : 0) + (rightArm.isGrabbing() ? 1 : 0);
     }
 

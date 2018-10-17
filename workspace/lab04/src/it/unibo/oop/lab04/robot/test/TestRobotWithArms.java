@@ -48,7 +48,7 @@ public final class TestRobotWithArms {
 //        }
 //        consumptionEmpty -= walle.getBatteryLevel();
 //        walle.pickUp();
-//        assertEquality(walleItems, 1, walle.getItemsCarried());
+//        assertEquality(walleItems, 1, walle.getCarriedItemsCount());
 //        double consumption1Item = walle.getBatteryLevel();
 //        for (int i = 0; i < CYCLES; i++) {
 //            walle.moveUp();
@@ -56,7 +56,7 @@ public final class TestRobotWithArms {
 //        consumption1Item -= walle.getBatteryLevel();
 //        assertEquality(walleConsumption, true, consumption1Item > consumptionEmpty);
 //        walle.pickUp();
-//        assertEquality(walleItems, 2, walle.getItemsCarried());
+//        assertEquality(walleItems, 2, walle.getCarriedItemsCount());
 //        double consumption2Item = walle.getBatteryLevel();
 //        for (int i = 0; i < CYCLES; i++) {
 //            walle.moveUp();
@@ -64,12 +64,12 @@ public final class TestRobotWithArms {
 //        consumption2Item -= walle.getBatteryLevel();
 //        assertEquality(walleConsumption, true, consumption2Item > consumption1Item);
 //        walle.pickUp();
-//        assertEquality(walleItems, 2, walle.getItemsCarried());
+//        assertEquality(walleItems, 2, walle.getCarriedItemsCount());
 //        walle.dropDown();
-//        assertEquality(walleItems, 1, walle.getItemsCarried());
+//        assertEquality(walleItems, 1, walle.getCarriedItemsCount());
 //        walle.dropDown();
-//        assertEquality(walleItems, 0, walle.getItemsCarried());
+//        assertEquality(walleItems, 0, walle.getCarriedItemsCount());
 //        walle.dropDown();
-//        assertEquality(walleItems, 0, walle.getItemsCarried());
+//        assertEquality(walleItems, 0, walle.getCarriedItemsCount());
     }
 }
