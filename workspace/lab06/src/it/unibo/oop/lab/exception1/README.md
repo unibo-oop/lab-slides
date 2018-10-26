@@ -1,5 +1,7 @@
 # Instructions
 
+Foreword: this exercise is created to get you acquainted with exceptions. Please, keep in mind that, even though in this exercise we do so, using exceptions for flow control is **bad**, both in performance and in code understandability (an exception is a de-facto goto handler).
+
 ## `BaseRobotTest`
 Read the class very carefully.
 It leverages JUnit as test suite.

@@ -12,20 +12,20 @@ import java.util.Map;
  */
 public final class UseCollection {
 
-    private static final int TO_MS = 1000000;
-    private static final int ELEMS = 100000;
-    private static final int READS = 10000;
+    private static final int TO_MS = 1_000_000;
+    private static final int ELEMS = 100_000;
+    private static final int READS = 10_000;
     private static final int START = 1000;
     private static final int END = 2000;
     private static final String NS = "ns (";
     private static final String MS = "ms).";
 
-    private static final long AFRICA_POPULATION = 1110635000L;
-    private static final long AMERICAS_POPULATION = 972005000L;
+    private static final long AFRICA_POPULATION = 1_110_635_000L;
+    private static final long AMERICAS_POPULATION = 972_005_000L;
     private static final long ANTARTICA_POPULATION = 0L;
-    private static final long ASIA_POPULATION = 4298723000L;
-    private static final long EUROPE_POPULATION = 742452000L;
-    private static final long OCEANIA_POPULATION = 38304000L;
+    private static final long ASIA_POPULATION = 4_298_723_000L;
+    private static final long EUROPE_POPULATION = 742_452_000L;
+    private static final long OCEANIA_POPULATION = 38_304_000L;
 
     private UseCollection() {
     }

@@ -20,19 +20,18 @@ public final class BaseRobotTest {
     @Test
     public void testRobotMovementBase() {
         /*
-         * 0) Please take a look to TestWithExceptions
+         * FIRST OF ALL, take a look to "TestWithExceptions". Read the source and the
+         * comments very carefully.
          */
-        // 1) Creare il robot SimpleRobot, istanza della classe Robot con
-        // batteria=100
+        /*
+         *  1) Create a Robot with battery level 100
+         */
         final Robot r1 = new Robot("SimpleRobot", 100);
-        // checking if robot in in position x=0; y=0
+        // checking if robot is in position x=0; y=0
         assertEquals("[CHECKING ROBOT INIT POS X]", 0, r1.getEnvironment().getCurrPosX());
         assertEquals("[CHECKING ROBOT INIT POS Y]", 0, r1.getEnvironment().getCurrPosY());
-
         /*
-         * 2) Provare a muovere SimpleRobot verso dx, fino a giungere all'angolo
-         * in basso a destra del RobotEnvironment controllando che il metodo
-         * restituisca false quando si superano i limiti del mondo
+         * 2) Move the robot right until it touches the world limit
          */
         for (int i = 0; i < RobotEnvironment.WORLD_X_UPPER_LIMIT; i++) {
             // check if position if coherent
@@ -43,11 +42,8 @@ public final class BaseRobotTest {
         // checking positions x=50; y=0
         assertEquals("[MOVING RIGHT ROBOT POS X]", RobotEnvironment.WORLD_X_UPPER_LIMIT, r1.getEnvironment().getCurrPosX());
         assertEquals("[MOVING RIGHT ROBOT POS Y]", 0, r1.getEnvironment().getCurrPosY());
-
         /*
-         * 2) Provare a muovere SimpleRobot verso l'alto, fino a giungere
-         * all'angolo in alto a destra del RobotEnvironment controllando che il
-         * metodo restituisca false quando si superano i limiti del mondo
+         * 2) Move to the top until it reaches the upper right conrner of the world
          */
         for (int i = 0; i < RobotEnvironment.WORLD_Y_UPPER_LIMIT; i++) {
             // check if position if coherent
@@ -58,7 +54,6 @@ public final class BaseRobotTest {
         // checking positions x=50; y=80
         assertEquals("[MOVING RIGHT ROBOT POS X]", RobotEnvironment.WORLD_X_UPPER_LIMIT, r1.getEnvironment().getCurrPosX());
         assertEquals("[MOVING RIGHT ROBOT POS Y]", RobotEnvironment.WORLD_Y_UPPER_LIMIT, r1.getEnvironment().getCurrPosY());
-
     }
 
     /**
@@ -67,15 +62,10 @@ public final class BaseRobotTest {
      */
     @Test
     public void testRobotBatteryBase() {
-        // 1) Creare il robot SimpleRobot2, istanza della classe Robot con
-        // batteria=20
         final Robot r2 = new Robot("SimpleRobot2", 20);
         /*
-         * 2) Muovere ripetutamente il robot su di una posizione e giù di una
-         * posizione fino a scaricare completamente la batteria e gestendo
-         * opportunamente l'eccezione che viene lanciata (costrutto try-catch).
-         * Utilizzare inoltre il blocco finally per ricaricare la batteria del
-         * robot dopo che è stata consumata completamente.
+         * Repeatedly move the robot up and down until the battery is completely
+         * exhausted.
          */
         while (r2.getBatteryLevel() > 0) {
             r2.moveUp();
@@ -83,14 +73,13 @@ public final class BaseRobotTest {
         }
         // verify battery level:
         // expected, actual, delta (accepted error as we deal with decimal
-        // values: in this case we accept NO ERROR)
+        // values: in this case we accept NO ERROR, which is generally bad)
         assertEquals(0d, r2.getBatteryLevel(), 0);
         // verify position: same as start position
         assertEquals("[CHECKING ROBOT INIT POS Y]", 0, r2.getEnvironment().getCurrPosY());
         // out of world: returns false
         assertFalse("[CHECKING MOVING UP]", r2.moveUp());
-
-        // recharging battery
+        // recharge battery
         r2.recharge();
         // verify battery level
         assertEquals(100, r2.getBatteryLevel(), 0);

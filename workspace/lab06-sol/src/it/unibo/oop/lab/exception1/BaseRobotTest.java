@@ -24,10 +24,8 @@ public final class BaseRobotTest {
      */
     @Test
     public void testRobotMovementBase() {
-
         /*
-         * 1) Creare il robot SimpleRobot, istanza della classe Robot con
-         * batteria=100
+         *  1) Create a Robot with battery level 100
          */
         final Robot r1 = new Robot("SimpleRobot", 100);
         /*
@@ -35,11 +33,8 @@ public final class BaseRobotTest {
          */
         assertEquals("[CHECKING ROBOT INIT POS X]", 0, r1.getEnvironment().getCurrPosX());
         assertEquals("[CHECKING ROBOT INIT POS Y]", 0, r1.getEnvironment().getCurrPosY());
-
         /*
-         * 2) Provare a muovere SimpleRobot verso dx, fino a giungere all'angolo
-         * in basso a destra del RobotEnvironment controllando che il metodo
-         * restituisca false quando si superano i limiti del mondo
+         * 2) Move the robot right until it touches the world limit
          */
         try {
             for (int i = 0; i < WORLD_X_UPPER_LIMIT; i++) {
@@ -59,9 +54,7 @@ public final class BaseRobotTest {
             fail("No battery problems expected here!");
         }
         /*
-         * 2) Provare a muovere SimpleRobot verso l'alto, fino a giungere
-         * all'angolo in alto a destra del RobotEnvironment controllando che il
-         * metodo restituisca false quando si superano i limiti del mondo
+         * 2) Move to the top until it reaches the upper right conrner of the world
          */
         try {
             for (int i = 0; i < WORLD_Y_UPPER_LIMIT; i++) {
@@ -83,17 +76,10 @@ public final class BaseRobotTest {
      */
     @Test
     public void testRobotBatteryBase() {
-        /*
-         * 1) Creare il robot SimpleRobot2, istanza della classe Robot con
-         * batteria=20
-         */
         final Robot r2 = new Robot("SimpleRobot2", TEST_BATTERY_LEVEL);
         /*
-         * 2) Muovere ripetutamente il robot su di una posizione e giù di una
-         * posizione fino a scaricare completamente la batteria e gestendo
-         * opportunamente l'eccezione che viene lanciata (costrutto try-catch).
-         * Utilizzare inoltre il blocco finally per ricaricare la batteria del
-         * robot dopo che è stata consumata completamente.
+         * Repeatedly move the robot up and down until the battery is completely
+         * exhausted.
          */
         try {
             while (r2.getBatteryLevel() > 0) {
