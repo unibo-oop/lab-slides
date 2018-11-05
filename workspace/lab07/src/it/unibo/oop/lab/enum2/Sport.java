@@ -33,6 +33,9 @@ public enum Sport {
      * - F1
      * 
      * - motogp
+     * 
+     * - soccer
+     * 
      */
 
     /*
