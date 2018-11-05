@@ -4,6 +4,7 @@
 package it.unibo.oop.lab.nesting1;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import it.unibo.oop.lab.socialnetwork.SocialNetworkUserImpl;
@@ -48,7 +49,7 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
     public static final Sport BIKE = new Sport("Road biking");
 
     /**
-     * Field meant to keep track of the set of sports followed/done by a user
+     * Field meant to keep track of the set of sports followed/done by a user.
      */
     private final Set<Sport> sports;
 
@@ -112,7 +113,7 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
      * name.
      */
     public static class Sport {
-        private final String n;
+        private final String name;
         private int hash;
 
         /**
@@ -120,7 +121,7 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
          *            the sport name
          */
         public Sport(final String name) {
-            this.n = name;
+            this.name = Objects.requireNonNull(name, "The sport name can't be null");
         }
 
         /*
@@ -135,7 +136,7 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
                 return false;
             }
             if (getClass().equals(o.getClass())) {
-                return n.equals(((Sport) o).n);
+                return name.equals(((Sport) o).name);
             }
             return false;
         }
@@ -154,7 +155,7 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
              * doable.
              */
             if (hash == 0) {
-                hash = n.hashCode();
+                hash = name.hashCode();
             }
             return hash;
         }
