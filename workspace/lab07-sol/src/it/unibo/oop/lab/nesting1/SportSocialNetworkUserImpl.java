@@ -135,6 +135,7 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
             if (o == null) {
                 return false;
             }
+            // instanceof would put us at risk of violating symmetry!
             if (getClass().equals(o.getClass())) {
                 return name.equals(((Sport) o).name);
             }
