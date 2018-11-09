@@ -30,7 +30,7 @@ public final class UseGetResource {
         /*
          * Access resources as streams
          */
-        final InputStream in = UseGetResource.class.getResourceAsStream("/settings/settings");
+        final InputStream in = ClassLoader.getSystemResourceAsStream("settings/settings");
         String line = "Error accessing the resource";
         try (BufferedReader br = new BufferedReader(new InputStreamReader(in))) {
             line = br.readLine();
@@ -39,7 +39,7 @@ public final class UseGetResource {
         /*
          * Loading of icons and images is made very easy!
          */
-        final URL imgURL = UseGetResource.class.getResource("/images/gandalf.jpg");
+        final URL imgURL = ClassLoader.getSystemResource("images/gandalf.jpg");
         final ImageIcon icon = new ImageIcon(imgURL);
         /*
          * From now on, it's just plain GUI construction
