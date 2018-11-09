@@ -29,5 +29,5 @@
 1. Modify the ActionListener in such a way that it reads the content of the same file that is written when the button "write" is pressed, and prints its content on standard output
 
 **Remember that:**
-* There are some _very handy_  methods in java.nio.Files (e.g. http://docs.oracle.com/javase/7/docs/api/java/nio/file/Files.html#readAllLines(java.nio.file.Path,%20java.nio.charset.Charset)
-* PrintStreams are probably the easiest way to write text on files
+* There are some _very handy_  methods in `java.nio.Files` (e.g. `[readAllLines](http://docs.oracle.com/javase/7/docs/api/java/nio/file/Files.html#readAllLines(java.nio.file.Path,%20java.nio.charset.Charset))`
+* `PrintStream`s are probably the easiest way to write text on files
