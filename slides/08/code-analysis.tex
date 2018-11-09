@@ -363,7 +363,7 @@ $\rightarrow$ Add Jar
 			\item Ossia caricarle sia che si trovino sul file system, sia che si trovino nel JAR eseguibile, sia che vengano incluse in un JAR di risorse separato.
 		\end{itemize} 
 	\end{itemize}
-	\begin{block}{\texttt{Class.getResource()}}
+	\begin{block}{\texttt{ClassLoader.getSystemResource()}}
 		\begin{itemize}
 			\item Java fornisce un'utilità per caricare risorse dal \textbf{classpath}
 			\item Come abbiamo visto usando l'opzione \texttt{-cp} di \texttt{java} e \texttt{javac}, il classpath può contenere indifferentemente dei path o dei JAR (o anche degli zip)
@@ -375,7 +375,7 @@ $\rightarrow$ Add Jar
 
 \begin{block}{Caricamento di File}
 \begin{lstlisting}
-final InputStream in = LoadImage.class.getResourceAsStream("/settings/settings");
+final InputStream in = ClassLoader.getSystemResourceAsStream("/settings/settings");
 final BufferedReader br = new BufferedReader(new InputStreamReader(in));
 final String line = br.readLine();
 in.close();
@@ -384,7 +384,7 @@ in.close();
 
 \begin{block}{Caricamento di Immagini}
 \begin{lstlisting}
-final URL imgURL = LoadImage.class.getResource("/images/gandalf.jpg");
+final URL imgURL = ClassLoader.getSystemResource("/images/gandalf.jpg");
 final ImageIcon icon = new ImageIcon(imgURL);
 final JLabel lab1 = new JLabel(icon);
 \end{lstlisting}
