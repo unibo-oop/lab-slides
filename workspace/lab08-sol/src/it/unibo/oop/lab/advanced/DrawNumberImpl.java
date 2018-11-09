@@ -15,17 +15,16 @@ public final class DrawNumberImpl implements DrawNumber {
     private final Random random = new Random();
 
     /**
-     * @param min
-     *            minimum number
-     * @param max
-     *            maximum number
-     * @param attempts
-     *            the maximum number of attempts
+     * @param configuration the game configuration
+     * @throws IllegalStateException if the configuration is not consistent
      */
-    public DrawNumberImpl(final int min, final int max, final int attempts) {
-        this.min = min;
-        this.max = max;
-        this.attempts = attempts;
+    public DrawNumberImpl(final Configuration configuration) {
+        if (!configuration.isConsistent()) {
+            throw new IllegalArgumentException("The game requires a valid configuration");
+        }
+        this.min = configuration.getMin();
+        this.max = configuration.getMax();
+        this.attempts = configuration.getAttempts();
         this.reset();
     }
 
