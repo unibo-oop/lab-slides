@@ -8,7 +8,7 @@ import org.apache.commons.io.FileUtils;
 
 /**
  * Example class using Apache Commons I/O. (no good Java programmer in 2017
- * still uses streams manually unless strictly required...)
+ * still uses streams manually for access to files unless strictly required...)
  */
 public final class EchoFile {
 
