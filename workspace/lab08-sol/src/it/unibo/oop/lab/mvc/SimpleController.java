@@ -8,7 +8,7 @@ import java.util.Objects;
  * 
  *
  */
-public class SimpleController implements Controller {
+public final class SimpleController implements Controller {
 
     private final List<String> stringHistory = new LinkedList<>();
     private String nextString;
