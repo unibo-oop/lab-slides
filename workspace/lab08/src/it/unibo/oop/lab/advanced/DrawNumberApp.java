@@ -2,7 +2,7 @@ package it.unibo.oop.lab.advanced;
 
 /**
  */
-public class DrawNumberApp implements DrawNumberViewObserver {
+public final class DrawNumberApp implements DrawNumberViewObserver {
 
     private static final int MIN = 0;
     private static final int MAX = 100;
