@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 /**
  * Graphical {@link DrawNumberView} implementation.
  */
-public class DrawNumberViewImpl implements DrawNumberView {
+public final class DrawNumberViewImpl implements DrawNumberView {
 
     private static final String FRAME_NAME = "Draw Number App";
     private static final String QUIT = "Quit";
