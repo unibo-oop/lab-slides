@@ -1,7 +1,7 @@
 package it.unibo.oop.lab.mvc;
 
 /**
- * 
+ * A controller that prints strings and has memory of the strings it printed.
  */
 public interface Controller {
 
