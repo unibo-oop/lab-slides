@@ -20,15 +20,15 @@ public final class SimpleGUI {
      * 
      * 2) In its constructor, sets up the whole view
      * 
-     * 3) The graphical interface consists of a JTextArea with a button "Save"
-     * right below (see "ex02.png" for the expected result). SUGGESTION: Use a
-     * JPanel with BorderLayout
+     * 3) The graphical interface consists of a JTextArea with a button "Save" right
+     * below (see "ex02.png" for the expected result). SUGGESTION: Use a JPanel with
+     * BorderLayout
      * 
      * 4) By default, if the graphical interface is closed the program must exit
      * (call setDefaultCloseOperation)
      * 
-     * 5) The behavior of the program is that, if "Save" is pressed, the
-     * controller is asked to save the file.
+     * 5) The program asks the controller to save the file if the button "Save" gets
+     * pressed.
      * 
      * Use "ex02.png" (in the res directory) to verify the expected aspect.
      */
