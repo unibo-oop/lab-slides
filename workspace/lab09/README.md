@@ -2,8 +2,8 @@
 
 Solve the exercises in the following order:
 
-1. lambda 01
-2. lambda 02
-3. reflectivefactory
-4. lambda 03
-5. reflectivegui
+1. reactivegui01
+2. reactivegui02
+3. reactivegui03
+4. workers01
+5. workers02
