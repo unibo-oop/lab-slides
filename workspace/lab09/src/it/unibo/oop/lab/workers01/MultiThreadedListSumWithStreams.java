@@ -9,7 +9,7 @@ import java.util.stream.IntStream;
  * 
  * */
 
-public class MultiThreadedListSum implements SumList {
+public final class MultiThreadedListSumWithStreams implements SumList {
 
     private final int nthread;
 
@@ -18,7 +18,7 @@ public class MultiThreadedListSum implements SumList {
      * @param nthread
      *            no. of thread performing the sum.
      */
-    public MultiThreadedListSum(final int nthread) {
+    public MultiThreadedListSumWithStreams(final int nthread) {
         this.nthread = nthread;
     }
 
