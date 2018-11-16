@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
  * 
  */
 
-public class MultiThreadedSumMatrix implements SumMatrix {
+public class MultiThreadedSumMatrixWithStreams implements SumMatrix {
 
     private final int nthread;
 
@@ -20,7 +20,7 @@ public class MultiThreadedSumMatrix implements SumMatrix {
      * @param nthread
      *            no. threads to be adopted to perform the operation
      */
-    public MultiThreadedSumMatrix(final int nthread) {
+    public MultiThreadedSumMatrixWithStreams(final int nthread) {
         super();
         this.nthread = nthread;
     }
