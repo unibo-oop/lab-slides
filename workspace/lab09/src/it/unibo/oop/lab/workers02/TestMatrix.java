@@ -2,16 +2,33 @@ package it.unibo.oop.lab.workers02;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Test;
 
 /**
- * Implement SumMatrix, which sums the elements of a matrix, with a class
- * MultiThreadedSumMatrix, that gets the job done in a multithreaded
- * fashion. Use the previous exercise as an example.
  * 
- * Split the work as equally as possible.
+ * TestMatrix for worker 2.
+ *
  */
 public class TestMatrix {
+
+    /*
+     * Si fornisce l'interfaccia ISumMatrix, con un metodo per calcolare la
+     * somma delgi elementi di una matrice.
+     * 
+     * Realizzare una classe MultiThreadedSumMatrix, con costrutto che accetta
+     * un intero positivo 'n', che implementa tale funzionalità in modo
+     * "multi-threaded", con 'n' Worker che si dividano il compito in modo
+     * sufficientemente omogeneo -- non è necessario che l'ammontare dei compiti
+     * dei singoli Worker siano esattamente equivalenti.
+     * 
+     * Si faccia stampare (su System.out) ad ogni Worker una indicazione di che
+     * porzione del lavoro svolge.
+     * 
+     * All'esecuzione del test qui sotto, le chiamate dovranno dare lo stesso
+     * output, ad eccezione ovviamente dei tempi.
+     */
 
     private static final int SIZE = 10000;
     private static final double EXPECTED_DELTA = 0.01;
@@ -33,26 +50,15 @@ public class TestMatrix {
 
         System.out.println("BTW: the sum with " + SIZE + "*" + SIZE + " elements is: " + sum);
         long time;
-
-        SumMatrix sumMatrix = null; // new MultiThreadedSumMatrix(1);
-        time = System.currentTimeMillis();
-        assertEquals(sumMatrix.sum(matrix), sum, EXPECTED_DELTA);
-        System.out.println("Tried with 1 thread: " + (System.currentTimeMillis() - time) + MSEC);
-
-        sumMatrix = null; // new MultiThreadedSumMatrix(3);
-        time = System.currentTimeMillis();
-        assertEquals(sumMatrix.sum(matrix), sum, EXPECTED_DELTA);
-        System.out.println("Tried with 3 threads: " + (System.currentTimeMillis() - time) + MSEC);
-
-        sumMatrix = null; // new MultiThreadedSumMatrix(7);
-        time = System.currentTimeMillis();
-        assertEquals(sumMatrix.sum(matrix), sum, EXPECTED_DELTA);
-        System.out.println("Tried with 7 threads: " + (System.currentTimeMillis() - time) + MSEC);
-
-        sumMatrix = null; // new MultiThreadedSumMatrix(10);
-        time = System.currentTimeMillis();
-        assertEquals(sumMatrix.sum(matrix), sum, EXPECTED_DELTA);
-        System.out.println("Tried with 10 threads: " + (System.currentTimeMillis() - time) + MSEC);
+        for (int threads:new int[] { 1, 2, 3, 8, 16, 32, 100 }) {
+            final SumMatrix sumList = null; // new MultiThreadedSumMatrix(threads);
+            time = System.nanoTime();
+            assertEquals(sum, sumList.sum(matrix), EXPECTED_DELTA);
+            time = System.nanoTime() - time;
+            System.out.println("Tried with " + threads + " thread"
+                    + (threads == 1 ? "" : "s") + ": "
+                    + TimeUnit.NANOSECONDS.toMillis(time) + MSEC);
+        }
     }
 
 }
