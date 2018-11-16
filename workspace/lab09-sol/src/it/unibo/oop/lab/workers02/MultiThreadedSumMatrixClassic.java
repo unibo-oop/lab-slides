@@ -3,8 +3,6 @@ package it.unibo.oop.lab.workers02;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * This is a standard implementation of the calculation.
