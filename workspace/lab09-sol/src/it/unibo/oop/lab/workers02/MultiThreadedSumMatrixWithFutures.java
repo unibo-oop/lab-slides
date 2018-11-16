@@ -1,7 +1,14 @@
 package it.unibo.oop.lab.workers02;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -10,7 +17,7 @@ import java.util.stream.IntStream;
  * 
  */
 
-public class MultiThreadedSumMatrixWithStreams implements SumMatrix {
+public class MultiThreadedSumMatrixWithFutures implements SumMatrix {
 
     private final int nthread;
 
@@ -20,7 +27,7 @@ public class MultiThreadedSumMatrixWithStreams implements SumMatrix {
      * @param nthread
      *            no. threads to be adopted to perform the operation
      */
-    public MultiThreadedSumMatrixWithStreams(final int nthread) {
+    public MultiThreadedSumMatrixWithFutures(final int nthread) {
         super();
         if (nthread < 1) {
             throw new IllegalArgumentException();
@@ -28,12 +35,11 @@ public class MultiThreadedSumMatrixWithStreams implements SumMatrix {
         this.nthread = nthread;
     }
 
-    private class Worker extends Thread {
+    private class Worker implements Callable<Double> {
 
         private final double[][] matrix;
         private final int startpos;
         private final int nelem;
-        private double res;
 
         /**
          * Builds a new worker.
@@ -53,16 +59,14 @@ public class MultiThreadedSumMatrixWithStreams implements SumMatrix {
         }
 
         @Override
-        public void run() {
+        public Double call() {
+            double result = 0;
             for (int i = startpos; i < matrix.length && i < startpos + nelem; i++) {
                 for (final double d : this.matrix[i]) {
-                    this.res += d;
+                    result += d;
                 }
             }
-        }
-
-        public double getResult() {
-            return this.res;
+            return result;
         }
 
     }
@@ -73,18 +77,28 @@ public class MultiThreadedSumMatrixWithStreams implements SumMatrix {
     @Override
     public double sum(final double[][] matrix) {
         final int size = matrix.length / nthread + matrix.length % nthread;
-        final List<Worker> workers = IntStream.iterate(0, start -> start + size)
-                .limit(nthread)
-                .mapToObj(start -> new Worker(matrix, start, size))
-                .collect(Collectors.toList());
-        workers.forEach(Thread::start);
-        workers.forEach(t -> {
-            try {
-                t.join();
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
+        /*
+         * This kind of execution requires at least two control flows, or it will
+         * inevitably lead to deadlock (the outermost work occupies the executor, but
+         * requires the innermost workers to get scheduled and complete).
+         */
+        final ExecutorService executor = Executors.newFixedThreadPool(nthread + 1);
+        final Collection<Future<Double>> futureResults = new ArrayList<>(nthread);
+        final Future<Double> futureFinalResult = executor.submit(() -> {
+            for (int start = 0; start < matrix.length; start += size) {
+                futureResults.add(executor.submit(new Worker(matrix, start, size)));
             }
+            double sum = 0;
+            for (final Future<Double> result: futureResults) {
+                sum += result.get();
+            }
+            executor.shutdown();
+            return sum;
         });
-        return workers.stream().mapToDouble(Worker::getResult).sum();
+        try {
+            return futureFinalResult.get();
+        } catch (InterruptedException | ExecutionException e) {
+            throw new IllegalStateException(e);
+        }
     }
 }

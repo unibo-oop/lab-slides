@@ -51,7 +51,7 @@ public class TestMatrix {
         System.out.println("BTW: the sum with " + SIZE + "*" + SIZE + " elements is: " + sum);
         long time;
         for (int threads:new int[] { 1, 2, 3, 8, 16, 32, 100 }) {
-            final SumMatrix sumList = new MultiThreadedSumMatrixWithStreams(threads);
+            final SumMatrix sumList = new MultiThreadedSumMatrixClassic(threads);
             time = System.nanoTime();
             assertEquals(sum, sumList.sum(matrix), EXPECTED_DELTA);
             time = System.nanoTime() - time;

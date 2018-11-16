@@ -1,5 +1,6 @@
 package it.unibo.oop.lab.workers02;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +11,7 @@ import java.util.stream.IntStream;
  * 
  */
 
-public class MultiThreadedSumMatrixWithStreams implements SumMatrix {
+public class MultiThreadedSumMatrixClassic implements SumMatrix {
 
     private final int nthread;
 
@@ -20,7 +21,7 @@ public class MultiThreadedSumMatrixWithStreams implements SumMatrix {
      * @param nthread
      *            no. threads to be adopted to perform the operation
      */
-    public MultiThreadedSumMatrixWithStreams(final int nthread) {
+    public MultiThreadedSumMatrixClassic(final int nthread) {
         super();
         if (nthread < 1) {
             throw new IllegalArgumentException();
@@ -73,18 +74,22 @@ public class MultiThreadedSumMatrixWithStreams implements SumMatrix {
     @Override
     public double sum(final double[][] matrix) {
         final int size = matrix.length / nthread + matrix.length % nthread;
-        final List<Worker> workers = IntStream.iterate(0, start -> start + size)
-                .limit(nthread)
-                .mapToObj(start -> new Worker(matrix, start, size))
-                .collect(Collectors.toList());
-        workers.forEach(Thread::start);
-        workers.forEach(t -> {
+        final List<Worker> workers = new ArrayList<>(nthread);
+        for (int start = 0; start < matrix.length; start += size) {
+            workers.add(new Worker(matrix, start, size));
+        }
+        for (final Thread worker: workers) {
+            worker.start();
+        }
+        double sum = 0;
+        for (final Worker worker: workers) {
             try {
-                t.join();
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
+                worker.join();
+                sum += worker.getResult();
+            } catch (InterruptedException e) {
+                throw new IllegalStateException(e);
             }
-        });
-        return workers.stream().mapToDouble(Worker::getResult).sum();
+        }
+        return sum;
     }
 }
