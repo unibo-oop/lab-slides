@@ -2,6 +2,8 @@ package it.unibo.oop.lab.workers02;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Test;
 
 /**
@@ -48,26 +50,15 @@ public class TestMatrix {
 
         System.out.println("BTW: the sum with " + SIZE + "*" + SIZE + " elements is: " + sum);
         long time;
-
-        SumMatrix sumMatrix = new MultiThreadedSumMatrix(1);
-        time = System.currentTimeMillis();
-        assertEquals(sumMatrix.sum(matrix), sum, EXPECTED_DELTA);
-        System.out.println("Tried with 1 thread: " + (System.currentTimeMillis() - time) + MSEC);
-
-        sumMatrix = new MultiThreadedSumMatrix(3);
-        time = System.currentTimeMillis();
-        assertEquals(sumMatrix.sum(matrix), sum, EXPECTED_DELTA);
-        System.out.println("Tried with 3 threads: " + (System.currentTimeMillis() - time) + MSEC);
-
-        sumMatrix = new MultiThreadedSumMatrix(8);
-        time = System.currentTimeMillis();
-        assertEquals(sumMatrix.sum(matrix), sum, EXPECTED_DELTA);
-        System.out.println("Tried with 8 threads: " + (System.currentTimeMillis() - time) + MSEC);
-
-        sumMatrix = new MultiThreadedSumMatrix(10);
-        time = System.currentTimeMillis();
-        assertEquals(sumMatrix.sum(matrix), sum, EXPECTED_DELTA);
-        System.out.println("Tried with 10 threads: " + (System.currentTimeMillis() - time) + MSEC);
+        for (int threads:new int[] { 1, 2, 3, 8, 16, 32, 100 }) {
+            final SumMatrix sumList = new MultiThreadedSumMatrix(threads);
+            time = System.nanoTime();
+            assertEquals(sum, sumList.sum(matrix), EXPECTED_DELTA);
+            time = System.nanoTime() - time;
+            System.out.println("Tried with " + threads + " thread"
+                    + (threads == 1 ? "" : "s") + ": "
+                    + TimeUnit.NANOSECONDS.toMillis(time) + MSEC);
+        }
     }
 
 }
