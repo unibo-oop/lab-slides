@@ -7,4 +7,5 @@ Solve the exercises in the following order:
 2. reactivegui02
 3. reactivegui03
 4. workers01
+    - Here look carefully at the example, which is already solved for you. Read the comments.
 5. workers02
