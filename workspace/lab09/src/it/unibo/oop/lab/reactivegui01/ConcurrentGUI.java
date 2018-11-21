@@ -78,7 +78,7 @@ public final class ConcurrentGUI extends JFrame {
          * 
          */
         private volatile boolean stop;
-        private int counter;
+        private volatile int counter;
 
         public void run() {
             while (!this.stop) {
