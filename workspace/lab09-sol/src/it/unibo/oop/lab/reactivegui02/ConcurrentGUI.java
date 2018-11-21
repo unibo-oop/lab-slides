@@ -61,7 +61,7 @@ public class ConcurrentGUI extends JFrame {
     private class Agent extends Thread {
         private volatile boolean stop;
         private volatile boolean up = true;
-        private int counter;
+        private volatile int counter;
         public void run() {
             while (!stop) {
                 try {
