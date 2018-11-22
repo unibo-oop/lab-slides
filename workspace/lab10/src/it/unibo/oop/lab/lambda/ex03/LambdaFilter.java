@@ -17,6 +17,7 @@ import javax.swing.JTextArea;
 
 /**
  * Modify this small program adding new filters.
+ * Realize this exercise using as much as possible the Stream library.
  * 
  * 1) Convert to lowercase
  * 
@@ -84,12 +85,10 @@ public final class LambdaFilter extends JFrame {
     }
 
     /**
-     * @param a
-     *            unused
+     * @param a unused
      */
     public static void main(final String... a) {
         final LambdaFilter gui = new LambdaFilter();
         gui.setVisible(true);
     }
-
 }

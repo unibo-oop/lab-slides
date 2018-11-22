@@ -1,7 +1,7 @@
 \documentclass[presentation]{beamer}
 \usepackage{../oop-slides-pianini}
 \setbeamertemplate{bibliography item}[text]
-\title[L10 -- JavaFX, Concurrency]{10\\Introduzione a JavaFX}
+\title[L10 -- JavaFX]{10\\Introduzione a JavaFX}
 
 \begin{document}
 
@@ -21,7 +21,7 @@
 	\begin{enumerate}\itemsep20pt
 		\item Clonare il repository degli esercizi
 		\begin{itemize}
-			\item \url{https://bitbucket.org/danysk/courses-2017-oop-lab-10}
+			\item \url{https://bitbucket.org/danysk/courses-2018-oop-lab-10}
 		\begin{itemize}
 		\item Opzionalmente, si fork-i il repository
 		\end{itemize}
@@ -89,7 +89,7 @@
 \item Swing non è thread-safe!
 \begin{itemize}
 \item Si presuppone che l'EDT sia l'unico thread ad eccedere alla GUI
-\item Si utilizza la libreria \texttt{SwingUtilities} -- i metodi \texttt{InvokeLater} and \texttt{invokeAndWait} -- per accedere alla GUI da altri thread
+\item Si utilizza la libreria \texttt{SwingUtilities} -- i metodi \texttt{invokeLater()} and \texttt{invokeAndWait()} -- per accedere alla GUI da altri thread
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -106,7 +106,7 @@
 \item Non supporta forme di validazione per i dati nei componenti di input
 \item Non propone alcun supporto nativo per la gestione del 3D
 \item Ha il limite (e la problematica) della non thread-safeness
-\item Non è possibile separare il controller dalla relativa view per i componenti swing preesistenti
+\item Non è possibile separare il controller dalla relativa view per i componenti Swing preesistenti
 \end{itemize}
 \end{frame}
 
@@ -114,16 +114,54 @@
 
 \begin{frame}{JavaFX}
 \begin{itemize}\itemsep20pt
-\item Libreria Java per la creazione di GUI per Rich Applications multi piattaforma
+\item Libreria Java per la creazione di GUI per Rich Applications multi-piattaforma
 \begin{itemize}
-\item Presente stabilmente nel JDK da Java 8
-\item Sostituirà (ufficialmente) gradualmente Swing, che resterà comunque presente nel JDK per retro compatibilità
+\item Disponibile dal 2008 (v. 1.0 -- 2.2) come libreria stand-alone
+\item Presente ``\emph{stabilmente}'' nel JDK da Java 8 (v. JavaFX 8)
+\item Introdotto ufficialmente in Java con l'idea di sostituire (gradualmente) Swing
 \end{itemize}
 \item Propone un look-and-feel personalizzabile
 \begin{itemize}
 \item La descrizione dello stile/aspetto dei componenti della GUI è separato dalla relativa implementazione
+\item Segue il pattern MVC
 \end{itemize}
 \item Consente la creazione di GUI moderne, di qualità e ben adattabili a qualunque piattaforma e supporto hardware
+\end{itemize}
+\end{frame}
+
+\begin{frame}{JavaFX (dal 2018)}
+
+\begin{block}{Java Client Roadmap Update (Oracle White Paper, March 2018)}
+\begin{small}
+\begin{center}
+\emph{Over the last decade, the JavaFX technology has found its niche where it enjoys the support of a developer community. At the same time, the magnitude of opportunities for cross-platform toolkits [...] has been eroded by the rise of ``mobile first'' and ``web first'' apps.}
+\begin{tiny}
+\url{https://www.oracle.com/technetwork/java/javase/javaclientroadmapupdate2018mar-4414431.pdf}
+\end{tiny}
+\end{center}
+\end{small}
+\end{block}
+%
+\begin{itemize}
+\item Pertanto:
+\begin{itemize}
+\item JavaFX continuerà ad essere supportato fino al 2022 da Oracle (solo nel JDK 8)
+\item JavaFX sara disponibile come libreria esterna opensource (affidata ad OpenJDK) denominata JavaFX 11 -- \url{https://openjfx.io}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{JavaFX 11}
+\begin{itemize}\itemsep10pt
+\item Al momento, si tratta del porting as-is di JavaFX 8 sul JDK 11
+\begin{itemize}
+\item Unica novità significativa, FX Robot API per la simulazione dell'interazione dell'utente con la GUI
+\end{itemize}
+\item Implica l'utilizzo del JDK 11
+\item Risente ancora di molti bug 
+\begin{itemize}
+\item \url{https://github.com/javafxports/openjdk-jfx/blob/jfx-11/doc-files/release-notes-11.0.1.md\#release-notes-for-javafx-1101}
+\end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -178,33 +216,22 @@
 
 \subsection{Key Concepts}
 
-\begin{frame}{Elementi fondamentali}
+\begin{frame}{Elementi fondamentali (1/2)}
 \begin{block}{Stage}
 \begin{itemize}
 \item Il contenitore (esterno) dove la GUI sarà visualizzata
 \begin{itemize}
 \item es. una finestra del S.O.
 \item Equivalente al \texttt{JFrame} di Swing
+\item Non è compito del programmatore creare una sua istanza.
 \end{itemize}
 \end{itemize}
-
 \end{block}
 
 \begin{block}{Scene}
 \begin{itemize}
 \item Container di nodi
 \item Rappresenta una \emph{pagina} della GUI
-\end{itemize}
-\end{block}
-
-\begin{block}{Node(s)}
-\begin{itemize}
-\item Un elemento/componente della scena
-\begin{itemize}
-\item Ciascun nodo ha sia la parte di view (aspetto) sia la parte di controller (comportamento)
-\item Hanno proprietà e possono generare eventi
-\end{itemize}
-\item Possono essere organizzati gerarchicamente
 \end{itemize}
 \end{block}
 \end{frame}
@@ -230,6 +257,19 @@ public class Main extends Application {
 \end{lstlisting}
 \end{frame}
 
+\begin{frame} {Elementi fondamentali (2/2)}
+\begin{block}{Node(s)}
+\begin{itemize}
+\item Un elemento/componente della scena
+\begin{itemize}
+\item Ciascun nodo ha sia la parte di view (aspetto) sia la parte di controller (comportamento)
+\item Hanno proprietà e possono generare eventi
+\end{itemize}
+\item Possono essere organizzati gerarchicamente
+\end{itemize}
+\end{block}
+\end{frame}
+
 %\begin{frame}{Nodes Hiearchy}
 %
 %\end{frame}
@@ -251,8 +291,6 @@ public class Main extends Application {
 \item La scena definita per lo stage (vedi metodo \texttt{setScene()}) costituisce il container principale per tutti i componenti della GUI
 \end{enumerate}
 \end{frame}
-
-\subsection{Nodi, Eventi e Container}
 
 \begin{frame}{Nodi e Proprietà}
 \begin{itemize}\itemsep10pt
@@ -450,7 +488,7 @@ btn.setOnMouseClicked(eventHandler -> {
 \item Si suppone che nel progetto sia presente il file \texttt{main.fxml} contenente una descrizione valida per la GUI da caricare
 \end{itemize}
 \begin{lstlisting}
-Parent root = FXMLLoader.load(getClass().getResource("/layouts/main.fxml"));
+Parent root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/main.fxml"));
 \end{lstlisting}
 \end{block}
 \end{frame}
@@ -461,7 +499,7 @@ public class Example3 extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/layouts/main.fxml"));
+Parent root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/main.fxml"));
 		
 		Scene scene = new Scene(root, 500, 250);
 		
@@ -518,8 +556,7 @@ public class CompleteExample extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		VBox root = FXMLLoader.load(
-		      getClass().getResource("/layouts/main.fxml"));
+		VBox root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/main.fxml"));
 		
 		Scene scene = new Scene(root, 500, 250);
 		
@@ -582,11 +619,14 @@ public class UIController {
 
 \begin{frame}{JavaFX in Eclipse}
 \begin{itemize}\itemsep20pt
-\item La libreria JavaFX è già presente nel JDK 8 (e successivi)
+\item La libreria JavaFX è presente unicamente nel JDK 8
 \begin{itemize}
 \item Distribuita attraverso il file \texttt{jfxrt.jar} presente nella directory \texttt{/lib/ext} della propria installazione del JDK
 \end{itemize}
-\item Tutti le librerire \emph{esterne} \underline{non} sono automaticamente accessibili da tutti i progetti aperti nell'IDE Eclipse 
+\item Tutti le librerire \emph{esterne} \underline{non} sono automaticamente accessibili da tutti i progetti aperti nell'IDE Eclipse
+\begin{itemize}
+\item In realtà dipende dalla versione di Eclipse\dots
+\end{itemize}
 \item Deve essere definita una regola d'accesso per JavaFX in relazione allo specifico progetto Java aperto in Eclipse
 \end{itemize}
 \end{frame}
@@ -654,12 +694,11 @@ public class UIController {
 \end{itemize}
 \end{frame}
 
-\end{document}
 
-\begin{frame}[allowframebreaks]
- \frametitle{Bibliography}
-	\bibliographystyle{plain}
-	\small
- \bibliography{biblio}
-\end{frame}
+
+%\begin{frame}[allowframebreaks]{Bibliography}
+%\bibliography{biblio.bib}
+%\end{frame}
+
+\end{document}
 
