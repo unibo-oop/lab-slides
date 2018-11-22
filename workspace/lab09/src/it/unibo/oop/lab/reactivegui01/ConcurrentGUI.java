@@ -68,10 +68,17 @@ public final class ConcurrentGUI extends JFrame {
      */
     private class Agent implements Runnable {
         /*
-         * stop is volatile to ensure ordered access
+         * Stop is volatile to ensure visibility. Look at:
+         * 
+         * http://archive.is/9PU5N - Sections 17.3 and 17.4
+         * 
+         * For more details on how to use volatile:
+         * 
+         * http://archive.is/4lsKW
+         * 
          */
         private volatile boolean stop;
-        private int counter;
+        private volatile int counter;
 
         public void run() {
             while (!this.stop) {

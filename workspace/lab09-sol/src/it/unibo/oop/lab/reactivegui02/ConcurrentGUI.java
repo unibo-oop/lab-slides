@@ -61,16 +61,16 @@ public class ConcurrentGUI extends JFrame {
     private class Agent extends Thread {
         private volatile boolean stop;
         private volatile boolean up = true;
-        private int counter;
+        private volatile int counter;
         public void run() {
             while (!stop) {
                 try {
+                    counter += up ? 1 : -1;
                     SwingUtilities.invokeAndWait(new Runnable() {
                         public void run() {
                             display.setText(Integer.toString(counter));
                         }
                     });
-                    counter += up ? 1 : -1;
                     Thread.sleep(100);
                 } catch (InvocationTargetException | InterruptedException ex) {
                     ex.printStackTrace();

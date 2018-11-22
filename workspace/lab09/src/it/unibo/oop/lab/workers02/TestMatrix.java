@@ -14,7 +14,7 @@ import org.junit.Test;
 public class TestMatrix {
 
     /*
-     * Si fornisce l'interfaccia ISumMatrix, con un metodo per calcolare la
+     * Si fornisce l'interfaccia SumMatrix, con un metodo per calcolare la
      * somma delgi elementi di una matrice.
      * 
      * Realizzare una classe MultiThreadedSumMatrix, con costrutto che accetta
