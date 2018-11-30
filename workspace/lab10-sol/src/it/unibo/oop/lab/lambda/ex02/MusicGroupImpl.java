@@ -6,13 +6,14 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.Set;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
  *
  */
-public class MusicGroupImpl implements MusicGroup {
+public final class MusicGroupImpl implements MusicGroup {
 
     private final Map<String, Integer> albums = new HashMap<>();
     private final Set<Song> songs = new HashSet<>();
@@ -74,7 +75,8 @@ public class MusicGroupImpl implements MusicGroup {
         return this.songs.stream().filter(a -> a.getAlbumName().isPresent())
                 .collect(Collectors.groupingBy(Song::getAlbumName, Collectors.summingDouble(Song::getDuration)))
                 .entrySet().stream()
-                .collect(Collectors.maxBy((e1, e2) -> Double.compare(e1.getValue(), e2.getValue()))).get().getKey();
+                .collect(Collectors.maxBy((e1, e2) -> Double.compare(e1.getValue(), e2.getValue())))
+                .flatMap(Entry::getKey);
     }
 
     private static final class Song {

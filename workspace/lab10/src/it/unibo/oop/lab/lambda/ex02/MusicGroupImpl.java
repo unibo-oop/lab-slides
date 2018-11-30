@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 /**
  *
  */
-public class MusicGroupImpl implements MusicGroup {
+public final class MusicGroupImpl implements MusicGroup {
 
     private final Map<String, Integer> albums = new HashMap<>();
     private final Set<Song> songs = new HashSet<>();

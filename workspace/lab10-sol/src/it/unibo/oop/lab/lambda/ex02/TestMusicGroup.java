@@ -13,19 +13,22 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 /*
- * CHECKSTYLE:OFF
- * The above comment shuts down checkstyle: in a test suite, magic numbers are tolerated.
+ * CHECKSTYLE: MagicNumber OFF
+ * The above comment shuts down checkstyle: in a test suite, magic numbers may be tolerated.
  */
 /**
  * 
  *
  */
-public class TestMusicGroup {
+public final class TestMusicGroup {
 
     private static final String UNTITLED = "untitled";
     private static final String III = "III";
     private MusicGroup lz;
 
+    /**
+     * Sets up the testing.
+     */
     @Before
     public void setUp() {
         lz = new MusicGroupImpl();
@@ -44,6 +47,9 @@ public class TestMusicGroup {
         lz.addSong("Travelling Riverside Blues", Optional.empty(), 5.2);
     }
 
+    /**
+     * Tests album names.
+     */
     @Test
     public void testAlbumNames() {
         final List<String> result = new ArrayList<>();
@@ -56,6 +62,9 @@ public class TestMusicGroup {
         assertTrue(lz.albumNames().collect(toList()).containsAll(result));
     }
 
+    /**
+     * Tests ordering of song names.
+     */
     @Test
     public void testOrderedSongNames() {
         final List<String> result = Arrays.asList(new String[] {
@@ -72,6 +81,9 @@ public class TestMusicGroup {
         assertEquals(result, actual);
     }
 
+    /**
+     * Tests albums in year.
+     */
     @Test
     public void testAlbumInYear() {
         final List<String> result = Arrays.asList(new String[] { "II", "I" });
@@ -79,21 +91,33 @@ public class TestMusicGroup {
         assertEquals(result, actual);
     }
 
+    /**
+     * Tests song counting.
+     */
     @Test
     public void testCountSongs() {
         assertEquals(2, lz.countSongs("I"));
     }
 
+    /**
+     * Tests ordering song not in albums.
+     */
     @Test
     public void testCountSongsInNoAlbum() {
         assertEquals(1, lz.countSongsInNoAlbum());
     }
 
+    /**
+     * Tests average duration.
+     */
     @Test
     public void testAverageDuration() {
         assertEquals(6.0, lz.averageDurationOfSongs(UNTITLED).getAsDouble(), 0.0);
     }
 
+    /**
+     * Tests selecting the longest song.
+     */
     @Test
     public void testLongest() {
         assertEquals("When the Levee Breaks", lz.longestSong().get());
