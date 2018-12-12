@@ -9,6 +9,7 @@
 \usepackage{fontenc}
 \usepackage{amsmath,stmaryrd,mathtools,algorithm}
 \usepackage{amssymb}
+\usepackage{float}
 
 % Remove option to use English naming
 \usepackage[italian]{cleveref}
@@ -64,7 +65,9 @@ Nell'analisi dei requisiti si devono elencare i \emph{requisiti} dell'applicazio
 %
 Non ci si deve concentrare sui particolari problemi, ma esclusivamente su cosa si desidera che l'applicazione faccia.
 %
-È possibile descrivere separatamente i requisiti funzionali (quelli che descrivono l'effettivo comportamento dell'applicazione) da quelli non funzionali (requisiti che non riguardano direttamente aspetti comportamentali, come sicurezza, performance, eccetera).
+È consigliato descrivere separatamente i requisiti funzionali (quelli che descrivono l'effettivo 
+comportamento dell'applicazione) da quelli non funzionali (requisiti che non riguardano direttamente 
+aspetti comportamentali, come sicurezza, performance, eccetera).
 
 \subsection*{Elementi positivi}
 \begin{itemize}
@@ -88,9 +91,16 @@ Per intelligenza artificiale si intende un software in grado di assumere decisio
 
 \subsubsection{Requisiti funzionali}
 \begin{itemize}
-	\item La suddetta intelligenza artificiale dovrà occuparsi di coordinare le attività all'interno delle camere di test di Aperture, guidando l'utente attraverso un certo numero di sfide di difficoltà crescente. Una camera di test è un ambiente realizzato da Aperture Laboratories Inc. al fine di mettere alla prova le proprie tecnologie di manipolazione dell'ambiente. All'interno della camera di test, un soggetto qualificato è incaricato di sfruttarle per risolvere alcune sfide.
+	\item La suddetta intelligenza artificiale dovrà occuparsi di coordinare le attività all'interno 
+delle camere di test di Aperture, guidando l'utente attraverso un certo numero di sfide di 
+difficoltà crescente. Una camera di test è un ambiente realizzato da Aperture Laboratories Inc. al 
+fine di mettere alla prova le proprie tecnologie di manipolazione dell'ambiente. All'interno della 
+camera di test, un soggetto qualificato è incaricato di sfruttare gli strumenti messi a 
+disposizione da Aperture per risolvere alcuni rompicapi. I rompicapi sono di tipo fisico (ad 
+esempio, manipolazione di oggetti, pressione di pulsanti, azionamento di leve), e si ritengono 
+conclusi una volta che il soggetto riesce a trovare l'uscita dalla camera di test.
 	\item Il piano preciso ed il numero delle sfide sarà variabile, e GLaDOS dovrà essere in grado di adattarsi dinamicamente e di fornire indicazioni di guida.
-	\item La personalità di GLaDOS dovrà essere modificabile
+	\item La personalità di GLaDOS dovrà essere modificabile.
 	\item GLaDOS dovrà essere in grado di comunicare col reparto cucina di Aperture, per ordinare torte da donare agli utenti che completassero l'ultima camera di test con successo.
 \end{itemize}
 
@@ -101,13 +111,20 @@ Per intelligenza artificiale si intende un software in grado di assumere decisio
 
 \section{Analisi e modello del dominio}
 
-In questa sezione si descrive il modello del dominio, descrivendo le entità in gioco ed i rapporti fra loro.
+In questa sezione si descrive il modello del \textit{dominio 
+applicativo}, descrivendo le \textit{entità} in gioco ed i rapporti fra loro.
 %
 Si possono sollevare eventuali aspetti particolarmente impegnativi, descrivendo perché lo sono, senza inserire idee circa possibili soluzioni.
 
-È possibile, ed è anzi raccomandato, aiutarsi con uno schema UML del dominio, che diventerà anche lo scheletro della parte ``entity'' del modello dell'applicazione (in ottica ECB - Entity Control Boundary): se l'analisi è ben fatta, dovreste ottenere una gerarchia di concetti che rappresentano le entità che compongono il problema da risolvere.
+È obbligatorio fornire uno schema UML del dominio, che diventerà anche lo scheletro della 
+parte ``entity'' del modello dell'applicazione (in ottica ECB - Entity Control Boundary): se 
+l'analisi è ben fatta, dovreste ottenere una gerarchia di concetti che rappresentano le entità che 
+compongono il problema da risolvere.
 %
-Un'analisi ben svolta \textbf{prima} di cimentarsi con lo sviluppo rappresenta un notevole aiuto per le fasi successive: è sufficiente descrivere a parole il dominio, quindi estrarre i sostantivi utilizzati, capire il loro ruolo all'interno del problema, le relazioni che intercorrono fra loro, e mutarli in interfacce.
+Un'analisi ben svolta \textbf{prima} di cimentarsi con lo sviluppo rappresenta un notevole aiuto per 
+le fasi successive: è sufficiente descrivere a parole il dominio, quindi estrarre i sostantivi 
+utilizzati, capire il loro ruolo all'interno del problema, le relazioni che intercorrono fra loro, e 
+reificarli in interfacce.
 
 \subsection*{Elementi positivi}
 \begin{itemize}
@@ -169,7 +186,8 @@ A seguire, si dettagliano alcune parti del design, quelle maggiormente rilevanti
 
 Questa sezione spiega come le componenti principali del software interagiscono fra loro.
 %
-In particolare, qui va spiegato se e come è stato utilizzato il pattern architetturale model-view-controller (e/o entity-control-boundary).
+In particolare, qui va spiegato \textbf{se} e \textbf{come} è stato utilizzato il pattern 
+architetturale model-view-controller (e/o entity-control-boundary).
 %
 Se non è stato utilizzato, va spiegata in maniera molto accurata l'architettura scelta, giustificandola in modo appropriato.
 
@@ -177,13 +195,17 @@ Raccomandiamo di sfruttare la definizione del dominio fatta in fase di analisi p
 %
 Consigliamo anche di separare bene controller e model, facendo attenzione a non includere nel secondo strategie d'uso che appartengono al primo.
 %
-Infine, attenzione al design dell'interazione fra view e controller: se ben progettato, sostituire in blocco la view non dovrebbe causare alcuna modifica nel controller.
+Infine, attenzione al design dell'interazione fra view e controller: se ben progettato, sostituire 
+in blocco la view non dovrebbe causare alcuna modifica nel controller (tantomeno nel model).
 
 \subsection*{Elementi positivi}
 \begin{itemize}
  \item Si mostrano pochi, mirati schemi UML dai quali si deduce con chiarezza quali sono le parti principali del software e come interagiscono fra loro.
  \item Si mette in evidenza se e come il pattern architetturale model-view-controller è stato applicato, anche con l'uso di un UML che mostri le interfacce principali ed i rapporti fra loro.
- \item Si discute se sia semplice o meno, con l'architettura scelta, sostituire in blocco la view senza toccare minimamente il controller. Va da sé che, se cambiare la UI si trasforma in un bagno di sangue che impatta controller o modello, il design architetturale non è stato fatto in modo adeguato.
+ \item Si discute se sia semplice o meno, con l'architettura scelta, sostituire in blocco la view 
+senza toccare minimamente il controller. Va da sé che, se cambiare la UI si trasforma in un bagno di 
+sangue che impatta il controller (o, peggio, il modello), il design architetturale non è stato 
+fatto in modo adeguato.
 \end{itemize}
 
 \subsection*{Elementi negativi}
@@ -199,25 +221,37 @@ Infine, attenzione al design dell'interazione fra view e controller: se ben prog
 \end{itemize}
 
 \subsection*{Esempio}
+
 L'architettura di GLaDOS segue il pattern architetturale ECB.
 GLaDOS implementa l'interfaccia AI, ed è l'effettivo controller del sistema.
 Essendo una intelligenza artificiale, è una classe attiva.
 GLaDOS accetta la registrazione di Input ed Output.
 Gli Input rappresentano delle nuove informazioni che vengono fornite all'IA, ad esempio delle modifiche nel valore di un sensore, oppure un comando da parte dell'operatore.
 Questi input infatti forniscono eventi.
-Ottenere un evento è un'operazione bloccante: chi la esegue resta in attesa di un effettivo evento.
-Ogni volta che c'è un cambio alla situazione del soggetto, GLaDOS notifica i suoi Output, informandoli su quale sia la situazione corrente.
+Ottenere un evento è un'operazione bloccante: chi la esegue resta in attesa di un effettivo evento. 
+Di fatto, quindi, GLaDOS si configura come entità \textit{reattiva}.
+Ogni volta che c'è un cambio alla situazione del soggetto, GLaDOS notifica i suoi Output, 
+informandoli su quale sia la situazione corrente.
+%
+Conseguentemente, GLaDOS è un ``observable'' per Output.
 
-Con questa architettura, possono essere aggiunti un numero arbitrario di input ed output all'intelligenza artificiale.
-
-In \Cref{img:goodarch} è esemplificato il diagramma UML architetturale.
-
-\begin{figure}
+\begin{figure}[!t]
 \centering{}
 \includegraphics[width=\textwidth]{img/arch}
 \caption{Schema UML architetturale di GLaDOS}
 \label{img:goodarch}
 \end{figure}
+
+Con questa architettura, possono essere aggiunti un numero arbitrario di input ed output 
+all'intelligenza artificiale.
+%
+Ovviamente, mentre l'aggiunta di output è semplice e non richiede alcuna modifica all'IA, la 
+presenza di nuovi tipi di evento richiede invece in potenza aggiunte o rifiniture a GLaDOS.
+%
+Questo è dovuto al fatto che nuovi Input rappresentano di fatto nuovi elementi della business 
+logic, la cui alterazione od espansione inevitabilmente impatta il controller del progetto.
+
+In \Cref{img:goodarch} è esemplificato il diagramma UML architetturale.
 
 
 \section{Design dettagliato}
@@ -230,7 +264,8 @@ Mentre ci attendiamo principalmente (o solo) interfacce negli schemi UML delle s
 %
 È assolutamente inutile, ed è anzi controproducente, descrivere classe-per-classe (o peggio ancora metodo-per-metodo) com'è fatto il vostro software: è un livello di dettaglio proprio della documentazione dell'API (deducibile dalla Javadoc).
 
-\textbf{È necessario che ciascun membro del gruppo abbia una propria sezione di design dettagliato, di cui sarà responsabile}.
+\textbf{È necessario che ciascun membro del gruppo abbia una propria sezione di design dettagliato, 
+di cui sarà il solo responsabile}.
 %
 Ciascun autore dovrà spiegare in modo corretto e giustamente approfondito (non troppo in dettaglio, non superficialmente) il proprio contributo.
 %
@@ -240,19 +275,25 @@ Usare correttamente i design pattern in questa sezione è molto importante: se v
 
 Esattamente come nessun ingegnere meccanico presenta un solo foglio con l'intero progetto di una vettura di Formula 1, ma molteplici fogli di progetto che mostrano a livelli di dettaglio differenti le varie parti della vettura e le modalità di connessione fra le parti, così ci aspettiamo che voi, futuri ingegneri informatici, ci presentiate prima una visione globale del progetto, e via via siate in grado di dettagliare le singole parti, scartando i componenti che non interessano quella in esame.
 %
-Per continuare il parallelo con la vettura di Formula 1, se nei fogli di progetto che mostrano il design delle sospensioni anteriori appaiono pezzi che appartengono al volante o al turbo, vuol dire che c'è qualche grosso problema di design.
+Per continuare il parallelo con la vettura di Formula 1, se nei fogli di progetto che mostrano il 
+design delle sospensioni anteriori appaiono pezzi che appartengono al volante o al turbo, c'è una 
+chiara indicazione di qualche problema di design.
 
 \subsection*{Elementi positivi}
 
 \begin{itemize}
 	\item Ogni membro del gruppo discute le proprie decisioni di progettazione, ed in particolare le azioni volte ad anticipare possibili cambiamenti futuri (ad esempio l'aggiunta di una nuova funzionalità, o il miglioramento di una esistente).
-	\item Si identificano ed utilizzano numerosi design pattern.
+	\item Si identificano ed utilizzano \textit{appropriatamente} numerosi design pattern.
 	\item Ogni membro del gruppo identifica i pattern utilizzati nella sua sottoparte.
 	\item Si mostrano gli aspetti di design più rilevanti dell'applicazione, mettendo in luce la maniera in cui si è costruita la soluzione ai problemi descritti nell'analisi.
 	\item Si tralasciano aspetti strettamente implementativi e quelli non rilevanti, non mostrandoli negli schemi UML (ad esempio, campi privati) e non descrivendoli.
 	\item Si mostrano le principali interazioni fra le varie componenti che collaborano alla soluzione di un determinato problema.
-	\item Ciascun design pattern identificato presenta una piccola descrizione del problema calato nell'applicazione, uno schema UML che ne mostri la concretizzazione nelle classi del progetto, ed una breve descrizione della motivazione per cui tale pattern è stato scelto.
-	\item La divisione in package rispecchia l'architettura e consente di navigare facilmente il sorgente, dando brevi giustificazione alle scelte fatte.
+	\item Ciascun design pattern identificato presenta una piccola descrizione del problema calato 
+nell'applicazione, uno schema UML che ne mostri la concretizzazione nelle classi del progetto, ed 
+una breve descrizione della motivazione per cui tale pattern è stato scelto. Ad esempio, se si 
+dichiara di aver usato Observer, è necessario specificare chi sia l'observable e chi l'observer; se 
+si usa Template Method, è necessario indicare quale sia il metodo template; se si usa Strategy, è 
+necessario identificare l'interfaccia che rappresenta la strategia; e via dicendo.
 \end{itemize}
 
 \subsection*{Elementi negativi}
@@ -261,10 +302,16 @@ Per continuare il parallelo con la vettura di Formula 1, se nei fogli di progett
 	\item Si tratta in modo prolisso, classe per classe, il software realizzato.
 	\item Non si presentano schemi UML esemplificativi.
 	\item Non si individuano design pattern, o si individuano in modo errato (si spaccia per design pattern qualcosa che non lo è).
-	\item Si producono schemi UML caotici e difficili da leggere, che comprendono inutili elementi di dettaglio.
+	\item Si utilizzano design pattern in modo inopportuno. Un esempio classico è l'abuso di 
+Singleton per entità che possono essere univoche ma non devono necessariamente esserlo. Si rammenta 
+che Singleton ha senso nel secondo caso (ad esempio \texttt{System} e \texttt{Runtime} sono 
+singleton), mentre rischia di essere un problema nel secondo. Ad esempio, se si rendesse singleton 
+il motore di un videogioco, sarebbe impossibile riusarlo per costruire un server per partite online 
+(dove, presumibilmente, si gestiscono parallelamente più partite).
+	\item Si producono schemi UML caotici e difficili da leggere, che comprendono inutili elementi 
+di dettaglio.
 	\item Si presentano schemi UML con classi (nel senso UML del termine) che ``galleggiano'' nello schema, non connesse, ossia senza relazioni con il resto degli elementi inseriti.
 	\item Si tratta in modo inutilmente prolisso la divisione in package, elencando ad esempio le classi una per una.
-	\item La divisione in package non rispecchia l'architettura, o è caotica.
 \end{itemize}
 
 % \subsection*{Esempio di buona suddivisione in package}
@@ -277,13 +324,15 @@ Per continuare il parallelo con la vettura di Formula 1, se nei fogli di progett
 % \end{itemize}
 
 
-\subsection*{Esempi di UML ben realizzati}
+\subsection*{Esempio minimale (e quindi parziale) di sezione di progetto con UML ben realizzati}
 
 In questa sezione ci si concentrerà sugli aspetti di personalità e sul funzionamento del reporting di GLaDOS.
 
-Il sistema per la gestione della personalità utilizza il pattern Strategy, come da \Cref{img:strategy}: le implementazioni di Personality possono essere modificate, e la modifica impatta direttamente sul comportamento di GLaDOS.
+Il sistema per la gestione della personalità utilizza il pattern Strategy, come da 
+\Cref{img:strategy}: le implementazioni di \texttt{Personality} possono essere modificate, e la 
+modifica impatta direttamente sul comportamento di GLaDOS.
 
-\begin{figure}
+\begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/strategy}
 \caption{Rappresentazione UML del pattern Strategy per la personalità di GLaDOS}
@@ -291,21 +340,27 @@ Il sistema per la gestione della personalità utilizza il pattern Strategy, come
 \end{figure}
 
 Sono state attualmente implementate due personalità, una buona ed una cattiva.
-Quella buona restituisce sempre una torta valida, mentre quella cattiva restituisce sempre una torta.
+Quella buona restituisce sempre una torta vera, mentre quella cattiva restituisce sempre la 
+promessa di una torta che verrà in realtà disattesa.
 Dato che le due personalità differiscono solo per il comportamento da effettuarsi in caso di percorso completato con successo, è stato utilizzato il pattern template method per massimizzare il riuso, come da \Cref{img:template}.
-Il metodo template è onSuccess(), che chiama un metodo astratto e protetto makeCake().
+Il metodo template è \texttt{onSuccess()}, che chiama un metodo astratto e protetto 
+\texttt{makeCake()}.
 
-\begin{figure}
+\begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/template}
 \caption{Rappresentazione UML dell'applicazione del pattern Template Method alla gerarchia delle Personalità}
 \label{img:template}
 \end{figure}
 
-Per quanto riguarda il reporting, è stato utilizzato il pattern Observer per consentire la comunicazione uno-a-molti fra GLaDOS ed i sistemi di output.
+Per quanto riguarda il reporting, è stato utilizzato il pattern Observer per consentire la 
+comunicazione uno-a-molti fra \texttt{GLaDOS} ed i sistemi di output.
+%
+\texttt{GLaDOS} è observable, e le istanze di \texttt{Input} sono observer.
+%
 Il suo utilizzo è esemplificato in \Cref{img:observer}
 
-\begin{figure}
+\begin{figure}[H]
 \centering{}
 \includegraphics[width=\textwidth]{img/observer}
 \caption{Il pattern Observer è usato per consentire a GLaDOS di informare tutti i sistemi di output in ascolto}
@@ -359,6 +414,8 @@ Test che richiedono l'intervento da parte dell'utente sono considerati \textit{n
  \item La non presenza di testing viene aggravata dall'adduzione di motivazioni non valide. Ad esempio, si scrive che l'interfaccia grafica non è testata automaticamente perché è \emph{impossibile} farlo\footnote{Testare in modo automatico le interfacce grafiche è possibile (si veda, come esempio, \url{https://github.com/TestFX/TestFX}), semplicemente nel corso non c'è modo e tempo di introdurvi questo livello di complessità. Il fatto che non vi sia stato insegnato come farlo non implica che sia impossibile!}. 
  \item Si descrive un testing di tipo manuale in maniera prolissa.
  \item Si descrivono test effettuati manualmente che sarebbero potuti essere automatizzati, ad esempio scrivendo che si è usata l'applicazione manualmente.
+ \item Si descrivono test non presenti nei sorgenti del progetto.
+ \item I test, quando eseguiti, falliscono.
 \end{itemize}
 
 \section{Metodologia di lavoro}
@@ -392,20 +449,26 @@ Questa sezione, come quella riguardante il design dettagliato va svolta \textbf{
 
 Ciascuno dovrà mettere in evidenza eventuali particolarità del suo metodo di sviluppo, ed in particolare:
 \begin{itemize}
-	\item Elencare le feature avanzate del linguaggio Java che sono state utilizzate. Le feature di interesse possono essere, ad esempio:
+	\item Elencare le feature avanzate del linguaggio e dell'ecosistema Java che sono state 
+utilizzate. Le feature di interesse sono:
 	\begin{itemize}
 		\item Uso avanzato dei generici (ad esempio costruzione di nuovi tipi generici, e uso di generici bounded)
 		\item Uso delle lambda expressions
 		\item Uso degli stream, degli optional o di altri costrutti monadici
 		\item Uso della reflection
-		\item Uso di parti di libreria non spiegate a lezione (networking, JavaScript via Nashorn, eccetera...)
+		\item Uso di parti di libreria non spiegate a lezione (networking, compressione, parsing 
+XML, eccetera...)
+        \item Uso di funzionalità di linguaggio non spiegate a lezione (facendo attenzione a non 
+usarle in modo inopportuno)
+		\item Uso di librerie di terze parti (incluso JavaFX)
 	\end{itemize}
-	Si faccia molta attenzione a non scrivere banalità, elencando qui features di tipo ``core'', come le eccezioni, o le inner class.
+	Si faccia molta attenzione a non scrivere banalità, elencando qui features di tipo ``core'', 
+come le eccezioni, le enumerazioni, o le inner class: nessuna di queste è considerata avanzata.
 	\item Descrivere eventuali approfondimenti fatti rispetto a quanto trattato nel corso (ad esempio l'utilizzo di un logger, o l'accesso alla rete, o l'uso di librerie grafiche particolari)
 	\item Descrivere le librerie utilizzate nella propria parte di progetto. Si ricorda che l'utilizzo di librerie è valutato \emph{positivamente}.
 	\item Sviluppo di algoritmi particolarmente interessanti \emph{non forniti da alcuna libreria}
 \end{itemize}
-
+%
 In questa sezione è anche bene evidenziare eventuali pezzi di codice scopiazzati da Internet o da altri progetti (pratica che tolleriamo ma che non raccomandiamo).
 
 \subsection*{Elementi positivi}
@@ -413,8 +476,11 @@ In questa sezione è anche bene evidenziare eventuali pezzi di codice scopiazzat
 \begin{itemize}
 	\item Si elencano gli aspetti avanzati di linguaggio che sono stati impiegati
 	\item Si elencano le librerie che sono state utilizzate
-	\item Si descrivono aspetti particolarmente complicati o rilevanti relativi all'implementazione, ad esempio, in un'applicazione performance critical, un uso particolarmente avanzato di meccanismi di caching, oppure l'implementazione di uno specifico algorigmo.
-	\item Se si è utilizzato un particolare algoritmo, se ne cita la fonte originale. Ad esempio, se si è usato Mersenne Twister per la generazione dei numeri random, si cita \cite{mersenne}.
+	\item Si descrivono aspetti particolarmente complicati o rilevanti relativi all'implementazione, 
+ad esempio, in un'applicazione performance critical, un uso particolarmente avanzato di meccanismi 
+di caching, oppure l'implementazione di uno specifico algoritmo.
+	\item Se si è utilizzato un particolare algoritmo, se ne cita la fonte originale. Ad esempio, se 
+si è usato Mersenne Twister per la generazione dei numeri pseudo-random, si cita \cite{mersenne}.
 	\item Si identificano parti di codice prese da altri progetti, dal web, o comunque scritte in forma originale da altre persone. In tal senso, si ricorda che agli ingegneri non è richiesto di re-inventare la ruota continuamente: se ci cita debitamente la sorgente è tollerato fare uso di di snippet di codice per risolvere velocemente problemi non banali. Nel caso in cui si usino snippet di codice di qualità discutibile, oltre a menzionarne l'autore originale si invitano gli studenti ad adeguare tali parti di codice agli standard e allo stile del progetto. Contestualmente, si fa presente che è largamente meglio fare uso di una libreria che copiarsi pezzi di codice: qualora vi sia scelta, si preferisca la prima via.
 \end{itemize}
 
@@ -433,21 +499,25 @@ studente ne è sprovvisto) che non c'entrano nulla con lo sviluppo, ad esempio:
     \begin{itemize}
         \item Editor di grafica vettoriale come Inkscape o Adobe Illustrator;
         \item Editor di grafica scalare come GIMP o Adobe Photoshop;
-        \item Editor di audio come audacity;
+        \item Editor di audio come Audacity;
         \item Strumenti di design dell'interfaccia grafica come SceneBuilder: il codice è in ogni 
             caso inteso come sviluppato da voi.
     \end{itemize}
 	\item Si descrivono aspetti di scarsa rilevanza, o si scende in dettagli inutili.
-	\item Sono presenti parti di codice sviluppate originalmente da altri che non vengono debitamente segnalate. In tal senso, si ricorda agli studenti che i docenti hanno accesso a tutti i progetti degli anni passati, a Stack Overflow, ai principali blog di sviluppatori ed esperti Java e ai blog dedicati allo sviluppo di soluzioni e applicazioni (inclusi blog dedicati ad Android e allo sviluppo di videogame). Conseguentemente, è \emph{molto} conveniente \emph{citare} una fonte ed usarla invece di tentare di spacciare per proprio il lavoro di altri.
+	\item Sono presenti parti di codice sviluppate originalmente da altri che non vengono
+debitamente segnalate. In tal senso, si ricorda agli studenti che i docenti hanno accesso a tutti i 
+progetti degli anni passati, a Stack Overflow, ai principali blog di sviluppatori ed esperti Java, 
+ai blog dedicati allo sviluppo di soluzioni e applicazioni (inclusi blog dedicati ad Android e allo 
+sviluppo di videogame), nonché ai social network. Conseguentemente, è \emph{molto} conveniente 
+\emph{citare} una fonte ed usarla invece di tentare di spacciare per proprio il lavoro di altri.
 \end{itemize}
 
 \chapter{Commenti finali}
 
-In quest'ultimo capitolo si tirano le somme del lavoro svolto e si delineano eventuali sviluppi futuri.
+In quest'ultimo capitolo si tirano le somme del lavoro svolto e si delineano eventuali sviluppi 
+futuri.
 
 \section{Autovalutazione e lavori futuri}
-
-\subsection*{Cosa scrivere}
 
 \textbf{È richiesta una sezione per ciascun membro del gruppo}.
 %
@@ -462,12 +532,20 @@ Questa sezione, opzionale, può essere utilizzata per segnalare ai docenti event
 %
 È possibile che alcuni dei commenti forniti vengano utilizzati per migliorare il corso in futuro: sebbene non andrà a vostro beneficio, potreste fare un favore ai vostri futuri colleghi.
 %
-Ovviamente il contenuto della sezione non impatterà il voto finale.
+Ovviamente \textit{il contenuto della sezione non impatterà il voto finale}.
 
 \appendix
 \chapter{Guida utente}
 
-Capitolo in cui si spiega come utilizzare il software. Nel caso in cui il suo uso sia del tutto banale, tale capitolo può essere omesso.
+Capitolo in cui si spiega come utilizzare il software. Nel caso in cui il suo uso sia del tutto 
+banale, tale capitolo può essere omesso.
+%
+A tal riguardo, si fa presente agli studenti che i docenti non hanno mai utilizzato il software 
+prima, per cui aspetti che sembrano del tutto banali a chi ha sviluppato l'applicazione possono non 
+esserlo per chi la usa per la prima volta.
+%
+Se, ad esempio, per cominciare una partita con un videogioco è necessario premere la barra 
+spaziatrice, o il tasto ``P'', è necessario che gli studenti lo segnalino.
 
 \subsection*{Elementi positivi}
 
