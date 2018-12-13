@@ -114,10 +114,14 @@ conclusi una volta che il soggetto riesce a trovare l'uscita dalla camera di tes
 In questa sezione si descrive il modello del \textit{dominio 
 applicativo}, descrivendo le \textit{entità} in gioco ed i rapporti fra loro.
 %
-Si possono sollevare eventuali aspetti particolarmente impegnativi, descrivendo perché lo sono, senza inserire idee circa possibili soluzioni.
+Si possono sollevare eventuali aspetti particolarmente impegnativi, descrivendo perché lo sono, senza inserire idee circa possibili soluzioni, ovvero sull'organizzazione interna del software.
+%
+Infatti, la fase di analisi va effettuata \textbf{prima} del progetto: né il progetto né il software esistono nel momento in cui si effettua l'analisi.
+%
+La discussione di aspetti propri del software (ossia, della \textit{soluzione} al problema e non del problema stesso) appartengono alla sfera della progettazione, e vanno discussi successivamente.
 
 È obbligatorio fornire uno schema UML del dominio, che diventerà anche lo scheletro della 
-parte ``entity'' del modello dell'applicazione (in ottica ECB - Entity Control Boundary): se 
+parte ``entity'' del modello dell'applicazione, ovvero degli elementi costitutivi del modello (in ottica MVC - Model View Controller): se 
 l'analisi è ben fatta, dovreste ottenere una gerarchia di concetti che rappresentano le entità che 
 compongono il problema da risolvere.
 %
@@ -130,7 +134,7 @@ reificarli in interfacce.
 \begin{itemize}
 	\item Viene descritto accuratamente il modello del dominio.
 	\item Alcuni problemi, se non risolubili in assoluto o nel monte ore, vengono dichiarati come problemi che non saranno risolti o sarano risolti in futuro.
-	\item Si modella il dominio in forma di UML.
+	\item Si modella il dominio in forma di UML, descrivendolo appropriatamente.
 \end{itemize}
 
 \subsection*{Elementi negativi}
@@ -187,7 +191,7 @@ A seguire, si dettagliano alcune parti del design, quelle maggiormente rilevanti
 Questa sezione spiega come le componenti principali del software interagiscono fra loro.
 %
 In particolare, qui va spiegato \textbf{se} e \textbf{come} è stato utilizzato il pattern 
-architetturale model-view-controller (e/o entity-control-boundary).
+architetturale model-view-controller (e/o alcune sue declinazioni specifiche, come entity-control-boundary).
 %
 Se non è stato utilizzato, va spiegata in maniera molto accurata l'architettura scelta, giustificandola in modo appropriato.
 
@@ -222,10 +226,16 @@ fatto in modo adeguato.
 
 \subsection*{Esempio}
 
-L'architettura di GLaDOS segue il pattern architetturale ECB.
-GLaDOS implementa l'interfaccia AI, ed è l'effettivo controller del sistema.
+L'architettura di GLaDOS segue il pattern architetturale MVC.
+%
+Più nello specifico, a livello architetturale, si è scelto di utilizzare MVC in forma ``ECB'', ossia ``entity-control-boundary''\footnote{
+Si fa presente che il pattern ECB effettivamente esiste in letteratura come ``istanza'' di MVC, e chi volesse può utilizzarlo come reificazione di MVC.
+}.
+%
+GLaDOS implementa l'interfaccia AI, ed è il controller del sistema.
 Essendo una intelligenza artificiale, è una classe attiva.
-GLaDOS accetta la registrazione di Input ed Output.
+%
+GLaDOS accetta la registrazione di Input ed Output, che fanno parte della ``view'' di MVC, e sono il ``boundary'' di ECB.
 Gli Input rappresentano delle nuove informazioni che vengono fornite all'IA, ad esempio delle modifiche nel valore di un sensore, oppure un comando da parte dell'operatore.
 Questi input infatti forniscono eventi.
 Ottenere un evento è un'operazione bloccante: chi la esegue resta in attesa di un effettivo evento. 
@@ -238,7 +248,7 @@ Conseguentemente, GLaDOS è un ``observable'' per Output.
 \begin{figure}[!t]
 \centering{}
 \includegraphics[width=\textwidth]{img/arch}
-\caption{Schema UML architetturale di GLaDOS}
+\caption{Schema UML architetturale di GLaDOS. L'interfaccia \texttt{GLaDOS} è il controller del sistema, mentre \texttt{Input} ed \texttt{Output} sono le interfacce che mappano la view (o, più correttamente in questo specifico esempio, il boundary). Un'eventuale interfaccia grafica interattiva dovrà implementarle entrambe.}
 \label{img:goodarch}
 \end{figure}
 
@@ -421,6 +431,10 @@ Test che richiedono l'intervento da parte dell'utente sono considerati \textit{n
 \section{Metodologia di lavoro}
 
 Ci aspettiamo, leggendo questa sezione, di trovare conferma alla divisione operata nella sezione del design di dettaglio, e di capire come è stato svolto il lavoro di integrazione.
+%
+\textbf{Andrà realizzata una sotto-sezione separata per ciascuno studente} con un elenco delle classi sviluppate, separando quelle sviluppate in autonomia da quelle sviluppate in collaborazione.
+%
+Si ricorda, in tal senso, che l'impegno deve giustificare circa 40-50 ore di sviluppo (è normale e fisiologico che approssimativamente la metà del tempo sia impiegata in analisi e progettazione).
 
 \subsection*{Elementi positivi}
 
