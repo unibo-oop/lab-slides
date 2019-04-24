@@ -17,7 +17,7 @@
 % Questo commentalo se vuoi scrivere in inglese.
 \usepackage[italian]{babel}
 
-\title{Meta-relazione per ``Programmazione ad Oggetti''}
+\title{Meta-relazione per\\``Programmazione ad Oggetti''}
  
 \author{Danilo Pianini}
 \date{\today}
@@ -432,17 +432,19 @@ Test che richiedono l'intervento da parte dell'utente sono considerati \textit{n
 
 Ci aspettiamo, leggendo questa sezione, di trovare conferma alla divisione operata nella sezione del design di dettaglio, e di capire come è stato svolto il lavoro di integrazione.
 %
-\textbf{Andrà realizzata una sotto-sezione separata per ciascuno studente} con un elenco delle classi sviluppate, separando quelle sviluppate in autonomia da quelle sviluppate in collaborazione.
+\textbf{Andrà realizzata una sotto-sezione separata per ciascuno studente} che identifichi le porzioni di progetto sviluppate, separando quelle svolte in autonomia da quelle sviluppate in collaborazione.
 %
-Si ricorda, in tal senso, che l'impegno deve giustificare circa 40-50 ore di sviluppo (è normale e fisiologico che approssimativamente la metà del tempo sia impiegata in analisi e progettazione).
+Diversamente dalla sezione di design, in questa è consentito elencare package/classi, se lo studente ritiene sia il modo più efficace di convogliare l'informazione.
+%
+Si ricorda che l'impegno deve giustificare circa 40-50 ore di sviluppo (è normale e fisiologico che approssimativamente la metà del tempo sia impiegata in analisi e progettazione).
 
 \subsection*{Elementi positivi}
 
 \begin{itemize}
 	\item Si identifica con precisione il ruolo di ciascuno all'interno del gruppo, ossia su quale parte del progetto ciascuno dei componenti si è concentrato maggiormente.
-	\item La divisione dei compiti è equa, ossia non vi sono membri del gruppo che hanno svolto molto più lavoro di altri
-	\item La divisione dei compiti è coerente con quanto descritto nelle parti precedenti della relazione
-	\item La divisione dei compiti è realistica, ossia le dipendenze fra le parti sviluppate sono minime
+	\item La divisione dei compiti è equa, ossia non vi sono membri del gruppo che hanno svolto molto più lavoro di altri.
+	\item La divisione dei compiti è coerente con quanto descritto nelle parti precedenti della relazione.
+	\item La divisione dei compiti è realistica, ossia le dipendenze fra le parti sviluppate sono minime.
 	\item Si identifica quale parte del software è stato sviluppato da tutti i componenti insieme.
 	\item Si spiega in che modo si sono integrate le parti di codice sviluppate separatamente, evidenziando eventuali problemi. Ad esempio, una strategia è convenire sulle interfacce da usare (ossia, occuparsi insieme di stabilire l'architettura) e quindi procedere indipendentemente allo sviluppo di parti differenti. Una possibile problematica potrebbe essere una dimenticanza in fase di design architetturale che ha costretto ad un cambio e a modifiche in fase di integrazione. Una situazione simile è la norma nell'ingegneria di un sistema software non banale, ed il processo di progettazione top-down con raffinamento successivo è il così detto processo ``a spirale''.
 	\item Si descrive in che modo è stato impiegato il DVCS.
@@ -466,24 +468,25 @@ Ciascuno dovrà mettere in evidenza eventuali particolarità del suo metodo di s
 	\item Elencare le feature avanzate del linguaggio e dell'ecosistema Java che sono state 
 utilizzate. Le feature di interesse sono:
 	\begin{itemize}
-		\item Uso avanzato dei generici (ad esempio costruzione di nuovi tipi generici, e uso di generici bounded)
-		\item Uso delle lambda expressions
-		\item Uso degli stream, degli optional o di altri costrutti monadici
+		\item Progettazione con generici, ad esempio costruzione di nuovi tipi generici, e uso di generici bounded. Uso di classi generiche di libreria non è considerato avanzato.
+		\item Uso di lambda expressions
+		\item Uso di \texttt{Stream}, di \texttt{Optional} o di altri costrutti funzionali
 		\item Uso della reflection
+		\item Uso del Java Platform Module System
 		\item Uso di parti di libreria non spiegate a lezione (networking, compressione, parsing 
 XML, eccetera...)
         \item Uso di funzionalità di linguaggio non spiegate a lezione (facendo attenzione a non 
 usarle in modo inopportuno)
-		\item Uso di librerie di terze parti (incluso JavaFX)
+		\item Uso di librerie di terze parti (incluso JavaFX): Google Guava, Apache Commons...
 	\end{itemize}
 	Si faccia molta attenzione a non scrivere banalità, elencando qui features di tipo ``core'', 
 come le eccezioni, le enumerazioni, o le inner class: nessuna di queste è considerata avanzata.
-	\item Descrivere eventuali approfondimenti fatti rispetto a quanto trattato nel corso (ad esempio l'utilizzo di un logger, o l'accesso alla rete, o l'uso di librerie grafiche particolari)
-	\item Descrivere le librerie utilizzate nella propria parte di progetto. Si ricorda che l'utilizzo di librerie è valutato \emph{positivamente}.
-	\item Sviluppo di algoritmi particolarmente interessanti \emph{non forniti da alcuna libreria}
+	\item Descrivere eventuali approfondimenti fatti rispetto a quanto trattato nel corso; ad esempio l'utilizzo di un logger, o l'accesso alla rete, o l'uso di librerie grafiche particolari, o l'uso di strumenti non presentati a lezione (Maven, Gradle...).
+	\item Descrivere le librerie utilizzate nella propria parte di progetto, se non trattate a lezione (ossia, se librerie di terze parti e/o se componenti del JDK non visti, come le socket). Si ricorda che l'utilizzo di librerie è valutato \emph{positivamente}.
+	\item Sviluppo di algoritmi particolarmente interessanti \emph{non forniti da alcuna libreria} (spesso può convenirvi chiedere sul forum se ci sia una libreria per fare una certa cosa, prima di gettarvi a capofitto per scriverla voi stessi).
 \end{itemize}
 %
-In questa sezione è anche bene evidenziare eventuali pezzi di codice scopiazzati da Internet o da altri progetti (pratica che tolleriamo ma che non raccomandiamo).
+In questa sezione è anche bene evidenziare eventuali pezzi di codice ``riadattati'' (o scopiazzati...) da Internet o da altri progetti, pratica che tolleriamo ma che non raccomandiamo.
 
 \subsection*{Elementi positivi}
 
@@ -495,7 +498,7 @@ ad esempio, in un'applicazione performance critical, un uso particolarmente avan
 di caching, oppure l'implementazione di uno specifico algoritmo.
 	\item Se si è utilizzato un particolare algoritmo, se ne cita la fonte originale. Ad esempio, se 
 si è usato Mersenne Twister per la generazione dei numeri pseudo-random, si cita \cite{mersenne}.
-	\item Si identificano parti di codice prese da altri progetti, dal web, o comunque scritte in forma originale da altre persone. In tal senso, si ricorda che agli ingegneri non è richiesto di re-inventare la ruota continuamente: se ci cita debitamente la sorgente è tollerato fare uso di di snippet di codice per risolvere velocemente problemi non banali. Nel caso in cui si usino snippet di codice di qualità discutibile, oltre a menzionarne l'autore originale si invitano gli studenti ad adeguare tali parti di codice agli standard e allo stile del progetto. Contestualmente, si fa presente che è largamente meglio fare uso di una libreria che copiarsi pezzi di codice: qualora vi sia scelta, si preferisca la prima via.
+	\item Si identificano parti di codice prese da altri progetti, dal web, o comunque scritte in forma originale da altre persone. In tal senso, si ricorda che agli ingegneri non è richiesto di re-inventare la ruota continuamente: se si cita debitamente la sorgente è tollerato fare uso di di snippet di codice per risolvere velocemente problemi non banali. Nel caso in cui si usino snippet di codice di qualità discutibile, oltre a menzionarne l'autore originale si invitano gli studenti ad adeguare tali parti di codice agli standard e allo stile del progetto. Contestualmente, si fa presente che è largamente meglio fare uso di una libreria che copiarsi pezzi di codice: qualora vi sia scelta, si preferisca la prima via.
 \end{itemize}
 
 \subsection*{Elementi negativi}
@@ -531,18 +534,22 @@ sviluppo di videogame), nonché ai social network. Conseguentemente, è \emph{mo
 In quest'ultimo capitolo si tirano le somme del lavoro svolto e si delineano eventuali sviluppi 
 futuri.
 
+\textit{Nessuna delle informazioni incluse in questo capitolo verrà utilizzata per formulare la valutazione finale}, a meno che non sia assente o manchino delle sezioni obbligatorie.
+%
+Al fine di evitare pregiudizi involontari, l'intero capitolo verrà letto dai docenti solo dopo la valutazione è completa.
+
 \section{Autovalutazione e lavori futuri}
 
-\textbf{È richiesta una sezione per ciascun membro del gruppo}.
+\textbf{È richiesta una sezione per ciascun membro del gruppo, obbligatoriamente}.
 %
 Ciascuno dovrà autovalutare il proprio lavoro, elencando i punti di forza e di debolezza in quanto prodotto.
-Si dovrà anche cercare di descrivere \emph{in modo quanto più obiettivo} il proprio ruolo all'interno del gruppo.
+Si dovrà anche cercare di descrivere \emph{in modo quanto più obiettivo possibile} il proprio ruolo all'interno del gruppo.
 Si ricorda, a tal proposito, che ciascuno studente è responsabile solo della propria sezione: non è un problema se ci sono opinioni contrastanti, a patto che rispecchino effettivamente l'opinione di chi le scrive.
 Nel caso in cui si pensasse di portare avanti il progetto, ad esempio perché effettivamente impiegato, o perché sufficientemente ben riuscito da poter esser usato come dimostrazione di esser capaci progettisti, si descriva brevemente verso che direzione portarlo.
 
 \section{Difficoltà incontrate e commenti per i docenti}
 
-Questa sezione, opzionale, può essere utilizzata per segnalare ai docenti eventuali problemi o difficoltà incontrate nel corso o nello svolgimento del progetto, può essere vista come una seconda possibilità di valutare il corso (dopo quella offerta dalle rilevazioni della didattica) avendo anche conoscenza delle modalità e delle difficoltà collegate all'esame, cosa impossibile da fare usando le valutazioni in aula per ovvie ragioni di tempistiche.
+Questa sezione, \textbf{opzionale}, può essere utilizzata per segnalare ai docenti eventuali problemi o difficoltà incontrate nel corso o nello svolgimento del progetto, può essere vista come una seconda possibilità di valutare il corso (dopo quella offerta dalle rilevazioni della didattica) avendo anche conoscenza delle modalità e delle difficoltà collegate all'esame, cosa impossibile da fare usando le valutazioni in aula per ovvie ragioni di tempistiche.
 %
 È possibile che alcuni dei commenti forniti vengano utilizzati per migliorare il corso in futuro: sebbene non andrà a vostro beneficio, potreste fare un favore ai vostri futuri colleghi.
 %
