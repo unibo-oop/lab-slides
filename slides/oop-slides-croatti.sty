@@ -6,7 +6,7 @@
 %\setbeamercolor{block title}{fg=yellow!50!black}
 %\setbeamercolor{block title}{bg=black!10}
 %\setbeamercolor{block body}{bg=black!5}
-\pgfdeclareimage[height=0.625cm]{unibo-logo}{img/unibo}
+\pgfdeclareimage[height=0.625cm]{unibo-logo}{../unibo.pdf}
 \logo{\pgfuseimage{unibo-logo}}
 
 \usepackage[italian]{babel}
@@ -15,6 +15,8 @@
 \usepackage{fancyvrb}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{ragged2e}
+\usepackage{cleveref}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
@@ -52,13 +54,14 @@
       {ù}{{\`u}}1
 }
 
-\author[ ]
-{}
+\author[A. Croatti]{Angelo Croatti \\ Danilo Pianini, Roberto Casadei, Mirko Viroli}
 
-\institute[UniBO]
-{C.D.L. Ingegneria e Scienze Informatiche \\\textsc{Alma Mater Studiorum}---Università di Bologna, Cesena}
+\institute[UNIBO]
+{C.D.S. Ingegneria e Scienze Informatiche \\\textsc{Alma Mater Studiorum}---Università di Bologna, Campus di Cesena}
 
-\date[a.a. 2015/2016]{a.a. 2015/2016}
+\subtitle{Programmazione ad Oggetti -- \lab}
+
+\date[\today]{\today}
 
 
 \AtBeginSection[]
@@ -92,4 +95,7 @@
 \newcommand{\fg}[2]{\vspace{-5pt}\begin{center}\includegraphics[#1]{#2}\end{center}}
 \newcommand{\myurl}[1]{{\footnotesize\ttfamily #1}}
 \newcommand{\ssmall}[0]{\fontsize{7pt}{8pt}\selectfont}
+\newcommand{\ditto}{\texttt{\char`\"}}
 
+\addtobeamertemplate{block begin}{}{\justifying}
+\addtobeamertemplate{frame begin}{}{\justifying}
