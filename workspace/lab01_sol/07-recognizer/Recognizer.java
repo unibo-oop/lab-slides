@@ -22,7 +22,7 @@ public class Recognizer {
     boolean check4(int n) {
         return check(n, 1);
     }
-    
+
     boolean check(int actual, int next) {
         if (actual != this.nextNum) {
             success = false;

@@ -26,7 +26,7 @@ public class Train {
     }
 
     double getFirstClassOccupancyRatio() {
-        return nFirstClassReservedSeats * 100.0 / nFirstClassSeats;
+        return nFirstClassReservedSeats * 100.0d / nFirstClassSeats;
     }
 
     double getSecondClassOccupancyRatio() {

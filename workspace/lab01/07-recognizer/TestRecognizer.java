@@ -15,8 +15,8 @@ class TestRecognizer {
          * 4) Invocare il metodo reset al termine del test su ogni sequenza
          *
          * 5) Testare il riconoscimento per le seguenti sequenze con
-         * procedimento analogo a quello appena descritto - 1,2,3,4,1,2,3,4 -
-         * 1,2,3,4,5 - 1,2,3,4,1,2,3,4,1,2,7,8,9 - ...
+         * procedimento analogo a quello appena descritto - 1,2,3,4,1,2 -
+         * 1,2,3,4,5 - 1,2,3,4,5,2,3 - ...
          *
          * ESEMPIO DI INVOCAZIONE: riconoscimento sequenza 1,2,3,4,5
          * System.out.println("Next expected int is: " +

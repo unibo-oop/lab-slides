@@ -11,7 +11,7 @@ class UseTrain {
        * specificando un numero di posti da prenotare consistente
        */
       train.reserveFirstClassSeats(10);
-      train.reserveSecondClassSeats(10);
+      train.reserveSecondClassSeats(30);
 
       /*
        * 3) A seguito di ciascuna prenotazione stampare la ratio di

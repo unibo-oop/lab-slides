@@ -3,6 +3,7 @@ class ComplexNum {
     /*
      * Inserire qui la dichiarazione dei campi della classe
      */
+
     void build(double re, double im) {
         /*
          * Inserire qui l'inizializzazione dei campi con i parametri forniti in
@@ -22,7 +23,7 @@ class ComplexNum {
     void add(ComplexNum num) {
         /*
          * Implementare il metodo in modo che venga aggiunto il numero complesso
-         * passato in input
+         * passato in input - Rif. Appendice A1 (slide)
          */
     }
 
