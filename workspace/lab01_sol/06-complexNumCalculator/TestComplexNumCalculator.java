@@ -2,6 +2,7 @@ class TestComplexNumCalculator {
   public static void main(String[] args) {
       ComplexNumCalculator calculator = new ComplexNumCalculator();
       calculator.build();
+
       ComplexNum n1 = new ComplexNum();
       ComplexNum n2 = new ComplexNum();
       ComplexNum result;

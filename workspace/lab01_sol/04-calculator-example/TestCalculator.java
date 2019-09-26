@@ -4,6 +4,7 @@ class TestCalculator {
       System.out.println("--- Test Calculator V1 ---\n");
 
       CalculatorV1 calc1 = new CalculatorV1();
+      calc1.build();
       System.out.println("1+2=" + calc1.add(1, 2));
       System.out.println("-1-(+2)=" + calc1.sub(-1, 2));
       System.out.println("6*3=" + calc1.mul(6, 3));
@@ -12,6 +13,7 @@ class TestCalculator {
       System.out.println("\n--- Test Calculator V2 ---\n");
 
       CalculatorV2 calc2 = new CalculatorV2();
+      calc2.build();
       System.out.println("1+2=" + calc2.add(1, 2));
       System.out.println("nOpDone=" + calc2.nOpDone);
       System.out.println("lastRes=" + calc2.lastRes + "\n");
