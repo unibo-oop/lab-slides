@@ -5,7 +5,7 @@
 
 \newcommand{\lab}{Lab02}
 
-\title[{\lab} -- Strumenti Avanzati]{Stile, classpath, passaggio di argomenti, programmazione imperativa e costruttori}
+\title[{\lab} -- Strumenti Avanzati]{Stile del Codice, Compilazione/Esecuzione avanzata di programmi Java, Programmi con Argomenti}
 
 \date[\today]{\today}
 
@@ -22,45 +22,48 @@
 \end{frame}
 
 \fr{Preparazione ambiente di lavoro}{
+\begin{itemize}\itemsep10pt
+\item Accedere al PC di laboratorio con le proprie credenziali istituzionali
+		\item Accedere al sito del corso
 	\iz{
-		\item Accendere il PC
-		\item Loggarsi sul sito del corso
-	\iz{
-		\item \textcolor{blue}{\url{http://bit.ly/unibooop2018}}
+		\item \textcolor{blue}{\url{http://bit.ly/oop19-cesena}}
 	}
 	\item Scaricare il materiale dell'esercitazione odierna
 	\item Spostare il file scaricato sul Desktop
-	\item Decomprimere il file usando 7zip (o un programma analogo) sul Desktop
-	}
+	\item Decomprimere il file e aprire con Atom la directory ottenuta (File $>$ Add Project Folder...)
+	\item Puntare il terminale alla directory con i sorgenti dell'esercitazione odierna
+\end{itemize}
 }
 
-\section{Stile}
+\section{Stili e Convenzioni per il codice sorgente}
 
-\begin{frame}{L'importanza dello stile}
-	Cominceremo a correggere anche lo stile con cui scrivete codice
-	\begin{itemize}
-		\item Il codice che scriverete verrà condiviso con altre persone
+\begin{frame}{Stili e Convenzioni (1/2)}
+	\begin{itemize}\itemsep10pt
+		\item Il codice sorgente che un programmatore scrive, generalmente è condiviso con altre persone (del proprio team, ma anche persone esterne al team o la community)
 		\begin{itemize}
-			\item È importante scrivere software immediatamente comprensibile
-			\item ``gira'' non è una sufficente metrica di qualità
+			\item è importante scrivere software immediatamente comprensibile
+			\item il fatto che un software ``giri'' (rispetti i requisiti e/o produca i risultati attesi) non è una sufficente metrica di qualità
 		\end{itemize}
-		\item È importante adottare uno stile
+		\item è importante, fondamentale, adottare uno stile e seguirlo
 		\begin{itemize}
 			\item chiaro
 			\item condiviso
 			\item consistente
 		\end{itemize}
 	\end{itemize}
-	\vspace{1cm}
-	\begin{quote}
-		Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live. Code for readability.
-		\flushright{--- John Woods [disputed]}
-	\end{quote}
+
+\begin{block}{}
+\begin{quote}
+Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live. Code for readability.
+\flushright{--- John Woods [disputed]}
+\end{quote}
+\end{block}
 \end{frame}
 
-\begin{frame}{Stili}
-	Ogni linguaggio ha le sue prassi
-	\begin{itemize}
+\begin{frame}{Stili e Convenzioni (2/2)}
+
+\begin{block}{Ogni linguaggio ha le sue prassi...}
+\begin{itemize}
 		\item Quelle Java di riferimento sono disponibili qui:
 		\tiny
 		\begin{itemize}
@@ -69,24 +72,32 @@
 			\item \url{http://bit.ly/oracle-java-code-conventions}
 		\end{itemize}
 	\end{itemize}
-	Ogni azienda poi è libera di darsi altre regole interne, ad esempio:
-	\footnotesize
+\end{block}
+
+\begin{block}{Ogni azienda poi è libera di darsi altre regole interne}
+
+\begin{itemize}
+\item Ad esempio:
+\footnotesize
 	\begin{itemize}
 		\item Google: \url{http://archive.is/a0Jhz}
  		\item Twitter: \url{http://archive.is/aa1tE}
  		\item Mozilla: \url{http://archive.is/rs3Ns}
 	\end{itemize}
 	\normalsize
-	Notare che sono sempre \textbf{consistenti}!
-	\begin{itemize}
-		\item E che sono tipicamente restrizioni delle convenzioni, non modifiche!
-	\end{itemize}
-	\begin{center}
-		\textbf{Nel corso useremo un'estensione delle Java Code Conventions}
-	\end{center}
+\item Notare che sono sempre \textbf{consistenti}!
+\begin{itemize}
+\item E che sono tipicamente restrizioni delle convenzioni, non modifiche!
+\end{itemize}
+\end{itemize}
+\end{block}
+
+\begin{center}
+\textbf{Nel corso faremo riferimento alle Java Code Conventions\\(con qualche vincolo in più)}
+\end{center}
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Buone prassi}
+\begin{frame}[allowframebreaks]{Java Code Conventions (un estratto)}
 	\begin{block}{Usare sempre le parentesi per if, else, for, while, anche se segue una sola istruzione}
 		\begin{itemize}
 			\item Aumentano la manutenibilità del codice
@@ -110,14 +121,15 @@
 			\item I campi \texttt{static final} (costanti di classe) sono interamente maiuscoli e possono usare underscore
 		\end{itemize}
 	\end{block}
-	\begin{itemize}
-		\item Più avanti avrete ulteriori vincoli
-		\item Ma anche degli strumenti automatici che vi aiuteranno
+	
+Come seguire stili e convenzioni? Tutto nelle mani del programmatore?
+\begin{itemize}
+\item Esistono strumenti automatici a supporto, introdotti nelle prossime lezioni...
 	\end{itemize}
 \end{frame}
 
 
-\section{Compilazione ed esecuzione avanzata di classi Java}
+\section{Compilazione ed esecuzione avanzata in Java}
 
 \fr{Nuova opzione per \texttt{javac} \cite{or-javac}}{
 	\begin{itemize}
@@ -173,7 +185,7 @@ directory che andranno usate.
 			\end{itemize}
 		\end{itemize}
 	\end{itemize}
-	\begin{block}{Come fa la JVM a risolvere le classi?}
+	\begin{block}{Come fa la JVM a risolvere le classi? \cite{or-java}}
 		\begin{itemize}
 			\item Possiede un elenco di percorsi che contengono i file compilati
 			\begin{itemize}
@@ -335,17 +347,17 @@ vogliamo compilare
   \end{block}
   \vspace{10pt}
   
-  Gli help stampano una sbrodolata di testo e a me serve una riga, davvero devo imparare a leggere e capire un help?
+  Gli help stampano abbondante testo con le relative istruzioni e a me serve una riga, davvero devo imparare a leggere e capire un help?
   \begin{center}
     \textbf{SÌ}
   \end{center}
   È molto facile dimenticarsi la sintassi delle opzioni di comandi che non si usano spesso. È molto più facile imparare a destreggiarsi in un help che andare a tentativi o ricordare cose a memoria.
 \end{frame}
 
-\section{Passaggio degli argomenti}
+\section{Esecuzioni di programmi java con argomenti}
 
-\begin{frame}{Passaggio degli argomenti}
-	\begin{itemize}
+\begin{frame}{Passaggio di argomenti ad un programma Java (1/2)}
+	\begin{itemize}\itemsep10pt
 		\item La maggior parte dei comandi supporta degli argomenti
 		\begin{itemize}
 			\item Ad esempio, quando eseguite \texttt{javac -d bin MyClass.java} gli argomenti sono:
@@ -355,31 +367,40 @@ vogliamo compilare
 			 \item \texttt{MyClass.java}
 			\end{enumerate}
 		\end{itemize}
-		\item In C, questi vengono passati al \texttt{main} come coppia di \texttt{char **} e \texttt{int}, rappresentanti rispettivamente un riferimento all'area di memoria dove sono salvati i parametri ed il numero dei suddetti.
+		\item In C, questi vengono passati al metodo \texttt{main()} come coppia di \texttt{char **} e \texttt{int}, rappresentanti rispettivamente un riferimento all'area di memoria dove sono salvati i parametri ed il numero dei suddetti.
 		\item Anche in Java ovviamente è possibile passare degli argomenti ad un programma 
-		\item La gestione è un po' più semplice che in C, grazie al fatto che gli array si portano dietro l'informazione circa la loro dimensione
-		\item E grazie al fatto che la signature del main è una sola.
+		\end{itemize}
+\end{frame}
+
+\begin{frame}{Passaggio di argomenti ad un programma Java (1/2)}
+	\begin{itemize}\itemsep10pt
+	\item La gestione è un po' più semplice che in C, grazie al fatto che gli array si portano dietro l'informazione circa la loro dimensione
+		\item E grazie al fatto che la signature del metodo \texttt{main()} è una sola in Java
 		\begin{itemize}
 			\item \texttt{public static void main(String [])} è l'unica signature valida
-			\item In C sia \texttt{int main(void)} che \texttt{int main(char **, int)} sono accettabili
+			\item Mentre in C sia \texttt{int main(void)} che \texttt{int main(char **, int)} sono ugualmente accettabili
 		\end{itemize}
+	
+	
+		\item Gli argomenti con cui un programma Java viene invocato vengono passati come parametri attraverso l'array (\texttt{String[] args}) che il metodo \texttt{main()} prende in ingresso
+		\begin{itemize}
+		\item Nonostante sia un parametro del \emph{metodo principale} di qualunque programma Java, si tratta di un comune array senza alcuna particolarità.
+		\end{itemize}
+		
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Argomenti in Java}
-	\begin{itemize}
-		\item Gli argomenti con cui il programma Java viene invocato vengono inseriti dentro lo \texttt{String[]} che il \texttt{main} prende in ingresso
-		\item Questo è un normalissimo \texttt{String[]}, uguale a qualunque altro \texttt{String[]}, e senza alcuna specialità
-	\end{itemize}
-\end{frame}
+\section{Appendice: richiami utili per gli esercizi del {\lab}}
 
-\begin{frame}{Appendice: calcolo della varianza}
-    Sia $n$ il numero di elementi dell'array ed $x_i$ l'elemento all'indice $i$ dell'array, e $mu$ 
-    la media dei valori del suddetto array. La varianza $\sigma^2$ può essere calcolata come:
-    
-    \centering
-    \Huge
-    $\sigma^2 = \frac{\displaystyle\sum_{i=0}^{n-1}(x_i - \mu)^2} {n}$
+\begin{frame}{A1 -- Varianza}
+
+\begin{block}{Formula per il calcolo della varianza}
+Sia $n$ il numero di elementi dell'array ed $x_i$ l'elemento all'indice $i$ dell'array, e $\mu$ la media dei valori del suddetto array. La varianza $\sigma^2$ può essere calcolata come:
+
+\centering
+\Huge
+$\sigma^2 = \frac{\displaystyle\sum_{i=0}^{n-1}(x_i - \mu)^2} {n}$
+\end{block}
 \end{frame}
 
 \begin{frame}[allowframebreaks]

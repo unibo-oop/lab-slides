@@ -1,6 +1,7 @@
-# Laboratorio 02
+# Programmazione ad Oggetti - Laboratorio 02
+## Esercizio 6 - constructors
 
-## Costruttori
+#### FASE 1 - Costruttori
 
 1. Si rimuova dalle classi `Train` e `Student` il metodo `void main(String[])` ed il metodo `void build(...)`
 2. Si implementi un costruttore a zero argomenti per `Train`
@@ -12,7 +13,7 @@
 7. Si crei (se non già realizzato) un costruttore `Train(int, int)` dove gli argomenti passati siano i posti in prima e seconda classe, rispettivamente.
 8. Si seguano le istruzioni in `UseConstructorsEvolved` per effettuare il test.
 
-## Esercizio più avanzato
+#### FASE 2 - Esercizio più avanzato
 1. Si completi la classe `oop.lab02.constructors.Smartphone` con i campi:
   - `int nCPU, ram, sdSize`
   - `String brand, model`
