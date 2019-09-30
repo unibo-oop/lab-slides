@@ -20,7 +20,7 @@
   - `boolean hasGPS, hasNFC, has3G`
 2. Si implementino nella classe suddetta i seguenti costruttori:
   - `Smartphone(String brand, String model)`
-  - `Smartphone(String brand, String model, int sdSize, boolean hasGPS, has3g)`
+  - `Smartphone(String brand, String model, int sdSize, boolean hasGPS, boolean has3g)`
   - `Smartphone(String brand, String model, int sdSize)`
   - `Smartphone(String brand, String model, boolean hasNFC)`
   - Costruttore con un argomento per campo
