@@ -14,7 +14,7 @@ public class Train {
         this.nFCSeats = nFCSeats;
         this.nSCSeats = nSCSeats;
         this.nFCReservedSeats = 0;
-        this.nFCReservedSeats = 0;
+        this.nSCReservedSeats = 0;
     }
 
     void reserveFCSeats(final int nSeats) {
