@@ -26,7 +26,7 @@ public final class TestBankAccount {
          * 5) Depositare €10000 in entrambi i conti
          */
         /*
-         * 6) Prelevare €15000$ da entrambi i conti
+         * 6) Prelevare €15000 da entrambi i conti
          */
         /*
          * 7) Stampare in stdout l'ammontare corrente
