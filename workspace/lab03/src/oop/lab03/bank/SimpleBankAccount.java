@@ -2,11 +2,11 @@ package oop.lab03.bank;
 
 public class SimpleBankAccount {
 
-    private int usrID;
+	private int userID;
     /*
      * Aggiungere i seguenti campi:
      * - double balace: ammontare del conto
-     * - int userID: id del possessore del conto
+     * - int userID: id del possessore del conto (già dichiarato: si veda al riguardo il metodo checkUser dichiarato in fondo alla classe)
      * - int nTransactions: numero delle operazioni effettuate
      * - static double ATM_TRANSACTION_FEE = 1: costo delle operazioni via ATM
      */
@@ -60,6 +60,6 @@ public class SimpleBankAccount {
 
     /* Utility method per controllare lo user */
     private boolean checkUser(final int id) {
-        return this.usrID == id;
+        return this.userID == id;
     }
 }
