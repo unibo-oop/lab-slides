@@ -28,6 +28,7 @@
 ### FASE 2 - Interfacce
 
 * Si modifichi la classe `SimpleBankAccount` in modo che implementi l'interfaccia `BankAccount` (presente nel package `oop.lab03.bank.interfaces`), realizzando solo i metodi necessari affinché l'interfaccia risulti correttamente implementata.
+    - Si noti che per SimpleBankAccount non sono previste spese di gestione. Quindi, il metodo `chargeManagementFees()` va definito (in quanto previsto dall'interfaccia) ma avrà corpo vuoto...
 * Si implementi in autonomia la classe `StrictBankAccount`, tale che:
     - `StrictBankAccount` implementa `BankAccount`
     - Le operazioni sul conto dovranno essere abilitate solo se lo user id corrisponde a quello a cui il conto è stato associato
