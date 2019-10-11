@@ -60,11 +60,10 @@ public final class Pair<X, Y> {
         /*
          * Xor of hashes. It is usually a decent hashing method, and it is
          * easier to understand than the auto-generated hashCode() by Eclipse.
-         * However, for serious usages, a good hashing library and algorithm is
+         * However, for serious use cases, a good hashing library and algorithm is
          * warmly recommended. For instance, Google Guava provides a number of
          * good and fast hashing algorithms (Murmur 3 is an extremely good
-         * solution), and the Boilerplate library provides a Facade on it that
-         * exposes the hashing functionalities as static methods.
+         * solution).
          */
         return first.hashCode() ^ second.hashCode();
     }
@@ -79,6 +78,9 @@ public final class Pair<X, Y> {
      * @return true if the given pair is equal to this pair
      */
     public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
         if (obj instanceof Pair) {
             final Pair<?, ?> p = (Pair<?, ?>) obj;
             return areEquals(first, p.first) && areEquals(second, p.second);
@@ -87,10 +89,7 @@ public final class Pair<X, Y> {
     }
 
     private static boolean areEquals(final Object o1, final Object o2) {
-        if (o1 == null) {
-            return o2 == null;
-        }
-        return o1.equals(o2);
+        return o1 == null ? o2 == null : o1.equals(o2);
     }
 
 }
