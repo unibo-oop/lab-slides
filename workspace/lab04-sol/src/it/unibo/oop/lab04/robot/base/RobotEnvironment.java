@@ -35,8 +35,8 @@ public class RobotEnvironment {
     }
 
     protected boolean isWithinWorld(final Position2D p) {
-        final double x = p.getX();
-        final double y = p.getY();
+        final var x = p.getX();
+        final var y = p.getY();
         return x >= X_LOWER_LIMIT && x <= X_UPPER_LIMIT && y >= Y_LOWER_LIMIT && y <= Y_UPPER_LIMIT;
     }
 
@@ -49,7 +49,7 @@ public class RobotEnvironment {
      *         only inside the environment's boundaries)
      */
     public boolean move(final int dx, final int dy) {
-        final Position2D newPos = position.sumVector(dx, dy);
+        final var newPos = position.sumVector(dx, dy);
         if (isWithinWorld(newPos)) {
             position = newPos;
             return true;

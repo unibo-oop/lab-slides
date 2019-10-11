@@ -1,6 +1,5 @@
 package it.unibo.oop.lab04.robot.test;
 
-import it.unibo.oop.lab04.robot.base.Robot;
 import it.unibo.oop.lab04.robot.base.BaseRobot;
 import it.unibo.oop.lab04.robot.base.RobotEnvironment;
 import it.unibo.oop.lab04.robot.base.RobotPosition;
@@ -23,13 +22,13 @@ public final class TestRobots {
     }
 
     public static void main(final String[] args) {
-        final int stepsDefault = (int) (BaseRobot.BATTERY_FULL / BaseRobot.MOVEMENT_DELTA_CONSUMPTION);
-        final Robot r0 = new BaseRobot("R2D2");
-        final String r0pos = r0 + " position";
-        final String r0bat = r0 + " battery";
+        final var stepsDefault = (int) (BaseRobot.BATTERY_FULL / BaseRobot.MOVEMENT_DELTA_CONSUMPTION);
+        final var r0 = new BaseRobot("R2D2");
+        final var r0pos = r0 + " position";
+        final var r0bat = r0 + " battery";
         assertEquality(r0pos, new RobotPosition(0, 0), r0.getPosition());
         assertEquality(r0bat, BaseRobot.BATTERY_FULL, r0.getBatteryLevel());
-        int steps = stepsDefault;
+        var steps = stepsDefault;
         while (r0.moveUp()) {
             steps--;
         }

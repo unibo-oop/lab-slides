@@ -22,7 +22,7 @@ public class RobotPosition implements Position2D {
 
     public boolean equals(final Object o) {
         if (o instanceof Position2D) {
-            final Position2D p = (Position2D) o;
+            final var p = (Position2D) o;
             return x == p.getX() && y == p.getY();
         }
         return false;

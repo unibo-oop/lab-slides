@@ -26,7 +26,7 @@ public class SimpleArrayBasedPartCollection extends AbstractArrayBasedPartCollec
 
     @Override
     protected void removePartAt(final int index) {
-        final RobotPart[] na = new RobotPart[parts.length - 1];
+        final var na = new RobotPart[parts.length - 1];
         for (int i = 0; i < index; i++) {
             na[i] = parts[i];
         }
