@@ -72,7 +72,7 @@ Branching e merging}
 			\end{itemize}
 		\end{itemize}
 	\end{block}
-	\begin{block}{Esercizio}	
+	\begin{block}{Esercizio}
 		\begin{itemize}
             \item Si riparta dal repository contenente l'esercizio eseguito nella lezione precedente
             \begin{itemize}
@@ -126,12 +126,12 @@ agli esercizi
 		\begin{itemize}
 			\item \texttt{git diff}
 			\begin{itemize}
-				\item Mostra le differenze fra l'ultimo commit effettuato e il contenuto della staging area
+				\item Mostra le differenze fra il working tree e l'ultimo commit, \textit{escludendo il contenuto della staging area}
 			\end{itemize}
 			\item \texttt{git diff FROM}
 			\begin{itemize}
-				\item Dove \texttt{FROM} è lo hash di un commit
-				\item Mostra le differenze fra \texttt{FROM} e la staging area
+				\item Dove \texttt{FROM} è un riferimento ad un commit
+				\item Mostra le differenze fra \texttt{FROM} e il working tree
 			\end{itemize}
 			\item \texttt{git diff FROM TO}
 			\begin{itemize}
@@ -193,18 +193,18 @@ index de0a8c8..0000000
 	\begin{block}{In Git}
 		Il sottocomando \texttt{checkout} consente di ripristinare una versione precedente di un file o dell'intero repository
 		\begin{itemize}
-			\item \texttt{git checkout COMMITHASH}
+			\item \texttt{git checkout COMMITREF}
 			\begin{itemize}
-				\item Dove \texttt{COMMITHASH} è lo hash di un commit o un suo riferimento, ad esempio:
+				\item Dove \texttt{COMMITREF} è lo hash di un commit o un suo riferimento, ad esempio:
 				\begin{itemize}
 					\item \texttt{HEAD}
 					\item \texttt{master}, o altro nome di branch
 				\end{itemize}
-				\item Se non ci sono modifiche che rischiano di essere perse, torna al salvataggio \texttt{COMMITHASH}
+				\item Se non ci sono modifiche che rischiano di essere perse, torna al salvataggio \texttt{COMMITREF}
 			\end{itemize}
-			\item \texttt{git checkout COMMITHASH -- FILENAME}
+			\item \texttt{git checkout COMMITREF -- FILENAME}
 			\begin{itemize}
-				\item Ripristina il file \texttt{FILENAME} prendendolo dal commit \texttt{COMMITHASH}
+				\item Ripristina il file \texttt{FILENAME} prendendolo dal commit \texttt{COMMITREF}
 			\end{itemize}
 		\end{itemize}
 	\end{block}
