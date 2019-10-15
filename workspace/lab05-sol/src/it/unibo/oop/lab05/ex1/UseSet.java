@@ -1,11 +1,9 @@
 package it.unibo.oop.lab05.ex1;
 
-import java.util.Iterator;
-import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * Example class using {@link Set}.
+ * Example class using {@link java.util.Set}.
  * 
  */
 public final class UseSet {
@@ -26,7 +24,7 @@ public final class UseSet {
          * 
          * 1) Builds a TreeSet containing Strings
          */
-        final Set<String> set = new TreeSet<>();
+        final var set = new TreeSet<String>();
         /*
          * 2) Populates such Collection with all the Strings ranging from "1" to
          * "20"
@@ -42,7 +40,7 @@ public final class UseSet {
          * 4) Removes all those strings whose represented number is divisible by
          * three
          */
-        final Iterator<String> iter = set.iterator();
+        final var iter = set.iterator();
         while (iter.hasNext()) {
             if (Integer.parseInt(iter.next()) % 3 == 0) {
                 iter.remove();
@@ -58,7 +56,7 @@ public final class UseSet {
         /*
          * 6) Verifies if all the numbers left in the set are even
          */
-        final Set<String> set2 = new TreeSet<>();
+        final var set2 = new TreeSet<>();
         for (int i = 2; i <= ELEMS; i += 2) {
             set2.add(Integer.toString(i));
         }

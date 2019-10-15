@@ -24,7 +24,7 @@ public final class UseCollection {
          * Unless you need to perform specific operations, always use the most
          * generic interface
          */
-        final Collection<Integer> coll = new ArrayList<>();
+        final var coll = new ArrayList<>();
         coll.addAll(Arrays.asList(1, 3, 5, 7, 9, 11)); // var-args
         System.out.println(coll); // [1, 3, 5, 7, 9, 11]
 

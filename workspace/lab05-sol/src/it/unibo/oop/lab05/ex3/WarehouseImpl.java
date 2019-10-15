@@ -22,7 +22,7 @@ public class WarehouseImpl implements Warehouse {
      * {@inheritDoc}
      */
     public Set<String> allNames() {
-        final Set<String> s = new HashSet<>();
+        final var s = new HashSet<String>();
         for (final Product p : this.set) {
             s.add(p.getName());
         }
@@ -47,7 +47,7 @@ public class WarehouseImpl implements Warehouse {
      * {@inheritDoc}
      */
     public final double getQuantity(final String name) {
-        for (final Product p : this.set) {
+        for (final var p : this.set) {
             if (p.getName().equals(name)) {
                 return p.getQuantity();
             }

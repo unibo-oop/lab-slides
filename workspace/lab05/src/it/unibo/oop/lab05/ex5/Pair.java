@@ -82,7 +82,7 @@ public final class Pair<X, Y> {
             return true;
         }
         if (obj instanceof Pair) {
-            final Pair<?, ?> p = (Pair<?, ?>) obj;
+            final var p = (Pair<?, ?>) obj;
             return areEquals(first, p.first) && areEquals(second, p.second);
         }
         return false;

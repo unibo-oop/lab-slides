@@ -47,7 +47,7 @@ public class ProductImpl implements Product {
      */
     public boolean equals(final Object obj) {
         if (obj instanceof Product) {
-            final Product pr = (Product) obj;
+            final var pr = (Product) obj;
             return name.equals(pr.getName());
         }
         return false;
