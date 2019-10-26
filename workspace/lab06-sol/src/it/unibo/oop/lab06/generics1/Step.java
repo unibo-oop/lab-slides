@@ -21,7 +21,7 @@ class Step<N> {
     private final N position;
 
     /**
-     * Creates an initial step on node {@code position} with no previous steps
+     * Creates an initial step on node {@code position} with no previous steps.
      * 
      * @param position is the initial node
      */
@@ -30,7 +30,7 @@ class Step<N> {
     }
 
     /**
-     * Creates a further step reaching node {@code currentPosition} following the steps {@code previousSteps}
+     * Creates a further step reaching node {@code currentPosition} following the steps {@code previousSteps}.
      * 
      * @param currentPosition is the node reached after performing this step
      */
@@ -66,5 +66,4 @@ class Step<N> {
         }
         return String.join(" -> ", elements);
     }
-
 }

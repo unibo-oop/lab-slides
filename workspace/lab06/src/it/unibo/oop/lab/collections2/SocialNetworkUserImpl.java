@@ -1,6 +1,3 @@
-/**
- * 
- */
 package it.unibo.oop.lab.collections2;
 
 import java.util.Collection;

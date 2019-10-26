@@ -95,9 +95,10 @@ public class UserImpl implements User {
     public boolean equals(final Object o) {
         if (o instanceof UserImpl) {
             final UserImpl user = (UserImpl) o;
-            return (this.firstName.equals(user.getFirstName())
+            return this.firstName.equals(user.getFirstName())
                     && this.lastName.equals(user.getLastName())
-                    && this.username.equals(user.getUsername()) && this.age == user.getAge());
+                    && this.username.equals(user.getUsername())
+                    && this.age == user.getAge();
         }
         return false;
     }

@@ -92,7 +92,7 @@ public class Robot {
      *            the new Y position to move the robot to
      * @throws NotEnoughBatteryException
      */
-    private void moveToPosition(final int newX, final int newY) throws PositionOutOfBoundException, NotEnoughBatteryException {
+    private void moveToPosition(final int newX, final int newY) {
 
         if (this.isBatteryEnoughToMove()) {
             this.environment.move(newX, newY);

@@ -12,7 +12,7 @@ public interface BankAccount {
      * @param amount
      *            amount to be withdrawn
      */
-    void withdraw(final int usrID, final double amount);
+    void withdraw(int usrID, double amount);
 
     /**
      * 
@@ -52,5 +52,4 @@ public interface BankAccount {
      * @return The total number of transaction for the account
      */
     int getNTransactions();
-
 }

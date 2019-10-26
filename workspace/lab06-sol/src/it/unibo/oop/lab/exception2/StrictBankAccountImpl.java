@@ -152,7 +152,7 @@ public class StrictBankAccountImpl implements BankAccount {
     public void computeManagementFees(final int usrID) {
         final double feeAmount = MANAGEMENT_FEE + (nTransactions * StrictBankAccountImpl.TRANSACTION_FEE);
         if (checkUser(usrID) && isWithdrawAllowed(feeAmount)) {
-            balance -= (MANAGEMENT_FEE + (nTransactions * StrictBankAccountImpl.TRANSACTION_FEE));
+            balance -= MANAGEMENT_FEE + nTransactions * StrictBankAccountImpl.TRANSACTION_FEE;
             nTransactions = 0;
             nAtmTransactions = 0;
         }

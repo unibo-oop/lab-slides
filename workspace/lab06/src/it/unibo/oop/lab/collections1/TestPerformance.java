@@ -9,8 +9,8 @@ import java.util.TreeSet;
  */
 public final class TestPerformance {
 
-    private static final int ELEMS = 1000000;
-    private static final int TO_MS = 1000000;
+    private static final int ELEMS = 1_000_000;
+    private static final int TO_MS = 1_000_000;
 
     private TestPerformance() { }
 

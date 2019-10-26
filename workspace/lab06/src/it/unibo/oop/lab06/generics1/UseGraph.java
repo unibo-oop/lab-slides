@@ -25,7 +25,6 @@ public final class UseGraph {
         g.addEdge("d", "e");
         g.addEdge("c", "a");
         g.addEdge("e", "a");
-
         /*
          * Should print ["a","b","c","d","e"], in any order
          */

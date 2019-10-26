@@ -42,5 +42,4 @@ public class NotEnoughBatteryException extends IllegalStateException {
     public String getMessage() {
         return this.toString();
     }
-
 }

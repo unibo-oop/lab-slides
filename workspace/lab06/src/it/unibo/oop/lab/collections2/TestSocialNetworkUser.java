@@ -15,6 +15,8 @@ import java.util.Collection;
  */
 public final class TestSocialNetworkUser {
 
+    private static final String WRITERS = "writers";
+
     private TestSocialNetworkUser() {
     }
 
@@ -47,9 +49,9 @@ public final class TestSocialNetworkUser {
          */
         mgladwell.addFollowedUser("acquaintances", ntaleb);
         dwashington.addFollowedUser("myths", asmith);
-        dwashington.addFollowedUser("writers", ntaleb);
+        dwashington.addFollowedUser(WRITERS, ntaleb);
         dwashington.addFollowedUser("colleagues", kbacon);
-        dwashington.addFollowedUser("writers", mgladwell);
+        dwashington.addFollowedUser(WRITERS, mgladwell);
         /*
          * All tests must return true
          */
@@ -58,7 +60,7 @@ public final class TestSocialNetworkUser {
         System.out.println("K Bacon must have no followed people called Malcom: " + kbaconFriends.isEmpty());
         final Collection<User> mgladFriends = mgladwell.getFollowedUsersInGroup("Close friends");
         System.out.println("M Gladwell has not set yet any group called \"Close friends\": " + mgladFriends.isEmpty());
-        final Collection<User> dwashFriends = dwashington.getFollowedUsersInGroup("writers");
+        final Collection<User> dwashFriends = dwashington.getFollowedUsersInGroup(WRITERS);
         System.out.println("Denzel has 2 followed people in group \"writers\": " + (dwashFriends.size() == 2));
         /*
          * Adding another friend to Denzel's "writers" group...
@@ -69,6 +71,6 @@ public final class TestSocialNetworkUser {
          * STILL TWO PEOPLE in denzel's group called writers
          */
         System.out.println("Denzel has STILL 2 followed people in group \"writers\": "
-                + (dwashington.getFollowedUsersInGroup("writers").size() == 2));
+                + (dwashington.getFollowedUsersInGroup(WRITERS).size() == 2));
     }
 }

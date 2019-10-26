@@ -17,7 +17,7 @@ import java.util.Set;
  */
 public class GraphImpl<N> implements Graph<N> {
 
-    private final Map<N, Set<N>> edges = new LinkedHashMap<N, Set<N>>();
+    private final Map<N, Set<N>> edges = new LinkedHashMap<>();
     private final FringeAccumulationStrategy<Step<N>> strategy;
 
     /**
@@ -73,7 +73,7 @@ public class GraphImpl<N> implements Graph<N> {
     }
 
     /**
-     * Implements a fringe-based, pluggable-strategy, uninformed search algorithm
+     * Implements a fringe-based, pluggable-strategy, uninformed search algorithm.
      *
      * @see http://artint.info/html/ArtInt_51.html
      */
