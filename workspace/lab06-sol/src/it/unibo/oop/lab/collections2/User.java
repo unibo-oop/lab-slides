@@ -4,9 +4,7 @@
 package it.unibo.oop.lab.collections2;
 
 /**
- * 
- * Represents a the contract for a generic application {@link UserImpl}.
- * 
+ * Represents the contract for a generic user.
  */
 public interface User {
 
