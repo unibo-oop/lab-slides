@@ -27,7 +27,7 @@ public final class UseDummies {
      *            unused.
      */
     public static void main(final String[] args) {
-        final DummyClass[] dummies = new DummyClass[] { new DummyClass(), new MinionDummy(), new MoreDummy(), new EvenMoreDummy() };
+        final DummyClass[] dummies = { new DummyClass(), new MinionDummy(), new MoreDummy(), new EvenMoreDummy() };
         for (final DummyClass d : dummies) {
             System.out.println(d);
         }
