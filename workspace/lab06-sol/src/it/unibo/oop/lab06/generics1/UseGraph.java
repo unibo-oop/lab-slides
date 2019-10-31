@@ -14,7 +14,6 @@ public final class UseGraph {
      */
     public static void main(final String... args) {
         final Graph<String> g = new GraphImpl<>(BreadthFirst.getInstance());
-
         g.addNode("a");
         g.addNode("b");
         g.addNode("c");
@@ -26,7 +25,6 @@ public final class UseGraph {
         g.addEdge("d", "e");
         g.addEdge("c", "a");
         g.addEdge("e", "a");
-
         /*
          * Should print ["a","b","c","d","e"], in any order
          */
