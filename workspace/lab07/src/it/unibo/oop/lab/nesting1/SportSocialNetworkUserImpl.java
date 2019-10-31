@@ -62,7 +62,7 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
     }
 
     /**
-     * Field meant to keep track of the set of sports followed/done by a user
+     * Field meant to keep track of the set of sports followed/done by a user.
      */
     private final Set<Sport> sports;
 
@@ -135,7 +135,7 @@ public class SportSocialNetworkUserImpl<U extends User> extends SocialNetworkUse
      * Complete the definition of this static inner class defining a Sport along
      * with its bare name.
      */
-    public static class Sport {
+    public static final class Sport {
         /*
          * TODO
          * 

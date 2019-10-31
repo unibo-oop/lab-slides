@@ -11,7 +11,7 @@ public interface Acceptor<T> {
 
     /**
      * Accept a new element. In case the element is not part of the set
-     * sequence, returns a {@link Acceptor.ElementNotAcceptedException}
+     * sequence, throws a {@link Acceptor.ElementNotAcceptedException}
      * .
      * 
      * @param newElement
@@ -36,7 +36,7 @@ public interface Acceptor<T> {
      * 
      */
     @SuppressWarnings("serial")
-    class ElementNotAcceptedException extends Exception {
+    class ElementNotAcceptedException extends RuntimeException {
 
         private final Object element;
 
@@ -66,7 +66,7 @@ public interface Acceptor<T> {
      * 
      */
     @SuppressWarnings("serial")
-    class EndNotAcceptedException extends Exception {
+    class EndNotAcceptedException extends RuntimeException {
     }
 
 }

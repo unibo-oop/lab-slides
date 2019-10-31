@@ -11,6 +11,9 @@ import it.unibo.oop.jar.packages.pkg1.DummyClass;
  */
 public class MoreDummy extends DummyClass {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "More";

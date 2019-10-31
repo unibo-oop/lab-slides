@@ -78,7 +78,7 @@ public final class TestAnonymousComparator {
         /*
          * expected Result
          */
-        List<User> expectedResult = new ArrayList<User>();
+        List<User> expectedResult = new ArrayList<>();
         expectedResult.add(pverdi);
         expectedResult.add(mrossi);
         expectedResult.add(mgladwell);
@@ -109,7 +109,7 @@ public final class TestAnonymousComparator {
         /*
          * expected Result
          */
-        expectedResult = new ArrayList<User>();
+        expectedResult = new ArrayList<>();
         expectedResult.add(dwashington);
         expectedResult.add(kbacon);
         expectedResult.add(ntaleb);

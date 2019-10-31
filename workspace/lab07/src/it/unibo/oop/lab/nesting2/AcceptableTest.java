@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import it.unibo.oop.lab.nesting2.Acceptor.ElementNotAcceptedException;
+
 /**
  * This is the JUnit test for {@link it.unibo.oop.lab.nesting2.Acceptable}
  * implementation.
@@ -23,20 +25,16 @@ public class AcceptableTest {
         /*
          * Correct acceptance of [10, 20, 30, 40]
          */
-        try {
-            final List<Integer> list = Arrays.asList(10, 20, 30, 40);
-            /*
-             * the following needs instantiation
-             */
-            final Acceptable<Integer> acc = null;
-            final Acceptor<Integer> acceptor = acc.acceptor();
-            for (final Integer el: list) {
-                acceptor.accept(el);
-            }
-            acceptor.end();
-        } catch (Exception e) {
-            fail("Sequence was supposed to be correct!");
+        final List<Integer> list = Arrays.asList(10, 20, 30, 40);
+        /*
+         * the following needs instantiation
+         */
+        final Acceptable<Integer> acc = null;
+        final Acceptor<Integer> acceptor = acc.acceptor();
+        for (final Integer el: list) {
+            acceptor.accept(el);
         }
+        acceptor.end();
     }
 
     /**
