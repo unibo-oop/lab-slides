@@ -8,10 +8,9 @@ package it.unibo.oop.lab.exception1;
 public class PositionOutOfBoundException extends IllegalStateException {
 
     /**
-     * The reason why this strange long field exists will be clear after the lesson
-     * about I/O in Java...
+     * 
      */
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 5322262957171100503L;
     private final int x;
     private final int y;
 
@@ -30,9 +29,16 @@ public class PositionOutOfBoundException extends IllegalStateException {
     }
 
     /**
-     * {@inheritDoc}
+     * 
+     * @return the string representation of instances of this class
      */
-    public String getMessage() {
+    @Override
+    public String toString() {
         return "Can not move to pos(" + this.x + ", " + this.y + "), out of bounds";
+    }
+
+    @Override
+    public String getMessage() {
+        return this.toString();
     }
 }
