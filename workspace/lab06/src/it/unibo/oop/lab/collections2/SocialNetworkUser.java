@@ -17,23 +17,22 @@ import java.util.List;
 public interface SocialNetworkUser<U extends User> extends User {
 
     /**
-     * Adds a friend to the list of this user's current friends. If the friend
-     * already exists in the group, do not do anything and return false.
+     * Adds a friend to the list of this user's current friends.
      * 
      * @param group
-     *            the group (circle) to which the user in going to be added
+     *            the group (circle) on which the user in going to be added
      * @param user
      *            the user to be added as a user followed
      * @return true if the user to be added as a followed person does not exist
-     *         in the group yet, false otherwise
+     *         yet, false otherwise
      */
     boolean addFollowedUser(String group, U user);
 
     /**
-     * Gets the list of people followed by this user independently of the
-     * belonging group.
+     * Gets the list of every person followed by this user disregarding the
+     * group.
      * 
-     * @return the list of people followed by this user among all her/his groups
+     * @return the list of people followed by this user among all her groups
      */
     List<U> getFollowedUsers();
 
@@ -43,7 +42,7 @@ public interface SocialNetworkUser<U extends User> extends User {
      * @param groupName
      *            the name of the group
      * @return the collection of people followed by this user within group
-     *         "groupName"
+     *         "groupName".
      */
     Collection<U> getFollowedUsersInGroup(String groupName);
 
