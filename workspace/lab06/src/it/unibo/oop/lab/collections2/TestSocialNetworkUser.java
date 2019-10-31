@@ -38,6 +38,10 @@ public final class TestSocialNetworkUser {
          * Malcom Gladwell, mgladwell, 51
          * 
          * Nicholas Taleb, ntaleb, 54
+         * 
+         * And one regular UserImpl (User)
+         * 
+         * * Adam Smith, asmith, (no age)
          */
         final SocialNetworkUser<User> kbacon = null;
         final SocialNetworkUser<User> dwashington = null;
