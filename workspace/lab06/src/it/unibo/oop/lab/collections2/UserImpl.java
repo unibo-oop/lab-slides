@@ -1,8 +1,7 @@
 package it.unibo.oop.lab.collections2;
 
 /**
- * This is a basic implementation of a {@link it.unibo.oop.lab.collections2.User}
- * .
+ * This is a basic implementation of a {@link it.unibo.oop.lab.collections2.User}.
  * 
  * This class is completely mplemented and can be used as it is.
  * 
@@ -54,34 +53,52 @@ public class UserImpl implements User {
         this.username = user;
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public String getFirstName() {
         return this.firstName;
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public String getLastName() {
         return this.lastName;
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public String getUsername() {
         return this.username;
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public int getAge() {
         return this.age;
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public boolean isAgeDefined() {
         return this.age > 0;
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public boolean equals(final Object o) {
-        if (o instanceof UserImpl) {
+        if (this == o) {
+            /*
+             * Performance optimization
+             */
+            return true;
+        }
+        if (o != null && getClass().equals(o.getClass())) {
             final UserImpl user = (UserImpl) o;
             return firstName.equals(user.getFirstName())
                     && lastName.equals(user.getLastName())
@@ -91,10 +108,12 @@ public class UserImpl implements User {
         return false;
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public int hashCode() {
         /*
-         * All fields are final and immutable: lazy init allowed.
+         * All fields are final and immutable: lazy initialization allowed.
          */
         if (hash == 0) {
             hash = firstName.hashCode() ^ lastName.hashCode() ^ username.hashCode() ^ age;
@@ -102,7 +121,9 @@ public class UserImpl implements User {
         return hash;
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public String toString() {
         return "[ " + this.firstName + " " + this.lastName + " " + this.age + " " + this.username + " ]";
     }
