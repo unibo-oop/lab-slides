@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 /**
@@ -103,8 +102,8 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
          * Pre-populate a Set in order to prevent duplicates
          */
         final Set<U> followedUsers = new HashSet<>();
-        for (final Entry<String, Set<U>> group : friends.entrySet()) {
-            followedUsers.addAll(group.getValue());
+        for (final Set<U> group : friends.values()) {
+            followedUsers.addAll(group);
         }
         return new ArrayList<>(followedUsers);
     }
