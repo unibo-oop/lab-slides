@@ -47,12 +47,12 @@ public enum Sport {
     SOCCER(Place.OUTDOOR, 11, "Football");
 
     private final Place place;
-    private final Integer noTeamMembers;
+    private final Integer teamMembersCount;
     private final String actualName;
 
     Sport(final Place pl, final int teamMembers, final String realName) {
         this.place = pl;
-        this.noTeamMembers = teamMembers;
+        this.teamMembersCount = teamMembers;
         this.actualName = realName;
     }
 
@@ -62,7 +62,7 @@ public enum Sport {
      * @return true if the sport is an individual one, false otherwise
      */
     public boolean isIndividualSport() {
-        return this.noTeamMembers == 1;
+        return this.teamMembersCount == 1;
     }
 
     /**
@@ -90,6 +90,6 @@ public enum Sport {
      */
     public String toString() {
         return "Sport[ name=" + this.actualName + ", place=" + this.place
-                + ", peoplePerTeam=" + this.noTeamMembers + "]";
+                + ", peoplePerTeam=" + this.teamMembersCount + "]";
     }
 }
