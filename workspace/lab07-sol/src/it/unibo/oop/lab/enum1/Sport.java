@@ -8,12 +8,32 @@ package it.unibo.oop.lab.enum1;
  * 
  */
 public enum Sport {
-    /*
-     * declare the following sports: - basket - soccer - tennis - bike - F1 -
-     * motogp - volley
-     */
     /**
-     * Sports.
+     * Basket.
      */
-    BASKET, SOCCER, TENNIS, BIKE, F1, MOTOGP, VOLLEY
+    BASKET,
+    /**
+     * Soccer / football.
+     */
+    SOCCER,
+    /**
+     * Tennis.
+     */
+    TENNIS,
+    /**
+     * Biking.
+     */
+    BIKE,
+    /**
+     * Formula One.
+     */
+    F1,
+    /**
+     * MotoGP.
+     */
+    MOTOGP,
+    /**
+     * Volleyball.
+     */
+    VOLLEY
 }
