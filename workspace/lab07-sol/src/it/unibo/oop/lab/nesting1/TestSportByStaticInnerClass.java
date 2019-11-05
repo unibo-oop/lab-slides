@@ -25,7 +25,7 @@ public final class TestSportByStaticInnerClass {
          * 
          * Davide Cassani , dcassani, 53
          * 
-         * Bernie Ecclestone, decclestone, 83
+         * Bernie Ecclestone, becclestone, 83
          * 
          * Fernando Alonso, falonso, 34
          */
@@ -36,7 +36,7 @@ public final class TestSportByStaticInnerClass {
         final SportSocialNetworkUserImpl<User> falonso = new SportSocialNetworkUserImpl<>(
                 "Fernando", "Alonso", "falonso", 34);
         /*
-         * alonso in a fan of soccer and bike and practices F1: add these sports
+         * alonso is a fan of soccer and bike and practices F1: add these sports
          * to Alonso
          * 
          * falonso.addSport(SportSocialNetworkUserImpl.F1);
@@ -48,8 +48,7 @@ public final class TestSportByStaticInnerClass {
         System.out.println("Alonso does not lime volley: "
                 + !falonso.hasSport(SportSocialNetworkUserImpl.VOLLEY));
         /*
-         * Cassani practiced bike and loves F1 and MotoGP: add these sports to
-         * Cassani
+         * Cassani practiced bike and loves F1 and MotoGP
          */
         dcassani.addSport(SportSocialNetworkUserImpl.BIKE);
         dcassani.addSport(SportSocialNetworkUserImpl.F1);
