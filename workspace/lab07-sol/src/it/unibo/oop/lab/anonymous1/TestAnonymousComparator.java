@@ -39,9 +39,7 @@ public final class TestAnonymousComparator {
     public static boolean checkUserOrder(final List<User> expected, final List<User> result) {
         for (int i = 0; i < expected.size(); i++) {
             if (!expected.get(i).equals(result.get(i))) {
-                System.out.println("    [EXCEPTION] [POS. " + i
-                        + "] [EXPECTED] " + expected.get(i)
-                        + " [GOT] " + result.get(i));
+                System.out.println("[EXCEPTION] [POS. " + i + "] [EXPECTED] " + expected.get(i) + " [GOT] " + result.get(i));
                 return false;
             }
         }
@@ -75,15 +73,16 @@ public final class TestAnonymousComparator {
          * - define an anonymous comparator to sort incrementally by age
          * 
          */
-        Collections.sort(denzelUsers, new Comparator<User>() {
+        final var ascending = new Comparator<User>() {
             public int compare(final User a, final User b) {
                 return Integer.compare(a.getAge(), b.getAge());
             }
-        });
+        };
+        Collections.sort(denzelUsers, ascending);
         /*
          * expected Result
          */
-        List<User> expectedResult = new ArrayList<User>();
+        List<User> expectedResult = new ArrayList<>();
         expectedResult.add(pverdi);
         expectedResult.add(mrossi);
         expectedResult.add(mgladwell);
@@ -105,15 +104,11 @@ public final class TestAnonymousComparator {
          * 
          * - define an anonymous comparator to sort by age decrementally
          */
-        Collections.sort(rossiUsers, new Comparator<User>() {
-            public int compare(final User a, final User b) {
-                return Integer.compare(b.getAge(), a.getAge());
-            }
-        });
+        Collections.sort(rossiUsers, ascending.reversed());
         /*
          * expected Result
          */
-        expectedResult = new ArrayList<User>();
+        expectedResult = new ArrayList<>();
         expectedResult.add(dwashington);
         expectedResult.add(kbacon);
         expectedResult.add(ntaleb);
