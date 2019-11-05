@@ -79,7 +79,7 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
 
     /**
      *
-     * [NOTE] If no group with groupName exists yet, this implementation must
+     * If no group with groupName exists yet, this implementation must
      * return an empty Collection.
      * 
      * {@inheritDoc}
@@ -90,7 +90,7 @@ public class SocialNetworkUserImpl<U extends User> extends UserImpl implements S
             return new ArrayList<>(usersInCircle);
         }
         /*
-         * Return a very fast, unmodifiable, pre-cached empty list.
+         * Return a very fast, lightweight, unmodifiable, pre-cached empty list.
          */
         return Collections.emptyList();
     }
