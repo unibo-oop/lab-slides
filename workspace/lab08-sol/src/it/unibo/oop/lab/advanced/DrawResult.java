@@ -2,17 +2,19 @@ package it.unibo.oop.lab.advanced;
 
 /**
  * Possible outcomes of a guess.
+ * 
+ * Here implemented as enum, but a configuration file would be MUCH more effective.
  */
 public enum DrawResult {
 
     /**
      * Low number.
      */
-    YOURS_LOW("Your number is too low"),
+    YOURS_LOW("Your number is too small"),
     /**
      * High number.
      */
-    YOURS_HIGH("Your number is too high"),
+    YOURS_HIGH("Your number is too big"),
     /**
      * Correct attempt.
      */
