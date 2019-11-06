@@ -24,6 +24,7 @@
 		<exclude name="OneDeclarationPerLine" />
 		<exclude name="PositionLiteralsFirstInCaseInsensitiveComparisons" />
 		<exclude name="PositionLiteralsFirstInComparisons" />
+		<exclude name="SystemPrintln" />
 		<exclude name="UseVarargs" />
 	</rule>
 	<rule
