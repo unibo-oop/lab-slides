@@ -16,7 +16,7 @@ Currently, the game settings (minimum, maximum, and number of allowed attempts) 
 
 ### Suggestions:
 
-* Use a `FileReader` inside a `BufferedReader` to get the file content. Another option is `Files.readAllLines()`. The first way is described in detail on the slides, the second method must be learned from the Javadoc.
+* Use the resource loader to load the file provided in res. You can wrap the stream with a `StreamReader` and a `BufferedReader` to get the contents and proceed line by line.
 
 * The file (see the example in the "res" folder) is a [standard YAML file](https://en.wikipedia.org/wiki/YAML). There are libraries to parse YML easily, but this very file is so simple that no particular strategy is required: just filter what is before and after the colon.
 
