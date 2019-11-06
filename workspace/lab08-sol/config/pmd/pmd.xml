@@ -15,6 +15,7 @@
 	<rule ref="category/java/bestpractices.xml">
 		<exclude name="AccessorClassGeneration" />
 		<exclude name="AccessorMethodGeneration" />
+		<exclude name="AvoidPrintStackTrace" />
 		<exclude name="ConstantsInInterface" />
 		<exclude name="GuardLogStatement" />
 		<exclude name="JUnitAssertionsShouldIncludeMessage" />
