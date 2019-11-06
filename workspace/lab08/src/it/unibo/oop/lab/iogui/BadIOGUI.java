@@ -1,6 +1,3 @@
-/**
- * 
- */
 package it.unibo.oop.lab.iogui;
 
 import java.awt.BorderLayout;
