@@ -52,7 +52,7 @@
 		<property name="message" value="Line has trailing spaces." />
 	</module>
 	<module name="RegexpMultiline">
-		<property name="severity" value="error" />
+		<property name="severity" value="warning" />
 		<property name="fileExtensions" value="java,xtend,scala,kt,xml,groovy,yaml,yml" />
 		<property name="format" value="(?s:(\r\n|\r).*)"/>
 		<property name="message" value="CRLF and CR line endings are prohibited, but this file uses them."/>
