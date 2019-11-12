@@ -28,12 +28,12 @@ public final class SimpleGUIWithFileChooser {
 
     private SimpleGUIWithFileChooser(final Controller ctrl) {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        // Panel configuration
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new BorderLayout());
-
+        // Text area
         final JTextArea text = new JTextArea();
-
+        // Save button
         final JButton save = new JButton("Save");
         save.addActionListener(new ActionListener() {
             @Override
@@ -45,12 +45,12 @@ public final class SimpleGUIWithFileChooser {
                 }
             }
         });
+        // Assemble text and button
         panel1.add(text, BorderLayout.CENTER);
         panel1.add(save, BorderLayout.SOUTH);
-
+        // File selection
         final JTextField filepath = new JTextField(ctrl.getCurrentFilePath());
         filepath.setEditable(false);
-
         final JButton chooseFile = new JButton("Browse...");
         chooseFile.addActionListener(new ActionListener() {
             @Override
@@ -71,20 +71,18 @@ public final class SimpleGUIWithFileChooser {
                 }
             }
         });
-
+        // Assemble upper panel
         final JPanel upperPanel = new JPanel();
         upperPanel.setLayout(new BorderLayout());
         upperPanel.add(filepath, BorderLayout.CENTER);
         upperPanel.add(chooseFile, BorderLayout.LINE_END);
         panel1.add(upperPanel, BorderLayout.NORTH);
-
+        // Frame configuration
         frame.setContentPane(panel1);
-
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
         frame.setSize(sw / 4, sh / 4);
-
         frame.setLocationByPlatform(true);
     }
 
