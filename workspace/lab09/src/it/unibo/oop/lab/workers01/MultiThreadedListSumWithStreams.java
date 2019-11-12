@@ -1,14 +1,12 @@
 package it.unibo.oop.lab.workers01;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
- * This is a standard implementation of the calculation.
+ * This is an implementation using streams.
  * 
- * */
-
+ */
 public final class MultiThreadedListSumWithStreams implements SumList {
 
     private final int nthread;
@@ -68,29 +66,29 @@ public final class MultiThreadedListSumWithStreams implements SumList {
     public long sum(final List<Integer> list) {
         final int size = list.size() % nthread + list.size() / nthread;
         /*
-         * Build a list of workers
+         * Build a stream of workers
          */
-        final List<Worker> workers = IntStream.iterate(0, start -> start + size)
+        return IntStream.iterate(0, start -> start + size)
                 .limit(nthread)
                 .mapToObj(start -> new Worker(list, start, size))
-                .collect(Collectors.toList());
-        /*
-         * Start them
-         */
-        workers.forEach(Thread::start);
-        /*
-         * Wait for every one of them to finish
-         */
-        workers.forEach(t -> {
+                // Start them
+                .peek(Thread::start)
+                // Join them
+                .peek(MultiThreadedListSumWithStreams::joinUninterruptibly)
+                 // Get their result and sum
+                .mapToLong(Worker::getResult)
+                .sum();
+    }
+
+    private static void joinUninterruptibly(final Thread target) {
+        var joined = false;
+        while (!joined) {
             try {
-                t.join();
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
+                target.join();
+                joined = true;
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        });
-        /*
-         * Return the sum
-         */
-        return workers.stream().mapToLong(Worker::getResult).sum();
+        }
     }
 }

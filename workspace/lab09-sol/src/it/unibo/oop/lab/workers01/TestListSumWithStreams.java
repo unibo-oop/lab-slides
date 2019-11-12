@@ -43,7 +43,7 @@ public class TestListSumWithStreams {
          * Prepare time ant test with different number of threads
          */
         long time;
-        for (int threads: new int[] { 1, 2, 3, 4, 8, 16, 32 }) {
+        for (final int threads: new int[] { 1, 2, 3, 4, 8, 16, 32 }) {
             final SumList sumList = new MultiThreadedListSumWithStreams(threads);
             time = System.currentTimeMillis();
             assertEquals(sumList.sum(list), sum);

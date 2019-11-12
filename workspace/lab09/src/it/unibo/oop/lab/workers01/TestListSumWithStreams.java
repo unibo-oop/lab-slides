@@ -22,7 +22,7 @@ public class TestListSumWithStreams {
      * Note that it is often impossible to split the load in an exact equal
      * manner - that's not an issue normally, however.
      */
-    private static final int SIZE = 10000000;
+    private static final int SIZE = 10_000_000;
     private static final String MSEC = " msec";
 
     /**
@@ -43,7 +43,7 @@ public class TestListSumWithStreams {
          * Prepare time ant test with different number of threads
          */
         long time;
-        for (int threads: new int[] { 1, 2, 3, 4, 8, 16, 32 }) {
+        for (final int threads: new int[] { 1, 2, 3, 8, 16, 32 }) {
             final SumList sumList = new MultiThreadedListSumWithStreams(threads);
             time = System.currentTimeMillis();
             assertEquals(sumList.sum(list), sum);

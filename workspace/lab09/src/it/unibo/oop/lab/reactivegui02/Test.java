@@ -27,7 +27,7 @@ public final class Test {
      * commento nel main qui sotto.
      * 
      * Suggerimenti: - si mantenga la struttura dell'esercizio precedente - per
-     * pilotare la direzione su/giù si aggiunga un flag booleano all'agente --
+     * pilotare la direzione su/giÃ¹ si aggiunga un flag booleano all'agente --
      * deve essere volatile? - la disabilitazione dei pulsanti sia realizzata
      * col metodo setEnabled
      */

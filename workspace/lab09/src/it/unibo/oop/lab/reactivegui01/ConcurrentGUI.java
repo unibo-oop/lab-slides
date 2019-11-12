@@ -80,6 +80,7 @@ public final class ConcurrentGUI extends JFrame {
         private volatile boolean stop;
         private volatile int counter;
 
+        @Override
         public void run() {
             while (!this.stop) {
                 try {
@@ -88,6 +89,7 @@ public final class ConcurrentGUI extends JFrame {
                      * Event-Dispatch Thread (EDT)!
                      */
                     SwingUtilities.invokeAndWait(new Runnable() {
+                        @Override
                         public void run() {
                             ConcurrentGUI.this.display.setText(Integer.toString(Agent.this.counter));
                         }
