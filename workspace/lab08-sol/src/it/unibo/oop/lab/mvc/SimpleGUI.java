@@ -108,7 +108,6 @@ public final class SimpleGUI {
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
         frame.setSize(sw / 2, sh / 2);
-
         /*
          * Instead of appearing at (0,0), upper left corner of the screen, this
          * flag makes the OS window manager take care of the default positioning
