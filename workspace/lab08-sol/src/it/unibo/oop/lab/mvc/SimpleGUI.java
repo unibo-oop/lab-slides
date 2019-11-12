@@ -51,7 +51,6 @@ public final class SimpleGUI {
      * builds a new {@link SimpleGUI}.
      */
     public SimpleGUI() {
-
         this.controller = new SimpleController();
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
@@ -70,7 +69,6 @@ public final class SimpleGUI {
         southPanel.add(showHistory);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         /*
          * Handlers
          */
@@ -81,7 +79,6 @@ public final class SimpleGUI {
                 controller.printCurrentString();
             }
         });
-
         showHistory.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
