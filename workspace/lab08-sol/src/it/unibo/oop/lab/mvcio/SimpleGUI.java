@@ -24,11 +24,11 @@ public final class SimpleGUI {
 
     private SimpleGUI(final Controller ctrl) {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         final JTextArea text = new JTextArea();
         final JPanel panel1 = new JPanel();
         final LayoutManager layout = new BorderLayout();
         panel1.setLayout(layout);
+        // Save button
         final JButton save = new JButton("Save");
         save.addActionListener(new ActionListener() {
             @Override
@@ -40,16 +40,15 @@ public final class SimpleGUI {
                 }
             }
         });
+        // GUI assemblage
         panel1.add(text, BorderLayout.CENTER);
         panel1.add(save, BorderLayout.SOUTH);
-
         frame.setContentPane(panel1);
-
+        // Frame size and location
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
         frame.setSize(sw / 2, sh / 2);
-
         frame.setLocationByPlatform(true);
     }
 
