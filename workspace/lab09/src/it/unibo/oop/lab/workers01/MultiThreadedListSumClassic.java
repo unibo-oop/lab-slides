@@ -6,8 +6,7 @@ import java.util.List;
 /**
  * This is a standard implementation of the calculation.
  * 
- * */
-
+ */
 public final class MultiThreadedListSumClassic implements SumList {
 
     private final int nthread;
