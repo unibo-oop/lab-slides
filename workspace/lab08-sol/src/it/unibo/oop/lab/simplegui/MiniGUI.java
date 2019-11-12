@@ -1,6 +1,3 @@
-/**
- * 
- */
 package it.unibo.oop.lab.simplegui;
 
 import java.awt.BorderLayout;
@@ -52,7 +49,6 @@ public class MiniGUI {
         canvas.add(result, BorderLayout.NORTH);
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         /*
          * Handlers
          */
@@ -65,8 +61,6 @@ public class MiniGUI {
                 final int res = rng.nextInt();
                 System.out.println(res);
                 result.setText(RESULT_TXT_CONTENT + ": " + Integer.toString(res));
-                frame.pack();
-                frame.validate();
             }
         });
     }
@@ -85,19 +79,16 @@ public class MiniGUI {
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
         frame.setSize(sw / PROPORTION, sh / PROPORTION);
-
         /*
          * Instead of appearing at (0,0), upper left corner of the screen, this
          * flag makes the OS window manager take care of the default positioning
          * on screen. Results may vary, but it is generally the best choice.
          */
         frame.setLocationByPlatform(true);
-
         /*
          * Resize the frame to minimum size
          */
         frame.pack();
-
         /*
          * OK, ready to pull the frame onscreen
          */
