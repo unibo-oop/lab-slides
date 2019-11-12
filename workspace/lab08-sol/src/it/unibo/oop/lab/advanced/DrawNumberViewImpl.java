@@ -44,6 +44,7 @@ public final class DrawNumberViewImpl implements DrawNumberView {
         frame.getContentPane().add(pNorth, BorderLayout.NORTH);
         frame.getContentPane().add(pSouth, BorderLayout.SOUTH);
         bGo.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(final ActionEvent e) {
                 try {
                     observer.newAttempt(Integer.parseInt(tNumber.getText()));
@@ -53,6 +54,7 @@ public final class DrawNumberViewImpl implements DrawNumberView {
             }
         });
         bQuit.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(final ActionEvent e) {
                 if (confirmDialog("Confirm quitting?", "Quit")) {
                     observer.quit();
@@ -60,6 +62,7 @@ public final class DrawNumberViewImpl implements DrawNumberView {
             }
         });
         bReset.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(final ActionEvent e) {
                 if (confirmDialog("Confirm resetting?", "Reset")) {
                     observer.resetGame();
@@ -88,7 +91,7 @@ public final class DrawNumberViewImpl implements DrawNumberView {
 
     @Override
     public void numberIncorrect() {
-        JOptionPane.showMessageDialog(frame, "Incorrect Number.. try again", "Incorrect Number",
+        JOptionPane.showMessageDialog(frame, "Incorrect Number... try again", "Incorrect Number",
                 JOptionPane.ERROR_MESSAGE);
     }
 
