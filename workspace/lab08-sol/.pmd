@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pmd>
-    <useProjectRuleSet>false</useProjectRuleSet>
+    <useProjectRuleSet>true</useProjectRuleSet>
     <ruleSetFile>/config/pmd/pmd.xml</ruleSetFile>
-    <excludePatterns/>
-    <includePatterns/>
-    <rules/>
     <includeDerivedFiles>false</includeDerivedFiles>
     <violationsAsErrors>false</violationsAsErrors>
     <fullBuildEnabled>true</fullBuildEnabled>
