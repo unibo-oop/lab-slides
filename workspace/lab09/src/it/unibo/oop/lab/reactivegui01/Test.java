@@ -6,9 +6,7 @@ package it.unibo.oop.lab.reactivegui01;
  */
 public final class Test {
 
-    private Test() {
-
-    }
+    private Test() { }
 
     /**
      * Analyze the behavior of the CGUI.java file executing this test.
