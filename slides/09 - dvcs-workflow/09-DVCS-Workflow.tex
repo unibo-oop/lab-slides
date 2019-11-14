@@ -1,11 +1,12 @@
 %\documentclass[12pt,handout]{beamer}
 \documentclass[presentation]{beamer}
 \usepackage{../oop-slides-pianini}
+\usepackage{minted}
 \setbeamertemplate{bibliography item}[text]
 
 \newcommand{\lab}{Lab09}
 
-\title[{\lab} -- DVCS Workflow]{Strategie di uso efficace dei \\ Decentralized Version Control Systems}
+\title[{\lab} -- DVCS Workflow]{Rudimenti di\\Ingegneria del processo di produzione software}
 
 \date[\today]{\today}
 
@@ -21,59 +22,7 @@
  	\tableofcontents[]
 \end{frame}
 
-\section{Preparazione al laboratorio}
-
-\begin{frame}{Preparazione dell'ambiente di lavoro}
-	\begin{enumerate}
-		\item Clonare il repository degli esercizi
-		\begin{itemize}
-			\item \url{https://bitbucket.org/danysk/courses-2017-oop-lab-09}
-			\begin{itemize}
-				\item Opzionalmente, si fork-i il repository
-			\end{itemize}
-			\item Si copi la URI con cui effettuare il clone dall'interfaccia web di Bitbucket
-		\end{itemize}
-		\item Importare il repository in Eclipse come progetto Java
-		\begin{enumerate}
-			\item File
-			\item Import
-			\item General
-			\item Existing project into workspace
-			\item Si selezioni la cartella del progetto
-			\item Si confermi l'import
-		\end{enumerate}
-		\item Configurare correttamente Eclipse, abilitare e configurare i plugin per il controllo di qualità del codice
-	\end{enumerate}
-\end{frame}
-
-\begin{frame}{Modalità di lavoro}
-	\begin{enumerate}
-		\item Seguire le istruzioni del file README.md nella root del repository
-		\item Tentare di capire l'esercizio in autonomia
-		\begin{itemize}
-			\item Contattare il docente se qualcosa non è chiaro
-		\end{itemize}
-		\item Risolvere l'esercizio in autonomia
-		\begin{itemize}
-			\item Contattare il docente se si rimane bloccati
-		\end{itemize}
-		\item Utilizzare le funzioni di test per verificare la soluzione realizzata
-		\item Cercare di risolvere autonomamente eventuali piccoli problemi che possono verificarsi durante lo svolgimento degli esercizi
-		\begin{itemize}
-			\item Contattare il docente se, anche \textbf{dopo aver usato il debugger}, non si è riusciti a risalire all'origine del problema
-		\end{itemize}
-		\item Scrivere la Javadoc per l'esercizio svolto
-		\item Assicurarsi che non ci siano warning nel proprio codice
-		\item Effettuare \textit{almeno} un commit ad esercizio completato
-		\item \textbf{A esercizio ultimato sottoporre la soluzione al docente}
-		\item Proseguire con l'esercizio seguente
-	\end{enumerate}
-\end{frame}
-
-
 \section{DVCS Workflow}
-
-\subsection{Introduzione}
 
 \fr{Dalle puntate precedenti} {
 	\bl{DVCS} {
@@ -98,83 +47,6 @@
     }
 }
 
-\fr{DVCS Workflow} {
-	\bl{Cos'è} {
-        \iz {
-			\item E' una sorta di ``protocollo'', un insieme di regole e passi da seguire quando si utilizza un DVCS
-			\item Essendo per definizione \textbf{collaborativo}, ciascun team member vi partecipa con un \textbf{ruolo}
-			\item Associa le diverse fasi del ciclo di vita del software a una serie di attività
-            \iz {
-                \item Ogni ruolo ha la/le proprie attività, ognuna codificata in un insieme di passi da seguire         
-            }
-		}
-		
-	}
-	\bl{Come deve essere} {
-		\iz {
-			\item In tre aggettivi
-            \iz {
-                \item Semplice
-                \item Chiaro
-                \item Condiviso          
-            }
-		}
-    }
-}
-
-\subsection{Caratteristiche di un workflow}
-
-\fr{L'importanza dei ruoli} {
-        \iz {
-			\item Occupandosi di collaborazione in un team, è naturale che il workflow definisca dei ruoli
-			\item Nei progetti del ``mondo reale'' il set minimo di ruoli è composto da:
-            \iz{
-                \item i \textbf{developer}: sviluppano codice, implementano nuove funzionalità, bugfixing di funzionalità già rilasciate
-
-                \item il \textbf{team leader}: coordina l'attività dei developer, sviluppa egli stesso (spesso si prende carico degli aspetti più delicati)
-
-                \item il \textbf{release manager}: si occupa di gestire i rilasci, ovvero ``pubblicazione'' delle nuove funzionalità del software, rese così disponibili ai suoi utenti
-            }
-		}	
-}
-
-\fr{Le attività coperte} {
-        \iz {
-			\item Sono quelle tipiche del cosiddetto \emph{software lifecycle}
-            \iz{
-                \item Sviluppo del software (delle nuove funzionalità)
-
-                \item Rilascio delle nuove funzionalità (dopo opportuni test funzionali)
-
-                \item Fix di bug riscontrati nelle versioni già rilasciate (a seguito di segnalazioni da parte degli utenti)
-            }
-            \item Versioni? Cioè?
-		}	
-}
-
-\fr{Le versioni} {
-        \iz {
-			\item Ogni rilascio del software è caratterizzato da una versione, identificata da un \textbf{numero}
-            \item il numero ha (o dovrebbe) avere un senso, non è un numero estratto a sorte!
-            \item Il pattern tipico è: \textbf{X.Y.Z} (numeri naturali)
-            \iz{
-                \item \textbf{X - major version}. Identifica una evoluzione importante del software, nella quale funzionalità precedenti possono in generale aver subito modifiche o essere state eliminate.
-                    \iz{
-                        \item Retrocompatibilità non garantita!                    
-                    } 
-                \item \textbf{Y - minor version}. Identifica rilasci che aggiungono nuove funzioni, senza toccare quelle già presenti. 
-                    \iz{
-                        \item Retrocompatibilità garantita!                    
-                    } 
-                \item \textbf{Z - bugfix version}. Identifica la risoluzione di difetti su una certa release \emph{X.Y}, senza aggiunta, modifica e/o cancellazione di funzionalità
-                    \iz{
-                        \item Retrocompatibilità garantita!                    
-                    } 
-            }
-            \item Un buon riferimento è: \url{http://semver.org/}
-		}	
-}
-
 \fr{Quale workflow} {
         \iz {
 			\item Come si sceglie un workflow?
@@ -183,12 +55,10 @@
 		}	
 }
 
-\subsection{Due esempi di workflow}
-
 \fr{Lo stato dell'arte I} {
-%Definito da \emph{Vincent Driessen} e spiegato in \url{http://nvie.com/posts/a-successful-git-branching-model/}
+Definito da \emph{Vincent Driessen} e spiegato in \url{http://nvie.com/posts/a-successful-git-branching-model/}
 \begin{center}
-\includegraphics[width=0.5\textwidth]{img/Git-branching-model}
+\includegraphics[width=0.4\textwidth]{img/Git-branching-model}
 \end{center}
 }
 
@@ -214,57 +84,9 @@
 
 
 \fr{Un modello più semplice} {
-\begin{center}
-\includegraphics[width=0.5\textwidth]{img/visio-workflow-mercurial}
-\end{center}
-}
-
-\fr{Rivediamo ruoli e compiti} {
-\iz{
-\item Sviluppatore: 
-    \begin{enumerate}
-        \item aprono un nuovo \textbf{feature branch} da \texttt{develop} ogni volta che cominciano lo sviluppo di nuova funzionalità
-        \item le \textbf{feature} in realtà si aprono solo per funzionalità ``grandi'', altrimenti si lavora su \texttt{develop}
-        \item effettuano commit regolari sul feature branch
-        \item terminato lo sviluppo della funzionalità effettuano il merge della feature in \texttt{develop}
-%         \item si occupano anche degli hotfix
-    \end{enumerate}
-\item Technical leader: 
-    \begin{enumerate}
-        \item supervisiona la qualità del codice prodotto
-        \item è responsabile della qualità del codice che finisce sulla \texttt{develop} branch       
-    \end{enumerate}
-
-\item Release manager:
-    \begin{enumerate}
-        \item effettua i rilasci
-        \item quando una nuova versione è pronta per il rilascio, effettua il merge della \texttt{develop} in \texttt{master} 
-        \item effettua il tagging della release
-    \end{enumerate}
-}
-}
-
-\fr{Sulle feature branch} {
-	Ha senso utilizzarle:
-	\iz {
-		\item per modifiche grandi o a rischio fallimento
-		\begin{itemize}
-		\item In particolare in termini di tempo richiesto per completare l'implementazione
-		\end{itemize}
-		\item Quando l'attività di analisi abbia già portato ad una classificazione accurata delle funzionalità
-		\item Per separare e gestire meglio le attività di sviluppo in progetti articolati 
-		\iz{
-			\item chi fa cosa
-			\item più sviluppatori impegnati sulla stessa funzionalità usano lo stessa branch            
-		}
-	}	
-	In contesti articolati può quindi aiutare a tener traccia dello stato di avanzamento di determinate attività
-}
-
-\subsection{Comandi}
-
-\fr{Inizializzazione del repository} {
-\sizedcode{\tiny}{code/init.txt}
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{img/visio-workflow-mercurial}
+    \end{center}
 }
 
 \begin{frame}[fragile, allowframebreaks]{Feature branch}
@@ -273,33 +95,40 @@
 	\end{center}
 	\sizedcode{\tiny}{code/open-feature.txt}
 \end{frame}
+ 
+% \subsection{Comandi}
+% 
+% \fr{Inizializzazione del repository} {
+% \sizedcode{\tiny}{code/init.txt}
+% }
 
-\begin{frame}[allowframebreaks]{Associazione di nomi simbolici ad un commit}
-	\bl{In generale}{
-		È necessario poter associare ad un commit della meta-informazione personalizzata. Ad esempio, per associare un certo commit ad una versione, in modo da poterla facilmente richiamare.
-	}
-	\bl{In Git}{
-		\iz{
-			\item \texttt{git tag -a MyTag -m "My tag information"}
-			Associa al commit corrente il nome simbolico \texttt{MyTag} ed il messaggio aggiuntivo \texttt{My tag information}
-			\begin{itemize}
-				\item Non rimpiazza il commit message, ma lo integra
-				\item È possibile invocare comandi come \texttt{git checkout MyTag} per tornare velocemente ad un tag precedente
-			\end{itemize}
-			\item \texttt{git push --tags}
-			\begin{itemize}
-				\item Fa \texttt{push} delle metaiformazioni aggiunte col comando \texttt{tag}
-				\item La \texttt{push} ``normale'' non invia queste informazioni!
-			\end{itemize}
-		}
-	}
-\end{frame}
-
-
-
-\fr{Fare una release} {
-\sizedcode{\tiny}{code/do-release.txt}
-}
+% 
+% \begin{frame}[allowframebreaks]{Associazione di nomi simbolici ad un commit}
+% 	\bl{In generale}{
+% 		È necessario poter associare ad un commit della meta-informazione personalizzata. Ad esempio, per associare un certo commit ad una versione, in modo da poterla facilmente richiamare.
+% 	}
+% 	\bl{In Git}{
+% 		\iz{
+% 			\item \texttt{git tag -a MyTag -m "My tag information"}
+% 			Associa al commit corrente il nome simbolico \texttt{MyTag} ed il messaggio aggiuntivo \texttt{My tag information}
+% 			\begin{itemize}
+% 				\item Non rimpiazza il commit message, ma lo integra
+% 				\item È possibile invocare comandi come \texttt{git checkout MyTag} per tornare velocemente ad un tag precedente
+% 			\end{itemize}
+% 			\item \texttt{git push --tags}
+% 			\begin{itemize}
+% 				\item Fa \texttt{push} delle metaiformazioni aggiunte col comando \texttt{tag}
+% 				\item La \texttt{push} ``normale'' non invia queste informazioni!
+% 			\end{itemize}
+% 		}
+% 	}
+% \end{frame}
+% 
+% 
+% 
+% \fr{Fare una release} {
+% \sizedcode{\tiny}{code/do-release.txt}
+% }
 
 \begin{frame}[allowframebreaks]{Il repo ufficiale del vostro progetto}
 	\begin{block}{Workflow raccomandato}
@@ -326,26 +155,295 @@
 	\end{block}
 \end{frame}
 
-\fr{Best practice per la condivisione I} {
-	Sviluppatore
-	\iz{
-		\item In generale, push regolare delle proprie modifiche su repo ufficiale (e pull regolare di quanto presente in remoto)
-		\iz{
-			\item Se il push riguarda il \texttt{develop} branch: le modifiche che condividete via push \textbf{devono compilare}!
-		}
-		\item Eseguire sempre un pull e update tutte le volte che cominciate a lavorare su qualche cosa in una certa branch 
-		\item Per eventuali feature branch? Stesse regole di \texttt{develop}
-	}
-	Release manager
-	\iz{
-		\item Pull di \texttt{develop} prima di cominciare una release
-		\item Push di \texttt{master} e \texttt{develop} al termine della release 
-	}
-}
+\section{Rudimenti di Gradle}
 
-\fr{Per approfondimenti...} {
-A successful git branching model:\\
-\url{http://nvie.com/posts/a-successful-git-branching-model/}
+\subsection{Gestione delle dipendenze}
+
+\begin{frame}[fragile]{Mini challenge}
+\begin{block}{}
+Scrivere un programma che va su Internet, scarica da TheTVDB i titoli degli episodi di Breaking Bad in italiano, e poi li stampa.
+\end{block}
+
+\pause
+\begin{minted}[fontsize=\tiny,linenos=true,breaklines=true]{java}
+package it.unibo.ci;
+import java.io.IOException;
+import org.apache.commons.io.IOUtils;
+import com.omertron.thetvdbapi.TheTVDBApi;
+import com.omertron.thetvdbapi.model.Episode;
+import com.omertron.thetvdbapi.model.Series;
+import static java.nio.charset.StandardCharsets.UTF_8;
+
+public final class PrintBreakingBad {
+    private static final String LANG = "it";
+    private static final String SERIE = "Breaking Bad";
+    private PrintBreakingBad() { }
+    public static void main(String... args) throws ClassNotFoundException, IOException {
+        final var externalKeyFile = ClassLoader.getSystemResourceAsStream("TheTVDBAPIKey")
+        final var key = IOUtils.toString(externalKeyFile, UTF_8);
+        final var api = new TheTVDBApi(key);
+        api.searchSeries(SERIE, LANG).stream()
+            .filter(s -> s.getSeriesName().equals(SERIE))
+            .map(Series::getId)
+            .flatMap(s -> api.getAllEpisodes(s, LANG).stream())
+            .map(Episode::getEpisodeName)
+            .forEach(System.out::println);
+    }
 }
+\end{minted}
+\end{frame}
+
+\begin{frame}{Librerie}
+    Sono state usate tre librerie:
+    \begin{itemize}
+        \item Google Guava (\texttt{com.google.guava:guava})
+        \item Apache Commons IO (\texttt{commons-io:commons-io})
+        \item Omertron's TheTVDBApi (\texttt{com.omertron:thetvdbapi})
+    \end{itemize}
+    ...solo che per far funzionare TheTVDBApi servono altre due librerie...
+    \begin{itemize}
+        \item SLF4J (\texttt{org.slf4j:slf4j-api})
+        \item YAMJ (\texttt{org.yamj:api-common})
+    \end{itemize}
+    ...solo che per far funzionare YAMJ servono altre sei librerie...
+    
+    ...e per far funzionare alcune di queste servono altre librerie ancora
+\end{frame}
+
+\begin{frame}[fragile]{Albero delle dipendenze}
+    Si crea un \textit{albero} delle dipendenze!
+
+    \begin{minted}[fontsize=\scriptsize]{text}
++--- com.google.guava:guava:19.0-rc2
++--- commons-io:commons-io:2.4
+\--- com.omertron:thetvdbapi:1.7
+     +--- org.slf4j:slf4j-api:1.7.9
+     \--- org.yamj:api-common:1.2
+          +--- org.apache.commons:commons-lang3:3.3.2
+          +--- commons-dbcp:commons-dbcp:1.4
+          |    \--- commons-pool:commons-pool:1.6
+          +--- commons-pool:commons-pool:1.6
+          +--- commons-codec:commons-codec:1.10
+          +--- org.apache.httpcomponents:httpclient:4.3.6
+          |    +--- org.apache.httpcomponents:httpcore:4.3.3
+          |    +--- commons-logging:commons-logging:1.1.3
+          |    \--- commons-codec:commons-codec:1.10
+          \--- org.slf4j:slf4j-api:1.7.9
+    \end{minted}
+    \begin{itemize}
+        \item La gestione manuale può diventare dispendiosa
+        \begin{itemize}
+            \item Ad ogni aggiornamento bisogna ricontrollare tutto il sotto-albero
+        \end{itemize}
+        \item Le dipendenze indirette (\textit{transitive}) potrebbero avere versioni confliggenti!
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Contesti delle dipendenze}
+    Non è il solo problema
+    \begin{itemize}
+        \item Alcune dipendenze ci servono solo a runtime, non a compile time
+        \item Alcune dipendenze ci servono solo per il testing (JUnit ad esempio)
+    \end{itemize}
+    Andrebbero creati diversi classpath, uno per ``scope'':
+    \begin{itemize}
+        \item implementazione (compilazione ed esecuzione)
+        \begin{itemize}
+            \item per il prodotto
+            \item per i test
+        \end{itemize}
+        \item solo compilazione (no runtime)
+        \begin{itemize}
+            \item per il prodotto
+            \item per i test
+        \end{itemize}
+        \item solo esecuzione (no compilazione)
+        \begin{itemize}
+            \item per il prodotto
+            \item per i test
+        \end{itemize}
+    \end{itemize}
+    ...i problemi cominciano a sommarsi...
+\end{frame}
+
+\begin{frame}{Gradle}
+    Build automation tool: automatizza la gestione del progetto
+    \begin{itemize}
+        \item Gestione delle dipendenze
+        \begin{itemize}
+            \item Cerca le librerie
+            \item Le scarica
+            \item Prepara il classpath
+        \end{itemize}
+        \item Build automation
+        \begin{itemize}
+            \item Compila il progetto ed i test
+            \item Genera i jar
+            \item Genera la documentazione
+        \end{itemize}
+        \item Controllo qualità
+        \begin{itemize}
+            \item esegue i test
+            \item verifica la qualità del codice
+        \end{itemize}
+        \item Deployment
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Gradle: configurazione}
+    \begin{itemize}
+        \item La build è definita all'interno di un file \texttt{build.gradle.kts} 
+        \begin{itemize}
+            \item Scritto in Kotlin 
+            \item Oppure in Groovy (cambia nome in \texttt{build.gradle.kts})
+        \end{itemize}
+        \item Sfrutta il principio \textbf{Convention over Configuration}
+        \begin{itemize}
+            \item Ho un funzionamento di default
+            \item Se fai le cose come me le aspetto non devi dirmi nulla
+            \item Ogni cosa diversa va configurata
+        \end{itemize}
+        \item Supporta vari linguaggi
+        \begin{itemize}
+            \item Fra cui Java
+        \end{itemize}
+        \item Estensibile tramite plugin
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Gradle + Java}
+Configurazione per il nostro esperimento:
+\begin{block}{}
+\begin{minted}[fontsize=\small,linenos=true,breaklines=true]{kotlin}
+plugins {
+    java
+}
+repositories {
+    mavenCentral() // Where to look for jars
+}
+dependencies {
+    implementation("commons-io:commons-io:2.4")
+    implementation("com.google.guava:guava:19.0-rc2")
+    implementation("com.omertron:thetvdbapi:1.7")
+    testImplementation("junit:junit:4.12")
+}
+\end{minted}
+\end{block}
+\begin{itemize}
+    \item Se importato in Eclipse come ``Gradle Project'' scarica automaticamente i jar necessari e li mette nel classpath!
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Convenzioni Java in Gradle}
+    A meno di non usare configurazione manuale, Gradle si aspetta una struttura un po' diversa da quella di default in Eclipse
+    \begin{itemize}
+        \item Chi usasse Gradle, dovrebbe optare per questa convenzione, ed importare solo poi il progetto in Eclipse
+        \item È la convenzione che si usa nei progetti ``seri''
+        \item Deriva da uno strumento di build automation antesignano di Gradle (Apache Maven)
+    \end{itemize}
+    \begin{minted}[fontsize=\small,linenos=true,breaklines=true]{text}
+    |-- src
+    |   |-- main
+    |   |   |-- java          Sorgenti java (ex: src)
+    |   |   \-- resources     Risorse del software (ex: res)
+    |   \-- test
+    |       |-- java          Sorgenti java per i test
+    |       \-- resources     Sorgenti java per le risorse
+    \-- build.gradle.kts      Build file
+    \end{minted}
+\end{frame}
+
+\subsection{Concetti fondamentali}
+
+\begin{frame}[allowframebreaks]{Concetti fondamentali}
+    \begin{block}{Progetto}
+        L'insieme di cose che volete costruire o fare con Gradle, ed i file che consentono di farlo. Ogni progetto è costituito di uno o più \textit{task}
+    \end{block}
+    \begin{block}{Task}
+        Operazione atomica eseguita sul progetto (ad esempio, compilazione di file Java, o impacchettamento di un jar). Può dipendere da altri task (ad esempio, la creazione di un jar eseguibile richiede che la compilazione dei sorgenti sia stata completata).
+    \end{block}
+    \begin{block}{Plugin}
+        Componente che estende le funzionalità di Gradle, aggiungendo configurazioni e task
+    \end{block}
+\end{frame}
+
+\begin{frame}{Gradle: funzionamento}
+    \begin{itemize}
+        \item È possibile chiedere a Gradle di completare un task eseguendo il comando:
+        \begin{itemize}
+            \item \texttt{gradle nomeTask}
+            \item Esegue tutti i task necessari ad eseguire \texttt{nomeTask}, quindi esegue \texttt{nomeTask}
+        \end{itemize}
+        \item I task esistenti si possono visualizzare con:
+        \begin{itemize}
+            \item \texttt{gradle tasks --all}
+        \end{itemize}
+        \item Le dipendenze (anche transitive) possono essere visualizzate con:
+        \begin{itemize}
+            \item \texttt{gradle dependencies}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Gradle wrapper}
+    Problema: ma se cambiassero il modo in cui Gradle risolve le dipendenze?
+    \begin{itemize}
+        \item Il sistema potrebbe ad un certo punto cambiare delle dipendenze transitive
+        \item Il classpath cambierebbe
+        \item Potenzialmente il nostro software potrebbe smettere di funzionare!
+        \item (nota: è successo davvero...)
+        \begin{itemize}
+            \item (...svariate volte)
+        \end{itemize}
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{img/philosoraptor}
+    \end{center}
+    Gradle fornisce una funzionalità detta \textbf{wrapper}
+    \begin{itemize}
+        \item Un piccolo script, contenente solo le informazioni necessarie a scaricare e usare la corretta versione di Gradle
+        \item generabile da Gradle tramite il task \texttt{wrapper}
+        \begin{itemize}
+            \item \texttt{gradle wrapper --gradle-version=X.Y.Z}
+        \end{itemize}
+        \item dal momento in cui è presente il wrapper, è possibile usare quello per eseguire la corretta versione di Gradle!
+        \begin{itemize}
+            \item \texttt{./gradlew nomeTask} --- su Unix o emulatore bash come git bash
+            \item \texttt{gradlew.bat nomeTask} --- su Windows cmd o Powershell
+        \end{itemize}
+        \item \textbf{È sempre meglio usare il wrapper!}
+        \item Ovviamente è possibile generare il wrapper usando il wrapper:
+        \begin{itemize}
+            \item \texttt{./gradlew wrapper --gradle-version=X.Y.Z}
+        \end{itemize}
+        \item Grazie al wrapper, è possibile eseguire Gradle anche se non si ha Gradle installato!
+    \end{itemize}
+\end{frame}
+
+\subsection{Gradle in OOP}
+
+\begin{frame}[fragile]{Uso raccomandato}
+    \begin{itemize}
+        \item La costruzione e automazione di un processo di build \textbf{non} è parte della programmazione ad oggetti in quanto tale
+        \item È un tema legato all'ingegneria del processo di produzione del software
+        \item Molto sfaccettato, fra gli altri include aspetti che vedrete in futuro
+        \begin{itemize}
+            \item Tecniche agili (e.g. Scrum)
+            \item Versioning
+            \item Build automation
+            \item Continuous integration
+            \item Continuous delivery
+            \item Deploy automation
+            \item ...
+        \end{itemize}
+        \item La competenza con Gradle acquisibile da OOP è rudimentale
+    \end{itemize}
+    \begin{center}
+        \underline{\textbf{Consiglio:} usate Gradle come semplice gestore di dipendenze}
+    \end{center}
+\end{frame}
+
+
+
 \end{document}
 
