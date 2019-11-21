@@ -14,7 +14,7 @@ import org.junit.Test;
 public class TestMatrix {
 
     /*
-     * Si fornisce l'interfaccia ISumMatrix, con un metodo per calcolare la
+     * Si fornisce l'interfaccia SumMatrix, con un metodo per calcolare la
      * somma delgi elementi di una matrice.
      * 
      * Realizzare una classe MultiThreadedSumMatrix, con costrutto che accetta
@@ -47,7 +47,6 @@ public class TestMatrix {
                 sum += i;
             }
         }
-
         System.out.println("BTW: the sum with " + SIZE + "*" + SIZE + " elements is: " + sum);
         long time;
         for (final int threads:new int[] { 1, 2, 3, 8, 16, 32, 100 }) {
