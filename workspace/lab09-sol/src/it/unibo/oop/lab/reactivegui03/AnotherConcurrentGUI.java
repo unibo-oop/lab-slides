@@ -3,7 +3,7 @@ package it.unibo.oop.lab.reactivegui03;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.lang.reflect.InvocationTargetException;
-import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,17 +12,14 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 /**
- * 
  * Third experiment with reactive gui.
- * 
- *
  */
-public class AnotherConcurrentGUI extends JFrame {
+public final class AnotherConcurrentGUI extends JFrame {
 
-    private static final long serialVersionUID = -6218820567019985015L;
+    private static final long serialVersionUID = 1L;
     private static final double WIDTH_PERC = 0.2;
     private static final double HEIGHT_PERC = 0.1;
-    private static final int WAITING_TIME = 10000;
+    private static final long WAITING_TIME = TimeUnit.SECONDS.toMillis(10);
 
     private final JLabel display = new JLabel();
     private final JButton stop = new JButton("stop");
@@ -45,18 +42,18 @@ public class AnotherConcurrentGUI extends JFrame {
         panel.add(stop);
         this.getContentPane().add(panel);
         this.setVisible(true);
-        ForkJoinPool.commonPool().submit(counterAgent);
-        ForkJoinPool.commonPool().submit(() -> {
+        up.addActionListener(e -> counterAgent.upCounting());
+        down.addActionListener(e -> counterAgent.downCounting());
+        stop.addActionListener(e -> stopCounting());
+        new Thread(counterAgent).start();
+        new Thread(() -> {
             try {
                 Thread.sleep(WAITING_TIME);
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
             AnotherConcurrentGUI.this.stopCounting();
-        });
-        up.addActionListener(e -> counterAgent.upCounting());
-        down.addActionListener(e -> counterAgent.downCounting());
-        stop.addActionListener(e -> stopCounting());
+        }).start();
     }
 
     private void stopCounting() {
@@ -75,13 +72,10 @@ public class AnotherConcurrentGUI extends JFrame {
         public void run() {
             while (!stop) {
                 try {
-                    SwingUtilities.invokeAndWait(new Runnable() {
-                        public void run() {
-                            display.setText(Integer.toString(counter));
-                        }
-                    });
+                    SwingUtilities.invokeAndWait(() ->
+                        display.setText(Integer.toString(counter))
+                    );
                     counter += up ? 1 : -1;
-
                     Thread.sleep(100);
                 } catch (InterruptedException | InvocationTargetException ex) {
                     ex.printStackTrace();
