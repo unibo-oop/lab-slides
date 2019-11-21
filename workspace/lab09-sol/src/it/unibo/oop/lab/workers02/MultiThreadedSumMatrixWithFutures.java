@@ -79,9 +79,9 @@ public class MultiThreadedSumMatrixWithFutures implements SumMatrix {
          * inevitably lead to deadlock (the outermost work occupies the executor, but
          * requires the innermost workers to get scheduled and complete).
          */
-        final ExecutorService executor = Executors.newFixedThreadPool(nthread + 1);
+        final var executor = Executors.newFixedThreadPool(nthread + 1);
         final Collection<Future<Double>> futureResults = new ArrayList<>(nthread);
-        final Future<Double> futureFinalResult = executor.submit(() -> {
+        final var futureFinalResult = executor.submit(() -> {
             for (int start = 0; start < matrix.length; start += size) {
                 futureResults.add(executor.submit(new Worker(matrix, start, size)));
             }

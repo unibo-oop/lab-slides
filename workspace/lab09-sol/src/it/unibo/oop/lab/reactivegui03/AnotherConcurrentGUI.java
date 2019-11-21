@@ -52,7 +52,7 @@ public final class AnotherConcurrentGUI extends JFrame {
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
-            AnotherConcurrentGUI.this.stopCounting();
+            stopCounting();
         }).start();
     }
 
@@ -69,6 +69,8 @@ public final class AnotherConcurrentGUI extends JFrame {
         private volatile boolean stop;
         private volatile boolean up = true;
         private int counter;
+
+        @Override
         public void run() {
             while (!stop) {
                 try {

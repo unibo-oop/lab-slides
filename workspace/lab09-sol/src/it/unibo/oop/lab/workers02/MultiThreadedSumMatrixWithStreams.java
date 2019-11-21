@@ -1,8 +1,6 @@
 package it.unibo.oop.lab.workers02;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -73,18 +71,15 @@ public class MultiThreadedSumMatrixWithStreams implements SumMatrix {
     @Override
     public double sum(final double[][] matrix) {
         final int size = matrix.length / nthread + matrix.length % nthread;
-        final List<Worker> workers = IntStream.iterate(0, start -> start + size)
+        /*
+         * Parallel pipeline processing
+         */
+        return IntStream.iterate(0, start -> start + size)
                 .limit(nthread)
+                .parallel()
                 .mapToObj(start -> new Worker(matrix, start, size))
-                .collect(Collectors.toList());
-        workers.forEach(Thread::start);
-        workers.forEach(t -> {
-            try {
-                t.join();
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
-            }
-        });
-        return workers.stream().mapToDouble(Worker::getResult).sum();
+                .peek(Runnable::run)
+                .mapToDouble(Worker::getResult)
+                .sum();
     }
 }
