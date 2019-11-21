@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
+import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.Future;
 
 /**
@@ -77,8 +77,11 @@ public class MultiThreadedSumMatrixWithFutures implements SumMatrix {
          * This kind of execution requires at least two control flows, or it will
          * inevitably lead to deadlock (the outermost work occupies the executor, but
          * requires the innermost workers to get scheduled and complete).
+         * 
+         * When there are many, possibly interdependent small tasks that need to be
+         * executed in parallel, a good choice is using a fork-join thread pool.
          */
-        final var executor = Executors.newFixedThreadPool(nthread + 1);
+        final var executor = ForkJoinPool.commonPool();
         final Collection<Future<Double>> futureResults = new ArrayList<>(nthread);
         final var futureFinalResult = executor.submit(() -> {
             for (int start = 0; start < matrix.length; start += size) {
