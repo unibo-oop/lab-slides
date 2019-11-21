@@ -30,7 +30,7 @@ public class TestMatrix {
      * output, ad eccezione ovviamente dei tempi.
      */
 
-    private static final int SIZE = 20_000;
+    private static final int SIZE = 10_000;
     private static final double EXPECTED_DELTA = 0.01;
     private static final String MSEC = " msec";
 
