@@ -2,7 +2,6 @@ package it.unibo.oop.lab.reactivegui02;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -48,22 +47,32 @@ public final class ConcurrentGUI extends JFrame {
             up.setEnabled(false);
             down.setEnabled(false);
         });
-        new Thread(new Agent()).start();
+        new Thread(agent).start();
     }
 
     private class Agent implements Runnable {
         private volatile boolean stop;
         private volatile boolean up = true;
-        private volatile int counter;
+        private int counter;
+
+        @Override
         public void run() {
             while (!stop) {
                 try {
                     counter += up ? 1 : -1;
-                    SwingUtilities.invokeAndWait(() ->
-                        display.setText(Integer.toString(counter))
+                    /*
+                     * Copy-pass + asynchronous update
+                     * 
+                     * All the processing happens in the local thread, EDT is only given charge to
+                     * update the UI. It may lose graphical updates, but frees the current thread
+                     * immediately and does not overload EDT
+                     */
+                    final var todisplay = Integer.toString(counter);
+                    SwingUtilities.invokeLater(() ->
+                        display.setText(todisplay)
                     );
                     Thread.sleep(100);
-                } catch (InvocationTargetException | InterruptedException ex) {
+                } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }
             }
