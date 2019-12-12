@@ -10,6 +10,7 @@
 \usepackage{amsmath,stmaryrd,mathtools,algorithm}
 \usepackage{amssymb}
 \usepackage{float}
+\usepackage{hyperref}
 
 % Remove option to use English naming
 \usepackage[italian]{cleveref}
@@ -46,6 +47,8 @@ La meta-relazione verrà fornita corredata di un template \LaTeX{} per coloro ch
 %
 L'uso di \LaTeX{} è vantaggioso per chi ama l'approccio ``what you mean is what you get'', ossia voglia disaccoppiare il contenuto dall'effettivo rendering del documento, accollando al motore \LaTeX{} l'onere di produrre un documento gradevole con la struttura ed il contenuto forniti.
 %
+Chi non volesse installare l'ambiente di compilazione in locale può valutare l'utilizzo dell'applicazione web \href{https://www.overleaf.com/}{Overleaf}.
+%
 L'eventuale utilizzo di \LaTeX{} non è fra i requisiti, non è parte del corso di Programmazione ad Oggetti, e non sarà ovviamente valutato. I docenti accetteranno qualunque relazione in formato standard Portable Document Format (pdf), indipendentemente dal software con cui tale documento sarà redatto.
 \end{abstract}
 
@@ -53,7 +56,7 @@ L'eventuale utilizzo di \LaTeX{} non è fra i requisiti, non è parte del corso 
 
 \chapter{Analisi}
 
-In questo capitolo andrà fatta l'analisi dei requisiti e quella del problema, ossia verranno elencate le cose che l'applicazione dovrà fare (requisiti) e verrà descritto l'ambito in cui si colloca (analisi del problema).
+In questo capitolo andrà fatta l'analisi dei requisiti e quella del problema, ossia verranno elencate le cose che l'applicazione dovrà fare (requisiti) e verrà descritto il dominio applicativo (analisi del problema).
 %
 In fase di analisi, è molto importante tenere a mente che non vi deve essere alcun riferimento al design e tantomeno alle tecnologie implementative.
 %
@@ -61,7 +64,7 @@ La fase di analisi, infatti, \textit{precede} qualunque azione di design o di im
 
 \section{Requisiti}
 
-Nell'analisi dei requisiti si devono elencare i \emph{requisiti} dell'applicazione, ossia cosa l'applicazione dovrà fare.
+Nell'analisi dei \emph{requisiti} dell'applicazione si dovrà spiegare cosa l'applicazione dovrà fare.
 %
 Non ci si deve concentrare sui particolari problemi, ma esclusivamente su cosa si desidera che l'applicazione faccia.
 %
@@ -281,25 +284,35 @@ Ciascun autore dovrà spiegare in modo corretto e giustamente approfondito (non 
 %
 È importante focalizzarsi sulle scelte che hanno un impatto positivo sul riuso, sull'estensibilità, e sulla chiarezza dell'applicazione.
 %
-Usare correttamente i design pattern in questa sezione è molto importante: se vengono utilizzati, si ha la garanzia che quanto fatto sia conforme allo stato dell'arte.
-
 Esattamente come nessun ingegnere meccanico presenta un solo foglio con l'intero progetto di una vettura di Formula 1, ma molteplici fogli di progetto che mostrano a livelli di dettaglio differenti le varie parti della vettura e le modalità di connessione fra le parti, così ci aspettiamo che voi, futuri ingegneri informatici, ci presentiate prima una visione globale del progetto, e via via siate in grado di dettagliare le singole parti, scartando i componenti che non interessano quella in esame.
 %
 Per continuare il parallelo con la vettura di Formula 1, se nei fogli di progetto che mostrano il 
 design delle sospensioni anteriori appaiono pezzi che appartengono al volante o al turbo, c'è una 
 chiara indicazione di qualche problema di design.
 
+Usare correttamente i design pattern in questa sezione è molto importante: se vengono utilizzati correttamente, è molto probabile riuscire a progettare il software in modo corretto, estensibile, e riusabile.
+%
+Per ogni pattern utilizzato si presenti:
+\begin{itemize}
+    \item almeno un paragrafo che spieghi come è reificato nel progetto (ad esempio: nel caso di Template Method, qual è il metodo template; nel caso di Strategy, quale interfaccia del progetto rappresenta la strategia, e quali sono le sue implementazioni; nel caso di Decorator, qual è la classe astratta che fa da Decorator e quali sono le sue implementazioni concrete; eccetera);
+    \item almeno uno schema UML che grafichi quanto sopra descritto.
+\end{itemize}
+%
+La presenza di pattern di progettazione \emph{correttamente utilizzati} è valutata molto positivamente.
+%
+L'uso inappropriato è invece valutato negativamente: a tal proposito, si raccomanda di porre particolare attenzione all'abuso di Singleton, che, se usato in modo inappropriato, è di fatto un anti-pattern.
+
 \subsection*{Elementi positivi}
 
 \begin{itemize}
 	\item Ogni membro del gruppo discute le proprie decisioni di progettazione, ed in particolare le azioni volte ad anticipare possibili cambiamenti futuri (ad esempio l'aggiunta di una nuova funzionalità, o il miglioramento di una esistente).
-	\item Si identificano ed utilizzano \textit{appropriatamente} numerosi design pattern.
+	\item Si identificano, utilizzano \textit{appropriatamente}, e descrivono come suggerito diversi design pattern.
 	\item Ogni membro del gruppo identifica i pattern utilizzati nella sua sottoparte.
 	\item Si mostrano gli aspetti di design più rilevanti dell'applicazione, mettendo in luce la maniera in cui si è costruita la soluzione ai problemi descritti nell'analisi.
 	\item Si tralasciano aspetti strettamente implementativi e quelli non rilevanti, non mostrandoli negli schemi UML (ad esempio, campi privati) e non descrivendoli.
 	\item Si mostrano le principali interazioni fra le varie componenti che collaborano alla soluzione di un determinato problema.
 	\item Ciascun design pattern identificato presenta una piccola descrizione del problema calato 
-nell'applicazione, uno schema UML che ne mostri la concretizzazione nelle classi del progetto, ed 
+nell'applicazione, uno schema UML che ne mostra la concretizzazione nelle classi del progetto, ed 
 una breve descrizione della motivazione per cui tale pattern è stato scelto. Ad esempio, se si 
 dichiara di aver usato Observer, è necessario specificare chi sia l'observable e chi l'observer; se 
 si usa Template Method, è necessario indicare quale sia il metodo template; se si usa Strategy, è 
@@ -323,16 +336,6 @@ di dettaglio.
 	\item Si presentano schemi UML con classi (nel senso UML del termine) che ``galleggiano'' nello schema, non connesse, ossia senza relazioni con il resto degli elementi inseriti.
 	\item Si tratta in modo inutilmente prolisso la divisione in package, elencando ad esempio le classi una per una.
 \end{itemize}
-
-% \subsection*{Esempio di buona suddivisione in package}
-% L'applicazione è stata divisa in tre sottoparti logiche, come descritto nell'architettura: Model, Controller e Boundary. Maggiori dettagli sulle scelte fatte:
-% \begin{itemize}
-%  \item Radice: non avendo alcun dominio, abbiamo deciso di utilizzare il prefisso dell'Università, cui abbiamo aggiunto un nostro identificativo: \texttt{it.unibo.studentsgroup}. Inoltre, abbiamo aggiunto un suffisso che indentifica questo progetto, per cui tutti i package saranno prefissi da: \texttt{it.unibo.studentsgroup.thisapp}.
-%  \item Abbiamo diviso l'applicazione in tre sottoparti logiche in architettura, la divisione in package le rispecchia: \texttt{.model}, \texttt{.control}, \texttt{.boundary}. 
-%  \item Essendo la parte di gestione dell'I/O composta di molti sorgenti, abbiamo suddiviso \texttt{.boundary} in sottopackage: \texttt{.boundary.network} e \texttt{.boundary.local}.
-%  \item All'interno del model il concetto di \texttt{InterfacciaMoltoUsata} è stato implementato da numerose classi diverse. Di conseguenza, abbiamo adottato un subpackage \texttt{.model.imoltousata} dove abbiamo organizzato tutte le implementazioni, rendendo più navigable il package \texttt{it.unibo.studentsgroup.thisapp.model}.
-% \end{itemize}
-
 
 \subsection*{Esempio minimale (e quindi parziale) di sezione di progetto con UML ben realizzati}
 
@@ -377,7 +380,7 @@ Il suo utilizzo è esemplificato in \Cref{img:observer}
 \label{img:observer}
 \end{figure}
 
-\subsection*{Esempio di pessimo diagramma UML}
+\subsection*{Contro-esempio: pessimo diagramma UML}
 
 In \Cref{img:badarch} è mostrato il modo \textbf{sbagliato} di fare le cose.
 %
@@ -465,24 +468,21 @@ Questa sezione, come quella riguardante il design dettagliato va svolta \textbf{
 
 Ciascuno dovrà mettere in evidenza eventuali particolarità del suo metodo di sviluppo, ed in particolare:
 \begin{itemize}
-	\item Elencare le feature avanzate del linguaggio e dell'ecosistema Java che sono state 
+	\item \textbf{Elencare} le feature avanzate del linguaggio e dell'ecosistema Java che sono state 
 utilizzate. Le feature di interesse sono:
 	\begin{itemize}
 		\item Progettazione con generici, ad esempio costruzione di nuovi tipi generici, e uso di generici bounded. Uso di classi generiche di libreria non è considerato avanzato.
 		\item Uso di lambda expressions
 		\item Uso di \texttt{Stream}, di \texttt{Optional} o di altri costrutti funzionali
 		\item Uso della reflection
+		\item Definizione ed uso di nuove annotazioni
 		\item Uso del Java Platform Module System
-		\item Uso di parti di libreria non spiegate a lezione (networking, compressione, parsing 
-XML, eccetera...)
-        \item Uso di funzionalità di linguaggio non spiegate a lezione (facendo attenzione a non 
-usarle in modo inopportuno)
+		\item Uso di parti di libreria non spiegate a lezione (networking, compressione, parsing XML, eccetera...)
 		\item Uso di librerie di terze parti (incluso JavaFX): Google Guava, Apache Commons...
+		\item Uso di build systems
 	\end{itemize}
-	Si faccia molta attenzione a non scrivere banalità, elencando qui features di tipo ``core'', 
-come le eccezioni, le enumerazioni, o le inner class: nessuna di queste è considerata avanzata.
-	\item Descrivere eventuali approfondimenti fatti rispetto a quanto trattato nel corso; ad esempio l'utilizzo di un logger, o l'accesso alla rete, o l'uso di librerie grafiche particolari, o l'uso di strumenti non presentati a lezione (Maven, Gradle...).
-	\item Descrivere le librerie utilizzate nella propria parte di progetto, se non trattate a lezione (ossia, se librerie di terze parti e/o se componenti del JDK non visti, come le socket). Si ricorda che l'utilizzo di librerie è valutato \emph{positivamente}.
+	Si faccia molta attenzione a non scrivere banalità, elencando qui features di tipo ``core'', come le eccezioni, le enumerazioni, o le inner class: nessuna di queste è considerata avanzata.
+	\item Descrivere \textit{molto brevemente} le librerie utilizzate nella propria parte di progetto, se non trattate a lezione (ossia, se librerie di terze parti e/o se componenti del JDK non visti, come le socket). Si ricorda che l'utilizzo di librerie è valutato \emph{positivamente}.
 	\item Sviluppo di algoritmi particolarmente interessanti \emph{non forniti da alcuna libreria} (spesso può convenirvi chiedere sul forum se ci sia una libreria per fare una certa cosa, prima di gettarvi a capofitto per scriverla voi stessi).
 \end{itemize}
 %
@@ -498,7 +498,7 @@ ad esempio, in un'applicazione performance critical, un uso particolarmente avan
 di caching, oppure l'implementazione di uno specifico algoritmo.
 	\item Se si è utilizzato un particolare algoritmo, se ne cita la fonte originale. Ad esempio, se 
 si è usato Mersenne Twister per la generazione dei numeri pseudo-random, si cita \cite{mersenne}.
-	\item Si identificano parti di codice prese da altri progetti, dal web, o comunque scritte in forma originale da altre persone. In tal senso, si ricorda che agli ingegneri non è richiesto di re-inventare la ruota continuamente: se si cita debitamente la sorgente è tollerato fare uso di di snippet di codice per risolvere velocemente problemi non banali. Nel caso in cui si usino snippet di codice di qualità discutibile, oltre a menzionarne l'autore originale si invitano gli studenti ad adeguare tali parti di codice agli standard e allo stile del progetto. Contestualmente, si fa presente che è largamente meglio fare uso di una libreria che copiarsi pezzi di codice: qualora vi sia scelta, si preferisca la prima via.
+	\item Si identificano parti di codice prese da altri progetti, dal web, o comunque scritte in forma originale da altre persone. In tal senso, si ricorda che agli ingegneri non è richiesto di re-inventare la ruota continuamente: se si cita debitamente la sorgente è tollerato fare uso di di snippet di codice per risolvere velocemente problemi non banali. Nel caso in cui si usino snippet di codice di qualità discutibile, oltre a menzionarne l'autore originale si invitano gli studenti ad adeguare tali parti di codice agli standard e allo stile del progetto. Contestualmente, si fa presente che è largamente meglio fare uso di una libreria che copiarsi pezzi di codice: qualora vi sia scelta (e tipicamente c'è), si preferisca la prima via.
 \end{itemize}
 
 \subsection*{Elementi negativi}
@@ -517,16 +517,12 @@ studente ne è sprovvisto) che non c'entrano nulla con lo sviluppo, ad esempio:
         \item Editor di grafica vettoriale come Inkscape o Adobe Illustrator;
         \item Editor di grafica scalare come GIMP o Adobe Photoshop;
         \item Editor di audio come Audacity;
-        \item Strumenti di design dell'interfaccia grafica come SceneBuilder: il codice è in ogni 
-            caso inteso come sviluppato da voi.
+        \item Strumenti di design dell'interfaccia grafica come SceneBuilder: il codice è in ogni caso inteso come sviluppato da voi.
     \end{itemize}
 	\item Si descrivono aspetti di scarsa rilevanza, o si scende in dettagli inutili.
 	\item Sono presenti parti di codice sviluppate originalmente da altri che non vengono
 debitamente segnalate. In tal senso, si ricorda agli studenti che i docenti hanno accesso a tutti i 
-progetti degli anni passati, a Stack Overflow, ai principali blog di sviluppatori ed esperti Java, 
-ai blog dedicati allo sviluppo di soluzioni e applicazioni (inclusi blog dedicati ad Android e allo 
-sviluppo di videogame), nonché ai social network. Conseguentemente, è \emph{molto} conveniente 
-\emph{citare} una fonte ed usarla invece di tentare di spacciare per proprio il lavoro di altri.
+progetti degli anni passati, a Stack Overflow, ai principali blog di sviluppatori ed esperti Java (o sedicenti tali), ai blog dedicati allo sviluppo di soluzioni e applicazioni (inclusi blog dedicati ad Android e allo sviluppo di videogame), nonché ai social network. Conseguentemente, è \emph{molto} conveniente \emph{citare} una fonte ed usarla invece di tentare di spacciare per proprio il lavoro di altri.
 \end{itemize}
 
 \chapter{Commenti finali}
@@ -536,7 +532,7 @@ futuri.
 
 \textit{Nessuna delle informazioni incluse in questo capitolo verrà utilizzata per formulare la valutazione finale}, a meno che non sia assente o manchino delle sezioni obbligatorie.
 %
-Al fine di evitare pregiudizi involontari, l'intero capitolo verrà letto dai docenti solo dopo la valutazione è completa.
+Al fine di evitare pregiudizi involontari, l'intero capitolo verrà letto dai docenti solo dopo aver formulato la valutazione.
 
 \section{Autovalutazione e lavori futuri}
 
@@ -549,7 +545,7 @@ Nel caso in cui si pensasse di portare avanti il progetto, ad esempio perché ef
 
 \section{Difficoltà incontrate e commenti per i docenti}
 
-Questa sezione, \textbf{opzionale}, può essere utilizzata per segnalare ai docenti eventuali problemi o difficoltà incontrate nel corso o nello svolgimento del progetto, può essere vista come una seconda possibilità di valutare il corso (dopo quella offerta dalle rilevazioni della didattica) avendo anche conoscenza delle modalità e delle difficoltà collegate all'esame, cosa impossibile da fare usando le valutazioni in aula per ovvie ragioni di tempistiche.
+Questa sezione, \textbf{opzionale}, può essere utilizzata per segnalare ai docenti eventuali problemi o difficoltà incontrate nel corso o nello svolgimento del progetto, può essere vista come una seconda possibilità di valutare il corso (dopo quella offerta dalle rilevazioni della didattica) avendo anche conoscenza delle modalità e delle difficoltà collegate all'esame, cosa impossibile da fare usando le valutazioni in aula per ovvie ragioni.
 %
 È possibile che alcuni dei commenti forniti vengano utilizzati per migliorare il corso in futuro: sebbene non andrà a vostro beneficio, potreste fare un favore ai vostri futuri colleghi.
 %
