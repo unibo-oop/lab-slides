@@ -194,24 +194,23 @@ Questa sezione spiega come le componenti principali del software interagiscono f
 %
 In particolare, qui va spiegato \textbf{se} e \textbf{come} è stato utilizzato il pattern 
 architetturale model-view-controller (e/o alcune sue declinazioni specifiche, come entity-control-boundary).
-%
-Se non è stato utilizzato, va spiegata in maniera molto accurata l'architettura scelta, giustificandola in modo appropriato.
 
+Se non è stato utilizzato MVC, va spiegata in maniera molto accurata l'architettura scelta, giustificandola in modo appropriato.
+
+Se è stato scelto MVC, vanno identificate con precisione le interfacce e classi che rappresentano i punti d'ingresso per modello, view, e controller.
 Raccomandiamo di sfruttare la definizione del dominio fatta in fase di analisi per capire quale sia l'entry point del model, e di non realizzare un'unica macro-interfaccia che, spesso, finisce con l'essere il prodromo ad una ``God class''.
 %
 Consigliamo anche di separare bene controller e model, facendo attenzione a non includere nel secondo strategie d'uso che appartengono al primo.
+
+In questa sezione vanno descritte, per ciascun componente architetturale che ruoli ricopre (due o tre ruoli al massimo), ed in che modo interagisce (ossia, scambia informazioni) con gli altri componenti dell'architettura.
 %
-Infine, attenzione al design dell'interazione fra view e controller: se ben progettato, sostituire 
-in blocco la view non dovrebbe causare alcuna modifica nel controller (tantomeno nel model).
+Raccomandiamo di porre particolare attenzione al design dell'interazione fra view e controller: se ben progettato, sostituire in blocco la view non dovrebbe causare alcuna modifica nel controller (tantomeno nel model).
 
 \subsection*{Elementi positivi}
 \begin{itemize}
  \item Si mostrano pochi, mirati schemi UML dai quali si deduce con chiarezza quali sono le parti principali del software e come interagiscono fra loro.
  \item Si mette in evidenza se e come il pattern architetturale model-view-controller è stato applicato, anche con l'uso di un UML che mostri le interfacce principali ed i rapporti fra loro.
- \item Si discute se sia semplice o meno, con l'architettura scelta, sostituire in blocco la view 
-senza toccare minimamente il controller. Va da sé che, se cambiare la UI si trasforma in un bagno di 
-sangue che impatta il controller (o, peggio, il modello), il design architetturale non è stato 
-fatto in modo adeguato.
+ \item Si discute se sia semplice o meno, con l'architettura scelta, sostituire in blocco la view: in un MVC ben fatto, controller e modello non dovrebbero in alcun modo cambiare se si transitasse da una libreria grafica ad un'altra (ad esempio, da Swing a JavaFX, o viceversa).
 \end{itemize}
 
 \subsection*{Elementi negativi}
