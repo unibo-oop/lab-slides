@@ -335,9 +335,9 @@ dependencies {
 \end{frame}
 
 \begin{frame}[fragile]{Convenzioni Java in Gradle}
-    A meno di non usare configurazione manuale, Gradle si aspetta una struttura un po' diversa da quella di default in Eclipse
+    A meno di non usare configurazione manuale, Gradle si aspetta una struttura un diversa da quella di default in Eclipse
     \begin{itemize}
-        \item Chi usasse Gradle, dovrebbe optare per questa convenzione, ed importare solo poi il progetto in Eclipse
+        \item Chi usasse Gradle, dovrebbe optare per questa convenzione, ed importare il progetto in Eclipse dopo averla applicata
         \item È la convenzione che si usa nei progetti ``seri''
         \item Deriva da uno strumento di build automation antesignano di Gradle (Apache Maven)
     \end{itemize}
@@ -348,7 +348,7 @@ dependencies {
     |   |   \-- resources     Risorse del software (ex: res)
     |   \-- test
     |       |-- java          Sorgenti java per i test
-    |       \-- resources     Sorgenti java per le risorse
+    |       \-- resources     Risorse per i test
     \-- build.gradle.kts      Build file
     \end{minted}
 \end{frame}
