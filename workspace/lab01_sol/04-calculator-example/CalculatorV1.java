@@ -1,4 +1,4 @@
-public class CalculatorV1 {
+class CalculatorV1 {
 
     void build() {
     }

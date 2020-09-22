@@ -1,4 +1,4 @@
-public class Train {
+class Train {
     int nTotSeats;
     int nFirstClassSeats;
     int nSecondClassSeats;

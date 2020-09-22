@@ -1,4 +1,4 @@
-public class TestScopesMain {
+class TestScopesMain {
   public static void main(String[] argv) {
       TestScopes testObj = new TestScopes();
       testObj.build(1, 2);
