@@ -23,11 +23,19 @@ class TestComplexNumCalculator {
       System.out.println("No. operations done = " + calculator.nOpDone + "\n");
       System.out.println("Last res = " + calculator.lastRes.toStringRep() + "\n");
 
-      // mul(8+2i, 3-i) = 24-2i
+      // mul(8+2i, 3-i) = 26-2i
       n1.build(8, 2);
       n2.build(3, -1);
       result = calculator.mul(n1, n2);
       System.out.println("Result of mul(8+2i, 3-i) = " + result.toStringRep() + "\n");
+      System.out.println("No. operations done = " + calculator.nOpDone + "\n");
+      System.out.println("Last res = " + calculator.lastRes.toStringRep() + "\n");
+
+      // div(8+i, 2-i) = 3+2i
+      n1.build(8, 1);
+      n2.build(2, -1);
+      result = calculator.div(n1, n2);
+      System.out.println("Result of div(8+i, 2-i) = " + result.toStringRep() + "\n");
       System.out.println("No. operations done = " + calculator.nOpDone + "\n");
       System.out.println("Last res = " + calculator.lastRes.toStringRep() + "\n");
   }
