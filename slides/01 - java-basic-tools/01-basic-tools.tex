@@ -35,41 +35,38 @@
 	Java (JRE), i tool (e molte librerie) per sviluppare applicazioni,
 	e la relativa  documentazione}
 	
-	\bl{I Principali Tool del JDK}{
+	\bl{I principali (non tutti) tool del JDK}{
 		\begin{description}
 			\item[javac] -- Compilatore Java
 			\item[java] -- Java virtual machine, per eseguire applicazioni Java
 			\item[javadoc] -- Per creare automaticamente documentazione in HTML
-			\item[jar] -- Creazione di archivi compressi (anche eseguibili) contenenti bytecode e risorse
+			\item[jar] -- Creazione di archivi compressi (anche eseguibili)
 		\end{description}
 	}
 }
 
 \fr{Java Development Kit (JDK)}{
-
-\begin{itemize}
-\item Java 11 -- ultima versione LTS del JDK
-\begin{itemize}
-\item Esistono varie versioni e vari distributori (OpenJDK, Oracle JDK, Eclipse OpenJ9, Amazon, \dots)
-\item OpenJDK -- implementazione non commerciale, riferimento de facto
-\end{itemize}
-\end{itemize}
-
-\begin{block}{Riferimenti per il corso}
-\begin{itemize}
-\item Java 11, distribuita da OpenJDK
-\item AdoptOpenJDK: riferimento per il download del JDK
-\begin{itemize}
-\item \texttt{https://adoptopenjdk.net}
-\end{itemize}
-\end{itemize}
-\end{block}
+    \begin{itemize}
+        \item Java 11 -- ultima versione LTS del JDK
+        \begin{itemize}
+            \item Esistono varie versioni e vari distributori (OpenJDK, Oracle JDK, Eclipse OpenJ9, Amazon, \dots)
+            \item OpenJDK -- implementazione non commerciale, reference version
+            \begin{itemize}
+                \item Per capire se una JVM si comporta correttamente, si confronta il suo comportamento con OpenJDK.
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+    \begin{block}{Riferimenti per il corso}
+        \begin{itemize}
+            \item Java 11, distribuita da OpenJDK
+            \item AdoptOpenJDK: riferimento per il download del JDK
+            \begin{itemize}
+                \item \texttt{https://adoptopenjdk.net}
+            \end{itemize}
+            \item Chi lo desidera può sperimentare con le versioni più recenti (fino a Java 15)
+        \end{itemize}
+    \end{block}
 }
-
-\begin{frame}{AdoptOpenJDK}
-\fg{height=0.80\textheight}{img/adoptopenjdk.jpg}
-\end{frame}
-
 
 %====================
 %Architettura a Runtime
@@ -117,7 +114,7 @@ prende il nome di \emph{percorso}, e.g.:
   \begin{itemize}
     \item Su Windows, esso è ``Esplora risorse'' (\texttt{explorer.exe})
     \item Su MacOS, il principale è ``Finder''
-    \item Su Linux (e Android) ne esistono diversi (Nautilus, Dolphin, Thunar, Astro...)
+    \item Su Linux ne esistono diversi (Nautilus, Dolphin, Thunar, Astro\ldots)
   \end{itemize}
 \end{frame}
 
@@ -125,26 +122,13 @@ prende il nome di \emph{percorso}, e.g.:
   \bl{}{
     Programma che permette di interagire con il S.O. mediante comandi impartiti in modalità testuale (non grafica), via linea di comando
   }
-% 	\bl{Scripting}{
-% 		L'interprete comandi può avere un linguaggio associato con cui è possibile scrivere script
-% %		\iz{
-% %			\item Utili (principalmente) per automatizzare task di diversa natura
-% %		}
-% 	}
-% 	\bl{Vari tipi di comandi}{
-% 		\iz{
-% 			\item Navigazione file system
-% 			\item Interazione con il file system
-% 			\item Esecuzione di programmi da riga di comando
-% 			\item ...
-% 		}
-% 	}
   \begin{itemize}
-    \item Nell'antichità (in termini informatici) le interfacce grafiche erano sostanzialmente inesistenti, e l'interazione con i calcolatori avveniva di norma tramite interfaccia testuale
+    \item Nell'antichità (in termini informatici) le interfacce grafiche erano sostanzialmente inesistenti,
+    e l'interazione con i calcolatori avveniva di norma tramite interfaccia testuale
     \item Tutt'oggi, le interfacce testuali sono utilizzate:
     \begin{itemize}
-      \item per automatizzare le operazioni
-      \item per velocizzare le operazioni (scrivere un comando è spesso molto più veloce di andare a fare click col mouse in giro per lo schermo)
+      \item per \textbf{automatizzare} le operazioni
+      \item per \textbf{velocizzare} le operazioni (scrivere un comando è spesso molto più veloce di andare a fare click col mouse in giro per lo schermo)
       \item per fare operazioni complesse con pochi semplici comandi
       \item non tutti i software sono dotati di interfaccia grafica
       \item alcune opzioni di configurazione del sistema operativo restano accessibili solo via linea di comando
@@ -159,40 +143,73 @@ prende il nome di \emph{percorso}, e.g.:
 }
 
 \fr{Sistemi *nix (Linux, MacOS X, FreeBSD, Minix...)}{
-        \bl{Nei sistemi UNIX esistono vari tipi di interpreti, chiamati shell}{
-                Alcuni esempi
-                \iz{
-                        \item Bourne shell (sh)
-                                \iz{ \item Prima shell sviluppata per UNIX (1977)}
-                        \item C-Shell (csh)
-                                \iz{ \item Sviluppata da Bill Joy per BSD}
-                        \item Bourne Again Shell (bash)
-                                \iz{ \item Parte del progetto GNU, è un super set di Bourne shell}
-                        \item ...
-                }
+    \bl{Nei sistemi UNIX esistono vari tipi di interpreti, chiamati shell}{
+        Alcuni esempi
+        \iz{
+            \item Bourne shell (sh)
+            \iz{ \item Prima shell sviluppata per UNIX (1977)}
+            \item C-Shell (csh)
+            \iz{ \item Sviluppata da Bill Joy per BSD}
+            \item Bourne Again Shell (bash)
+            \iz{ \item Parte del progetto GNU, è un super set di Bourne shell}
+            \item ZSH, Fish, e altri terminali di ultima generazione
+            \iz{
+                \item Altamente personalizzabili
+                \item Molto flessibili
+            }
         }
-        \bl{Per una panoramica completa delle differenze}{
-                \textcolor{blue}{\url{http://www.faqs.org/faqs/unix-faq/shell/shell-differences/}}
-        }
+    }
+    \bl{Per una panoramica completa delle differenze}{
+        \textcolor{blue}{\url{http://www.faqs.org/faqs/unix-faq/shell/shell-differences/}}
+    }
 }
 
 \fr{Sistemi Windows}{
-  \bl{}{
-    L'interprete comandi è rappresentato dal programma \texttt{cmd.exe} in \texttt{C:$\backslash$Windows$\backslash$System32$\backslash$cmd.exe}
-    \iz{
-      \item Eredita in realtà sintassi e funzionalità della maggior parte dei comandi del vecchio MSDOS
-      \item Versioni recenti hanno introdotto PowerShell, basato su .NET e C\#
-      \item Windows 10 ha introdotto il supporto a bash tramite Linux Subsystem for Windows
+    \bl{}{
+        L'interprete comandi è rappresentato dal programma \texttt{cmd.exe} in \texttt{C:$\backslash$Windows$\backslash$System32$\backslash$cmd.exe}
+        \iz{
+            \item Eredita in realtà sintassi e funzionalità della maggior parte dei comandi del vecchio MSDOS
+            \item Versioni recenti hanno introdotto PowerShell, basato su .NET e C\#
+            \item Da Windows 10 è possibile installare Linux dentro Windows usando Windows Subsystem for Linux (WSL2)
+            \begin{itemize}
+                \item Può essere un modo ragionevole di avere bash in ambiente Windows
+            \end{itemize}
+        }
     }
-  }
-  \fg{height=0.4\textheight}{img/prompt.png}
 }
 
-\begin{frame}[fragile]{Aprire un terminale in laboratorio}
-  \begin{itemize}
-    \item In laboratorio, troverete il terminale (prompt dei comandi) clickando su Start $\Rightarrow$ Programmi $\Rightarrow$ Accessori $\Rightarrow$ Prompt dei comandi
-    \item Metodo più rapido: Start  $\Rightarrow$ Nella barra di ricerca, digitare \texttt{cmd} $\Rightarrow$ clickare su \texttt{cmd.exe}
-  \end{itemize}
+\begin{frame}[fragile, allowframebreaks]{Aprire un terminale in laboratorio}
+    \begin{block}{Terminale DOS/cmd}
+        \begin{itemize}
+            \item Start $\Rightarrow$ Programmi $\Rightarrow$ Accessori $\Rightarrow$ Prompt dei comandi
+            \item Oppure: Start  $\Rightarrow$ Nella barra di ricerca, digitare \texttt{cmd} $\Rightarrow$ clickare su \texttt{cmd.exe}
+        \end{itemize}
+    \end{block}
+    \begin{block}{Terminale Bash emulato (git bash)}
+        \begin{itemize}
+            \item Icona sul desktop
+            \item Oppure: Start  $\Rightarrow$ Nella barra di ricerca, digitare \texttt{git bash}
+            \item Consente di lavorare su Windows con un terminale meglio equipaggiato, vicino ad un nativo Linux
+        \end{itemize}
+    \end{block}
+    \begin{block}{Terminale ZSH servito via docker (con configurazioni di Pianini)}
+        \begin{itemize}
+            \item Avviare docker (icona sul desktop), rifiutando eventuali aggiornamenti e quant'altro
+            \item Una volta che docker è avviato, fare doppio click sull'icona ``DockerLinux''
+            \item Si avvierà una shell zsh
+            \begin{itemize}
+                \item \emph{In caso di errori chiudere docker dalla tray e ripetere l'operazione}
+            \end{itemize}
+            \item Questa è una shell nativa Linux, preconfigurata dal docente
+            \begin{itemize}
+                \item (e quindi potenzialmente con personalizzazioni che dipendono dal gusto personale)
+            \end{itemize}
+            \item Al termine della sessione, per salvare lo stato, si copi la cartella \texttt{DockerHome} presente sul desktop
+            \begin{itemize}
+                \item In questo modo si ricorderà la storia dei comandi, le eventuali configurazioni, eccetera
+            \end{itemize}
+        \end{itemize}
+    \end{block}
 \end{frame}
 
 \begin{frame}[fragile]{File system e terminale: cheat sheet}
@@ -202,71 +219,72 @@ prende il nome di \emph{percorso}, e.g.:
       \hline
       \textbf{Operazione} & \textbf{Comando Unix} & \textbf{Comando Win} \\ \hline
       \scriptsize{}Visualizzare la directory corrente & \texttt{pwd} & \texttt{echo \%cd\%}  \\ \hline
-      \scriptsize{}Eliminare il file \texttt{f} (non va con le cartelle!) & \texttt{rm f} & \texttt{del f} \\ \hline
-      \scriptsize{}Eliminare la directory \texttt{nd} & \texttt{rm -r nd} & \texttt{rd nd} \\ \hline
+      \scriptsize{}Eliminare il file \texttt{foo} (non va con le cartelle!) & \texttt{rm foo} & \texttt{del foo} \\ \hline
+      \scriptsize{}Eliminare la directory di nome \texttt{bar} & \texttt{rm -r bar} & \texttt{rd bar} \\ \hline
       \scriptsize{}Contenuto della directory corrente & \texttt{ls -alh} & \texttt{dir} \\ \hline
 %       \scriptsize{}Avviare un eseguibile di nome \texttt{pippo} & \texttt{./p} & \texttt{.\textbackslash{}p} \\ \hline
       \scriptsize{}Cambiare unità disco (passare a D:) & -- & \texttt{D:} \\ \hline
-      \scriptsize{}Passare alla directory \texttt{nd} & \texttt{cd nd} & \texttt{cd nd} \\ \hline
+      \scriptsize{}Passare alla directory di nome \texttt{baz} & \texttt{cd baz} & \texttt{cd baz} \\ \hline
       \scriptsize{}Passare alla directory di livello superiore & \texttt{cd ..} & \texttt{cd..} \\ \hline
-      \scriptsize{}Spostare (rinominare) un file \texttt{f1} in \texttt{f2} & \texttt{mv f1 f2} & \texttt{move f1 f2} \\ \hline
-      \scriptsize{}Copiare il file \texttt{f} in \texttt{fc} & \texttt{cp f fc} & \texttt{copy f fc} \\ \hline
-      \scriptsize{}Creare la directory \texttt{d} & \texttt{mkdir d} & \texttt{md d} \\ \hline
+      \scriptsize{}Spostare (rinominare) un file \texttt{foo} in \texttt{bar} & \texttt{mv foo bar} & \texttt{move foo bar} \\ \hline
+      \scriptsize{}Copiare il file \texttt{foo} in \texttt{baz} & \texttt{cp foo bar} & \texttt{copy foo bar} \\ \hline
+      \scriptsize{}Creare la directory di nome \texttt{bar} & \texttt{mkdir bar} & \texttt{md bar} \\ \hline
     \end{tabular}
   \end{center}
 %  Eseguire delle prove ed esser certi di aver compreso come utilizzare ogni comando. Per \emph{cominciare} l'esame, in particolare, dovrete usare il comando \texttt{cd}: siate certi di aver capito cosa fa!
 \end{frame}
 
-\begin{frame}[fragile]{Uso intelligente del terminale (1/2)}
-  \begin{block}{Autocompletamento}
-    \scriptsize{}
-    Sia *nix che Windows offrono la possibilità di effettuare autocompletamento, ossia chiedere al sistema di provare a completare un comando. 
-	\begin{itemize}
-	\item Per farlo si utilizza il tasto ``tab''.
-	\item Es. Se ci si trova in una direcotry contenenti i file \emph{Main.java} e \emph{Test.java}, digitando ``T'' e premendo poi il tasto ``tab'' verrà automaticamente completato il nome del file \emph{Test.java}
-\end{itemize}	    
-  \end{block}
-  \vfill
-  \begin{block}{Memoria dei comandi precendenti}
-    \scriptsize{}
-    Sia *nix che Windows offrono la possibilità di richiamare rapidamente i comandi inviati precedentemente premendo il tasto ``freccia su''. 
-\begin{itemize}
-\item  I sistemi *nix supportano anche il lancio di comandi eseguiti in sessioni precedenti (non perde memoria col riavvio del terminale). 
-\end{itemize}    
-   
-  \end{block}
-
-\end{frame}
-
-\begin{frame}[fragile]{Uso intelligente del terminale (2/2)}
-  \begin{block}{Interruzione di un programma}
-    \scriptsize{}
-    È possibile interrompere forzatamente un programma, qualora non risponda per vari motivi o non si voglia attenderne la normale terminazione. 
-
-\begin{itemize}
-\item Per farlo, sia su Windows che in *nix, si prema ctrl+c.
-\end{itemize}    
-  \end{block}
-  \vfill
-  \begin{block}{Ricerca nella storia dei comandi precedenti}
-    \scriptsize{}
-    \begin{itemize}
-    \item Premendo ctrl+r seguito da un testo da cercare, i sistemi *nix supportano la ricerca all'interno dei comandi lanciati recentemente, anche in sessioni utente precedenti. Non disponibile su Windows.
-    \item Su Windows è possibile navigare la history dei comandi lanciati premendo F7 (funzione limitata alla sola sessione in corso)
-    \end{itemize}
-
-  \end{block}
+\begin{frame}[fragile, allowframebreaks]{Uso intelligente del terminale}
+    I terminali moderni possono essere utilizzati in modo piuttosto efficace.
+    Il numero ed il tipo di utilizzi "intelligenti" cambia da terminale a terminale e da sistema a sistema.
+    \begin{block}{Autocompletamento}
+        \scriptsize{}
+        Sia *nix che Windows offrono la possibilità di effettuare autocompletamento, ossia chiedere al sistema di provare a completare un comando.
+        \begin{itemize}
+            \item Per farlo si utilizza il tasto ``tab''.
+            \item L'autocompletamento cambia anche molto fra terminali diversi
+            \begin{itemize}
+                \scriptsize{}
+                \item Zsh e Fish in particolare posso ``capire'' come autocompletare i sottocomandi in modo intelligente.
+            \end{itemize}
+        \end{itemize}
+    \end{block}
+    \begin{block}{Memoria dei comandi precendenti}
+        \scriptsize{}
+        Sia Bash/zsh che cmd offrono la possibilità di richiamare rapidamente i comandi inviati precedentemente premendo il tasto ``freccia su''.
+        \begin{itemize}
+            \item  Su bash/zsh i comandi sono \emph{persistenti} (disponibili anche se il terminale viene riavviato).
+        \end{itemize}
+    \end{block}
+    \begin{block}{Interruzione di un programma}
+        \scriptsize{}
+        È possibile interrompere forzatamente un programma, qualora non risponda per vari motivi o non si voglia attenderne la normale terminazione.
+        \begin{itemize}
+            \item Per farlo, sia su Windows che in *nix, si prema ctrl+c.
+            \item Esempio tipico: programma in loop infinito
+        \end{itemize}
+    \end{block}
+    \begin{block}{Visualizzazione della storia dei comandi}
+        \scriptsize{}
+        \begin{itemize}
+             \item Su bash / zsh / fish eccetera, usare il comando \texttt{history}
+            \item Su Windows cmd, usare il tasto F7
+        \end{itemize}
+    \end{block}
+    \begin{block}{Ricerca nella storia dei comandi precedenti}
+        \scriptsize{}
+        \begin{itemize}
+            \item Premendo ctrl+r seguito da un testo da cercare, i sistemi *nix supportano la ricerca all'interno dei comandi lanciati recentemente, anche in sessioni utente precedenti. Non disponibile su Windows.
+        \end{itemize}
+    \end{block}
 \end{frame}
 
 \section{Preparazione dell'ambiente di lavoro (per Lab01)}
 
-\fr{Preparazione Ambiente di Lavoro (1/4)}{
+\fr{Preparazione Ambiente di Lavoro}{
 	\iz{
 		\item Accendere il PC ed eseguire l'accesso
 		\item Accedere al sito del corso
-		\iz{
-			\item \textcolor{blue}{\url{http://bit.ly/oop19-cesena}}
-		}
 		\item Scaricare dalla sezione dedicata a questa settimana il materiale dell'esercitazione odierna
 		\item Spostare il file scaricato sul Desktop
 		\item Decomprimere il file sul Desktop
@@ -274,46 +292,35 @@ prende il nome di \emph{percorso}, e.g.:
 }
 
 
-\fr{Preparazione Ambiente di Lavoro (2/4)}{
+\fr{Preparazione Ambiente di Lavoro}{
 	\iz{
-		\item Aprire il prompt dei comandi 
-	}	
-	\fg{height=0.5\textheight}{img/prompt01.jpg}
-	
-	\iz{
-	\item NOTA: generalmente il prompt si apre nella directory principale dell'utente
+		\item Aprire un terminale
+        \item Si scelga l'opzione che si preferisce fra quelli proposti
+        \item Si comprenda in qualche cartella si è usando l'apposito comando
+        \iz{
+            \item Generalmente il prompt si apre nella directory principale dell'utente
+            \item Nel caso in cui si usasse zsh dentro Docker, il terminale parte dalla cartella \texttt{DockerHome} sul desktop, e non è in grado di uscirne:
+            È quindi necessario spostare i file decompressi dentro quest'ultima.
+        }
+        \item Posizionarsi all'interno della cartella scompattata con l'ausilio del comando \texttt{cd} (change directory)
+        \item Verificare che il contenuto della cartella sia quello atteso
 	}
 }
 
-\fr{Preparazione Ambiente di Lavoro (3/4)}{
-	\iz{
-		\item Posizionarsi all'interno della cartella scompattata con l'ausilio del comando \texttt{cd} (change directory)
-		\en{
-			\item \texttt{cd Desktop} e premere invio, dopodiché
-			\item \texttt{cd lab01} e premere invio
-		}
-	}
-	\fg{height=0.6\textheight}{img/prompt02.jpg}
-}
-
-\begin{frame}{Preparazione Ambiente di Lavoro (4/4)}
-\begin{itemize}
-\item Scegliere un editor di testo per modificare i file sorgente
-\begin{itemize}
-\item Il laboratorio è equipaggiato con diversi editor di testo: JEdit, Notpad++, Atom
-\item NOTA: \textbf{NON} sono adatti per l'apertura e la modifica di file Java (né di alcun altro linguaggio di programmazione) i word processors (Libreoffice Writer, Openoffice Writer, Microsoft Word, Microsoft WordPad...), né l'editor di testo incluso in Windows (Notepad).
-\end{itemize}
-\vfill
-\item Si suggerisce l'utilizzo di \textbf{Atom} (\texttt{https://atom.io/})
-\begin{itemize}
-\item fornisce un supporto adeguato alla scrittura/modifica di sorgenti Java
-\item offre la possibilità di interpretare la sintassi markdown: modalità con cui sono forniti i testi degli esercizi (per i primi laboratori)
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Preparazione Ambiente di Lavoro (4/4)}
-\fg{width=\textwidth}{img/atom.jpg}
+\begin{frame}{Preparazione Ambiente di Lavoro}
+    \begin{itemize}
+        \item Scegliere un editor di testo per modificare i file sorgente
+        \begin{itemize}
+            \item Il laboratorio è equipaggiato con diversi editor di testo: JEdit, Notpad++, Visual Studio Code...
+            \item \textbf{NON} sono adatti per l'apertura e la modifica di file Java
+            (né di alcun altro linguaggio di programmazione) i word processors(Libreoffice Writer, Microsoft Word, Microsoft WordPad...), né l'editor di testo incluso in Windows (Notepad).
+        \end{itemize}
+        \item Si suggerisce l'utilizzo di \textbf{Code} (\texttt{https://code.visualstudio.com/})
+        \begin{itemize}
+            \item fornisce un supporto adeguato alla scrittura/modifica di sorgenti Java
+            \item offre la possibilità di interpretare la sintassi markdown: modalità con cui sono forniti i testi degli esercizi (per i primi laboratori)
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \section{Compilazione ed Esecuzione da Riga di Comando}
