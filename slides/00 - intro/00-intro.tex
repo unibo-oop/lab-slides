@@ -1,6 +1,6 @@
 %\documentclass[12pt,handout]{beamer}
 \documentclass[presentation]{beamer}
-\usepackage{../oop-slides-croatti}
+\usepackage{../oop-slides-lab}
 \setbeamertemplate{bibliography item}[text]
 
 \newcommand{\lab}{Lab01}
@@ -18,29 +18,30 @@
 	\tableofcontents[]
 \end{frame}
 
-\section{Organizzazione del Laboratorio}
+\section{Organizzazione del Laboratorio}\label{sec:organizzazione-del-laboratorio}
 
 \begin{frame}{Organizzazione del Laboratorio}
 
 \begin{itemize}
-\item Due turni settimanali
-\begin{itemize}
-\item Per esigenze di spazi, per garantire un maggiore supporto ai frequentanti, \dots
-\end{itemize}
-\item Il contenuto della lezione e dell'esecitazione settimanale del laboratorio è il medesimo per entrambi i turni
-\item Eventuali variazioni di turno vanno motivate e concordate con il Prof. Viroli (\texttt{mirko.viroli@unibo.it})
+    \item Due turni settimanali
+    \begin{itemize}
+        \item Per esigenze di spazi, per garantire un maggiore supporto ai frequentanti, \dots
+    \end{itemize}
+    \item Il contenuto della lezione e dell'esecitazione settimanale del laboratorio è il medesimo per entrambi i turni
+    \item La gestione della partecipazione ai turni è demandata al prof. Viroli
+    \item Nello stesso giorno avrete sia OOP che OS
 \end{itemize}
 
-\begin{block}{Primo Turno (cognomi nell'intervallo [A-Gim])}
-\begin{itemize}
-\item Lunedì, 9:00 - 13:00
-\item Lab. 2.2, Campus Cesena
-\end{itemize}
+\begin{block}{Primo Turno}
+    \begin{itemize}
+        \item Lunedì, 9:00 - 13:00
+        \item Lab. 2.2, Campus Cesena
+    \end{itemize}
 \end{block}
 
 \begin{block}{Secondo Turno (cognomi nell'intervallo [Gin-Z])}
 \begin{itemize}
-\item Martedì, 13:00 - 17:00
+\item Martedì, 14:00 - 18:00
 \item Lab. 2.2, Campus Cesena
 \end{itemize}
 \end{block}
@@ -56,43 +57,51 @@
 \end{itemize}
 \end{block}
 
-\begin{block}{Prof. Angelo Croatti -- Responsabile Modulo 2}
+\begin{block}{Prof. Roberto Casadei -- Responsabile Modulo 2}
 \begin{itemize}
-\item mail: \texttt{a.croatti@unibo.it}
+\item mail: \texttt{roby.casadei@unibo.it}
 \item ricevimento: su appuntamento, da concordare via mail
 \end{itemize}
 \end{block}
 
-\begin{block}{Ing. Roberto Casadei -- Tutor Didattico}
-\begin{itemize}
-\item mail: \texttt{roby.casadei@unibo.it}
-\end{itemize}
+\begin{block}{Ing. Andrea Placuzzi -- Tutor Didattico}
+    \begin{itemize}
+        \item mail: \texttt{andrea.placuzzi@unibo.it}
+    \end{itemize}
+\end{block}
+
+\begin{block}{Ing. Niccolò Maltoni -- Tutor Didattico}
+    \begin{itemize}
+        \item mail: \texttt{niccolo.maltoni@unibo.it}
+    \end{itemize}
 \end{block}
 
 \end{frame}
 
 \section{Forum e supporto}
 
-\begin{frame}{Il Forum del Corso}
+\begin{frame}{Chiarimenti e spiegazioni}
+
+Per chiarimenti, ulteriori delucidazioni e spiegazioni fuori dall'orario di laboratorio
+si incoraggia l'uso del \textbf{Forum del Corso}
+\begin{itemize}
+    \item link accessibile dal sito del corso su Virtuale
+    \item da preferire all'email inviata direttamente al/ai docente/i
+\end{itemize}
 
 \begin{block}{}
-\begin{itemize}
-\item Il dubbio di uno studente, probabilmente, è anche il dubbio di qualcun'altro (\textbf{condivisione}) 
-\item Anche gli studenti possono rispondere ai post di altri studenti (\textbf{discussione})
-\item Utilizzare frequentemente il forum a supporto dei propri colleghi è valutato positivamente
-\end{itemize}
+    \begin{itemize}
+        \item Il dubbio di uno studente, probabilmente, è anche il dubbio di qualcun'altro (\textbf{condivisione})
+        \item Gli studenti possono aiutarsi (\textbf{discussione})
+        \item Aiutare i colleghi sul forum è \textbf{valutato positivamente}
+    \end{itemize}
 \end{block}
 \vfill
 \begin{itemize}
-\item Per chiarimenti, ulteriori delucidazioni e spiegazioni si incoraggia l'uso del \textbf{Forum del Corso}
-\begin{itemize}
-\item link accessibile dal sito del corso (IOL) \texttt{http://bit.ly/oop19-cesena}
-\item da preferire all'email inviata direttamente al/ai docente/i
-\end{itemize}
 \item L'email resta il canale da utilizzare per comunicazioni \textbf{confidenziali}
-\begin{itemize}
-\item con l'accortenzza di mettere sempre in copia tutti i docenti del corso
-\end{itemize}
+    \begin{itemize}
+        \item con l'accortenzza di mettere sempre in copia \emph{tutti} i docenti del corso
+    \end{itemize}
 \end{itemize}
 
 
@@ -102,84 +111,126 @@
 \begin{frame}{Il Laboratorio}
 
 \begin{itemize}
-\item Consente di mettere in pratica quanto visto nelle lezioni in aula
-\begin{itemize}
-\item con il supporto diretto del docente e del tutor
-\end{itemize}
-\item Integra ed espande i contenuti affrontati in aula
-\item Introduce strumenti e metodologie (non affrontati in aula)
-\begin{itemize}
-\item Development Tools, IDE
-\item Metodologie di gestione dei progetti
-\item Librerie a supporto dello sviluppo
-\item \dots
-\end{itemize}
+    \item Consente di mettere in pratica quanto visto nelle lezioni in aula
+    \begin{itemize}
+        \item con il supporto diretto del docente e del tutor
+    \end{itemize}
+    \item Integra ed espande i contenuti affrontati in aula
+    \item Introduce \textbf{nuovi} strumenti e metodologie (non affrontati in aula!)
+    \begin{itemize}
+        \item Strumenti, metodologie, pratiche, librerie\dots{}
+    \end{itemize}
 \end{itemize}
 
 \begin{block}{Organizzazione di ciascun turno di laboratorio}
-\begin{enumerate}
-\item Lezione Frontale (30-60 min)
-\begin{itemize}
-\item Introduce nuovi concetti non visti in aula
-\end{itemize}
-\item Esercitazione
-\begin{itemize}
-\item Un set di esercizi da svolgere in autonomia\dots
-\item \dots con il supporto del docente e del tutor!
-\end{itemize}
-\end{enumerate}
+    \begin{enumerate}
+        \item Lezione Frontale (30-60 min)
+        \begin{itemize}
+            \item Introduce \textbf{nuovi concetti} non visti in aula
+        \end{itemize}
+        \item Esercitazione
+        \begin{itemize}
+            \item Un set di esercizi da svolgere in autonomia
+            \item Evocando il docente in caso di difficoltà
+            \item Chiedendo \textbf{sempre} ai docenti una \textbf{correzione finale}
+        \end{itemize}
+    \end{enumerate}
 \end{block}
-
 \end{frame}
 
 \begin{frame}{Svolgimento di ciascun esercizio}
-\begin{enumerate}\itemsep20pt
-\item Lettura della consegna
-\begin{itemize}
-\item Chiedere al docente/tutor in caso di dubbi
-\end{itemize}
-\item Svolgimento dell'esercizio
-\begin{itemize}
-\item Chiedere al docente/tutor in caso di dubbi e/o difficoltà
-\end{itemize}
-\item Segnalazione al docente/tutor del avvenuto completamento
-\begin{itemize}
-\item La ``correzione'' è fondamentale per ricevere commenti dal docente/tutor per migliorare la propria soluzione o l'approccio risolutivo
-\end{itemize}
-\end{enumerate}
+    \begin{enumerate}\itemsep20pt
+        \item Lettura della consegna
+        \begin{itemize}
+            \item Contattare un docente in caso di dubbi
+        \end{itemize}
+        \item Svolgimento dell'esercizio
+        \begin{itemize}
+            \item Contattare un docente in caso di difficoltà
+        \end{itemize}
+        \item \textbf{Segnalazione al docente/tutor del avvenuto completamento}
+        \begin{itemize}
+            \item \textit{La correzione è fondamentale!}
+            \item Nella correzione, progressivamente, vi verranno dati suggerimenti per passare da "qualcosa che funziona"
+            a qualcosa di ben fatto!
+            \item Ricordate che in OOP \textit{``funziona'' non è una metrica di qualità sufficiente}
+        \end{itemize}
+    \end{enumerate}
 \end{frame}
+
+\begin{frame}{Come chiedere supporto ai docenti}
+    A causa della didattica mista, quest'anno sperimenteremo un approccio nuovo:
+    \begin{itemize}
+        \item Ciascuno studente, che sia in didattica frontale o mista, si prenota tramite un post sul canale Teams corretto
+        \item Il docente lo contatta e
+        \begin{itemize}
+            \item lo raggiunge fisicamente se presente
+            \item Apre una call privata (se remoto)
+        \end{itemize}
+    \end{itemize}
+    \begin{block}{Canale per informazioni}
+        \begin{itemize}
+            \item \textbf{URL}: \url{http://bit.ly/oop-2020-info}
+            \item Da usare per domande, spiegazioni, chiarimenti
+        \end{itemize}
+    \end{block}
+    \begin{block}{Canale per le correzioni}
+        \begin{itemize}
+            \item \textbf{URL}: \url{http://bit.ly/oop-2020-correzioni}
+            \item Ad ogni esercizio terminato, ogni studente \textbf{deve} prenotarsi per far correggere quanto fatto
+        \end{itemize}
+    \end{block}
+\end{frame}
+
 
 \section{Contenuti e Obiettivi}
 
 \begin{frame}{Overview sui contenuti}
 
-\begin{enumerate}\itemsep10pt
-\item Tooling Java
-\item Eclipse IDE, debug tools
-\item Controllo di versione
-\item Testing, documentazione, deployment
-\item Qualità del codice
-\item Programmazione multipiattaforma
-\item Profiling tools
-\item JavaFX
-\item C\# IDE e tools
+\begin{enumerate}
+    \item Tooling Java
+    \item Eclipse IDE, debug tools
+    \item Controllo di versione
+    \item Testing, documentazione, deployment
+    \item Controllo di qualità del codice
+    \item Programmazione multipiattaforma
+    \item Profiling
+    \item JavaFX
+    \item C\# IDE e tools
 \end{enumerate}
 
 \end{frame}
 
 \begin{frame}{Obiettivi del Laboratorio}
-\begin{itemize}\itemsep10pt
-\item Acquisire le completenze necessarie per:
-\begin{enumerate}
- \item diventare ottimi programmatori
- \item diventare buoni progettisti
-\end{enumerate}
-\item Fondamentale: \textbf{mettersi in gioco e impegnarsi!}
-\begin{itemize}
-\item percorso a difficoltà crescente (codice e consegne in inglese, tool avanzati, \dots)
-\item richiede: attenzione in aula, attenzione e impegno in laboratorio, studio autonomo
-\end{itemize}
-\end{itemize}
+    \begin{itemize}
+        \item Acquisire le completenze necessarie per:
+        \begin{enumerate}
+            \item diventare ottimi programmatori
+            \item diventare discreti progettisti
+        \end{enumerate}
+        \item Fondamentale: \textbf{mettersi in gioco!}
+        \begin{itemize}
+            \item specialmente per chi ha già rudimenti di OOP o di Java
+            \item il livello è un altro rispetto a quello che potete aver visto alle superiori
+            \item percorso a difficoltà crescente
+            \begin{itemize}
+                \item Il codice passerà in inglese
+                \item Le istruzioni passeranno in inglese
+                \item Richiederemo sempre maggior qualità
+                \item Useremo strumenti via via più avanzati
+            \end{itemize}
+        \end{itemize}
+        \item Fondamentale: \textbf{impegno!}
+        \begin{itemize}
+            \item È uno dei corsi più ``tosti'' del percorso di studi
+            \begin{itemize}
+                \item Richiede attenzione in aula
+                \item Richiede attenzione e impegno in laboratorio
+                \item Richiede studio e pratica a casa
+                \item \dots{}duro recuperare se si resta indietro!
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
 \end{frame}
   
 %\section{Java Overview}
