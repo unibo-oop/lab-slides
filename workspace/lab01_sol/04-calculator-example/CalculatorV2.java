@@ -1,4 +1,4 @@
-public class CalculatorV2 {
+class CalculatorV2 {
     int nOpDone;
     double lastRes;
 
@@ -22,7 +22,7 @@ public class CalculatorV2 {
     double div(double n1, double n2) {
         return doOp(n1 / n2);
     }
-    
+
     double doOp(double result) {
         lastRes = result;
         nOpDone++;

@@ -1,4 +1,4 @@
-public class Recognizer {
+class Recognizer {
     int nextNum;
     boolean success;
 
