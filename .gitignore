@@ -21,3 +21,6 @@
 *.synctex*
 *.kate-swp
 *.cache
+build/
+.gradle/
+.idea/

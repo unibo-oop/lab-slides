@@ -131,7 +131,7 @@ Come seguire stili e convenzioni? Tutto nelle mani del programmatore?
 
 \section{Compilazione ed esecuzione avanzata in Java}
 
-\fr{Nuova opzione per \texttt{javac} \cite{or-javac}}{
+\fr{Nuova opzione per \texttt{javac}}{
 	\begin{itemize}
 		\item Abbiamo già visto come compilare file sorgenti Java (file \texttt{.java}), generando classi in bytecode, che prendono la forma di file \texttt{.class} nella medesima directory 
 		\item Tuttavia è uso comune e \textbf{buona pratica} nella gestione di progetti articolati, \textbf{separare le classi sorgenti dal bytecode}, ad esempio:
@@ -185,7 +185,7 @@ directory che andranno usate.
 			\end{itemize}
 		\end{itemize}
 	\end{itemize}
-	\begin{block}{Come fa la JVM a risolvere le classi? \cite{or-java}}
+	\begin{block}{Come fa la JVM a risolvere le classi?}
 		\begin{itemize}
 			\item Possiede un elenco di percorsi che contengono i file compilati
 			\begin{itemize}
@@ -266,8 +266,7 @@ usare l'intero nome della classe, che in Java include anche il nome del package!
 
 \begin{frame}[fragile, allowframebreaks]{Uso del classpath in fase di compilazione}
    Supponiamo di avere in mano la seguente classe:
-    \sizedcode{\tiny}{
-../../workspace/lab02/02-classpathcompilation/src/oop/lab02/math/UseComplex.java}
+    \sizedcode{\tiny}{../../workspace/lab02/02-classpathcompilation/src/oop/lab02/math/UseComplex.java}
     \begin{block}{Comprensione degli errori}
         Se provassimo a compilarla, otterremmo degli errori
         \sizedcode{\tiny}{code/esempio3/src/oop/lab02/math/error.txt}
