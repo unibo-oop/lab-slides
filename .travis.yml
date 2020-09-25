@@ -44,6 +44,8 @@ install:
   - sudo miktexsetup --shared=yes finish
   - sudo initexmf --admin --set-config-value [MPM]AutoInstall=1
   - sudo mpm --admin --package-level=basic --find-upgrades --upgrade
+
+after_install:
   # Debug prints
   - pygmentize -V # debug
   - inkscape --version # debug
@@ -54,7 +56,12 @@ script:
   - cd slides
   - chmod +x gradlew
   - ./gradlew buildLatex
-  - ls -al
+  
+after_script:
+  - git checkout master
+  - git add gradlew
+  - git commit -m "[ci skip] [automatic] Make gradlew executable again"
+  - git push "git@github.com:${TRAVIS_REPO_SLUG}.git" master
 
 after_success:
   - git config --local user.name "Danilo Pianini's Travis CI automation bot"
@@ -62,33 +69,29 @@ after_success:
 
 before_deploy:
   - $GRAVIS/autotag
-
-after_script:
-  - git checkout master
-  - git add gradlew
-  - git commit -m "[ci skip] [automatic] Make gradlew executable again"
-  - git push "git@github.com:${TRAVIS_REPO_SLUG}.git" master
+  - cd $TRAVIS_BUILD_DIR/workspace
+  # zip all workspace/* folders
+  - for i in */; do zip -r "${i%/}.zip" "$i"; done
 
 deploy:
   - provider: releases
     edge: true
     file:
-      - "00 - intro/00-intro.pdf"
-      - "01 - java-basic-tools/01-basic-tools.pdf"
-      - "02 - java-advanced-tools/02-advanced-tools.pdf"
-      - "03 - eclipse/03-eclipse.pdf"
-      - "04 - dvcs-1/04-git-intro.pdf"
-      - "05 - dvcs-2/05-branching-merging.pdf"
-      - "06 - dvcs-testing/06-DVCS3-junit.pdf"
-      - "07 - javadoc-jar/07-JAR-Javadoc.pdf"
-      - "08 - code-quality-multiplatform-profiling/08-code-analysis.pdf"
-      - "09 - dvcs-workflow/09-DVCS-Workflow.pdf"
-      - "10 - javafx/10-JavaFX.pdf"
-      - "13 - report-template/13-template.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/00 - intro/00-intro.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/01 - java-basic-tools/01-basic-tools.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/02 - java-advanced-tools/02-advanced-tools.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/03 - eclipse/03-eclipse.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/04 - dvcs-1/04-git-intro.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/05 - dvcs-2/05-branching-merging.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/06 - dvcs-testing/06-DVCS3-junit.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/07 - javadoc-jar/07-JAR-Javadoc.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/08 - code-quality-multiplatform-profiling/08-code-analysis.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/09 - dvcs-workflow/09-DVCS-Workflow.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/10 - javafx/10-JavaFX.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/13 - report-template/13-template.pdf"
+      - "$TRAVIS_BUILD_DIR/workspace/*.zip"
     on:
       all_branches: true
-
-
 
 notifications:
   email:
