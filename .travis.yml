@@ -76,6 +76,7 @@ before_deploy:
 deploy:
   - provider: releases
     edge: true
+    repo: "APICe-at-DISI/OOP-lab-public"
     file:
       - "$TRAVIS_BUILD_DIR/slides/00 - intro/00-intro.pdf"
       - "$TRAVIS_BUILD_DIR/slides/01 - java-basic-tools/01-basic-tools.pdf"
