@@ -1,0 +1,78 @@
+# Do not double-build branches and PRs from this repo
+# Do not build auto-tagged versions
+if: repo != head_repo AND tag !~ /^[\w\.]+-\d+-\w+/
+
+env:
+  global:
+    - TERM=dumb
+    - GRAVIS_REPO="https://github.com/DanySK/Gravis-CI.git"
+    - GRAVIS="$HOME/gravis"
+
+jobs:
+  include:
+    - language: java
+      os: linux
+      dist: focal
+      addons:
+        apt:
+          sources:
+            - sourceline: 'deb [arch=amd64] http://miktex.org/download/ubuntu focal universe'
+              key_url: "http://keyserver.ubuntu.com/pks/lookup?op=get&search=miktex"
+          update: true
+          packages:
+            # LaTeX decent font processor
+            - cm-super
+            # Image processing
+            - inkscape
+            # For git latexdiff
+            - latexdiff
+            # For Minted
+            - python-pygments
+            - python3-pygments
+            # LaTeX
+            - miktex
+            # Debug
+            - tree
+      install:
+        - travis_retry git clone --depth 1 $GRAVIS_REPO $GRAVIS
+        - sudo miktexsetup --shared=yes finish
+        - sudo initexmf --admin --set-config-value [MPM]AutoInstall=1
+        - sudo mpm --admin --package-level=basic --find-upgrades --upgrade
+        - pygmentize -V # debug
+        - inkscape --version # debug
+
+      script:
+        - cd slides
+        - chmod +x gradlew
+        - ./gradlew buildLatex
+
+      after_success:
+        - git config --local user.name "Danilo Pianini's Travis CI automation bot"
+        - git config --local user.email "danilo.pianini@unibo.it"
+
+      before_deploy:
+        - $GRAVIS/autotag
+
+      after_script:
+        - git checkout master
+        - git add gradlew
+        - git commit -m "[ci skip] [automatic] Make gradlew executable again"
+        - git push "git@github.com:${TRAVIS_REPO_SLUG}.git" master
+
+      deploy:
+        - provider: releases
+          edge: true
+          file:
+            - "slides/*.pdf"
+            - "slides/**/*.pdf"
+          on:
+            all_branches: true
+    # - language: shell
+    #   os: linux
+    #   dist: focal
+
+
+
+notifications:
+  email:
+    on_success: never
