@@ -1,0 +1,104 @@
+# Do not double-build branches and PRs from this repo
+# Do not build auto-tagged versions
+if: repo != head_repo AND tag !~ /^[\w\.]+-\d+-\w+/
+
+env:
+  global:
+    - TERM=dumb
+    - GRAVIS_REPO="https://github.com/DanySK/Gravis-CI.git"
+    - GRAVIS="$HOME/gravis"
+
+language: java
+os: linux
+dist: focal
+addons:
+  apt:
+    sources:
+      - sourceline: 'deb [arch=amd64] http://miktex.org/download/ubuntu focal universe'
+        key_url: "http://keyserver.ubuntu.com/pks/lookup?op=get&search=miktex"
+    update: true
+    packages:
+      # LaTeX decent font processor
+      - cm-super
+      # Image processing
+      - inkscape
+      # DOT and GV support
+      - graphviz
+      # Tikz support
+      - gnuplot
+      # Color profiles support
+      - icc-profiles
+      # Better PS support
+      - ghostscript
+      # For git latexdiff
+      - latexdiff
+      # For Minted
+      - python-pygments
+      - python3-pygments
+      # LaTeX
+      - miktex
+      # Debug
+      - tree
+install:
+  - travis_retry git clone --depth 1 $GRAVIS_REPO $GRAVIS
+  - sudo miktexsetup --shared=yes finish
+  - sudo initexmf --admin --set-config-value [MPM]AutoInstall=1
+  - sudo mpm --admin --package-level=basic --find-upgrades --upgrade
+
+after_install:
+  # Debug prints
+  - pygmentize -V # debug
+  - inkscape --version # debug
+  - gs --version
+  - dot -V
+
+script:
+  - cd slides
+  - chmod +x gradlew
+  - ./gradlew buildLatex
+  
+after_script:
+  - git checkout master
+  - git add gradlew
+  - git commit -m "[ci skip] [automatic] Make gradlew executable again"
+  - git push "git@github.com:${TRAVIS_REPO_SLUG}.git" master
+
+after_success:
+  - git config --local user.name "Danilo Pianini's Travis CI automation bot"
+  - git config --local user.email "danilo.pianini@unibo.it"
+
+before_deploy:
+  - $GRAVIS/autotag
+  - cd $TRAVIS_BUILD_DIR/workspace
+  # zip all workspace/* folders
+  - for i in */; do zip -r "${i%/}.zip" "$i"; done
+
+deploy:
+  - provider: releases
+    edge: true
+    repo: "APICe-at-DISI/OOP-lab-public"
+    file:
+      - "$TRAVIS_BUILD_DIR/slides/00 - intro/00-intro.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/01 - java-basic-tools/01-basic-tools.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/02 - java-advanced-tools/02-advanced-tools.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/03 - eclipse/03-eclipse.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/04 - dvcs-1/04-git-intro.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/05 - dvcs-2/05-branching-merging.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/06 - dvcs-testing/06-DVCS3-junit.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/07 - javadoc-jar/07-JAR-Javadoc.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/08 - code-quality-multiplatform-profiling/08-code-analysis.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/09 - dvcs-workflow/09-DVCS-Workflow.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/10 - javafx/10-JavaFX.pdf"
+      - "$TRAVIS_BUILD_DIR/slides/13 - report-template/13-template.pdf"
+      - "$TRAVIS_BUILD_DIR/workspace/*.zip"
+    on:
+      all_branches: true
+
+notifications:
+  email:
+    recipients:
+      - danilo.pianini@unibo.it
+      - roby.casadei@unibo.it
+      - niccolo.maltoni@unibo.it
+      - andrea.placuzzi@unibo.it
+    on_success: never
