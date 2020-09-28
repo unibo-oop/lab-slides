@@ -45,7 +45,7 @@ install:
   - sudo initexmf --admin --set-config-value [MPM]AutoInstall=1
   - sudo mpm --admin --package-level=basic --find-upgrades --upgrade
 
-after_install:
+before_script:
   # Debug prints
   - pygmentize -V # debug
   - inkscape --version # debug
@@ -77,6 +77,9 @@ deploy:
   - provider: releases
     edge: true
     repo: "APICe-at-DISI/OOP-lab-public"
+    on:
+      all_branches: true
+      condition: $TRAVIS_BRANCH = master || $TRAVIS_TAG != ""
     file:
       - "$TRAVIS_BUILD_DIR/slides/00 - intro/00-intro.pdf"
       - "$TRAVIS_BUILD_DIR/slides/01 - java-basic-tools/01-basic-tools.pdf"
@@ -91,8 +94,6 @@ deploy:
       - "$TRAVIS_BUILD_DIR/slides/10 - javafx/10-JavaFX.pdf"
       - "$TRAVIS_BUILD_DIR/slides/13 - report-template/13-template.pdf"
       - "$TRAVIS_BUILD_DIR/workspace/*.zip"
-    on:
-      all_branches: true
 
 notifications:
   email:
