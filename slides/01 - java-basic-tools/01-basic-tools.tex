@@ -326,37 +326,58 @@ prende il nome di \emph{percorso}, e.g.:
 \section{Compilazione ed Esecuzione da Riga di Comando}
 
 \fr{Compilazione ed Esecuzione, comandi di base}{
-	\bl{Compilazione}{
-		Compilazione di una classe (comando \textcolor{blue}{javac})
-		\iz{
-			\item \alert{\cil{javac NomeFileSorgente.java}} 
-			\item \alert{\cil{javac *.java}} compila tutti i sorgenti nella directory corrente
-		}
-	}
-	\bl{Esecuzione}{
-		Esecuzione di un programma Java (comando \textcolor{blue}{java})
-		\iz{
-			\item	\alert{\cil{java NomeDellaClasse}}
-		}
-	}
-	Si noti che il compilatore \emph{traduce} \textbf{file} sorgente in \textbf{file} binari, 
+    \bl{Compilazione}{
+        Compilazione di una classe (comando \textcolor{blue}{javac})
+        \iz{
+            \item \alert{\cil{javac NomeFileSorgente.java}} 
+            \item \alert{\cil{javac *.java}} compila tutti i sorgenti nella directory corrente
+        }
+    }
+    \bl{Esecuzione}{
+        Esecuzione di un programma Java (comando \textcolor{blue}{java})
+        \iz{
+            \item	\alert{\cil{java NomeDellaClasse}}
+        }
+    }
+    Si noti che il compilatore \emph{traduce} \textbf{file} sorgente in \textbf{file} binari, 
     mentre l'interprete Java (la Java Virtual Machine) esegue una ed una sola \textbf{classe}.
     
     Il compilatore Java lavora su \textit{file}, l'interprete Java su \textit{classi}.
 }
 
+\begin{frame}{Da Java 9: interpretazione ``al volo''}
+    A partire da Java 9, è stata introdotto in java l'interprete \textit{REPL} \texttt{jshell}
+    \begin{itemize}
+        \item Sta per \textbf{R}ead-\textbf{E}val-\textbf{P}rint \textbf{L}oop
+    \end{itemize}
+    \texttt{jshell} consente di effettuare al volo compilazione ed esecuzione
+    \begin{itemize}
+        \item Lo useremo ogni tanto per mostrarvi il risultato di alcune espressioni
+        \item Non utile per lo sviluppo di intere applicazioni
+    \end{itemize}
+    In sistemi con \texttt{jshell}, lanciare l'interprete \texttt{java} su un file non compilato
+    \begin{itemize}
+        \item Ad esempio, \texttt{java HelloWorld.java}
+    \end{itemize}
+    può causare l'esecuzione!
+    \begin{block}{Dietro le quinte}
+        \textit{jshell} non è magico: dietro le quinte compila in memoria, quindi lancia l'interprete sul bytecode risultante
+    \end{block}
+    Noi costruiamo applicazioni: \textbf{prima} \textit{si compila}, \textbf{poi} \textit{si esegue}!
+\end{frame}
+
 \section{Appendice : richiami utili per gli esercizi del Lab01}
 
 \fr{A1 -- Operazioni con i Numeri Complessi}{
-\bl{Numeri complessi -- breve ripasso}{
-Siano $z,w \in \mathbb{C} : z = a + ib,\ w = c + id$, allora:
-\iz {
-\item Confronto: $z = w \iff a = c \wedge b = d$
-\item Somma algebrica: $z \pm w = a \pm c + i(b \pm d)$
-\item Prodotto: $z \cdot w = (a+ib)(c+id) = ac-bd+i(bc+ad)$
-\item Rapporto: $\frac{z}{w} = \frac{(a+ib)(c-id)}{(c+id)(c-id)} = \frac{ac + bd}{c^2 + d^2} + i\frac{bc - ad}{c^2 + d^2}$
-}
-}	
+    \bl{Numeri complessi -- breve ripasso}{
+        Siano $z,w \in \mathbb{C} : z = a + ib,\ w = c + id$, allora:
+        \iz {
+            \item Confronto: $z = w \iff a = c \wedge b = d$
+            \item Somma algebrica: $z \pm w = a \pm c + i(b \pm d)$
+            \item Prodotto: $z \cdot w = (a+ib)(c+id) = ac-bd+i(bc+ad)$
+            \item Rapporto: $\frac{z}{w} = \frac{(a+ib)(c-id)}{(c+id)(c-id)} = \frac{ac + bd}{c^2 + d^2} + i\frac{bc - ad}{c^2 + d^2}$
+        }
+    }
 }
 
 \end{document}
