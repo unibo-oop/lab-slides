@@ -25,12 +25,12 @@
 \begin{itemize}\itemsep10pt
 \item Accedere al PC di laboratorio con le proprie credenziali istituzionali
 		\item Accedere al sito del corso
-	\iz{
-		\item \textcolor{blue}{\url{http://bit.ly/oop19-cesena}}
-	}
+%	\iz{
+%		\item \textcolor{blue}{\url{http://bit.ly/oop19-cesena}}
+%	}
 	\item Scaricare il materiale dell'esercitazione odierna
 	\item Spostare il file scaricato sul Desktop
-	\item Decomprimere il file e aprire con Atom la directory ottenuta (File $>$ Add Project Folder...)
+	\item Decomprimere il file e aprire con Visual Studio Code la directory ottenuta (File $\to$ Open Folder...)
 	\item Puntare il terminale alla directory con i sorgenti dell'esercitazione odierna
 \end{itemize}
 }
@@ -279,7 +279,7 @@ linkare e per poter compilare una classe che la riferisce
     \end{block}
     \begin{block}{Utilizzo di \texttt{-cp} in fase di compilazione}
         \begin{itemize}
-            \item Supponiamo di avere solo la versione compilata di \texttt{ComplexNum}
+            \item Supponiamo di avere solo la versione compilata di \texttt{ComplexNum} (ovvero non il sorgente)
             \begin{itemize}
                 \item Notate che questa è la \textit{norma} quando si usano delle librerie: vengono 
                 fornite già compilate!
@@ -397,7 +397,7 @@ vogliamo compilare
 Sia $n$ il numero di elementi dell'array ed $x_i$ l'elemento all'indice $i$ dell'array, e $\mu$ la media dei valori del suddetto array. La varianza $\sigma^2$ può essere calcolata come:
 
 \centering
-\Huge
+\huge
 $\sigma^2 = \frac{\displaystyle\sum_{i=0}^{n-1}(x_i - \mu)^2} {n}$
 \end{block}
 \end{frame}
