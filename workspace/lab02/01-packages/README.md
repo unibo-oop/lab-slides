@@ -11,9 +11,7 @@
 5. Si faccia una previsione circa il contenuto di bin (in termini di quali cartelle e quali file vi saranno all'interno)
 6. Si verifichi la propria previsione.
 7. Si esegua la classe usando il comando: `java -cp bin ComplexNum`
-  - Oh-oh... errore. Perché? Si provi a comprenderne la ragione
+  - Oh-oh... errore. Perché? Si provi a comprenderne la ragione e a correggere il comando.
 8. Si punti il terminale in `bin/oop/lab02/math/`
-9. Si provi a compilare usando il comando: `java -cp bin ComplexNum`
-  - Oh-oh... errore. Perché? Eppure il file `ComplexNum.class` è proprio lì. Si provi a comprenderne la ragione.
-10. Si posizioni il terminale nella cartella contenente `src` e `bin`
-11. Si esegua il programma ComplexNum utilizzando il comando corretto.
+9. Si provi ad eseguire la classe usando il comando: `java ComplexNum`
+  - Oh-oh... errore. Perché? Eppure il file `ComplexNum.class` è proprio lì. Si provi a comprenderne la ragione e a correggere il comando.
