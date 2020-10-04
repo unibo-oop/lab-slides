@@ -82,7 +82,7 @@ public class WorkWithArrays {
     }
 
     public static void main(final String[] args) {
-        System.out.println("testCountOccurr: " + testCountOccurrencies());
+        System.out.println("testCountOccurrencies: " + testCountOccurrencies());
         System.out.println("testEvenElems: " + testEvenElements());
         System.out.println("testOddElems: " + testOddElements());
         System.out.println("testGetMostRecurringElem: " + testMostRecurringElement());
