@@ -18,37 +18,56 @@ addons:
         key_url: "http://keyserver.ubuntu.com/pks/lookup?op=get&search=miktex"
     update: true
     packages:
-      # LaTeX decent font processor
-      - cm-super
+      # For git latexdiff
+      - latexdiff
       # Image processing
       - inkscape
       # DOT and GV support
       - graphviz
       # Tikz support
       - gnuplot
-      # Color profiles support
-      - icc-profiles
-      # Better PS support
+      # LaTeX decent font processor
+      - cm-super
+      # Interpreter for PostScript
       - ghostscript
-      # For git latexdiff
-      - latexdiff
-      # For Minted
-      - python-pygments
+      # ICC color profiles for PDF/A
+      - icc-profiles
+      # Syntax highlighting for Minted
       - python3-pygments
-      # LaTeX
-      - miktex
+      # LaTeX packages
+      - texlive
+        # Includes:
+        # - texlive-base
+        #   which includes:
+        #   - tex-common
+        # - texlive-latex-recommended
+        #   which includes:
+        #   - texlive-binaries
+        #   - texlive-latex-base
+        #     which includes:
+        #     - fonts-lmodern
+        # - texlive-fonts-recommended
+      - texlive-latex-extra
+      - texlive-publishers
+      - texlive-science
+      - texlive-fonts-extra
+      # Italian
+      - texlive-lang-italian
+      # Biber replacement for BibLaTeX
+      - biber
+      - texlive-bibtex-extra
       # Debug
       - tree
+
 install:
   - travis_retry git clone --depth 1 $GRAVIS_REPO $GRAVIS
-  - sudo miktexsetup --shared=yes finish
-  - sudo initexmf --admin --set-config-value [MPM]AutoInstall=1
-  - sudo mpm --admin --package-level=basic --find-upgrades --upgrade
 
 before_script:
   # Debug prints
-  - pygmentize -V # debug
-  - inkscape --version # debug
+  - gradle --version
+  - pdflatex --version
+  - pygmentize -V
+  - inkscape --version
   - gs --version
   - dot -V
 
@@ -56,7 +75,7 @@ script:
   - cd slides
   - chmod +x gradlew
   - ./gradlew buildLatex
-  
+
 after_script:
   - git checkout master
   - git add gradlew

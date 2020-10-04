@@ -4,7 +4,10 @@
 #### FASE 1 - Compilazione in percorsi arbitrari
 
 1. Si osservi la struttura del progetto: la cartella `src` contiene il sorgente.
-2. Si crei una nuova cartella `bin` (usare il comando `mkdir` e non il file manager)
+2. Si crei una nuova cartella `bin`
+  - In Unix: usare il comando `mkdir`
+  - In Windows: usare il comando `md`
+  - non usare il file manager!
 3. Si esegua la compilazione dentro bin
   - In Unix: `javac -d bin src/Calculator.java`
   - In Windows: `javac -d bin src\Calculator.java`
