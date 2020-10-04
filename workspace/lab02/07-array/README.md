@@ -3,7 +3,7 @@
 
 #### FASE 1 - Arrays
 
-1. Si analizzi il metodo `countOccurencies()` della classe `WorkWithArrays`, aiutandosi con l'utilità di test `boolean testCountOccur()`
+1. Si analizzi il metodo `countOccurencies()` della classe `WorkWithArrays`, aiutandosi con l'utilità di test `boolean testCountOccurrencies()`
 2. Si compili ed esegua la classe
 3. Si aggiunga un nuovo test al metodo `testCountOccurr()`
 4. Si compili e si esegua nuovamente
