@@ -1,2 +1,4 @@
 .gradle/*
 *tar.gz
+!unibo.pdf
+!00 - intro/covid-presente.pdf
