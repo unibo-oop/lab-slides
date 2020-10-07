@@ -17,8 +17,8 @@
 
 * Analizzare `AccountHolder` contenuta nel package `oop.lab03.bank`
 * Modella un generico utilizzatore di conto bancario, identificato da un id
-* È realizzata applicando il principio di incapsulamento (che andrà applicato *sempre* d'ora in poi ad *ogni* classe che costruiremo.
-* Si implementi il metodo `String toString()` lasciato incompleto (si ricorda che `String toString()` è il metodo convenzionalmente usato in Java per ottenere la rappresentazione testuale di un oggetto.
+* È realizzata applicando i principi di incapsulamento e information hiding (che andranno applicati *sempre* d'ora in poi ad *ogni* classe che costruiremo).
+* Si implementi il metodo `String toString()` lasciato incompleto (si ricordi che `String toString()` è il metodo convenzionalmente usato in Java per ottenere la rappresentazione testuale di un oggetto).
 
 #### Costruzione di classi incapsulate
 
@@ -39,7 +39,7 @@
 ### FASE 3 - Composizione
 
 * Si osservi il banale sistema software nel package `oop.lab03.acme`.
- * Contiene un sistema per la gestione di appelli d'esame universitari. Gli studenti possono vedere gli esami esistenti, registrarsi, visualizzare i voti degli esami conclusi, visualizzare le statistiche relative ai propri esami. I docenti possono creare nuovi appelli, inserire voti per gli appelli passati, visualizzare statistiche relative agli appelli.
+    - Contiene un sistema per la gestione di appelli d'esame universitari. Gli studenti possono vedere gli esami esistenti, registrarsi, visualizzare i voti degli esami conclusi, visualizzare le statistiche relative ai propri esami. I docenti possono creare nuovi appelli, inserire voti per gli appelli passati, visualizzare statistiche relative agli appelli.
 * Si osservi l'interfaccia `User`, che definisce un generico utente del sistema, e la classe `Student` che la implementa.
 * Si implementi la classe `Professor`, che implementa `User` e modella un generico docente
     - Campi:
