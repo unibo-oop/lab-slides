@@ -69,13 +69,14 @@
 \begin{itemize}
 \item Standard, per sviluppatori J2EE/C/C++/Python/Web, \dots
 \end{itemize}
+\item Architettura modulare (via plug-ins)
 \end{itemize}
 \end{block}
 \vfill
 \begin{block}{Un po' di storia\dots}
 \begin{itemize}
-\item Nato nei laboratori di ricerca IBM (alphaWorks) 
-\item	Successivamente	donato alla comunità open-source che ora ne cura lo sviluppo per mezzo di un'apposita fondazione
+\item Nato nei laboratori di ricerca IBM (alphaWorks) nel 2001
+\item	Successivamente	donato alla comunità open-source che ora ne cura lo sviluppo per mezzo di un'apposita fondazione (dal 2004)
 \item Correntemente supportato/utilizzato da un vasto numero di sviluppatori, sia in ambito accademico che industriale
 \end{itemize}
 \end{block}
@@ -86,7 +87,8 @@
 \begin{frame}{Astrazioni di base in Eclipse (1/5)}
 \begin{block}{Workspace}
 \begin{itemize}
-\item Directory in cui Eclipse salva le ``\emph{preferenze di una specifica sessione di lavoro}''
+\item Directory in cui Eclipse mantiene una collezione di \emph{risorse} (file, cartelle, progetti)
+\item Include le ``\emph{preferenze di una specifica sessione di lavoro}''
 \begin{itemize}
 \item Le configurazioni dell'ambiente
 \item L'elenco dei progetti coinvolti
@@ -94,11 +96,9 @@
 \item Stato dei plugin installati
 \item \dots
 \end{itemize}
-\item Memorizza tutte le informazioni d'interesse nella directory \emph{.metadata}
-\item Tipicamente contiene anche i progetti (che possono però anche essere importati da altre directory)
-\begin{itemize}
-\item In questo caso, i progetti sono inseriti ciascuno in una directory dedicata allo stesso livello di \emph{.metadata}
-\end{itemize}
+\item I metadati di un workspace si trovano nella directory \emph{.metadata}
+\item Tipicamente, un workspace contiene anche i progetti, ognuno in una cartella \texttt{<workspaceDir>/<projectDir>}
+\item In alternativa, i progetti possono essere ``importati'' pur risiedendo in altre posizioni del file system (\emph{linked resources})
 \end{itemize}
 \end{block}
 \end{frame}
@@ -143,7 +143,7 @@
 \begin{frame}{Astrazioni di base in Eclipse (3/5)}
 \begin{block}{Perspective}
 \begin{itemize}
-\item Insieme di view opportunamente organizzate
+\item Insieme di view ed editor opportunamente organizzati
 \begin{itemize}
 \item Cambiare perspective consente di cambiare rapidamente le view attive
 \item Tipicamente, si usano perspective diverse per fasi diverse dello sviluppo
