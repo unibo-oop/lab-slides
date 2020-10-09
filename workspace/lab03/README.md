@@ -1,13 +1,13 @@
-# Programmazione ad Oggetti - Laboratorio 02
+# Programmazione ad Oggetti - Laboratorio 03
 
 ### FASE 1 - Miglioramento di classi già implementate
 
 #### Principio di incapsulamento
 
 * Analizzare la classe `oop.lab03.encapsulation.Student`
-* E' una versione modificata della classe definita nel package `oop.lab02.constructors` e vista la settimana scorsa
+* È una versione modificata della classe definita nel package `oop.lab02.constructors` e vista la settimana scorsa
 * La si confronti con la precedente:
-    - I campi sono ora privati: il cliente della classe non sarà mai influenzato dalla modifica di meri aspetti implementativi
+    - I campi sono ora privati: un client della classe non sarà mai influenzato dalla modifica di meri aspetti implementativi
     - Sono stati introdotti dei selettori per ottenere le proprietà dell'oggetto: `getName()`, `getSurname()`, ...
 * Si modifichino similmente le classi `Calculator` e `Smartphone` contenute nel package `oop.lab03.encapsulation`:
     - Si rendano privati tuttti i campi
