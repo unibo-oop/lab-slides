@@ -29,20 +29,20 @@
 	\bl{DVCS} {
 		\iz {
 			\item DVCS sono strumenti potenti per tenere traccia in maniera efficiente della storia di un progetto
-			\item Nascono in particolare come evoluzione dei tradizionali VCS (SVN, CVS \dots) 
+			\item Nascono in particolare come evoluzione dei tradizionali VCS (SVN, CVS \dots)
 			\item Enfasi su una \textbf{miglior gestione del lavoro di team}
 		}
 	}
 	\bl{DVCS e teamwork} {
 		\iz {
-			\item ``La potenza \`e nulla senza controllo!'' 
-			\item Ovvero \dots la mancanza di un metodo chiaro e condiviso per utilizzarli può portare a risultati \textbf{DEVASTANTI} 
+			\item ``La potenza \`e nulla senza controllo!''
+			\item Ovvero \dots la mancanza di un metodo chiaro e condiviso per utilizzarli può portare a risultati \textbf{DEVASTANTI}
             \iz {
-                \item effort necessario per la parte di gestione diventa presto preponderante e insostenibile            
+                \item effort necessario per la parte di gestione diventa presto preponderante e insostenibile
             }
 			\item Ecco perché è bene adottare un \textbf{workflow collaborativo}
             \iz {
-                \item i vostri progetti e i vostri partner di progetto vi ringrazieranno!            
+                \item i vostri progetti e i vostri partner di progetto vi ringrazieranno!
             }
 		}
     }
@@ -53,7 +53,7 @@
 			\item Come si sceglie un workflow?
             \item Abbiamo parlato di semplicità...
             \item In realtà è più corretto parlare di giusto \textbf{trade-off} tra semplicità ed esigenze
-		}	
+		}
 }
 
 \fr{Lo stato dell'arte I} {
@@ -64,11 +64,11 @@ Definito da \emph{Vincent Driessen} e spiegato in \url{http://nvie.com/posts/a-s
 }
 
 \fr{Lo stato dell'arte II} {
-    \bl{Alcune considerazioni} {    
+    \bl{Alcune considerazioni} {
         \iz {
 			\item Non lo useremo
             \iz{
-                \item troppo complicato per i nostri scopi            
+                \item troppo complicato per i nostri scopi
             }
             \item Comunque molto interessante perché racchiude tutti gli aspetti di un DVCS workflow
         }
@@ -76,8 +76,8 @@ Definito da \emph{Vincent Driessen} e spiegato in \url{http://nvie.com/posts/a-s
 
     \bl{I branch} {
 		\iz {
-			\item Sono il supporto fondamentale alle fasi del ciclo di vita del software 
-			\item Ogni fase ha il proprio branch! 
+			\item Sono il supporto fondamentale alle fasi del ciclo di vita del software
+			\item Ogni fase ha il proprio branch!
 			\item Branching e merging all'ordine del giorno!
 		}
 	}
@@ -96,14 +96,14 @@ Definito da \emph{Vincent Driessen} e spiegato in \url{http://nvie.com/posts/a-s
 	\end{center}
 	\sizedcode{\tiny}{code/open-feature.txt}
 \end{frame}
- 
+
 % \subsection{Comandi}
-% 
+%
 % \fr{Inizializzazione del repository} {
 % \sizedcode{\tiny}{code/init.txt}
 % }
 
-% 
+%
 % \begin{frame}[allowframebreaks]{Associazione di nomi simbolici ad un commit}
 % 	\bl{In generale}{
 % 		È necessario poter associare ad un commit della meta-informazione personalizzata. Ad esempio, per associare un certo commit ad una versione, in modo da poterla facilmente richiamare.
@@ -124,9 +124,9 @@ Definito da \emph{Vincent Driessen} e spiegato in \url{http://nvie.com/posts/a-s
 % 		}
 % 	}
 % \end{frame}
-% 
-% 
-% 
+%
+%
+%
 % \fr{Fare una release} {
 % \sizedcode{\tiny}{code/do-release.txt}
 % }
@@ -207,7 +207,7 @@ public final class PrintBreakingBad {
         \item YAMJ (\texttt{org.yamj:api-common})
     \end{itemize}
     ...solo che per far funzionare YAMJ servono altre sei librerie...
-    
+
     ...e per far funzionare alcune di queste servono altre librerie ancora
 \end{frame}
 
@@ -293,9 +293,9 @@ public final class PrintBreakingBad {
 
 \begin{frame}[allowframebreaks]{Gradle: configurazione}
     \begin{itemize}
-        \item La build è definita all'interno di un file \texttt{build.gradle.kts} 
+        \item La build è definita all'interno di un file \texttt{build.gradle.kts}
         \begin{itemize}
-            \item Scritto in Kotlin 
+            \item Scritto in Kotlin
             \item Oppure in Groovy (cambia nome in \texttt{build.gradle})
         \end{itemize}
         \item Sfrutta il principio \textbf{Convention over Configuration}

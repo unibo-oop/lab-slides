@@ -10,7 +10,7 @@
 \date[\today]{\today}
 
 \begin{document}
-	
+
 \frame[label=coverpage]{\titlepage}
 
 \begin{frame}<beamer>
@@ -33,7 +33,7 @@
 		\begin{itemize}
 			\item Editor di testo con syntax highlighting (e code completion)
 			\item Compilatore
-			\item Macchina(e) virtuale per l'esecuzione e il debugging delle applicazioni
+			\item Macchina/e virtuale/i per l'esecuzione e il debugging delle applicazioni
 			\item Strumenti per agevolare il deployment (distribuzione) delle applicazioni
 		\end{itemize}
 		\item Esempi di IDE:
@@ -65,7 +65,7 @@
 \begin{itemize}
 \item Eclipse è un IDE open-source scritto in Java
 \item Disponibile per diverse piattaforme (Windows, Linux, Mac OSX, ..)
-\item \dots e sotto forma di diverse distribuzioni 
+\item \dots e sotto forma di diverse distribuzioni
 \begin{itemize}
 \item Standard, per sviluppatori J2EE/C/C++/Python/Web, \dots
 \end{itemize}
@@ -344,7 +344,7 @@ Software installabile opzionalmente che estende le capacità dell'IDE, ad esempi
 %\subsection{Architettura}
 %
 %\fr{Eclipse Architecture}{
-%	
+%
 %	\bl{Eclipse ha una architettura organizzata a plug-in}{
 %		\iz{
 %			\item Un plug-in è un modulo (classi + meta-informazioni + manifest file) auto-contenuto che incapsula una certa funzionalità
@@ -358,7 +358,7 @@ Software installabile opzionalmente che estende le capacità dell'IDE, ad esempi
 %				}
 %		}
 %	}
-%	
+%
 %	\bl{Eclipse come IDE Modulare}{
 %		\iz{
 %			\item Nuovi plug-in possono essere liberamente installati al bisogno
@@ -388,14 +388,14 @@ Software installabile opzionalmente che estende le capacità dell'IDE, ad esempi
 %				\iz{
 %					\item  Il progetto è visto come una collezione di file e directory, che è possibile creare, modificare, spostare, etc.
 %				}
-%		
+%
 %			\item \textcolor{blue}{Java perspective}: fornisce viste ed editor per gestire tutte le attività più significative per lo sviluppo di progetti Java
 %				\iz{
 %					\item Realizzata da un insieme di plug-in che prendono il nome di JDT (Java Development Tools)
 %				}
 %
 %			\item ...
-%			
+%
 %		}
 %	}
 %}
@@ -413,18 +413,18 @@ Software installabile opzionalmente che estende le capacità dell'IDE, ad esempi
 
 \begin{frame}{Refactoring}
 	\begin{block}{}
-		\emph{Refactoring is a disciplined technique for restructuring an existing body of code, 
+		\emph{Refactoring is a disciplined technique for restructuring an existing body of code,
 altering its internal structure without changing its external behavior.}\\--- \url{refactoring.com}
 	\end{block}
 	\begin{block}{Vantaggi nel refactoring supportato dall'IDE}
 		\begin{itemize}
 			\item Le modifiche sono gestite dall'IDE in maniera consistente
 			\begin{itemize}
-				\item \footnotesize{Es (1). \emph{Rinominare una variabile}: se si procede ``a 
-mano'', si dovrà modificare il nome della variabile sia nella riga in cui la si dichiara sia in 
-tutte le sue occorrenze di utilizzo. Viceversa, avvalendosi dell'IDE, la modifica da fare è una 
+				\item \footnotesize{Es (1). \emph{Rinominare una variabile}: se si procede ``a
+mano'', si dovrà modificare il nome della variabile sia nella riga in cui la si dichiara sia in
+tutte le sue occorrenze di utilizzo. Viceversa, avvalendosi dell'IDE, la modifica da fare è una
 sola.}
-				\item \footnotesize{Es (2). \emph{Spostare una classe da un package ad un altro}: 
+				\item \footnotesize{Es (2). \emph{Spostare una classe da un package ad un altro}:
 utilizzando l'IDE vengono aggiornati tutti i riferimenti nell'intero progetto}
 			\end{itemize}
 			\item Minimizza l'introduzione di errori in fase di refactoring
@@ -435,8 +435,8 @@ utilizzando l'IDE vengono aggiornati tutti i riferimenti nell'intero progetto}
 \fr{Refactoring in Eclipse}{
 	\bl{}{
 		Operazioni di modifica del nome di variabili, classi, metodi etc.
-		\iz{ 
-			\item Gestite in maniera automatica e safe dall'IDE 
+		\iz{
+			\item Gestite in maniera automatica e safe dall'IDE
 			\item Attivabile anche tramite ALT+SHIFT+R sulla selezione di interesse
 		}
 	}
@@ -450,16 +450,16 @@ utilizzando l'IDE vengono aggiornati tutti i riferimenti nell'intero progetto}
 \item \alert{CTRL+1}: quick-fix contestuale per errori (molto potente)
 \item \alert{ALT+SHIFT+R}: refactoring di campi/metodi/classi
 \item \alert{CTRL+SHIFT+/}: commento delle linee selezionate
-\item \alert{CTRL+PGUP/PGDOWN}: per muoversi di uno step avanti (PGUP) o indietro 
+\item \alert{CTRL+PGUP/PGDOWN}: per muoversi di uno step avanti (PGUP) o indietro
 (PGDOWN) tra la lista di sorgenti correntemente aperti
-\item \alert{F3} (o \alert{CTRL+CLICK}): ci sposta alla definizione di un dato elemento 
-\item \alert{CTRL+SHIFT+L}: lista delle shortcut disponibili per il dato contesto 
-\item \alert{CTRL+SHIFT+O}: include in automatico tutti gli import necessari sulla base 
+\item \alert{F3} (o \alert{CTRL+CLICK}): ci sposta alla definizione di un dato elemento
+\item \alert{CTRL+SHIFT+L}: lista delle shortcut disponibili per il dato contesto
+\item \alert{CTRL+SHIFT+O}: include in automatico tutti gli import necessari sulla base
 delle classi utilizzate nel sorgente corrente
 \item \alert{CTRL + . }: sposta il cursorse al successivo errore/warning
 \item \alert{CTRL+F8}: consente di spostarsi tra le varie perspective
 \item \alert{CTRL+J}: search incrementale, senza l'uso di GUI
-\item \alert{ALT+SHIFT+S}: da l'accesso a un insieme di wizard con cui automatizzare la 
+\item \alert{ALT+SHIFT+S}: da l'accesso a un insieme di wizard con cui automatizzare la
 scrittura di costruttori, getter, setter, etc.
 \end{itemize}
 \end{frame}
@@ -469,15 +469,15 @@ scrittura di costruttori, getter, setter, etc.
 \begin{frame}[allowframebreaks]{Debugging di Applicazioni \cite{debugger,debugging}}
 	\begin{block}{Motivazioni}
 		\begin{itemize}
-			\item Difficilmente le applicazioni software risultano essere totalmente esenti da 
+			\item Difficilmente le applicazioni software risultano essere totalmente esenti da
 problemi/errori alla prima stesura del codice sorgente
-			\item Spesso lo sviluppatore tende a sottovalutare e/o ignora alcuni effetti collaterali 
+			\item Spesso lo sviluppatore tende a sottovalutare e/o ignora alcuni effetti collaterali
 (\emph{side-effects}) che porzioni di codice sorgente possono provocare
 			\item In genere, un software privo di errori lo si ottiene step-by-step
 			\begin{itemize}
-				\item Una buona progettazione a priori consente di ridurre il numero di bug che si 
+				\item Una buona progettazione a priori consente di ridurre il numero di bug che si
 potrebbero inserire nel codice sorgente, tuttavia\dots
-				\item \dots qualche bug sarà inevitabilmente presente, e dovrà essere identificato e 
+				\item \dots qualche bug sarà inevitabilmente presente, e dovrà essere identificato e
 corretto!
 			\end{itemize}
 		\end{itemize}
@@ -486,8 +486,8 @@ corretto!
 		\begin{enumerate}
 			\item \textcolor{blue}{Meccanismi di logging}
 			\begin{itemize}
-				\item Si aggiunge al codice sorgente la possibilità di fare logging in modo da 
-tracciare lo stato interno del programma in fase di esecuzione: valore corrente di variabili, campi, 
+				\item Si aggiunge al codice sorgente la possibilità di fare logging in modo da
+tracciare lo stato interno del programma in fase di esecuzione: valore corrente di variabili, campi,
 parametri, \dots
 				\item Utile in alcuni casi, ma in generale \textbf{da evitare}!
 				\item Appesantisce il sorgente
@@ -513,19 +513,19 @@ parametri, \dots
         Speciale punto di controllo che, se raggiunto dal flusso di controllo, sospende l'esecuzione
     \end{block}
     \begin{block}{Espressioni e osservabilità}
-        La capacità valutare espressioni che includono variabili attualmente accessibili dal 
+        La capacità valutare espressioni che includono variabili attualmente accessibili dal
 flusso di controllo, osservandone il valore corrente
     \end{block}
     \begin{block}{Modifica dei valori a tempo d'esecuzione}
-        La capacità modificare i valori di variabili e campi manualmente a programma in esecuzione, 
+        La capacità modificare i valori di variabili e campi manualmente a programma in esecuzione,
 una volta che il flusso di controllo è sospeso
     \end{block}
     \begin{block}{Step-by-step execution}
-        La capacità, a flusso di lavoro sospeso (e, quindi, una volta incontrato un breakpoint) di 
+        La capacità, a flusso di lavoro sospeso (e, quindi, una volta incontrato un breakpoint) di
 proseguirla andando avanti di un'istruzione alla volta
     \end{block}
     \begin{block}{Step-into execution}
-        La capacità, a flusso di lavoro sospeso (e, quindi, una volta incontrato un breakpoint) di 
+        La capacità, a flusso di lavoro sospeso (e, quindi, una volta incontrato un breakpoint) di
 proseguirla ``entrando'' nel record di attivazione di un metodo che viene invocato
     \end{block}
 \end{frame}
@@ -543,7 +543,7 @@ proseguirla ``entrando'' nel record di attivazione di un metodo che viene invoca
 
 \fr{Debugging in Eclipse: manipolazione del flusso di controllo}{
 	\iz{
-		\item L'avvio del debugger in Eclipse comporta l'apertura della perspective \emph{Debug}, 
+		\item L'avvio del debugger in Eclipse comporta l'apertura della perspective \emph{Debug},
 con gli strumenti utili per le operazioni di debugging
 	}
 	\bl{Principali operazioni di manipolazione del flusso di controllo}{
@@ -556,17 +556,17 @@ con gli strumenti utili per le operazioni di debugging
 			\iz{
 				\item Una volta che l'esecuzione è stata sospesa da un breakpoint
 			}
-			\item \textcolor{blue}{Step into}: F5 
+			\item \textcolor{blue}{Step into}: F5
 			\iz{
 				\item Debugging corpo di un metodo/costruttore
 			}
-				\item \textcolor{blue}{Step return}: F7 
+				\item \textcolor{blue}{Step return}: F7
 			\iz{
 				\item Ritorno dal debugging del corpo di un metodo/costruttore
 			}
-			\item \textcolor{blue}{Resume}: F8 
+			\item \textcolor{blue}{Resume}: F8
 			\iz{
-				\item Esecuzione fino al prossimo breakpoint 
+				\item Esecuzione fino al prossimo breakpoint
 			}
 		}
 	}
@@ -574,34 +574,34 @@ con gli strumenti utili per le operazioni di debugging
 
 \begin{frame}[allowframebreaks]{Debugging in Eclipse: strumenti}
 	\begin{block}{Breakpoint condizionali}
-		Tramite click destro su breakpoint e ``Properties'', è possibile scrivere una condizione per 
-il breakpoint, ad esempio di scattare solo dopo un certo numero di volte, oppure di scattare se una 
+		Tramite click destro su breakpoint e ``Properties'', è possibile scrivere una condizione per
+il breakpoint, ad esempio di scattare solo dopo un certo numero di volte, oppure di scattare se una
 certa condizione è vera (estremamente utile).
 	\end{block}
 	\begin{block}{Osservazione e manipolazione dei valori}
-		La view ``Variables'' consente di visualizzare il valore di tutti i campi e delle variabili 
-locali, esplorando anche l'interno degli oggetti. Inoltre, consente di modificarne i valori a 
+		La view ``Variables'' consente di visualizzare il valore di tutti i campi e delle variabili
+locali, esplorando anche l'interno degli oggetti. Inoltre, consente di modificarne i valori a
 runtime, per ispezionare il funzionamento del programma.
 	\end{block}
 	\begin{block}{Valutazione di espressioni}
-		È possibile, nella tab ``Expressions'', scrivere un'espressione java valida nel contesto 
-(quindi, con accesso alle variabili locali e ai campi). L'IDE la valuterà e scriverà il risultato. 
-Molto utile per visualizzare valori che richiederebbero altrimenti l'inserimento di una stampa ed il 
+		È possibile, nella tab ``Expressions'', scrivere un'espressione java valida nel contesto
+(quindi, con accesso alle variabili locali e ai campi). L'IDE la valuterà e scriverà il risultato.
+Molto utile per visualizzare valori che richiederebbero altrimenti l'inserimento di una stampa ed il
 riavvio del debug, oppure un uso complicato dell'osservazione dentro Variables.
 	\end{block}
 %	\begin{block}{Iniezione di codice a caldo}
-%		Nel caso in cui si effettui una modifica al software mentre è in esecuzione in modalità 
-%debug e lo si ricompili (o si abbia la modalità di autocompilazione attivata), Eclipse tenterà di 
+%		Nel caso in cui si effettui una modifica al software mentre è in esecuzione in modalità
+%debug e lo si ricompili (o si abbia la modalità di autocompilazione attivata), Eclipse tenterà di
 %``iniettare'' i nuovi compilati all'interno della JVM in esecuzione:
 %		\begin{itemize}
 %			\item Viene ``scaricata'' la classe precedentemente inserita nel classpath
 %			\item Viene ``iniettata'' la nuova classe
 %		\end{itemize}
-%		L'operazione può fallire, nel qual caso l'IDE notificherà che ci sono in esecuzione classi e 
+%		L'operazione può fallire, nel qual caso l'IDE notificherà che ci sono in esecuzione classi e
 %metodi obsoleti. Per massimizzare la riuscita:
 %		\begin{enumerate}
 %			\item Scegliere uno stack frame precedente all'uso della classe da sostituire;
-%			\item Usare la funzione ``Drop to frame'' per riportare il flusso di controllo 
+%			\item Usare la funzione ``Drop to frame'' per riportare il flusso di controllo
 %all'inizio dello stack frame che si sta eseguendo;
 %			\begin{itemize}
 %				\item Eventuali side effects non vengono cancellati!

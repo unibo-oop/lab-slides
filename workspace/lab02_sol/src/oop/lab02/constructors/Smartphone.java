@@ -2,21 +2,21 @@ package oop.lab02.constructors;
 
 public class Smartphone {
 
-    public static final boolean DEF_HAS_3G = true;
     public static final boolean DEF_HAS_GPS = true;
+    public static final boolean DEF_HAS_3G = true;
     public static final boolean DEF_HAS_NFC = true;
-    public static final int DEF_N_CPU = 2;
-    public static final int DEF_RAM_SIZE = 1024;
     public static final int DEF_SD_SIZE = 8192;
+    public static final int DEF_RAM_SIZE = 1024;
+    public static final int DEF_N_CPU = 2;
 
-    private final String brand;
-    private final boolean dataNetwork;
-    private final boolean gps;
-    private final boolean nfc;
-    private final String model;
     private final int nCPU;
     private final int ram;
     private final int sdSize;
+    private final String brand;
+    private final String model;
+    private final boolean hasGPS;
+    private final boolean has3G;
+    private final boolean hasNFC;
 
     public Smartphone(final int nCPU, final int ram, final int sdSize, final String brand, final String model,
             final boolean hasGPS, final boolean has3G, final boolean hasNFC) {
@@ -25,9 +25,9 @@ public class Smartphone {
         this.sdSize = sdSize;
         this.brand = brand;
         this.model = model;
-        this.gps = hasGPS;
-        this.dataNetwork = has3G;
-        this.nfc = hasNFC;
+        this.hasGPS = hasGPS;
+        this.has3G = has3G;
+        this.hasNFC = hasNFC;
     }
 
     public Smartphone(final String brand, final String model) {
@@ -67,15 +67,15 @@ public class Smartphone {
     }
 
     public boolean has3G() {
-        return dataNetwork;
+        return has3G;
     }
 
     public boolean hasGPS() {
-        return gps;
+        return hasGPS;
     }
 
     public boolean hasNFC() {
-        return nfc;
+        return hasNFC;
     }
 
     public void printStringRep() {
@@ -84,9 +84,9 @@ public class Smartphone {
         System.out.println("SD size: " + sdSize);
         System.out.println("brand: " + brand);
         System.out.println("model: " + model);
-        System.out.println("hasGPS: " + gps);
-        System.out.println("has3G: " + dataNetwork);
-        System.out.println("hasNFC: " + nfc + "\n");
+        System.out.println("hasGPS: " + hasGPS);
+        System.out.println("has3G: " + has3G);
+        System.out.println("hasNFC: " + hasNFC + "\n");
     }
 
     public static void main(final String[] args) {

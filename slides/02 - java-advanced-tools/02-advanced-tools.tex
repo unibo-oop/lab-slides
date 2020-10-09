@@ -59,7 +59,6 @@ Always code as if the guy who ends up maintaining your code will be a violent ps
 \end{quote}
 \end{block}
 
-
 \begin{block}{Ogni linguaggio ha le sue prassi...}
 \begin{itemize}
 		\item Quelle Java di riferimento sono disponibili qui:
@@ -119,7 +118,7 @@ Always code as if the guy who ends up maintaining your code will be a violent ps
 			\item I campi \texttt{static final} (costanti di classe) sono interamente maiuscoli e possono usare underscore
 		\end{itemize}
 	\end{block}
-	
+
 Come seguire stili e convenzioni? Tutto nelle mani del programmatore?
 \begin{itemize}
 \item Esistono strumenti automatici a supporto, introdotti nelle prossime lezioni...
@@ -131,7 +130,7 @@ Come seguire stili e convenzioni? Tutto nelle mani del programmatore?
 
 \fr{Nuova opzione per \texttt{javac}}{
 	\begin{itemize}
-		\item Abbiamo già visto come compilare file sorgenti Java (file \texttt{.java}), generando classi in bytecode, che prendono la forma di file \texttt{.class} nella medesima directory 
+		\item Abbiamo già visto come compilare file sorgenti Java (file \texttt{.java}), generando classi in bytecode, che prendono la forma di file \texttt{.class} nella medesima directory
 		\item Tuttavia è uso comune e \textbf{buona pratica} nella gestione di progetti articolati, \textbf{separare le classi sorgenti dal bytecode}, ad esempio:
 	\begin{itemize}
 		\item cartella \texttt{src}, per i file sorgenti (\texttt{.java})
@@ -152,21 +151,21 @@ Come seguire stili e convenzioni? Tutto nelle mani del programmatore?
   \begin{block}{Compilazione in directory arbitrarie}
     \texttt{javac -d <CARTELLA DESTINAZIONE> <FILE JAVA>}
     \begin{itemize}
-      \item \textbf{OVVIAMENTE} vanno sostituite le variabili fra parentesi angolari con le 
+      \item \textbf{OVVIAMENTE} vanno sostituite le variabili fra parentesi angolari con le
 directory che andranno usate.
     \end{itemize}
   \end{block}
   \begin{block}{Compilazione di più file in una singola passata}
     \texttt{javac -d <CARTELLA DESTINAZIONE> <ELENCO DI FILE JAVA>}
     \begin{itemize}
-      \item \textbf{OVVIAMENTE} vanno sostituite le variabili fra parentesi angolari con le 
+      \item \textbf{OVVIAMENTE} vanno sostituite le variabili fra parentesi angolari con le
 directory che andranno usate.
     \end{itemize}
   \end{block}
   È possibile anche utilizzare la wildcard (\texttt{*}) invece di elencare tutti i file!
   \begin{itemize}
-    \item Su Unix si possono usare wildcard in più punti del path, ad esempio 
-\texttt{progetti/*/src/*.java} elenca tutti i file con estensione java dentro ciascuna cartella 
+    \item Su Unix si possono usare wildcard in più punti del path, ad esempio
+\texttt{progetti/*/src/*.java} elenca tutti i file con estensione java dentro ciascuna cartella
 \texttt{src} di ciascuna cartella dentro \texttt{progetti}
   \end{itemize}
 \end{frame}
@@ -241,23 +240,23 @@ directory che andranno usate.
 \end{frame}
 
 \begin{frame}{Organizzazione dei sorgenti in presenza di package}
-        È buona norma organizzare i sorgenti in modo da rappresentare su filesystem la struttura 
-dei package. Si noti però che (dato che il compilatore lavora su \alert{file}) questa scelta 
+        È buona norma organizzare i sorgenti in modo da rappresentare su filesystem la struttura
+dei package. Si noti però che (dato che il compilatore lavora su \alert{file}) questa scelta
 \textbf{non è \underline{teoricamente} obbligatoria}!
     \begin{itemize}
         \item Lo è di fatto in questo corso, perché le cose van fatte bene
         \item Lo sarà nel mondo del lavoro, perché è prassi assolutamente comune
     \end{itemize}
     \begin{block}{Risultato della compilazione}
-        Quando viene compilato un sorgente la cui classe è contenuta in un package, il compilatore 
+        Quando viene compilato un sorgente la cui classe è contenuta in un package, il compilatore
 riproduce la struttura dei package usando delle directory
         \begin{itemize}
-            \item Dato che l'interprete non lavora con file ma con \alert{classi}, il loro layout 
-sul file system \textbf{non può essere modificato!} 
+            \item Dato che l'interprete non lavora con file ma con \alert{classi}, il loro layout
+sul file system \textbf{non può essere modificato!}
         \end{itemize}
     \end{block}
     \begin{block}{Esecuzione}
-        L'esecuzione è identica al caso precedente, si faccia solo attenzione ad 
+        L'esecuzione è identica al caso precedente, si faccia solo attenzione ad
 usare l'intero nome della classe, che in Java include anche il nome del package!
     \end{block}
 \end{frame}
@@ -269,7 +268,7 @@ usare l'intero nome della classe, che in Java include anche il nome del package!
         Se provassimo a compilarla, otterremmo degli errori
         \sizedcode{\tiny}{code/esempio3/src/oop/lab02/math/error.txt}
         \begin{itemize}
-		\item Il compilatore ha bisogno di conoscere la classe \texttt{ComplexNum} per poterla 
+		\item Il compilatore ha bisogno di conoscere la classe \texttt{ComplexNum} per poterla
 linkare e per poter compilare una classe che la riferisce
 		\item Il compilatore cerca nel classpath il bytecode della classe \texttt{ComplexNum}
 		\item Come risolviamo?
@@ -279,12 +278,12 @@ linkare e per poter compilare una classe che la riferisce
         \begin{itemize}
             \item Supponiamo di avere solo la versione compilata di \texttt{ComplexNum} (ovvero non il sorgente)
             \begin{itemize}
-                \item Notate che questa è la \textit{norma} quando si usano delle librerie: vengono 
+                \item Notate che questa è la \textit{norma} quando si usano delle librerie: vengono
                 fornite già compilate!
             \end{itemize}
-            \item Basterà mettere il percorso in cui \texttt{ComplexNum} è stata compilata nel 
+            \item Basterà mettere il percorso in cui \texttt{ComplexNum} è stata compilata nel
             classpath di \texttt{javac}!
-            \item Supponiamo di avere \texttt{UseComplex.java} nel percorso 
+            \item Supponiamo di avere \texttt{UseComplex.java} nel percorso
             \texttt{src/oop/lab02/math/}
             \item Supponiamo di aver \texttt{ComplexNum} compilato dentro \texttt{lib/}
             \item Possiamo usare:
@@ -295,12 +294,12 @@ linkare e per poter compilare una classe che la riferisce
         \texttt{javac -d bin -cp lib src/oop/lab02/math/UseComplex.java}
         \begin{itemize}
             \item \texttt{javac} $\Rightarrow$ Invocazione del compilatore
-            \item \texttt{-d bin} $\Rightarrow$ \texttt{-d} determina la \textbf{destinazione}. 
+            \item \texttt{-d bin} $\Rightarrow$ \texttt{-d} determina la \textbf{destinazione}.
 Vogliamo compilare dentro la cartella \texttt{bin}
-            \item \texttt{-cp lib} $\Rightarrow$ \texttt{-cp} consente di aggiungere percorsi al 
-            \textbf{classpath}. Noi vogliamo cercare le classi che ci servono, oltre che nella 
+            \item \texttt{-cp lib} $\Rightarrow$ \texttt{-cp} consente di aggiungere percorsi al
+            \textbf{classpath}. Noi vogliamo cercare le classi che ci servono, oltre che nella
             posizione corrente e nelle librerie java, anche dentro \texttt{lib}
-            \item \texttt{src/oop/lab02/math/UseComplex.java} $\Rightarrow$ Il \textit{file} che 
+            \item \texttt{src/oop/lab02/math/UseComplex.java} $\Rightarrow$ Il \textit{file} che
 vogliamo compilare
         \end{itemize}
     \end{block}
@@ -309,14 +308,14 @@ vogliamo compilare
 \begin{frame}{Passare più percorsi al classpath}
     Avendo come riferimento l'esempio precedente, proviamo ad eseguire.
     \begin{itemize}
-    \item Per eseguire correttamente \texttt{UseComplex} dobbiamo dire alla JVM, tramite 
+    \item Per eseguire correttamente \texttt{UseComplex} dobbiamo dire alla JVM, tramite
 \textbf{-cp}, dove trovare:
     \begin{itemize}
         \item \texttt{ComplexNum}
         \item \texttt{UseComplex}
     \end{itemize}
         \item Si trovano in \textit{due percorsi diversi}!
-        \item Dobbiamo specificare come argomento di \texttt{-cp} due percorsi, usando il 
+        \item Dobbiamo specificare come argomento di \texttt{-cp} due percorsi, usando il
 \textbf{separatore}:
         \begin{itemize}
             \item \textbf{\texttt{:}} su sistemi UNIX (Linux, Mac OSX, BSD)
@@ -343,7 +342,7 @@ vogliamo compilare
     \end{itemize}
   \end{block}
   \vspace{10pt}
-  
+
   Gli help stampano abbondante testo con le relative istruzioni e a me serve una riga, davvero devo imparare a leggere e capire un help?
   \begin{center}
     \textbf{SÌ}
@@ -365,11 +364,11 @@ vogliamo compilare
 			\end{enumerate}
 		\end{itemize}
 		\item In C, questi vengono passati al metodo \texttt{main()} come coppia di \texttt{char **} e \texttt{int}, rappresentanti rispettivamente un riferimento all'area di memoria dove sono salvati i parametri ed il numero dei suddetti.
-		\item Anche in Java ovviamente è possibile passare degli argomenti ad un programma 
+		\item Anche in Java ovviamente è possibile passare degli argomenti ad un programma
 		\end{itemize}
 
-\framebreak		
-		
+\framebreak
+
 	\begin{itemize}\itemsep10pt
 	\item La gestione è un po' più semplice che in C, grazie al fatto che gli array si portano dietro l'informazione circa la loro dimensione
 		\item E grazie al fatto che la signature del metodo \texttt{main()} è una sola in Java
@@ -377,13 +376,13 @@ vogliamo compilare
 			\item \texttt{public static void main(String [])} è l'unica signature valida
 			\item Mentre in C sia \texttt{int main(void)} che \texttt{int main(char **, int)} sono ugualmente accettabili
 		\end{itemize}
-	
-	
+
+
 		\item Gli argomenti con cui un programma Java viene invocato vengono passati come parametri attraverso l'array (\texttt{String[] args}) che il metodo \texttt{main()} prende in ingresso
 		\begin{itemize}
 		\item Nonostante sia un parametro del \emph{metodo principale} di qualunque programma Java, si tratta di un comune array senza alcuna particolarità.
 		\end{itemize}
-		
+
 	\end{itemize}
 \end{frame}
 

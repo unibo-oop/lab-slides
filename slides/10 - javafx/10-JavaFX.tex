@@ -127,7 +127,7 @@
 \item Disponibile dal 2008 (v. 1.0 -- 2.2) come libreria stand-alone
 \item Presente ``\emph{stabilmente}'' nel JDK da Java 8 (v. JavaFX 8)
 \item \st{Introdotto ufficialmente in Java con l'idea di sostituire (gradualmente) Swing}
-\item Torna ad essere una libreria stand-alone da Java 11 
+\item Torna ad essere una libreria stand-alone da Java 11
 \end{itemize}
 \item Propone un look-and-feel personalizzabile
 \begin{itemize}
@@ -167,7 +167,7 @@
 %\item Unica novità significativa, FX Robot API per la simulazione dell'interazione dell'utente con la GUI
 %\end{itemize}
 %\item Implica l'utilizzo del JDK 11
-%\item Risente ancora di molti bug 
+%\item Risente ancora di molti bug
 %\begin{itemize}
 %\item \url{https://github.com/javafxports/openjdk-jfx/blob/jfx-11/doc-files/release-notes-11.0.1.md\#release-notes-for-javafx-1101}
 %\end{itemize}
@@ -258,12 +258,12 @@ public class Main extends Application {
 	public void start(Stage stage) throws Exception {
 		Group root = new Group();
 		Scene scene = new Scene(root, 500, 300);
-		
+
 		stage.setTitle("JavaFX Demo");
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -333,19 +333,19 @@ public class Example1 extends Application{
 	public void start(Stage stage) throws Exception {
 		Label lbl = new Label();
 		lbl.setText("Label text here...");
-		
+
 		Button btn = new Button();
 		btn.setText("Click me");
-		
+
 		HBox root = new HBox();
 		root.getChildren().add(btn);
 		root.getChildren().add(lbl);
-				
+
 		stage.setTitle("JavaFX - Example 1");
 		stage.setScene(new Scene(root, 300,250));
 		stage.show();
 	}
-	
+
 	public static void main(String[] args) { launch(args); }
 }
 \end{lstlisting}
@@ -361,7 +361,7 @@ public class Example1 extends Application{
 
 \begin{block}{Region}
 \begin{itemize}
-\item Tutte le sue specializzazioni forniscono diversi layout general purpose 
+\item Tutte le sue specializzazioni forniscono diversi layout general purpose
 \item Sono simili a quelli offerti da Swing
 \end{itemize}
 \end{block}
@@ -428,7 +428,7 @@ public class Main extends Application {
     final Label inputLbl = new Label("Input: ");
     final TextField inputArea = new TextField();
     final Button okBtn = new Button("Open a new Stage with the input data!");
-       
+
     okBtn.setOnMouseClicked(eventHandler -> {
       new SecondStage(inputArea.getText()).show();
     });
@@ -453,25 +453,25 @@ public class Main extends Application {
 \begin{lstlisting}[basicstyle=\tiny]
 public class SecondStage extends Stage {
   private Label lbl;
-	
+
   public SecondStage(final String message) {
     super();
-		
+
 	setTitle("New Window...");
-    	
+
 	setScene(new Scene(initSceneUI(), 400, 200));
-		
+
 	lbl.setText(message);
   }
-	
+
   private Parent initSceneUI() {
     lbl = new Label();
-		
+
 	FlowPane root = new FlowPane();
 	root.setAlignment(Pos.CENTER);
-		
+
 	root.getChildren().add(lbl);
-		
+
 	return root;
   }
 }
@@ -516,11 +516,11 @@ public class SecondStage extends Stage {
 
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
   <children>
-    <Button fx:id="btn" 
+    <Button fx:id="btn"
     	alignment="CENTER"
     	text="Say Hello!"
     	textAlignment="CENTER" />
-    
+
     <Label fx:id="lbl"
     	alignment="CENTER_LEFT"
     	text="Label Text Here!"
@@ -554,7 +554,7 @@ public class SecondStage extends Stage {
 \item La GUI descritta nel file FXML deve essere collegata alla scena agganciata allo stage dell'applicazione
 \item Si può utilizzare il componente \texttt{javafx.fxml.FXMLLoader}
 \begin{itemize}
-\item Il metodo statico \texttt{load(URL location)} 
+\item Il metodo statico \texttt{load(URL location)}
 \end{itemize}
 \end{itemize}
 \begin{block}{FXMLLoader (esempio)}
@@ -574,14 +574,14 @@ public class Example3 extends Application{
 	@Override
 	public void start(Stage stage) throws Exception {
 Parent root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/main.fxml"));
-		
+
 		Scene scene = new Scene(root, 500, 250);
-		
+
 		stage.setTitle("JavaFX - Example 3");
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -599,7 +599,7 @@ Parent root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/main.fxml")
 \begin{block}{Node Lookup (esempio)}
 \begin{lstlisting}
 Label lbl = (Label) scene.lookup("#lbl");
-		
+
 Button btn = (Button) scene.lookup("#btn");
 btn.setOnMouseClicked(handler -> {
 	lbl.setText("Hello, FXML!");
@@ -631,14 +631,14 @@ public class CompleteExample extends Application{
 	@Override
 	public void start(Stage stage) throws Exception {
 		VBox root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/main.fxml"));
-		
+
 		Scene scene = new Scene(root, 500, 250);
-		
+
 		stage.setTitle("JavaFX - Complete Example");
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
@@ -653,7 +653,7 @@ public class CompleteExample extends Application{
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox 
+<VBox
     xmlns="http://javafx.com/javafx"
     xmlns:fx="http://javafx.com/fxml"
 	fx:controller="it.unibo.oop.lab.javafx.UIController">
@@ -662,7 +662,7 @@ public class CompleteExample extends Application{
     	alignment="CENTER"
     	text="Say Hello!"
     	onMouseClicked="#btnOnClickHandler" />
-    
+
     <Label fx:id="lbl"
     	alignment="CENTER_LEFT"
     	text="Label Text Here!" />
@@ -677,10 +677,10 @@ public class UIController {
 
 	@FXML
 	private Label lbl;
-	
+
 	@FXML
 	private Button btn;
-	
+
 	@FXML
 	public void btnOnClickHandler() {
 		lbl.setText("Hello, World!");
@@ -712,12 +712,12 @@ private static void initMainJFrame(final JFrame frame) {
   final JButton button = new JButton();
   button.setText("Launch JavaFX Scene");
   button.addActionListener(event -> {
-            
+
     final JFXPanel jfxPanel = new JFXPanel();
-            
+
     Platform.runLater(() -> {
       jfxPanel.setScene(new Scene(initJavaFXSceneUI(), 300, 300));
-                    
+
       SwingUtilities.invokeLater(() -> {
         final JFrame frameWithJavaFX = new JFrame("JFrame with JavaFX embedded!");
         frameWithJavaFX.add(jfxPanel);
@@ -726,7 +726,7 @@ private static void initMainJFrame(final JFrame frame) {
       });
     });
   });
-        
+
   final JPanel panel = new JPanel();
   panel.setLayout(new FlowLayout());
   panel.add(button);
@@ -740,7 +740,7 @@ private static void initMainJFrame(final JFrame frame) {
 \end{frame}
 
 \begin{frame}[fragile]{Swing e JavaFX: esempio (2/2)}
-\begin{lstlisting}[basicstyle=\tiny]  
+\begin{lstlisting}[basicstyle=\tiny]
 private static Parent initJavaFXSceneUI() {
   final Label lbl = new Label();
   lbl.setText("Hello, JavaFX World!");
@@ -801,7 +801,7 @@ public static void main(final String[] args){
 \item Resolution: \textbf{Accessible}
 \item Rule pattern: \textbf{javafx/**}
 \end{itemize}
-\item OK $>$ OK $>$ Apply and Close 
+\item OK $>$ OK $>$ Apply and Close
 \end{itemize}
 \begin{figure}
 \includegraphics[width=0.85\textwidth]{img/conf02.png}
@@ -879,10 +879,10 @@ mainClassName = 'application.Main'
 \begin{itemize}
 \item Abbiamo visto che la \emph{main} class di un progetto JavaFX (vedi linee guida) deve:
 \begin{itemize}
-\item estendere \texttt{javafx.application.Application} 
+\item estendere \texttt{javafx.application.Application}
 \item il metodo main deve chiamare il metodo statico \texttt{launch()} ereditato da \texttt{Application}
 \end{itemize}
-\item Ad esempio: 
+\item Ad esempio:
 \end{itemize}
 
 \begin{footnotesize}
@@ -895,7 +895,7 @@ public class MyApplication extends Application {
 	public void start(final Stage stage) throws Exception {
 		//TODO
 	}
-	
+
 	public static void main(final String[] args) {
 		launch(args);
 	}
@@ -929,7 +929,7 @@ public class MyApplication extends Application {
 	public void start(final Stage stage) throws Exception {
 		//TODO
 	}
-	
+
 	public static void main(final String[] args) {
 		launch(args);
 	}
@@ -938,7 +938,7 @@ public class MyApplication extends Application {
 
 \begin{lstlisting}
 public class Launcher {
-    
+
     public static void main(String[] args) {
         MyApplication.main(args);
     }
@@ -950,13 +950,13 @@ public class Launcher {
 \begin{itemize}
 \item E' opportuno far generare il JAR a Gradle, mediante task dedicato
 \begin{lstlisting}
-jar {   
+jar {
     manifest {
         attributes 'Main-Class': 'myapp.Launcher'
     }
     from {
-        configurations.runtimeClasspath.collect { 
-        	it.isDirectory() ? it : zipTree(it) 
+        configurations.runtimeClasspath.collect {
+        	it.isDirectory() ? it : zipTree(it)
         }
     }
 }
@@ -994,7 +994,7 @@ jar {
   manifest {
     attributes 'Main-Class': 'application.Launcher'
   }
-  
+
   from {
     configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
   }

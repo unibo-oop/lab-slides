@@ -17,12 +17,12 @@
 	\frametitle{Outline}
 	\tableofcontents[]
 \end{frame}
-  
+
 \section{Java Development Kit (JDK) Overview}
 
 
 \fr{Java Development Kit (JDK)}{
-	
+
 	\bl{Esistono diverse distribuzioni di Java}{
 		\begin{description}
 			\item[JRE] -- Java Runtime Environment: esecuzione di programmi
@@ -30,11 +30,11 @@
 			\item[Java EE] -- Java Enterprise Edition: JDK + set esteso di librerie
 		\end{description}
 	}
-	
+
 	\bl{Noi faremo riferimento al JDK}{Include il necessario per eseguire applicazioni
 	Java (JRE), i tool (e molte librerie) per sviluppare applicazioni,
 	e la relativa  documentazione}
-	
+
 	\bl{I principali (non tutti) tool del JDK}{
 		\begin{description}
 			\item[javac] -- Compilatore Java
@@ -79,7 +79,7 @@
 
 \begin{frame}{Elementi base del file system}
   \begin{itemize}
-    \item I sistemi operativi odierni consentono di memorizzare permanentemente le informazioni su 
+    \item I sistemi operativi odierni consentono di memorizzare permanentemente le informazioni su
 supporti di memorizzazione di massa (dischi magnetici, dispositivi a stato solido...)
     \item Le informazioni su questi supporti sono organizzate in file e cartelle:
       \begin{itemize}
@@ -89,7 +89,7 @@ supporti di memorizzazione di massa (dischi magnetici, dispositivi a stato solid
     \item La cartella più esterna, che contiene tutte le altre, è detta root. Essa rappresenta il livello gerarchico più alto del file system
       \begin{itemize}
         \item In *nix (Linux, MacOS, BSD, Solaris...), vi è una unica radice, ossia \texttt{/}
-        \item In Windows, c'è una root per file system identificata da una lettera di unità (e.g. 
+        \item In Windows, c'è una root per file system identificata da una lettera di unità (e.g.
 \texttt{C:}, \texttt{D:})
       \end{itemize}
     \item La stringa che descrive un intero percorso dalla root fino ad un elemento del file system
@@ -329,7 +329,7 @@ prende il nome di \emph{percorso}, e.g.:
     \bl{Compilazione}{
         Compilazione di una classe (comando \textcolor{blue}{javac})
         \iz{
-            \item \alert{\cil{javac NomeFileSorgente.java}} 
+            \item \alert{\cil{javac NomeFileSorgente.java}}
             \item \alert{\cil{javac *.java}} compila tutti i sorgenti nella directory corrente
         }
     }
@@ -339,9 +339,9 @@ prende il nome di \emph{percorso}, e.g.:
             \item	\alert{\cil{java NomeDellaClasse}}
         }
     }
-    Si noti che il compilatore \emph{traduce} \textbf{file} sorgente in \textbf{file} binari, 
+    Si noti che il compilatore \emph{traduce} \textbf{file} sorgente in \textbf{file} binari,
     mentre l'interprete Java (la Java Virtual Machine) esegue una ed una sola \textbf{classe}.
-    
+
     Il compilatore Java lavora su \textit{file}, l'interprete Java su \textit{classi}.
 }
 

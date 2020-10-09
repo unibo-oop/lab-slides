@@ -12,7 +12,7 @@ Branching e merging}
 \date[\today]{\today}
 
 \begin{document}
-	
+
 \frame[label=coverpage]{\titlepage}
 
 \newcommand{\al}[0]{\textless}
@@ -20,7 +20,7 @@ Branching e merging}
 \newcommand{\gen}[1]{\al{}#1\ar{}}
 \newcommand{\imgfr}[4]{\fr{#1}{#2
 \begin{center}
-\includegraphics[width=#3\textwidth]{#4}                    
+\includegraphics[width=#3\textwidth]{#4}
 \end{center}
 }}
 
@@ -69,7 +69,7 @@ Branching e merging}
 			\end{itemize}
 			\item \texttt{git log --graph}
 			\begin{itemize}
-				\item Come sopra, con visualizzazione grafica dell'evoluzione sulla sinistra 
+				\item Come sopra, con visualizzazione grafica dell'evoluzione sulla sinistra
 			\end{itemize}
 		\end{itemize}
 	\end{block}
@@ -77,7 +77,7 @@ Branching e merging}
 		\begin{itemize}
             \item Si riparta dal repository contenente l'esercizio eseguito nella lezione precedente
             \begin{itemize}
-                \item Nel caso in cui non fosse stato completato, esso è reso disponibile assieme 
+                \item Nel caso in cui non fosse stato completato, esso è reso disponibile assieme
 agli esercizi
             \end{itemize}
 			\item Si visualizzi l'attuale storia del repository, corredata di grafico
@@ -88,31 +88,31 @@ agli esercizi
 * commit 47b5f2fb9f5300dc8bc530ce45d37a86a0436755
 | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | Date:   Wed Oct 19 16:46:21 2016 +0200
-| 
+|
 |     Remove the trash
-|  
+|
 * commit 4d086a9b0d2139f0cd300d329f532a2c464304c7
 | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | Date:   Wed Oct 19 16:45:28 2016 +0200
-| 
+|
 |     move junk to trash
-|  
+|
 * commit 844aebd840e6f3d2b034312e9fa37677f64b9a15
 | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | Date:   Wed Oct 19 16:43:48 2016 +0200
-| 
+|
 |     Add junk
-|  
+|
 * commit 3ae84225f45afdfa02c268c6079e0f6c96695c1f
 | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | Date:   Wed Oct 19 16:26:30 2016 +0200
-| 
+|
 |     Create .gitignore
-|  
+|
 * commit 19aa252373d1e44897233bf5b733cf82019cd5bf
   Author: Danilo Pianini <danilo.pianini@unibo.it>
   Date:   Wed Oct 19 15:51:10 2016 +0200
-  
+
       Create HelloWorld
 		\end{Verbatim}
 	\end{block}
@@ -155,7 +155,7 @@ agli esercizi
 			\item \texttt{git diff HEAD\textasciitilde{}3 HEAD}
 		\end{itemize}
 	\end{block}
-	\begin{block}{Esercizio}	
+	\begin{block}{Esercizio}
 		\begin{itemize}
 			\item Osservare le differenze fra la staging area e i tre commit precedenti (\texttt{HEAD\textasciitilde{}2})
 		\end{itemize}
@@ -222,7 +222,7 @@ index de0a8c8..0000000
 			\end{itemize}
 		\end{itemize}
 	\end{block}
-	\begin{block}{Esercizio}	
+	\begin{block}{Esercizio}
 		Premessa: si osservi lo stato del repository con \texttt{git status} \textbf{prima e dopo ogni operazione}, assicurandosi di capire appieno l'output fornito da Git
 		\begin{itemize}
 			\item Si recuperi il file \texttt{junk.txt} da tre commit fa (\texttt{HEAD\textasciitilde{}2})
@@ -363,7 +363,7 @@ nothing to commit, working tree clean
 			\item \texttt{git log --all --graph}
 		\end{itemize}
 	\end{block}
-	\begin{block}{Esercizio}	
+	\begin{block}{Esercizio}
 		\textbf{Premessa}: si osservi e comprenda lo stato del repository con \texttt{git status} \textbf{prima e dopo ogni operazione} di modifica di file o \texttt{commit}
 		\begin{itemize}
 			\footnotesize
@@ -486,25 +486,25 @@ nothing to commit, working tree clean
 * commit 56aa7aaad47026911c2aa2b026f33293c3b4fe31
 | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | Date:   Thu Oct 20 15:47:57 2016 +0200
-| 
+|
 |     Modify HelloWorld
-|    
+|
 | * commit 9261ec24cfb56d7cd7ecc67d4eaa8add9c44b3ff
 |/  Author: Danilo Pianini <danilo.pianini@unibo.it>
 |   Date:   Thu Oct 20 15:43:50 2016 +0200
-|   
+|
 |       Add README.md file
-|  
+|
 * commit 47b5f2fb9f5300dc8bc530ce45d37a86a0436755
 | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | Date:   Wed Oct 19 16:46:21 2016 +0200
-| 
+|
 |     Remove the trash
-|  
+|
 * commit 4d086a9b0d2139f0cd300d329f532a2c464304c7
 | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | Date:   Wed Oct 19 16:45:28 2016 +0200
-| 
+|
 |     move junk to trash
 
 ... CONTINUA!
@@ -538,7 +538,7 @@ nothing to commit, working tree clean
 			\end{itemize}
 		\end{itemize}
 	\end{block}
-	\begin{block}{Esercizio}	
+	\begin{block}{Esercizio}
 		\textbf{Premessa}: si osservi e comprenda lo stato del repository con \texttt{git status} \textbf{prima e dopo ogni operazione} di modifica di file o \texttt{merge}
 		\begin{itemize}
 			\footnotesize
@@ -595,27 +595,27 @@ drwxr-xr-x 2 danysk users 4.0K Oct 19 16:00 src
 |\  Merge: 56aa7aa 9261ec2
 | | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | | Date:   Thu Oct 20 16:15:47 2016 +0200
-| | 
+| |
 | |     Merge branch 'feature-readme'
-| |   
+| |
 | * commit 9261ec24cfb56d7cd7ecc67d4eaa8add9c44b3ff
 | | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | | Date:   Thu Oct 20 15:43:50 2016 +0200
-| | 
+| |
 | |     Add README.md file
-| |   
+| |
 * | commit 56aa7aaad47026911c2aa2b026f33293c3b4fe31
 |/  Author: Danilo Pianini <danilo.pianini@unibo.it>
 |   Date:   Thu Oct 20 15:47:57 2016 +0200
-|   
+|
 |       Modify HelloWorld
-|  
+|
 * commit 47b5f2fb9f5300dc8bc530ce45d37a86a0436755
 | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | Date:   Wed Oct 19 16:46:21 2016 +0200
-| 
+|
 |     Remove the trash
-|  
+|
 
 ...CONTINUA!
 		\end{Verbatim}
@@ -636,27 +636,27 @@ Deleted branch feature-readme (was 9261ec2).
 |\  Merge: 56aa7aa 9261ec2
 | | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | | Date:   Thu Oct 20 16:15:47 2016 +0200
-| | 
+| |
 | |     Merge branch 'feature-readme'
-| |   
+| |
 | * commit 9261ec24cfb56d7cd7ecc67d4eaa8add9c44b3ff
 | | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | | Date:   Thu Oct 20 15:43:50 2016 +0200
-| | 
+| |
 | |     Add README.md file
-| |   
+| |
 * | commit 56aa7aaad47026911c2aa2b026f33293c3b4fe31
 |/  Author: Danilo Pianini <danilo.pianini@unibo.it>
 |   Date:   Thu Oct 20 15:47:57 2016 +0200
-|   
+|
 |       Modify HelloWorld
-|  
+|
 * commit 47b5f2fb9f5300dc8bc530ce45d37a86a0436755
 | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | Date:   Wed Oct 19 16:46:21 2016 +0200
-| 
+|
 |     Remove the trash
-|  
+|
 
 ...CONTINUA!
 		\end{Verbatim}

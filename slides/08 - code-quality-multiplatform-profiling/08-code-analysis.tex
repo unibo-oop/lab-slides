@@ -70,7 +70,7 @@
 		\end{itemize}
 			\item \textbf{sia possibile distribuire ciascuna applicazione per qualunque piattaforma}.
 		\begin{itemize}
-			\item ovvero, sia predisposto un deployment efficace. 
+			\item ovvero, sia predisposto un deployment efficace.
 		\end{itemize}
 	\end{enumerate}
 \end{frame}
@@ -81,7 +81,7 @@
 	Inserire dei path assoluti nel proprio sorgente è \textbf{sempre} fonte di problemi quando si scrive software multipiattaforma:
 	\begin{itemize}
 		\item \url{C:\\Users\\UserName\\file} --- Non funzionerà su piattaforma *nix, e non funzionerà se l'utente Windows non è ``UserName''.
-		\item \url{C:\\MyProgram\\file} --- Non funzionerà su piattaforma *nix, e non funzionerà se 
+		\item \url{C:\\MyProgram\\file} --- Non funzionerà su piattaforma *nix, e non funzionerà se
 l'installazione di Windows è sana e il software non è avviato con diritti di amministratore.
 		\item \url{/home/username/file} --- Non funzionerà su piattaforma Windows, e non funzionerà se l'utente non è \texttt{username}.
 	\end{itemize}
@@ -124,8 +124,8 @@ l'installazione di Windows è sana e il software non è avviato con diritti di a
 	\item \texttt{java.version} --- La versione di \texttt{java} in uso. Si potrebbe decidere di non usare una funzionalità che si sa non esistere o essere buggata.
 	\item \texttt{os.arch} --- L'architettura della CPU come rilevata dall'OS (es. x86, i386, amd64, x86\_64, IA64N, arm,\dots)
 	\item \texttt{os.name} --- Il nome del sistema operativo (es. Linux, MacOS X, MacOS, Windows 8.1, Windows 10, Solaris, FreeBSD, \dots)
-	\item \texttt{os.version} --- Restituisce per Windows il numero di versione effettivo (es. 
-Windows 10 restituisce 10.0), per MacOS il numero di versione (es. 10.3.4), per Linux la versione 
+	\item \texttt{os.version} --- Restituisce per Windows il numero di versione effettivo (es.
+Windows 10 restituisce 10.0), per MacOS il numero di versione (es. 10.3.4), per Linux la versione
 del kernel (es. 4.17)
 	\end{itemize}
 	\end{block}
@@ -167,7 +167,7 @@ Questi elementi sono stabiliti dal \emph{compositor} e non dallo sviluppatore de
 \item Anche per i layout è opportuno non utilizzare dimensioni fisse in pixel.
 \item I font possono essere allegati all'applicazione
 \item La dimensione dei font può essere resa relativa alla dimensione corrente della view.
-\item L'ultente deve essere libero di ridimensionare l'interfaccia a piacimento per adattarla alla 
+\item L'ultente deve essere libero di ridimensionare l'interfaccia a piacimento per adattarla alla
 propria configurazione di schermi
 \end{itemize}
 \end{frame}
@@ -208,11 +208,11 @@ Per approfondimenti (per implementare il supporto multilingua):
 				\item Ad esempio perché parte del codice viene generato da un sistema automatico, oppure perché il progetto è sviluppato usando più di un linguaggio.
 				\item Nel caso di generatori, è buona norma dividere il codice generato da quello generante, ad esempio creando una cartella \texttt{src-gen}.
 				\item Nel caso si utilizzino più linguaggi, è bene distinguerli usando source folder separate, es. \texttt{src-java} e \texttt{src-prolog}.
-			\end{itemize} 
+			\end{itemize}
 			\item In Eclipse è possibile marcare una cartella come ``cartella sorgente'': Proprietà del progetto $\rightarrow$ Java Build Path $\rightarrow$ Source $\rightarrow$ Add Folder $\rightarrow$ Selezione della cartella $\rightarrow$ OK $\rightarrow$ OK
 			\begin{itemize}
 				\item Tutti i sorgenti di tutte le cartelle sorgente verranno compilati ed inseriti nella cartella di output da Eclipse
-			\end{itemize}		
+			\end{itemize}
 		\end{itemize}
 	\end{block}
 	\begin{block}{\texttt{res}}
@@ -249,8 +249,8 @@ Per approfondimenti (per implementare il supporto multilingua):
 			\item File con la descrizione del progetto: autori, breve guida d'uso, link a risorse.
 			\begin{itemize}
 				\item Bitbucket e GitHub sono in grado di fare il parse del file e di integrarlo nella pagina del progetto, in modo da dargli una descrizione.
-			\end{itemize} 
-		\end{itemize} 
+			\end{itemize}
+		\end{itemize}
 	\end{block}
 	\begin{block}{\texttt{LICENSE}}
 		\begin{itemize}
@@ -260,8 +260,8 @@ Per approfondimenti (per implementare il supporto multilingua):
 				\item Progetti il cui codice è disponibile ma non hanno alcuna licenza applicata sono automaticamente coperti da copyright.
 				\item Per software open source, si raccomanda l'uso di Apache License 2.0, MIT license, o BSD license.
 				\item Qualunque licenza GPL-compatibile è ritenuta idonea per il progetto del corso.
-			\end{itemize} 
-		\end{itemize} 
+			\end{itemize}
+		\end{itemize}
 	\end{block}
 \end{frame}
 
@@ -297,7 +297,7 @@ Per approfondimenti (per implementare il supporto multilingua):
 
 \begin{frame}[allowframebreaks]{Aggiunta di un jar al classpath di un progetto Eclipse}
 	\begin{block}{}
-		Progetto $\rightarrow$ Properties $\rightarrow$ Java build path $\rightarrow$ Libraries 
+		Progetto $\rightarrow$ Properties $\rightarrow$ Java build path $\rightarrow$ Libraries
 $\rightarrow$ Add Jar
 	\end{block}
 	\begin{center}
@@ -344,7 +344,7 @@ $\rightarrow$ Add Jar
 	\begin{block}{Standardizzazione}
 		\begin{itemize}
 			\item Entrambi i sistemi ``digeriscono'' entrambi i newline
-			\item Ma se due membri del team usano impostazioni diverse, il DVCS considererà ogni file modificato come integralmente cambiato ad ogni salvataggio 
+			\item Ma se due membri del team usano impostazioni diverse, il DVCS considererà ogni file modificato come integralmente cambiato ad ogni salvataggio
 			\begin{itemize}
 				\item Diff incomprensibili
 				\item Storia del progetto compromessa
@@ -377,7 +377,7 @@ $\rightarrow$ Add Jar
 		\item Come possiamo accedere a queste risorse in modo trasparente?
 		\begin{itemize}
 			\item Ossia caricarle sia che si trovino sul file system, sia che si trovino nel JAR eseguibile, sia che vengano incluse in un JAR di risorse separato.
-		\end{itemize} 
+		\end{itemize}
 	\end{itemize}
 	\begin{block}{\texttt{ClassLoader.getSystemResource()}}
 		\begin{itemize}
@@ -416,14 +416,14 @@ Spesso un software ha necessità di caricare al primo avvio delle impostazioni d
 
 \begin{block}{Strategia}
 \begin{itemize}
-\item Si sceglie una cartella nella home folder dell'utente dove salvare le impostazioni. 
+\item Si sceglie una cartella nella home folder dell'utente dove salvare le impostazioni.
 \begin{itemize}
 \item È norma consolidata creare una cartella \texttt{.nomeprogramma}.
 \end{itemize}
 
 \item Al primo avvio, si verifica se tale cartella esista e se contenga i file di configurazione previsti.
 \begin{itemize}
-\item Se non è presente, o se non sono presenti e leggibili alcuni i file, si procede a caricare 
+\item Se non è presente, o se non sono presenti e leggibili alcuni i file, si procede a caricare
 nella cartella di destinazione i file di default dal jar usando \texttt{getResource()}.
 \end{itemize}
 \end{itemize}
@@ -480,13 +480,13 @@ nella cartella di destinazione i file di default dal jar usando \texttt{getResou
 		\begin{LARGE}\textbf{U-SA-TE-LE}\end{LARGE}
 	\end{center}
 	\begin{center}
-		\textbf{Usare librerie e non reinventare la ruota è \alert{IMPORTANTE} e valutato 
+		\textbf{Usare librerie e non reinventare la ruota è \alert{IMPORTANTE} e valutato
 positivamente.}
 	\end{center}
-		Attenzione però a scegliere le librerie dopo aver fatto il \textbf{modello del dominio} 
-dell'applicazione: \textbf{PRIMA} si studia il problema, \textbf{DOPO} si implementa una soluzione: 
-siete aspiranti ingegneri, cercate di lavorare sempre top-down quando possibile, non partite dalla 
-libreria per costruirci sopra un software, ma partite dai requisiti e - se utile - sfruttate le 
+		Attenzione però a scegliere le librerie dopo aver fatto il \textbf{modello del dominio}
+dell'applicazione: \textbf{PRIMA} si studia il problema, \textbf{DOPO} si implementa una soluzione:
+siete aspiranti ingegneri, cercate di lavorare sempre top-down quando possibile, non partite dalla
+libreria per costruirci sopra un software, ma partite dai requisiti e - se utile - sfruttate le
 librerie per soddisfarli.
 \end{frame}
 
@@ -613,7 +613,7 @@ vengono mantenute
 }
 
 \fr{PMD --- Configurazione globale} {
-  In PMD, la configurazione globale \textbf{sovrascrive} quella locale: \textbf{disattivate} ``Use 
+  In PMD, la configurazione globale \textbf{sovrascrive} quella locale: \textbf{disattivate} ``Use
 global rule management''
   \centering
   \includegraphics[width=0.9\textwidth]{img/pmdconf1}
@@ -627,9 +627,9 @@ global rule management''
 \fr{PMD --- Configurazione del progetto} {
     \centering\textcolor{red}{ATTENZIONE}
     \begin{itemize}
-        \item Prima di attivare la configurazione locale, \textbf{assicurarsi} 
+        \item Prima di attivare la configurazione locale, \textbf{assicurarsi}
 che il file pmd.xml sia stato copiato all'interno della cartella del progetto!
-        \item Non usare ``Browse...'', o il plugin genererà un percorso 
+        \item Non usare ``Browse...'', o il plugin genererà un percorso
 assoluto!
     \end{itemize}
 	\includegraphics[width=0.8\textwidth]{img/pmdproj}
@@ -663,7 +663,7 @@ assoluto!
 		\item ``OK''
 	}
 	\footnotesize
-	Nota: la configurazione globale è molto simile, si ripetano gli step andando dal menu  Windows $\rightarrow$ Preferences $\rightarrow$ Java $\rightarrow$ Code style $\rightarrow$ Formatter 
+	Nota: la configurazione globale è molto simile, si ripetano gli step andando dal menu  Windows $\rightarrow$ Preferences $\rightarrow$ Java $\rightarrow$ Code style $\rightarrow$ Formatter
 }
 
 \fr{Checkstyle --- Configurazione per-progetto} {
@@ -683,7 +683,7 @@ assoluto!
 		\begin{itemize}
 			\item Nell'originale è consentito usarli
 			\item Ma noi vogliamo indentazione consistente, quindi o spazi, oppure tab
-			\item Essendo in JCC un tab equivalente ad 8 spazi, diventa troppo largo per una buona indentazione 
+			\item Essendo in JCC un tab equivalente ad 8 spazi, diventa troppo largo per una buona indentazione
 		\end{itemize}
 		\item Linee lunghe al massimo 120 o 130 caratteri
 		\begin{itemize}
@@ -699,7 +699,7 @@ assoluto!
 
 \begin{frame}[allowframebreaks]{Configurazione del formattatore di Eclipse}
 	\begin{center}
-		\includegraphics[width=.95\textwidth]{img/ideconf-1} 
+		\includegraphics[width=.95\textwidth]{img/ideconf-1}
 	\end{center}
 	\begin{center}
 		\includegraphics[width=\textwidth]{img/ideconf-2}
