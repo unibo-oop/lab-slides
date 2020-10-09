@@ -11,11 +11,9 @@
 
 \date[\today]{\today}
 
-
 \begin{document}
 
 \frame[label=coverpage]{\titlepage}
-
 
 \section{Decentralized version control systems I}
 
@@ -24,15 +22,15 @@
 \fr{Cosa sono}{
    I DVCS sono software che consentono di:
    \iz{
-      \item Mantenere traccia dei cambiamenti fatti ad un progetto, consentendo di andare ``avanti e 
+      \item Mantenere traccia dei cambiamenti fatti ad un progetto, consentendo di andare ``avanti e
 indietro'' nel tempo.
-      \item Consentire e promuovere il lavoro di gruppo, anche in parallelo (lo vedremo nel prossimo 
+      \item Consentire e promuovere il lavoro di gruppo, anche in parallelo (lo vedremo nel prossimo
 lab)
    }
 
-	L'esigenza di poter tornare a salvataggi precedenti è sempre stata avvertita dagli sviluppatori 
-(e non solo). L'operazione di salvare più stati del proprio lavoro è detta \textit{versioning}, un 
-software che semplifica il versioning è un \textit{version control system} (o \textit{versioning 
+	L'esigenza di poter tornare a salvataggi precedenti è sempre stata avvertita dagli sviluppatori
+(e non solo). L'operazione di salvare più stati del proprio lavoro è detta \textit{versioning}, un
+software che semplifica il versioning è un \textit{version control system} (o \textit{versioning
 system}).
 }
 
@@ -40,17 +38,17 @@ system}).
 
 	Sistemi di versioning:
 	\iz {
-		\item ``Fai da te'' --- è il sistema che la maggior parte di voi ha usato finora: si fa una 
-copia di tutti i file in una cartella (magari numerata). Costa molto in spazio ed in tempo, rende 
+		\item ``Fai da te'' --- è il sistema che la maggior parte di voi ha usato finora: si fa una
+copia di tutti i file in una cartella (magari numerata). Costa molto in spazio ed in tempo, rende
 difficile lo scambio di file e il lavoro parallelo.
-		\item \emph{CVS} --- Fu il primo sistema di versioning. Studiato per salvare automaticamente 
-i punti di salvataggio di file di testo. È difficile usarlo per file binari, facilita lo scambio di 
+		\item \emph{CVS} --- Fu il primo sistema di versioning. Studiato per salvare automaticamente
+i punti di salvataggio di file di testo. È difficile usarlo per file binari, facilita lo scambio di
 file rispetto ad inviarsi cartelle.
-		\item \emph{SVN} --- Evoluzione di CVS. Molto più veloce e con supporto nativo a file 
-binari. Il lavoro in parallelo è possibile a patto di adottare un flusso di lavoro di squadra molto 
+		\item \emph{SVN} --- Evoluzione di CVS. Molto più veloce e con supporto nativo a file
+binari. Il lavoro in parallelo è possibile a patto di adottare un flusso di lavoro di squadra molto
 controllato.
-		\item \emph{Git} e \emph{Mercurial} --- Sviluppati parallelamente per superare le 
-limitazioni di SVN, sono nati praticamente identici. Più veloci di SVN e pensati per supportare il 
+		\item \emph{Git} e \emph{Mercurial} --- Sviluppati parallelamente per superare le
+limitazioni di SVN, sono nati praticamente identici. Più veloci di SVN e pensati per supportare il
 lavoro massivamente parallelo di team sparsi per il mondo.
 	}
 }
@@ -78,11 +76,11 @@ lavoro massivamente parallelo di team sparsi per il mondo.
     \begin{center}
         \includegraphics[width=\textwidth, height=.77\textheight, keepaspectratio]{img/chart} \\
         \includegraphics[width=\textwidth, height=.77\textheight, keepaspectratio]{img/interest} \\
-        \includegraphics[width=\textwidth, height=.77\textheight, keepaspectratio]{img/questions} 
+        \includegraphics[width=\textwidth, height=.77\textheight, keepaspectratio]{img/questions}
 \\
-        \includegraphics[width=\textwidth, height=.77\textheight, 
+        \includegraphics[width=\textwidth, height=.77\textheight,
 keepaspectratio]{img/questionsbynum} \\
-        \includegraphics[width=\textwidth, height=.77\textheight, 
+        \includegraphics[width=\textwidth, height=.77\textheight,
 keepaspectratio]{img/questionsbyshare} \\
         \includegraphics[width=\textwidth, height=.77\textheight, keepaspectratio]{img/search} \\
     \end{center}
@@ -90,7 +88,7 @@ keepaspectratio]{img/questionsbyshare} \\
 
 \begin{frame}[fragile]{Bits of history}
 	\begin{itemize}
-		\item In April 2005, BitKeeper, the SCM Linux was developed with, withdrawn the free (as in 
+		\item In April 2005, BitKeeper, the SCM Linux was developed with, withdrawn the free (as in
 beer) use
 		\item No other SCM met the requirements of Torvalds
 		\begin{itemize}
@@ -101,8 +99,8 @@ beer) use
 	\end{itemize}
 	\begin{block}{Why the name}
 		\begin{quote}
-			I'm an egotistical bastard, and I name all my projects after myself. First 'Linux', now 
-'git'. \footnote{\tiny{From the project Wiki. ``git'' is slang for ``pig headed, think they are 
+			I'm an egotistical bastard, and I name all my projects after myself. First 'Linux', now
+'git'. \footnote{\tiny{From the project Wiki. ``git'' is slang for ``pig headed, think they are
 always correct, argumentative''}}
 			\begin{flushright}
 				\normalfont{--- Linus Torvalds}
@@ -115,27 +113,27 @@ always correct, argumentative''}}
 
 \begin{frame}[allowframebreaks]{Concetti basilari e terminologia}
 	\begin{block}{Repository}
-		Il repository è l'insieme dei file che vengono tracciati dal DVCS assieme ai metadati, ossia 
+		Il repository è l'insieme dei file che vengono tracciati dal DVCS assieme ai metadati, ossia
 alle informazioni che servono a ricostruire qualunque stato precedente.
 	\end{block}
 	\begin{block}{Tracciamento delle differenze}
-		Abilità di registrare le differenze fra diverse versioni di uno o più file. Invece di 
-salvare l'intero stato (tutto il contenuto di un file), vengono salvate solo le informazioni 
+		Abilità di registrare le differenze fra diverse versioni di uno o più file. Invece di
+salvare l'intero stato (tutto il contenuto di un file), vengono salvate solo le informazioni
 necessarie a ricostruire il file a partire dal salvataggio precedente
 	\end{block}
 	\begin{block}{Commit}
 		Salvataggio dello stato del repository
 	\end{block}
 	\begin{block}{Staging area}
-		Insieme delle modifiche accodate per esser salvate al prossimo commit. Il processo di 
+		Insieme delle modifiche accodate per esser salvate al prossimo commit. Il processo di
 salvataggio si articola infatti in due fasi:
 		\begin{enumerate}
-			\item \textbf{Staging} --- Selezione di quali file modificati, aggiunti o rimossi 
+			\item \textbf{Staging} --- Selezione di quali file modificati, aggiunti o rimossi
 salvare al prossimo commit
-			\item \textbf{Commit} --- Effettivo salvataggio delle modifiche presenti nella staging 
+			\item \textbf{Commit} --- Effettivo salvataggio delle modifiche presenti nella staging
 area
 		\end{enumerate}
-		Nota: Mercurial differisce da Git in questo particolare. Il concetto di staging area in 
+		Nota: Mercurial differisce da Git in questo particolare. Il concetto di staging area in
 Mercurial è assente, lo stato corrente del repository è esso stesso lo stage.
 	\end{block}
 	\begin{block}{Navigazione della storia}
@@ -147,8 +145,8 @@ Mercurial è assente, lo stato corrente del repository è esso stesso lo stage.
 
 \begin{frame}[allowframebreaks]{Configurazione globale}
 	\bl{In generale}{
-		Come ogni prodotto software, i DVCS necessitano di alcune operazioni di configurazione 
-preliminari. In particolare, richiedono di impostare un nome utente ed una email (in modo da poter 
+		Come ogni prodotto software, i DVCS necessitano di alcune operazioni di configurazione
+preliminari. In particolare, richiedono di impostare un nome utente ed una email (in modo da poter
 capire chi ha apportato modifiche).
 	}
 	\bl{In Git}{
@@ -156,7 +154,7 @@ capire chi ha apportato modifiche).
 		\iz {
 			\item \texttt{git config --global user.name "YOUR NAME"}
 			\begin{itemize}
-				\item \textbf{OVVIAMENTE} al posto di \texttt{YOUR NAME} dovrete inserire il vostro 
+				\item \textbf{OVVIAMENTE} al posto di \texttt{YOUR NAME} dovrete inserire il vostro
 nome.
 			\end{itemize}
 		}
@@ -167,16 +165,16 @@ nome.
 	}
 	\bl{Caratteri di newline}{
 		\begin{itemize}
-			\item Git prova ad essere ``smart'' nella configurazione dei caratteri che rappresentano 
+			\item Git prova ad essere ``smart'' nella configurazione dei caratteri che rappresentano
 una nuova linea di testo, che differiscono per piattaforma
 			\begin{itemize}
 				\item Come spesso capita, nel tentativo di essere smart fa più danno che utile.
 			\end{itemize}
 			\item Noi useremo una precisa configurazione di Eclipse
-			\item Vogliamo che i nostri file abbiano un terminatore preciso, e vogliamo che tutti i 
+			\item Vogliamo che i nostri file abbiano un terminatore preciso, e vogliamo che tutti i
 membri del team lo usino correttamente
 			\begin{itemize}
-				\item Evitando di fare mega-salvataggi solo perché cambiano i caratteri di fine 
+				\item Evitando di fare mega-salvataggi solo perché cambiano i caratteri di fine
 linea
 			\end{itemize}
 			\item Linux e MacOS: usa il carattere presente nel testo
@@ -192,7 +190,7 @@ linea
 	\begin{block}{Esercizio}
 		\begin{itemize}
 			\item Si apra un terminale
-			\item Si settino username ed email di default usando nome e cognome ed email 
+			\item Si settino username ed email di default usando nome e cognome ed email
 istituzionale
 		\end{itemize}
 	\end{block}
@@ -204,12 +202,12 @@ istituzionale
 
 \begin{frame}[allowframebreaks]{Inizializzazione di un repository}
     \bl{In generale}{
-        È necessario esplicitare che, da un certo punto del file system, si desidera utilizzare il 
+        È necessario esplicitare che, da un certo punto del file system, si desidera utilizzare il
         DVCS per tener traccia dei cambiamenti dei file contenuti da quel punto del file system.
         \begin{itemize}
-            \item Il DVCS dovrà salvare dei metadati che consentano di ricostruire gli stati 
+            \item Il DVCS dovrà salvare dei metadati che consentano di ricostruire gli stati
             precedenti del sistema
-            \item Bisognerà prestare attenzione a quale cartella si inizializza: inizializzare il 
+            \item Bisognerà prestare attenzione a quale cartella si inizializza: inizializzare il
             punto sbagliato implicherà repository enormi ed ingestibili!
         \end{itemize}
 	}
@@ -217,12 +215,12 @@ istituzionale
 		\iz{
 			\item \texttt{git init}
 		}
-		Marca la cartella corrente come repository Git. Crea una sottocartella nascosta 
+		Marca la cartella corrente come repository Git. Crea una sottocartella nascosta
 \texttt{.git} nella quale saranno salvati i metadati.
-% Fintanto che la cartella \texttt{.git} è integra, sarà possibile ripristinare lo stato dei file 
+% Fintanto che la cartella \texttt{.git} è integra, sarà possibile ripristinare lo stato dei file
 % del repository a qualunque versione.
-		
-		È possibile settare username ed email personalizzati per ogni repository, usando i comandi 
+
+		È possibile settare username ed email personalizzati per ogni repository, usando i comandi
 visti prima privati dell'argomento \texttt{--global}, e.g.:
 		\begin{center}
 			\texttt{git config user.email "your.second@email"}
@@ -230,9 +228,9 @@ visti prima privati dell'argomento \texttt{--global}, e.g.:
 	}
 	\begin{block}{Errori comuni}
 		\begin{itemize}
-			\item Bisogna posizionarsi dentro la cartella che ospiterà il nostro repository 
+			\item Bisogna posizionarsi dentro la cartella che ospiterà il nostro repository
 \textbf{prima} di dare il comando \texttt{git init}
-			\item Dare il comando dentro la home folder (dove dovrebbe aprirsi il terminale di 
+			\item Dare il comando dentro la home folder (dove dovrebbe aprirsi il terminale di
 default) marcherà tutta la home folder come repository Git
 		\end{itemize}
 	\end{block}
@@ -241,10 +239,10 @@ default) marcherà tutta la home folder come repository Git
 			\item Si crei una cartella di nome \texttt{dvcstest} (comando \texttt{mkdir})
 			\item Si entri nella cartella col terminale
 			\item Si inizializzi un repository git
-			\item Si setti l'email utente \textbf{per il repository} al vostro indirizzo personale 
+			\item Si setti l'email utente \textbf{per il repository} al vostro indirizzo personale
 (quindi non quello \texttt{@studio.unibo.it})
 			\begin{itemize}
-				\item Nota: chi non volesse usare l'indirizzo personale per ragioni di privacy, usi 
+				\item Nota: chi non volesse usare l'indirizzo personale per ragioni di privacy, usi
 una email fittizia.
 			\end{itemize}
 		\end{itemize}
@@ -268,7 +266,7 @@ una email fittizia.
 	\begin{block}{Suggerimenti}
 		\begin{itemize}
 			\item Bisogna controllare spesso lo stato del repository
-			\item Idealmente, prima di ogni operazione che potrebbe modificare lo stato del 
+			\item Idealmente, prima di ogni operazione che potrebbe modificare lo stato del
 repository
 		\end{itemize}
 	\end{block}
@@ -283,23 +281,23 @@ On branch master
 
 Initial commit
 
-nothing to commit (create/copy files and use "git add" to track)		 
+nothing to commit (create/copy files and use "git add" to track)
 		\end{Verbatim}
 	\end{block}
 	\begin{block}{Spiegazione dell'output}
 		\begin{itemize}
-			\item Prima linea: il branch su cui ci si trova. Non ne è stato creato nessuno 
+			\item Prima linea: il branch su cui ci si trova. Non ne è stato creato nessuno
 esplicitamente, quindi Git assume che di default si lavori su un branch di nome \texttt{master}
 			\item Seconda linea: Git ci segnala che non abbiamo ancora effettuato alcun commit
-			\item Terza linea: Git mostra lo stato della staging area. In questo momento non c'è 
+			\item Terza linea: Git mostra lo stato della staging area. In questo momento non c'è
 nulla di cui far commit (difatti, non ci sono file nel nostro repository)
 		\end{itemize}
 	\end{block}
 \end{frame}
 
 \begin{frame}[allowframebreaks,fragile]{Aggiungere files alla staging area}
-	\begin{block}{In generale}	
-		È necessario segnalare esplicitamente quali file dovranno essere inclusi nel prossimo 
+	\begin{block}{In generale}
+		È necessario segnalare esplicitamente quali file dovranno essere inclusi nel prossimo
 salvataggio.
 		\begin{itemize}
 			\item molti dei file potrebbero essere rigenerabili a partire da altri
@@ -309,14 +307,14 @@ salvataggio.
 			\item I file selezionati saranno aggiunti alla ``staging area''
 		\end{itemize}
 	\end{block}
-	\begin{block}{In un progetto Java}	
+	\begin{block}{In un progetto Java}
 		Vanno tracciati:
 		\begin{itemize}
 			\item I sorgenti
 			\item Le risorse (icone, file di configurazione...)
-			\item Librerie jar copiate nel progetti (in realtà, vedrete in altri corsi, esistono 
+			\item Librerie jar copiate nel progetti (in realtà, vedrete in altri corsi, esistono
 sistemi migliori)
-			\item Eventuali file esterni, ad esempio un README.md, un file per la licenza, il file 
+			\item Eventuali file esterni, ad esempio un README.md, un file per la licenza, il file
 .project di Eclipse per facilitare l'import...
 		\end{itemize}
 		\textbf{Non} vanno tracciati:
@@ -331,9 +329,9 @@ sistemi migliori)
 		\begin{itemize}
 			\item \texttt{git add PATH\_TO\_FILE}
 			\begin{itemize}
-				\item Aggiunge il file indicato alla staging area. Il file deve essere all'interno 
+				\item Aggiunge il file indicato alla staging area. Il file deve essere all'interno
 del repository.
-				\item Il file deve essere cambiato rispetto allo stato precedente (perché nuovo, 
+				\item Il file deve essere cambiato rispetto allo stato precedente (perché nuovo,
 modificato, o cancellato)
 				\item Il file può essere un file che esisteva ma è stato cancellato!
 				\item In questo caso, viene registrata nella staging area la cancellazione
@@ -344,19 +342,19 @@ modificato, o cancellato)
 			\end{itemize}
 		\end{itemize}
 	\end{block}
-	\begin{block}{Esercizio}	
+	\begin{block}{Esercizio}
 		\begin{itemize}
-			\item All'interno della cartella dove abbiamo inizializzato il repository git vuoto, si 
+			\item All'interno della cartella dove abbiamo inizializzato il repository git vuoto, si
 creino due cartelle: \texttt{src} e \texttt{bin}
-			\item Si crei dentro src un file \texttt{HelloWorld.java} (ad esempio con JEdit o 
+			\item Si crei dentro src un file \texttt{HelloWorld.java} (ad esempio con JEdit o
 Notepad++), contenente un semplice main con una stampa
 			\item Si visualizzi lo stato del repository con \texttt{git status}
 			\begin{itemize}
 				\item Si noti che ci sono nuove informazioni!
-				\item Git ci informa che ci sono dei file non tracciati dentro la cartella 
+				\item Git ci informa che ci sono dei file non tracciati dentro la cartella
 \texttt{src/}
 			\end{itemize}
-			\item Si utilizzi in modo appropriato il comando \texttt{git add} per aggiungere al 
+			\item Si utilizzi in modo appropriato il comando \texttt{git add} per aggiungere al
 tracking il file \texttt{HelloWorld.java}
 			\item Se il comando viene eseguito correttamente, non viene dato alcun output all'utente
 			\item Si visualizzi lo stato del repository
@@ -371,12 +369,12 @@ Initial commit
 Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
 
-        new file:   src/HelloWorld.java	 
+        new file:   src/HelloWorld.java
 			\end{Verbatim}
 	\end{block}
 	\begin{block}{Spiegazione dell'output}
 		\begin{itemize}
-			\item La parte relativa alla staging area è cambiata: git ci segnala che le modifiche ad 
+			\item La parte relativa alla staging area è cambiata: git ci segnala che le modifiche ad
 \texttt{src/HelloWorld.java} saranno salvate al prossimo commit
 		\end{itemize}
 	\end{block}
@@ -384,9 +382,9 @@ Changes to be committed:
 
 \begin{frame}[allowframebreaks,fragile]{Creare punti di salvataggio}
 	\begin{block}{In generale}
-		L'operazione fondamentale che vogliamo eseguire è quella di creare un punto di salvataggio, 
+		L'operazione fondamentale che vogliamo eseguire è quella di creare un punto di salvataggio,
 che registri i nostri progressi e al quale potremo sempre tornare.
-		
+
 		Assieme al salvataggio, vogliamo registrare alcuni metadati:
 		\begin{itemize}
 			\item Nome dell'autore del commit
@@ -395,30 +393,30 @@ che registri i nostri progressi e al quale potremo sempre tornare.
 			\item Data e ora del commit (acquisite automaticamente)
 			\item Un identificativo univoco (hash) (generato automaticamente)
 		\end{itemize}
-		
-		Il commit non salverà lo stato del progetto, ma il set di modifiche necessarie per portare i 
+
+		Il commit non salverà lo stato del progetto, ma il set di modifiche necessarie per portare i
 file dallo stato precedente a quello del nuovo commit.
 	\end{block}
 	\begin{block}{Buone pratiche di commit}
 		È molto importante specificare un messaggio di commit sensato.
 		\begin{itemize}
 			\item Deve essere un breve riassunto di quanto è stato fatto dal salvataggio precedente
-			\item Chi vede la storia del progetto deve capire immediatamente quali siano le 
+			\item Chi vede la storia del progetto deve capire immediatamente quali siano le
 differenze che il commit introduce
 			\item È buona norma scrivere in inglese usando il simple present
 		\end{itemize}
 		È molto importante fare commit piccoli e frequenti
 		\begin{itemize}
-			\item Idealmente, uno ad ogni modifica di cui sia possibile fornire una descrizione 
+			\item Idealmente, uno ad ogni modifica di cui sia possibile fornire una descrizione
 organica nel commit message
 			\item Non importa se le modifiche sono minimali
 % 			\item Ad esempio, i seguenti sono buoni commit:
 % 			\begin{itemize}
-% 				\item \texttt{Aggiunta stampa in caso di errore}, con modifica di una sola linea di 
+% 				\item \texttt{Aggiunta stampa in caso di errore}, con modifica di una sola linea di
 codice
-% 				\item \texttt{Aggiunta di final mancanti}, con modifica di poche linee di codice in 
+% 				\item \texttt{Aggiunta di final mancanti}, con modifica di poche linee di codice in
 un solo file
-% 				\item \texttt{Implementata versione iniziale della funzionalità X}, con modifica e 
+% 				\item \texttt{Implementata versione iniziale della funzionalità X}, con modifica e
 aggiunta di diversi file sorgente
 % 			\end{itemize}
 		\end{itemize}
@@ -455,7 +453,7 @@ aggiunta di diversi file sorgente
 	\begin{block}{\texttt{commit} senza specificare il messaggio}
 		\begin{itemize}
 			\item Non è possibile non specificare un messaggio.
-			\item Se l'opzione \texttt{-m} viene omessa, viene aperto un editor per l'inserimento 
+			\item Se l'opzione \texttt{-m} viene omessa, viene aperto un editor per l'inserimento
 del messaggio
 			\item Se il messaggio viene lasciato vuoto, il commit viene rigettato
 			\item \texttt{git commit}
@@ -469,20 +467,20 @@ del messaggio
 				\footnotesize
 				\item Esegue un commit salvando tutte le modifiche ai file elencati
 				\item Apre l'editor di testo di sistema per l'inserimento del commit message
-				\item Equivalente ad eseguire \texttt{git add FILES} seguito da \texttt{git commit} 
+				\item Equivalente ad eseguire \texttt{git add FILES} seguito da \texttt{git commit}
 a partire da una staging area vuota
 			\end{itemize}
 		\end{itemize}
-		Preferite sempre commit con opzione \texttt{-m}, a meno che non abbiate già confidenza con 
+		Preferite sempre commit con opzione \texttt{-m}, a meno che non abbiate già confidenza con
 l'editor di sistema
 	\end{block}
 	\begin{block}{Configurare l'editor di testo}
 		Sistemi diversi hanno editor diversi
 		\begin{itemize}
 			\item Di default MacOS X utilizza \texttt{vim}
-			\item In Linux dipende dalla distribuzione, solitamente è uno fra \texttt{vim}, 
+			\item In Linux dipende dalla distribuzione, solitamente è uno fra \texttt{vim},
 \texttt{nano}, o \texttt{emacs}
-			\item In Windows \textit{dovrebbe} essere \texttt{Notepad.exe} (in laboratorio è 
+			\item In Windows \textit{dovrebbe} essere \texttt{Notepad.exe} (in laboratorio è
 \texttt{vim})
 		\end{itemize}
 		Non sempre l'editor di default è quello che preferite: è bene configurarlo
@@ -499,7 +497,7 @@ l'editor di sistema
 			\item Se non lo avete, in ambiente Linux o Mac, di usare \texttt{nano}
 		\end{itemize}
 	\end{block}
-	\begin{block}{Esercizio}	
+	\begin{block}{Esercizio}
 		\begin{itemize}
 			\item Se si sta usando Linux o MacOS X, si configuri adeguatamente l'editor di testo
 			\item Si verifichi lo stato del repository
@@ -527,7 +525,7 @@ l'editor di sistema
 			\end{itemize}
 			\item Il messaggio inserito è ``Create HelloWorld''
 			\begin{itemize}
-				\item Ovviamente questo è il mio, il vostro potrebbe essere diverso, dipende da che 
+				\item Ovviamente questo è il mio, il vostro potrebbe essere diverso, dipende da che
 messaggio avete inserito
 			\end{itemize}
 			\item È stato modificato un file, in totale sono state inserite 5 righe di codice
@@ -540,23 +538,23 @@ messaggio avete inserito
 \end{frame}
 
 \begin{frame}[allowframebreaks,fragile]{Rimuovere files dalla staging area}
-	\begin{block}{In generale}	
+	\begin{block}{In generale}
 		Vogliamo poter togliere dalla staging area dei file che abbiamo aggiunto
 		\begin{itemize}
-			\item Ad esempio perché li abbiamo aggiunti a seguito dell'uso di un comando con la 
+			\item Ad esempio perché li abbiamo aggiunti a seguito dell'uso di un comando con la
 wildcard
 			\item Oppure perché abbiamo deciso di salvare le modifiche in più commit
 		\end{itemize}
 	\end{block}
 	\begin{block}{In Git}
-		Il sottocomando \texttt{reset} rimuove delle modifiche \textit{dalla staging area} (non dai 
+		Il sottocomando \texttt{reset} rimuove delle modifiche \textit{dalla staging area} (non dai
 files, a meno di non specificare apposite opzioni)
 		\begin{itemize}
 			\item \texttt{git reset PATH\_TO\_FILE}
 			\begin{itemize}
-				\item Rimuove dalla staging area le modifiche fatte al file indicato (non dal 
+				\item Rimuove dalla staging area le modifiche fatte al file indicato (non dal
 tracking!)
-				\item Il file potrebbe anche non esistere, ad esempio se abbiamo cancellato un file 
+				\item Il file potrebbe anche non esistere, ad esempio se abbiamo cancellato un file
 e aggiunto la modifica alla staging area.
 			\end{itemize}
 			\item \texttt{git reset PATH\_TO\_FILE\_1 PATH\_TO\_FILE\_2 PATH\_TO\_FILE\_N}
@@ -571,7 +569,7 @@ e aggiunto la modifica alla staging area.
 
 \begin{frame}[allowframebreaks,fragile]{Ignorare file indesiderati}
 	\begin{block}{In generale}
-		In molti casi, vorremmo poter dire al DVCS di ignorare alcuni file o cartelle, che sappiamo 
+		In molti casi, vorremmo poter dire al DVCS di ignorare alcuni file o cartelle, che sappiamo
 essere rigenerabili o che riteniamo non utili
 		\begin{itemize}
 			\item I file compilati
@@ -584,8 +582,8 @@ essere rigenerabili o che riteniamo non utili
 		\begin{itemize}
 			\item I file elencati dentro \texttt{.gitignore} saranno invisibili a Git
 			\item È bene che il file \texttt{.gitignore} venga aggiunto al tracker!
-			\item Nota: il file si chiama \textbf{esattamente} \texttt{.gitignore}, \textbf{non} 
-\texttt{ALTRO.gitignore}, \texttt{.gitignore.txt}, \texttt{gitignore.gitignore}, o altre stravaganti 
+			\item Nota: il file si chiama \textbf{esattamente} \texttt{.gitignore}, \textbf{non}
+\texttt{ALTRO.gitignore}, \texttt{.gitignore.txt}, \texttt{gitignore.gitignore}, o altre stravaganti
 forme.
 		\end{itemize}
 	\end{block}
@@ -612,19 +610,19 @@ doc/
 	\end{block}
 	\begin{block}{Note sulla creazione di file il cui nome inizia per \texttt{.}}
 		\begin{itemize}
-			\item Windows ha l'abitudine di aggiungere autonomamente l'estensione ai file che 
+			\item Windows ha l'abitudine di aggiungere autonomamente l'estensione ai file che
 vengono creati...
 			\item ...per poi nasconderla
-			\item Verificate \textbf{sempre con il terminale} che il file sia esattamente quello che 
+			\item Verificate \textbf{sempre con il terminale} che il file sia esattamente quello che
 vi aspettate, ossia \texttt{.gitignore}
-			\item Se il file viene chiamato \texttt{.gitignore.txt}, o in qualunque modo diverso da 
+			\item Se il file viene chiamato \texttt{.gitignore.txt}, o in qualunque modo diverso da
 \texttt{.gitignore}, non sarà considerato un ignore file valido da Git!
 		\end{itemize}
 		Il problema non si pone su MacOS X e Linux.
 	\end{block}
 	\begin{block}{Creare il file da terminale}
 		\begin{itemize}
-			\item È conveniente usare direttamente il terminale per creare il file 
+			\item È conveniente usare direttamente il terminale per creare il file
 \texttt{.gitignore}
 			\item \texttt{echo > .gitignore}
 			\begin{itemize}
@@ -634,27 +632,27 @@ vi aspettate, ossia \texttt{.gitignore}
 			\end{itemize}
 			\item \texttt{echo WHAT\_TO\_IGNORE >> .gitignore}
 			\begin{itemize}
-				\item Aggiunge una linea con scritto \texttt{WHAT\_TO\_IGNORE} in coda al file 
+				\item Aggiunge una linea con scritto \texttt{WHAT\_TO\_IGNORE} in coda al file
 \texttt{.gitignore}
 				\item Funziona su tutti i sistemi!
-				\item Consente di popolare il file \texttt{.gitignore} senza dover usare editor 
+				\item Consente di popolare il file \texttt{.gitignore} senza dover usare editor
 esterni
-				\item e.g. \texttt{echo bin/ >> .gitignore} --- aggiunge alla lista degli ignore la 
+				\item e.g. \texttt{echo bin/ >> .gitignore} --- aggiunge alla lista degli ignore la
 cartella \texttt{bin} e tutto il suo contenuto
 			\end{itemize}
 		\end{itemize}
 	\end{block}
-	\begin{block}{Esercizio}	
+	\begin{block}{Esercizio}
 		\begin{itemize}
 			\item Si compili dentro bin il file HelloWorld.java che avete creato
 			\begin{itemize}
 				\item Spero che vi ricordiate come si compila un file con \texttt{javac}
-				\item Se il file non compilasse, sistematelo, quindi aggiungetelo alla staging area 
+				\item Se il file non compilasse, sistematelo, quindi aggiungetelo alla staging area
 ed eseguite un commit
 				\item Già che ci siamo, eseguite e verificate che funzioni
 			\end{itemize}
 			\item Si osservi lo stato del repository
-			\item Si crei un file \texttt{.gitignore} che ignori la cartella bin e tutto il suo 
+			\item Si crei un file \texttt{.gitignore} che ignori la cartella bin e tutto il suo
 contenuto
 			\item Si osservi lo stato del repository
 			\item Si aggiunga \texttt{.gitignore} alla staging area
@@ -710,7 +708,7 @@ nothing to commit, working tree clean
 	\end{block}
 	\begin{block}{Spiegazione dell'output}
 		\begin{itemize}
-			\item Si noti come \texttt{bin/} sparisca dai file presenti nell'area di lavoro una 
+			\item Si noti come \texttt{bin/} sparisca dai file presenti nell'area di lavoro una
 volta che il file \texttt{.gitignore} è stato creato
 		\end{itemize}
 	\end{block}
@@ -721,22 +719,22 @@ volta che il file \texttt{.gitignore} è stato creato
 		Vogliamo poter cancellare e rinominare files, e tracciare il fatto che lo abbiamo fatto
 	\end{block}
 	\begin{block}{In Git}
-		Git è in grado di capire da solo quando qualcosa è stato modificato o eliminato (in questo è 
+		Git è in grado di capire da solo quando qualcosa è stato modificato o eliminato (in questo è
 molto più semplice di Mercurial)
 		\begin{itemize}
 			\item Git tratta tutte le modifiche allo stesso modo
-			\item A fronte della cancellazione di un file, basta aggiungerlo alla staging area 
+			\item A fronte della cancellazione di un file, basta aggiungerlo alla staging area
 perché la modifica venga registrata al successivo commit
-			\item A fronte di una rinominazione, si aggiungono sia il file col vecchio nome che 
+			\item A fronte di una rinominazione, si aggiungono sia il file col vecchio nome che
 quello col nuovo
 			\begin{itemize}
-				\item Diversamente, verrà trattata come una rimozione o un'aggiunta, a seconda di 
+				\item Diversamente, verrà trattata come una rimozione o un'aggiunta, a seconda di
 quale delle due modifiche aggiungete all'area di staging.
 			\end{itemize}
 		\end{itemize}
 	\end{block}
-	\begin{block}{Esercizio}	
-		Premessa: si osservi lo stato del repository con \texttt{git status} \textbf{prima e dopo 
+	\begin{block}{Esercizio}
+		Premessa: si osservi lo stato del repository con \texttt{git status} \textbf{prima e dopo
 ogni operazione}, assicurandosi di capire appieno l'output fornito da Git
 		\begin{itemize}
 			\item Si crei un file \texttt{junk.txt}, con un contenuto casuale
@@ -845,7 +843,7 @@ nothing to commit, working tree clean
 
 \begin{frame}[allowframebreaks,fragile]{Visualizzazione della storia}
 	\begin{block}{In generale}
-		Visualizzare l'elenco dei commit effettuati, chi li ha eseguiti, quando, ed il loro message 
+		Visualizzare l'elenco dei commit effettuati, chi li ha eseguiti, quando, ed il loro message
 commit
 	\end{block}
 	\begin{block}{In Git}
@@ -854,17 +852,17 @@ commit
 			\item \texttt{git log}
 			\begin{itemize}
 				\item Visualizza tutti i commit della linea di sviluppo corrente
-				\item Se l'output è troppo lungo crea una visualizzazione scorrevole (si vedano i 
+				\item Se l'output è troppo lungo crea una visualizzazione scorrevole (si vedano i
 comandi Unix \texttt{less} e \texttt{more})
 				\item Per uscire dalla visualizzazione scorrevole, si usa il tasto Q
 			\end{itemize}
 			\item \texttt{git log --graph}
 			\begin{itemize}
-				\item Come sopra, con visualizzazione grafica dell'evoluzione sulla sinistra 
+				\item Come sopra, con visualizzazione grafica dell'evoluzione sulla sinistra
 			\end{itemize}
 		\end{itemize}
 	\end{block}
-	\begin{block}{Esercizio}	
+	\begin{block}{Esercizio}
 		\begin{itemize}
 			\item Si visualizzi l'attuale storia del repository, corredata di grafico
 		\end{itemize}
@@ -874,31 +872,31 @@ comandi Unix \texttt{less} e \texttt{more})
 * commit 47b5f2fb9f5300dc8bc530ce45d37a86a0436755
 | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | Date:   Wed Oct 19 16:46:21 2016 +0200
-| 
+|
 |     Remove the trash
-|  
+|
 * commit 4d086a9b0d2139f0cd300d329f532a2c464304c7
 | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | Date:   Wed Oct 19 16:45:28 2016 +0200
-| 
+|
 |     move junk to trash
-|  
+|
 * commit 844aebd840e6f3d2b034312e9fa37677f64b9a15
 | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | Date:   Wed Oct 19 16:43:48 2016 +0200
-| 
+|
 |     Add junk
-|  
+|
 * commit 3ae84225f45afdfa02c268c6079e0f6c96695c1f
 | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | Date:   Wed Oct 19 16:26:30 2016 +0200
-| 
+|
 |     Create .gitignore
-|  
+|
 * commit 19aa252373d1e44897233bf5b733cf82019cd5bf
   Author: Danilo Pianini <danilo.pianini@unibo.it>
   Date:   Wed Oct 19 15:51:10 2016 +0200
-  
+
       Create HelloWorld
 		\end{Verbatim}
 	\end{block}
@@ -907,7 +905,7 @@ comandi Unix \texttt{less} e \texttt{more})
 \begin{frame}{Nell'esercitazione di oggi}
     \begin{itemize}
         \item Fate in modo che i vostri esercizi siano in repository git
-        \item Ossia, inizializzate come repository git la cartella che contiene gli esercizi del 
+        \item Ossia, inizializzate come repository git la cartella che contiene gli esercizi del
 laboratorio
         \item Aggiungete al repository i file forniti da noi
         \begin{itemize}
@@ -927,7 +925,7 @@ laboratorio
     \item Come ingegneri, dovrete essere in grado di tradurre una descrizione in linguaggio naturale (``a parole'') di una applicazione in termini di astrazioni adatte ad essere scritte in forma di software (nel nostro caso, in elementi di linguaggio di programmazione orientato agli oggetti)
     \item Si tratta dell'esercizio \textbf{più difficile} e \textbf{più importante} che dovrete fare quando realizzerete il progetto
     \item Dalle vostre capacità di analisi del problema e di design della soluzione dipende il successo o meno del vostro software
-    \item Nell'ultimo esercizio, vi sarà data una descrizione in linguaggio naturale, e starà a voi 
+    \item Nell'ultimo esercizio, vi sarà data una descrizione in linguaggio naturale, e starà a voi
 realizzare il software autonomamente
     \item \textbf{SUGGERIMENTO} --- Prima di iniziare a ``sporcarsi le mani'' col codice, prendete carta e penna e cercate di ottenere un design chiaro dei componenti che realizzerete: nessuno costruisce un'automobile partendo con l'assemblare i bulloni, ma decide prima quali saranno i componenti e come andranno connessi fra loro.
   }

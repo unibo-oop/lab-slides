@@ -89,14 +89,14 @@ public final class HelloWorld {
 \fr{Decentralizzazione}{
 	\bl{Decentralizzazione totale...}{
 		Nei DVCS, non esiste un punto centrale che fa repository ``ufficiale'': tutti i repository ricevono l'intera storia ed hanno pari importanza.
-		
+
 		Il design dei DVCS è ideale per un mondo P2P
 	}
 	\bl{...nella realtà della struttura di Internet}{
 		Per via della struttura attuale di Internet, della presenza di NAT e simili strutture di rete, il modello client/server è spesso difficile da aggirare.
 		%
 		È spesso anche sconveniente aggirarlo: tutto sommato, il cloud spesso è utile...
-		
+
 		Esistono servizi di hosting che consentono di avere in un punto sempre accessibile dei repository in rete: chi ha bisogno di collaborare non deve preoccuparsi di problematiche di rete diverse da ``andare sul web''.
 	}
 }
@@ -260,7 +260,7 @@ public final class HelloWorld {
 		\begin{itemize}
 			\item \texttt{git push URI branchName}
 			\begin{itemize}
-				\item Carica sul branch \texttt{branchName} \texttt{URI} tutti i commit del branch 
+				\item Carica sul branch \texttt{branchName} \texttt{URI} tutti i commit del branch
 			\end{itemize}
 			\item \texttt{git push remoteName branchName}
 			\begin{itemize}
@@ -294,7 +294,7 @@ public final class HelloWorld {
 		\includegraphics[width=0.99\textwidth]{img/draw5}
 	\end{center}
 	\framebreak{}
-	
+
 	Remote esegue:\\
 	Modifica di \texttt{file2} \\
 	\texttt{git commit} \\
@@ -302,7 +302,7 @@ public final class HelloWorld {
 		\includegraphics[width=0.99\textwidth]{img/draw7}
 	\end{center}
 	\framebreak{}
-	
+
 	Local esegue:\\
 	\texttt{git push indirizzo\_di\_remote\_repo} \\
 	\begin{center}
@@ -310,7 +310,7 @@ public final class HelloWorld {
 	\end{center}
 	La push viene rifiutata: la radice dei due repository è diversa!
 	\framebreak{}
-	
+
 	Local esegue:\\
 	\texttt{git pull indirizzo\_di\_remote\_repo} \\
 	\begin{center}
@@ -318,7 +318,7 @@ public final class HelloWorld {
 	\end{center}
 	Ora è possibile effettuare la \texttt{push}!
 	\framebreak{}
-	
+
 	Local esegue:\\
 	\texttt{git push indirizzo\_di\_remote\_repo} \\
 	\begin{center}
@@ -374,7 +374,7 @@ public final class HelloWorld {
 
 \fr{Bitbucket Overview}{
 	\includegraphics[width=0.99\textwidth]{img/bitbucket12}
-	
+
 	\scriptsize
 	Su sistemi *nix, si utilizzi il comando \texttt{ssh-keygen -t rsa} per generare una coppia di chiavi pubblica e privata. Non si inserisca alcuna password e si mantengano le opzioni suggerite dal sistema. A questo punto, all'interno della cartella \texttt{\textasciitilde{}/.ssh/}, si troveranno i file delle chiavi. Si incolli nel campo key il contenuto del file \texttt{\textasciitilde{}/.ssh/id\_rsa.pub}
 
@@ -392,7 +392,7 @@ public final class HelloWorld {
 		Appare anche una nuova opzione per l'import di un progetto tramite clone di un repository Git.
 	}
 	È bene (come per tutte le utility con interfaccia grafica) fare un utilizzo \textbf{consapevole} del plugin Eclipse.
-	
+
 	Vi consigliamo di preferire l'uso di Git da terminale!
 }
 
@@ -509,7 +509,7 @@ public final class HelloWorld {
 		\end{itemize}
 	\end{block}
 	\begin{block}{Asserzioni}
-		Sono particolari metodi che verificano una certa condizione, e fanno fallire il test se non è rispettata		
+		Sono particolari metodi che verificano una certa condizione, e fanno fallire il test se non è rispettata
 		\begin{itemize}
 			\item Metodi statici della classe \texttt{org.junit.Assert}
 			\item \texttt{assertTrue(boolean)} --- verifica che la condizione passata sia \texttt{true}

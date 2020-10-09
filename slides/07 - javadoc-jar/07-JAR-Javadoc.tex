@@ -11,7 +11,7 @@
 \date[\today]{\today}
 
 \begin{document}
-	
+
 \frame[label=coverpage]{\titlepage}
 
 \newcommand{\al}[0]{\textless}
@@ -19,7 +19,7 @@
 \newcommand{\gen}[1]{\al{}#1\ar{}}
 \newcommand{\imgfr}[4]{\fr{#1}{#2
 \begin{center}
-\includegraphics[width=#3\textwidth]{#4}                    
+\includegraphics[width=#3\textwidth]{#4}
 \end{center}
 }}
 
@@ -95,7 +95,7 @@
 \iz {
 \item Si seguano i passi descritti nelle slide successive per generare un file JAR a partire dai tre packages:
 \iz{
-\item \texttt{it.unibo.oop.jar.packages.pkg1} 
+\item \texttt{it.unibo.oop.jar.packages.pkg1}
 \item \texttt{it.unibo.oop.jar.packages.pkg2}
 \item \texttt{it.unibo.oop.jar.packages.pkg3}
 }
@@ -108,14 +108,14 @@
 \item Click col tasto destro sul progetto $>$ Export...
 \item Nella schermata di export: java $>$ JAR file $>$ Next
 }
-\fg{height=0.8\textheight}{img/exportjar4} 
+\fg{height=0.8\textheight}{img/exportjar4}
 }
 
 \fr {Generazione di file JAR con Eclipse (3/5)}{
 \iz{
 \item Espandere l'elenco dei file: verificare \textbf{sempre} che siano selezionate \textbf{tutte e sole} le risorse d'interesse per il JAR file
 }
-\fg{height=0.75\textheight}{img/exportjar6} 
+\fg{height=0.75\textheight}{img/exportjar6}
 }
 
 \fr {Generazione di file JAR con Eclipse (4/5)}{
@@ -126,7 +126,7 @@
 }
 \item In questo caso, selezionare: \emph{Export Java Source files and resources}
 }
-\fg{height=\textheight}{img/exportjar7} 
+\fg{height=\textheight}{img/exportjar7}
 }
 
 \fr {Generazione di file JAR con Eclipse (5/5)}{
@@ -135,7 +135,7 @@
 \item Fornire un nome (con estensione .jar) al file che sarà generato
 \item Click su Finish
 }
-\fg{height=0.75\textheight}{img/exportjar9} 
+\fg{height=0.75\textheight}{img/exportjar9}
 }
 
 %\imgfr{Generazione di file JAR con Eclipse}{Selezionare le risorse da esportare, click destro ed \texttt{Export}}{0.3}{img/exportjar1}
@@ -175,7 +175,7 @@
 \item Clik DX su progetto $>$ Export...
 \item Nella schermata di export: java $>$ Runnable JAR file $>$ Next
 }
-\fg{height=0.8\textheight}{img/exportrunnablejar6} 
+\fg{height=0.8\textheight}{img/exportrunnablejar6}
 }
 
 \fr {Generazione di file JAR eseguibili con Eclipse (3/3)}{
@@ -183,7 +183,7 @@
 \item Selezionare la ``Run configuration'' da utilizzare
 \item Inserire il nome del file (e selezionare il path in cui si desidera crearlo)
 }
-\fg{height=0.8\textheight}{img/exportrunnablejar9} 
+\fg{height=0.8\textheight}{img/exportrunnablejar9}
 }
 
 \section{Documentazione per il codice Java}
@@ -206,7 +206,7 @@
         }
     }
   }
-                                  
+
   \bl{}{
     Oggi ci concentreremo sulla \alert{Javadoc} che, integrata all'uso di UML, è una delle parti fondamentali di una buona documentazione di un progetto SW
   }
@@ -216,7 +216,7 @@
   \bl{Javadoc: che cos'è?}{
     Tool di supporto per la generazione automatica della documentazione (HTML-based) dei programmi Java, tramite utilizzo di annotazioni \textit{``speciali''} collocate in punti ben precisi dei sorgenti
   }
-  
+
   \bl{Come funziona}{
     \iz{
       \item Il tool processa tutti i commenti del tipo \cil{/** ... */}
@@ -229,21 +229,21 @@
 \subsection{Principali Tag e Linee Guida}
 
 \fr{Javadoc -- Principali Tag (1/2)}{
-  \iz{ 
+  \iz{
     \item \textcolor{blue}{\cil{@param}}
       \iz{
         \item Utilizzabile nei commenti relativi a costruttori/metodi o in classi parametriche
         \item Descrive un generico parametro di input oppure un tipo generico
       }
   }
-  \iz{ 
+  \iz{
     \item \textcolor{blue}{\cil{@return}}
       \iz{
         \item Utilizzabile nei commenti relativi ai metodi
         \item Descrive il valore di ritorno
       }
   }
-  \iz{ 
+  \iz{
     \item \textcolor{blue}{\cil{@deprecated}}
       \iz{
         \item Utilizzabile nei commenti relativi a classi/costruttori/metodi/campi
@@ -253,15 +253,15 @@
 }
 
 \fr{Javadoc -- Principali Tag (2/2)}{
-  \iz{ 
+  \iz{
     \item \textcolor{blue}{\cil{@throws}}
       \iz{
         \item Utilizzabile nei commenti relativi a costruttori/metodi che lanciano una eccezione (le vedremo in seguito)
         \item Descrive l'eccezione e il motivo per cui viene lanciata
       }
   }
-  
-  \iz{ 
+
+  \iz{
     \item \textcolor{blue}{\cil{@link}}
       \iz{
         \item Descrive collegamenti ipertestuali (link) a metodi/classi/costanti della stessa classe o anche di classi esterne
@@ -272,14 +272,14 @@
             \item \texttt{ \{@link \#someFieldOfSameClass\} }
           }
       }
-  }    
+  }
 
-  \iz{ 
+  \iz{
     \item \textcolor{blue}{\cil{@author}} ed \textcolor{blue}{\cil{@version}}
       \iz{
         \item Utilizzabili nel commento che descrive la classe
         \item Descrive l'autore/autori della classe, e la sua versione
-        \item \textcolor{red}{Non usateli}. Abbiamo il DVCS per sapere esattamente chi ha fatto 
+        \item \textcolor{red}{Non usateli}. Abbiamo il DVCS per sapere esattamente chi ha fatto
 cosa, quando, e qual è la versione della classe.
       }
   }
@@ -301,7 +301,7 @@ cosa, quando, e qual è la versione della classe.
 \subsection{Generazione della Javadoc tramite Eclipse}
 
 \fr{Generazione Javadoc tramite Eclipse (1/2)}{
-\fg{height=0.9\textheight}{img/javadoc1} 
+\fg{height=0.9\textheight}{img/javadoc1}
 }
 
 \fr{Generazione Javadoc tramite Eclipse (2/2)}{
@@ -330,7 +330,7 @@ cosa, quando, e qual è la versione della classe.
 		\begin{itemize}
 			\item Contattare il docente se, anche dopo aver usato il \textbf{debugger}, non si è riusciti a risalire all'origine del problema
 		\end{itemize}
-		\item \textcolor{red}{Scrivere il Javadoc per l'esercizio svolto} 
+		\item \textcolor{red}{Scrivere il Javadoc per l'esercizio svolto}
 		\item Effettuare almeno un commit ad esercizio completato
 		\begin{itemize}
 			\item Fatene pure quanti ne volete durante l'esercizio stesso
