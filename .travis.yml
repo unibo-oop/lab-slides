@@ -88,6 +88,7 @@ after_success:
 
 before_deploy:
   - $GRAVIS/autotag
+  - ./cleanup_project_files.rb
   - cd $TRAVIS_BUILD_DIR/workspace
   # zip all workspace/* folders
   - for i in */; do zip -r "${i%/}.zip" "$i"; done
