@@ -87,6 +87,7 @@ after_success:
   - git config --local user.email "danilo.pianini@unibo.it"
 
 before_deploy:
+  - cd $TRAVIS_BUILD_DIR
   - $GRAVIS/autotag
   - ./cleanup_project_files.rb
   - cd $TRAVIS_BUILD_DIR/workspace
