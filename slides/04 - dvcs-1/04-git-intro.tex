@@ -74,15 +74,12 @@ lavoro massivamente parallelo di team sparsi per il mondo.
 
 \begin{frame}[allowframebreaks]{Diffusione dei sistemi di controllo di versione}
     \begin{center}
-        \includegraphics[width=\textwidth, height=.77\textheight, keepaspectratio]{img/chart} \\
+        \includegraphics[width=\textwidth, height=.77\textheight, keepaspectratio]{img/gtrends} \\
+        \includegraphics[width=\textwidth, height=.77\textheight, keepaspectratio]{img/stackoverflow} \\
         \includegraphics[width=\textwidth, height=.77\textheight, keepaspectratio]{img/interest} \\
-        \includegraphics[width=\textwidth, height=.77\textheight, keepaspectratio]{img/questions}
-\\
-        \includegraphics[width=\textwidth, height=.77\textheight,
-keepaspectratio]{img/questionsbynum} \\
-        \includegraphics[width=\textwidth, height=.77\textheight,
-keepaspectratio]{img/questionsbyshare} \\
-        \includegraphics[width=\textwidth, height=.77\textheight, keepaspectratio]{img/search} \\
+        \includegraphics[width=\textwidth, height=.77\textheight, keepaspectratio]{img/questions}\\
+        \includegraphics[width=\textwidth, height=.77\textheight,keepaspectratio]{img/questionsbynum} \\
+        \includegraphics[width=\textwidth, height=.77\textheight,keepaspectratio]{img/questionsbyshare} \\
     \end{center}
 \end{frame}
 
@@ -181,7 +178,7 @@ linea
 			\begin{itemize}
 				\item \texttt{git config --global core.autocrlf input}
 			\end{itemize}
-			\item Windows: disattiva la conversione automatica a CLRF
+			\item Windows: disattiva la conversione automatica a CRLF
 			\begin{itemize}
 				\item \texttt{git config --global core.autocrlf false}
 			\end{itemize}
@@ -190,8 +187,8 @@ linea
 	\begin{block}{Esercizio}
 		\begin{itemize}
 			\item Si apra un terminale
-			\item Si settino username ed email di default usando nome e cognome ed email
-istituzionale
+			\item Si settino username ed email di default usando nome e cognome ed email istituzionale
+			\item Si disabiliti la funzione autocrlf
 		\end{itemize}
 	\end{block}
 \end{frame}
@@ -266,8 +263,7 @@ una email fittizia.
 	\begin{block}{Suggerimenti}
 		\begin{itemize}
 			\item Bisogna controllare spesso lo stato del repository
-			\item Idealmente, prima di ogni operazione che potrebbe modificare lo stato del
-repository
+			\item Idealmente, prima di ogni operazione che potrebbe modificare lo stato del repository
 		\end{itemize}
 	\end{block}
 	\begin{block}{Esercizio}
@@ -312,16 +308,14 @@ salvataggio.
 		\begin{itemize}
 			\item I sorgenti
 			\item Le risorse (icone, file di configurazione...)
-			\item Librerie jar copiate nel progetti (in realtà, vedrete in altri corsi, esistono
-sistemi migliori)
-			\item Eventuali file esterni, ad esempio un README.md, un file per la licenza, il file
-.project di Eclipse per facilitare l'import...
+			\item Librerie copiate nel progetti
+			\item Eventuali file esterni, ad esempio un README.md, un file per la licenza, il file .project di Eclipse per facilitare l'import...
 		\end{itemize}
 		\textbf{Non} vanno tracciati:
 		\begin{itemize}
 			\item I binari (rigenerabile dai sorgenti)
-			\item La documentazione javadoc (rigenerabile dai sorgenti)
-			\item I jar della vostra applicazione (rigenerabili)
+			\item La documentazione rigenerabile dai sorgenti
+			\item Archivi con la vostra applicazione (rigenerabili)
 		\end{itemize}
 	\end{block}
 	\begin{block}{In Git}
@@ -346,8 +340,7 @@ modificato, o cancellato)
 		\begin{itemize}
 			\item All'interno della cartella dove abbiamo inizializzato il repository git vuoto, si
 creino due cartelle: \texttt{src} e \texttt{bin}
-			\item Si crei dentro src un file \texttt{HelloWorld.java} (ad esempio con JEdit o
-Notepad++), contenente un semplice main con una stampa
+			\item Si crei dentro src un file \texttt{HelloWorld.java} (ad esempio con Visual Studio Code), contenente un semplice main con una stampa
 			\item Si visualizzi lo stato del repository con \texttt{git status}
 			\begin{itemize}
 				\item Si noti che ci sono nuove informazioni!
@@ -573,8 +566,7 @@ e aggiunto la modifica alla staging area.
 essere rigenerabili o che riteniamo non utili
 		\begin{itemize}
 			\item I file compilati
-			\item I file contenenti la Javadoc
-			\item I nostri jar
+			\item Eventuali archivi o documentazione \textit{rigenerabile}
 		\end{itemize}
 	\end{block}
 	\begin{block}{In Git}
