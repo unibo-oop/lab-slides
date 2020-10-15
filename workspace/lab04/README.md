@@ -2,6 +2,7 @@
 
 ### Improving an existing design with inheritance
 
+We will work inside the package `it.unibo.oop.lab04.bank`.
 In last week's exercises, we had lots of duplicated code between `SimpleBankAccount` and `StrictBankAccount`.
 
 * Create a new class `ExtendedStrictBankAccount` that extends `SimpleBankAccount`, with the same behavior of `StrictBankAccount` (provided by us). Your goal is to reduce, as much as possible, code duplications. *Note:* modifying `SimpleBankAccount` is forbidden. There must be **NO** change.
@@ -81,4 +82,3 @@ Si desidera testare l'infrastruttura creando un robot componibile ed assegnandog
 * *Navigatore di confine*. È un componente non comandabile che, una volta avviato, fa sì che il robot raggiunga il bordo del `RobotEnvironment` e continui ad esplorarlo. Ossia, fa sì che il robot proceda in una direzione, fino ad arrivare al bordo, quindi ruoti di 90° e continui ad esplorare lungo il bordo, al raggiungimento di un nuovo bordo, si orienti in modo da poter proseguire l'esplorazione e prosegua.
 
 * Due *braccia prensili*. Sono componenti comandabili, che supportano due comandi: *pick* e *drop*. Se è attivo il comando pick, e il braccio non ha oggetti in mano, allora viene preso un oggetto; se il braccio invece ha oggetti in mano, non viene effettuata alcuna azione. Se è attivo il comando drop, ed il braccio ha un oggetto in mano, allora l'oggetto viene lasciato; se il braccio invece non ha oggetti in mano, non viene eseguita alcuna azione.
-
