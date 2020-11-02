@@ -14,3 +14,19 @@
 	path = workspace/lab06-sol
 	url = https://github.com/APICe-at-DISI/OOP-Lab06.git
 	branch = solutions
+[submodule "workspace/lab07"]
+	path = workspace/lab07
+	url = https://github.com/APICe-at-DISI/OOP-Lab07.git
+	branch = exercises
+[submodule "workspace/lab07-sol"]
+	path = workspace/lab07-sol
+	url = https://github.com/APICe-at-DISI/OOP-Lab07.git
+	branch = solutions
+[submodule "workspace/lab07-dev"]
+	path = workspace/lab07-dev
+	url = https://github.com/APICe-at-DISI/OOP-Lab07.git
+	branch = develop-qa-enabled
+[submodule "workspace/lab07-sol-dev"]
+	path = workspace/lab07-sol-dev
+	url = https://github.com/APICe-at-DISI/OOP-Lab07.git
+	branch = solutions-qa-enabled
