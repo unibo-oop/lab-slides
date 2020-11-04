@@ -22,3 +22,10 @@
     - f3: visualizza definizione elemento
     - alt+shift+s: wizard for Java code elements
 5. Debug di applicazioni
+
+Things relevant for exercises:
+
+- Refactor (shift+alt+T) -> Encapsulate field
+    - Getter name and setter name
+    - Field access in declaring type: (a) use setters and getters; (b) keep field reference
+- Source (shift+alt+S) -> Generate toString
