@@ -30,3 +30,11 @@
 	path = workspace/lab07-sol-dev
 	url = https://github.com/APICe-at-DISI/OOP-Lab07.git
 	branch = solutions-qa-enabled
+[submodule "workspace/lab08-sol"]
+	path = workspace/lab08-sol
+	url = https://github.com/APICe-at-DISI/OOP-Lab08.git
+	branch = solution
+[submodule "workspace/lab08"]
+	path = workspace/lab08
+	url = https://github.com/APICe-at-DISI/OOP-Lab08.git
+	branch = exercises
