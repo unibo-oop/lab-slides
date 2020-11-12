@@ -14,63 +14,18 @@
 
 \frame[label=coverpage]{\titlepage}
 
-\section{Preparazione al laboratorio}
-
-\begin{frame}{Preparazione dell'ambiente di lavoro}
-	\begin{enumerate}
-		\item Clonare il repository degli esercizi
-		\begin{itemize}
-            \item Opzionalmente, si fork-i il repository
-		\end{itemize}
-		\item Importare il repository in Eclipse come progetto Java
-		\begin{enumerate}
-			\item File
-			\item Import
-			\item General
-			\item Existing project into workspace
-			\item Si selezioni la cartella del progetto
-			\item Si confermi l'import
-		\end{enumerate}
-		\item \alert{Configurare correttamente Eclipse, abilitare e configurare i plugin per il controllo di qualità del codice}
-	\end{enumerate}
-\end{frame}
-
-\begin{frame}{Modalità di lavoro}
-	\begin{enumerate}
-		\item Seguire le istruzioni del file README.md nella root del repository
-		\item Tentare di capire l'esercizio in autonomia
-		\begin{itemize}
-			\item Contattare il docente se qualcosa non è chiaro
-		\end{itemize}
-		\item Risolvere l'esercizio in autonomia
-		\begin{itemize}
-			\item Contattare il docente se si rimane bloccati
-		\end{itemize}
-		\item Utilizzare le funzioni di test per verificare la soluzione realizzata
-		\item Cercare di risolvere autonomamente eventuali piccoli problemi che possono verificarsi durante lo svolgimento degli esercizi
-		\begin{itemize}
-			\item Contattare il docente se, anche \textbf{dopo aver usato il debugger}, non si è riusciti a risalire all'origine del problema
-		\end{itemize}
-		\item Scrivere la Javadoc per l'esercizio svolto
-		\item \alert{Assicurarsi che non ci siano warning nel proprio codice}
-		\item Effettuare \textit{almeno} un commit ad esercizio completato
-		\item \textbf{A esercizio ultimato sottoporre la soluzione al docente}
-		\item Proseguire con l'esercizio seguente
-	\end{enumerate}
-\end{frame}
-
 \section{Programmazione multipiattaforma}
 
 \begin{frame}{``Write once, run anywhere...''}
 	Lo slogan coniato originariamente da Sun Microsystems per illustrare i benefici del linguaggio Java vale a patto che:
 	\begin{enumerate}\itemsep10pt
-		\item \textbf{``write'' sia fatta in modo corretto e robusto},
+		\item \textbf{``write'' sia fatta in modo corretto e robusto};
 		\begin{itemize}
 			\item ovvero, sia adottato un approccio di programmazione adeguato.
 		\end{itemize}
 			\item \textbf{sia possibile distribuire ciascuna applicazione per qualunque piattaforma}.
 		\begin{itemize}
-			\item ovvero, sia predisposto un deployment efficace.
+			\item ovvero, sia predisposto un packaging efficace.
 		\end{itemize}
 	\end{enumerate}
 \end{frame}
@@ -99,11 +54,11 @@ l'installazione di Windows è sana e il software non è avviato con diritti di a
 	\begin{center}
 	{\Large \texttt{String getProperty(String p)}}
 	\end{center}
-	che consente di accedere a proprietà di sistema in modo corretto!
+	che consente di accedere a proprietà di sistema
 	\vspace{10pt}
 	\begin{block}{Proprietà relative al file system}
 		\begin{itemize}
-			\item \texttt{file.separator} --- Restituisce \url{\\} per Windows e \url{/} per Unix
+			\item \texttt{file.separator} --- Restituisce \texttt{\textbackslash} per Windows e \texttt{/} per Unix
 			\item \texttt{java.home} --- La directory di installazione di Java
 			\item \texttt{user.dir} --- La directory da cui il comando \texttt{java} è stato invocato
 			\item \texttt{user.home} --- Restituisce la home directory dell'utente che ha lanciato \texttt{java}
@@ -248,7 +203,7 @@ Per approfondimenti (per implementare il supporto multilingua):
 		\begin{itemize}
 			\item File con la descrizione del progetto: autori, breve guida d'uso, link a risorse.
 			\begin{itemize}
-				\item Bitbucket e GitHub sono in grado di fare il parse del file e di integrarlo nella pagina del progetto, in modo da dargli una descrizione.
+				\item GitHub è in grado di fare il parse del file e di integrarlo nella pagina del progetto, in modo da dargli una descrizione.
 			\end{itemize}
 		\end{itemize}
 	\end{block}
@@ -333,7 +288,7 @@ $\rightarrow$ Add Jar
 	\end{itemize}
 	\begin{block}{Pillola di storia}
 		\begin{itemize}
-			\item Il ``carriage report'' è un'eredità dovuta alla compatibilità con MS-DOS
+			\item Il ``carriage return'' è un'eredità dovuta alla compatibilità con MS-DOS
 			\item Che a sua ha ereditato la cosa dalla compatibilità con CP/M-80
 			\item A quel tempo, le stampanti erano macchine da scrivere elettromeccaniche
 			\item \texttt{\textbackslash{}r} riportava il rullo con la carta al margine sinistro
@@ -491,16 +446,16 @@ librerie per soddisfarli.
 \end{frame}
 
 \begin{frame}{The Maven Central Repository}
-\begin{itemize}\itemsep10pt
-\item Costituisce la più ampia collezione di librerie e componenti Java open-source.
-\begin{itemize}
-\item È il repository di default per Apache Maven (noto tool per il project management).
-\end{itemize}
-\item Rappresenta uno dei modi più rapidi per accedere a librerie sviluppate da altri sviluppatori e distribuire le proprie.
-\item Consente di ricercare e scaricare pressoché qualunque libreria a supporto utile nelle proprie applicazioni open-source.
-
-\item \url{https://search.maven.org/}
-\end{itemize}
+    \begin{itemize}\itemsep10pt
+        \item Costituisce una delle più ampie collezioni di librerie e componenti Java open-source.
+        \begin{itemize}
+            \item È il repository di default per Apache Maven (noto tool per il project management).
+            \item Bintray JCenter è un superset di Maven Central.
+        \end{itemize}
+        \item Rappresenta uno dei modi più rapidi per accedere a librerie sviluppate da altri sviluppatori e distribuire le proprie.
+        \item Consente di ricercare e scaricare pressoché qualunque libreria a supporto utile nelle proprie applicazioni open-source.
+        \item \url{https://search.maven.org/}
+    \end{itemize}
 \end{frame}
 
 \section{Qualità  del codice}
@@ -570,11 +525,6 @@ vengono mantenute
   }
 }
 
-\fr{SpotBugs --- Configurazione globale} {
-	\centering
-	\includegraphics[width=0.99\textwidth]{img/findbugsconf}
-}
-
 \fr{SpotBugs --- Configurazione del progetto} {
   In SpotBugs, la configurazione locale \textbf{è più prioritaria} di quella globale.
   \centering
@@ -589,51 +539,35 @@ vengono mantenute
 			\item Mancato uso di final
 			\item Singular fields
 			\item Usa CPD per verificare se vi siano blocchi di codice copincollati
-			\item Tanti altri! Si veda: \url{http://pmd.sourceforge.net/pmd-4.3.0/rules/index.html}
+			\item Tanti altri! Si veda: \url{https://pmd.github.io/latest/pmd_rules_java.html}
 		}
 	}
 }
 
-\fr{PMD --- Configurazione globale} {
-	La configurazione di default di PMD contiene regole con limiti arbitrari, regole che hanno senso solo in particolari environment (e.g. J2EE) e regole controverse. È meglio rimuovere tali regole!
-	\iz{
-		\item Dalle proprietà  di Eclipse, si allarghi il sotto menu PMD
-		\item Si vada su Rule Configuration
-		\item Si selezionino tutte le regole (click su una, poi ctrl+A)
-		\item Si eliminino tutte le regole
-		\item Si usi il tasto import
-		\item Si importino (meglio per copia) le regole da un file XML
-		\item Vi forniremo noi un buon file di regole!
-	}
-}
-
-\fr{PMD --- Configurazione globale} {
-	\centering
-	\includegraphics[width=0.75\textwidth]{img/pmdconf}
-}
-
-\fr{PMD --- Configurazione globale} {
-  In PMD, la configurazione globale \textbf{sovrascrive} quella locale: \textbf{disattivate} ``Use
-global rule management''
-  \centering
-  \includegraphics[width=0.9\textwidth]{img/pmdconf1}
-}
-
-\fr{PMD --- Configurazione globale} {
-	\centering
-	\includegraphics[width=0.99\textwidth]{img/pmdimport}
-}
-
-\fr{PMD --- Configurazione del progetto} {
+\begin{frame}[fragile, allowframebreaks]{PMD --- Configurazione del progetto}
     \centering\textcolor{red}{ATTENZIONE}
     \begin{itemize}
-        \item Prima di attivare la configurazione locale, \textbf{assicurarsi}
-che il file pmd.xml sia stato copiato all'interno della cartella del progetto!
-        \item Non usare ``Browse...'', o il plugin genererà un percorso
-assoluto!
+        \item Prima di attivare la configurazione locale, \textbf{assicurarsi} che il file \texttt{pmd.xml} sia stato copiato all'interno della cartella del progetto!
     \end{itemize}
-	\includegraphics[width=0.8\textwidth]{img/pmdproj}
-}
+    \begin{center}
+        \includegraphics[height=0.6\textheight]{img/pmd1}
+    \end{center}
+    \begin{center}
+        \includegraphics[keepaspectratio,width=0.99\textwidth,height=0.8\textheight]{img/pmd2}
+    \end{center}
+    \begin{center}
+        \includegraphics[keepaspectratio,width=0.99\textwidth,height=0.8\textheight]{img/pmd3}
+    \end{center}
+    \begin{center}
+        \includegraphics[keepaspectratio,width=0.99\textwidth,height=0.8\textheight]{img/pmd4}
+    \end{center}
+    \begin{center}
+        \includegraphics[keepaspectratio,width=0.99\textwidth,height=0.8\textheight]{img/pmd5}
+    \end{center}
+    \begin{center}
+        \includegraphics[keepaspectratio,width=0.99\textwidth,height=0.8\textheight]{img/pmd6}
+    \end{center}
+\end{frame}
 
 \fr{Checkstyle} {
 	\bl{Cos'è} {
@@ -662,8 +596,6 @@ assoluto!
 		\item Si attivi ``Checkstyle active for this project'' e ``Use simple configuration''
 		\item ``OK''
 	}
-	\footnotesize
-	Nota: la configurazione globale è molto simile, si ripetano gli step andando dal menu  Windows $\rightarrow$ Preferences $\rightarrow$ Java $\rightarrow$ Code style $\rightarrow$ Formatter
 }
 
 \fr{Checkstyle --- Configurazione per-progetto} {
@@ -761,6 +693,51 @@ assoluto!
 \begin{frame}{VisualVM - Thread Dump Example}
 \centering
 \includegraphics[width=0.99\textwidth]{img/jvisualvm-3}
+\end{frame}
+
+\section{Preparazione al laboratorio}
+
+\begin{frame}{Preparazione dell'ambiente di lavoro}
+	\begin{enumerate}
+		\item Clonare il repository degli esercizi
+		\begin{itemize}
+            \item Si raccomanda di creare prima una propria fork
+		\end{itemize}
+		\item Importare il repository in Eclipse come progetto Java
+		\begin{enumerate}
+			\item File
+			\item Import
+			\item General
+			\item Existing project into workspace
+			\item Si selezioni la cartella del progetto
+			\item Si confermi l'import
+		\end{enumerate}
+		\item \alert{Configurare correttamente Eclipse, abilitare e configurare i plugin per il controllo di qualità del codice}
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}{Modalità di lavoro}
+	\begin{enumerate}
+		\item Seguire le istruzioni del file README.md nella root del repository
+		\item Tentare di capire l'esercizio in autonomia
+		\begin{itemize}
+			\item Contattare il docente se qualcosa non è chiaro
+		\end{itemize}
+		\item Risolvere l'esercizio in autonomia
+		\begin{itemize}
+			\item Contattare il docente se si rimane bloccati
+		\end{itemize}
+		\item Utilizzare le funzioni di test per verificare la soluzione realizzata
+		\item Cercare di risolvere autonomamente eventuali piccoli problemi che possono verificarsi durante lo svolgimento degli esercizi
+		\begin{itemize}
+			\item Contattare il docente se, anche \textbf{dopo aver usato il debugger}, non si è riusciti a risalire all'origine del problema
+		\end{itemize}
+		\item Scrivere la Javadoc per l'esercizio svolto
+		\item \alert{Assicurarsi che non ci siano warning nel proprio codice}
+		\item Effettuare \textit{almeno} un commit ad esercizio completato
+		\item \textbf{A esercizio ultimato sottoporre la soluzione al docente}
+		\item Proseguire con l'esercizio seguente
+	\end{enumerate}
 \end{frame}
 
 \end{document}
