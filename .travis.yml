@@ -2,6 +2,11 @@
 # Do not build auto-tagged versions
 if: repo != head_repo AND tag !~ /^[\w\.]+-\d+-\w+/
 
+git:
+  clone: true
+  depth: false
+  submodules: true
+
 env:
   global:
     - TERM=dumb
