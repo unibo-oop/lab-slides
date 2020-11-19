@@ -1,1 +1,0 @@
-Read the `MusicGroup` interface, and provide an implementation in `MusicGroupImpl`.
