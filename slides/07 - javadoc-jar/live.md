@@ -32,6 +32,10 @@ JavaDoc
 - Observe generated JavaDoc
     - Documentation for `toString` of `DummyClass` and `MinionDummy`
     - Write docstring for `DummyClass#toString` with `@return` keyword
+    - `{@inheritDoc}`: the doc is not inherited from `Object#toString` since its source is not included
+    - `javadoc -sourcepath src -link http://download.oracle.com/javase/6/docs/api com.example.test`
 - Show `package-info.java` for describing packages
 - Add docstring to `UseDummies#main` with a *link* `{@link it.unibo.oop.jar.packages.pkg1.DummyClass}`
 - Show generation via cmdline `javadoc -d docs/ -sourcepath src/ -subpackages it.unibo.oop.jar`
+- `javadoc -sourcepath src -link https://docs.oracle.com/en/java/javase/11/docs/api -subpackages it.unibo.oop.jar -d docs/`
+    - An important property of an external referenced class is that its source comments are normally not available to the Javadoc run. In this case, these comments cannot be inherited.
