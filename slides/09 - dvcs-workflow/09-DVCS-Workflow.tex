@@ -195,9 +195,9 @@ public final class PrintBreakingBad {
 \end{frame}
 
 \begin{frame}{Librerie}
-    Sono state usate tre librerie:
+    Sono state usate due librerie:
     \begin{itemize}
-        \item Google Guava (\texttt{com.google.guava:guava})
+        %\item Google Guava (\texttt{com.google.guava:guava})
         \item Apache Commons IO (\texttt{commons-io:commons-io})
         \item Omertron's TheTVDBApi (\texttt{com.omertron:thetvdbapi})
     \end{itemize}
@@ -214,8 +214,8 @@ public final class PrintBreakingBad {
 \begin{frame}[fragile]{Albero delle dipendenze}
     Si crea un \textit{albero} delle dipendenze!
 
+%+--- com.google.guava:guava:19.0-rc2
     \begin{minted}[fontsize=\scriptsize]{text}
-+--- com.google.guava:guava:19.0-rc2
 +--- commons-io:commons-io:2.4
 \--- com.omertron:thetvdbapi:1.7
      +--- org.slf4j:slf4j-api:1.7.9
@@ -324,11 +324,11 @@ repositories {
 }
 dependencies {
     implementation("commons-io:commons-io:2.4")
-    implementation("com.google.guava:guava:19.0-rc2")
     implementation("com.omertron:thetvdbapi:1.7")
     testImplementation("junit:junit:4.12")
 }
 \end{minted}
+%implementation("com.google.guava:guava:19.0-rc2")
 \end{block}
 \begin{itemize}
     \item Se importato in Eclipse come ``Gradle Project'' scarica automaticamente i jar necessari e li mette nel classpath!
@@ -455,7 +455,7 @@ dependencies {
 		\begin{itemize}
 			\item Contattare il docente se si rimane bloccati
 		\end{itemize}
-		\item Utilizzare i metodi \texttt{main} per verificare la correttezza delle soluzioni
+		\item Utilizzare i metodi \texttt{main} e/o i test per verificare la correttezza delle soluzioni
 		\item Cercare di risolvere autonomamente eventuali piccoli problemi che possono verificarsi durante lo svolgimento degli esercizi
 		\begin{itemize}
 			\item Contattare il docente se, anche dopo aver usato il \textbf{debugger}, non si è riusciti a risalire all'origine del problema
