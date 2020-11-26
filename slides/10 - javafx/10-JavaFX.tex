@@ -127,7 +127,8 @@
 \item Disponibile dal 2008 (v. 1.0 -- 2.2) come libreria stand-alone
 \item Presente ``\emph{stabilmente}'' nel JDK da Java 8 (v. JavaFX 8)
 \item \st{Introdotto ufficialmente in Java con l'idea di sostituire (gradualmente) Swing}
-\item Torna ad essere una libreria stand-alone da Java 11
+\item Torna ad essere una libreria stand-alone da Java 11:
+ è opensource e parte del progetto OpenJDK -- \url{https://openjfx.io}
 \end{itemize}
 \item Propone un look-and-feel personalizzabile
 \begin{itemize}
@@ -138,27 +139,27 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{JavaFX (dal 2018)}
-
-\begin{block}{Java Client Roadmap Update (Oracle White Paper, March 2018)}
-\begin{small}
-\begin{center}
-\emph{Over the last decade, the JavaFX technology has found its niche where it enjoys the support of a developer community. At the same time, the magnitude of opportunities for cross-platform toolkits [...] has been eroded by the rise of ``mobile first'' and ``web first'' apps.}
-\begin{tiny}
-\url{https://www.oracle.com/technetwork/java/javase/javaclientroadmapupdate2018mar-4414431.pdf}
-\end{tiny}
-\end{center}
-\end{small}
-\end{block}
+%\begin{frame}{JavaFX (dal 2018)}
 %
-\begin{itemize}
-\item Pertanto:
-\begin{itemize}
-\item JavaFX continuerà ad essere supportato fino al 2022 da Oracle (solo nel JDK 8)
-\item JavaFX sara disponibile come libreria esterna opensource (affidata ad OpenJDK) -- \url{https://openjfx.io}
-\end{itemize}
-\end{itemize}
-\end{frame}
+%\begin{block}{Java Client Roadmap Update (Oracle White Paper, March 2018)}
+%\begin{small}
+%\begin{center}
+%\emph{Over the last decade, the JavaFX technology has found its niche where it enjoys the support of a developer community. At the same time, the magnitude of opportunities for cross-platform toolkits [...] has been eroded by the rise of ``mobile first'' and ``web first'' apps.}
+%\begin{tiny}
+%\url{https://www.oracle.com/technetwork/java/javase/javaclientroadmapupdate2018mar-4414431.pdf}
+%\end{tiny}
+%\end{center}
+%\end{small}
+%\end{block}
+%%
+%\begin{itemize}
+%\item Pertanto:
+%\begin{itemize}
+%\item JavaFX continuerà ad essere supportato fino al 2022 da Oracle (solo nel JDK 8)
+%\item JavaFX sara disponibile come libreria esterna opensource (affidata ad OpenJDK) -- \url{https://openjfx.io}
+%\end{itemize}
+%\end{itemize}
+%\end{frame}
 
 %\begin{frame}{JavaFX 11}
 %\begin{itemize}\itemsep10pt
@@ -179,21 +180,22 @@
 \begin{frame}{JavaFX: Key Features (1/2)}
 \begin{block}{Java APIs}
 \begin{itemize}
-\item Libreria che include classi e interfacce scritte in Java e compilato con retro compatibilità fino a Java 7
+\item Libreria che include classi e interfacce scritte in Java %e compilato con retro compatibilità fino a Java 7
+\item Nel 2020, la versione più recente, JavaFX 15, richiede JDK $\geq$ 11
 \end{itemize}
 \end{block}
 %
 \begin{block}{FXML}
 \begin{itemize}
 \item FXML è un linguaggio dichiarativo per definire la GUI di un'applicazione JavaFX-based
-\item Il suo impiego non è indispensabile, ma fortemente consigliato per una buona separazione dei contenuti
+\item Il suo impiego non è indispensabile, ma fortemente consigliato per una buona \emph{separation of concerns}
 \end{itemize}
 \end{block}
 %
 \begin{block}{Interoperabilità con Swing}
 \begin{itemize}
-\item GUI Swing esistenti possono essere aggiornate con le caratteristiche offerte da JavaFX
-\item E' possibile inserire componenti Swing in interfacce JavaFX (si veda la classe \texttt{SwingNode})
+\item GUI Swing esistenti possono includere componenti JavaFX (cf. \texttt{JFXPanel})
+\item E' possibile inserire componenti Swing in interfacce JavaFX (cf. \texttt{SwingNode})
 \end{itemize}
 \end{block}
 \end{frame}
@@ -234,7 +236,7 @@
 \item Equivalente al \texttt{JFrame} di Swing
 \item Non è compito del programmatore creare una sua istanza.
 \end{itemize}
-\item \url{https://openjfx.io/javadoc/13/javafx.graphics/javafx/stage/Stage.html}
+\item \url{https://openjfx.io/javadoc/15/javafx.graphics/javafx/stage/Stage.html}
 \end{itemize}
 \end{block}
 
@@ -245,28 +247,31 @@
 \item ogni Stage può avere più istanze diverse di Scene
 \end{itemize}
 \item Di fatto, è un container di Node(s)
-\item \url{https://openjfx.io/javadoc/13/javafx.graphics/javafx/scene/Scene.html}
+\item \url{https://openjfx.io/javadoc/15/javafx.graphics/javafx/scene/Scene.html}
 \end{itemize}
 \end{block}
 \end{frame}
 
 \begin{frame}[fragile]{Applicazione JavaFX: GUI vuota}
+
+\begin{itemize}
+\item \texttt{Application}: entry point of a JavaFX application
+\\ \url{https://openjfx.io/javadoc/15/javafx.graphics/javafx/application/Application.html}
+\end{itemize}
+
 \begin{lstlisting}
-public class Main extends Application {
+public class Main extends javafx.application.Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
 		Group root = new Group();
 		Scene scene = new Scene(root, 500, 300);
-
 		stage.setTitle("JavaFX Demo");
 		stage.setScene(scene);
 		stage.show();
 	}
 
-	public static void main(String[] args) {
-		launch(args);
-	}
+	public static void main(String[] args) { launch(args); }
 }
 \end{lstlisting}
 \end{frame}
@@ -280,7 +285,7 @@ public class Main extends Application {
 \item Hanno proprietà e possono generare eventi
 \end{itemize}
 \item Possono essere organizzati gerarchicamente
-\item \url{https://openjfx.io/javadoc/13/javafx.graphics/javafx/scene/Node.html}
+\item \url{https://openjfx.io/javadoc/15/javafx.graphics/javafx/scene/Node.html}
 \end{itemize}
 \end{block}
 \end{frame}
@@ -297,7 +302,7 @@ public class Main extends Application {
 
 \begin{frame}{Struttura di un'applicazione JavaFX-based}
 \begin{figure}
-\includegraphics[width=0.95\textwidth]{img/javafx-app-arch.png}
+\includegraphics[height=0.86\textheight]{img/javafx-app-structure.pdf}
 \end{figure}
 \end{frame}
 
@@ -308,7 +313,7 @@ public class Main extends Application {
 \begin{itemize}
 \item Si tratta di un metodo statico della classe \texttt{Application}
 \end{itemize}
-\item Il metodo \texttt{void start(Stage stage)} è, di fatto, l'entry point dell'applicazione JavaFX
+\item Il metodo \texttt{void start(Stage primaryStage)} è, di fatto, l'entry point dell'applicazione JavaFX (lo stage primario è creato dalla piattaforma)
 \item La scena definita per lo stage (vedi metodo \texttt{setScene()}) costituisce il container principale per tutti i componenti della GUI
 \end{enumerate}
 \end{frame}
@@ -405,7 +410,7 @@ public class Example1 extends Application{
 
 \begin{block}{Es. Gestione del click su un Button Node}
 \begin{lstlisting}
-btn.setOnMouseClicked(eventHandler -> {
+btn.setOnMouseClicked(event -> {
  lbl.setText("Hello, JavaFX World!");
 });
 \end{lstlisting}
@@ -429,7 +434,7 @@ public class Main extends Application {
     final TextField inputArea = new TextField();
     final Button okBtn = new Button("Open a new Stage with the input data!");
 
-    okBtn.setOnMouseClicked(eventHandler -> {
+    okBtn.setOnMouseClicked(event -> {
       new SecondStage(inputArea.getText()).show();
     });
 
@@ -689,43 +694,50 @@ public class UIController {
 \end{lstlisting}
 \end{frame}
 
-\section{JavaFX integrato in Swing}
+\section{Integrazione JavaFX e Swing}
 
-\begin{frame}{Integrare JavaFX in Swing}
-\begin{itemize}\itemsep20pt
-\item In Java, un'applicazione può contenere sia GUI programmate in Swing, sia altre programmate in JavaFX
+\begin{frame}{Integrare JavaFX e Swing}
 \begin{itemize}
-\item La Main UI deve essere in Swing
-\item Si integrano Scene di JavaFX in JFrame avvalendosi di componenti che sono istanze di JFXPanel, eseguite nel thread specifico di JavaFX
-\end{itemize}
+\item L'integrazione può avvenire nelle due direzioni
+	\iz{
+	\item Si possono includere elementi Swing in applicazioni JavaFX attraverso \texttt{SwingNode}
+	\item Si possono includere elementi JavaFX in applicazioni Swing attraverso \texttt{JFXPanel}
+	}
+%\item In Java, un'applicazione può contenere sia GUI programmate in Swing, sia altre programmate in JavaFX
+%\begin{itemize}
+%\item La Main UI deve essere in Swing
+%\item Si integrano Scene di JavaFX in JFrame avvalendosi di componenti che sono istanze di \texttt{JFXPanel}, eseguite nel thread specifico di JavaFX
+%\end{itemize}
 \item Va prestata particolare attenzione a dove viene eseguito il codice che gestisce la GUI
 \begin{itemize}
 \item \texttt{javafx.application.Platform.runLater()}, per eseguire codice nel thread dedicato a JavaFX
-\item \texttt{javax.swing.SwingUtilities.invokeLater()}, per eseguire codice nel thread dedicato s Swing
+\item \texttt{javax.swing.SwingUtilities.invokeLater()}, per eseguire codice nel thread dedicato a Swing
 \end{itemize}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Swing e JavaFX: esempio (1/2)}
+\begin{frame}[allowframebreaks,fragile]{Usare JavaFX in applicazioni Swing: esempio}
+
+\begin{lstlisting}[basicstyle=\tiny]
+public static void main(final String[] args){
+  initMainJFrame(new JFrame("JFrame GUI"));
+}
+\end{lstlisting}
+
 \begin{lstlisting}[basicstyle=\tiny]
 private static void initMainJFrame(final JFrame frame) {
   final JButton button = new JButton();
   button.setText("Launch JavaFX Scene");
   button.addActionListener(event -> {
-
     final JFXPanel jfxPanel = new JFXPanel();
-
     Platform.runLater(() -> {
       jfxPanel.setScene(new Scene(initJavaFXSceneUI(), 300, 300));
-
       SwingUtilities.invokeLater(() -> {
         final JFrame frameWithJavaFX = new JFrame("JFrame with JavaFX embedded!");
         frameWithJavaFX.add(jfxPanel);
         frameWithJavaFX.pack();
         frameWithJavaFX.setVisible(true);
-      });
-    });
-  });
+  }); }); });
 
   final JPanel panel = new JPanel();
   panel.setLayout(new FlowLayout());
@@ -737,9 +749,7 @@ private static void initMainJFrame(final JFrame frame) {
   frame.setVisible(true);
 }
 \end{lstlisting}
-\end{frame}
 
-\begin{frame}[fragile]{Swing e JavaFX: esempio (2/2)}
 \begin{lstlisting}[basicstyle=\tiny]
 private static Parent initJavaFXSceneUI() {
   final Label lbl = new Label();
@@ -747,7 +757,7 @@ private static Parent initJavaFXSceneUI() {
 
   final Button btn = new Button();
   btn.setText("Say Hello");
-  btn.setOnMouseClicked(eventHandler -> {
+  btn.setOnMouseClicked(event -> {
     lbl.setText("Hello from Button!");
   });
 
@@ -759,67 +769,62 @@ private static Parent initJavaFXSceneUI() {
 }
 \end{lstlisting}
 
-\begin{lstlisting}[basicstyle=\tiny]
-public static void main(final String[] args){
-  initMainJFrame(new JFrame("JFrame GUI"));
-}
-\end{lstlisting}
 \end{frame}
 
-\section{Utilizzo di JavaFX in Eclipse}
+\section{Utilizzo di JavaFX con Eclipse e Gradle}
 
-\subsection{JavaFX con JDK 8}
+%\subsection{JavaFX con JDK 8}
+%
+%\begin{frame}{JavaFX in Eclipse (JDK 8)}
+%\begin{itemize}\itemsep20pt
+%\item La libreria JavaFX è presente unicamente nel JDK 8
+%\begin{itemize}
+%\item Distribuita attraverso il file \texttt{jfxrt.jar} presente nella directory \texttt{/lib/ext} della propria installazione del JDK
+%\end{itemize}
+%\item Tutti le librerire \emph{esterne} \underline{non} sono automaticamente accessibili da tutti i progetti aperti nell'IDE Eclipse
+%\begin{itemize}
+%\item In realtà dipende dalla versione di Eclipse\dots
+%\end{itemize}
+%\item Deve essere definita una regola d'accesso per JavaFX in relazione allo specifico progetto Java aperto in Eclipse
+%\end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Configurazione del progetto (1/2)}
+%\begin{itemize}
+%\item (tasto DX sul progetto) $>$ Properties $>$ Java Build Path
+%\item (tab Libraries) $>$ Click sul JRE System Library $>$ Selezionare \textit{Access rules} $>$ Click su Edit
+%\end{itemize}
+%\begin{figure}
+%\includegraphics[width=0.9\textwidth]{img/conf01.png}
+%\end{figure}
+%\end{frame}
+%
+%\begin{frame}{Configurazione del progetto (2/2)}
+%\begin{itemize}
+%\item Click su Add $>$ Aggiungere una regola con:
+%\begin{itemize}
+%\item Resolution: \textbf{Accessible}
+%\item Rule pattern: \textbf{javafx/**}
+%\end{itemize}
+%\item OK $>$ OK $>$ Apply and Close
+%\end{itemize}
+%\begin{figure}
+%\includegraphics[width=0.85\textwidth]{img/conf02.png}
+%\end{figure}
+%\end{frame}
 
-\begin{frame}{JavaFX in Eclipse (JDK 8)}
-\begin{itemize}\itemsep20pt
-\item La libreria JavaFX è presente unicamente nel JDK 8
-\begin{itemize}
-\item Distribuita attraverso il file \texttt{jfxrt.jar} presente nella directory \texttt{/lib/ext} della propria installazione del JDK
-\end{itemize}
-\item Tutti le librerire \emph{esterne} \underline{non} sono automaticamente accessibili da tutti i progetti aperti nell'IDE Eclipse
-\begin{itemize}
-\item In realtà dipende dalla versione di Eclipse\dots
-\end{itemize}
-\item Deve essere definita una regola d'accesso per JavaFX in relazione allo specifico progetto Java aperto in Eclipse
-\end{itemize}
-\end{frame}
+\subsection{Esecuzione di applicazioni JavaFX}
 
-\begin{frame}{Configurazione del progetto (1/2)}
-\begin{itemize}
-\item (tasto DX sul progetto) $>$ Properties $>$ Java Build Path
-\item (tab Libraries) $>$ Click sul JRE System Library $>$ Selezionare \textit{Access rules} $>$ Click su Edit
-\end{itemize}
-\begin{figure}
-\includegraphics[width=0.9\textwidth]{img/conf01.png}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Configurazione del progetto (2/2)}
-\begin{itemize}
-\item Click su Add $>$ Aggiungere una regola con:
-\begin{itemize}
-\item Resolution: \textbf{Accessible}
-\item Rule pattern: \textbf{javafx/**}
-\end{itemize}
-\item OK $>$ OK $>$ Apply and Close
-\end{itemize}
-\begin{figure}
-\includegraphics[width=0.85\textwidth]{img/conf02.png}
-\end{figure}
-\end{frame}
-
-\subsection{JavaFX con JDK 11}
-
-\begin{frame}{JavaFX in Eclipse (JDK 11)}
-\begin{itemize}\itemsep20pt
-\item JavaFX deve essere importato nel progetto come libreria esterna
+\begin{frame}{JavaFX in Eclipse}
+\begin{itemize}\itemsep10pt
+\item Da Java 11, JavaFX deve essere importato nel progetto come libreria esterna
 \item Due alternative:
 \begin{enumerate}
 \item Si aggiungono tutti i JAR della libreria direttamente nel progetto
 \begin{itemize}
 \item Scaricabili da \url{https://gluonhq.com/products/javafx/}
 \end{itemize}
-\item Si specificano le dipendenze via Gradle
+\item Si specificano le dipendenze via \textbf{Gradle}
 \end{enumerate}
 \item Oggigiorno, è preferibile optare per la seconda alternativa
 \end{itemize}
@@ -834,12 +839,12 @@ public static void main(final String[] args){
 \end{figure}
 \end{column}
 \begin{column}{0.7\textwidth}
-\begin{block}{\texttt{build.gradle} (sintassi Groovy)}
+\begin{block}{\texttt{build.gradle.kts} (sintassi Kotlin)}
 
 \begin{lstlisting}[basicstyle=\tiny]
 plugins {
-    id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.8'
+    id("application")
+    id("org.openjfx.javafxplugin") version "0.0.9"
 }
 
 repositories {
@@ -847,11 +852,13 @@ repositories {
 }
 
 javafx {
-    version = "13"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    version = "15"
+    modules("javafx.controls", "javafx.fxml")
 }
 
-mainClassName = 'application.Main'
+application {
+  mainClassName = "application.Main"
+}
 \end{lstlisting}
 
 \end{block}
@@ -867,109 +874,84 @@ mainClassName = 'application.Main'
 \end{figure}
 \end{itemize}
 \begin{itemize}
-\item Qualora si voglia utilizzare il debugger, o eseguire l'applicazione in \emph{modo tradizionale}, è necessario (solo per lo sviluppo sul singolo computer) specificare alcuni argomenti per la VM nella run configuration
+\item Qualora si voglia utilizzare il debugger, o eseguire l'applicazione in \emph{modo tradizionale}, è necessario specificare alcuni argomenti per la VM nella run configuration
 \begin{itemize}
-\item \texttt{--module-path \textbackslash path \textbackslash to \textbackslash javafx \textbackslash sdk \textbackslash lib \\--add-modules javafx.controls,javafx.fxml}
-\item In questo caso, è necessario avere una copia dell'SDK in locale
+\item \texttt{--module-path \$\{project\_classpath:<PROJ-NAME>\}\\--add-modules javafx.controls,javafx.fxml}
+\item Se JavaFX non è incluso tra le librerie del progetto, il percorso fornito a \texttt{--module-path} deve puntare alla cartella ove è presente l'SDK JavaFX
 \end{itemize}
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Generazione di JAR con JavaFX (1/2)}
+\begin{frame}[fragile]{Generazione di JAR eseguibile per applicazione JavaFX}
+
 \begin{itemize}
-\item Abbiamo visto che la \emph{main} class di un progetto JavaFX (vedi linee guida) deve:
-\begin{itemize}
-\item estendere \texttt{javafx.application.Application}
-\item il metodo main deve chiamare il metodo statico \texttt{launch()} ereditato da \texttt{Application}
-\end{itemize}
-\item Ad esempio:
-\end{itemize}
+\item Si raccomanda l'uso di Gradle per la generazione di un ``fat JAR'', ovvero di un JAR che contiene al suo interno tutte le dipendenze necessarie a runtime
+\item Occorre configurare il task \texttt{jar} come segue:
+\begin{lstlisting}[basicstyle=\tiny]
+// SINTASSI KOTLIN (build.gradle.kts)
+tasks.withType<Jar> {
+  manifest { attributes["Main-Class"] = "it.unibo.samplejavafx.App" }
 
-\begin{footnotesize}
-\begin{lstlisting}
-import javafx.application.Application;
-
-public class MyApplication extends Application {
-
-	@Override
-	public void start(final Stage stage) throws Exception {
-		//TODO
-	}
-
-	public static void main(final String[] args) {
-		launch(args);
-	}
+  from(sourceSets.main.get().output)
+    dependsOn(configurations.runtimeClasspath)
+    from({
+      configurations["runtimeClasspath"].map { if(it.isDirectory) it else zipTree(it) }
+    })
 }
-\end{lstlisting}
-\end{footnotesize}
-\end{frame}
 
-\begin{frame}{Generazione di JAR con JavaFX (2/2)}
-\begin{itemize}
-\item Se si tenta di creare un jar eseguibile specificando \texttt{MyApplication} come main class si ottiene un errore quando si va ad eseguire il JAR
-\begin{itemize}
-\item Da Java 11 -- con l'introduzione dei moduli e per come è implementata \texttt{javafx.application.Application} -- si presenta un conflitto che non consente di eseguire fuori dall'IDE applicazioni JavaFX
-\item Dipende per lo più da come la JVM (del JDK 11) gestisce i processi quando manda in esecuzione un JAR
-\end{itemize}
-\item Serve un workaround...
-\begin{itemize}
-\item Utilizziamo una classe che funga da \emph{launcher}
-\item Richiama il main della classe principale
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Classe Launcher}
-\begin{lstlisting}
-import javafx.application.Application;
-
-public class MyApplication extends Application {
-
-	@Override
-	public void start(final Stage stage) throws Exception {
-		//TODO
-	}
-
-	public static void main(final String[] args) {
-		launch(args);
-	}
-}
-\end{lstlisting}
-
-\begin{lstlisting}
-public class Launcher {
-
-    public static void main(String[] args) {
-        MyApplication.main(args);
-    }
-}
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]{JAR Gradle Task}
-\begin{itemize}
-\item E' opportuno far generare il JAR a Gradle, mediante task dedicato
-\begin{lstlisting}
+// SINTASSI GROOVY (build.gralde)
 jar {
-    manifest {
-        attributes 'Main-Class': 'myapp.Launcher'
-    }
+    manifest { attributes 'Main-Class': 'myapp.Launcher' }
     from {
         configurations.runtimeClasspath.collect {
         	it.isDirectory() ? it : zipTree(it)
-        }
-    }
-}
+} } }
 \end{lstlisting}
-\item Attenzione: sintassi Groovy (da inserire nel file build.gradle)
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{\texttt{build.gradle} (completo)}
+\begin{frame}[fragile]{\texttt{build.gradle.kts} (completo -- sintassi Kotlin)}
+\begin{lstlisting}[basicstyle=\tiny]
+plugins {
+  java
+  application
+  id("org.openjfx.javafxplugin") version "0.0.9"
+}
+
+repositories { jcenter() }
+
+dependencies {
+  /* for cross-platform jar: */
+  runtimeOnly("org.openjfx:javafx-graphics:$javafx.version:linux")
+}
+
+javafx {
+  version = "14"
+  modules("javafx.controls", "javafx.fxml")
+}
+
+application.mainClassName = "application.Main"
+
+tasks.withType<Jar> {
+  manifest {
+    attributes["Main-Class"] = "application.Main"
+  }
+
+  from(sourceSets.main.get().output)
+    dependsOn(configurations.runtimeClasspath)
+    from({
+      configurations["runtimeClasspath"].map { if(it.isDirectory) it else zipTree(it) }
+    })
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]{\texttt{build.gradle} (completo -- sintassi Groovy)}
 \begin{lstlisting}[basicstyle=\tiny]
 plugins {
   id 'application'
-  id 'org.openjfx.javafxplugin' version '0.0.8'
+  id 'org.openjfx.javafxplugin' version '0.0.9'
 }
 
 repositories {
@@ -984,7 +966,7 @@ dependencies {
 }
 
 javafx {
-  version = "13"
+  version = "14"
   modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
@@ -992,7 +974,7 @@ mainClassName = 'application.Main'
 
 jar {
   manifest {
-    attributes 'Main-Class': 'application.Launcher'
+    attributes 'Main-Class': 'application.Main'
   }
 
   from {
@@ -1002,6 +984,7 @@ jar {
 \end{lstlisting}
 \end{frame}
 
+
 \subsection{Scene Builder}
 
 \begin{frame}{Scene Builder 2.0}
@@ -1009,13 +992,8 @@ jar {
 \item Strumento per la creazione di GUI JavaFX-based in modalità drag-n-drop (GUI Builder)
 \item Consente di esportare il file FXML relativo alla GUI disegnata
 \item Distribuito come strumento esterno al JDK, non integrato (direttamente) in Eclipse
+\item \url{https://gluonhq.com/products/scene-builder/}
 \end{itemize}
-\begin{block}{Download Page}
-\url{http://www.oracle.com/technetwork/java/javafxscenebuilder-1x-archive-2199384.html}
-\begin{itemize}
-\item attenzione: scaricare la versione 2.0
-\end{itemize}
-\end{block}
 \end{frame}
 
 \begin{frame}{Scene Builder 2.0}
@@ -1026,16 +1004,20 @@ jar {
 
 \subsection{Plugin e(fx)clipse}
 
-\begin{frame}{Plugin e(fx)clipse v. 3.0.0}
+\begin{frame}{Plugin e(fx)clipse}
 \begin{figure}
-\includegraphics[width=0.8\textwidth]{img/plugin-install.png}
+\includegraphics[width=0.76\textwidth]{img/plugin-install.png}
 \end{figure}
 \begin{itemize}\itemsep5pt
 \item Plugin che fornisce una serie di tool per la gestione di applicazioni e progetti java basati su JavaFX
 \item Consente di accedere al tool Scene Builder (installato separatamente) direttamente da Eclipse
+	\begin{itemize}
+	\item Configura da: \emph{Window $\to$ Preferences $\to$ JavaFX}
+	\item Tasto dx su un file FXML $\to$ \emph{Open with SceneBuilder}
+	\end{itemize}
 \item Installabile dall'Eclipse Marketplace
 \begin{itemize}
-\item link alla pagina del progetto: \url{http://www.eclipse.org/efxclipse/index.html}
+\item \url{http://www.eclipse.org/efxclipse/index.html}
 \end{itemize}
 \item \textbf{Va oltre le esigenze di questo corso...}
 \end{itemize}
