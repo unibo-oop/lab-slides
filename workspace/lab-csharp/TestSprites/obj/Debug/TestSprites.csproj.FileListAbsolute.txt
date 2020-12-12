@@ -1,9 +1,0 @@
-C:\Users\angel\Desktop\LabC#-Code\Esercitazione\TestSprites\bin\Debug\TestSprites.exe.config
-C:\Users\angel\Desktop\LabC#-Code\Esercitazione\TestSprites\bin\Debug\TestSprites.exe
-C:\Users\angel\Desktop\LabC#-Code\Esercitazione\TestSprites\bin\Debug\TestSprites.pdb
-C:\Users\angel\Desktop\LabC#-Code\Esercitazione\TestSprites\bin\Debug\Engine.dll
-C:\Users\angel\Desktop\LabC#-Code\Esercitazione\TestSprites\bin\Debug\Engine.pdb
-C:\Users\angel\Desktop\LabC#-Code\Esercitazione\TestSprites\bin\Debug\Engine.xml
-C:\Users\angel\Desktop\LabC#-Code\Esercitazione\TestSprites\obj\Debug\TestSprites.csprojResolveAssemblyReference.cache
-C:\Users\angel\Desktop\LabC#-Code\Esercitazione\TestSprites\obj\Debug\TestSprites.exe
-C:\Users\angel\Desktop\LabC#-Code\Esercitazione\TestSprites\obj\Debug\TestSprites.pdb
