@@ -54,3 +54,11 @@
 	path = workspace/lab10-sol
 	url = https://github.com/APICe-at-DISI/OOP-Lab10.git
 	branch = solutions
+[submodule "workspace/lab-csharp"]
+	path = workspace/lab-csharp
+	url = https://github.com/APICe-at-DISI/oop-lab-csharp.git
+	branch = master
+[submodule "workspace/lab-csharp-sol"]
+	path = workspace/lab-csharp-sol
+	url = https://github.com/APICe-at-DISI/oop-lab-csharp.git
+	branch = solution
