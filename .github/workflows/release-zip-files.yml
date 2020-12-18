@@ -21,6 +21,9 @@ jobs:
       - name: Create archives
         run: for file in workspace/*/; do name="${file#*/}"; zip -r "${name%*/}.zip" "$file"; done
       - name: Release
+        if: ${{ startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG=$(git describe --tags --exact-match HEAD)
           hub release create -m "$(git tag -l --format='%(contents)' "$TAG")" "$TAG" || true
