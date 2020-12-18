@@ -62,3 +62,7 @@
 	path = workspace/lab-csharp-sol
 	url = https://github.com/APICe-at-DISI/oop-lab-csharp.git
 	branch = solution
+[submodule "slides/13 - report-template"]
+	path = slides/13 - report-template
+	url = https://github.com/APICe-at-DISI/OOP-report-template.git
+	branch = master
