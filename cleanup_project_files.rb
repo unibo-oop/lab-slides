@@ -5,7 +5,7 @@ regex2 = /<buildCommand>\s*<name>(edu\.umd\.cs\.findbugs\.plugin\.eclipse\.findb
 checkstyle = 'style.xml,.checkstyle'
 pmd = '.pmd,.ruleset,pmd.xml'
 
-files = Dir['workspace/**/.project'].filter { |file_path| file_path =~ /.*?lab0[1234567].*/ }
+files = Dir['workspace/**/.project'].select { |file_path| file_path =~ /.*?lab0[1234567].*/ }
 files.each do |file_path|
   text = File.read(file_path)
   new_contents = text.gsub(regex1, '').gsub(regex2, '')
@@ -13,7 +13,7 @@ files.each do |file_path|
   File.write(file_path, new_contents)
 end
 
-files_to_delete = Dir["workspace/**/{#{checkstyle},#{pmd}}"].filter { |file_path| file_path =~ /.*?lab0[1234567].*/ }
+files_to_delete = Dir["workspace/**/{#{checkstyle},#{pmd}}"].select { |file_path| file_path =~ /.*?lab0[1234567].*/ }
 files_to_delete.each do |file_path|
   puts "deleting #{file_path}"
   File.delete(file_path)
