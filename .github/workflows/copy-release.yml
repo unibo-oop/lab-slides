@@ -1,0 +1,24 @@
+name: Send the latest release to the public repo
+on:
+  push:
+  release:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  Refresh-Latest-Release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          latest=$(gh release list -R APICe-at-DISI/OOP-Lab -L 1 | grep -Po 'Latest\s*\K(.*?)\s')
+          echo Latest release is $latest, downloading
+          gh release download $latest -R APICe-at-DISI/OOP-Lab
+          echo Create destination release if needed
+          hub release create -m "Release $latest" "$latest" -R APICe-at-DISI/OOP-Lab-public || true
+          for file in ls; do
+            echo "Delivering file $file"
+            gh release upload "$latest" "$file" --clobber -R APICe-at-DISI/OOP-Lab-public
+          done
