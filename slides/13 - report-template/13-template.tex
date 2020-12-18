@@ -3,14 +3,12 @@
 \usepackage{alltt, fancyvrb, url}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath,stmaryrd,mathtools,algorithm}
 \usepackage{hyperref}
-
-% Remove option to use English naming
-\usepackage[italian]{cleveref}
 
 % Questo commentalo se vuoi scrivere in inglese.
 \usepackage[italian]{babel}
+
+\usepackage[italian]{cleveref}
 
 \title{Meta-relazione per\\``Programmazione ad Oggetti''}
 
@@ -337,7 +335,7 @@ Il sistema per la gestione della personalità utilizza il pattern Strategy, come
 \Cref{img:strategy}: le implementazioni di \texttt{Personality} possono essere modificate, e la
 modifica impatta direttamente sul comportamento di GLaDOS.
 
-\begin{figure}[H]
+\begin{figure}
 \centering{}
 \includegraphics[width=\textwidth]{img/strategy}
 \caption{Rappresentazione UML del pattern Strategy per la personalità di GLaDOS}
@@ -351,7 +349,7 @@ Dato che le due personalità differiscono solo per il comportamento da effettuar
 Il metodo template è \texttt{onSuccess()}, che chiama un metodo astratto e protetto
 \texttt{makeCake()}.
 
-\begin{figure}[H]
+\begin{figure}
 \centering{}
 \includegraphics[width=\textwidth]{img/template}
 \caption{Rappresentazione UML dell'applicazione del pattern Template Method alla gerarchia delle Personalità}
@@ -365,7 +363,7 @@ comunicazione uno-a-molti fra \texttt{GLaDOS} ed i sistemi di output.
 %
 Il suo utilizzo è esemplificato in \Cref{img:observer}
 
-\begin{figure}[H]
+\begin{figure}
 \centering{}
 \includegraphics[width=\textwidth]{img/observer}
 \caption{Il pattern Observer è usato per consentire a GLaDOS di informare tutti i sistemi di output in ascolto}
