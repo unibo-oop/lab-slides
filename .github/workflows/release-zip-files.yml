@@ -1,4 +1,4 @@
-name: Build LaTeX and deploy on GitHub Releases
+name: Release ZIP files
 on:
   push:
 
