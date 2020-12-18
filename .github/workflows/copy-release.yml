@@ -20,5 +20,5 @@ jobs:
           hub release create -m "Release $latest" "$latest" -R APICe-at-DISI/OOP-Lab-public || true
           for file in $(ls); do
             echo "Delivering file $file"
-            gh release upload -R 'APICe-at-DISI/OOP-Lab-public' "$latest" "$file" --clobber
+            gh release upload -R 'APICe-at-DISI/OOP-Lab-public' $latest "$file" --clobber
           done
