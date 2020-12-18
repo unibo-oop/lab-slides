@@ -4,7 +4,7 @@ on:
 
 jobs:
   Deploy-Archives:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -35,5 +35,5 @@ jobs:
           ls -ahl
           for file in $(find ~+ -name \*.zip); do
             echo "Delivering file $file"
-            gh release upload "$TAG" "$pdf" --clobber
+            gh release upload "$TAG" "$file" --clobber
           done
