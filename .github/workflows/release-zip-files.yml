@@ -33,7 +33,7 @@ jobs:
           TAG=$(git describe --tags --exact-match HEAD)
           hub release create -m "$(git tag -l --format='%(contents)' "$TAG")" "$TAG" || true
           ls -ahl
-          for file in $(find . -name \*.zip); do
+          for file in $(find ~+ -name \*.zip); do
             echo "Delivering file $file"
             gh release upload "$TAG" "$pdf" --clobber
           done
