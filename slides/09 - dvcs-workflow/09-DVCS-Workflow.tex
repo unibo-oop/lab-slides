@@ -1,8 +1,7 @@
 %\documentclass[12pt,handout]{beamer}
-\documentclass[presentation]{beamer}
+\documentclass[xcolor=dvipsnames,presentation]{beamer}
 \usepackage{../oop-slides-lab}
 
-\usepackage{minted}
 \setbeamertemplate{bibliography item}[text]
 
 \newcommand{\lab}{Lab09}
@@ -97,39 +96,6 @@ Definito da \emph{Vincent Driessen} e spiegato in \url{http://nvie.com/posts/a-s
 	\sizedcoded{\tiny}{code/open-feature.txt}{language=bash}
 \end{frame}
 
-% \subsection{Comandi}
-%
-% \fr{Inizializzazione del repository} {
-% \sizedcode{\tiny}{code/init.txt}
-% }
-
-%
-% \begin{frame}[allowframebreaks]{Associazione di nomi simbolici ad un commit}
-% 	\bl{In generale}{
-% 		È necessario poter associare ad un commit della meta-informazione personalizzata. Ad esempio, per associare un certo commit ad una versione, in modo da poterla facilmente richiamare.
-% 	}
-% 	\bl{In Git}{
-% 		\iz{
-% 			\item \texttt{git tag -a MyTag -m "My tag information"}
-% 			Associa al commit corrente il nome simbolico \texttt{MyTag} ed il messaggio aggiuntivo \texttt{My tag information}
-% 			\begin{itemize}
-% 				\item Non rimpiazza il commit message, ma lo integra
-% 				\item È possibile invocare comandi come \texttt{git checkout MyTag} per tornare velocemente ad un tag precedente
-% 			\end{itemize}
-% 			\item \texttt{git push --tags}
-% 			\begin{itemize}
-% 				\item Fa \texttt{push} delle metaiformazioni aggiunte col comando \texttt{tag}
-% 				\item La \texttt{push} ``normale'' non invia queste informazioni!
-% 			\end{itemize}
-% 		}
-% 	}
-% \end{frame}
-%
-%
-%
-% \fr{Fare una release} {
-% \sizedcode{\tiny}{code/do-release.txt}
-% }
 
 \begin{frame}[allowframebreaks]{Il repo ufficiale del vostro progetto}
 	\begin{block}{Workflow raccomandato}
@@ -160,13 +126,17 @@ Definito da \emph{Vincent Driessen} e spiegato in \url{http://nvie.com/posts/a-s
 
 \subsection{Gestione delle dipendenze}
 
+
+
 \begin{frame}[fragile]{Mini challenge}
 \begin{block}{}
 Scrivere un programma che va su Internet, scarica da TheTVDB i titoli degli episodi di Breaking Bad in italiano, e poi li stampa.
 \end{block}
 
-\pause
-\begin{minted}[fontsize=\tiny,linenos=true,breaklines=true]{java}
+
+
+% \pause
+\begin{lstlisting}[language=java,basicstyle=\tiny\ttfamily,columns=fullflexible]
 package it.unibo.ci;
 import java.io.IOException;
 import org.apache.commons.io.IOUtils;
@@ -191,7 +161,7 @@ public final class PrintBreakingBad {
             .forEach(System.out::println);
     }
 }
-\end{minted}
+\end{lstlisting}
 \end{frame}
 
 \begin{frame}{Librerie}
@@ -215,7 +185,7 @@ public final class PrintBreakingBad {
     Si crea un \textit{albero} delle dipendenze!
 
 %+--- com.google.guava:guava:19.0-rc2
-    \begin{minted}[fontsize=\scriptsize]{text}
+\begin{lstlisting}[basicstyle=\tiny\ttfamily,columns=fullflexible]
 +--- commons-io:commons-io:2.4
 \--- com.omertron:thetvdbapi:1.7
      +--- org.slf4j:slf4j-api:1.7.9
@@ -230,7 +200,7 @@ public final class PrintBreakingBad {
           |    +--- commons-logging:commons-logging:1.1.3
           |    \--- commons-codec:commons-codec:1.10
           \--- org.slf4j:slf4j-api:1.7.9
-    \end{minted}
+\end{lstlisting}
     \begin{itemize}
         \item La gestione manuale può diventare dispendiosa
         \begin{itemize}
@@ -312,10 +282,27 @@ public final class PrintBreakingBad {
     \end{itemize}
 \end{frame}
 
+\lstdefinelanguage{Kotlin}{
+  comment=[l]{//},
+  commentstyle={\color{gray}\ttfamily},
+  emph={filter, first, firstOrNull, forEach, lazy, map, mapNotNull, println},
+  emphstyle={\color{OrangeRed}},
+  identifierstyle=\color{black},
+  keywords={!in, !is, abstract, actual, annotation, as, as?, break, by, catch, class, companion, const, constructor, continue, crossinline, data, delegate, do, dynamic, else, enum, expect, external, false, field, file, final, finally, for, fun, get, if, import, in, infix, init, inline, inner, interface, internal, is, lateinit, noinline, null, object, open, operator, out, override, package, param, private, property, protected, public, receiveris, reified, return, return@, sealed, set, setparam, super, suspend, tailrec, this, throw, true, try, typealias, typeof, val, var, vararg, when, where, while},
+  keywordstyle={\color{NavyBlue}\bfseries},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]",
+  morestring=[s]{"""*}{*"""},
+  ndkeywords={@Deprecated, @JvmField, @JvmName, @JvmOverloads, @JvmStatic, @JvmSynthetic, Array, Byte, Double, Float, Int, Integer, Iterable, Long, Runnable, Short, String, Any, Unit, Nothing},
+  ndkeywordstyle={\color{BurntOrange}\bfseries},
+  sensitive=true,
+  stringstyle={\color{ForestGreen}\ttfamily},
+}
+
 \begin{frame}[fragile]{Gradle + Java}
 Configurazione per il nostro esperimento:
 \begin{block}{}
-\begin{minted}[fontsize=\small,linenos=true,breaklines=true]{kotlin}
+\begin{lstlisting}[language=kotlin,basicstyle=\tiny\ttfamily,columns=fullflexible]
 plugins {
     java
 }
@@ -327,7 +314,7 @@ dependencies {
     implementation("com.omertron:thetvdbapi:1.7")
     testImplementation("junit:junit:4.12")
 }
-\end{minted}
+\end{lstlisting}
 %implementation("com.google.guava:guava:19.0-rc2")
 \end{block}
 \begin{itemize}
@@ -342,7 +329,7 @@ dependencies {
         \item È la convenzione che si usa nei progetti ``seri''
         \item Deriva da uno strumento di build automation antesignano di Gradle (Apache Maven)
     \end{itemize}
-    \begin{minted}[fontsize=\small,linenos=true,breaklines=true]{text}
+    \begin{lstlisting}[basicstyle=\tiny\ttfamily,columns=fullflexible]
     |-- src
     |   |-- main
     |   |   |-- java          Sorgenti java (ex: src)
@@ -351,7 +338,7 @@ dependencies {
     |       |-- java          Sorgenti java per i test
     |       \-- resources     Risorse per i test
     \-- build.gradle.kts      Build file
-    \end{minted}
+    \end{lstlisting}
 \end{frame}
 
 \subsection{Concetti fondamentali}
@@ -428,6 +415,7 @@ dependencies {
         \item La costruzione e automazione di un processo di build \textbf{non} è parte della programmazione ad oggetti in quanto tale
         \item È un tema legato all'ingegneria del processo di produzione del software
         \item Molto sfaccettato, fra gli altri include aspetti che vedrete in futuro
+        {\small(ultimo anno di magistrale, opzionale ``Laboratorio di Sistemi Software'')}
         \begin{itemize}
             \item Tecniche agili (e.g. Scrum)
             \item Versioning
