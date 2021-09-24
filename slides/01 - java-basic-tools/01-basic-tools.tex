@@ -14,42 +14,40 @@
 \frame[label=coverpage]{\titlepage}
 
 \begin{frame}<beamer>
-	\frametitle{Outline}
-	\tableofcontents[]
+    \frametitle{Outline}
+    \tableofcontents[]
 \end{frame}
 
 \section{Java Development Kit (JDK) Overview}
 
-
 \fr{Java Development Kit (JDK)}{
+    \bl{Esistono diverse distribuzioni di Java}{
+        \begin{description}
+            \item[JRE] -- Java Runtime Environment: solo interprete
+            \item[JDK] -- JRE + tool per lo sviluppo di programmi (e.g. compilatore)
+            \item[Java EE (dismesso)] -- Java Enterprise Edition: JDK + set esteso di librerie
+        \end{description}
+    }
 
-	\bl{Esistono diverse distribuzioni di Java}{
-		\begin{description}
-			\item[JRE] -- Java Runtime Environment: esecuzione di programmi
-			\item[JDK] -- JRE + tool per lo sviluppo di programmi (e.g. compilatore)
-			\item[Java EE] -- Java Enterprise Edition: JDK + set esteso di librerie
-		\end{description}
-	}
+    \bl{Noi faremo riferimento al JDK}{Include il necessario per eseguire applicazioni
+    Java (JRE), i tool (e molte librerie) per sviluppare applicazioni,
+    e la relativa  documentazione}
 
-	\bl{Noi faremo riferimento al JDK}{Include il necessario per eseguire applicazioni
-	Java (JRE), i tool (e molte librerie) per sviluppare applicazioni,
-	e la relativa  documentazione}
-
-	\bl{I principali (non tutti) tool del JDK}{
-		\begin{description}
-			\item[javac] -- Compilatore Java
-			\item[java] -- Java virtual machine, per eseguire applicazioni Java
-			\item[javadoc] -- Per creare automaticamente documentazione in HTML
-			\item[jar] -- Creazione di archivi compressi (anche eseguibili)
-		\end{description}
-	}
+    \bl{I principali (non tutti) tool del JDK}{
+        \begin{description}
+            \item[javac] -- Compilatore Java
+            \item[java] -- Java virtual machine, per eseguire applicazioni Java
+            \item[javadoc] -- Per creare automaticamente documentazione in HTML
+            \item[jar] -- Creazione di archivi compressi (anche eseguibili)
+        \end{description}
+    }
 }
 
 \fr{Java Development Kit (JDK)}{
     \begin{itemize}
-        \item Java 11 -- ultima versione LTS del JDK
+        \item Java 11 -- (pen)ultima versione LTS del JDK
         \begin{itemize}
-            \item Esistono varie versioni e vari distributori (OpenJDK, Oracle JDK, Eclipse OpenJ9, Amazon, \dots)
+            \item Esistono varie versioni e vari distributori (OpenJDK, Oracle JDK, Eclipse OpenJ9, Amazon, Graal, Zulu\dots)
             \item OpenJDK -- implementazione non commerciale, reference version
             \begin{itemize}
                 \item Per capire se una JVM si comporta correttamente, si confronta il suo comportamento con OpenJDK.
@@ -63,7 +61,12 @@
             \begin{itemize}
                 \item \texttt{https://adoptium.net/}
             \end{itemize}
-            \item Chi lo desidera può sperimentare con le versioni più recenti (fino a Java 15)
+            \item Chi lo desidera può sperimentare con le versioni più recenti
+            \begin{itemize}
+            \item L'ultima al momento è Java 17, nuova LTS
+            \item Attenzione: la compatibilità è solo all'indietro
+            \item \dots{}e spesso non completa\dots{}
+            \end{itemize}
         \end{itemize}
     \end{block}
 }
@@ -72,7 +75,7 @@
 %Architettura a Runtime
 %====================
 \fr{Java Virtual Machine: Architettura a Runtime}{
-	\fg{height=0.80\textheight}{img/arch_runtime.png}
+    \fg{height=0.80\textheight}{img/arch_runtime.png}
 }
 
 \section{Il file system e l'interprete dei comandi (richiamo)}
@@ -93,7 +96,7 @@ supporti di memorizzazione di massa (dischi magnetici, dispositivi a stato solid
 \texttt{C:}, \texttt{D:})
       \end{itemize}
     \item La stringa che descrive un intero percorso dalla root fino ad un elemento del file system
-prende il nome di \emph{percorso}, e.g.:
+prende il nome di \emph{percorso} (o \emph{path}), e.g.:
     \begin{itemize}
         \item \texttt{/home/user/frameworkFS.jar} (percorso Unix)
         \item \texttt{C:\textbackslash{}Windows\textbackslash{}win32.dll} (percorso Windows)
@@ -156,6 +159,7 @@ prende il nome di \emph{percorso}, e.g.:
             \iz{
                 \item Altamente personalizzabili
                 \item Molto flessibili
+                \item Autocompletamento avanzato e contestualità
             }
         }
     }
@@ -172,7 +176,8 @@ prende il nome di \emph{percorso}, e.g.:
             \item Versioni recenti hanno introdotto PowerShell, basato su .NET e C\#
             \item Da Windows 10 è possibile installare Linux dentro Windows usando Windows Subsystem for Linux (WSL2)
             \begin{itemize}
-                \item Può essere un modo ragionevole di avere bash in ambiente Windows
+                \item Può essere un modo ragionevole di avere shell Unix in ambiente Windows
+                \item \dots{}e infatti in laboratorio ho preparato una WSL2 con zsh $\heartsuit$
             \end{itemize}
         }
     }
@@ -192,21 +197,14 @@ prende il nome di \emph{percorso}, e.g.:
             \item Consente di lavorare su Windows con un terminale meglio equipaggiato, vicino ad un nativo Linux
         \end{itemize}
     \end{block}
-    \begin{block}{Terminale ZSH servito via docker (con configurazioni di Pianini)}
+    \begin{block}{Manjaro con Terminale ZSH via WSL2 (con configurazioni di Pianini)}
         \begin{itemize}
-            \item Avviare docker (icona sul desktop), rifiutando eventuali aggiornamenti e quant'altro
-            \item Una volta che docker è avviato, fare doppio click sull'icona ``DockerLinux''
-            \item Si avvierà una shell zsh
-            \begin{itemize}
-                \item \emph{In caso di errori chiudere docker dalla tray e ripetere l'operazione}
-            \end{itemize}
+            \item Avviare WSL tramite collegamento ``Lancia WSL'' sul desktop
+            \item Attendere l'importazione della distro Linux (qualche minuto)
+            \item Non aprire altre istanze finché la prima non è avviata!
             \item Questa è una shell nativa Linux, preconfigurata dal docente
             \begin{itemize}
                 \item (e quindi potenzialmente con personalizzazioni che dipendono dal gusto personale)
-            \end{itemize}
-            \item Al termine della sessione, per salvare lo stato, si copi la cartella \texttt{DockerHome} presente sul desktop
-            \begin{itemize}
-                \item In questo modo si ricorderà la storia dei comandi, le eventuali configurazioni, eccetera
             \end{itemize}
         \end{itemize}
     \end{block}
@@ -282,29 +280,28 @@ prende il nome di \emph{percorso}, e.g.:
 \section{Preparazione dell'ambiente di lavoro (per Lab01)}
 
 \fr{Preparazione Ambiente di Lavoro}{
-	\iz{
-		\item Accendere il PC ed eseguire l'accesso
-		\item Accedere al sito del corso
-		\item Scaricare dalla sezione dedicata a questa settimana il materiale dell'esercitazione odierna
-		\item Spostare il file scaricato sul Desktop
-		\item Decomprimere il file sul Desktop
-	}
+    \iz{
+        \item Accendere il PC ed eseguire l'accesso
+        \item Accedere al sito del corso
+        \item Scaricare dalla sezione dedicata a questa settimana il materiale dell'esercitazione odierna
+        \item Spostare il file scaricato sul Desktop
+        \item Decomprimere il file sul Desktop
+    }
 }
 
 
 \fr{Preparazione Ambiente di Lavoro}{
-	\iz{
-		\item Aprire un terminale
+    \iz{
+        \item Aprire un terminale
         \item Si scelga l'opzione che si preferisce fra quelli proposti
         \item Si comprenda in qualche cartella si è usando l'apposito comando
         \iz{
             \item Generalmente il prompt si apre nella directory principale dell'utente
-            \item Nel caso in cui si usasse zsh dentro Docker, il terminale parte dalla cartella \texttt{DockerHome} sul desktop, e non è in grado di uscirne:
-            È quindi necessario spostare i file decompressi dentro quest'ultima.
+            \item Nel caso in cui si usasse zsh dentro WSL, o Git Bash, il file system di windows è agganciato emulando un file system Unix.
         }
         \item Posizionarsi all'interno della cartella scompattata con l'ausilio del comando \texttt{cd} (change directory)
         \item Verificare che il contenuto della cartella sia quello atteso
-	}
+    }
 }
 
 \begin{frame}{Preparazione Ambiente di Lavoro}
@@ -336,7 +333,7 @@ prende il nome di \emph{percorso}, e.g.:
     \bl{Esecuzione}{
         Esecuzione di un programma Java (comando \textcolor{blue}{java})
         \iz{
-            \item	\alert{\cil{java NomeDellaClasse}}
+            \item    \alert{\cil{java NomeDellaClasse}}
         }
     }
     Si noti che il compilatore \emph{traduce} \textbf{file} sorgente in \textbf{file} binari,
@@ -384,8 +381,8 @@ prende il nome di \emph{percorso}, e.g.:
 
 \begin{frame}[allowframebreaks]
  \frametitle{Bibliography}
-	\bibliographystyle{plain}
-	\small
+    \bibliographystyle{plain}
+    \small
  \bibliography{biblio}
 \end{frame}
 
