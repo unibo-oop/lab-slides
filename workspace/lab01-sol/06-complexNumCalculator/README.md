@@ -3,7 +3,7 @@
 
 #### FASE 1
 
-1. Implementare una classe Java `ComplexNumCalculator` che realizzi una calcolatrice per numeri complessi, in grado di operare sui numeri complessi rappresentati dalla classe `ComplexNum` (si copii in questa cartella la classe ComplexNum realizzata in precedenza nell'esercizio (3) per poterla utilizzare in fase di compilazione), con le seguenti caratteristiche:
+1. Implementare una classe Java `ComplexNumCalculator` che realizzi una calcolatrice per numeri complessi, in grado di operare sui numeri complessi rappresentati dalla classe `ComplexNum` (si copi in questa cartella la classe ComplexNum realizzata in precedenza nell'esercizio (3) per poterla utilizzare in fase di compilazione), con le seguenti caratteristiche:
   * Campi:
     - `int nOpDone`
     - `ComplexNum lastRes`
