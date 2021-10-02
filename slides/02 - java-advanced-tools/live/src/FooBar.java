@@ -1,7 +1,8 @@
 package foo.bar;
 
-public class Foo {
+public class FooBar {
     public static void main(String[] args){
-        System.out.println("Foo");
+        Foo.main(args);
+        Bar.main(args);
     }
 }
