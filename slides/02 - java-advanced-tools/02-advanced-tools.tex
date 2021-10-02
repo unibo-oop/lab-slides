@@ -21,19 +21,29 @@
 	\tableofcontents[]
 \end{frame}
 
-\fr{Preparazione ambiente di lavoro}{
-\begin{itemize}\itemsep10pt
-\item Accedere al PC di laboratorio con le proprie credenziali istituzionali
-		\item Accedere al sito del corso
-%	\iz{
-%		\item \textcolor{blue}{\url{http://bit.ly/oop19-cesena}}
-%	}
-	\item Scaricare il materiale dell'esercitazione odierna
-	\item Spostare il file scaricato sul Desktop
-	\item Decomprimere il file e aprire con Visual Studio Code la directory ottenuta (File $\to$ Open Folder...)
-	\item Puntare il terminale alla directory con i sorgenti dell'esercitazione odierna
+\begin{frame}{Pre-requisiti}
+\begin{itemize}
+\item Rudimenti di programmazione e codifica
+\item Nozioni di base dei filesystem
+	\begin{itemize}
+	\item percorsi assoluti e relativi
+	\end{itemize}
+\item Utilizzo del terminale
+	\begin{itemize}
+	\item interazione con il file system attraverso terminale (navigazione; concetto di working directory; etc.)
+	\end{itemize}
+\item Compilazione ed esecuzione di base di programmi Java
+	\begin{itemize}
+	\item uso basilare dei comandi \texttt{javac} e \texttt{java}
+	\item distinzione tra file sorgenti (\texttt{.java}) e file di classi compilate (\texttt{.class})
+	\item concetto di \textbf{programma/applicazione} in Java
+	\end{itemize}
+\item Il concetto di \textbf{package} in Java
+	\begin{itemize}
+	\item contenitore (organizzato gerarchicamente) di tipi (ad es. classi) che funge da namespace e permette controllo degli accessi ai tipi contenuti
+	\end{itemize}
 \end{itemize}
-}
+\end{frame}
 
 \section{Stili e Convenzioni per il codice sorgente}
 
@@ -112,7 +122,7 @@ Always code as if the guy who ends up maintaining your code will be a violent ps
 	\begin{block}{Naming conventions - \textbf{molto importanti!}}
 		\begin{itemize}
 			\item I nomi di \texttt{package} usano sempre e solo lettere minuscole
-			\item Usare sempre camelCase, evitare gli underscore (\_)
+			\item Usare sempre \texttt{camelCase}, evitare gli underscore (\_)
 			\item I nomi di classe cominciano sempre per maiuscola
 			\item I nomi di campi, metodi e variabili locali iniziano sempre per minuscola
 			\item I campi \texttt{static final} (costanti di classe) sono interamente maiuscoli e possono usare underscore
@@ -149,14 +159,14 @@ Come seguire stili e convenzioni? Tutto nelle mani del programmatore?
 
 \begin{frame}{Compilazione di più file da qualunque directory verso una qualunque directory}
   \begin{block}{Compilazione in directory arbitrarie}
-    \texttt{javac -d <CARTELLA DESTINAZIONE> <FILE JAVA>}
+    \texttt{javac {\color{red}-d <CARTELLA DESTINAZIONE>} <FILE JAVA>}
     \begin{itemize}
       \item \textbf{OVVIAMENTE} vanno sostituite le variabili fra parentesi angolari con le
 directory che andranno usate.
     \end{itemize}
   \end{block}
   \begin{block}{Compilazione di più file in una singola passata}
-    \texttt{javac -d <CARTELLA DESTINAZIONE> <ELENCO DI FILE JAVA>}
+    \texttt{javac -d <CARTELLA DESTINAZIONE> {\color{red}<ELENCO DI FILE JAVA>}}
     \begin{itemize}
       \item \textbf{OVVIAMENTE} vanno sostituite le variabili fra parentesi angolari con le
 directory che andranno usate.
@@ -173,9 +183,9 @@ directory che andranno usate.
 \begin{frame}[allowframebreaks]{Il classpath in Java}
 	\begin{itemize}
 		\item Il risultato della compilazione di sorgenti Java sono una o più \textbf{classi}
-		\item Quando si va ad eseguire, si eseguono \textbf{classi}, non files
+		\item Quando si va ad eseguire (comando \texttt{java}), si eseguono \textbf{classi}, non files
 		\begin{itemize}
-			\item Infatti la virtual machine si aspetta il nome completo di una classe in input
+			\item Infatti la virtual machine si aspetta il nome completo di una classe, il \textbf{Fully-Qualified Class Name (FQCN)}, in input
 			\begin{itemize}
 				\item Non il file dov'è scritta
 				\item Né il file dov'è compilata
@@ -195,7 +205,7 @@ directory che andranno usate.
 		\end{itemize}
 	\end{block}
 	\begin{center}
-		L'insieme ordinato dei percorsi prende il nome di \textbf{classpath}
+		L'insieme \emph{ordinato} dei percorsi prende il nome di \textbf{classpath}
 	\end{center}
 	\begin{block}{Default classpath}
 		Se non specificato, il classpath di Java include automaticamente:
@@ -248,8 +258,8 @@ dei package. Si noti però che (dato che il compilatore lavora su \alert{file}) 
         \item Lo sarà nel mondo del lavoro, perché è prassi assolutamente comune
     \end{itemize}
     \begin{block}{Risultato della compilazione}
-        Quando viene compilato un sorgente la cui classe è contenuta in un package, il compilatore
-riproduce la struttura dei package usando delle directory
+        Quando ad essere compilata è una classe dichiarata in un package, il compilatore
+\textbf{riproduce la struttura dei package usando delle directory}
         \begin{itemize}
             \item Dato che l'interprete non lavora con file ma con \alert{classi}, il loro layout
 sul file system \textbf{non può essere modificato!}
@@ -386,7 +396,25 @@ vogliamo compilare
 	\end{itemize}
 \end{frame}
 
-\section{Appendice: richiami utili per gli esercizi del {\lab}}
+\section{Laboratorio}
+
+
+\fr{Preparazione ambiente di lavoro}{
+\begin{itemize}\itemsep10pt
+\item Accedere al PC di laboratorio con le proprie credenziali istituzionali
+		\item Accedere al sito del corso
+%	\iz{
+%		\item \textcolor{blue}{\url{http://bit.ly/oop19-cesena}}
+%	}
+	\item Scaricare il materiale dell'esercitazione odierna
+	\item Spostare il file scaricato sul Desktop
+	\item Decomprimere il file e aprire con Visual Studio Code la directory ottenuta (File $\to$ Open Folder...)
+	\item Puntare il terminale alla directory con i sorgenti dell'esercitazione odierna
+\end{itemize}
+}
+
+
+\subsection{Appendice: richiami utili per gli esercizi del {\lab}}
 
 \begin{frame}{A1 -- Varianza}
 
