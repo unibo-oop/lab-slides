@@ -8,9 +8,9 @@
 3. Si aggiunga un nuovo test al metodo `testCountOccurr()`
 4. Si compili e si esegua nuovamente
 5. Si completino i seguenti metodi statici nella classe `WorkWithArrays`:
-  - `public static int[] evenElements(int[] array)`, che restituisce un array con i soli elementi in posizione (indice) *pari* dell'array fornito in input, ad esempio `evenElems([1, 2, 3, 4]) => [1, 3]`
-  - `public static int[] oddElements(int[] array)` che restituisce un array con i soli elementi in posizione (indice) *dispari* dell'array fornito in input, ad esempio `oddElems([1, 2, 3, 4] => [2,4]`
-  - `public static int mostRecurringElement(int[] array)` che restituisce l'elemento che viene ripetuto più volte all'interno `array`, ad esempio p.e. `mostRecurringElement([1, 2, 1, 3, 4] => 1`, `mostRecurringElement([7,1,5,7,7,9]) => 7`
+    - `public static int[] evenElements(int[] array)`, che restituisce un array con i soli elementi in posizione (indice) *pari* dell'array fornito in input, ad esempio `evenElems([1, 2, 3, 4]) => [1, 3]`
+    - `public static int[] oddElements(int[] array)` che restituisce un array con i soli elementi in posizione (indice) *dispari* dell'array fornito in input, ad esempio `oddElems([1, 2, 3, 4] => [2,4]`
+    - `public static int mostRecurringElement(int[] array)` che restituisce l'elemento che viene ripetuto più volte all'interno `array`, ad esempio p.e. `mostRecurringElement([1, 2, 1, 3, 4] => 1`, `mostRecurringElement([7,1,5,7,7,9]) => 7`
 
 #### FASE 2 - Riconoscitore di sequenze
 
@@ -36,16 +36,16 @@ Completare la classe `PlayWithSmartphoneArrays`, che lavora sulla classe `Smartp
 #### FASE 5 - Algoritmica su array
 
 1. Implementare `public static int[] sortArray(int[] array,boolean desc)`, che ordina l'array fornito in input (ordinamento crescente/descrescente a seconda del valore del parametro `desc`.
-  - Si può far riferimento all'algoritmo bubble sort
-  - è proibito l'uso del metodo di libreria `Arrays.sort()` :)
+    - Si può far riferimento all'algoritmo bubble sort
+    - è proibito l'uso del metodo di libreria `Arrays.sort()` :)
 2. Implementare `public static double computeVariance(double[] array)`, che calcola la varianza degli elementi di un array
 
 #### FASE 6 - Array circolare
 
 Completare la classe `oop.lab02.arrays.MyCircularArray` che implementa un array circolare, contenente:
-  - Un campo `int[] array`
-  - Costruttore `MyCircularArray(int size)`
-  - Costruttore `MyCircularArray()`
-  - metodo `public void addElem(int element)}`, che aggiunge `element` all'interno di `array` in modo che, una volta raggiunta la dimensione massima dell'array, i nuovi valori vadano a sovrascrivere quelli precedentemente memorizzati.
-  - metodo `public void reset()`, che reinizializza a zero tutti gli elementi di `array`
+    - Un campo `int[] array`
+    - Costruttore `MyCircularArray(int size)`
+    - Costruttore `MyCircularArray()`
+    - metodo `public void addElem(int element)}`, che aggiunge `element` all'interno di `array` in modo che, una volta raggiunta la dimensione massima dell'array, i nuovi valori vadano a sovrascrivere quelli precedentemente memorizzati.
+    - metodo `public void reset()`, che reinizializza a zero tutti gli elementi di `array`
 Nota: è possibile aggiungere campi e metodi a piacimento al fine di realizzare quanto richiesto.
