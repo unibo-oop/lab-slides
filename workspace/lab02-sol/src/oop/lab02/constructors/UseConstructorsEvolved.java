@@ -26,5 +26,4 @@ public class UseConstructorsEvolved {
         final Train t3 = new Train(35, 165);
         t3.printTrainInfo();         
     }
-
 }
