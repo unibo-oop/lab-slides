@@ -12,11 +12,11 @@ public class Train {
     private int secondClassReserved;
 
     public Train() {
-        this.seats = DEFAULT_TOT_SEATS;
-        this.firstClassSeats = DEFAULT_N_FC_SEATS;
-        this.secondClassSeats = DEFAULT_N_SC_SEATS;
-        this.firstClassReserved = 0;
-        this.firstClassReserved = 0;
+        this(DEFAULT_TOT_SEATS, DEFAULT_N_FC_SEATS, DEFAULT_N_SC_SEATS);
+    }
+
+    public Train(final int nFCSeats, final int nSCSeats) {
+        this(nFCSeats + nSCSeats, nFCSeats, nSCSeats);
     }
 
     public Train(final int nTotSeats, final int nFCSeats, final int nSCSeats) {
@@ -59,7 +59,7 @@ public class Train {
     public void printTrainInfo() {
         System.out.println("Train info:\n-nTotSeats: " + this.seats);
         System.out.println("-nFCSeats: " + this.firstClassSeats);
-        System.out.println("-nFCSeats: " + this.secondClassSeats);
+        System.out.println("-nSCSeats: " + this.secondClassSeats);
         System.out.println("-nFCReservedSeats: " + this.firstClassReserved);
         System.out.println("-nSCReservedSeats: " + this.secondClassReserved + "\n");
     }
