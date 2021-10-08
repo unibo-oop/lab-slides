@@ -63,13 +63,13 @@
 \begin{frame}{Eclipse IDE}
 \begin{block}{Overview}
 \begin{itemize}
-\item Eclipse è un IDE open-source scritto in Java
-\item Disponibile per diverse piattaforme (Windows, Linux, Mac OSX, ..)
-\item \dots e sotto forma di diverse distribuzioni
+\item \textbf{Eclipse} è un \textbf{IDE open-source} scritto in \textbf{Java}
+\item Disponibile per diverse \textbf{piattaforme} (Windows, Linux, Mac OSX, ..)
+\item \dots e sotto forma di diverse \textbf{distribuzioni}
 \begin{itemize}
 \item Standard, per sviluppatori J2EE/C/C++/Python/Web, \dots
 \end{itemize}
-\item Architettura modulare (via plug-ins)
+\item Architettura \textbf{modulare} (via plug-ins)
 \end{itemize}
 \end{block}
 \vfill
@@ -87,7 +87,7 @@
 \begin{frame}{Astrazioni di base in Eclipse (1/5)}
 \begin{block}{Workspace}
 \begin{itemize}
-\item Directory in cui Eclipse mantiene una collezione di \emph{risorse} (file, cartelle, progetti)
+\item Directory in cui Eclipse mantiene una collezione di \textbf{risorse} (file, cartelle, progetti)
 \item Include le ``\emph{preferenze di una specifica sessione di lavoro}''
 \begin{itemize}
 \item Le configurazioni dell'ambiente
@@ -96,8 +96,8 @@
 \item Stato dei plugin installati
 \item \dots
 \end{itemize}
-\item I metadati di un workspace si trovano nella directory \emph{.metadata}
-\item Tipicamente, un workspace contiene anche i progetti, ognuno in una cartella \texttt{<workspaceDir>/<projectDir>}
+\item I \textbf{metadati} di un workspace si trovano nella directory \emph{.metadata}
+\item Tipicamente, un workspace contiene anche i \textbf{progetti}, ognuno in una cartella \texttt{<workspaceDir>/<projectDir>}
 \item In alternativa, i progetti possono essere ``importati'' pur risiedendo in altre posizioni del file system (\emph{linked resources})
 \end{itemize}
 \end{block}
@@ -131,10 +131,10 @@
 \item Tipicamente numerose view sono aperte contemporaneamente;
 \item Ciascuna offre una micro-funzionalità, ad esempio:
 \begin{itemize}
-\item Package Explorer --- fornisce una vista dei progetti e della loro struttura;
-\item Console --- consente di usare un terminale interno all'IDE invece del terminale di sistema;
-\item Outline --- mostra un riassunto dei componenti della classe attualmente aperta, elencando i membri, consentendo di filtrarli (ad esempio, nascondendo i privati) e di ordinarli (ad esempio in ordine alfabetico);
-\item Problems --- elenca gli eventuali problemi che affliggono il progetto (errori di configurazione, sorgenti che non compilano, warnings...)
+\item \emph{Package Explorer} --- fornisce una vista dei progetti e della loro struttura;
+\item \emph{Console} --- consente di usare un terminale interno all'IDE invece del terminale di sistema;
+\item \emph{Outline} --- mostra un riassunto dei componenti della classe attualmente aperta, elencando i membri, consentendo di filtrarli (ad esempio, nascondendo i privati) e di ordinarli (ad esempio in ordine alfabetico);
+\item \emph{Problems} --- elenca gli eventuali problemi che affliggono il progetto (errori di configurazione, sorgenti che non compilano, warnings...)
 \end{itemize}
 \end{itemize}
 \end{block}
@@ -160,7 +160,7 @@
 \begin{frame}{Astrazioni di base in Eclipse (4/5)}
 \begin{block}{Progetto}
 \begin{itemize}
-\item Directory contenente una collezione di risorse opportunamente organizzate, tipicamente rappresentanti un software o una parte di un software
+\item Directory contenente una collezione di \textbf{risorse} opportunamente organizzate, tipicamente rappresentanti un software o una parte di un software
 \begin{itemize}
 \item codice sorgente
 \item file di configurazione
@@ -170,7 +170,7 @@
 \item \dots
 \end{itemize}
 \item Ciascun progetto fa generalmente riferimento ad uno specifico linguaggio di programmazione
-\item Ogni progetto, a seconda della propria tipologia, può utilizzare diversi strumenti per la gestione delle proprie risorse
+\item Ogni progetto, a seconda della propria \textbf{tipologia} (\emph{nature}), può utilizzare diversi strumenti per la gestione delle proprie risorse
 \end{itemize}
 \end{block}
 \end{frame}
@@ -263,7 +263,7 @@
 
 \begin{frame}{Run Configuration}
 \begin{itemize}
-\item Consente di personalizzare la configurazione con la quale l'applicazione va in esecuzione
+\item Una \textbf{run configuration} consente di personalizzare la configurazione con la quale l'applicazione va in esecuzione
 \begin{itemize}
 \item Ad esempio, i parametri da passare in ingresso al metodo main
 \end{itemize}
@@ -282,6 +282,7 @@
 
 \begin{frame}{Java Build Path}
 \begin{itemize}
+\item Il \textbf{java build path} specifica le risorse (ad es. sorgenti, altri progetti, cartelle di compilati, file JAR) visibili durante la compilazione (build)
 \item (click dx su progetto) $>$ Build Path $>$ Configure Build Path
 \end{itemize}
 \begin{center}
@@ -327,7 +328,7 @@
 
 \begin{frame}{Astrazioni di base in Eclipse (5/5)}
 \begin{block}{Plug-in}
-Software installabile opzionalmente che estende le capacità dell'IDE, ad esempio:
+Un \textbf{plug-in} è un \emph{componente software}, installabile opzionalmente, che estende le capacità dell'IDE. Ad esempio:
 \begin{itemize}
 \item controllare la qualità del codice Java;
 \item aggiungere supporto ad ulteriori linguaggi;
@@ -409,7 +410,7 @@ Software installabile opzionalmente che estende le capacità dell'IDE, ad esempi
 %}
 
 
-\subsection{Refactoring}
+\subsection{Refactoring e generazione di codice}
 
 \begin{frame}{Refactoring}
 	\begin{block}{}
@@ -434,13 +435,37 @@ utilizzando l'IDE vengono aggiornati tutti i riferimenti nell'intero progetto}
 
 \fr{Refactoring in Eclipse}{
 	\bl{}{
-		Operazioni di modifica del nome di variabili, classi, metodi etc.
 		\iz{
-			\item Gestite in maniera automatica e safe dall'IDE
-			\item Attivabile anche tramite ALT+SHIFT+R sulla selezione di interesse
+			\item Attivabile con \emph{tasto destro} $\to$ \texttt{Refactor} o tramite \texttt{ALT+SHIFT+T} sulla selezione di interesse
+			\item Es.: modifica nome di variabili, metodi, classi etc. (\texttt{ALT+SHIFT+R})
+				\iz{
+				\item Gestite in maniera automatica e safe dall'IDE
+				}
+		}
+	}\vspace{-0.5cm}
+	\fg{height=0.7\textheight}{img/refactor.png}
+}
+
+\fr{Generazione di codice in Eclipse}{
+	\bl{}{
+		\iz{
+			\item Attivabile con \emph{tasto destro} $\to$ \texttt{Source} o tramite \texttt{ALT+SHIFT+S}
+			\item Esempi
+				\iz{
+				\item aggiunta/rimozione di commenti
+				\item formattazione di codice (es. indentazione)
+				
+			\item Generazione di metodi
+				\begin{itemize}
+				\item costruttori
+				\item getter e setter
+				\item \texttt{toString()}
+				\item \texttt{hashCode()} e \texttt{equals()}
+				\end{itemize}
+				}
 		}
 	}
-	\fg{height=0.7\textheight}{img/refactor.png}
+	\fg{height=0.4\textheight}{img/sourcegen.png}
 }
 
 \subsection{Keyboard Shortcuts}
