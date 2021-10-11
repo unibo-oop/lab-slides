@@ -235,15 +235,15 @@ directory che andranno usate.
 	\begin{block}{}
 		Si possono specificare più cartelle utilizzando come separatore il simbolo ``\texttt{:}'' (per sistemi Unix) oppure ``\texttt{;}'' (per sistemi Windows)
 		\begin{itemize}
-			\item \texttt{javac -d bin -cp lib1:lib2:lib3 src/*.java}
+			\item \texttt{javac -d bin -cp "lib1:lib2:lib3" src/*.java}
 			\begin{itemize}
 				\item Compila tutti i file con estensione java che si trovano nella cartella \texttt{src}, mettendo i compilati dentro \texttt{bin}. In compilazione, potrà linkare tutte le classi che si trovano nelle cartelle \texttt{lib1}, \texttt{lib2} e \texttt{lib3}: nel caso in cui alcuni sorgenti in src stiano usando delle classi definite dentro queste cartelle, la compilazione avrà successo.
-				\item \scriptsize{Equivalente Windows: \texttt{javac -d bin -cp lib1;lib2;lib3 src/*.java}}
+				\item \scriptsize{Equivalente Windows: \texttt{javac -d bin -cp "lib1;lib2;lib3" src/*.java}}
 		\end{itemize}
-			\item \texttt{java -cp bin:lib1:lib2:lib3 MyClass}
+			\item \texttt{java -cp "bin:lib1:lib2:lib3" MyClass}
 			\begin{itemize}
 				\item Esegue il main della classe \texttt{MyClass}. Cercherà questa classe e tutte quelle collegate all'interno delle cartelle \texttt{bin}, \texttt{lib1}, \texttt{lib2} e \texttt{lib3}.
-				\item \scriptsize{Equivalente Windows: \texttt{java -cp bin;lib1;lib2;lib3 MyClass}}
+				\item \scriptsize{Equivalente Windows: \texttt{java -cp "bin;lib1;lib2;lib3" MyClass}}
 			\end{itemize}
 		\end{itemize}
 	\end{block}
