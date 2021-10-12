@@ -1,6 +1,7 @@
 %\documentclass[12pt,handout]{beamer}
 \documentclass[xcolor=dvipsnames,presentation]{beamer}
 \usepackage{../oop-slides-lab}
+\usepackage{fancyvrb}
 
 \setbeamertemplate{bibliography item}[text]
 
@@ -159,48 +160,31 @@ preliminari. In particolare, richiedono di impostare un nome utente ed una email
 capire chi ha apportato modifiche).
     }
     \bl{In Git}{
-        È possibile specificare un nome utente di default utilizzando
+        Si specifica un nome utente di default utilizzando
         \iz {
             \item \texttt{git config --global user.name "YOUR NAME"}
             \begin{itemize}
                 \item \textbf{OVVIAMENTE} al posto di \texttt{YOUR NAME} dovrete inserire il vostro nome.
                 \item \textbf{Configurate il vostro vero nome, non un nickname!}
+                \begin{itemize}
+                    \item In fase di correzione del progetto usiamo (anche) git per capire chi ha fatto cosa,
+                    e vedere roba firmata da \texttt{superkikk4z} e \texttt{TheDarkDestructor} non è che sia proprio bello
+                    (oltre al fatto che rischiamo di sbagliare l'assegnamento nome-persona)
+                    \item Se siete in lab importa poco, ma meglio far le cose bene fin da subito
+                    \item Il nickname fantasioso potrete usarlo su GitHub prossimamente,
+                    lo usiamo anche noi (\texttt{DanySK}, \texttt{metaphori}...)
+                \end{itemize}
             \end{itemize}
         }
-        È possibile specificare una email di default utilizzando
+        L'email di default is setta con
         \iz {
             \item \texttt{git config --global user.email "your.email@provider"}
         }
-    }
-    \bl{Caratteri di newline}{
-        \begin{itemize}
-            \item Git prova ad essere ``smart'' nella configurazione dei caratteri che rappresentano
-una nuova linea di testo, che differiscono per piattaforma
-            \begin{itemize}
-                \item Come spesso capita, nel tentativo di essere smart fa più danno che utile.
-            \end{itemize}
-            \item Noi useremo una precisa configurazione di Eclipse
-            \item Vogliamo che i nostri file abbiano un terminatore preciso, e vogliamo che tutti i
-membri del team lo usino correttamente
-            \begin{itemize}
-                \item Evitando di fare mega-salvataggi solo perché cambiano i caratteri di fine
-linea
-            \end{itemize}
-            \item Linux e MacOS: usa il carattere presente nel testo
-            \begin{itemize}
-                \item \texttt{git config --global core.autocrlf input}
-            \end{itemize}
-            \item Windows: disattiva la conversione automatica a CRLF
-            \begin{itemize}
-                \item \texttt{git config --global core.autocrlf false}
-            \end{itemize}
-        \end{itemize}
     }
     \begin{block}{Esercizio}
         \begin{itemize}
             \item Si apra un terminale
             \item Si settino username ed email di default usando nome e cognome ed email istituzionale
-            \item Si disabiliti la funzione autocrlf
         \end{itemize}
     \end{block}
 \end{frame}
@@ -573,6 +557,53 @@ e aggiunto la modifica alla staging area.
 \subsection{Gestione dei file}
 
 \begin{frame}[allowframebreaks,fragile]{Ignorare file indesiderati}
+    \begin{block}{Gestione dei caratteri di newline}
+        \begin{itemize}
+            \item Git prova ad essere ``smart'' nella configurazione dei caratteri che rappresentano una nuova linea di testo, che differiscono per piattaforma
+            \begin{itemize}
+                \item Come spesso capita, nel tentativo di essere smart si fallisce clamorosamente.
+            \end{itemize}
+            \item È meglio configurare Git per gestire correttamente i file di linea, specie se il team lavora con OS diversi!
+            \begin{itemize}
+                \item Evitando di fare mega-commit solo perché cambiano i caratteri di fine linea
+            \end{itemize}
+        \end{itemize}
+    \end{block}
+    \begin{block}{Gestione dei caratteri di newline}
+        \begin{itemize}
+            \item Configuriamo Git per usare il fine linea Unix, eccetto che sugli script Windows-specifici
+            \item Ci sono vari modi, il più portabile è la creazione di un file \texttt{.gitattributes} nella radice del repository
+            \begin{itemize}
+                \item È possibile specificare quali tipi di file sono testuali, e quali convenzioni usare
+                \item È bene che il file \texttt{.gitattributes} venga aggiunto al tracker!
+                \item Nota: il file si chiama \textbf{esattamente} \texttt{.gitattributes},
+                \textbf{non} \texttt{ALTRO.gitattributes}, \texttt{.gitattributes.txt}, \texttt{gitattributes.gitattributes}, o altre stravaganti forme.
+            \end{itemize}
+        \end{itemize}
+    \end{block}
+    \begin{block}{Contenuto del file \texttt{.gitattributes}}
+        \VerbatimInput{../../.gitattributes}
+    \end{block}
+    \begin{block}{Esercizio}
+        \begin{itemize}
+            \item Si crei il file .gitattributes
+            \begin{itemize}
+                \item Può essere scaricato da \url{https://bit.ly/oop-gitattributes}
+                \item Per chi ha una shell Unix:
+                \begin{itemize}
+                    \item {\scriptsize \texttt{curl -L -o ".gitattributes" "https://bit.ly/oop-gitattributes"}}
+                \end{itemize}
+            \end{itemize}
+            \item Si osservi lo stato del repository
+            \item Si aggiunga \texttt{.gitattributes} alla staging area
+            \item Si osservi lo stato del repository
+            \item Si effettui il commit
+            \item Si osservi lo stato del repository
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}[allowframebreaks,fragile]{Ignorare file indesiderati}
     \begin{block}{In generale}
         In molti casi, vorremmo poter dire al DVCS di ignorare alcuni file o cartelle, che sappiamo
 essere rigenerabili o che riteniamo non utili
@@ -586,9 +617,8 @@ essere rigenerabili o che riteniamo non utili
         \begin{itemize}
             \item I file elencati dentro \texttt{.gitignore} saranno invisibili a Git
             \item È bene che il file \texttt{.gitignore} venga aggiunto al tracker!
-            \item Nota: il file si chiama \textbf{esattamente} \texttt{.gitignore}, \textbf{non}
-\texttt{ALTRO.gitignore}, \texttt{.gitignore.txt}, \texttt{gitignore.gitignore}, o altre stravaganti
-forme.
+            \item Nota: il file si chiama \textbf{esattamente} \texttt{.gitignore},
+            \textbf{non} \texttt{ALTRO.gitignore}, \texttt{.gitignore.txt}, \texttt{gitignore.gitignore}, o altre stravaganti forme.
         \end{itemize}
     \end{block}
     \begin{block}{Sintassi di .gitignore}
@@ -614,20 +644,16 @@ doc/
     \end{block}
     \begin{block}{Note sulla creazione di file il cui nome inizia per \texttt{.}}
         \begin{itemize}
-            \item Windows ha l'abitudine di aggiungere autonomamente l'estensione ai file che
-vengono creati...
+            \item Windows ha l'abitudine di aggiungere autonomamente l'estensione ai file che vengono creati...
             \item ...per poi nasconderla
-            \item Verificate \textbf{sempre con il terminale} che il file sia esattamente quello che
-vi aspettate, ossia \texttt{.gitignore}
-            \item Se il file viene chiamato \texttt{.gitignore.txt}, o in qualunque modo diverso da
-\texttt{.gitignore}, non sarà considerato un ignore file valido da Git!
+            \item Verificate \textbf{sempre con il terminale} che il file sia esattamente quello che vi aspettate, ossia \texttt{.gitignore}
+            \item Se il file viene chiamato \texttt{.gitignore.txt}, o in qualunque modo diverso da \texttt{.gitignore}, non sarà considerato un ignore file valido da Git!
         \end{itemize}
         Il problema non si pone su MacOS X e Linux.
     \end{block}
     \begin{block}{Creare il file da terminale}
         \begin{itemize}
-            \item È conveniente usare direttamente il terminale per creare il file
-\texttt{.gitignore}
+            \item È conveniente usare direttamente il terminale per creare il file \texttt{.gitignore}
             \item \texttt{echo > .gitignore}
             \begin{itemize}
                 \item Crea un file di nome \texttt{.gitignore} contenente solo una newline
@@ -636,13 +662,10 @@ vi aspettate, ossia \texttt{.gitignore}
             \end{itemize}
             \item \texttt{echo WHAT\_TO\_IGNORE >> .gitignore}
             \begin{itemize}
-                \item Aggiunge una linea con scritto \texttt{WHAT\_TO\_IGNORE} in coda al file
-\texttt{.gitignore}
+                \item Aggiunge una linea con scritto \texttt{WHAT\_TO\_IGNORE} in coda al file \texttt{.gitignore}
                 \item Funziona su tutti i sistemi!
-                \item Consente di popolare il file \texttt{.gitignore} senza dover usare editor
-esterni
-                \item e.g. \texttt{echo bin/ >> .gitignore} --- aggiunge alla lista degli ignore la
-cartella \texttt{bin} e tutto il suo contenuto
+                \item Consente di popolare il file \texttt{.gitignore} senza dover usare editor esterni
+                \item e.g. \texttt{echo bin/ >> .gitignore} --- aggiunge alla lista degli ignore la cartella \texttt{bin} e tutto il suo contenuto
             \end{itemize}
         \end{itemize}
     \end{block}
@@ -651,13 +674,11 @@ cartella \texttt{bin} e tutto il suo contenuto
             \item Si compili dentro bin il file HelloWorld.java che avete creato
             \begin{itemize}
                 \item Spero che vi ricordiate come si compila un file con \texttt{javac}
-                \item Se il file non compilasse, sistematelo, quindi aggiungetelo alla staging area
-ed eseguite un commit
+                \item Se il file non compilasse, sistematelo, quindi aggiungetelo alla staging area ed eseguite un commit
                 \item Già che ci siamo, eseguite e verificate che funzioni
             \end{itemize}
             \item Si osservi lo stato del repository
-            \item Si crei un file \texttt{.gitignore} che ignori la cartella bin e tutto il suo
-contenuto
+            \item Si crei un file \texttt{.gitignore} che ignori la cartella bin e tutto il suo contenuto
             \item Si osservi lo stato del repository
             \item Si aggiunga \texttt{.gitignore} alla staging area
             \item Si osservi lo stato del repository
