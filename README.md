@@ -1,6 +1,6 @@
 # OOP-Lab
 
-[![Build Status](https://travis-ci.com/APICe-at-DISI/OOP-Lab.svg?token=gFNEyVkpY7xNqwmKzp7q&branch=master)](https://travis-ci.com/APICe-at-DISI/OOP-Lab)
+[![Build and deploy](https://github.com/APICe-at-DISI/OOP-Lab/actions/workflows/build-and-deploy-latex.yml/badge.svg)](https://github.com/APICe-at-DISI/OOP-Lab/actions/workflows/build-and-deploy-latex.yml)
 
 Laboratory of Object Oriented Programming
 
