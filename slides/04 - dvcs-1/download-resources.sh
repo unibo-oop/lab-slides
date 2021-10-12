@@ -13,3 +13,4 @@ download_image() {
 
 download_image "https://git-scm.com/book/en/v2/images/deltas.png"
 download_image "https://git-scm.com/book/en/v2/images/snapshots.png"
+download_image "https://git-scm.com/book/en/v2/images/areas.png"
