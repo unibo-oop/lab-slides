@@ -11,6 +11,8 @@
 
 \date[\today]{\today}
 
+\immediate\write18{./download-resources.sh}
+
 \begin{document}
 
 \frame[label=coverpage]{\titlepage}
@@ -60,12 +62,11 @@ lavoro massivamente parallelo di team sparsi per il mondo.
       \item Drupal (git)
       \item Facebook (Mercurial)
       \item GCC (git)
-      \item Go (Mercurial)
+      \item Go (git)
       \item Java JDK (Mercurial)
       \item Libreoffice (git)
       \item Linux kernel (git)
-      \item Nokia Maps (Mercurial)
-      \item Python (Mercurial)
+      \item Python (git)
       \item VLC Video Player (git)
       \item Wine (git)
       \item le slides e il laboratorio di OOP! (git)
@@ -114,10 +115,23 @@ always correct, argumentative''}}
 alle informazioni che servono a ricostruire qualunque stato precedente.
 	\end{block}
 	\begin{block}{Tracciamento delle differenze}
-		Abilità di registrare le differenze fra diverse versioni di uno o più file. Invece di
+Abilità di registrare le differenze fra diverse versioni di uno o più file. Invece di
 salvare l'intero stato (tutto il contenuto di un file), vengono salvate solo le informazioni
-necessarie a ricostruire il file a partire dal salvataggio precedente
+necessarie a ricostruire il file a partire dal salvataggio precedente.
 	\end{block}
+    \begin{center}
+        \includegraphics[width=\textwidth, height=.77\textheight, keepaspectratio]{img/deltas} \\
+    \end{center}
+	\framebreak
+	\begin{block}{Snapshotting}
+Capacità di salvare lo stato di tutti i file che fanno parte del progetto in una sola versione, creando una fotografia del sistema.
+	\end{block}
+    \begin{center}
+        \includegraphics[width=\textwidth, height=.77\textheight, keepaspectratio]{img/snapshots} \\
+    \end{center}
+\textbf{Nota}: un buon version control system è in grado di esporre sia meccanismi di snapshotting (ad esempio, riporta il repository a tre versioni fa)
+e meccanismi basati sulle differenze (ad esempio, dimmi cos'è cambiato in questo file dall'anno scorso).
+	\framebreak
 	\begin{block}{Commit}
 		Salvataggio dello stato del repository
 	\end{block}
@@ -130,8 +144,6 @@ salvare al prossimo commit
 			\item \textbf{Commit} --- Effettivo salvataggio delle modifiche presenti nella staging
 area
 		\end{enumerate}
-		Nota: Mercurial differisce da Git in questo particolare. Il concetto di staging area in
-Mercurial è assente, lo stato corrente del repository è esso stesso lo stage.
 	\end{block}
 	\begin{block}{Navigazione della storia}
 		Possibilità di tornare ad un qualunque commit (salvataggio) precedente o successivo
