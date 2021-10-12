@@ -7,7 +7,7 @@ download_image() {
     echo $1
     echo $DESTINATION
     if [ ! -f "$DESTINATION" ]; then
-        wget -O "$DESTINATION" "$1"
+        curl -o "$DESTINATION" "$1"
     fi
 }
 
