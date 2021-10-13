@@ -50,6 +50,10 @@ public class SimpleBankAccount implements BankAccount {
         }
     }
 
+    public int getUsrID() {
+        return this.usrID;
+    }
+
     public double getBalance() {
         return this.balance;
     }
