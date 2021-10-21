@@ -71,6 +71,10 @@ Branching e merging}
 			\begin{itemize}
 				\item Come sopra, con visualizzazione grafica dell'evoluzione sulla sinistra
 			\end{itemize}
+			\item \texttt{git log --graph --oneline}
+			\begin{itemize}
+				\item Come sopra, visualizzazione compatta con un commit per linea
+			\end{itemize}
 		\end{itemize}
 	\end{block}
 	\begin{block}{Esercizio}
@@ -118,16 +122,23 @@ agli esercizi
 	\end{block}
 \end{frame}
 
+% \begin{frame}[allowframebreaks,fragile]{Riferirsi a commit}
+% 	\begin{block}{Nomi di commit \texttt{<tree-ish>}}
+% 		Vogliamo poter controllare quali modifiche sono state introdotte da un commit
+% 	\end{block}
+% \end{frame}
+
+
 \begin{frame}[allowframebreaks,fragile]{Visualizzazione delle differenze}
 	\begin{block}{In generale}
 		Vogliamo poter controllare quali modifiche sono state introdotte da un commit
 	\end{block}
 	\begin{block}{In Git}
-		Git può mostrare le modifiche fra intercorse fra due commit col sottocomando \texttt{diff}
+		Git mostra le modifiche intercorse fra due commit col sottocomando \texttt{diff}
 		\begin{itemize}
 			\item \texttt{git diff}
 			\begin{itemize}
-				\item Mostra le differenze fra il working tree e l'ultimo commit, \textit{escludendo il contenuto della staging area}
+				\item Differenze fra working tree ultimo commit \textit{escluso il contenuto in stage}
 			\end{itemize}
 			\item \texttt{git diff FROM}
 			\begin{itemize}
