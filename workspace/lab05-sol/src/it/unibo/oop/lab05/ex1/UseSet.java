@@ -1,10 +1,11 @@
 package it.unibo.oop.lab05.ex1;
 
+import java.util.Set;
 import java.util.TreeSet;
 
 /**
  * Example class using {@link java.util.Set}.
- * 
+ *
  */
 public final class UseSet {
 
@@ -21,10 +22,10 @@ public final class UseSet {
         /*
          * Considering the content of "UseCollection, write a program which, in
          * order:
-         * 
+         *
          * 1) Builds a TreeSet containing Strings
          */
-        final var set = new TreeSet<String>();
+        final Set<String> set = new TreeSet<String>();
         /*
          * 2) Populates such Collection with all the Strings ranging from "1" to
          * "20"
@@ -56,7 +57,7 @@ public final class UseSet {
         /*
          * 6) Verifies if all the numbers left in the set are even
          */
-        final var set2 = new TreeSet<>();
+        final Set<String> set2 = new TreeSet<>();
         for (int i = 2; i <= ELEMS; i += 2) {
             set2.add(Integer.toString(i));
         }

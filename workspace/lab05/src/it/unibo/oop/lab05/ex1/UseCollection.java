@@ -7,7 +7,7 @@ import java.util.Collection;
 
 /**
  * Example class using {@link java.util.Collection}.
- * 
+ *
  */
 public final class UseCollection {
 
@@ -22,9 +22,11 @@ public final class UseCollection {
 
         /*
          * Unless you need to perform specific operations, always use the most
-         * generic interface
+         * generic interface.
+         * If we use `var` instead of specifying Collection<Integer> what type
+         * will `coll` have?
          */
-        final var coll = new ArrayList<>();
+        final Collection<Integer> coll = new ArrayList<>();
         coll.addAll(Arrays.asList(1, 3, 5, 7, 9, 11)); // var-args
         System.out.println(coll); // [1, 3, 5, 7, 9, 11]
 
