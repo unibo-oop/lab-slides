@@ -1,15 +1,16 @@
 package it.unibo.oop.lab05.ex3;
 
-import java.util.HashSet;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
  * Implementation of a warehouse.
- * 
+ *
  */
 public class WarehouseImpl implements Warehouse {
 
-    private final Set<Product> set = new HashSet<>();
+    private final Set<Product> set = newSet();
 
     /**
      * {@inheritDoc}
@@ -22,7 +23,7 @@ public class WarehouseImpl implements Warehouse {
      * {@inheritDoc}
      */
     public Set<String> allNames() {
-        final var s = new HashSet<String>();
+        final Set<String> s = newSet();
         for (final Product p : this.set) {
             s.add(p.getName());
         }
@@ -33,7 +34,7 @@ public class WarehouseImpl implements Warehouse {
      * {@inheritDoc}
      */
     public Set<Product> allProducts() {
-        return new HashSet<>(this.set);
+        return newSetFrom(this.set);
     }
 
     /**
@@ -53,5 +54,13 @@ public class WarehouseImpl implements Warehouse {
             }
         }
         return 0;
+    }
+
+    private static <E> Set<E> newSet() {
+        return new LinkedHashSet<>();
+    }
+
+    private static <E> Set<E> newSetFrom(final Collection<E> origin) {
+        return new LinkedHashSet<>(origin);
     }
 }
