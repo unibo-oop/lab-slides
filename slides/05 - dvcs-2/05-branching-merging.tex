@@ -376,24 +376,24 @@ nothing to commit, working tree clean
         \end{itemize}
     \end{block}
     \begin{block}{In Git}
-        Il sottocomando \texttt{checkout} consente di creare passare di branch in branch, e di crearne di nuovi tramite l'opzione \texttt{-b}
-        \begin{itemize}
-            \item \texttt{git checkout -b branchname}
-            \begin{itemize}
-                \item Crea un nuovo branch di nome \texttt{branchname}
-                \item I nuovi commit apparterranno a quel branch
-            \end{itemize}
-            \item \texttt{git checkout branchname}
-            \begin{itemize}
-                \item Passa dal branch corrente al branch \texttt{branchname}
-                \item Questo in realtà è un ripasso di quanto detto un attimo fa...
-            \end{itemize}
-        \end{itemize}
-        Il sottocomando \texttt{branch} consente di visualizzare i branch
+        Il sottocomando \texttt{branch} consente di creare e cancellare branch
         \begin{itemize}
             \item \texttt{git branch}
             \begin{itemize}
                 \item Stampa i branch, mostrando con \texttt{*} quello corrente.
+            \end{itemize}
+            \item \texttt{git branch <branchname>}
+            \begin{itemize}
+                \item Crea un nuovo branch di nome \texttt{<branchname>}
+                \item Non sposta \texttt{HEAD}
+                \item Di solito viene quindi seguito da un \texttt{checkout}
+                \begin{itemize}
+                    \item \texttt{git branch <branchname> \&\& git checkout <branchname>}
+                \end{itemize}
+            \end{itemize}
+            \item \texttt{git checkout -b <branchname>}
+            \begin{itemize}
+                \item Scorciatoia per il comando composto visto sopra
             \end{itemize}
         \end{itemize}
         L'opzione \texttt{--all} di \texttt{git log} visualizza la storia per tutti i branch
@@ -406,7 +406,7 @@ nothing to commit, working tree clean
         \begin{itemize}
             \footnotesize
             \item Si visualizzino i branch disponibili
-            \item Si crei un nuovo branch di nome \texttt{feature-readme}
+            \item Si crei un nuovo branch di nome \texttt{feature/readme}
             \item Si visualizzino i branch disponibili
             \item Si crei un nuovo file \texttt{README.md}, con del testo semplice
             \item Si aggiunga \texttt{README.md} alla staging area
@@ -425,24 +425,24 @@ nothing to commit, working tree clean
     \end{block}
     \begin{block}{Output atteso}
         \begin{Verbatim}[fontsize=\scriptsize]
-Switched to a new branch 'feature-readme'
+Switched to a new branch 'feature/readme'
         \end{Verbatim}
     \end{block}
     \begin{block}{Output atteso}
         \begin{Verbatim}[fontsize=\scriptsize]
-* feature-readme
+* feature/readme
   master
         \end{Verbatim}
     \end{block}
     \begin{block}{Output atteso}
         \begin{Verbatim}[fontsize=\scriptsize]
-On branch feature-readme
+On branch feature/readme
 nothing to commit, working tree clean
         \end{Verbatim}
     \end{block}
     \begin{block}{Output atteso}
         \begin{Verbatim}[fontsize=\scriptsize]
-On branch feature-readme
+On branch feature/readme
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
@@ -453,7 +453,7 @@ nothing added to commit but untracked files present (use "git add" to track)
     \end{block}
     \begin{block}{Output atteso}
         \begin{Verbatim}[fontsize=\scriptsize]
-On branch feature-readme
+On branch feature/readme
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
 
@@ -463,14 +463,14 @@ Changes to be committed:
     \end{block}
     \begin{block}{Output atteso}
         \begin{Verbatim}[fontsize=\scriptsize]
-[feature-readme 9261ec2] Add README.md file
+[feature/readme 9261ec2] Add README.md file
  1 file changed, 1 insertion(+)
  create mode 100644 README.md
         \end{Verbatim}
     \end{block}
     \begin{block}{Output atteso}
         \begin{Verbatim}[fontsize=\scriptsize]
-On branch feature-readme
+On branch feature/readme
 nothing to commit, working tree clean
         \end{Verbatim}
     \end{block}
@@ -581,17 +581,17 @@ nothing to commit, working tree clean
         \begin{itemize}
             \footnotesize
             \item Si visualizzino i branch disponibili, ci si assicuri di essere su \texttt{master}
-            \item Si faccia il merge di \texttt{feature-readme}
+            \item Si faccia il merge di \texttt{feature/readme}
             \item Si visualizzino i file del repository con \texttt{ls -ahl} (Unix) o \texttt{dir} (Windows)
             \item Si visualizzi la storia dei commit su tutti i branch
-            \item Si elimini il branch \texttt{feature-readme}
+            \item Si elimini il branch \texttt{feature/readme}
             \item Si visualizzino i branch disponibili
             \item Si visualizzi la storia dei commit su tutti i branch
         \end{itemize}
     \end{block}
     \begin{block}{Output atteso}
         \begin{Verbatim}[fontsize=\scriptsize]
-  feature-readme
+  feature/readme
 * master
         \end{Verbatim}
     \end{block}
@@ -634,7 +634,7 @@ drwxr-xr-x 2 danysk users 4.0K Oct 19 16:00 src
 | | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | | Date:   Thu Oct 20 16:15:47 2016 +0200
 | |
-| |     Merge branch 'feature-readme'
+| |     Merge branch 'feature/readme'
 | |
 | * commit 9261ec24cfb56d7cd7ecc67d4eaa8add9c44b3ff
 | | Author: Danilo Pianini <danilo.pianini@unibo.it>
@@ -660,7 +660,7 @@ drwxr-xr-x 2 danysk users 4.0K Oct 19 16:00 src
     \end{block}
     \begin{block}{Output atteso}
         \begin{Verbatim}[fontsize=\scriptsize]
-Deleted branch feature-readme (was 9261ec2).
+Deleted branch feature/readme (was 9261ec2).
         \end{Verbatim}
     \end{block}
     \begin{block}{Output atteso}
@@ -675,7 +675,7 @@ Deleted branch feature-readme (was 9261ec2).
 | | Author: Danilo Pianini <danilo.pianini@unibo.it>
 | | Date:   Thu Oct 20 16:15:47 2016 +0200
 | |
-| |     Merge branch 'feature-readme'
+| |     Merge branch 'feature/readme'
 | |
 | * commit 9261ec24cfb56d7cd7ecc67d4eaa8add9c44b3ff
 | | Author: Danilo Pianini <danilo.pianini@unibo.it>
@@ -713,15 +713,15 @@ Deleted branch feature-readme (was 9261ec2).
     \end{itemize}
     \begin{block}{Nei prossimi laboratori}
         \begin{itemize}
-            \item Impareremo ad usare git per lavorare in modo efficace con un team di persone
+            \item Impareremo qualche strategia per il lavoro in efficace in team
             \item Impareremo a scambiarci commit via Internet
             \item Lo useremo per ottenere le esercitazioni (bye bye zip files)
         \end{itemize}
     \end{block}
     \begin{block}{Nel progetto d'esame}
         \begin{itemize}
-            \item Andrà consegnato sotto forma di repository Git o Mercurial
-            \item L'abilità nell'uso del DVCS sarà parte della valutazione
+            \item Andrà consegnato sotto forma di repository Git
+            \item L'uso corretti di Git sarà parte della valutazione
         \end{itemize}
     \end{block}
 \end{frame}
