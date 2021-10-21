@@ -56,3 +56,8 @@ This requires a reference to the iterator, and, as such, cannot be used from wit
 * Implement the functions in the class `Utilities.java`.
 
 * Verify their behavior by using `UseUtilities`.
+
+For better understanding of the symmetric difference operation between two sets refer to the following diagram (in red the expected result):
+
+![Symmetric difference](https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Venn0110.svg/1024px-Venn0110.svg.png)
+

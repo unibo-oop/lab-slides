@@ -1,26 +1,52 @@
 package it.unibo.oop.lab05.ex5;
 
 import java.util.Collection;
+import java.util.Set;
 
 /**
  *
  */
 public final class Utilities {
 
-    private Utilities() {
+    private Utilities() { }
+
+    /**
+     * @param setA
+     *            a set
+     * @param setB
+     *            another set
+     * @param <X>
+     *            Returned collection type
+     * @return a new set that is the union of the input sets.
+     */
+    public static <X> Set<X> setUnion(final Set<? extends X> setA, final Set<? extends X> setB) {
+        return null;
     }
 
     /**
-     * Copies all the element of the first collection in the second collection.
-     * 
-     * @param source
-     *            the source collection
-     * @param target
-     *            the target collection
+     * @param setA
+     *            a set
+     * @param setB
+     *            another set
      * @param <X>
-     *            Collection type
+     *            Returned collection type
+     * @return a new set that is the intersection of the input sets.
      */
-    public static <X> void copyAll(final Collection<X> source, final Collection<? super X> target) {
+    public static <X> Set<X> setIntersection(final Set<? extends X> setA, final Set<? extends X> setB) {
+        return null;
+    }
+
+    /**
+     * @param setA
+     *            a set
+     * @param setB
+     *            another set
+     * @param <X>
+     *            Returned collection type
+     * @return a new set that is the symmetric difference of the input sets.
+     */
+    public static <X> Set<X> setSymmetricDifference(final Set<? extends X> setA, final Set<? extends X> setB) {
+        return null;
     }
 
     /**
@@ -29,16 +55,16 @@ public final class Utilities {
      * @param <X>
      *            collection type
      * @return a random element from the collection
-     * 
+     *
      */
     public static <X> X getRandomElement(final Collection<X> coll) {
         return null;
     }
 
     /**
-     * @param one
+     * @param first
      *            first collection
-     * @param two
+     * @param second
      *            second collection
      * @param <X>
      *            First collection type
@@ -46,7 +72,7 @@ public final class Utilities {
      *            Second collection type
      * @return a pair with two random elements
      */
-    public static <X, Y> Pair<X, Y> getRandomPair(final Collection<X> one, final Collection<Y> two) {
+    public static <X, Y> Pair<X, Y> getRandomPair(final Collection<X> first, final Collection<Y> second) {
         return null;
     }
 }
