@@ -23,7 +23,7 @@ public final class UseWarehouse {
          *
          * The new solution must comply to these new requirements:
          *
-         * 1) allProducts() returns the products alphabetically ordered. Prefer
+         * 1) allProducts() returns the products lexicographically ordered. Prefer
          * solutions that reuse existing code.
          *
          * 2) The implementation of Product must implement Comparable<Product>.
