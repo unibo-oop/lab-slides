@@ -32,8 +32,7 @@ This requires a reference to the iterator, and, as such, cannot be used from wit
 
 * Follow the comments in `it.unibo.oop.lab05.ex2.UseSetWithOrder`, and create a program that sorts a `TreeSet<String>` using a custom `Comparator<String>` (to be created separately, from scratch).
 
-* Refer to the [java documentation](https://docs.oracle.com/javase/8/docs/api/) to understand how to create a `Comparator` [(interface documentation)](https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html).
-
+* Refer to the [java documentation](https://docs.oracle.com/en/java/javase/17/docs/api/index.html) to understand how to create a `Comparator` [(interface documentation)](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Comparator.html).
 
 ### Warehouse
 
