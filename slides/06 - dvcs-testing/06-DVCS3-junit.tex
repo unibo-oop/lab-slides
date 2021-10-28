@@ -26,7 +26,7 @@
 
 \subsection{Risolvere i merge conflict}
 
-\fr{Conflicted files}{
+\fr{Conflicting files}{
 	\bl{In generale}{
 		Abbiamo visto nell'ultima lezione come sia possibile riunire due flussi di lavoro diversi.
 		%
@@ -288,7 +288,10 @@ public final class HelloWorld {
 	\end{center}
 \end{frame}
 
-\begin{frame}[fragile, allowframebreaks]{Lavorare in parallelo: esempio}
+\begin{frame}[fragile, allowframebreaks]{Lavorare in parallelo}
+    Cosa succede se i due repository evolvono concorrentemente?
+    \framebreak{}
+
 	Situazione iniziale:
 	\begin{center}
 		\includegraphics[width=0.99\textwidth]{img/draw5}
@@ -322,7 +325,7 @@ public final class HelloWorld {
 	Local esegue:\\
 	\texttt{git push indirizzo\_di\_remote\_repo} \\
 	\begin{center}
-		\includegraphics[width=0.8\textwidth]{img/draw10}
+		\includegraphics[width=0.75\textwidth]{img/draw10}
 	\end{center}
 \end{frame}
 
@@ -382,17 +385,36 @@ public final class HelloWorld {
 
 \subsection{Features avanzate e prossimo episodio}
 
-\fr{Aspetti avanzati (cenni)}{
-  \bl{Rebasing}{
-    Procedura alternativa al merge, in cui i due commit, invece di essere fusi, vengono messi in sequenza. Simula una storia ``lineare'' anche dove è in realtà parallela.
+\begin{frame}[fragile, allowframebreaks]{Elenco non completo di aspetti che non abbiamo visto}
+  \bl{Bisection}{
+    Strategia per scoprire bug in maniera automatizzata, testando il software a varie versioni (ricerca dicotomica). Una volta trovata la prima versione dove il bug si verifica, si controllano commit message e le differenze.
   }
   \bl{Cherry picking}{
     Pull di un singolo commit o di un piccolo gruppo di commit. Spesso utilizzato quando si desidera avere un bugfix che si trova in un altro branch, ma non tutto il resto. Molto comune nel backporting delle patch di sicurezza.
   }
-  \bl{Bisection}{
-    Strategia per scoprire bug in maniera automatizzata, testando il software a varie versioni (ricerca dicotomica). Una volta trovata la prima versione dove il bug si verifica, si controllano commit message e le differenze.
+  \bl{Plumbing}{
+    Accesso alla rappresentazione dei dati interna di Git (solitamente per la scrittura di software di automazione).
   }
-}
+  \bl{Rebasing}{
+    Procedura alternativa al merge, in cui i due commit, invece di essere fusi, vengono messi in sequenza. Simula una storia ``lineare'' anche dove è in realtà parallela.
+  }
+  \bl{Signing}{
+    Firma digitale di commit (e tag).
+  }
+  \bl{Squashing}{
+    Compressione di più commit in un solo commit.
+  }
+  \bl{Stashing}{
+    Salvataggio di modifiche senza commit in uno stack dedicato.
+  }
+  \bl{Patching}{
+    Creazione ed applicazione di patch files.
+  }
+  \bl{Tagging}{
+    Associazione di nomi simbolici ai commit (solitamente usato per creare release).
+  }
+  (alcuni di questi aspetti avanzati si toccano in un opzionale all'ultimo anno di magistrale)
+\end{frame}
 
 \begin{frame}{Nel prossimo episodio (verso fine corso)}
 	\begin{itemize}
@@ -408,7 +430,7 @@ public final class HelloWorld {
 	(Tutte cose che discuterete meglio a lezione)
 	\begin{itemize}
 		\item Il testing è importante quanto il sistema stesso
-		\item Si dovrebbero scrivere \textbf{prima} i test, e solo dopo realizzare il sistema
+		\item Subito dopo le interfacce si dovrebbero scrivere i test, e solo dopo implementare il sistema
 		\begin{itemize}
 			\item Consente di dare una specifica formale del comportamento delle entità che si stanno modellando
 			\item Consente di intercettare immediatamente eventuali problemi in fase di sviluppo
@@ -434,7 +456,7 @@ public final class HelloWorld {
 			\item Testano la consistenza interna
 		\end{itemize}
 	\end{block}
-	\begin{block}{Integration testing}
+	\begin{block}{Integration ed end-to-end testing}
 		\begin{itemize}
 			\item Scopo generale: verifica che diverse parti del sistema lavorino bene insieme
 			\item Hanno frequentemente dipendenze da sistemi esterni
