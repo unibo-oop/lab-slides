@@ -1,5 +1,9 @@
 package it.unibo.oop.lab05.ex3;
 
+import static it.unibo.oop.lab05.Assertions.assertContentEqualsInAnyOrder;
+
+import java.util.Set;
+
 /**
  * Simple test class for {@link Warehouse}.
  *
@@ -37,19 +41,26 @@ public final class UseWarehouse {
 
         final Warehouse w = new WarehouseImpl();
         w.addProduct(p3);
+        assertContentEqualsInAnyOrder(Set.of(p3), w.allProducts());
         w.addProduct(p1);
+        assertContentEqualsInAnyOrder(Set.of(p1, p3), w.allProducts());
         w.addProduct(p2);
+        assertContentEqualsInAnyOrder(Set.of(p1, p2, p3), w.allProducts());
 
-        System.out.println(w.allNames());
         System.out.println(w.allProducts());
+        System.out.println(w.allNames());
+        assertContentEqualsInAnyOrder(Set.of(p1.getName(), p2.getName(), p3.getName()), w.allNames());
 
         // Changes to the returned set should not affect the warehouse
         final var modifiedProductSet = w.allProducts();
         modifiedProductSet.remove(p1);
 
         System.out.println(w.allNames());
+        assertContentEqualsInAnyOrder(Set.of(p1.getName(), p2.getName(), p3.getName()), w.allNames());
         System.out.println(w.allProducts());
+        assertContentEqualsInAnyOrder(Set.of(p1, p2, p3), w.allProducts());
         System.out.println(modifiedProductSet);
+        assertContentEqualsInAnyOrder(Set.of(p2, p3), modifiedProductSet);
 
     }
 

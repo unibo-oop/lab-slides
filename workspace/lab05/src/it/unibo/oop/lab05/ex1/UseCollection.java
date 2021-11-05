@@ -1,10 +1,15 @@
 package it.unibo.oop.lab05.ex1;
 
 
+import static it.unibo.oop.lab05.Assertions.assertContentEqualsInAnyOrder;
+import static it.unibo.oop.lab05.Assertions.assertTrue;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
+//CHECKSTYLE: MagicNumber OFF
 /**
  * Example class using {@link java.util.Collection}.
  *
@@ -27,7 +32,7 @@ public final class UseCollection {
          * will `coll` have?
          */
         final Collection<Integer> coll = new ArrayList<>();
-        coll.addAll(Arrays.asList(1, 3, 5, 7, 9, 11)); // var-args
+        coll.addAll(List.of(1, 3, 5, 7, 9, 11)); // var-args
         System.out.println(coll); // [1, 3, 5, 7, 9, 11]
 
         coll.add(13);
@@ -35,12 +40,18 @@ public final class UseCollection {
         coll.add(15);
         coll.remove(7);
         System.out.println(coll);
+        assertContentEqualsInAnyOrder(List.of(1, 3, 5, 9, 11, 13, 15, 15), coll);
 
-        coll.removeAll(Arrays.asList(11, 13, 15));
+        coll.removeAll(List.of(11, 13, 15));
         System.out.println(coll);
-        coll.retainAll(Arrays.asList(1, 2, 3, 4, 5));
+        assertContentEqualsInAnyOrder(List.of(1, 3, 5, 9), coll);
+
+        coll.retainAll(List.of(1, 2, 3, 4, 5));
         System.out.println(coll);
-        System.out.println(coll.contains(3));
+        assertContentEqualsInAnyOrder(List.of(1, 3, 5), coll);
+
+        assertTrue(coll.contains(3));
+
         System.out.println(Arrays.toString(coll.toArray()));
     }
 }

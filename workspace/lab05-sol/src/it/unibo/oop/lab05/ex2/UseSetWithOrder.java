@@ -29,7 +29,7 @@ public final class UseSetWithOrder {
          * 3) Prints the set, which must be ordered
          */
 
-        final var set = new TreeSet<>(new MyStringComparator());
+        final Set<String> set = new TreeSet<>(new MyStringComparator());
         for (int i = 0; i < 100; i++) {
             set.add(Double.toString(Math.random()));
         }

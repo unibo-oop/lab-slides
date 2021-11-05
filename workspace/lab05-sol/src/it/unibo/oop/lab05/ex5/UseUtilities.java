@@ -1,5 +1,7 @@
 package it.unibo.oop.lab05.ex5;
 
+import static it.unibo.oop.lab05.Assertions.assertEquals;
+
 import java.util.Set;
 
 /**
@@ -26,14 +28,6 @@ public final class UseUtilities {
         }
         for (int i = 0; i < 10; i++) {
             System.out.println("Random-extracting: " + Utilities.getRandomPair(setA, setB));
-        }
-    }
-
-    private static void assertEquals(Object expected, Object actual) {
-        if (expected.equals(actual)) {
-            System.out.println("Ok!");
-        } else {
-            System.err.println("ERROR: expected " + expected + " but got " + actual);
         }
     }
 }
