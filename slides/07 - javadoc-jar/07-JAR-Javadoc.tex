@@ -45,20 +45,20 @@
 }
 
 \fr{Il comando \texttt{jar}}{
-	\iz{
-		\item Per creare un file JAR, si può utilizzare direttamente il comando \texttt{jar}
-		\iz{
-			\item Normalmente, tuttavia, ci si avvale del supporto dell'IDE
-			\item O meglio ancora, di strumenti di build automation (Gradle, Maven...)
-			\begin{itemize}
-				\item Non sono parte del corso...
-			\end{itemize}
-		}
-	}
-	\bl{Opzioni importanti del comando \texttt{jar}}{
-	\textbf{\texttt{c}} --- Specifica l'intenzione di creare un JAR file\\
-	\textbf{\texttt{f}} --- Specifica un file di output (se non presente, l'output è rediretto su standard output)\\
-	\textbf{\texttt{m}} --- Specifica l'intenzione di allegare un manifest file personalizzato (se non presente, ne viene creato uno di default, che non specifica alcuna classe da eseguire)
+    \iz{
+        \item Per creare un file JAR, si può utilizzare direttamente il comando \texttt{jar}
+        \iz{
+            \item Normalmente, tuttavia, ci si avvale del supporto dell'IDE
+            \item O meglio ancora, di strumenti di build automation (Gradle, Maven...)
+            \begin{itemize}
+                \item Non sono parte del corso...
+            \end{itemize}
+        }
+    }
+    \bl{Opzioni importanti del comando \texttt{jar}}{
+    \textbf{\texttt{c}} --- Specifica l'intenzione di creare un JAR file\\
+    \textbf{\texttt{f}} --- Specifica un file di output (se non presente, l'output è rediretto su standard output)\\
+    \textbf{\texttt{m}} --- Specifica l'intenzione di allegare un manifest file personalizzato (se non presente, ne viene creato uno di default, che non specifica alcuna classe da eseguire)
 }
 }
 
@@ -157,25 +157,25 @@
 %\imgfr{Generazione di file JAR con Eclipse}{Finish}{0.5}{img/exportjar9}
 
 \fr {Verifica del contenuto di un JAR} {
-	\iz{
-		\item Il tool \texttt{jar} distribuito con il JDK consente di verificare il contenuto del file compresso
-	\iz{
-		\item Aprire un terminale
-		\item Digitare \texttt{jar tf myjar.jar} (dove \texttt{myjar.jar} è il nome del file JAR da verificare
-	}
-	}
+    \iz{
+        \item Il tool \texttt{jar} distribuito con il JDK consente di verificare il contenuto del file compresso
+    \iz{
+        \item Aprire un terminale
+        \item Digitare \texttt{jar tf myjar.jar} (dove \texttt{myjar.jar} è il nome del file JAR da verificare
+    }
+    }
 }
 
 \subsection{Generazione di JAR eseguibili tramite Eclipse}
 
 \fr {Generazione di file JAR eseguibili con Eclipse (1/3)} {
-	\iz {
-		\item Eclipse consente anche di generare file JAR con un file Manifest ad hoc per mettere in esecuzione il progetto software contenuto nell'archivio.
-		\item Come prerequisito, è necessario che esista in Eclipse una ``Run Configuration'' valida per il progetto.
-		\iz{
-			\item Ad esempio se il progetto sia stato eseguito almeno una volta in Eclipse.
-		}
-	}
+    \iz {
+        \item Eclipse consente anche di generare file JAR con un file Manifest ad hoc per mettere in esecuzione il progetto software contenuto nell'archivio.
+        \item Come prerequisito, è necessario che esista in Eclipse una ``Run Configuration'' valida per il progetto.
+        \iz{
+            \item Ad esempio se il progetto sia stato eseguito almeno una volta in Eclipse.
+        }
+    }
 }
 
 \fr {Generazione di file JAR eseguibili con Eclipse (2/3)}{
@@ -323,29 +323,29 @@ cosa, quando, e qual è la versione della classe.
 \section{Preparazione al laboratorio}
 
 \begin{frame}{Modalità di lavoro}
-	\begin{enumerate}
-		\item Nella root del repository c'è un file README.md che descrive le operazioni da svolgere
-		\item Tentare di capire l'esercizio in autonomia
-		\begin{itemize}
-			\item Contattare il docente se qualcosa non è chiaro
-		\end{itemize}
-		\item Risolvere l'esercizio in autonomia
-		\begin{itemize}
-			\item Contattare il docente se si rimane bloccati
-		\end{itemize}
-		\item \textcolor{red}{Utilizzare le funzioni di test presenti nei sorgenti per il testing dell'esercizio}
-		\item Cercare di risolvere autonomamente eventuali piccoli problemi che possono verificarsi durante lo svolgimento degli esercizi
-		\begin{itemize}
-			\item Contattare il docente se, anche dopo aver usato il \textbf{debugger}, non si è riusciti a risalire all'origine del problema
-		\end{itemize}
-		\item \textcolor{red}{Scrivere la documentazione Javadoc per l'esercizio svolto}
-		\item Effettuare almeno un commit ad esercizio completato
-		\begin{itemize}
-			\item Fatene pure quanti ne volete durante l'esercizio stesso
-		\end{itemize}
-		\item \textbf{A esercizio ultimato sottoporre la soluzione al docente}
-		\item Proseguire con l'esercizio seguente
-	\end{enumerate}
+    \begin{enumerate}
+        \item Nella root del repository c'è un file README.md che descrive le operazioni da svolgere
+        \item Tentare di capire l'esercizio in autonomia
+        \begin{itemize}
+            \item Contattare il docente se qualcosa non è chiaro
+        \end{itemize}
+        \item Risolvere l'esercizio in autonomia
+        \begin{itemize}
+            \item Contattare il docente se si rimane bloccati
+        \end{itemize}
+        \item \textcolor{red}{Utilizzare le funzioni di test presenti nei sorgenti per il testing dell'esercizio}
+        \item Cercare di risolvere autonomamente eventuali piccoli problemi che possono verificarsi durante lo svolgimento degli esercizi
+        \begin{itemize}
+            \item Contattare il docente se, anche dopo aver usato il \textbf{debugger}, non si è riusciti a risalire all'origine del problema
+        \end{itemize}
+        \item \textcolor{red}{Scrivere la documentazione Javadoc per l'esercizio svolto}
+        \item Effettuare almeno un commit ad esercizio completato
+        \begin{itemize}
+            \item Fatene pure quanti ne volete durante l'esercizio stesso
+        \end{itemize}
+        \item \textbf{A esercizio ultimato sottoporre la soluzione al docente}
+        \item Proseguire con l'esercizio seguente
+    \end{enumerate}
 \end{frame}
 
 \end{document}
