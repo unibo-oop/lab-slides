@@ -10,7 +10,7 @@
     - I campi sono ora privati: un client della classe non sarà mai influenzato dalla modifica di meri aspetti implementativi
     - Sono stati introdotti dei selettori per ottenere le proprietà dell'oggetto: `getName()`, `getSurname()`, ...
 * Si modifichino similmente le classi `Calculator` e `Smartphone` contenute nel package `oop.lab03.encapsulation`:
-    - Si rendano privati tuttti i campi
+    - Si rendano privati tutti i campi
     - Si introducano selettori opportuni per recuperare o modificare le proprietà di interesse
 
 #### Il metodo `toString()`
@@ -75,7 +75,7 @@
 
 * Si definisca *da zero* una nuova interfaccia `oop.lab03.shapes.interfaces.Shape` che modella una qualunque figura geometrica bidimensionale, che consenta il calcolo di area e perimetro.
 * Si implementi la classe `oop.lab03.shapes.Circle`, che implementa `Shape`, e che modella il cerchio. Si faccia particolare attenzione alla scelta dei campi, scegliendo quelli strettamente necessari.
- * Si ricorda che la classe `java.lang.Math` ha un campo statico pubblico `PI` che contiene il valore di π. Si ricorda inoltre che il perimetro di un cerchio di raggio r può esser calcolato come 2πr, e che l'area del cerchio è calcolabile come πr².
+* Si ricorda che la classe `java.lang.Math` ha un campo statico pubblico `PI` che contiene il valore di π. Si ricorda inoltre che il perimetro di un cerchio di raggio r può esser calcolato come 2πr, e che l'area del cerchio è calcolabile come πr².
 
 #### Poligoni
 
