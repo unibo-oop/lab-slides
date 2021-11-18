@@ -5,7 +5,7 @@ import static it.unibo.oop.lab05.Assertions.assertEquals;
 import java.util.Set;
 
 /**
- * Simple the class to test {it.unibo.oop.lab05.Utilities} class.
+ * Simple class to test {it.unibo.oop.lab05.Utilities} class.
  */
 public final class UseUtilities {
 

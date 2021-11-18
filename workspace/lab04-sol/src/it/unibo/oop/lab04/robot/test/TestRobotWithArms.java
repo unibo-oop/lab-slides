@@ -12,6 +12,9 @@ import static it.unibo.oop.lab04.Assertions.assertEquals;
  */
 public final class TestRobotWithArms {
 
+    // Tolerance for double comparisons, to account for floating-point rounding errors  
+    private static final double EPSILON = 1e-7;
+
     private static final int CYCLES = 10;
 
     private TestRobotWithArms() {
@@ -23,7 +26,7 @@ public final class TestRobotWithArms {
         final String walleItems = walle + "'s items carried";
         final String walleConsumption = walle + "'s consumption is correct";
         assertEquals(wallePosition, new RobotPosition(0, 0), walle.getPosition());
-        assertEquals(walleConsumption, BaseRobot.BATTERY_FULL, walle.getBatteryLevel());
+        assertEquals(walleConsumption, BaseRobot.BATTERY_FULL, walle.getBatteryLevel(), EPSILON);
         double consumptionEmpty = walle.getBatteryLevel();
         for (int i = 0; i < CYCLES; i++) {
             walle.moveRight();

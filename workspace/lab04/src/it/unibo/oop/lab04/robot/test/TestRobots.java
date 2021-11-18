@@ -10,6 +10,9 @@ import static it.unibo.oop.lab04.Assertions.assertEquals;
  */
 public final class TestRobots {
 
+    // Tolerance for double comparisons, to account for floating-point rounding errors
+    private static final double EPSILON = 1e-7;
+
     private TestRobots() {
     }
 
@@ -19,7 +22,7 @@ public final class TestRobots {
         final var r0pos = r0 + " position";
         final var r0bat = r0 + " battery";
         assertEquals(r0pos, new RobotPosition(0, 0), r0.getPosition());
-        assertEquals(r0bat, BaseRobot.BATTERY_FULL, r0.getBatteryLevel());
+        assertEquals(r0bat, BaseRobot.BATTERY_FULL, r0.getBatteryLevel(), EPSILON);
         var steps = stepsDefault;
         while (r0.moveUp()) {
             steps--;
@@ -27,7 +30,7 @@ public final class TestRobots {
         if (steps == 0) {
             assertEquals(r0bat, true, r0.getBatteryLevel() < BaseRobot.MOVEMENT_DELTA_CONSUMPTION);
             r0.recharge();
-            assertEquals(r0bat, BaseRobot.BATTERY_FULL, r0.getBatteryLevel());
+            assertEquals(r0bat, BaseRobot.BATTERY_FULL, r0.getBatteryLevel(), EPSILON);
             steps = stepsDefault;
         } else {
             assertEquals(r0pos, new RobotPosition(0, RobotEnvironment.Y_UPPER_LIMIT), r0.getPosition());
@@ -38,7 +41,7 @@ public final class TestRobots {
         if (steps == 0) {
             assertEquals(r0bat, true, r0.getBatteryLevel() < BaseRobot.MOVEMENT_DELTA_CONSUMPTION);
             r0.recharge();
-            assertEquals(r0bat, BaseRobot.BATTERY_FULL, r0.getBatteryLevel());
+            assertEquals(r0bat, BaseRobot.BATTERY_FULL, r0.getBatteryLevel(), EPSILON);
             steps = stepsDefault;
         } else {
             assertEquals(r0pos,
@@ -51,7 +54,7 @@ public final class TestRobots {
         if (steps == 0) {
             assertEquals(r0bat, true, r0.getBatteryLevel() < BaseRobot.MOVEMENT_DELTA_CONSUMPTION);
             r0.recharge();
-            assertEquals(r0bat, BaseRobot.BATTERY_FULL, r0.getBatteryLevel());
+            assertEquals(r0bat, BaseRobot.BATTERY_FULL, r0.getBatteryLevel(), EPSILON);
             steps = stepsDefault;
         } else {
             assertEquals(r0pos,
