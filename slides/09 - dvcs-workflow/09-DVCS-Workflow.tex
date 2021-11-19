@@ -84,8 +84,15 @@ Definito da \emph{Vincent Driessen} e spiegato in \url{http://nvie.com/posts/a-s
 
 
 \fr{Un modello più semplice} {
+	\begin{itemize}
+	\item Un branch principale
+	\item Feature branch diversi e indipendenti, per sviluppi diversi
+		\iz{
+		\item da sincronizzare attraverso il branch principale (frequentemente per ridurre possibilit{\`a} di conflitti complessi)
+		}
+	\end{itemize}
     \begin{center}
-        \includegraphics[width=0.5\textwidth]{img/visio-workflow-mercurial}
+        \includegraphics[height=0.65\textheight]{img/git-flow-simplified.pdf}
     \end{center}
 }
 
@@ -98,7 +105,7 @@ Definito da \emph{Vincent Driessen} e spiegato in \url{http://nvie.com/posts/a-s
 
 
 \begin{frame}[allowframebreaks]{Il repo ufficiale del vostro progetto}
-	\begin{block}{Workflow raccomandato}
+	\begin{block}{Approccio 1: workflow semplice}
 		\begin{itemize}
 			\item Qualcuno di voi agirà come ``repo maintainer''
 			\item Creerà quindi il repository su GitHub
@@ -106,11 +113,11 @@ Definito da \emph{Vincent Driessen} e spiegato in \url{http://nvie.com/posts/a-s
 			\item Ciascuno lavorerà parallelamente sul proprio repository locale (working copy), condividendo tramite \texttt{push} e \texttt{pull} il proprio lavoro con gli altri
 		\end{itemize}
 	\end{block}
-	\begin{block}{Workflow avanzato}
+	\begin{block}{Approccio 2: workflow avanzato}
 		Ottimo per progetti di grosse dimensioni e/o per team molto eterogenei, dove qualcuno deve assicurarsi della qualità del codice prodotto da altri.
 		\begin{itemize}
 			\item Il maintainer crea il repository, ed è l'unico col diritto di scrittura
-			\item Gli altri membri del team hanno una fork a testa
+			\item Gli altri membri del team hanno una \textbf{fork} a testa
 			\item Ciascuno lavora su una working copy, facendo pull dal repository ``centrale'' e push sulla propria fork
 			\item Quando una feature è completa, o si arriva ad un buon grado di sviluppo, si apre una \textbf{pull request}
 			\item Il maintainer revisiona il codice, assegna eventuali modifiche, e quando è soddisfatto accetta la pull request facendo il merge del codice nel repository principale
@@ -122,13 +129,13 @@ Definito da \emph{Vincent Driessen} e spiegato in \url{http://nvie.com/posts/a-s
 	\end{block}
 \end{frame}
 
-\section{Rudimenti di Gradle}
+\section{Rudimenti di Gradle (e strumenti di automazione della build)}
 
-\subsection{Gestione delle dipendenze}
+\subsection{Il problema della gestione delle dipendenze}
 
 
 
-\begin{frame}[fragile]{Mini challenge}
+\begin{frame}[fragile]{Mini challenge\footnote{Si veda anche: \url{https://github.com/APICe-at-DISI/sample-gradle-project}}}
 \begin{block}{}
 Scrivere un programma che va su Internet, scarica da TheTVDB i titoli degli episodi di Breaking Bad in italiano, e poi li stampa.
 \end{block}
@@ -148,7 +155,6 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public final class PrintBreakingBad {
     private static final String LANG = "it";
     private static final String SERIE = "Breaking Bad";
-    private PrintBreakingBad() { }
     public static void main(String... args) throws ClassNotFoundException, IOException {
         final var externalKeyFile = ClassLoader.getSystemResourceAsStream("TheTVDBAPIKey")
         final var key = IOUtils.toString(externalKeyFile, UTF_8);
@@ -188,18 +194,18 @@ public final class PrintBreakingBad {
 \begin{lstlisting}[basicstyle=\tiny\ttfamily,columns=fullflexible]
 +--- commons-io:commons-io:2.4
 \--- com.omertron:thetvdbapi:1.7
-     +--- org.slf4j:slf4j-api:1.7.9
+     +--- org.slf4j:slf4j-api:1.7.9                            (A1)
      \--- org.yamj:api-common:1.2
           +--- org.apache.commons:commons-lang3:3.3.2
           +--- commons-dbcp:commons-dbcp:1.4
-          |    \--- commons-pool:commons-pool:1.6
-          +--- commons-pool:commons-pool:1.6
-          +--- commons-codec:commons-codec:1.10
+          |    \--- commons-pool:commons-pool:1.6              (B1)
+          +--- commons-pool:commons-pool:1.6                   (B2)
+          +--- commons-codec:commons-codec:1.10                (C1)
           +--- org.apache.httpcomponents:httpclient:4.3.6
           |    +--- org.apache.httpcomponents:httpcore:4.3.3
           |    +--- commons-logging:commons-logging:1.1.3
-          |    \--- commons-codec:commons-codec:1.10
-          \--- org.slf4j:slf4j-api:1.7.9
+          |    \--- commons-codec:commons-codec:1.10           (C2)
+          \--- org.slf4j:slf4j-api:1.7.9                       (A2)
 \end{lstlisting}
     \begin{itemize}
         \item La gestione manuale può diventare dispendiosa
@@ -214,6 +220,9 @@ public final class PrintBreakingBad {
     Non è il solo problema
     \begin{itemize}
         \item Alcune dipendenze ci servono solo a runtime, non a compile time
+        	\begin{itemize}
+        	\item ad esempio, l'implementazione SLF4J da usare per il logging
+        	\end{itemize}
         \item Alcune dipendenze ci servono solo per il testing (JUnit ad esempio)
     \end{itemize}
     Andrebbero creati diversi classpath, uno per ``scope'':
@@ -237,50 +246,107 @@ public final class PrintBreakingBad {
     ...i problemi cominciano a sommarsi...
 \end{frame}
 
-\begin{frame}{Gradle}
-    Build automation tool: automatizza la gestione del progetto
+\subsection{Strumenti di automazione della build}
+
+\begin{frame}{Strumenti di build automation: COSA}
+    \textbf{Build (automation) tool}: automatizza la gestione del progetto
     \begin{itemize}
+    	\item Configurazione progetto
         \item Gestione delle dipendenze
         \begin{itemize}
             \item Cerca le librerie
             \item Le scarica
             \item Prepara il classpath
         \end{itemize}
-        \item Build automation
+        \item Compilazione e generazione artefatti
         \begin{itemize}
-            \item Compila il progetto ed i test
-            \item Genera i jar
-            \item Genera la documentazione
+            \item Compila il codice di produzione e il codice di test
+            \item Genera i JAR
+            \item Genera la documentazione (JavaDoc)
         \end{itemize}
         \item Controllo qualità
         \begin{itemize}
-            \item esegue i test
-            \item verifica la qualità del codice
+            \item Esegue i test
+            \item Verifica la qualità del codice
         \end{itemize}
         \item Deployment
+        	\begin{itemize}
+        	\item Ad esempio, rilascio su un host di librerie
+        	\end{itemize}
     \end{itemize}
+
+In pratica, un build tool è uno strumento che cattura le funzionalità che spesso si trovano negli IDE   
+
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Gradle: configurazione}
-    \begin{itemize}
-        \item La build è definita all'interno di un file \texttt{build.gradle.kts}
-        \begin{itemize}
-            \item Scritto in Kotlin
-            \item Oppure in Groovy (cambia nome in \texttt{build.gradle})
-        \end{itemize}
-        \item Sfrutta il principio \textbf{Convention over Configuration}
-        \begin{itemize}
-            \item Ho un funzionamento di default
-            \item Se fai le cose come me le aspetto non devi dirmi nulla
-            \item Ogni cosa diversa va configurata
-        \end{itemize}
-        \item Supporta vari linguaggi
-        \begin{itemize}
-            \item Fra cui Java
-        \end{itemize}
-        \item Estensibile tramite plugin
-    \end{itemize}
+\begin{frame}[fragile]{Strumenti di build automation: COME}
+
+\begin{itemize}
+\item Esistono vari strumenti di build (anche all'interno di stesse comunit{\`a} di linguaggi)---ad esempio ant, Maven, npm, sbt, ... e \textbf{Gradle}
+\item Uno strumento di build è un \textbf{programma}, da \textbf{installare} localmente\footnote{\url{https://gradle.org/install/}}
+\item  Uno strumento di build si può utilizzare da \textbf{linea di comando} o attraverso l'integrazione in un IDE (se supportato ad es. mediante plugin)
+	\iz{
+	\item Un progetto Gradle può essere importato in Eclipse, ma anche in Netbeans o IntelliJ Idea
+	}
+\begin{lstlisting}
+$ gradle --version
+\end{lstlisting}
+\end{itemize}
+
 \end{frame}
+
+\begin{frame}[allowframebreaks,fragile]{Concetti fondamentali di Gradle}
+
+Uno strumento di build permette di eseguire \textbf{task} su un \textbf{progetto} (collezione di risorse) opportunamente configurato attraverso un \textbf{descrittore di build}
+
+    \begin{block}{Progetto (modulo) e configurazione di build}
+        Un \textbf{progetto Gradle} è l'insieme di cose che volete costruire o fare con Gradle, ed i file che consentono di farlo. Ogni progetto è costituito di \textbf{metadati/impostazioni} (ad es. nome e versione), \textbf{risorse} (ad es. sorgenti), e \textit{task}
+\begin{lstlisting}
+$ mkdir my-project && cd my-project
+$ gradle init
+\end{lstlisting}
+\begin{itemize}
+\item configurazione progetto nel descrittore di build \texttt{./\textbf{build.gradle.kts}}
+\end{itemize}
+    \end{block}
+    \begin{block}{Task}
+        Operazione atomica eseguita sul progetto (ad esempio, compilazione di file Java, o impacchettamento di un jar). Può \textit{dipendere} da altri task (ad esempio, la creazione di un jar eseguibile richiede che la compilazione dei sorgenti sia stata completata).
+\begin{lstlisting}[language=bash]
+# Ottenere la lista dei task disponibili
+gradle tasks --all
+# Esecuzione del task di test
+gradle test
+\end{lstlisting}
+    \end{block}
+    \begin{block}{Plugin}
+        Componente che estende le funzionalità di Gradle, aggiungendo configurazioni e task
+        \begin{itemize}
+        \item Ad esempio il \text{Java Plugin}\footnote{\url{https://docs.gradle.org/current/userguide/java_plugin.html}}
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+%\begin{frame}{Gradle: configurazione}
+%
+%    \begin{itemize}
+%        \item La build è definita all'interno di un file \texttt{build.gradle.kts}
+%        \begin{itemize}
+%            \item Scritto in Kotlin
+%            \item Oppure in Groovy (cambia nome in \texttt{build.gradle})
+%        \end{itemize}
+%        \item Sfrutta il principio \textbf{Convention over Configuration}
+%        \begin{itemize}
+%            \item Ho un funzionamento di default
+%            \item Se fai le cose come me le aspetto non devi dirmi nulla
+%            \item Ogni cosa diversa va configurata
+%        \end{itemize}
+%        \item Supporta vari linguaggi
+%        \begin{itemize}
+%            \item Fra cui Java
+%        \end{itemize}
+%        \item Estensibile tramite plugin
+%    \end{itemize}
+%\end{frame}
 
 \lstdefinelanguage{Kotlin}{
   comment=[l]{//},
@@ -318,16 +384,24 @@ dependencies {
 %implementation("com.google.guava:guava:19.0-rc2")
 \end{block}
 \begin{itemize}
+\item Questo file di build è sufficiente per supportare compilazione, testing, etc. per un progetto Java. Come è possibile?
+	\begin{itemize}
+		\item Gradle sfrutta il principio \textbf{Convention over Configuration} (si veda il directory layout di default in slide successiva)
+	\end{itemize}
+
     \item Se importato in Eclipse come ``Gradle Project'' scarica automaticamente i jar necessari e li mette nel classpath!
+    
+    \item Visualizzazione grafo delle dipendenze: \texttt{\$ gradle dependencies}
+
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Convenzioni Java in Gradle}
-    A meno di non usare configurazione manuale, Gradle si aspetta una struttura un diversa da quella di default in Eclipse
+\begin{frame}[fragile]{Directory layout di default in Gradle (Maven, sbt, ...)}
+    Di default, Gradle si aspetta una \textbf{struttura di progetto in cartelle} diversa da quella di default in Eclipse
     \begin{itemize}
         \item Chi usasse Gradle, dovrebbe optare per questa convenzione, ed importare il progetto in Eclipse dopo averla applicata
         \item È la convenzione che si usa nei progetti ``seri''
-        \item Deriva da uno strumento di build automation antesignano di Gradle (Apache Maven)
+        \item Deriva da uno strumento di build automation antesignano di Gradle (Apache Maven), ed applicata da altri build tool (ad es. sbt)
     \end{itemize}
     \begin{lstlisting}[basicstyle=\tiny\ttfamily,columns=fullflexible]
     |-- src
@@ -341,37 +415,25 @@ dependencies {
     \end{lstlisting}
 \end{frame}
 
-\subsection{Concetti fondamentali}
 
-\begin{frame}[allowframebreaks]{Concetti fondamentali}
-    \begin{block}{Progetto}
-        L'insieme di cose che volete costruire o fare con Gradle, ed i file che consentono di farlo. Ogni progetto è costituito di uno o più \textit{task}
-    \end{block}
-    \begin{block}{Task}
-        Operazione atomica eseguita sul progetto (ad esempio, compilazione di file Java, o impacchettamento di un jar). Può dipendere da altri task (ad esempio, la creazione di un jar eseguibile richiede che la compilazione dei sorgenti sia stata completata).
-    \end{block}
-    \begin{block}{Plugin}
-        Componente che estende le funzionalità di Gradle, aggiungendo configurazioni e task
-    \end{block}
-\end{frame}
-
-\begin{frame}{Gradle: funzionamento}
-    \begin{itemize}
-        \item È possibile chiedere a Gradle di completare un task eseguendo il comando:
-        \begin{itemize}
-            \item \texttt{gradle nomeTask}
-            \item Esegue tutti i task necessari ad eseguire \texttt{nomeTask}, quindi esegue \texttt{nomeTask}
-        \end{itemize}
-        \item I task esistenti si possono visualizzare con:
-        \begin{itemize}
-            \item \texttt{gradle tasks --all}
-        \end{itemize}
-        \item Le dipendenze (anche transitive) possono essere visualizzate con:
-        \begin{itemize}
-            \item \texttt{gradle dependencies}
-        \end{itemize}
-    \end{itemize}
-\end{frame}
+%
+%\begin{frame}{Gradle: funzionamento}
+%    \begin{itemize}
+%        \item È possibile chiedere a Gradle di completare un task eseguendo il comando:
+%        \begin{itemize}
+%            \item \texttt{gradle nomeTask}
+%            \item Esegue tutti i task necessari ad eseguire \texttt{nomeTask}, quindi esegue \texttt{nomeTask}
+%        \end{itemize}
+%        \item I task esistenti si possono visualizzare con:
+%        \begin{itemize}
+%            \item \texttt{gradle tasks --all}
+%        \end{itemize}
+%        \item Le dipendenze (anche transitive) possono essere visualizzate con:
+%        \begin{itemize}
+%            \item \texttt{gradle dependencies}
+%        \end{itemize}
+%    \end{itemize}
+%\end{frame}
 
 \begin{frame}[allowframebreaks]{Gradle wrapper}
     Problema: ma se cambiassero il modo in cui Gradle risolve le dipendenze?
@@ -425,10 +487,10 @@ dependencies {
             \item Deploy automation
             \item ...
         \end{itemize}
-        \item La competenza con Gradle acquisibile da OOP è rudimentale
+        \item La competenza con Gradle acquisibile da OOP è rudimentale: va oltre agli obiettivi di questo corso, ed è ripreso in corsi della magistrale
     \end{itemize}
     \begin{center}
-        \underline{\textbf{Consiglio:} usate Gradle come semplice gestore di dipendenze}
+        \underline{\textbf{Consiglio:} usate Gradle come semplice gestore di dipendenze}\\(lo sfrutteremo per la configurazione di progetti JavaFX)
     \end{center}
 \end{frame}
 
