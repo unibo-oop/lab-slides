@@ -470,6 +470,30 @@ dependencies {
     \end{itemize}
 \end{frame}
 
+\begin{frame}{Gradle e DVCS/git: cosa tracciare?}
+
+\begin{itemize}
+\item I descrittori della build e del progetto vanno tracciati
+	\iz{
+	\item \texttt{build.gradle.kts}, \texttt{settings.gradle.kts}
+	}
+\item I file relativi al gradle wrapper vanno tracciati
+	\iz{
+	\item \texttt{gradlew}, \texttt{gradlew.bat}, e tutta cartella \texttt{gradle/}
+	}
+\item I file generati e generabili attraverso i task gradle \textbf{NON} vanno tracciati
+	\iz{
+	\item cartella \texttt{build/} va in \texttt{.gitignore}
+	}
+\item La cache interna di Gradle \textbf{NON} va tracciata
+	\iz{
+	\item cartella \texttt{.gradle/} va in \texttt{.gitignore}
+	\item NB: \texttt{.gradle/} e \texttt{gradle/} sono cartelle diverse
+	}
+\end{itemize}
+
+\end{frame}
+
 \subsection{Gradle in OOP}
 
 \begin{frame}[fragile]{Uso raccomandato}
