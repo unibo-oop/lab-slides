@@ -89,14 +89,14 @@
 \begin{itemize}
 \item (nota) L'applicazione non termina al completamento del main
 \end{itemize}
-\item Tutti gli eventi relativi a componenti della GUI sono demandati all'EDT
+\item La gestione di tutti gli eventi relativi a componenti della GUI è demandata all'EDT
 \begin{itemize}
 \item Ciascun evento è gestito a condizione che la gestione di tutti quelli precedenti sia terminata
 \item Si presuppone che la gestione di ciascun evento non implichi una situazione di \emph{stallo} dell'applicazione (dell'EDT)
 \end{itemize}
 \item \textbf{Swing non è thread-safe!}
 \begin{itemize}
-\item Si presuppone che l'EDT sia l'unico thread ad eccedere alla GUI
+\item Si presuppone che l'EDT sia l'unico thread ad accedere alla GUI
 \item Si utilizza la libreria \texttt{SwingUtilities} -- i metodi \texttt{invokeLater()} and \texttt{invokeAndWait()} -- per accedere alla GUI da altri thread
 \end{itemize}
 \end{itemize}
@@ -104,24 +104,29 @@
 
 \begin{frame}{Limiti (e svantaggi) di Swing}
 \begin{itemize}\itemsep10pt
-\item L'insieme dei componenti offerti è piuttosto limitato
-\begin{itemize}
-\item \dots se non altro, per le applicazioni moderne
-\item \dots il look-and-feel è old-style
-\item \dots non supportano (tutte) le nuove interfacce touch screen
-\end{itemize}
-\item La gestione dello z-level tra i componenti non è banale
-\item Non supporta forme di validazione per i dati nei componenti di input
+\item Non supporta sviluppo di applicazioni moderne multi-piattaforma (desktop, web, mobile) e multi-dispositivo (ad es. quelli touch)
+\item Non vi è un supporto standard per GUI dichiarative
+\item Non supporta la specifica separata degli stili (CSS)
+\item Non vi è un supporto per animazioni ed effetti
+%\item L'insieme dei componenti offerti è piuttosto limitato
+%\begin{itemize}
+%\item \dots se non altro, per le applicazioni moderne
+%\item \dots il look-and-feel è old-style
+%\item \dots non supportano (tutte) le nuove interfacce touch screen
+%\end{itemize}
+%\item La gestione dello z-level tra i componenti non è banale
 \item Non propone alcun supporto nativo per la gestione del 3D
-\item Ha il limite (e la problematica) della non thread-safeness
-\item Non è possibile separare il controller dalla relativa view per i componenti Swing preesistenti
+\item Il modello non è sempre consistente (ad es. i layout manager non sono nodi)
+%\item Ha il limite (e la problematica) della non thread-safeness
+%\item Non è possibile separare il controller dalla relativa view per i componenti Swing preesistenti
+%\item Non supporta forme di validazione per i dati nei componenti di input
 \end{itemize}
 \end{frame}
 
 \section{Introduzione a JavaFX}
 
 \begin{frame}{JavaFX}
-\begin{itemize}\itemsep20pt
+\begin{itemize}\itemsep10pt
 \item Libreria Java per la creazione di GUI per Rich Applications multi-piattaforma
 \begin{itemize}
 \item Disponibile dal 2008 (v. 1.0 -- 2.2) come libreria stand-alone
@@ -185,14 +190,14 @@
 \end{itemize}
 \end{block}
 %
-\begin{block}{FXML}
+\begin{block}{FXML (e CSS per lo stile)}
 \begin{itemize}
 \item FXML è un linguaggio dichiarativo per definire la GUI di un'applicazione JavaFX-based
 \item Il suo impiego non è indispensabile, ma fortemente consigliato per una buona \emph{separation of concerns}
 \end{itemize}
 \end{block}
 %
-\begin{block}{Interoperabilità con Swing}
+\begin{block}{Interoperabilità bidirezionale con Swing}
 \begin{itemize}
 \item GUI Swing esistenti possono includere componenti JavaFX (cf. \texttt{JFXPanel})
 \item E' possibile inserire componenti Swing in interfacce JavaFX (cf. \texttt{SwingNode})
@@ -203,14 +208,14 @@
 \begin{frame}{JavaFX: Key Features (2/2)}
 \begin{block}{Graphics API}
 \begin{itemize}
-\item Supporto nativo per la grafica 3D
+\item Supporto nativo per la grafica 3D (geometrie, camere, luci)
 \item Abilita la possibilità di disegnare direttamente sulla superficie (canvas) dell'applicazione
 \end{itemize}
 \end{block}
 %
 \begin{block}{Supporto per schermi Multi-touch e Hi-DPI}
 \begin{itemize}
-\item Fornisce il supporto per funzionalità  multi-touch, in funzione della piattaforma in cui l'applicazione è in esecuzione
+\item Fornisce il supporto per funzionalità  multi-touch (cf. \texttt{SwipeEvent}), in funzione della piattaforma in cui l'applicazione è in esecuzione
 \item Garantisce una buona visualizzazione della GUI anche su schermi ad alta densità
 \end{itemize}
 \end{block}
@@ -225,9 +230,9 @@
 %\end{itemize}
 %\end{frame}
 
-\subsection{Key Concepts}
+\subsection{Concetti chiave}
 
-\begin{frame}{Elementi fondamentali (1/3)}
+\begin{frame}{Elementi fondamentali (1/4)}
 \begin{block}{Stage}
 \begin{itemize}
 \item Il contenitore (esterno) dove la GUI sarà visualizzata
@@ -236,7 +241,7 @@
 \item Equivalente al \texttt{JFrame} di Swing
 \item Non è compito del programmatore creare una sua istanza.
 \end{itemize}
-\item \url{https://openjfx.io/javadoc/15/javafx.graphics/javafx/stage/Stage.html}
+\item \url{https://openjfx.io/javadoc/17/javafx.graphics/javafx/stage/Stage.html}
 \end{itemize}
 \end{block}
 
@@ -247,21 +252,25 @@
 \item ogni Stage può avere più istanze diverse di Scene
 \end{itemize}
 \item Di fatto, è un container di Node(s)
-\item \url{https://openjfx.io/javadoc/15/javafx.graphics/javafx/scene/Scene.html}
+\item \url{https://openjfx.io/javadoc/17/javafx.graphics/javafx/scene/Scene.html}
 \end{itemize}
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{Applicazione JavaFX: GUI vuota}
+\begin{frame}[fragile]{Elementi fondamentali (2/4)}
 
+\begin{block}{Application}
 \begin{itemize}
-\item \texttt{Application}: entry point of a JavaFX application
-\\ \url{https://openjfx.io/javadoc/15/javafx.graphics/javafx/application/Application.html}
+\item \texttt{Application}: entry point di un'applicazione JavaFX application
+\item Consente di definire metodi hook sul ciclo di vita dell'applicazione (\texttt{init}, \texttt{start}, \texttt{stop}, ...)
+\\ \url{https://openjfx.io/javadoc/17/javafx.graphics/javafx/application/Application.html}
 \end{itemize}
+\end{block}
+
+Esempio: GUI vuota
 
 \begin{lstlisting}
-public class Main extends javafx.application.Application {
-
+public class App extends javafx.application.Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		Group root = new Group();
@@ -270,27 +279,61 @@ public class Main extends javafx.application.Application {
 		stage.setScene(scene);
 		stage.show();
 	}
-
-	public static void main(String[] args) { launch(args); }
 }
 \end{lstlisting}
 \end{frame}
 
-\begin{frame} {Elementi fondamentali (2/3)}
+\begin{frame}[fragile]{Applicazione JavaFX: runner}
+
+\begin{lstlisting}
+import javafx.application.Application;
+
+public class Main {
+	public static void main(String[] args) { 
+	    // App è la classe definita nella slide precedente
+	    Application.launch(App.class, args); 
+	}   
+}
+\end{lstlisting}
+\begin{itemize}
+\item ATTENZIONE: per motivi tecnici che non approfondiremo, definire il metodo \texttt{main()} chiamante \texttt{launch()} dentro alla classe \texttt{App} (che estende \texttt{Application}) può risultare nel seguente errore: {\color{red}``Error: JavaFX runtime components are missing, and are required to run this application''}
+\item Di conseguenza, si consiglia di definire \texttt{main} in una classe separata da quella dell'applicazione JavaFX
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Ciclo di vita di applicazioni JavaFX}
+
+L'avvio mediante \texttt{Application.launch(App.class)} comporta:
+
+\en{
+\item Avvio del runtime JavaFX %(se necessario)
+\item Istanziazione di \texttt{App} (la classe specificata che estende \texttt{Application}) 
+%\item Calls the init() method
+\item Invocazione medoto \texttt{start(javafx.stage.Stage)}
+\item Attesa terminazione applicazione 
+	\iz{
+	\item mediante \texttt{Platform.exit()}
+	\item chiusura dell'ultima finestra (e \texttt{Platform.isImplicitExit()} è true)
+	}
+\item Invocazione metodo \texttt{stop()}
+}
+\end{frame}
+
+\begin{frame} {Elementi fondamentali (3/4)}
 \begin{block}{Node(s)}
 \begin{itemize}
 \item Un elemento/componente della scena
 \begin{itemize}
 \item Ciascun nodo ha sia la parte di view (aspetto) sia la parte di controller (comportamento)
-\item Hanno proprietà e possono generare eventi
+\item Hanno \textbf{proprietà} (con supporto al \emph{binding}) e possono generare \textbf{eventi}
 \end{itemize}
 \item Possono essere organizzati gerarchicamente
-\item \url{https://openjfx.io/javadoc/15/javafx.graphics/javafx/scene/Node.html}
+\item \url{https://openjfx.io/javadoc/17/javafx.graphics/javafx/scene/Node.html}
 \end{itemize}
 \end{block}
 \end{frame}
 
-\begin{frame}{Elementi fondamentali (3/3)}
+\begin{frame}{Elementi fondamentali (4/4)}
 \begin{figure}
 \includegraphics[width=\textwidth]{img/javafx-app.png}
 \end{figure}
@@ -306,8 +349,12 @@ public class Main extends javafx.application.Application {
 \end{figure}
 \end{frame}
 
-\begin{frame}{Linee guida}
-\begin{enumerate}\itemsep20pt
+\begin{frame}{Linee guida\footnote{Si faccia riferimento al repository di esempio: 
+\url{https://github.com/APICe-at-DISI/sample-javafx-project}
+}}
+
+\begin{enumerate}\itemsep15pt
+
 \item La classe principale di un'applicazione JavaFX deve estendere la classe \texttt{javafx.application.Application}
 \item Il metodo \texttt{main()} deve chiamare il metodo \texttt{launch()}
 \begin{itemize}
@@ -325,7 +372,7 @@ public class Main extends javafx.application.Application {
 \begin{itemize}
 \item relative all'aspetto (es. \texttt{size}, \texttt{posizion}, \texttt{color}, \dots)
 \item relative al contenuto (es. \texttt{text}, \texttt{value}, \dots)
-\item relative al comportamento (es. \texttt{event handlers}, \texttt{controller}, \dots)
+\item relative al comportamento (es. \emph{event handler}, \texttt{controller}, \dots)
 \end{itemize}
 \item Ciascun nodo genera eventi in relazione ad azioni dell'utente
 \end{itemize}
@@ -333,7 +380,7 @@ public class Main extends javafx.application.Application {
 
 \begin{frame}[fragile]{GUI con bottone e label}
 \begin{lstlisting}
-public class Example1 extends Application{
+public class Example1 extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		Label lbl = new Label();
@@ -350,13 +397,35 @@ public class Example1 extends Application{
 		stage.setScene(new Scene(root, 300,250));
 		stage.show();
 	}
-
-	public static void main(String[] args) { launch(args); }
 }
 \end{lstlisting}
+%	public static void main(String[] args) { launch(args); }
 \end{frame}
 
-\begin{frame}{Layouts (1/2)}
+\begin{frame}[fragile]{Binding e proprietà}
+
+\begin{itemize}
+\item Per \textbf{binding} si intende il meccanismo che consente di collegare due proprietà fra loro, in modo unidirezionale o bidirezionale
+\item Una \texttt{Property<T>} è un \texttt{ObservableValue<T>} che può essere collegato/scollegato ad altri osservabili o proprietà attraverso
+\begin{itemize}
+\item \texttt{bind(ObservableValue<? extends T> observable)}
+\item \texttt{bindBidirectional(Property<T> other)}
+\item \texttt{unbind()}
+\item \texttt{unbindBidirectional(Property<T> other)}
+\end{itemize}
+\end{itemize}
+
+\begin{lstlisting}
+final TextField input = new TextField();
+final Label mirror = new Label();
+// connette la label con il valore del textfield
+mirror.textProperty()
+    .bindBidirectional(input.textProperty());
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}{Layouts (1/3)}
 \begin{block}{Group}
 \begin{itemize}
 \item Non impone nessun posizionamento per i componenti figli
@@ -380,7 +449,7 @@ public class Example1 extends Application{
 \url{https://openjfx.io/javadoc/13/javafx.graphics/javafx/scene/layout/package-summary.html}
 \end{frame}
 
-\begin{frame}{Layouts (2/2)}
+\begin{frame}{Layouts (2/3)}
 \begin{figure}
 \includegraphics[width=0.75\textwidth]{img/layouts.png}
 \end{figure}
@@ -391,6 +460,15 @@ public class Example1 extends Application{
 \item Alla lista possono essere aggiunti (\texttt{boolean add(Node e)}) e gestiti i componenti figli
 \end{itemize}
 \end{block}
+\end{frame}
+
+\begin{frame}{Layouts (3/3)}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{img/javafx-layouts.drawio.pdf}
+\end{figure}
+
 \end{frame}
 
 \begin{frame}[fragile]{Eventi}
@@ -411,7 +489,7 @@ public class Example1 extends Application{
 \begin{block}{Es. Gestione del click su un Button Node}
 \begin{lstlisting}
 btn.setOnMouseClicked(event -> {
- lbl.setText("Hello, JavaFX World!");
+    lbl.setText("Hello, JavaFX World!");
 });
 \end{lstlisting}
 \end{block}
@@ -419,7 +497,7 @@ btn.setOnMouseClicked(event -> {
 
 \begin{frame}[fragile]{Esempio con più Stage (1/2)}
 \begin{lstlisting}[basicstyle=\tiny]
-public class Main extends Application {
+public class App extends Application {
 
   @Override
   public final void start(final Stage mainStage) {
@@ -448,8 +526,6 @@ public class Main extends Application {
 
     return root;
   }
-
-  public static void main(final String[] args) { launch(args); }
 }
 \end{lstlisting}
 \end{frame}
@@ -457,31 +533,32 @@ public class Main extends Application {
 \begin{frame}[fragile]{Esempio con più Stage (2/2)}
 \begin{lstlisting}[basicstyle=\tiny]
 public class SecondStage extends Stage {
-  private Label lbl;
+    private Label lbl;
 
-  public SecondStage(final String message) {
-    super();
+    public SecondStage(final String message) {
+        super();
+	    setTitle("New Window...");
+	    setScene(new Scene(initSceneUI(), 400, 200));
+	    lbl.setText(message);
+    }
 
-	setTitle("New Window...");
+    private Parent initSceneUI() {
+        lbl = new Label();
+	    FlowPane root = new FlowPane();
+	    root.setAlignment(Pos.CENTER);
+	    root.getChildren().add(lbl);
+	    return root;
+    }
+}
 
-	setScene(new Scene(initSceneUI(), 400, 200));
-
-	lbl.setText(message);
-  }
-
-  private Parent initSceneUI() {
-    lbl = new Label();
-
-	FlowPane root = new FlowPane();
-	root.setAlignment(Pos.CENTER);
-
-	root.getChildren().add(lbl);
-
-	return root;
-  }
+public class Main {
+    public static void main(final String[] args) {
+        Application.launch(App.class, args); 
+    }
 }
 \end{lstlisting}
 \end{frame}
+
 
 
 
@@ -833,158 +910,83 @@ private static Parent initJavaFXSceneUI() {
 \end{frame}
 
 
-\begin{frame}[fragile]{JavaFX e Gradle}
-\begin{columns}[t]
-\begin{column}{0.3\textwidth}
-\begin{figure}
-\includegraphics[width=\textwidth]{img/javafx-gradle-project.png}
-\end{figure}
-\end{column}
-\begin{column}{0.7\textwidth}
-\begin{block}{\texttt{build.gradle.kts} (sintassi Kotlin)}
-
-\begin{lstlisting}[basicstyle=\tiny]
-plugins {
-    id("application")
-    id("org.openjfx.javafxplugin") version "0.0.9"
-}
-
-repositories {
-    mavenCentral()
-}
-
-javafx {
-    version = "15"
-    modules("javafx.controls", "javafx.fxml", "javafx.swing")
-}
-
-application {
-  mainClassName = "application.Main"
-}
-\end{lstlisting}
-
-\end{block}
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}{Esecuzione dell'applicazione da Eclipse IDE}
-\begin{itemize}\itemsep20pt
-\item Si utilizza il task (predefinito) \emph{run} di Gradle -- accessibile dalla View \emph{Gradle Tasks} di Eclipse
-\begin{figure}
-\includegraphics[width=0.9\textwidth]{img/gradle-tasks-view.png}
-\end{figure}
-\end{itemize}
-\begin{itemize}
-\item Qualora si voglia utilizzare il debugger, o eseguire l'applicazione in \emph{modo tradizionale}, è necessario specificare alcuni argomenti per la VM nella run configuration
-\begin{itemize}
-\item \texttt{--module-path \$\{project\_classpath:<PROJ-NAME>\}\\--add-modules javafx.controls,javafx.fxml}
-\item Se JavaFX non è incluso tra le librerie del progetto, il percorso fornito a \texttt{--module-path} deve puntare alla cartella ove è presente l'SDK JavaFX
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]{Generazione di JAR eseguibile per applicazione JavaFX}
-
-\begin{itemize}
-\item Si raccomanda l'uso di Gradle per la generazione di un ``fat JAR'', ovvero di un JAR che contiene al suo interno tutte le dipendenze necessarie a runtime
-\item Occorre configurare il task \texttt{jar} come segue:
-\begin{lstlisting}[basicstyle=\tiny]
-// SINTASSI KOTLIN (build.gradle.kts)
-tasks.withType<Jar> {
-  manifest { attributes["Main-Class"] = "it.unibo.samplejavafx.App" }
-
-  from(sourceSets.main.get().output)
-    dependsOn(configurations.runtimeClasspath)
-    from({
-      configurations["runtimeClasspath"].map { if(it.isDirectory) it else zipTree(it) }
-    })
-}
-
-// SINTASSI GROOVY (build.gralde)
-jar {
-    manifest { attributes 'Main-Class': 'myapp.Launcher' }
-    from {
-        configurations.runtimeClasspath.collect {
-        	it.isDirectory() ? it : zipTree(it)
-} } }
-\end{lstlisting}
-\end{itemize}
-\end{frame}
 
 \begin{frame}[fragile]{\texttt{build.gradle.kts} (completo -- sintassi Kotlin)}
 \begin{lstlisting}[basicstyle=\tiny]
 plugins {
-  java
-  application
-  id("org.openjfx.javafxplugin") version "0.0.9"
+    java // add support for Java
+    // Apply the application plugin to add support for building a CLI application
+    // You can run your app via task "run": ./gradlew run
+    application
+    // Adds task 'shadowJar' to export a runnable jar.
+    // The runnable jar will be found in build/libs/projectname-all.jar
+    id("com.github.johnrengelman.shadow") version "5.2.0"
 }
 
-repositories { jcenter() }
+repositories { mavenCentral() }
+
+val javaFXModules = listOf( "base", "controls", "fxml", "swing", "graphics")
+val supportedPlatforms = listOf("linux", "mac", "win") // All required for OOP
+val javaFxVersion = 17
 
 dependencies {
-  /* for cross-platform jar: */
-  runtimeOnly("org.openjfx:javafx-graphics:$javafx.version:linux")
+    for (platform in supportedPlatforms) {
+        for (module in javaFXModules) {
+            implementation("org.openjfx:javafx-$module:$javaFxVersion:$platform")
+        }
+    }
+    // JUnit API and testing engine
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.2")
 }
 
-javafx {
-  version = "14"
-  modules("javafx.controls", "javafx.fxml")
-}
+tasks.withType<Test> { useJUnitPlatform() } // Enables JUnit 5 Jupiter module 
 
-application.mainClassName = "application.Main"
-
-tasks.withType<Jar> {
-  manifest {
-    attributes["Main-Class"] = "application.Main"
-  }
-
-  from(sourceSets.main.get().output)
-    dependsOn(configurations.runtimeClasspath)
-    from({
-      configurations["runtimeClasspath"].map { if(it.isDirectory) it else zipTree(it) }
-    })
-}
+application { mainClassName = "it.unibo.samplejavafx.App" }
 \end{lstlisting}
+%java {
+%    sourceCompatibility = JavaVersion.VERSION_11
+%    targetCompatibility = JavaVersion.VERSION_11
+%}
 \end{frame}
 
 
-\begin{frame}[fragile]{\texttt{build.gradle} (completo -- sintassi Groovy)}
-\begin{lstlisting}[basicstyle=\tiny]
-plugins {
-  id 'application'
-  id 'org.openjfx.javafxplugin' version '0.0.9'
-}
-
-repositories {
-  mavenCentral()
-}
-
-dependencies {
-  /* for cross-platform jar: */
-  runtimeOnly "org.openjfx:javafx-graphics:$javafx.version:win"
-  runtimeOnly "org.openjfx:javafx-graphics:$javafx.version:linux"
-  runtimeOnly "org.openjfx:javafx-graphics:$javafx.version:mac"
-}
-
-javafx {
-  version = "14"
-  modules = [ 'javafx.controls', 'javafx.fxml' ]
-}
-
-mainClassName = 'application.Main'
-
-jar {
-  manifest {
-    attributes 'Main-Class': 'application.Main'
-  }
-
-  from {
-    configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
-  }
-}
-\end{lstlisting}
-\end{frame}
+%\begin{frame}[fragile]{\texttt{build.gradle} (completo -- sintassi Groovy)}
+%\begin{lstlisting}[basicstyle=\tiny]
+%plugins {
+%  id 'application'
+%  id 'org.openjfx.javafxplugin' version '0.0.9'
+%}
+%
+%repositories {
+%  mavenCentral()
+%}
+%
+%dependencies {
+%  /* for cross-platform jar: */
+%  runtimeOnly "org.openjfx:javafx-graphics:$javafx.version:win"
+%  runtimeOnly "org.openjfx:javafx-graphics:$javafx.version:linux"
+%  runtimeOnly "org.openjfx:javafx-graphics:$javafx.version:mac"
+%}
+%
+%javafx {
+%  version = "14"
+%  modules = [ 'javafx.controls', 'javafx.fxml' ]
+%}
+%
+%mainClassName = 'application.Main'
+%
+%jar {
+%  manifest {
+%    attributes 'Main-Class': 'application.Main'
+%  }
+%
+%  from {
+%    configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+%  }
+%}
+%\end{lstlisting}
+%\end{frame}
 
 
 \subsection{Scene Builder}
