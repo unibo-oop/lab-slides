@@ -241,7 +241,7 @@
 \item Equivalente al \texttt{JFrame} di Swing
 \item Non è compito del programmatore creare una sua istanza.
 \end{itemize}
-\item \url{https://openjfx.io/javadoc/17/javafx.graphics/javafx/stage/Stage.html}
+\item \url{https://openjfx.io/javadoc/15/javafx.graphics/javafx/stage/Stage.html}
 \end{itemize}
 \end{block}
 
@@ -252,7 +252,7 @@
 \item ogni Stage può avere più istanze diverse di Scene
 \end{itemize}
 \item Di fatto, è un container di Node(s)
-\item \url{https://openjfx.io/javadoc/17/javafx.graphics/javafx/scene/Scene.html}
+\item \url{https://openjfx.io/javadoc/15/javafx.graphics/javafx/scene/Scene.html}
 \end{itemize}
 \end{block}
 \end{frame}
@@ -263,7 +263,7 @@
 \begin{itemize}
 \item \texttt{Application}: entry point di un'applicazione JavaFX application
 \item Consente di definire metodi hook sul ciclo di vita dell'applicazione (\texttt{init}, \texttt{start}, \texttt{stop}, ...)
-\\ \url{https://openjfx.io/javadoc/17/javafx.graphics/javafx/application/Application.html}
+\\ \url{https://openjfx.io/javadoc/15/javafx.graphics/javafx/application/Application.html}
 \end{itemize}
 \end{block}
 
@@ -328,7 +328,7 @@ L'avvio mediante \texttt{Application.launch(App.class)} comporta:
 \item Hanno \textbf{proprietà} (con supporto al \emph{binding}) e possono generare \textbf{eventi}
 \end{itemize}
 \item Possono essere organizzati gerarchicamente
-\item \url{https://openjfx.io/javadoc/17/javafx.graphics/javafx/scene/Node.html}
+\item \url{https://openjfx.io/javadoc/15/javafx.graphics/javafx/scene/Node.html}
 \end{itemize}
 \end{block}
 \end{frame}
@@ -927,7 +927,7 @@ repositories { mavenCentral() }
 
 val javaFXModules = listOf( "base", "controls", "fxml", "swing", "graphics")
 val supportedPlatforms = listOf("linux", "mac", "win") // All required for OOP
-val javaFxVersion = 17
+val javaFxVersion = 15
 
 dependencies {
     for (platform in supportedPlatforms) {
