@@ -66,3 +66,9 @@
 	path = slides/13 - report-template
 	url = https://github.com/APICe-at-DISI/OOP-report-template.git
 	branch = master
+[submodule "workspace/sample-gradle-project"]
+	path = workspace/sample-gradle-project
+	url = git@github.com:APICe-at-DISI/sample-gradle-project.git
+[submodule "workspace/sample-javafx-project"]
+	path = workspace/sample-javafx-project
+	url = git@github.com:APICe-at-DISI/sample-javafx-project.git
