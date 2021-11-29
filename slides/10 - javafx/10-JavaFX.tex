@@ -498,7 +498,7 @@ btn.setOnMouseClicked(event -> {
 \end{frame}
 
 \begin{frame}[fragile]{Esempio con più Stage (1/2)}
-\begin{lstlisting}[basicstyle=\tiny]
+\begin{lstlisting}[basicstyle=\tiny\ttfamily]
 public class App extends Application {
 
   @Override
@@ -533,7 +533,7 @@ public class App extends Application {
 \end{frame}
 
 \begin{frame}[fragile]{Esempio con più Stage (2/2)}
-\begin{lstlisting}[basicstyle=\tiny]
+\begin{lstlisting}[basicstyle=\tiny\ttfamily]
 public class SecondStage extends Stage {
     private Label lbl;
 
@@ -668,7 +668,7 @@ Parent root = FXMLLoader.load(
 
 \begin{frame}[fragile]{FXMLLoader (esempio completo)}
 \begin{lstlisting}
-public class Example3 extends Application{
+public class Example3 extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -728,7 +728,7 @@ btn.setOnMouseClicked(handler -> {
 
 \begin{frame}[fragile]{Esempio Completo (1/3) -- Application}
 \begin{lstlisting}
-public class CompleteExample extends Application{
+public class CompleteExample extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -816,13 +816,13 @@ public class UIController {
 
 \begin{frame}[allowframebreaks,fragile]{Usare JavaFX in applicazioni Swing: esempio}
 
-\begin{lstlisting}[basicstyle=\tiny]
+\begin{lstlisting}[basicstyle=\tiny\ttfamily]
 public static void main(final String[] args){
   initMainJFrame(new JFrame("JFrame GUI"));
 }
 \end{lstlisting}
 
-\begin{lstlisting}[basicstyle=\tiny]
+\begin{lstlisting}[basicstyle=\tiny\ttfamily]
 private static void initMainJFrame(final JFrame frame) {
   final JButton button = new JButton();
   button.setText("Launch JavaFX Scene");
@@ -848,7 +848,7 @@ private static void initMainJFrame(final JFrame frame) {
 }
 \end{lstlisting}
 
-\begin{lstlisting}[basicstyle=\tiny]
+\begin{lstlisting}[basicstyle=\tiny\ttfamily]
 private static Parent initJavaFXSceneUI() {
   final Label lbl = new Label();
   lbl.setText("Hello, JavaFX World!");
@@ -864,6 +864,27 @@ private static Parent initJavaFXSceneUI() {
   root.getChildren().add(btn);
 
   return root;
+}
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]{Usare Swing in applicazioni JavaFX}
+
+\begin{lstlisting}[basicstyle=\scriptsize\ttfamily]
+public final class JavaFXAppWithSwing extends Application {
+    @Override
+    public void start(final Stage primaryStage) throws Exception {
+        final SwingNode msg = new SwingNode();
+        SwingUtilities.invokeLater(() ->
+            msg.setContent(new JLabel("Hello by Swing JLabel")));
+        HBox pane = new HBox();
+        pane.getChildren().add(msg);
+        primaryStage.setScene(new Scene(pane));
+        primaryStage.show();
+    }
+    
+    // ...
 }
 \end{lstlisting}
 
@@ -911,11 +932,11 @@ private static Parent initJavaFXSceneUI() {
 %\end{figure}
 %\end{frame}
 
-\subsection{Esecuzione di applicazioni JavaFX}
+%\subsection{Esecuzione di applicazioni JavaFX}
 
-\begin{frame}{JavaFX in Eclipse}
+\begin{frame}{JavaFX in Eclipse via Gradle ed esportazione runnable JAR}
 \begin{itemize}\itemsep10pt
-\item Da Java 11, JavaFX deve essere importato nel progetto come libreria esterna
+\item Da Java 11, JavaFX deve essere importato nel progetto come \textbf{libreria esterna}
 \item Due alternative:
 \begin{enumerate}
 \item Si aggiungono tutti i JAR della libreria direttamente nel progetto
@@ -925,13 +946,19 @@ private static Parent initJavaFXSceneUI() {
 \item Si specificano le dipendenze via \textbf{Gradle}
 \end{enumerate}
 \item Oggigiorno, è preferibile optare per la seconda alternativa
+	\iz{
+	\item NOTA: l'export di un Runnable JAR con Eclipse non consente di impacchettare librerie esterne (come quelle configurate quando si importa un progetto Gradle)
+	\item Per creare il runnable JAR comprendente tutte le dipendenze dell'applicazione, si usi il plugin Gradle \textbf{shadow} e il relativo task \textbf{shadowJar}
+	}
+\item Si faccia riferimento a 
+\url{https://github.com/APICe-at-DISI/sample-javafx-project}
 \end{itemize}
 \end{frame}
 
 
 
 \begin{frame}[fragile]{\texttt{build.gradle.kts} (completo -- sintassi Kotlin)}
-\begin{lstlisting}[basicstyle=\tiny]
+\begin{lstlisting}[basicstyle=\tiny\ttfamily]
 plugins {
     java // add support for Java
     // Apply the application plugin to add support for building a CLI application
@@ -1008,7 +1035,7 @@ application { mainClassName = "it.unibo.samplejavafx.App" }
 %\end{frame}
 
 
-\subsection{Scene Builder}
+\section{Scene Builder}
 
 \begin{frame}{Scene Builder 2.0}
 \begin{itemize}\itemsep10pt
