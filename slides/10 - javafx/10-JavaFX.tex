@@ -309,7 +309,7 @@ L'avvio mediante \texttt{Application.launch(App.class)} comporta:
 \item Avvio del runtime JavaFX %(se necessario)
 \item Istanziazione di \texttt{App} (la classe specificata che estende \texttt{Application}) 
 %\item Calls the init() method
-\item Invocazione medoto \texttt{start(javafx.stage.Stage)}
+\item Invocazione metodo \texttt{start(javafx.stage.Stage)}
 \item Attesa terminazione applicazione 
 	\iz{
 	\item mediante \texttt{Platform.exit()}
@@ -322,12 +322,14 @@ L'avvio mediante \texttt{Application.launch(App.class)} comporta:
 \begin{frame} {Elementi fondamentali (3/4)}
 \begin{block}{Node(s)}
 \begin{itemize}
-\item Un elemento/componente della scena
-\begin{itemize}
+\item Un \textbf{nodo} è un elemento/componente della scena
 \item Ciascun nodo ha sia la parte di view (aspetto) sia la parte di controller (comportamento)
 \item Hanno \textbf{proprietà} (con supporto al \emph{binding}) e possono generare \textbf{eventi}
-\end{itemize}
 \item Possono essere organizzati gerarchicamente
+	\iz{
+	\item La sottoclasse \texttt{Parent} rappresenta nodi che possono avere figli (recuperabili via \texttt{getChildren()})
+	}
+\item Un nodo ha un ID univoco, coordinate locali, può subire trasformazioni (ad es. rotazione), ha un bounding rectangle associato, e può essere stilizzato via CSS
 \item \url{https://openjfx.io/javadoc/15/javafx.graphics/javafx/scene/Node.html}
 \end{itemize}
 \end{block}
@@ -560,6 +562,18 @@ public class Main {
 \end{frame}
 
 
+\begin{frame}{JavaFX e concorrenza}
+
+\begin{itemize}
+\item Similarmente a Swing, JavaFX
+ ha un singolo thread che gestisce il processing degli eventi: \textbf{JavaFX Application Thread} (JFXAT)
+\item Tutte le modifiche allo \emph{scene graph} devono essere effettuate su JFXAT
+\item Nota: è opportuno conoscere quali metodi hook dell'\texttt{Application} sono eseguiti (ad es. \texttt{start}) oppure no (ad es. \texttt{init}) su JFXAT
+\item \textbf{Platform.runLater(Runnable)}
+ accoda il runnable nella coda degli eventi del JFXAT
+\end{itemize}
+
+\end{frame}
 
 
 \section{FXML}
@@ -596,7 +610,8 @@ public class Main {
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<VBox xmlns="http://javafx.com/javafx" 
+      xmlns:fx="http://javafx.com/fxml">
   <children>
     <Button fx:id="btn"
     	alignment="CENTER"
@@ -645,7 +660,8 @@ public class Main {
 \item Si suppone che nel progetto sia presente il file \texttt{main.fxml} contenente una descrizione valida per la GUI da caricare
 \end{itemize}
 \begin{lstlisting}
-Parent root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/main.fxml"));
+Parent root = FXMLLoader.load(
+  ClassLoader.getSystemResource("layouts/main.fxml"));
 \end{lstlisting}
 \end{block}
 \end{frame}
@@ -656,7 +672,7 @@ public class Example3 extends Application{
 
 	@Override
 	public void start(Stage stage) throws Exception {
-Parent root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/main.fxml"));
+	    Parent root = FXMLLoader.load(ClassLoader.getSystemResource("layouts/main.fxml"));
 
 		Scene scene = new Scene(root, 500, 250);
 
@@ -697,11 +713,14 @@ btn.setOnMouseClicked(handler -> {
 \begin{itemize}\itemsep20pt
 \item Per una corretta separazione dei contenuti (e una buona implementazione del pattern MVC in JavaFX) è opportuno specificare un oggetto \emph{controller} per ciascuna GUI
 \begin{itemize}
-\item Il parent component della GUI deve definire l'attributo \texttt{fx:controller} con valore riferito al percorso completo della classe che fungerà da controller
+\item Il parent component della GUI deve definire l'attributo \texttt{fx:controller} con valore riferito al nome pienamente qualificato della classe che fungerà da controller
 \end{itemize}
 \item Mediante l'annotazione \texttt{@FXML} è possibile recuperare:
 \begin{itemize}
-\item I riferimenti ai vari nodi (senza utilizzare il meccanismo di lookup)
+\item I riferimenti ai vari nodi
+	\iz{
+	\item senza utilizzare esplicitamente il meccanismo di lookup---usando la corrispondenza tra l'ID del nodo nel file FXML e il nome della variabile d'istanza annotata nella classe controller
+	}
 \item Associare gli event handler ai vari eventi dei componenti
 \end{itemize}
 \end{itemize}
