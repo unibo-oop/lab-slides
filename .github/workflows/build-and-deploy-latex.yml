@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: danysk/action-checkout@0.1.0
+        uses: danysk/action-checkout@0.2.1
       - name: Autotag
         uses: DanySK/semver-autotag-action@master
       - name: Remove PMD/Checkstyle/Spotbugs configuration from the first labs
