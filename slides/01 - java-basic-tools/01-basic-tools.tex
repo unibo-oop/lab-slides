@@ -25,7 +25,7 @@
         \begin{description}
             \item[JRE] -- Java Runtime Environment: solo interprete
             \item[JDK] -- JRE + tool per lo sviluppo di programmi (e.g. compilatore)
-            \item[Java EE (dismesso)] -- Java Enterprise Edition: JDK + set esteso di librerie
+            \item[Jakarta EE] -- (ex Java Enterprise Edition) JDK + set esteso di librerie
         \end{description}
     }
 
@@ -45,10 +45,10 @@
 
 \fr{Java Development Kit (JDK)}{
     \begin{itemize}
-        \item Java 11 -- (pen)ultima versione LTS del JDK
+        \item Java 17 -- (pen)ultima versione LTS del JDK
         \begin{itemize}
             \item Esistono varie versioni e vari distributori (OpenJDK, Oracle JDK, Eclipse OpenJ9, Amazon, Graal, Zulu\dots)
-            \item OpenJDK -- implementazione non commerciale, reference version
+            \item \textbf{OpenJDK} -- implementazione non commerciale, \emph{reference version}
             \begin{itemize}
                 \item Per capire se una JVM si comporta correttamente, si confronta il suo comportamento con OpenJDK.
             \end{itemize}
@@ -56,15 +56,16 @@
     \end{itemize}
     \begin{block}{Riferimenti per il corso}
         \begin{itemize}
-            \item Java 11, distribuita da OpenJDK
-            \item Adoptium: riferimento per il download del JDK
+            %\item Java 11, distribuita da OpenJDK
+            \item Java 17, distribuita da Adoption %OpenJDK            
+            %\item Adoptium: riferimento per il download del JDK
             \begin{itemize}
                 \item \texttt{https://adoptium.net/}
             \end{itemize}
             \item Chi lo desidera può sperimentare con le versioni più recenti
             \begin{itemize}
-            \item L'ultima al momento è Java 17, nuova LTS
-            \item Attenzione: la compatibilità è solo all'indietro
+            %\item L'ultima al momento è Java 17, nuova LTS
+            \item NB: la compatibilità è solo all'indietro (\emph{backwards compatibility}): è ok eseguire, su nuove JVM, applicazioni compilate per vecchie JVM
             \item \dots{}e spesso non completa\dots{}
             \end{itemize}
         \end{itemize}
