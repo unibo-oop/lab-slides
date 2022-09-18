@@ -18,14 +18,45 @@
     \tableofcontents[]
 \end{frame}
 
-\section{Java Development Kit (JDK) Overview}
+\section{Le piattaforme Java e il Java Development Kit (JDK)}
 
-\fr{Java Development Kit (JDK)}{
-    \bl{Esistono diverse distribuzioni di Java}{
+\begin{frame}{Tipi di piattaforme Java}
+
+\begin{block}{Java platform}
+\begin{itemize}
+\item \textbf{Java SE} (Java Platform, Standard Edition) -- per applicazioni general-purpose su computer e server
+\item \textbf{Jakarta EE} (ex Java Platform, Enterprise Edition) -- per applicazioni ``enterprise'' (mission-critical)
+\item \textbf{Java SE Embedded} -- per applicazioni embedded
+\item \textbf{Java ME Embedded} (Java Platform, Micro Edition) -- per dispositivi resource-constrained
+%\item \textbf{Java Card} -- per smart card
+\end{itemize}
+\end{block}
+
+\begin{block}{Specifiche vs. implementazioni}
+\begin{itemize}
+\item Una piattaforma Java include \textbf{specifiche} e \textbf{implementazioni (di riferimento)} per
+	\begin{itemize}
+	\item ambiente d'esecuzione (macchina virtuale)
+	\item linguaggio (Java) e librerie (API)
+	\item strumenti di sviluppo (SDK)
+	\end{itemize}
+%\item \textbf{Java SE}: Fornisce la specifica per:
+%	\begin{itemize}
+%	\item \textbf{Java Runtime Environment (JRE)}: ambiente d'esecuzione, che include la \textbf{Java Virtual Machine (JVM)} e la \textbf{Java Class Library (JCL)} per funzionalità \emph{OS-independent} caricabili a runtime
+%	\item \textbf{Java Development Kit (JDK)}: JRE + tool per sviluppo di programmi (e.g. compilatore)
+%	\end{itemize}
+%\item \textbf{Jakarta EE}: Estende Java SE con ulteriori API % per lo sviluppo di applicazioni enterprise 
+%(e.g. Security, JSON)
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+\fr{Java SE Development Kit (JDK)}{
+    \bl{Java Development Kit (JDK)}{
         \begin{description}
             \item[JRE] -- Java Runtime Environment: solo interprete
             \item[JDK] -- JRE + tool per lo sviluppo di programmi (e.g. compilatore)
-            \item[Jakarta EE] -- (ex Java Enterprise Edition) JDK + set esteso di librerie
         \end{description}
     }
 
@@ -45,22 +76,23 @@
 
 \fr{Java Development Kit (JDK)}{
     \begin{itemize}
-        \item Java 17 -- (pen)ultima versione LTS del JDK
+        \item Java 17 -- ultima versione LTS del JDK
         \begin{itemize}
-            \item Esistono varie versioni e vari distributori (OpenJDK, Oracle JDK, Eclipse OpenJ9, Amazon, Graal, Zulu\dots)
-            \item \textbf{OpenJDK} -- implementazione non commerciale, \emph{reference version}
+            \item Esistono varie versioni e implementazioni (OpenJDK, Oracle JDK, Eclipse OpenJ9, Amazon, Graal, Zulu\dots)
+            \item \textbf{OpenJDK} -- implementazione \emph{open-source}, \textbf{reference version}
             \begin{itemize}
                 \item Per capire se una JVM si comporta correttamente, si confronta il suo comportamento con OpenJDK.
             \end{itemize}
+            \item Esistono vari distributori (e.g. Adoptium, Oracle) che offrono \emph{binari pre-built} dell'implementazione OpenJDK (sorgenti)
         \end{itemize}
     \end{itemize}
     \begin{block}{Riferimenti per il corso}
         \begin{itemize}
             %\item Java 11, distribuita da OpenJDK
-            \item Java 17, distribuita da Adoption %OpenJDK            
-            %\item Adoptium: riferimento per il download del JDK
+            \item Java 17, distribuita da Adoptium %OpenJDK            
+            \item Adoptium: riferimento per il download del JDK
             \begin{itemize}
-                \item \texttt{https://adoptium.net/}
+                \item \url{https://adoptium.net/}
             \end{itemize}
             \item Chi lo desidera può sperimentare con le versioni più recenti
             \begin{itemize}
@@ -83,24 +115,30 @@
 
 \begin{frame}{Elementi base del file system}
   \begin{itemize}
-    \item I sistemi operativi odierni consentono di memorizzare permanentemente le informazioni su
+    \item I sistemi operativi (S.O.) odierni consentono di memorizzare permanentemente le informazioni su
 supporti di memorizzazione di massa (dischi magnetici, dispositivi a stato solido...)
-    \item Le informazioni su questi supporti sono organizzate in file e cartelle:
+	\item Il \textbf{file system} è l'insieme di metodi e   strutture dati impiegati dal S.O. per controllare
+l’accesso e la memorizzazione dei dati.
+	\begin{enumerate}
+	\item \textbf{Livello logico}: riguarda come l'informazione è presentata all'utente
+	\item \textbf{Livello fisico}: riguarda come il livello logico è mappato nelle memorie
+	\end{enumerate}
+    \item Le informazioni sono organizzate in file e cartelle (livello logico):
       \begin{itemize}
-        \item i file contengono le informazioni
-        \item le cartelle sono contenitori, all'interno contengono i file ed altre cartelle
+        \item i \textbf{file} contengono le informazioni
+        \item le \textbf{cartelle} sono contenitori, all'interno contengono i file ed altre cartelle
       \end{itemize}
-    \item La cartella più esterna, che contiene tutte le altre, è detta root. Essa rappresenta il livello gerarchico più alto del file system
+    \item La cartella più esterna (contenente tutte le altre) è la \textbf{radice (\emph{root})} %. Essa rappresenta il livello gerarchico più alto del file system
       \begin{itemize}
-        \item In *nix (Linux, MacOS, BSD, Solaris...), vi è una unica radice, ossia \texttt{/}
-        \item In Windows, c'è una root per file system identificata da una lettera di unità (e.g.
-\texttt{C:}, \texttt{D:})
+        \item *nix (Linux, MacOS, BSD, Solaris...): vi è una unica radice, ossia \texttt{/}
+        \item Windows: c'è una root per FS, indicata da una lettera di unità (es.
+\texttt{C:}) %, \texttt{D:})
       \end{itemize}
-    \item La stringa che descrive un intero percorso dalla root fino ad un elemento del file system
-prende il nome di \emph{percorso} (o \emph{path}), e.g.:
+    \item File e cartelle possono essere individuati da un percorso o \textbf{path} (\emph{assoluto}, dalla root; o \emph{relativo}, da un certo punto del filesystem):
     \begin{itemize}
         \item \texttt{/home/user/frameworkFS.jar} (percorso Unix)
         \item \texttt{C:\textbackslash{}Windows\textbackslash{}win32.dll} (percorso Windows)
+        \item Altra sintassi: \texttt{.} (cartella corrente), \texttt{..} (cartella padre)
     \end{itemize}
   \end{itemize}
 \end{frame}
@@ -171,14 +209,14 @@ prende il nome di \emph{percorso} (o \emph{path}), e.g.:
 
 \fr{Sistemi Windows}{
     \bl{}{
-        L'interprete comandi è rappresentato dal programma \texttt{cmd.exe} in \texttt{C:$\backslash$Windows$\backslash$System32$\backslash$cmd.exe}
+        L'interprete comandi è rappresentato dal programma \textbf{cmd} (\texttt{C:$\backslash$Windows$\backslash$System32$\backslash$cmd.exe})
         \iz{
             \item Eredita in realtà sintassi e funzionalità della maggior parte dei comandi del vecchio MSDOS
-            \item Versioni recenti hanno introdotto PowerShell, basato su .NET e C\#
-            \item Da Windows 10 è possibile installare Linux dentro Windows usando Windows Subsystem for Linux (WSL2)
+            \item Versioni recenti hanno introdotto \textbf{PowerShell}, basato su .NET e C\#
+            \item Da Windows 10 è possibile installare Linux dentro Windows usando \textbf{Windows Subsystem for Linux (WSL2)}
             \begin{itemize}
                 \item Può essere un modo ragionevole di avere shell Unix in ambiente Windows
-                \item \dots{}e infatti in laboratorio ho preparato una WSL2 con zsh $\heartsuit$
+                \item \dots{} le macchine di laboratorio hanno una WSL2 con zsh $\heartsuit$ %e infatti in laboratorio ho preparato una WSL2 con zsh $\heartsuit$
             \end{itemize}
         }
     }
@@ -217,6 +255,7 @@ prende il nome di \emph{percorso} (o \emph{path}), e.g.:
     \begin{tabular}{| l | c | c |}
       \hline
       \textbf{Operazione} & \textbf{Comando Unix} & \textbf{Comando Win} \\ \hline
+            \scriptsize{}Ottenere aiuto / elenco comandi & \texttt{help} & \texttt{help}  \\ \hline
       \scriptsize{}Visualizzare la directory corrente & \texttt{pwd} & \texttt{echo \%cd\%}  \\ \hline
       \scriptsize{}Eliminare il file \texttt{foo} (non va con le cartelle!) & \texttt{rm foo} & \texttt{del foo} \\ \hline
       \scriptsize{}Eliminare la directory di nome \texttt{bar} & \texttt{rm -r bar} & \texttt{rd bar} \\ \hline
@@ -240,7 +279,7 @@ prende il nome di \emph{percorso} (o \emph{path}), e.g.:
         \scriptsize{}
         Sia *nix che Windows offrono la possibilità di effettuare autocompletamento, ossia chiedere al sistema di provare a completare un comando.
         \begin{itemize}
-            \item Per farlo si utilizza il tasto ``tab''.
+            \item Per farlo si utilizza il tasto \textbf{TAB}.
             \item L'autocompletamento cambia anche molto fra terminali diversi
             \begin{itemize}
                 \scriptsize{}
@@ -250,7 +289,7 @@ prende il nome di \emph{percorso} (o \emph{path}), e.g.:
     \end{block}
     \begin{block}{Memoria dei comandi precendenti}
         \scriptsize{}
-        Sia Bash/zsh che cmd offrono la possibilità di richiamare rapidamente i comandi inviati precedentemente premendo il tasto ``freccia su''.
+        Sia Bash/zsh che cmd offrono la possibilità di richiamare rapidamente i comandi inviati precedentemente premendo il tasto \textbf{FRECCIA SU}.
         \begin{itemize}
             \item  Su bash/zsh i comandi sono \emph{persistenti} (disponibili anche se il terminale viene riavviato).
         \end{itemize}
@@ -259,7 +298,7 @@ prende il nome di \emph{percorso} (o \emph{path}), e.g.:
         \scriptsize{}
         È possibile interrompere forzatamente un programma, qualora non risponda per vari motivi o non si voglia attenderne la normale terminazione.
         \begin{itemize}
-            \item Per farlo, sia su Windows che in *nix, si prema ctrl+c.
+            \item Per farlo, sia su Windows che in *nix, si prema \textbf{CTRL+C} (invio segnale \texttt{SIGINT}).
             \item Esempio tipico: programma in loop infinito
         \end{itemize}
     \end{block}
@@ -273,7 +312,7 @@ prende il nome di \emph{percorso} (o \emph{path}), e.g.:
     \begin{block}{Ricerca nella storia dei comandi precedenti}
         \scriptsize{}
         \begin{itemize}
-            \item Premendo ctrl+r seguito da un testo da cercare, i sistemi *nix supportano la ricerca all'interno dei comandi lanciati recentemente, anche in sessioni utente precedenti. Non disponibile su Windows.
+            \item Premendo \textbf{CTRL+R} seguito da un testo da cercare, i sistemi *nix supportano la ricerca all'interno dei comandi lanciati recentemente, anche in sessioni utente precedenti. Non disponibile su Windows.
         \end{itemize}
     \end{block}
 \end{frame}
@@ -313,7 +352,7 @@ prende il nome di \emph{percorso} (o \emph{path}), e.g.:
             \item \textbf{NON} sono adatti per l'apertura e la modifica di file Java
             (né di alcun altro linguaggio di programmazione) i word processors (Libreoffice Writer, Microsoft Word, Microsoft WordPad...), né l'editor di testo incluso in Windows (Notepad).
         \end{itemize}
-        \item Si suggerisce l'utilizzo di \textbf{Code} (\texttt{https://code.visualstudio.com/})
+        \item Si suggerisce l'utilizzo di \textbf{VS Code} (\texttt{https://code.visualstudio.com/})
         \begin{itemize}
             \item fornisce un supporto adeguato alla scrittura/modifica di sorgenti Java
             \item offre la possibilità di interpretare la sintassi markdown: modalità con cui sono forniti i testi degli esercizi (per i primi laboratori)
@@ -340,8 +379,24 @@ prende il nome di \emph{percorso} (o \emph{path}), e.g.:
     Si noti che il compilatore \emph{traduce} \textbf{file} sorgente in \textbf{file} binari,
     mentre l'interprete Java (la Java Virtual Machine) esegue una ed una sola \textbf{classe}.
 
-    Il compilatore Java lavora su \textit{file}, l'interprete Java su \textit{classi}.
+{
+\large
+\textbf{Il compilatore Java lavora su \textit{file}, l'interprete Java su \textit{classi}.}
 }
+
+}
+
+\begin{frame}{Errori comuni}
+
+%\begin{block}{Errori comuni}
+I seguenti errori sono da evitare:
+\begin{itemize}
+\item NO: \texttt{java NomeClasse.java} (l'interprete non lavora su file)
+\item NO: \texttt{java path/to/NomeClasse.class} (l'interprete non lavora su file)
+\end{itemize}
+%\end{block}
+
+\end{frame}
 
 \begin{frame}{Da Java 9: interpretazione ``al volo''}
     A partire da Java 9, è stata introdotto in java l'interprete \textit{REPL} \texttt{jshell}
