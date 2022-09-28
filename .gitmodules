@@ -72,3 +72,9 @@
 [submodule "workspace/sample-javafx-project"]
 	path = workspace/sample-javafx-project
 	url = git@github.com:APICe-at-DISI/sample-javafx-project.git
+[submodule "slides-markdown/shared-slides"]
+	path = slides-markdown/shared-slides
+	url = https://github.com/DanySK/shared-slides.git
+[submodule "slides-markdown/themes/reveal-hugo"]
+	path = slides-markdown/themes/reveal-hugo
+	url = https://github.com/cric96/reveal-hugo.git
