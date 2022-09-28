@@ -17,7 +17,7 @@ jobs:
   Build-LaTeX:
     runs-on: ubuntu-latest
     steps:
-      - uses: DanySK/compile-and-publish-all-latex@1.0.32
+      - uses: DanySK/compile-and-publish-all-latex@1.0.33
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
