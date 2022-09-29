@@ -5,7 +5,7 @@
 
 \newcommand{\lab}{Lab02}
 
-\title[{\lab} -- Strumenti Avanzati]{Stile del Codice, Compilazione/Esecuzione avanzata di programmi Java, Programmi con Argomenti}
+\title[{\lab} -- Strumenti Avanzati]{Stile del Codice, Compilazione/Esecuzione avanzata di programmi Java, Programmi con Argomenti, VSCode e Debugging}
 
 \date[\today]{\today}
 
@@ -24,15 +24,15 @@
 \begin{frame}{Pre-requisiti}
 \begin{itemize}
 \item Rudimenti di programmazione e codifica
-\item Nozioni di base dei filesystem
+\item Nozioni di base dei \textbf{filesystem}
     \begin{itemize}
-    \item percorsi assoluti e relativi
+    \item \textbf{percorsi assoluti e relativi}
     \end{itemize}
 \item Utilizzo del terminale
     \begin{itemize}
     \item interazione con il file system attraverso terminale (navigazione; concetto di working directory; etc.)
     \end{itemize}
-\item Compilazione ed esecuzione di base di programmi Java
+\item \textbf{Compilazione ed esecuzione di base} di programmi Java
     \begin{itemize}
     \item uso basilare dei comandi \texttt{javac} e \texttt{java}
     \item distinzione tra file sorgenti (\texttt{.java}) e file di classi compilate (\texttt{.class})
@@ -49,16 +49,16 @@
 
 \begin{frame}[allowframebreaks]{Stili e Convenzioni}
     \begin{itemize}\itemsep10pt
-        \item Il codice sorgente che un programmatore scrive, generalmente è condiviso con altre persone (del proprio team, ma anche persone esterne al team o la community)
+        \item Il codice sorgente che un programmatore scrive, generalmente è \textbf{condiviso} con altre persone (del proprio team, ma anche persone esterne al team o la community)
         \begin{itemize}
-            \item è importante scrivere software immediatamente comprensibile
+            \item è importante scrivere software \textbf{immediatamente comprensibile}
             \item il fatto che un software ``giri'' (rispetti i requisiti e/o produca i risultati attesi) non è una sufficente metrica di qualità
         \end{itemize}
         \item è importante, fondamentale, adottare uno stile e seguirlo
         \begin{itemize}
-            \item chiaro
-            \item condiviso
-            \item consistente
+            \item \textbf{chiaro} -- facilmente comprensibile
+            \item \textbf{condiviso} -- piuttoto che il ``proprio stile''
+            \item \textbf{consistente} --  con regole che non si contraddicono (a vari livelli)
         \end{itemize}
     \end{itemize}
 
@@ -105,7 +105,7 @@ Always code as if the guy who ends up maintaining your code will be a violent ps
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Java Code Conventions (un estratto)}
-    \begin{block}{Usare sempre le parentesi per if, else, for, while, anche se segue una sola istruzione}
+    \begin{block}{Usare \textbf{sempre} le parentesi (graffe) per if, else, for, while, anche se segue una sola istruzione}
         \begin{itemize}
             \item Aumentano la manutenibilità del codice
             \item È facile che nella fretta si modifichi il codice in modo sbagliato
@@ -123,8 +123,8 @@ Always code as if the guy who ends up maintaining your code will be a violent ps
         \begin{itemize}
             \item I nomi di \texttt{package} usano sempre e solo lettere minuscole
             \item Usare sempre \texttt{camelCase}, evitare gli underscore (\_)
-            \item I nomi di classe cominciano sempre per maiuscola
-            \item I nomi di campi, metodi e variabili locali iniziano sempre per minuscola
+            \item I nomi di classe cominciano sempre per maiuscola: \texttt{SomeClass}
+            \item I nomi di campi, metodi e variabili locali iniziano sempre per minuscola: \texttt{o.someField}, \texttt{o.someMethod()}
             \item I campi \texttt{static final} (costanti di classe) sono interamente maiuscoli e possono usare underscore
         \end{itemize}
     \end{block}
@@ -135,6 +135,105 @@ Come seguire stili e convenzioni? Tutto nelle mani del programmatore?
     \end{itemize}
 \end{frame}
 
+
+\section{Visual Studio Code (VSCode) e Debugging}
+
+\begin{frame}{Visual Studio Code (VSCode)}
+
+\begin{itemize}
+\item \textbf{Visual Studio Code (VSCode)} è un editor di codice sorgente leggero, versatile, e multipiattaforma
+\item Estendibile attraverso un ecosistema di \textbf{estensioni} per vari linguaggi di programmazione e strumenti
+	\begin{itemize}
+	\item Ne vedremo alcune nei prossimi lab
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+\includegraphics[width=\textwidth]{img/vscode.png}
+
+\end{frame}
+
+\begin{frame}{VSCode: il concetto di \textbf{workspace}}
+
+\begin{itemize}
+\item Il \textbf{workspace} è 
+	\begin{enumerate}
+	\item una collezione di \emph{una o più \textbf{cartelle}} aperte in una finestra (istanza di VSCode)
+	\begin{itemize}
+	\item Tali cartelle sono visualizzate nella vista \textbf{Explorer} sulla sinistra
+	\end{itemize}
+	\item più un insieme di \textbf{preferenze}, \textbf{configurazioni}, \textbf{stato}, ed \textbf{estensioni} attive memorizzate in una cartella \textbf{.vscode/}
+	\end{enumerate}
+\item Creazione di un workspace
+	\begin{itemize}
+	\item \emph{File $\to$ Open Folder}
+	\end{itemize}
+\item Aggiunta di cartella top-level a un workspace
+	\begin{itemize}
+	\item \emph{File $\to$ Add Folder to Workspace..}
+	\end{itemize}
+\item Salvataggio ed apertura di un workspace
+	\begin{itemize}
+	\item \emph{Save $\to$ Workspace as... $\to$} \emph{name}.\textbf{code-workspace} 
+	\item \emph{File $\to$ Open Workspace from File}
+	\end{itemize}
+\end{itemize}
+
+\end{frame}
+	
+\begin{frame}{Utilizzo di VSCode: alcune note}
+
+\begin{itemize}
+\item Varie scorciatoie da tastiera
+	\begin{itemize}
+	\item \emph{CTRL + SHIFT + P}: \textbf{command palette} (a.k.a. ``l'unico shortcut che veramente vi serve ricordare'')
+	\item \emph{CTRL + SPACE}: intellisense
+	\item \emph{CTRL + S}: salvataggio file corrente
+	\item \emph{CTRL + PAGE UP/DOWN}: tab sorgente precedente/successivo
+	\end{itemize}
+\item \textbf{Apertura di un terminale:} \emph{Terminal $\to$ New Terminal}
+	\begin{itemize}
+	\item Sarà MOLTO UTILE
+	\end{itemize}
+\item \textbf{Visualizzare/installare estensioni:} \emph{File $\to$ Preferences $\to$ Extensions} oppure \emph{CTRL + SHIFT + X}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{VSCode: debugging di applicazioni Java}
+
+Nota: richiede l'estensione \textbf{Debugger for Java}
+
+\begin{enumerate}
+\item Creazione di \textbf{breakpoint} (punti di rottura del flusso di controllo)
+	\begin{itemize}
+	\item Click a sinistra del numero di linea di una riga di codice di interesse
+	\end{itemize}
+ {\centering
+ \includegraphics[height=0.15\textheight]{img/vscode-example-breakpoint2.png}
+ }
+\item Esecuzione di un'applicazione Java in \textbf{``modalità debug''}
+	\begin{itemize}
+	\item Click destro su file java $\to$ \emph{Debug Java}
+	\end{itemize}
+ {\centering
+ \includegraphics[height=0.4\textheight]{img/vscode-example-debug.png}
+ }
+\item Controllo e ispezione del comportamento runtime
+	\begin{itemize}
+	\item \emph{Variables}: vista che mostra le variabili in scope e il loro valore
+	\item \emph{Watch}: permette di valutare espressioni rispetto al contesto d'esecuzione corrente
+	\item \textbf{Step Over} (F10) o anche \emph{Run $\to$ Step Over}
+	\item \textbf{Step Into} (F11)
+	\item \textbf{Step Out} (SHIFT + F11)
+	\item \textbf{Continue} (F5)
+	\end{itemize}
+\end{enumerate}
+
+\end{frame}
 
 \section{Compilazione ed esecuzione avanzata in Java}
 
@@ -183,24 +282,28 @@ directory che andranno usate.
 \begin{frame}[allowframebreaks]{Il classpath in Java}
     \begin{itemize}
         \item Il risultato della compilazione di sorgenti Java sono una o più \textbf{classi}
+        	\begin{itemize}
+        	\item A partire dalla cartella di destinazione (opzione \texttt{-d} di \texttt{javac}), ogni compilato \texttt{.class} sarà creato in un \textbf{sottopercorso di cartelle che corrisponde al percorso del package dichiarato per la classe corrispondente}
+        	\item Ovvero, indipendentemente da dove si trovi un sorgente \texttt{C.java} definente una classe \texttt{foo.bar.C}, con \texttt{javac -d <DEST> path/to/C.java} il compilato sarà creato in \texttt{<DEST>/foo/bar/C.class}
+        	\end{itemize}
         \item Quando si va ad eseguire (comando \texttt{java}), si eseguono \textbf{classi}, non files
         \begin{itemize}
             \item Infatti la virtual machine si aspetta il nome completo di una classe, il \textbf{Fully-Qualified Class Name (FQCN)}, in input
             \begin{itemize}
-                \item Non il file dov'è scritta
-                \item Né il file dov'è compilata
+                \item NON il percorso al file dov'è scritta
+                \item NON il percorso al file dov'è compilata
             \end{itemize}
         \end{itemize}
     \end{itemize}
     \begin{block}{Come fa la JVM a risolvere le classi?}
         \begin{itemize}
-            \item Possiede un elenco di percorsi che contengono i file compilati
+            \item Possiede un elenco di percorsi \textbf{a partire dai quali} i file compilati possono essere trovati
             \begin{itemize}
-                \item All'interno di questi percorsi, i file devono essere opportunamente organizzati
-                \item Ad esempio, la struttura delle cartelle deve replicare quella dei package
+                \item All'interno di questi percorsi, i file devono essere opportunamente organizzati: \textbf{la struttura delle cartelle deve replicare quella dei package}
             \end{itemize}
             \item Cerca (in ordine) nei suddetti percorsi la classe che gli serve
             \item I percorsi possono essere directory, file compressi, o indirizzi di rete
+            \item Ad esempio: se si danno i due percorsi \texttt{\color{red}/a/b/c} e \texttt{\color{blue}../foo} e si chiede di eseguire il programma definito in \texttt{{\color{black!40!green}it.unibo.}{\color{orange}Program}}, allora la JVM cercherà di caricare la classe da \texttt{{\color{red}/a/b/c/}{\color{black!40!green}it/unibo/}{\color{orange}Program}.class} o \texttt{{\color{blue}../foo/}{\color{black!40!green}it/unibo/}{\color{orange}Program}.class}
             \item Per approfondire: \url{http://archive.is/0ziau}
         \end{itemize}
     \end{block}
@@ -276,7 +379,7 @@ usare l'intero nome della classe, che in Java include anche il nome del package!
    Supponiamo di avere in mano la seguente classe:
     \sizedcode{\tiny}{../../workspace/lab02/02-classpathcompilation/src/oop/lab02/math/UseComplex.java}
     \begin{block}{Comprensione degli errori}
-        Se provassimo a compilarla, otterremmo degli errori
+        Se provassimo a compilarla da sola, potremmo ottenere degli errori
         \sizedcode{\tiny}{code/esempio3/src/oop/lab02/math/error.txt}
         \begin{itemize}
         \item Il compilatore ha bisogno di conoscere la classe \texttt{ComplexNum} per poterla
@@ -292,11 +395,11 @@ linkare e per poter compilare una classe che la riferisce
                 \item Notate che questa è la \textit{norma} quando si usano delle librerie: vengono
                 fornite già compilate!
             \end{itemize}
-            \item Basterà mettere il percorso in cui \texttt{ComplexNum} è stata compilata nel
+            \item Basterà mettere il percorso a partire dal quale \texttt{oop/lab02/math/ComplexNum.class} può essere individuata nel
             classpath di \texttt{javac}!
             \item Supponiamo di avere \texttt{UseComplex.java} nel percorso
             \texttt{src/oop/lab02/math/}
-            \item Supponiamo di aver \texttt{ComplexNum} compilato dentro \texttt{lib/}
+            \item Supponiamo di aver compilato \texttt{ComplexNum} con destinazione (di partenza) \texttt{lib/}
             \item Possiamo usare:
         \end{itemize}
         \alert{\texttt{javac -d bin -cp lib src/oop/lab02/math/UseComplex.java}}
@@ -338,6 +441,12 @@ vogliamo compilare
             \item \texttt{java -cp bin;lib oop.lab02.math.UseComplex} (Windows)
         \end{itemize}
     \end{itemize}
+\end{frame}
+
+\begin{frame}{Esempio con sommario di funzionamento di \texttt{javac} e \texttt{java}}
+
+\includegraphics[width=\textwidth]{img/java-javac.drawio.pdf}
+
 \end{frame}
 
 \begin{frame}{Consiglio finale}
