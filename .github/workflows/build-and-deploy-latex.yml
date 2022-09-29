@@ -42,7 +42,7 @@ jobs:
         uses: danysk/action-checkout@0.2.2
       - name: Compile LaTeX
         id: compile
-        uses: DanySK/compile-latex-action@db1da97dd759cf7d17bf8353d92049d0f59af19d
+        uses: DanySK/compile-latex-action@f7d437cfc8a40fcb8b1c91d159d04e3364fcd26b
       - name: Deliver the pdfs
         if: >-
           (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
