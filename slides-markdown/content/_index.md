@@ -11,4 +11,4 @@ outputs = ["Reveal"]
 
 ### Indice dei contenuti
 
-* [Dipendenze nel software e build automation](gradle-basics/)
+* [Dipendenze nel software e build automation](build-systems-basics/)
