@@ -30,7 +30,7 @@ jobs:
     needs:
       - compute-version
     concurrency:
-      group: ${{ needs.compute-version.outputs.successes }}
+      group: ${{ github.sha }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -51,7 +51,7 @@ jobs:
     needs:
       - compute-version
     concurrency:
-      group: ${{ needs.compute-version.outputs.successes }}
+      group: ${{ github.sha }}
     steps:
       - name: Checkout
         uses: danysk/action-checkout@0.2.2
