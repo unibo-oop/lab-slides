@@ -1,7 +1,6 @@
 name: Build and deploy
 on:
   push:
-    tags: '*'
     branches-ignore:
       - 'autodelivery**'
       - 'bump-**'
@@ -20,12 +19,18 @@ jobs:
       commit-count: ${{ steps.commit-counter.outputs.commits }}
       version: ${{ steps.version-compute.outputs.version }}
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3.0.2
+        with:
+          fetch-depth: 0
       - name: Count the commits so far
         id: commit-counter
-        run: echo "::set-output name=commits::$(git -C pages rev-list --count HEAD)"
+        run: echo "::set-output name=commits::$(git rev-list --count HEAD)"
       - name: Create version
         id: version-compute
         run: echo "::set-output name=version::${{ steps.commit-counter.outputs.commits }}.$(date +"%Y.%-m%d")"
+      - name: Verify the version
+        run: ruby -e 'unless /^\d+\.[1-9]\d*\.[1-9]\d*$/.match?("${{ steps.version-compute.outputs.version }}") then exit 1 end'
   build-and-publish-latex:
     needs:
       - compute-version
@@ -33,19 +38,23 @@ jobs:
       group: ${{ github.sha }}
     runs-on: ubuntu-latest
     steps:
+      - name: Verify the version
+        run: ruby -e 'unless /^\d+\.[1-9]\d*\.[1-9]\d*$/.match?("${{ needs.compute-version.outputs.version }}") then exit 1 end'
       - name: Checkout
         uses: danysk/action-checkout@0.2.2
       - name: Compile LaTeX
         id: compile
-        uses: DanySK/compile-latex-action@0.3.102
+        uses: DanySK/compile-latex-action@db1da97dd759cf7d17bf8353d92049d0f59af19d
       - name: Deliver the pdfs
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master'
+        if: >-
+          (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+           && github.ref == 'refs/heads/master'
         uses: ncipollo/release-action@v1.10.0
         with:
           allowUpdates: true
-          artifacts: ${{ steps.compile.outputs.version }}
+          artifacts: ${{ steps.compile.outputs.compiled-files }}
           replacesArtifacts: true
-          tag: ${{ needs.compute-version.outputs.successes }}
+          tag: ${{ needs.compute-version.outputs.version }}
   deploy-archives:
     runs-on: ubuntu-latest
     needs:
@@ -53,6 +62,8 @@ jobs:
     concurrency:
       group: ${{ github.sha }}
     steps:
+      - name: Verify the version
+        run: ruby -e 'unless /^\d+\.[1-9]\d*\.[1-9]\d*$/.match?("${{ needs.compute-version.outputs.version }}") then exit 1 end'
       - name: Checkout
         uses: danysk/action-checkout@0.2.2
       - name: Remove PMD/Checkstyle/Spotbugs configuration from the first labs
@@ -60,22 +71,22 @@ jobs:
       - name: Create archives
         id: archive
         run: |
-          results=""
           for file in workspace/*/; do
             name="${file#*/}"
-            destination="${name%*/}.zip
+            destination="${name%*/}.zip"
             echo Creating "$destination" from $file
             zip -r "$destination" "$file"
             results="$results,$destination"
           done
-          echo "::set-output name=files::$results"
       - name: Release
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master'
+        if: >-
+          (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+           && github.ref == 'refs/heads/master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         uses: ncipollo/release-action@v1.10.0
         with:
           allowUpdates: true
-          artifacts: ${{ steps.archive.outputs.results }}
+          artifacts: "*.zip"
           replacesArtifacts: true
-          tag: ${{ needs.compute-version.outputs.successes }}
+          tag: ${{ needs.compute-version.outputs.version }}
