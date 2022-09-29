@@ -1,0 +1,61 @@
+name: Markdown slides build and deploy
+on:
+  push:
+    branches-ignore:
+      - 'renovate/**'
+    paths-ignore:
+      - 'README.md'
+      - 'CHANGELOG.md'
+      - 'LICENSE'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-slides:
+    concurrency:
+      group: markdown-${{ github.ref }}
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repository
+      - name: Checkout
+        uses: danysk/action-checkout@0.2.1
+      - name: Compute the version of Hugo
+        id: hugo
+        shell: bash
+        run: |
+          USES=$(cat <<TRICK_RENOVATE
+          - uses: gohugoio/hugo@v0.102.3
+          TRICK_RENOVATE
+          )
+          echo "Computed version: \"${USES#*@v}\""
+          echo "::set-output name=version::${USES#*@v}"
+      - name: Download Hugo
+        run: |
+          HUGO_VERSION="${{ steps.hugo.outputs.version }}"
+          URL="https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.deb"
+          wget --retry-connrefused --waitretry=1 --read-timeout=20 "$URL" --output-document=hugo.deb
+      - name: Install Hugo
+        run: sudo dpkg -i hugo.deb
+      - name: Remove Hugo Installer
+        run: rm hugo.deb
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1.117.0
+        with:
+          working-directory: slides-markdown/shared-slides
+      - name: Run the pre-processor
+        working-directory: slides-markdown
+        run: shared-slides/preprocess.rb
+      - name: Build slides with hugo
+        working-directory: slides-markdown
+        run: hugo
+      - name: Transform and Inline Mermaid charts
+        uses: cric96/inline-mermaid@v1.4.4
+        with:
+          root-folder: slides-markdown/build
+          config-file: slides-markdown/config.toml
+      - name: Deploy globally
+        if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/master' }}
+        uses: JamesIves/github-pages-deploy-action@v4.4.0
+        with:
+          branch: gh-pages
+          folder: slides-markdown/build

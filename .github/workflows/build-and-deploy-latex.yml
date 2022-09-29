@@ -35,7 +35,7 @@ jobs:
     needs:
       - compute-version
     concurrency:
-      group: ${{ github.sha }}
+      group: release
     runs-on: ubuntu-latest
     steps:
       - name: Verify the version
@@ -60,7 +60,7 @@ jobs:
     needs:
       - compute-version
     concurrency:
-      group: ${{ github.sha }}
+      group: release
     steps:
       - name: Verify the version
         run: ruby -e 'unless /^\d+\.[1-9]\d*\.[1-9]\d*$/.match?("${{ needs.compute-version.outputs.version }}") then exit 1 end'
