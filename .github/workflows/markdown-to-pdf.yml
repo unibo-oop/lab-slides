@@ -11,9 +11,6 @@ on:
 jobs:
   create-and-deploy-pdfs:
     runs-on: ubuntu-latest
-    concurrency:
-      group: release
-      cancel-in-progress: false
     steps:
       # Checkout the repository
       - name: Checkout the pdf creation script
