@@ -20,6 +20,7 @@ jobs:
         with:
           path: pages
           ref: gh-pages
+      # TODO: once all slides are in markdown, use the version from gh pages
       - name: Count the commits so far
         id: commit-counter
         run: echo "::set-output name=commits::$(git rev-list --count HEAD)"
@@ -39,7 +40,8 @@ jobs:
       - name: Make the pdfs
         run: slides-markdown/shared-slides/makepdfs.rb pages
       - name: Deliver the pdfs
-        if: github.event_name == 'workflow_run'
+        # Once all slides are in markdown, enable the conditional deployment
+        # if: github.event_name == 'workflow_run'
         uses: ncipollo/release-action@v1.10.0
         with:
           allowUpdates: true
