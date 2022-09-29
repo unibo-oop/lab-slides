@@ -14,50 +14,68 @@ on:
   workflow_dispatch:
 
 jobs:
-  Build-LaTeX:
+  compute-version:
     runs-on: ubuntu-latest
+    outputs:
+      commit-count: ${{ steps.commit-counter.outputs.commits }}
+      version: ${{ steps.version-compute.outputs.version }}
     steps:
-      - uses: DanySK/compile-and-publish-all-latex@1.0.31
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-  Deploy-Archives:
+      - name: Count the commits so far
+        id: commit-counter
+        run: echo "::set-output name=commits::$(git -C pages rev-list --count HEAD)"
+      - name: Create version
+        id: version-compute
+        run: echo "::set-output name=version::${{ steps.commit-counter.outputs.commits }}.$(date +"%Y.%-m%d")"
+  build-and-publish-latex:
+    needs:
+      - compute-version
+    concurrency:
+      group: ${{ needs.compute-version.outputs.successes }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: danysk/action-checkout@0.2.1
-      - name: Autotag
-        uses: DanySK/semver-autotag-action@master
+      - name: Compile LaTeX
+        id: compile
+        uses: DanySK/compile-latex-action@0.3.102
+      - name: Deliver the pdfs
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master'
+        uses: ncipollo/release-action@v1.10.0
+        with:
+          allowUpdates: true
+          artifacts: ${{ steps.compile.outputs.version }}
+          replacesArtifacts: true
+          tag: ${{ needs.compute-version.outputs.successes }}
+  deploy-archives:
+    runs-on: ubuntu-latest
+    needs:
+      - compute-version
+    concurrency:
+      group: ${{ needs.compute-version.outputs.successes }}
+    steps:
+      - name: Checkout
+        uses: danysk/action-checkout@0.2.1
       - name: Remove PMD/Checkstyle/Spotbugs configuration from the first labs
         run: ./cleanup_project_files.rb
       - name: Create archives
+        id: archive
         run: |
+          results=""
           for file in workspace/*/; do
             name="${file#*/}"
-            echo Creating "${name%*/}.zip" from $file
-            zip -r "${name%*/}.zip" "$file"
+            destination="${name%*/}.zip
+            echo Creating "$destination" from $file
+            zip -r "$destination" "$file"
+            results="$results,$destination"
           done
+          echo "::set-output name=files::$results"
       - name: Release
         if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          TAG=$(git describe --tags --exact-match HEAD)
-          hub release create -m "$(git tag -l --format='%(contents)' "$TAG")" "$TAG" || true
-          gh release upload "$TAG" $(find ~+ -name \*.zip | tr "\n" " ") --clobber
-
-  Refresh-Latest-Release:
-    runs-on: ubuntu-latest
-    needs: [Build-LaTeX, Deploy-Archives]
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master'
-    steps:
-      - name: Deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.AUTOMERGE_TOKEN }}
-        run: |
-          latest=$(gh release list -R APICe-at-DISI/OOP-Lab -L 1 | grep -Po 'Latest\s*\K(.*?)\s')
-          echo Latest release is $latest, downloading
-          gh release download $latest -R APICe-at-DISI/OOP-Lab
-          echo Create destination release if needed
-          gh release create -t "Release $latest" $latest -R APICe-at-DISI/OOP-Lab-public || true
-          gh release upload -R 'APICe-at-DISI/OOP-Lab-public' $latest $(ls) --clobber
+        uses: ncipollo/release-action@v1.10.0
+        with:
+          allowUpdates: true
+          artifacts: ${{ steps.archive.outputs.results }}
+          replacesArtifacts: true
+          tag: ${{ needs.compute-version.outputs.successes }}
