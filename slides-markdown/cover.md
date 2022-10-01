@@ -5,4 +5,3 @@
 ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it)
 
 [<i class="fa fa-print" aria-hidden="true"></i> versione stampabile](?print-pdf&pdfSeparateFragments=false)
-
