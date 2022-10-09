@@ -12,3 +12,6 @@ outputs = ["Reveal"]
 ### Indice dei contenuti
 
 * [Dipendenze nel software e build automation](build-systems-basics/)
+* [Sistemi di controllo versione](dvcs-basics/)
+* [Branching e merging](dvcs-branching/)
+* [Operazioni con repository remoti](dvcs-remote/)
