@@ -1,8 +1,8 @@
  
 +++
 
-title = "Progettazione e Sviluppo del Software"
-description = "Progettazione e Sviluppo del Software, Tecnologie dei Sistemi Informatici"
+title = "Laboratorio di Programmazione ad Oggetti"
+description = "Laboratorio di Programmazione ad Oggetti, Ingegneria e Scienze Informatiche"
 outputs = ["Reveal"]
 aliases = ["/dvcs-remote/"]
 
