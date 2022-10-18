@@ -20,4 +20,10 @@ aliases = ["/dvcs-remote/"]
 
 ---
 
-# GitHub
+# Hosting and GitHub
+
+---
+
+<!-- write-here "shared-slides/git/git-hosting-github.md" -->
+
+<!-- end-write -->
