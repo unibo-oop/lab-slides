@@ -310,3 +310,40 @@ section.has-light-background {
     flex: 1;
 }
 
+
+// Mermaid flowcharts as git graphs
+
+.mermaid .cluster.repo > rect {
+	stroke-width: 0.2em !important;
+	fill: ghostwhite !important;
+	stroke: gray !important;
+}
+.mermaid .remote > path {
+	stroke-width: 0.2em !important;
+	fill: rgb(253, 189, 253) !important;
+	stroke: rgb(170, 0, 255) !important;
+}
+
+.mermaid .head > polygon {
+	fill:#ff7274 !important;
+	stroke:#aa1d1f !important;
+	stroke-width: 0.2em !important;
+}
+
+.mermaid .branch > rect {
+	stroke-width: 0.2em !important;
+	fill: greenyellow !important;
+	stroke: green !important;
+}
+
+.mermaid .commit > rect {
+	fill: white !important;
+	stroke:#333 !important;
+	stroke-width: 0.2em !important;
+}
+
+.mermaid .tag > polygon {
+	fill: cyan !important;
+	stroke: blue !important;
+	stroke-width: 0.2em !important;
+}
