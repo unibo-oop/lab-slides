@@ -15,3 +15,4 @@ outputs = ["Reveal"]
 * [Sistemi di controllo versione](dvcs-basics/)
 * [Branching e merging](dvcs-branching/)
 * [Operazioni con repository remoti](dvcs-remote/)
+* [Documentazione del codice e costruzione degli artefatti](jar-javadoc/)
