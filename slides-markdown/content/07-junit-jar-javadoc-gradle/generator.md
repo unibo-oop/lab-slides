@@ -86,7 +86,6 @@ build --> assemble
 L'esecuzione di un task implica l'esecuzione di tutti i precedenti!
 
 * `test` (implica `compileTestJava` che implica `compileJava`): esegue tutti i test
-    * Va configurato per usare JUnit
 * `check` (implica `test`): esegue i test ed eventuali controlli aggiuntivi che vedremo in futuro
 * `assemble` (implica `jar` che impica `compileJava`): costruisce gli artefatti "deliverable"
 * `build`: esegue sia `check` che `assemble`
