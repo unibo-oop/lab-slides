@@ -16,3 +16,4 @@ outputs = ["Reveal"]
 * [Branching e merging](dvcs-branching/)
 * [Operazioni con repository remoti](dvcs-remote/)
 * [Testing, Documentazione del codice e costruzione degli artefatti](junit-jar-javadoc/)
+* [Programmazione multi-piattaforma](multiplatform/)
