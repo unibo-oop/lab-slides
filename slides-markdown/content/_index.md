@@ -17,3 +17,5 @@ outputs = ["Reveal"]
 * [Operazioni con repository remoti](dvcs-remote/)
 * [Testing, Documentazione del codice e costruzione degli artefatti](junit-jar-javadoc/)
 * [Programmazione multi-piattaforma](multiplatform/)
+* [Strumenti per la qualità del codice](code-quality-tools/)
+* [Ispezione e profiling](inspection-and-profiling/)
