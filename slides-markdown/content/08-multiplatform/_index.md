@@ -15,7 +15,7 @@ aliases = ["/multiplatform/"]
 ---
 
 
-### "Write once, run anywhere..."
+## "Write once, run anywhere..."
 
 Lo slogan, coniato originariamente da Sun Microsystems per illustrare i benefici del linguaggio Java, vale *a patto che*:
 		
@@ -46,11 +46,9 @@ l'installazione di Windows è sana e il software non è avviato con diritti di a
 * La *struttura del file system* cambia con l'OS
 * I *diritti* di lettura e scrittura cambiano con la configurazione
 
-
-
 ---
 
-### Proprietà di sistema
+## Proprietà di sistema
 
 Java fornisce nella classe `System` un metodo
 
@@ -61,7 +59,7 @@ String getProperty(String p)
 che consente di accedere a proprietà di sistema
 
 
-#### Proprietà relative al file system
+### Proprietà relative al file system
 
 
 * `file.separator` --- Restituisce `\` per Windows e `/` per Unix
@@ -92,11 +90,10 @@ String separator = System.getProperty(PROP_FILE_SEPARATOR);
 
 
 * `java.version` --- La versione di `java` in uso. Si potrebbe decidere di non usare una funzionalità che si sa non esistere o essere buggata.
-* `os.arch` --- L'architettura della CPU come rilevata dall'OS (es. x86, i386, amd64, x86\_64, IA64N, arm, ...)
-* `os.name` --- Il nome del sistema operativo (es. Linux, MacOS X, MacOS, Windows 8.1, Windows 10, Solaris, FreeBSD,  ...)
-* `os.version` --- Restituisce per Windows il numero di versione effettivo (es.
-Windows 10 restituisce 10.0), per MacOS il numero di versione (es. 10.3.4), per Linux la versione
-del kernel (es. 4.17)
+* `os.arch` --- L'architettura della CPU come rilevata dall'OS (x86, i386, amd64, x86\_64, IA64N, ARM, ...)
+* `os.name` --- Il nome del sistema operativo (Linux, MacOS X, MacOS, Windows 10, Solaris, FreeBSD,  ...)
+* `os.version` --- Restituisce per Windows il numero di versione effettivo (per esempio, Windows 10 restituisce 10.0), per MacOS il numero di versione (per esempio, 10.3.4), per Linux la versione
+del kernel (es. 6.1)
 
 
 
@@ -141,7 +138,7 @@ Questi elementi sono stabiliti dal *window manager* (del *windowing system* del 
 
 ---
 
-### Best-practices per la costruzione di GUI
+## Best-practices per la costruzione di GUI
 
 * A proposito della specifica delle dimensioni
     * La *dimensione di default* della finestra va calcolata *in base alla dimensione dello schermo*.
@@ -156,19 +153,19 @@ propria configurazione di schermi*
 
 ---
 
-### Supporto multilingua per le UI
+## Supporto multilingua per le UI
 
 
 * Sarebbe opportuno definire la UI una sola volta e cambiare dinamicamente le parti scritte (il testo) a seconda dell'impostazione della lingua di sistema (o della nostra applicazione).
 
-* In realtà, non solo per la lingua ma anche per il formato dei numeri, la valuta, le convenzioni sulla data, ...
+* In realtà anche per il formato dei numeri, la valuta, le convenzioni sulla data, ...
     * un **locale** è un insieme di parametri che definiscono la lingua dell'utente, la sua regione, e le sue preferenze di visualizzazione delle GUI
     * un esempio di locale è `en_US_UNIX` (lingua inglese, Stati Uniti, piattaforma UNIX)
 
 
 #### Java Resource Bundles
 
-Java fornisce una architettura per l'internazionalizzazione (**i18n = internationalization**), che fa uso di "**ResourceBundle**" e di una serie di file di supporto (*properties files*).
+Java fornisce una architettura per l'internazionalizzazione (**i18n = internationalization**), che fa uso di `ResourceBundle` e di una serie di file di supporto (*properties files*).
 
 - per localizzazione (**l10n = localization**) si intende invece il processo di adattare un prodotto internazionalizzato a un particolare locale
 
@@ -181,53 +178,60 @@ Per approfondimenti (per implementare il supporto multilingua):
 
 ---
 
-## Corretta configurazione di un progetto Gradle
+# Corretta configurazione di un progetto Gradle
 
 ---
 
-### Risorse nei progetti Gradle
+## Risorse nei progetti Gradle
 
+```text
+├── src
+│   ├── main
+│   │   ├── java
+│   │   └── resources
+│   └── test
+│       ├── java
+│       └── resources
+├── build.gradle.kts
+└── settings.gradle.kts
 ```
-src/
-  main/
-    java/
-    test/
-    resources/
-build.gradle.kts
-settings.gradle.kts
-```
 
 
-* La cartella `src/main/resources` contiene le risorse del progetto opportunamente organizzate
-
+* Le cartelle `src/[main|test]/resources` contengono le risorse del progetto opportunamente organizzate
     * Per risorse si intendono icone, file di testo, video, immagini, modelli 3D e qualunque cosa sia necessaria al corretto funzionamento del programma ma non sia una libreria o un file sorgente.
 
+---
 
-<!--
+## File ancillari per il progetto di OOP
+
+Per OOP, alla struttura del progetto Gradle andranno aggiunti almeno altri due file
+
+```text
+├── src
+│   ├── main
+│   │   ├── java
+│   │   └── resources
+│   └── test
+│       ├── java
+│       └── resources
+├── build.gradle.kts
+├── LICENSE
+├── README.md
+└── settings.gradle.kts
+```
 
 #### `README.md`
 
-
 * File con la descrizione del progetto: autori, breve guida d'uso, link a risorse.
-
     * GitHub è in grado di fare il parse del file e di integrarlo nella pagina del progetto, in modo da dargli una descrizione.
-
-
-
 
 #### `LICENSE`
 
+* File con informazioni circa la licenza, necessario affinché il progetto sia open source.
+* Per software open source, si raccomanda l'uso di MIT license.
+* Qualunque licenza GPL-compatibile è ritenuta idonea per il progetto del corso.
 
-* File con informazioni circa la licenza.
-
-    * Necessario affinché il progetto sia open source.
-    * Progetti il cui codice è disponibile ma non hanno alcuna licenza applicata sono automaticamente coperti da copyright.
-    * Per software open source, si raccomanda l'uso di Apache License 2.0, MIT license, o BSD license.
-    * Qualunque licenza GPL-compatibile è ritenuta idonea per il progetto del corso.
-
-
--->
-
+---
 
 ## Font ed encoding
 
@@ -243,54 +247,11 @@ Le più note piattaforme utilizzano di default encoding diversi:
 #### Encoding per il codice sorgente
 
 Solitamente, il codice sorgente si sviluppa utilizzando la codifica UTF-8
-
-    * Essenziale se si utilizzano caratteri non inclusi nella tabella ASCII (caratteri accentati, ad esempio).
-
-
-
----
-
-### Carattere di new line
-
-Unix e Windows differiscono anche per il carattere di newline
-
-* `\n` --- Su Linux e MacOS X (e su tutti i sistemi non Windows).
-* `\r` --- Su MacOS 9 e precedenti
-* `\r\n` --- Windows
-
-
-#### Pillola di storia
-
-
-* Il "carriage return" è un'eredità dovuta alla compatibilità con MS-DOS
-* Che a sua ha ereditato la cosa dalla compatibilità con CP/M-80
-* A quel tempo, le stampanti erano macchine da scrivere elettromeccaniche
-* `\r` riportava il rullo con la carta al margine sinistro
-    - quindi, sposta il cursore di scrittura all'inizio della riga corrente
-* Anche se queste stampanti non sono più in uso, alcuni produttori (come HP) mantengono la compatibilità su alcuni prodotti
-* Ad oggi, si usa `\r` solo per realizzare animazioni su terminale (far sì che la nuova linea cancelli la precedente)
-
----
-
-#### Standardizzazione
-
-
-* Entrambi i sistemi (Unix/Windows) "digeriscono" entrambi i newline
-* Ma se due membri del team usano impostazioni diverse, il DVCS considererà ogni file modificato come integralmente cambiato ad ogni salvataggio
-
-    * Diff incomprensibili
-    * Storia del progetto compromessa
-    * Difficoltà di produrre patch e ripristinare il lavoro precedente
-
-* Facciamo una scelta, e utilizziamo un solo formato
-* La nostra scelta sarà `\n` (**Unix newline**)
-
-
+* Essenziale se si utilizzano caratteri non inclusi nella tabella ASCII (caratteri accentati, ad esempio).
 
 ---
 
 ### Configurazione di encoding e newline in VS Code
-
 
 * `File -> Preferences -> Settings`
 * Per l'opzione `Text Editor -> Files -> Encoding` selezionare `UTF-8`
@@ -302,10 +263,11 @@ Unix e Windows differiscono anche per il carattere di newline
 
 ---
 
-## Caricamento di risorse dal classpath
+# Caricamento di risorse dal classpath
 
-### Risorse caricate dal classpath
+---
 
+## Risorse caricate dal classpath
 
 * Abbiamo visto finora il *classpath* come l'insieme dei *percorsi* dove la virtual machine va a cercare le classi da caricare
     * Come abbiamo visto usando l'opzione `-cp` di `java` e `javac`, il classpath può contenere indifferentemente dei path o dei JAR (o anche degli zip)
@@ -315,12 +277,12 @@ Unix e Windows differiscono anche per il carattere di newline
     * Ossia caricarle sia che si trovino sul file system, sia che si trovino nel JAR eseguibile, sia che vengano incluse in un JAR di risorse separato.
 
 * Java fornisce un'utilità per caricare risorse dal **classpath**
+    * Approccio **location-independent**: non importa dove il codice venga eseguito fin tanto che l'ambiente viene correttamente impostato per trovare le risorse.
+
 
 ---
 
-### `ClassLoader.getSystemResource` e `ClassLoader.getSystemResourceAsStream`
-
-{{% smaller %}}
+### `ClassLoader.getSystemResource`(`AsStream`)`(String)`
 
 ```java
 public abstract class ClassLoader {
@@ -331,18 +293,16 @@ public abstract class ClassLoader {
   // ...
 ```
 
-* Questo approccio al *resource loading* è detto **location-independent** in quanto non importa dove il codice viene eseguito fin tanto che l'ambiente viene correttamente impostato per trovare le risorse.
-* Un **class loader** (istanza di `ClassLoader`) è un'oggetto responsabile per il *caricamento di classi e risorse*
+* Un **class loader** (istanza di `ClassLoader`) è un'oggetto responsabile del *caricamento di classi e risorse*
     * ogni class loader ha un class loader padre, per sfruttare un meccanismo di delega
     * il parent di default è il **system class loader** che carica classi e risorse *dal classpath*
 * Una **risorsa di sistema** (system resource) è una risorsa "built-in" del sistema software, oppure disponibile nel sistema host (ad es. nel filesystem locale)
     * Per esempio, l'implementazione di base ricerca nel `CLASSPATH`
-* L'argomento di `getSystemResource` e `getSystemResourceAsStream` è il **nome di una risorsa** (non un percorso del filesystem!), che è una stringa separata da `/` che identifica la risorsa
+* L'argomento di `getSystemResource` e `getSystemResourceAsStream` è il **nome di una risorsa** (**non un percorso del filesystem!**), che è una stringa separata da `/` che identifica la risorsa
     * L'interpretazione del nome della risorsa dipende dall'implementazione
     * Il system class loader usa il nome come un path per cercare la risorsa a partire dalle entry del classpath
 * `ClassLoader.getSystemResource()` equivale a `ClassLoader.getSystemClassLoader().getResource()`
 
-{{% /smaller %}}
 
 
 ---
@@ -445,7 +405,7 @@ Spesso un software ha necessità di caricare al primo avvio delle *impostazioni 
 
 Esiste una lista, costantemente manutenuta, che elenca le più comuni, diffuse e stabili librerie per una pletora di usi: [https://bit.ly/awesome-java](https://bit.ly/awesome-java)
 
-**U-SA-TE-LE**!
+#### USATELE!
 
 * **Usare librerie e non reinventare la ruota è IMPORTANTE** e valutato
 positivamente.
@@ -453,11 +413,24 @@ positivamente.
 dell'applicazione: **PRIMA** si studia il problema, **DOPO** si implementa una soluzione:
 siete aspiranti ingegneri, cercate di lavorare sempre top-down quando possibile, non partite dalla libreria per costruirci sopra un software, ma partite dai requisiti e - se utile - sfruttate le librerie per soddisfarli.
 
+#### Attenzione ai framework!
+
+Alcune librerie sono costruite come *Framework*,
+ossia come ossature di applicazioni,
+pensate per velocizzare la costruzione di un certo tipo di software
+* Esempio tipico: l'engine per videogames [libGDX](`https://libgdx.com/`)
+
+Uno degli scopi del progetto di OOP è quello di misurare se siate bravi designer,
+ma per farlo è necessario che il design della vostra applicazione l'abbiate fatto voi e non chi ha costruito il framework.
+
+Vi raccomandiamo quindi di **evitare i framework**!
+O, al più, usarli solo *dopo che il progetto è avviato* come semplice libreria
+(non semplice e non sempre possibile)
+
 
 ---
 
-### The Maven Central Repository
-
+## The Maven Central Repository
 
 * Costituisce una delle più ampie collezioni di librerie e componenti Java open-source.
 
