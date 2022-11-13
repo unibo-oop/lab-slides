@@ -335,38 +335,22 @@ final JLabel lab1 = new JLabel(icon);
 
 ## Installazione delle impostazioni per-utente
 
-### Installazione delle impostazioni
-
-
 #### Motivazione
 
 Spesso un software ha necessità di caricare al primo avvio delle *impostazioni di default*, quindi lasciare l'utente libero di modificarle e, se avviato successivamente caricare quelle scelte dall'utente. In caso di sistema multiutente, le impostazioni saranno diverse per ciascuno.
 
-
-
 #### Strategia
-
 
 * Si sceglie una cartella nella **home folder dell'utente** dove salvare le impostazioni.
     * È norma consolidata creare una cartella `.nomeprogramma`.
 * Al primo avvio, si verifica se tale cartella esista e se contenga i file di configurazione previsti.
     * Se non è presente, o se non sono presenti e leggibili alcuni i file, si procede a caricare nella cartella di destinazione i file di default dal JAR usando `getResource()`.
 
-
-
-
 ---
 
-## Ricerca/Utilizzo di librerie
+<!-- write-here "shared-slides/build-systems/it-gradle-dependencies.md" -->
 
-### Uso di Librerie
-
-* Durante lo sviluppo di un software, spesso emerge la necessità di realizzare componenti a supporto della propria applicazione, utili per incapsulare un determinato comportamento/funzionalità ma non cruciali per la logica applicativa.
-* Nella maggior parte dei casi una tale libreria/componente è già stato sviluppato da qualcun altro!
-* Risulta opportuno avvalersi di librerie già disponibili e testate ...
-    *  ... dopo aver letto attentamente la documentazione e averne compreso a fondo il comportamento!
-
-
+<!-- end-write -->
 
 ---
 
@@ -426,18 +410,3 @@ ma per farlo è necessario che il design della vostra applicazione l'abbiate fat
 Vi raccomandiamo quindi di **evitare i framework**!
 O, al più, usarli solo *dopo che il progetto è avviato* come semplice libreria
 (non semplice e non sempre possibile)
-
-
----
-
-## The Maven Central Repository
-
-* Costituisce una delle più ampie collezioni di librerie e componenti Java open-source.
-
-    * È il repository di default per Apache Maven (noto tool per il project management).
-    * Bintray JCenter è un superset di Maven Central.
-
-* Rappresenta uno dei modi più rapidi per accedere a librerie sviluppate da altri sviluppatori e distribuire le proprie.
-* Consente di ricercare e scaricare pressoché qualunque libreria a supporto utile nelle proprie applicazioni open-source.
-* `https://search.maven.org/`
-
