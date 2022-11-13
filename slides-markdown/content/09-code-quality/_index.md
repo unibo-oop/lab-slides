@@ -50,7 +50,7 @@ Noi vedremo la terza modalità.
 ## SpotBugs (ex FindBugs)} 
 
 
-SpotBugs scansiona il bytecode generato dal compilatore, e dalla sua analisi cerca di scoprire potenziali bug nel sorgente, ad esempio:
+SpotBugs scansiona il *bytecode* generato dal compilatore, e dalla sua analisi cerca di scoprire potenziali bug nel sorgente, ad esempio:
 
 * Uguaglianza esatta fra `float` o `double`
 * Utilizzo di `==` invece di `equals()`
@@ -89,10 +89,138 @@ Cos'è: Checkstyle si occupa di trovare errori di stile:
 
 ## Configurazione e utilizzo tramite Gradle
 
+Ciascun tool di quelli introdotti ha un proprio plugin gradle che consente di attivarlo e configurarlo.
+
+Per gli scopi del corso,
+è stato sviluppato un plugin che applica i tre plugin precedenti,
+preconfigurandoli in modo "ragionevole".
+
+```kotlin
+plugins {
+    id("org.danilopianini.gradle-java-qa") version "0.40.0"
+}
+```
+
+di default, questo causa un fallimento della build se ci sono errori in analisi statica:
+* la configurazione è *aggressiva*.
+
 * Plugin
 * Aggressività
 * Build reports
 
+---
 
-## Soppressione
+## Falsi positivi e falsi negativi
 
+| *Osservato* \ **Reale** | **Vero** | **Falso** |
+| --- | --- | --- |
+| *Vero* | Positivo | Falso positivo |
+| *Falso* | Falso negativo | Negativo | 
+
+* **Sensibilità**: capacità di un test di identificare i casi veri
+    * Alta sensibilità $\Rightarrow$ pochi falsi negativi
+    * Un test molto sensibile tende a sbagliare "in eccesso",
+    preferendo i falsi positivi ai falsi negativi.
+* **Specificità**: capacità di un test di identificare i casi negativi
+    * Alta specificità $\Rightarrow$ pochi falsi positivi
+    * Un test molto sensibile tende a sbagliare "in difetto",
+    preferendo i falsi negativi ai falsi positivi.
+
+Sensibilità e specificità spesso vanno *bilanciate*,
+raramente in casi reali un test può essere sia molto sensibile che molto specifico
+
+#### Ci saranno casi in cui l'analisi statica darà dei falsi positivi
+
+(ci saranno anche falsi negativi, ma è più difficile trovarli...)
+
+---
+
+## Gestire falsi positivi: soppressione
+
+La *ragione* per cui un caso di problema sia da classificare come *falso positivo* va *studiata*
+
+* Potrebbe essere, in effetti, un *bug* o una limitazione del tool di analisi statica
+* Potrebbe essere che il difetto ci sia veramente, *ma non dipenda da noi*
+(magari stiamo usando una libreria esterna che ci forza a fare le cose così)
+* Potrebbe essere che il difetto sia presente, *ma sia voluto*
+    * Abbiamo scientemente fatto una scelta di design, intendiamo mantenerla e sappiamo giustificarla
+* Potrebbe essere che il difetto sia presente, *ma l'alternativa sia peggiore*
+    * caso specifico non supportato dal software
+    * impossibilità di utilizzo di una alternativa
+    * performance troppo basse (raro nei progetti di OOP...)
+
+In questi casi, si *disabilita **puntualmente** l'analisi statica nel punto in cui è presente il falso positivo*
+
+Questa operazione è detta **soppressione** e va *sempre giustificata*
+
+---
+
+## Soppressione in Checkstyle
+
+* La soppressione in checkstyle avviene tramite commenti, ed è configurabile
+* Nella configurazione fornitavi, si sopprime con delle "comment fences":
+
+```java
+// CHECKSTYLE: <ruleName> OFF
+<java code with the false positive>
+// CHECKSTYLE: <ruleName> ON
+```
+
+* dove `<ruleName>` va sostituito col nome della regola di Checkstyle che si sta violando
+
+È bene aggiungere un commento che spieghi la ragione della soppressione
+
+```java
+// CHECKSTYLE: <ruleName> OFF
+// Rule disabled due to false positives, see this bug report: https://...
+<java code with the false positive>
+// CHECKSTYLE: <ruleName> ON
+```
+
+---
+
+## Soppressione in PMD
+
+* La soppressione in PMD avviene tramite commento in linea
+
+```java
+<java code with the false positive> // NOPMD suppressed as it is a false positive
+```
+
+Se la linea di codice diventa troppo lunga, si può spezzare:
+
+```java
+<java code with the false positive> // NOPMD
+// suppressed as it is a false positive
+```
+---
+
+## Soppressione in Spotbugs
+
+Spotbugs lavora sul *bytecode*, quindi non può essere soppresso usando dei commenti
+
+Occorre invece usare una speciale **annotazione**,
+contenuta nella libreria:
+* [`com.github.spotbugs:spotbugs-annotations`](https://search.maven.org/artifact/com.github.spotbugs/spotbugs-annotations)
+
+E quindi, in `build.gradle.kts`
+
+```kotlin
+dependencies {
+    compileOnly("com.github.spotbugs:spotbugs-annotations:4.7.3") // Use the latest version
+}
+```
+
+Sarà a questo punto disponibile l'annotazione `@SuppressFBWarnings`:
+
+```java
+@SuppressFBWarnings(
+    value = { // List of bugs to be suppressed
+        "BC_UNCONFIRMED_CAST_OF_RETURN_VALUE",
+        "RV_RETURN_VALUE_IGNORED_BAD_PRACTICE"
+    }, // String with the reasons for them to be suppressed
+    justification = "A ChoiceDialog is always in its own stage"
+        + ", and we don't need the status of the Runnable"
+)
+<java code with the false positive>
+```
