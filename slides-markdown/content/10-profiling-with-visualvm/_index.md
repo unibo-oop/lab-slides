@@ -38,9 +38,10 @@ aliases = ["/profiling-with-visualvm/"]
 
     * Spesso il monitoraggio delle performance è essenziale per identificare eventuali problematiche o capire l'origine di problemi che possono essere sorti.
 
-* Tra gli *strumenti* che possono essere utilizzati per monitorare l'esecuzione di applicazioni che sono eseguite sulla JVM, due sono distribuiti unitamente al Java Development Kit (JDK).
+* Tra gli *strumenti* che possono essere utilizzati per monitorare l'esecuzione di applicazioni che sono eseguite sulla JVM:
 
     * *JConsole*, lo storico (e scarno) tool per il profiling di applicazioni Java.
+        - incluso nel JDK
     * **JVisualVM**, il più recente ed evoluto tool utilizzabile per monitorare l'evoluzione e le performance di applicazioni in esecuzione sulla JVM.
 
 ---
@@ -49,7 +50,8 @@ aliases = ["/profiling-with-visualvm/"]
 
 * Si tratta di un *profiler* per applicazioni Java che consente di misurarne ed analizzarne le performance.
 * Interagisce con la JVM (via *Java Management eXtensions (JMX)*) per fornire informazioni circa le performance e il consumo di risorse di applicazioni in esecuzione.
-* Distribuito internamente al *JDK* dalla versione 5.0
+* Precedentemente incluso nel JDK... ora distribuito come tool standalone
+    * scaricabile da [https://visualvm.github.io/](https://visualvm.github.io/)
 * Consente di monitorare:
     * la percentuale di CPU utilizzata da singoli metodi, thread, ..
     * per quanto tempo un thread si trova nello stato di running oppure in stato di blocco o di idle.
