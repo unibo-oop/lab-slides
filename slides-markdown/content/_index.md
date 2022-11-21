@@ -18,5 +18,5 @@ outputs = ["Reveal"]
 * [Testing, Documentazione del codice e costruzione degli artefatti](junit-jar-javadoc/)
 * [Programmazione multi-piattaforma](multiplatform/)
 * [Strumenti per la qualità del codice](code-quality-tools/)
-* [Ispezione e profiling](profiling-with-visualvm/)
 * [DVCS workflow](dvcs-workflow/)
+* [Ispezione e profiling](profiling-with-visualvm/)
