@@ -8,7 +8,7 @@ aliases = ["/profiling-with-visualvm/"]
 
 +++
 
-# Profiling con VisualVM
+# Monitoraggio e Profiling con VisualVM
 
 {{% import path="cover.md" %}}
 

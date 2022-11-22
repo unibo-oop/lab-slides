@@ -19,4 +19,4 @@ outputs = ["Reveal"]
 * [Programmazione multi-piattaforma](multiplatform/)
 * [Strumenti per la qualità del codice](code-quality-tools/)
 * [DVCS workflow](dvcs-workflow/)
-* [Ispezione e profiling](profiling-with-visualvm/)
+* [Monitoraggio e Profiling con VisualVM](profiling-with-visualvm/)
