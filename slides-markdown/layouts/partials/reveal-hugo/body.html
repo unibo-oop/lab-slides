@@ -15,12 +15,9 @@
 
 <script>
   if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
-      console.log("Printing detected. Disabling YouTube.")
       var ytVideos = document.getElementsByTagName("iframe")
-      console.log("AAAAAAAAAAAAA" + ytVideos[0].src)
       for (let i = 0; i < ytVideos.length; i++) {
           var videoFrame = ytVideos[i]
-          console.log("operating on " + videoFrame.src);
           var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
           if (isYouTube) {
               console.log(`Removing ${videoFrame.src}`)
