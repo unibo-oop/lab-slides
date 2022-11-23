@@ -1,11 +1,3 @@
-[submodule "workspace/lab08-sol"]
-	path = workspace/lab08-sol
-	url = https://github.com/APICe-at-DISI/OOP-Lab08.git
-	branch = solution
-[submodule "workspace/lab08"]
-	path = workspace/lab08
-	url = https://github.com/APICe-at-DISI/OOP-Lab08.git
-	branch = exercises
 [submodule "workspace/lab09"]
 	path = workspace/lab09
 	url = https://github.com/APICe-at-DISI/OOP-Lab09.git
