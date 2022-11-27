@@ -267,7 +267,7 @@ Solitamente, il codice sorgente si sviluppa utilizzando la codifica UTF-8
 
 ---
 
-<!-- write-here "shared-slides/java/it-classpath-resource.md" -->
+<!-- write-here "shared-slides/java/it-classpath-resources.md" -->
 
 <!-- end-write -->
 
