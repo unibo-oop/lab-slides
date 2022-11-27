@@ -20,3 +20,4 @@ outputs = ["Reveal"]
 * [Strumenti per la qualità del codice](code-quality-tools/)
 * [DVCS workflow](dvcs-workflow/)
 * [Monitoraggio e Profiling con VisualVM](profiling-with-visualvm/)
+* [Sviluppo di GUI con JavaFX](javafx/)
