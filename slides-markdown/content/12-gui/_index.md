@@ -12,6 +12,7 @@ aliases = ["/javafx/"]
 
 {{% import path="cover.md" %}}
 
+---
 
 ## Introduzione a JavaFX
 
