@@ -809,15 +809,13 @@ public class UIController {
 
 ## Stile separato via CSS
 
+- Esistono convenzioni (non regole) per "derivare" selettori di classe e proprietà CSS da nomi di classe e nomi di proprietà: per i `ToggleButton` c'è la classe `.toggle-button`, e per la proprietà `blendMode` la proprietà CSS `-fx-blend-mode` (notare prefisso `-fx-`)
+
 ### Esempio di file CSS
 
 ```css
-#myButton {
-  -fx-padding: 0.5em; 
-}
-.label {
-  -fx-font-size: 30pt;
-} /* for all the labels */
+#myButton { -fx-padding: 0.5em; } /* for an individual node */
+.label { -fx-font-size: 30pt; }  /* for all the labels */
 ```
 
 ### Applicazione dello stile
