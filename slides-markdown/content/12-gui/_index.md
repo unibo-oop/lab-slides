@@ -226,7 +226,7 @@ L'avvio mediante `Application.launch(App.class)` comporta:
 ### Build Gradle ed esempi
 
 - Si faccia riferimento al repository di esempio: 
-[https://github.com/APICe-at-DISI/sample-javafx-project](https://github.com/APICe-at-DISI/sample-javafx-project)
+[https://github.com/unibo-oop/sample-javafx-project](https://github.com/unibo-oop/sample-javafx-project)
 
 
 ```kotlin
