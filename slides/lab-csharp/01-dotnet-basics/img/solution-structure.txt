@@ -1,0 +1,16 @@
+SolutionName/
+├── Project1Name/
+│   ├── Project1Name.csproj
+│   ├── SubNamespace1/
+│   │   └── SubSubNamespace1/
+│   │       └── SomeClassDefinition1.cs
+│   └── Program.cs
+├── Project2Name/
+│   ├── Project2Name.vbproj
+│   ├── SubNamespace2/
+│   │   └── SubSubNamespace2/
+│   │       └── SomeClassDefinition2.vb
+│   └── Program.vb
+├── ...
+└── SolutionName.sln
+
