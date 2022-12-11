@@ -66,7 +66,7 @@ namespace Structures
             Console.WriteLine(cPoint2); // CPoint(X: 5, Y: 6)
             Console.WriteLine(sPoint2); // SPoint(X: 3, Y: 4)
             
-            IPoint cPoint3 = cPoint2; // BOXING!
+            IPoint cPoint3 = cPoint2;
             IPoint sPoint3 = sPoint2; // BOXING
             
             cPoint2.X = 9; cPoint2.Y = 0;
@@ -77,7 +77,7 @@ namespace Structures
             Console.WriteLine(cPoint3); // CPoint(X: 9, Y: 0)
             Console.WriteLine(sPoint3); // SPoint(X: 3, Y: 4)
             
-            CPoint cPoint4 = (CPoint)cPoint3; // UNBOXING!
+            CPoint cPoint4 = (CPoint)cPoint3;
             SPoint sPoint4 = (SPoint)sPoint3; // UNBOXING
             
             cPoint3.X = 3; cPoint3.Y = 4;
