@@ -1,0 +1,7 @@
+Monday, odd: True
+Tuesday, odd: False
+Wednesday, odd: True
+Thursday, odd: False
+Friday, odd: True
+Saturday, odd: False
+Sunday, odd: False

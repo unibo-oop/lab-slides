@@ -1,0 +1,7 @@
+Monday weekend: False
+Tuesday weekend: False
+Wednesday weekend: False
+Thursday weekend: False
+Friday weekend: False
+Saturday weekend: True
+Sunday weekend: True
