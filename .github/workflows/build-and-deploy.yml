@@ -50,7 +50,7 @@ jobs:
           path: pages
           ref: gh-pages
       - name: Setup Ruby
-        uses: ruby/setup-ruby@v1.128.0
+        uses: ruby/setup-ruby@v1.129.0
         with:
           working-directory: slides-markdown/shared-slides
       - name: Setup Chrome
