@@ -39,7 +39,7 @@ jobs:
       - name: Remove Hugo Installer
         run: rm hugo.deb
       - name: Setup Ruby
-        uses: ruby/setup-ruby@v1.130.0
+        uses: ruby/setup-ruby@v1.131.0
         with:
           working-directory: slides-markdown/shared-slides
       - name: Run the pre-processor
