@@ -43,7 +43,7 @@ jobs:
     steps:
       # Checkout the repository
       - name: Checkout the pdf creation script
-        uses: danysk/action-checkout@0.2.5
+        uses: danysk/action-checkout@0.2.6
       - name: Checkout gh-pages
         uses: actions/checkout@v3.4.0
         with:
@@ -83,7 +83,7 @@ jobs:
       - name: Verify the version
         run: ruby -e 'unless /^\d+\.[1-9]\d*\.[1-9]\d*$/.match?("${{ needs.compute-version.outputs.version }}") then exit 1 end'
       - name: Checkout
-        uses: danysk/action-checkout@0.2.5
+        uses: danysk/action-checkout@0.2.6
       - name: Compile LaTeX
         id: compile
         uses: DanySK/compile-latex-action@7840c270f1be4b48497fb8e6fd260a9436327b86
