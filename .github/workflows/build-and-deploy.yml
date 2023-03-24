@@ -25,7 +25,7 @@ jobs:
       version: ${{ steps.version-compute.outputs.version }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.4.0
+        uses: actions/checkout@v3.5.0
         with:
           fetch-depth: 0
       - name: Count the commits so far
@@ -45,7 +45,7 @@ jobs:
       - name: Checkout the pdf creation script
         uses: danysk/action-checkout@0.2.6
       - name: Checkout gh-pages
-        uses: actions/checkout@v3.4.0
+        uses: actions/checkout@v3.5.0
         with:
           path: pages
           ref: gh-pages
