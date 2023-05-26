@@ -55,7 +55,7 @@ jobs:
           config-file: slides-markdown/config.toml
       - name: Deploy
         if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/master' }}
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        uses: JamesIves/github-pages-deploy-action@v4.4.2
         with:
           branch: gh-pages
           folder: slides-markdown/build
