@@ -5,9 +5,9 @@
 <meta name="author" content="Danilo Pianini">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/oop-lab/reveal-js/dist/reset.css">
-<link rel="stylesheet" href="/oop-lab/reveal-js/dist/reveal.css">
-  <link rel="stylesheet" href="/oop-lab/css/custom-theme.min.a1fb5112a00265a42a2454be30346ad4b54db549887ebde65a30994235d50c7d.css" id="theme"><link rel="stylesheet" href="/oop-lab/highlight-js/default.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/lab-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/lab-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/lab-slides/css/custom-theme.min.a1fb5112a00265a42a2454be30346ad4b54db549887ebde65a30994235d50c7d.css" id="theme"><link rel="stylesheet" href="/lab-slides/highlight-js/default.min.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
@@ -336,28 +336,28 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
       
 
     </div>
-<script type="text/javascript" src="/oop-lab/reveal-hugo/object-assign.js"></script>
+<script type="text/javascript" src="/lab-slides/reveal-hugo/object-assign.js"></script>
 
-<a href="/oop-lab/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+<a href="/lab-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
 
 <script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"900","highlight_theme":"default","history":true,"mermaid":[{"startOnLoad":false}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1440"}</script>
 <script type="application/json" id="reveal-hugo-page-params">null</script>
 
-<script src="/oop-lab/reveal-js/dist/reveal.js"></script>
+<script src="/lab-slides/reveal-js/dist/reveal.js"></script>
 
 
   
   
-  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/markdown/markdown.js"></script>
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/markdown/markdown.js"></script>
   
-  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/highlight/highlight.js"></script>
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/highlight/highlight.js"></script>
   
-  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/zoom/zoom.js"></script>
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/zoom/zoom.js"></script>
   
-  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/notes/notes.js"></script>
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
   
   
-  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/notes/notes.js"></script>
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
 
 
 
@@ -402,8 +402,6 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
   
 
   
-    
-  
 
   
 
@@ -428,30 +426,6 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
   
 
 
-
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({"startOnLoad":false});
-
-    let render = (event) => {
-      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
-      if (!mermaidElems.length){
-          return
-      }
-      mermaidElems.forEach(mermaidElem => {
-          let processed = mermaidElem.getAttribute('data-processed');
-          if (!processed){
-              
-              mermaid.init(undefined, mermaidElem);
-          }
-      });
-    };
-    
-    render({currentSlide: Reveal.getCurrentSlide()});
-
-    Reveal.on('slidechanged', render);
-    Reveal.on('ready', render);
-  </script>
 
     <script>
     MathJax = {
