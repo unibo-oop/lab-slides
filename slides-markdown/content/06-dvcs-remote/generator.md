@@ -1,4 +1,4 @@
- 
+
 +++
 
 title = "Laboratorio di Programmazione ad Oggetti"
@@ -27,3 +27,9 @@ aliases = ["/dvcs-remote/"]
 <!-- write-here "shared-slides/git/git-hosting-github.md" -->
 
 <!-- end-write -->
+
+---
+
+# Operazioni con repository remoti
+
+{{% import path="cover.md" %}}

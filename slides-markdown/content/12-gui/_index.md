@@ -1,8 +1,8 @@
 
 +++
 
-title = "Progettazione e Sviluppo del Software"
-description = "Progettazione e Sviluppo del Software, Tecnologie dei Sistemi Informatici"
+title = "Laboratorio di Programmazione ad Oggetti"
+description = "Laboratorio di Programmazione ad Oggetti, Ingegneria e Scienze Informatiche"
 outputs = ["Reveal"]
 aliases = ["/javafx/"]
 
@@ -28,7 +28,7 @@ aliases = ["/javafx/"]
     * Torna ad essere una *libreria stand-alone da Java 11*:
     è opensource e parte del progetto OpenJDK -- [https://openjfx.io](https://openjfx.io)
 
-<!-- 
+<!--
 * Propone un look-and-feel personalizzabile
 
     * La descrizione dello stile/aspetto dei componenti della GUI è separato dalla relativa implementazione
@@ -106,7 +106,7 @@ aliases = ["/javafx/"]
 
 * Il contenitore (esterno) dove la GUI sarà visualizzata (ad es., una finestra del S.O.)
     * Corrisponde al `JFrame` di Swing
-* [javafx.stage.Stage](https://openjfx.io/javadoc/15/javafx.graphics/javafx/stage/Stage.html), sottoclasse di `Window` 
+* [javafx.stage.Stage](https://openjfx.io/javadoc/15/javafx.graphics/javafx/stage/Stage.html), sottoclasse di `Window`
 
 
 
@@ -159,10 +159,10 @@ public class App extends javafx.application.Application {
 import javafx.application.Application;
 
 public class Main {
-	public static void main(String[] args) { 
+	public static void main(String[] args) {
 	    // App è la classe definita nella slide precedente
-	    Application.launch(App.class, args); 
-	}   
+	    Application.launch(App.class, args);
+	}
 }
 ```
 
@@ -181,11 +181,11 @@ L'avvio mediante `Application.launch(App.class)` comporta:
 
 1. Avvio del runtime JavaFX <!-- %(se necessario) -->
     - comporta la creazione di vari thread, tra cui il *JavaFX Application Thread*
-2. Istanziazione di `App` (la classe specificata che estende `Application`) 
+2. Istanziazione di `App` (la classe specificata che estende `Application`)
 3. Invocazione metodo `init()`
 3. Invocazione metodo `start(javafx.stage.Stage)` dell'applicazione
-4. Attesa terminazione applicazione 
-	  - (a) mediante `Platform.exit()` 
+4. Attesa terminazione applicazione
+	  - (a) mediante `Platform.exit()`
 	  - (b) chiusura dell'ultima finestra (e `Platform.isImplicitExit()` è true)
 5. Invocazione metodo `stop()` dell'applicazione
 
@@ -225,7 +225,7 @@ L'avvio mediante `Application.launch(App.class)` comporta:
 
 ### Build Gradle ed esempi
 
-- Si faccia riferimento al repository di esempio: 
+- Si faccia riferimento al repository di esempio:
 [https://github.com/unibo-oop/sample-javafx-project](https://github.com/unibo-oop/sample-javafx-project)
 
 
@@ -248,8 +248,8 @@ dependencies {
   for (platform in supportedPlatforms) {
     for (module in javaFXModules) {
       implementation("org.openjfx:javafx-$module:$javaFxVersion:$platform")
-    } 
-  } 
+    }
+  }
 }
 
 application {
@@ -339,7 +339,7 @@ mirror.setText("default");
 
 ## I layout (cf. package [javafx.scene.layout](https://openjfx.io/javadoc/13/javafx.graphics/javafx/scene/layout/package-summary.html))
 
-* Sottoclassi di `Parent` (nodo che può avere nodi figli -- cf. proprietà protected `children`): 
+* Sottoclassi di `Parent` (nodo che può avere nodi figli -- cf. proprietà protected `children`):
     * `Group` (gestisce un insieme di figli; ogni trasformazione/effetto è applicata su ogni figlio)
     * `Region` (classe base per tutti i controlli UI e i layout)
         * `Control` (classe base per tutti i controlli UI)
@@ -461,7 +461,7 @@ for(Month m : Month.values()) {
 ## Eventi
 
 
-* Gli **eventi** (`javafx.event.Event`) possono essere generati dall'interazione dell'utente con gli elementi grafici 
+* Gli **eventi** (`javafx.event.Event`) possono essere generati dall'interazione dell'utente con gli elementi grafici
     * ogni evento ha un *event source*, *event target*, ed *event type*  e può essere consumato (`consume()`)
 * GLi eventi possono essere gestiti attraverso *event handlers*
     * Ogni `EventHandler<T extends Event>` deve implementare il metodo `void handle(T)`
@@ -553,7 +553,7 @@ public class SecondStage extends Stage {
 
 public class Main {
     public static void main(final String[] args) {
-        Application.launch(App.class, args); 
+        Application.launch(App.class, args);
     }
 }
 ```
@@ -643,7 +643,7 @@ stage.xProperty().addListener(x -> {
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx" 
+<VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml">
   <children>
     <Button fx:id="btn"
@@ -881,7 +881,7 @@ public class UIController {
 Programmaticamente
 
 ```java
-Scene scene = new Scene(pane); 
+Scene scene = new Scene(pane);
 scene.getStylesheets().add(ClassLoader.getSystemResource("css/scene.css"));
 
 HBox buttons = new HBox();
@@ -995,7 +995,7 @@ public final class JavaFXAppWithSwing extends Application {
         primaryStage.setScene(new Scene(pane));
         primaryStage.show();
     }
-    
+
     // ...
 }
 ```

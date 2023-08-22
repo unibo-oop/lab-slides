@@ -1,4 +1,4 @@
- 
+
 +++
 
 title = "Laboratorio di Programmazione ad Oggetti"
@@ -17,3 +17,9 @@ aliases = ["/dvcs-branching/"]
 <!-- write-here "shared-slides/git/branching-merging.md" -->
 
 <!-- end-write -->
+
+---
+
+# Branching e merging
+
+{{% import path="cover.md" %}}

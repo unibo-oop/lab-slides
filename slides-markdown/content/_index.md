@@ -21,3 +21,4 @@ outputs = ["Reveal"]
 * [DVCS workflow](dvcs-workflow/)
 * [Monitoraggio e Profiling con VisualVM](profiling-with-visualvm/)
 * [Sviluppo di GUI con JavaFX](javafx/)
+* [Speciale: `git` cheatsheet](git-cheatsheet/)

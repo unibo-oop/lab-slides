@@ -1,4 +1,4 @@
- 
+
 +++
 
 title = "Laboratorio di Programmazione ad Oggetti"
@@ -26,10 +26,16 @@ aliases = ["/dvcs-basics/"]
 
 ---
 
-# Basic operations with git
+## Basic operations with git
 
 ---
 
 <!-- write-here "shared-slides/git/basics-no-branching.md" -->
 
 <!-- end-write -->
+
+---
+
+# Sistemi di controllo versione
+
+{{% import path="cover.md" %}}
