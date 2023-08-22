@@ -1,4 +1,4 @@
-baseURL = "https://apice-at-disi.github.io/oop-lab"
+baseURL = "https://unibo-oop.github.io/lab-slides"
 languageCode = "en-us"
 title = "Laboratorio di Programmazione ad Oggetti"
 disableKinds = ["sitemap", "RSS"]
