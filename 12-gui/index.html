@@ -1,0 +1,1015 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Progettazione e Sviluppo del Software</title>
+<meta name="description" content="Progettazione e Sviluppo del Software, Tecnologie dei Sistemi Informatici">
+<meta name="author" content="Danilo Pianini">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/oop-lab/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/oop-lab/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/oop-lab/css/custom-theme.min.a1fb5112a00265a42a2454be30346ad4b54db549887ebde65a30994235d50c7d.css" id="theme"><link rel="stylesheet" href="/oop-lab/highlight-js/default.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="interfacce-utente-grafiche-gui-con-javafx">Interfacce utente grafiche (GUI) con JavaFX</h1>
+<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+<h3 id="danilo-pianini-----danilopianiniuniboitmailtodanilopianiniuniboit"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+<h3 id="roberto-casadei-----robycasadeiuniboitmailtorobycasadeiuniboit"><a href="mailto:roby.casadei@unibo.it">Roberto Casadei — <code>roby.casadei@unibo.it</code></a></h3>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a>
+</p></section><section>
+<h2 id="introduzione-a-javafx">Introduzione a JavaFX</h2>
+</section><section>
+<h3 id="javafx">JavaFX</h3>
+<ul>
+<li>
+<p>Libreria Java per la creazione di GUI per Rich Applications multi-piattaforma</p>
+<ul>
+<li>Disponibile dal 2008 (v. 1.0 – 2.2) come libreria stand-alone</li>
+<li>Presente “<em>stabilmente</em>” nel JDK da Java 8 (v. JavaFX 8)</li>
+<li><del>Introdotto ufficialmente in Java con l’idea di sostituire (gradualmente) Swing</del></li>
+<li>Torna ad essere una <em>libreria stand-alone da Java 11</em>:
+è opensource e parte del progetto OpenJDK – <a href="https://openjfx.io">https://openjfx.io</a></li>
+</ul>
+</li>
+</ul>
+<!-- 
+* Propone un look-and-feel personalizzabile
+
+    * La descrizione dello stile/aspetto dei componenti della GUI è separato dalla relativa implementazione
+    * Fornisce costrutti che promuovono il pattern MVC
+
+-->
+<ul>
+<li>Consente la creazione di GUI moderne, di qualità e ben adattabili a qualunque piattaforma e supporto hardware</li>
+</ul>
+</section><section>
+<h2 id="javafx-funzionalità-principali">JavaFX: funzionalità principali</h2>
+<h3 id="java-apis">Java APIs</h3>
+<ul>
+<li>Libreria che include classi e interfacce scritte in Java <!-- e compilato con retro compatibilità fino a Java 7 --></li>
+<li>Nel 2022, la versione più recente, <em>JavaFX 19</em>, richiede <em>JDK &gt;= 11</em></li>
+</ul>
+<h3 id="fxml-e-css-per-lo-stile">FXML (e CSS per lo stile)</h3>
+<ul>
+<li><strong>FXML</strong> è un linguaggio dichiarativo per definire la GUI di un’applicazione JavaFX-based</li>
+<li><strong>CSS</strong> è un linguaggio flessibile per specificare lo stile di elementi della GUI</li>
+<li>Il loro impiego non è indispensabile, ma fortemente consigliato per una buona <em>separazione dei concern</em></li>
+</ul>
+<h3 id="mvc-friendly">MVC-friendly</h3>
+<ul>
+<li>Attraverso FXML/CSS, ma anche attraverso <em>proprietà osservabili</em> e <em>data binding</em></li>
+</ul>
+</section><section>
+<h3 id="graphics-api">Graphics API</h3>
+<ul>
+<li>Supporto nativo per la grafica 3D (geometrie, camere, luci)</li>
+<li>Abilita la possibilità di disegnare direttamente sulla superficie (canvas) dell’applicazione</li>
+</ul>
+<h3 id="supporto-per-schermi-multi-touch-e-hi-dpi">Supporto per schermi Multi-touch e Hi-DPI</h3>
+<ul>
+<li>Fornisce il supporto per funzionalità  multi-touch (cf. <code>SwipeEvent</code>), in funzione della piattaforma in cui l’applicazione è in esecuzione</li>
+<li>Garantisce una buona visualizzazione della GUI anche su schermi ad alta densità di pixel</li>
+</ul>
+<h3 id="interoperabilità-bidirezionale-con-la-libreria-java-built-in-per-gui-swing">Interoperabilità bidirezionale con la libreria Java built-in per GUI <em>Swing</em></h3>
+<ul>
+<li>GUI Swing esistenti possono includere componenti JavaFX (cf. <code>JFXPanel</code>)</li>
+<li>E’ possibile inserire componenti Swing in interfacce JavaFX (cf. <code>SwingNode</code>)</li>
+</ul>
+</section><section>
+<h2 id="astrazioni-fondamentali">Astrazioni fondamentali</h2>
+<h3 id="stage">Stage</h3>
+<ul>
+<li>Il contenitore (esterno) dove la GUI sarà visualizzata (ad es., una finestra del S.O.)
+<ul>
+<li>Corrisponde al <code>JFrame</code> di Swing</li>
+</ul>
+</li>
+<li><a href="https://openjfx.io/javadoc/15/javafx.graphics/javafx/stage/Stage.html">javafx.stage.Stage</a>, sottoclasse di <code>Window</code></li>
+</ul>
+<h3 id="scene">Scene</h3>
+<ul>
+<li>Una <strong>scene</strong> rappresenta un contenuto (una <em>pagina</em> della GUI) visualizzabile sullo <code>Stage</code>
+<ul>
+<li>ogni <code>Stage</code> può mostrare una sola <code>Scene</code> alla volta: si imposta via <code>Stage#setScene(Scene)</code></li>
+</ul>
+</li>
+<li><a href="https://openjfx.io/javadoc/15/javafx.graphics/javafx/scene/Scene.html">javafx.scene.Scene</a> contiene il cosiddetto <em>scene graph</em>, impostabile attraverso <code>Scene#setRoot(Parent)</code></li>
+</ul>
+</section><section>
+<h3 id="application">Application</h3>
+<ul>
+<li>Un’<strong>applicazione JavaFX</strong> si definisce estendendo <a href="https://openjfx.io/javadoc/15/javafx.graphics/javafx/application/Application.html">javafx.application.Application</a>
+<ul>
+<li>Consente di definire metodi hook sul ciclo di vita dell’applicazione (<code>init</code>, <code>start</code>, <code>stop</code>, …)</li>
+<li>Tipicamente, si opera ridefinendo <code>start(Stage)</code> che riceve lo stage primario</li>
+</ul>
+</li>
+</ul>
+<h4 id="esempio-gui-vuota">Esempio: GUI vuota</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">App</span> <span style="color:#a90d91">extends</span> <span style="color:#000">javafx</span><span style="color:#000">.</span><span style="color:#836c28">application</span><span style="color:#000">.</span><span style="color:#836c28">Application</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a90d91">public</span> <span style="color:#a90d91">void</span> <span style="color:#000">start</span><span style="color:#000">(</span><span style="color:#000">Stage</span> <span style="color:#000">stage</span><span style="color:#000">)</span> <span style="color:#a90d91">throws</span> <span style="color:#000">Exception</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">Group</span> <span style="color:#000">root</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Group</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">Scene</span> <span style="color:#000">scene</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Scene</span><span style="color:#000">(</span><span style="color:#000">root</span><span style="color:#000">,</span> <span style="color:#000">500</span><span style="color:#000">,</span> <span style="color:#000">300</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">setTitle</span><span style="color:#000">(</span><span style="color:#c41a16">"JavaFX Demo"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">setScene</span><span style="color:#000">(</span><span style="color:#000">scene</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">show</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">}</span>
+</span></span></code></pre></div></section><section>
+<h3 id="applicazione-javafx-runner">Applicazione JavaFX: runner</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">import</span> <span style="color:#000">javafx.application.Application</span><span style="color:#000">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">Main</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">void</span> <span style="color:#000">main</span><span style="color:#000">(</span><span style="color:#000">String</span><span style="color:#000">[]</span> <span style="color:#000">args</span><span style="color:#000">)</span> <span style="color:#000">{</span> 
+</span></span><span style="display:flex;"><span>	    <span style="color:#177500">// App è la classe definita nella slide precedente
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>	    <span style="color:#000">Application</span><span style="color:#000">.</span><span style="color:#836c28">launch</span><span style="color:#000">(</span><span style="color:#000">App</span><span style="color:#000">.</span><span style="color:#836c28">class</span><span style="color:#000">,</span> <span style="color:#000">args</span><span style="color:#000">);</span> 
+</span></span><span style="display:flex;"><span>	<span style="color:#000">}</span>   
+</span></span><span style="display:flex;"><span><span style="color:#000">}</span>
+</span></span></code></pre></div><ul>
+<li>ATTENZIONE: per motivi tecnici che non approfondiremo, definire il metodo <code>main()</code> dentro la classe <code>App</code> (che estende <code>Application</code>) può risultare nel seguente errore: <em>“Error: JavaFX runtime components are missing, and are required to run this application”</em> (richiederebbe l’aggiunta di JavaFX al module path all’avvio dell’applicazione)</li>
+<li>Di conseguenza, si consiglia di definire <code>main</code> in una <em>classe separata da quella dell’applicazione JavaFX</em></li>
+</ul>
+</section><section>
+<h3 id="ciclo-di-vita-di-applicazioni-javafx">Ciclo di vita di applicazioni JavaFX</h3>
+<p>L’avvio mediante <code>Application.launch(App.class)</code> comporta:</p>
+<ol>
+<li>Avvio del runtime JavaFX <!-- %(se necessario) -->
+<ul>
+<li>comporta la creazione di vari thread, tra cui il <em>JavaFX Application Thread</em></li>
+</ul>
+</li>
+<li>Istanziazione di <code>App</code> (la classe specificata che estende <code>Application</code>)</li>
+<li>Invocazione metodo <code>init()</code></li>
+<li>Invocazione metodo <code>start(javafx.stage.Stage)</code> dell’applicazione</li>
+<li>Attesa terminazione applicazione
+<ul>
+<li>(a) mediante <code>Platform.exit()</code></li>
+<li>(b) chiusura dell’ultima finestra (e <code>Platform.isImplicitExit()</code> è true)</li>
+</ul>
+</li>
+<li>Invocazione metodo <code>stop()</code> dell’applicazione</li>
+</ol>
+</section><section>
+<h3 id="node"><code>Node</code></h3>
+<ul>
+<li>Un <strong>nodo</strong> è un elemento/componente della scena
+<ul>
+<li>Ciascun nodo ha sia la parte di view (aspetto) sia la parte di controller (comportamento)</li>
+<li>Hanno <strong>proprietà</strong> (con supporto al <em>binding</em>) e possono generare <strong>eventi</strong></li>
+<li>Possono essere organizzati gerarchicamente
+<ul>
+<li>La sottoclasse <code>Parent</code> rappresenta nodi che possono avere figli (recuperabili via <code>getChildren()</code>)</li>
+</ul>
+</li>
+<li>Un nodo ha un ID univoco, coordinate locali, può subire trasformazioni (ad es. rotazione), ha un bounding rectangle associato, e può essere stilizzato via CSS</li>
+</ul>
+</li>
+<li>Sottoclassi di <a href="https://openjfx.io/javadoc/15/javafx.graphics/javafx/scene/Node.html"><code>Node</code></a>: <code>SwingNode</code>, <code>Canvas</code>, <code>Parent</code></li>
+</ul>
+</section><section>
+<h3 id="sommario">Sommario</h3>
+<p><img src="imgs/javafx-app-summary.png" alt=""></p>
+</section><section>
+<h3 id="struttura-di-unapplicazione-javafx-based">Struttura di un’applicazione JavaFX-based</h3>
+<p><img src="imgs/javafx-app-structure.png" alt=""></p>
+</section><section>
+<h3 id="build-gradle-ed-esempi">Build Gradle ed esempi</h3>
+<ul>
+<li>Si faccia riferimento al repository di esempio:
+<a href="https://github.com/unibo-oop/sample-javafx-project">https://github.com/unibo-oop/sample-javafx-project</a></li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">plugins</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#000">java</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">application</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">id</span>(<span style="color:#c41a16">"com.github.johnrengelman.shadow"</span>) <span style="color:#000">version</span> <span style="color:#c41a16">"7.0.0"</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">repositories</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#000">mavenCentral</span>()
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">val</span> <span style="color:#000">javaFXModules</span> = <span style="color:#000">listOf</span>(<span style="color:#c41a16">"base"</span>, <span style="color:#c41a16">"controls"</span>, <span style="color:#c41a16">"fxml"</span>, <span style="color:#c41a16">"swing"</span>, <span style="color:#c41a16">"graphics"</span> )
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">val</span> <span style="color:#000">supportedPlatforms</span> = <span style="color:#000">listOf</span>(<span style="color:#c41a16">"linux"</span>, <span style="color:#c41a16">"mac"</span>, <span style="color:#c41a16">"win"</span>) <span style="color:#177500">// All required for OOP
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#a90d91">val</span> <span style="color:#000">javaFxVersion</span> = <span style="color:#1c01ce">17</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">dependencies</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">for</span> (<span style="color:#000">platform</span> <span style="color:#a90d91">in</span> <span style="color:#000">supportedPlatforms</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">for</span> (<span style="color:#000">module</span> <span style="color:#a90d91">in</span> <span style="color:#000">javaFXModules</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#000">implementation</span>(<span style="color:#c41a16">"org.openjfx:javafx-</span><span style="color:#c41a16">$module</span><span style="color:#c41a16">:</span><span style="color:#c41a16">$javaFxVersion</span><span style="color:#c41a16">:</span><span style="color:#c41a16">$platform</span><span style="color:#c41a16">"</span>)
+</span></span><span style="display:flex;"><span>    } 
+</span></span><span style="display:flex;"><span>  } 
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">application</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#000">mainClass</span>.<span style="color:#a90d91">set</span>(<span style="color:#c41a16">"it.unibo.samplejavafx.App"</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></section><section>
+<h3 id="creazione-di-unapplicazione-javafx-linee-guida">Creazione di un’applicazione JavaFX: linee guida</h3>
+<ol>
+<li>La classe principale di un’applicazione JavaFX (chiamiamola <code>App</code>) deve estendere la classe <code>javafx.application.Application</code></li>
+<li>Si effettua l’override di <code>void start(Stage primaryStage)</code> che è, di fatto, l’entry point dell’applicazione JavaFX (lo stage primario è creato dalla piattaforma)</li>
+<li>Sullo stage is imposta la scena (<code>setScene()</code>)</li>
+<li>Lo stage va mostrato invocando <code>show()</code></li>
+<li>Una <em>classe separata</em> definisce il <code>main()</code> dell’applicazione Java, che deve chiamare <code>Application.launch(App.class)</code></li>
+</ol>
+<!-- La scena definita per lo stage (vedi metodo `setScene()`) costituisce il container principale per tutti i componenti della GUI -->
+</section><section>
+<h3 id="nodi-e-proprietà">Nodi e Proprietà</h3>
+<ul>
+<li>
+<p>Ogni scena ha un <em>root node</em> relativo a una <em>gerarchia di nodi</em> descrivente la GUI</p>
+</li>
+<li>
+<p>Ciascun nodo (componente) espone diverse <em>proprietà osservabili</em> (classe <code>Property&lt;T&gt;</code>)</p>
+<ul>
+<li>relative all’aspetto (es. <code>size</code>, <code>posizion</code>, <code>color</code>, …)</li>
+<li>relative al contenuto (es. <code>text</code>, <code>value</code>, …)</li>
+<li>relative al comportamento (es. <em>event handler</em>, <code>controller</code>, …)</li>
+</ul>
+</li>
+<li>
+<p>Ciascun nodo genera <em>eventi</em> in relazione ad azioni dell’utente</p>
+</li>
+</ul>
+</section><section>
+<h3 id="gui-con-bottone-e-label">GUI con bottone e label</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">Example1</span> <span style="color:#a90d91">extends</span> <span style="color:#000">Application</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a90d91">public</span> <span style="color:#a90d91">void</span> <span style="color:#000">start</span><span style="color:#000">(</span><span style="color:#000">Stage</span> <span style="color:#000">stage</span><span style="color:#000">)</span> <span style="color:#a90d91">throws</span> <span style="color:#000">Exception</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a90d91">final</span> <span style="color:#000">Label</span> <span style="color:#000">lbl</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Label</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">lbl</span><span style="color:#000">.</span><span style="color:#836c28">setText</span><span style="color:#000">(</span><span style="color:#c41a16">"Label text here..."</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a90d91">final</span> <span style="color:#000">Button</span> <span style="color:#000">btn</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Button</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">btn</span><span style="color:#000">.</span><span style="color:#836c28">setText</span><span style="color:#000">(</span><span style="color:#c41a16">"Click me"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a90d91">final</span> <span style="color:#000">HBox</span> <span style="color:#000">root</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">HBox</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">root</span><span style="color:#000">.</span><span style="color:#836c28">getChildren</span><span style="color:#000">().</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#000">btn</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">root</span><span style="color:#000">.</span><span style="color:#836c28">getChildren</span><span style="color:#000">().</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#000">lbl</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">setTitle</span><span style="color:#000">(</span><span style="color:#c41a16">"JavaFX - Example 1"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">setScene</span><span style="color:#000">(</span><span style="color:#a90d91">new</span> <span style="color:#000">Scene</span><span style="color:#000">(</span><span style="color:#000">root</span><span style="color:#000">,</span> <span style="color:#000">300</span><span style="color:#000">,</span> <span style="color:#000">250</span><span style="color:#000">));</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">show</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">}</span>
+</span></span></code></pre></div></section><section>
+<h3 id="binding-e-proprietà">Binding e proprietà</h3>
+<ul>
+<li>Per <em>binding</em> si intende il meccanismo che consente di collegare due proprietà fra loro, in modo unidirezionale o bidirezionale</li>
+<li>Una <em>proprietà JavaFX</em> <code>Property&lt;T&gt;</code> è un <code>ObservableValue&lt;T&gt;</code> (un valore ottenibile con <code>getValue()</code> a cui possono essere associati dei <code>ChangeListener</code> via <code>remove/addListener</code>) <em>scrivibile</em> che può essere collegato/scollegato ad altri osservabili o proprietà attraverso
+<ul>
+<li><code>bind(ObservableValue&lt;? extends T&gt; observable)</code> / <code>bindBidirectional(Property&lt;T&gt; other)</code></li>
+<li><code>unbind()</code> / <code>unbindBidirectional(Property&lt;T&gt; other)</code></li>
+</ul>
+</li>
+<li>Una proprietà JavaFX <code>xxx</code> di tipo <code>T</code> ha (opzionalmente) getter/setter <code>getXxx()</code> e <code>setXxx()</code>, e un metodo <code>xxxProperty()</code> che restituisce un oggetto <code>Property&lt;T&gt;</code>
+<ul>
+<li>Ad esempio, un <code>TextField</code> offre <code>getText():String</code>, <code>setText(String)</code>, e <code>textProperty():Property&lt;String&gt;</code></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">TextField</span> <span style="color:#000">input</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">TextField</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">Label</span> <span style="color:#000">mirror</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Label</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#177500">// connette la label con il valore del textfield
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">mirror</span><span style="color:#000">.</span><span style="color:#836c28">textProperty</span><span style="color:#000">().</span><span style="color:#836c28">bindBidirectional</span><span style="color:#000">(</span><span style="color:#000">input</span><span style="color:#000">.</span><span style="color:#836c28">textProperty</span><span style="color:#000">());</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">mirror</span><span style="color:#000">.</span><span style="color:#836c28">setText</span><span style="color:#000">(</span><span style="color:#c41a16">"default"</span><span style="color:#000">);</span>
+</span></span></code></pre></div></section><section>
+<h2 id="i-layout-cf-package-javafxscenelayouthttpsopenjfxiojavadoc13javafxgraphicsjavafxscenelayoutpackage-summaryhtml">I layout (cf. package <a href="https://openjfx.io/javadoc/13/javafx.graphics/javafx/scene/layout/package-summary.html">javafx.scene.layout</a>)</h2>
+<ul>
+<li>Sottoclassi di <code>Parent</code> (nodo che può avere nodi figli – cf. proprietà protected <code>children</code>):
+<ul>
+<li><code>Group</code> (gestisce un insieme di figli; ogni trasformazione/effetto è applicata su ogni figlio)</li>
+<li><code>Region</code> (classe base per tutti i controlli UI e i layout)
+<ul>
+<li><code>Control</code> (classe base per tutti i controlli UI)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Ogni <strong>layout</strong> è un contenitore che regola il <em>posizionamento e il dimensionamento</em> dei nodi figli</li>
+</ul>
+<h3 id="group">Group</h3>
+<ul>
+<li>Da utilizzare per posizionare i componenti figli in posizioni fisse (cf. proprietà <code>layoutX</code> e <code>layoutY</code> dei <code>Node</code>)</li>
+<li>Ogni trasformazione/effetto applicato al gruppo è applicato su ogni figlio</li>
+</ul>
+<h3 id="region">Region</h3>
+<ul>
+<li>Classe base per tutti i layout general purpose (simili a quelli offerti da Swing):
+<ul>
+<li><code>BorderPane</code>, <code>HBox</code>/<code>VBox</code>, <code>TilePane</code>, <code>GridPane</code>, <code>FLowPane</code>, <code>AnchorPane</code>, <code>StackPane</code></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<p><img src="imgs/layouts.png" alt=""></p>
+</section><section>
+<h3 id="aggiungere-componenti-ad-un-layout">Aggiungere componenti ad un layout</h3>
+<ul>
+<li>Il metodo <code>ObservableList&lt;Node&gt; getChildren()</code> restituisce la lista di nodi figli di un qualunque nodo/layout
+<ul>
+<li>Alla lista possono essere aggiunti (<code>add(Node)</code> e <code>addAll(Node...)</code>) e gestiti i componenti figli</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">Group</span> <span style="color:#000">g</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Group</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">Label</span> <span style="color:#000">l1</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Label</span><span style="color:#000">(</span><span style="color:#c41a16">"label"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">Button</span> <span style="color:#000">b1</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Button</span><span style="color:#000">(</span><span style="color:#c41a16">"a larger button"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">Button</span> <span style="color:#000">b2</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Button</span><span style="color:#000">(</span><span style="color:#c41a16">"small button"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">g</span><span style="color:#000">.</span><span style="color:#836c28">getChildren</span><span style="color:#000">().</span><span style="color:#836c28">addAll</span><span style="color:#000">(</span><span style="color:#000">l1</span><span style="color:#000">,</span> <span style="color:#000">b2</span><span style="color:#000">,</span> <span style="color:#000">b3</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#177500">// Use binding to suitable place the components
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">b1</span><span style="color:#000">.</span><span style="color:#836c28">layoutXProperty</span><span style="color:#000">().</span><span style="color:#836c28">bind</span><span style="color:#000">(</span><span style="color:#000">l1</span><span style="color:#000">.</span><span style="color:#836c28">widthProperty</span><span style="color:#000">().</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#000">10</span><span style="color:#000">));</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">b2</span><span style="color:#000">.</span><span style="color:#836c28">layoutXProperty</span><span style="color:#000">().</span><span style="color:#836c28">bind</span><span style="color:#000">(</span><span style="color:#000">b1</span><span style="color:#000">.</span><span style="color:#836c28">layoutXProperty</span><span style="color:#000">()</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">.</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#000">b1</span><span style="color:#000">.</span><span style="color:#836c28">widthProperty</span><span style="color:#000">()).</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#000">10</span><span style="color:#000">));</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">g</span><span style="color:#000">.</span><span style="color:#836c28">setTranslateX</span><span style="color:#000">(-</span><span style="color:#000">5</span><span style="color:#000">);</span> <span style="color:#177500">// applies translation to all children
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">g</span><span style="color:#000">.</span><span style="color:#836c28">setEffect</span><span style="color:#000">(</span><span style="color:#a90d91">new</span> <span style="color:#000">DropShadow</span><span style="color:#000">());</span> <span style="color:#177500">// applies effect to all children
+</span></span></span></code></pre></div></section><section>
+<ul>
+<li>Layout pane forniscono metodi d’istanza/statici per dettagliare i posizionamenti</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">Text</span> <span style="color:#000">center</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Text</span><span style="color:#000">(</span><span style="color:#c41a16">"Center"</span><span style="color:#000">);</span> <span style="color:#177500">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">BorderPane</span> <span style="color:#000">bpane</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">BorderPane</span><span style="color:#000">(</span><span style="color:#000">center</span><span style="color:#000">,</span> <span style="color:#000">top</span><span style="color:#000">,</span> <span style="color:#000">right</span><span style="color:#000">,</span> <span style="color:#000">bottom</span><span style="color:#000">,</span> <span style="color:#000">left</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">bpane</span><span style="color:#000">.</span><span style="color:#836c28">setCenter</span><span style="color:#000">(</span><span style="color:#a90d91">new</span> <span style="color:#000">Text</span><span style="color:#000">(</span><span style="color:#c41a16">"NewCenter"</span><span style="color:#000">));</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">Button</span> <span style="color:#000">topLeft</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Button</span><span style="color:#000">(</span><span style="color:#c41a16">"Top Left"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">AnchorPane</span><span style="color:#000">.</span><span style="color:#836c28">setTopAnchor</span><span style="color:#000">(</span><span style="color:#000">topLeft</span><span style="color:#000">,</span> <span style="color:#000">10</span><span style="color:#000">.</span><span style="color:#836c28">0</span><span style="color:#000">);</span> <span style="color:#177500">// 10px from the top edge
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">AnchorPane</span><span style="color:#000">.</span><span style="color:#836c28">setLeftAnchor</span><span style="color:#000">(</span><span style="color:#000">topLeft</span><span style="color:#000">,</span> <span style="color:#000">10</span><span style="color:#000">.</span><span style="color:#836c28">0</span><span style="color:#000">);</span> <span style="color:#177500">// 10px from the left edge
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">AnchorPane</span> <span style="color:#000">root</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">AnchorPane</span><span style="color:#000">(</span><span style="color:#000">topLeft</span><span style="color:#000">);</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#177500">// An empty vertical TilePane with 5px horiz / 10px vertical spacing
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">TilePane</span> <span style="color:#000">tp2</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">TilePane</span><span style="color:#000">(</span><span style="color:#000">Orientation</span><span style="color:#000">.</span><span style="color:#836c28">VERTICAL</span><span style="color:#000">,</span> <span style="color:#000">5</span><span style="color:#000">,</span> <span style="color:#000">10</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">tp2</span><span style="color:#000">.</span><span style="color:#836c28">setPrefRows</span><span style="color:#000">(</span><span style="color:#000">3</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">tp</span><span style="color:#000">.</span><span style="color:#836c28">setPrefTileHeight</span><span style="color:#000">(</span><span style="color:#000">100</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">for</span><span style="color:#000">(</span><span style="color:#000">Month</span> <span style="color:#000">m</span> <span style="color:#000">:</span> <span style="color:#000">Month</span><span style="color:#000">.</span><span style="color:#836c28">values</span><span style="color:#000">())</span> <span style="color:#000">{</span> <span style="color:#000">tp2</span><span style="color:#000">.</span><span style="color:#836c28">getChildren</span><span style="color:#000">().</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#a90d91">new</span> <span style="color:#000">Label</span><span style="color:#000">(</span><span style="color:#000">m</span><span style="color:#000">.</span><span style="color:#836c28">name</span><span style="color:#000">()));</span> <span style="color:#000">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">GridPane</span> <span style="color:#000">gp</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">GridPane</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">gp</span><span style="color:#000">.</span><span style="color:#836c28">setGridLinesVisible</span><span style="color:#000">(</span><span style="color:#a90d91">true</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">for</span><span style="color:#000">(</span><span style="color:#000">Month</span> <span style="color:#000">m</span> <span style="color:#000">:</span> <span style="color:#000">Month</span><span style="color:#000">.</span><span style="color:#836c28">values</span><span style="color:#000">())</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">Label</span> <span style="color:#000">l</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Label</span><span style="color:#000">(</span><span style="color:#000">m</span><span style="color:#000">.</span><span style="color:#836c28">name</span><span style="color:#000">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">gp</span><span style="color:#000">.</span><span style="color:#836c28">getChildren</span><span style="color:#000">().</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#000">l</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">int</span> <span style="color:#000">columnIndex</span> <span style="color:#000">=</span> <span style="color:#000">(</span><span style="color:#000">m</span><span style="color:#000">.</span><span style="color:#836c28">getValue</span><span style="color:#000">()-</span><span style="color:#000">1</span><span style="color:#000">)</span> <span style="color:#000">/</span> <span style="color:#000">4</span><span style="color:#000">;</span> <span style="color:#a90d91">int</span> <span style="color:#000">rowIndex</span> <span style="color:#000">=</span> <span style="color:#000">(</span><span style="color:#000">m</span><span style="color:#000">.</span><span style="color:#836c28">getValue</span><span style="color:#000">()-</span><span style="color:#000">1</span><span style="color:#000">)</span> <span style="color:#000">%</span> <span style="color:#000">4</span><span style="color:#000">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">GridPane</span><span style="color:#000">.</span><span style="color:#836c28">setConstraints</span><span style="color:#000">(</span><span style="color:#000">l</span><span style="color:#000">,</span> <span style="color:#000">columnIndex</span><span style="color:#000">,</span> <span style="color:#000">rowIndex</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#177500">// OR ALSO: gp.add(l, columnIndex, rowIndex);
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">}</span>
+</span></span></code></pre></div></section><section>
+<h3 id="layout-pane-sommario">Layout pane: sommario</h3>
+<p><img src="imgs/javafx-layouts.drawio.png" alt=""></p>
+</section><section>
+<h3 id="una-nota-sul-posizionamento-e-dimensionamento-delle-gui">Una nota sul posizionamento e dimensionamento delle GUI</h3>
+<ul>
+<li>I <em>bound</em> di un nodo/scena/stage/schermi ne definiscono:
+<ul>
+<li>(1) <em>posizione</em> (position)</li>
+<li>(2) <em>dimensione</em> (size)</li>
+</ul>
+</li>
+<li>Essi sono definiti in termini di un cosiddetto <em>bounding rectangle</em>, rappresentato da un’istanza di <code>javafx.geometry.Bounds</code> che espone:
+<ul>
+<li>(1) le coordinate del punto in alto a sinistra: <code>getMinX()</code>, <code>getMinY()</code>, <code>getMinZ()</code></li>
+<li>(2) le dimensioni: <code>getWidth()</code>, <code>getHeight()</code>, <code>getDepth()</code></li>
+<li>Di conseguenza si definisce un default anche per <code>getMaxX()</code>… come <code>getMinX()+getWidth()</code>…</li>
+</ul>
+</li>
+<li>Sul dimensionamento di una <code>Scene</code>
+<ul>
+<li>Se dimensione non è specificata, sarà calcolata automaticamente in base alla dimensione preferita dal contenuto</li>
+<li>Se il nodo radice di una scene è ridimensionabile (ad es. <code>Region</code> ma non un <code>Group</code>), allora il ridimensionamento della scena causerà un aggiustamento del layout</li>
+</ul>
+</li>
+<li>Sul dimensionamento di uno <code>Stage</code>
+<ul>
+<li>Se non ha una scena associata o la scena è vuota, la dimensione è specificata dalla piattaforma. Altrimenti, la dimensione sarà data dalla scena.</li>
+</ul>
+</li>
+<li>Un <code>Node</code> può essere “gestito” (<em>managed</em>) o meno: nel primo caso, il parent ne gestirà il posizionamento/dimensionamento (in base alla <em>preferred size</em> del nodo)</li>
+<li>Se ci sono più <code>Screen</code> (si veda slide più avanti), i bound degli schermi non-primari saranno relativi a quelli dello schermo primario</li>
+</ul>
+</section><section>
+<h2 id="eventi">Eventi</h2>
+<ul>
+<li>Gli <strong>eventi</strong> (<code>javafx.event.Event</code>) possono essere generati dall’interazione dell’utente con gli elementi grafici
+<ul>
+<li>ogni evento ha un <em>event source</em>, <em>event target</em>, ed <em>event type</em>  e può essere consumato (<code>consume()</code>)</li>
+</ul>
+</li>
+<li>GLi eventi possono essere gestiti attraverso <em>event handlers</em>
+<ul>
+<li>Ogni <code>EventHandler&lt;T extends Event&gt;</code> deve implementare il metodo <code>void handle(T)</code></li>
+</ul>
+</li>
+<li>Ogni nodo può registrare uno o più event handler
+<ul>
+<li>In generale, attraverso i metodi <code>setOn...()</code></li>
+</ul>
+</li>
+<li>Processamento degli eventi
+<ol>
+<li>selezione dell’<em>event target</em> (ad es., il nodo su cui si è clickato)</li>
+<li>costruzione dell’<em>event route</em> (tipicamente dallo <code>Stage</code> all’event target)</li>
+<li>percorrimento dell’event route
+<ul>
+<li>(A) <em>capture phase</em>: esecuzione degli <em>event filter</em> dalla testa alla coda della route</li>
+<li>(B) <em>event bubbling</em>: esecuzione degli <em>event handler</em> dalla coda alla testa della route</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</section><section>
+<h3 id="es-gestione-del-click-su-un-button">Es. Gestione del click su un <code>Button</code></h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">btn</span><span style="color:#000">.</span><span style="color:#836c28">setOnMouseClicked</span><span style="color:#000">(</span><span style="color:#000">event</span> <span style="color:#000">-&gt;</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">lbl</span><span style="color:#000">.</span><span style="color:#836c28">setText</span><span style="color:#000">(</span><span style="color:#c41a16">"Hello, JavaFX World!"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">});</span>
+</span></span><span style="display:flex;"><span><span style="color:#177500">// same as
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">btn</span><span style="color:#000">.</span><span style="color:#836c28">addEventHandler</span><span style="color:#000">(</span><span style="color:#000">ActionEvent</span><span style="color:#000">.</span><span style="color:#836c28">ACTION</span><span style="color:#000">,</span> <span style="color:#000">e</span> <span style="color:#000">-&gt;</span> <span style="color:#000">lbl</span><span style="color:#000">.</span><span style="color:#836c28">setText</span><span style="color:#000">(</span><span style="color:#c41a16">"Hello, JavaFX World!"</span><span style="color:#000">));</span>
+</span></span></code></pre></div></section><section>
+<h3 id="esempio-con-più-stage-12">Esempio con più Stage (1/2)</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">App</span> <span style="color:#a90d91">extends</span> <span style="color:#000">Application</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">@Override</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#a90d91">final</span> <span style="color:#a90d91">void</span> <span style="color:#000">start</span><span style="color:#000">(</span><span style="color:#a90d91">final</span> <span style="color:#000">Stage</span> <span style="color:#000">mainStage</span><span style="color:#000">)</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">final</span> <span style="color:#000">Scene</span> <span style="color:#000">scene</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Scene</span><span style="color:#000">(</span><span style="color:#000">initSceneUI</span><span style="color:#000">());</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">mainStage</span><span style="color:#000">.</span><span style="color:#836c28">setScene</span><span style="color:#000">(</span><span style="color:#000">scene</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">mainStage</span><span style="color:#000">.</span><span style="color:#836c28">setTitle</span><span style="color:#000">(</span><span style="color:#c41a16">"JavaFX Example"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">mainStage</span><span style="color:#000">.</span><span style="color:#836c28">show</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">private</span> <span style="color:#000">Parent</span> <span style="color:#000">initSceneUI</span><span style="color:#000">()</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">final</span> <span style="color:#000">Label</span> <span style="color:#000">inputLbl</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Label</span><span style="color:#000">(</span><span style="color:#c41a16">"Input: "</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">final</span> <span style="color:#000">TextField</span> <span style="color:#000">inputArea</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">TextField</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">final</span> <span style="color:#000">Button</span> <span style="color:#000">okBtn</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Button</span><span style="color:#000">(</span><span style="color:#c41a16">"Open a new Stage with the input data!"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">okBtn</span><span style="color:#000">.</span><span style="color:#836c28">setOnMouseClicked</span><span style="color:#000">(</span><span style="color:#000">event</span> <span style="color:#000">-&gt;</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a90d91">new</span> <span style="color:#000">SecondStage</span><span style="color:#000">(</span><span style="color:#000">inputArea</span><span style="color:#000">.</span><span style="color:#836c28">getText</span><span style="color:#000">()).</span><span style="color:#836c28">show</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">});</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">final</span> <span style="color:#000">BorderPane</span> <span style="color:#000">root</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">BorderPane</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">root</span><span style="color:#000">.</span><span style="color:#836c28">setRight</span><span style="color:#000">(</span><span style="color:#000">okBtn</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">root</span><span style="color:#000">.</span><span style="color:#836c28">setLeft</span><span style="color:#000">(</span><span style="color:#000">inputLbl</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">root</span><span style="color:#000">.</span><span style="color:#836c28">setCenter</span><span style="color:#000">(</span><span style="color:#000">inputArea</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">BorderPane</span><span style="color:#000">.</span><span style="color:#836c28">setAlignment</span><span style="color:#000">(</span><span style="color:#000">inputLbl</span><span style="color:#000">,</span> <span style="color:#000">Pos</span><span style="color:#000">.</span><span style="color:#836c28">CENTER_LEFT</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">BorderPane</span><span style="color:#000">.</span><span style="color:#836c28">setAlignment</span><span style="color:#000">(</span><span style="color:#000">okBtn</span><span style="color:#000">,</span> <span style="color:#000">Pos</span><span style="color:#000">.</span><span style="color:#836c28">CENTER_RIGHT</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">return</span> <span style="color:#000">root</span><span style="color:#000">;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">}</span>
+</span></span></code></pre></div></section><section>
+<h3 id="esempio-con-più-stage-22">Esempio con più Stage (2/2)</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">SecondStage</span> <span style="color:#a90d91">extends</span> <span style="color:#000">Stage</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">private</span> <span style="color:#000">Label</span> <span style="color:#000">lbl</span><span style="color:#000">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">public</span> <span style="color:#000">SecondStage</span><span style="color:#000">(</span><span style="color:#a90d91">final</span> <span style="color:#000">String</span> <span style="color:#000">message</span><span style="color:#000">)</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">super</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#000">setTitle</span><span style="color:#000">(</span><span style="color:#c41a16">"New Window..."</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#000">setScene</span><span style="color:#000">(</span><span style="color:#a90d91">new</span> <span style="color:#000">Scene</span><span style="color:#000">(</span><span style="color:#000">initSceneUI</span><span style="color:#000">(),</span> <span style="color:#000">400</span><span style="color:#000">,</span> <span style="color:#000">200</span><span style="color:#000">));</span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#000">lbl</span><span style="color:#000">.</span><span style="color:#836c28">setText</span><span style="color:#000">(</span><span style="color:#000">message</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">private</span> <span style="color:#000">Parent</span> <span style="color:#000">initSceneUI</span><span style="color:#000">()</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">lbl</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Label</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#000">FlowPane</span> <span style="color:#000">root</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">FlowPane</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#000">root</span><span style="color:#000">.</span><span style="color:#836c28">setAlignment</span><span style="color:#000">(</span><span style="color:#000">Pos</span><span style="color:#000">.</span><span style="color:#836c28">CENTER</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#000">root</span><span style="color:#000">.</span><span style="color:#836c28">getChildren</span><span style="color:#000">().</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#000">lbl</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#a90d91">return</span> <span style="color:#000">root</span><span style="color:#000">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">Main</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">void</span> <span style="color:#000">main</span><span style="color:#000">(</span><span style="color:#a90d91">final</span> <span style="color:#000">String</span><span style="color:#000">[]</span> <span style="color:#000">args</span><span style="color:#000">)</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">Application</span><span style="color:#000">.</span><span style="color:#836c28">launch</span><span style="color:#000">(</span><span style="color:#000">App</span><span style="color:#000">.</span><span style="color:#836c28">class</span><span style="color:#000">,</span> <span style="color:#000">args</span><span style="color:#000">);</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">}</span>
+</span></span></code></pre></div></section><section>
+<h3 id="javafx-e-concorrenza">JavaFX e concorrenza</h3>
+<ul>
+<li>Similarmente a Swing, JavaFX
+ha un singolo thread che gestisce il processing degli eventi: <strong>JavaFX Application Thread</strong> (JFXAT)</li>
+<li>Tutte le modifiche allo <em>scene graph</em> devono essere effettuate su JFXAT</li>
+<li>Nota: è opportuno conoscere quali metodi hook dell’<code>Application</code> sono eseguiti (ad es. <code>start</code>) oppure no (ad es. <code>init</code>) su JFXAT</li>
+<li><strong>Platform.runLater(Runnable)</strong>
+accoda il runnable nella coda degli eventi del JFXAT
+<ul>
+<li>l’analogo di <code>SwingUtilities.invokeLater</code></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h3 id="conoscere-dettagli-degli-schermi-in-uso">Conoscere dettagli degli schermi in uso</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">Screen</span> <span style="color:#000">s</span> <span style="color:#000">=</span> <span style="color:#000">Screen</span><span style="color:#000">.</span><span style="color:#836c28">getPrimary</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">double</span> <span style="color:#000">dpi</span> <span style="color:#000">=</span> <span style="color:#000">s</span><span style="color:#000">.</span><span style="color:#836c28">getDpi</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">Rectangle2D</span> <span style="color:#000">sb</span> <span style="color:#000">=</span> <span style="color:#000">s</span><span style="color:#000">.</span><span style="color:#836c28">getBounds</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">Ractangle2D</span> <span style="color:#000">svb</span> <span style="color:#000">=</span> <span style="color:#000">s</span><span style="color:#000">.</span><span style="color:#836c28">getVisualBounds</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">ObservableList</span><span style="color:#000">&lt;</span><span style="color:#000">Screen</span><span style="color:#000">&gt;</span> <span style="color:#000">screenList</span> <span style="color:#000">=</span> <span style="color:#000">Screen</span><span style="color:#000">.</span><span style="color:#836c28">getScreens</span><span style="color:#000">();</span>
+</span></span></code></pre></div><p>Ad es., per dimensionare lo stage</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">xProperty</span><span style="color:#000">().</span><span style="color:#836c28">addListener</span><span style="color:#000">(</span><span style="color:#000">x</span> <span style="color:#000">-&gt;</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">Screen</span> <span style="color:#000">s</span> <span style="color:#000">=</span> <span style="color:#000">Screen</span><span style="color:#000">.</span><span style="color:#836c28">getScreensForRectangle</span><span style="color:#000">(</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">new</span> <span style="color:#000">Rectangle2D</span><span style="color:#000">(</span><span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">getX</span><span style="color:#000">(),</span> <span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">getY</span><span style="color:#000">(),</span> <span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">getWidth</span><span style="color:#000">(),</span> <span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">getHeight</span><span style="color:#000">())</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">).</span><span style="color:#836c28">get</span><span style="color:#000">(</span><span style="color:#000">0</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">setMinHeight</span><span style="color:#000">(...);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">setMinWidth</span><span style="color:#000">(...);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">setMaxHeight</span><span style="color:#000">(</span><span style="color:#000">s</span><span style="color:#000">.</span><span style="color:#836c28">getVisualBounds</span><span style="color:#000">().</span><span style="color:#836c28">getHeight</span><span style="color:#000">()/</span><span style="color:#000">2</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">setMaxWidth</span><span style="color:#000">(</span><span style="color:#000">s</span><span style="color:#000">.</span><span style="color:#836c28">getVisualBounds</span><span style="color:#000">().</span><span style="color:#836c28">getWidth</span><span style="color:#000">()/</span><span style="color:#000">2</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">});</span>
+</span></span></code></pre></div></section><section>
+<h2 id="fxml">FXML</h2>
+<h3 id="separazioni-di-ruoli-e-contenuti">Separazioni di ruoli e contenuti</h3>
+<ul>
+<li>In JavaFX è possibile separare il design della GUI dal codice sorgente che la riguarda</li>
+<li>Il design della GUI può essere descritto attraverso un linguaggio di markup denominato FXML</li>
+</ul>
+<p><img src="imgs/soc.png" alt=""></p>
+</section><section>
+<h3 id="il-linguaggio-fxml">Il linguaggio FXML</h3>
+<ul>
+<li>
+<p>Linguaggio di markup basato su <strong>XML</strong>, utilizzato per descrivere la <em>struttura della GUI</em> (ovvero il <em>scene graph</em>)</p>
+<ul>
+<li>Tutti i <em>nodi</em> della GUI sono specificati mediante <em>tag</em> specifici</li>
+<li>Le <em>proprietà</em> sono specificate come <em>attributi</em> (su tag, nella forma chiave-valore) o <em>tag</em></li>
+</ul>
+</li>
+<li>
+<p>Ogni file FXML (con estensione <code>.fxml</code>) deve essere un file XML valido</p>
+<ul>
+<li>Deve iniziare con il tag: <code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;</code></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h3 id="esempio-di-gui-in-fxml">Esempio di GUI in FXML</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">&lt;?</span><span style="color:#000">xml</span> <span style="color:#000">version</span><span style="color:#000">=</span><span style="color:#c41a16">"1.0"</span> <span style="color:#000">encoding</span><span style="color:#000">=</span><span style="color:#c41a16">"UTF-8"</span><span style="color:#000">?&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">&lt;?</span><span style="color:#a90d91">import</span> <span style="color:#000">javafx.scene.control.*</span><span style="color:#000">?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">&lt;?</span><span style="color:#a90d91">import</span> <span style="color:#000">javafx.scene.layout.*</span><span style="color:#000">?&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">&lt;</span><span style="color:#000">VBox</span> <span style="color:#000">xmlns</span><span style="color:#000">=</span><span style="color:#c41a16">"http://javafx.com/javafx"</span> 
+</span></span><span style="display:flex;"><span>      <span style="color:#000">xmlns</span><span style="color:#000">:</span><span style="color:#000">fx</span><span style="color:#000">=</span><span style="color:#c41a16">"http://javafx.com/fxml"</span><span style="color:#000">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">&lt;</span><span style="color:#000">children</span><span style="color:#000">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">&lt;</span><span style="color:#000">Button</span> <span style="color:#000">fx</span><span style="color:#000">:</span><span style="color:#000">id</span><span style="color:#000">=</span><span style="color:#c41a16">"btn"</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#000">alignment</span><span style="color:#000">=</span><span style="color:#c41a16">"CENTER"</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#000">text</span><span style="color:#000">=</span><span style="color:#c41a16">"Say Hello!"</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#000">textAlignment</span><span style="color:#000">=</span><span style="color:#c41a16">"CENTER"</span> <span style="color:#000">/&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">&lt;</span><span style="color:#000">Label</span> <span style="color:#000">fx</span><span style="color:#000">:</span><span style="color:#000">id</span><span style="color:#000">=</span><span style="color:#c41a16">"lbl"</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#000">alignment</span><span style="color:#000">=</span><span style="color:#c41a16">"CENTER_LEFT"</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#000">text</span><span style="color:#000">=</span><span style="color:#c41a16">"Label Text Here!"</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#000">textAlignment</span><span style="color:#000">=</span><span style="color:#c41a16">"LEFT"</span> <span style="color:#000">/&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">&lt;/</span><span style="color:#000">children</span><span style="color:#000">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">&lt;/</span><span style="color:#000">VBox</span><span style="color:#000">&gt;</span>
+</span></span></code></pre></div></section><section>
+<h3 id="esempio-di-gui-in-fxml----note">Esempio di GUI in FXML – Note</h3>
+<ul>
+<li>
+<p>Attraverso il tag <code>&lt;?import ... ?&gt;</code> è possibile specificare i package in cui recuperare le classi dei componenti d’interesse</p>
+<ul>
+<li>E’ equivalente all’<code>import</code> di Java</li>
+</ul>
+</li>
+<li>
+<p>Il container principale (unico per il singolo file) <em>deve</em> specificare gli attributi <code>xmlns</code> e <code>xmlns:fx</code></p>
+<ul>
+<li>Il namespace <code>fx</code> raccoglie nodi relativi al processamento interno del descrittore FXML</li>
+</ul>
+</li>
+</ul>
+<pre tabindex="0"><code>xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+</code></pre><ul>
+<li>Ogni container deve specificare i nodi figli all’interno dei tag <code>&lt;children&gt;</code> e <code>&lt;/children&gt;</code></li>
+<li>Ogni nodo può definire il proprio ID mediante l’attributo <code>fx:id</code>
+<ul>
+<li>Es. <code>&lt;TextField fx:id="textField1"/&gt;</code></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h3 id="collegare-il-design-della-gui-al-codice-java">Collegare il design della GUI al codice Java</h3>
+<ul>
+<li>La GUI descritta nel file FXML deve essere <em>collegata alla scena</em> agganciata allo stage dell’applicazione</li>
+<li>Si può utilizzare il componente <code>javafx.fxml.FXMLLoader</code>
+<ul>
+<li>Il metodo statico <code>load(URL location)</code></li>
+</ul>
+</li>
+<li>Nota: occorre dichiarare il modulo <code>javafx.fxml</code> (si veda ad es. la build Gradle)</li>
+</ul>
+<h3 id="fxmlloader-esempio"><code>FXMLLoader</code> (esempio)</h3>
+<ul>
+<li>Si suppone che nel CLASSPATH sia presente il file <code>layouts/main.fxml</code> contenente una descrizione valida per la GUI da caricare</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">Parent</span> <span style="color:#000">root</span> <span style="color:#000">=</span> <span style="color:#000">FXMLLoader</span><span style="color:#000">.</span><span style="color:#836c28">load</span><span style="color:#000">(</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">ClassLoader</span><span style="color:#000">.</span><span style="color:#836c28">getSystemResource</span><span style="color:#000">(</span><span style="color:#c41a16">"layouts/main.fxml"</span><span style="color:#000">));</span>
+</span></span></code></pre></div></section><section>
+<h3 id="fxmlloader-esempio-completo">FXMLLoader (esempio completo)</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">Example3</span> <span style="color:#a90d91">extends</span> <span style="color:#000">Application</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a90d91">public</span> <span style="color:#a90d91">void</span> <span style="color:#000">start</span><span style="color:#000">(</span><span style="color:#000">Stage</span> <span style="color:#000">stage</span><span style="color:#000">)</span> <span style="color:#a90d91">throws</span> <span style="color:#000">Exception</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>	    <span style="color:#000">Parent</span> <span style="color:#000">root</span> <span style="color:#000">=</span> <span style="color:#000">FXMLLoader</span><span style="color:#000">.</span><span style="color:#836c28">load</span><span style="color:#000">(</span><span style="color:#000">ClassLoader</span><span style="color:#000">.</span><span style="color:#836c28">getSystemResource</span><span style="color:#000">(</span><span style="color:#c41a16">"layouts/main.fxml"</span><span style="color:#000">));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">Scene</span> <span style="color:#000">scene</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Scene</span><span style="color:#000">(</span><span style="color:#000">root</span><span style="color:#000">,</span> <span style="color:#000">500</span><span style="color:#000">,</span> <span style="color:#000">250</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">setTitle</span><span style="color:#000">(</span><span style="color:#c41a16">"JavaFX - Example 3"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">setScene</span><span style="color:#000">(</span><span style="color:#000">scene</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">show</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">void</span> <span style="color:#000">main</span><span style="color:#000">(</span><span style="color:#000">String</span><span style="color:#000">[]</span> <span style="color:#000">args</span><span style="color:#000">)</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">launch</span><span style="color:#000">(</span><span style="color:#000">args</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">}</span>
+</span></span></code></pre></div></section><section>
+<h3 id="lookup-dei-componenti-della-gui">Lookup dei componenti della GUI</h3>
+<ul>
+<li>
+<p>Il riferimento ai componenti (nodi) inseriti nella GUI definita nel file FXML può essere recuperato tramite la scena a cui la GUI è stata collegata</p>
+</li>
+<li>
+<p>Metodo <code>Node lookup(String id)</code></p>
+</li>
+</ul>
+<h4 id="node-lookup-esempio">Node Lookup (esempio)</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">Label</span> <span style="color:#000">lbl</span> <span style="color:#000">=</span> <span style="color:#000">(</span><span style="color:#000">Label</span><span style="color:#000">)</span> <span style="color:#000">scene</span><span style="color:#000">.</span><span style="color:#836c28">lookup</span><span style="color:#000">(</span><span style="color:#c41a16">"#lbl"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">Button</span> <span style="color:#000">btn</span> <span style="color:#000">=</span> <span style="color:#000">(</span><span style="color:#000">Button</span><span style="color:#000">)</span> <span style="color:#000">scene</span><span style="color:#000">.</span><span style="color:#836c28">lookup</span><span style="color:#000">(</span><span style="color:#c41a16">"#btn"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">btn</span><span style="color:#000">.</span><span style="color:#836c28">setOnMouseClicked</span><span style="color:#000">(</span><span style="color:#000">handler</span> <span style="color:#000">-&gt;</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000">lbl</span><span style="color:#000">.</span><span style="color:#836c28">setText</span><span style="color:#000">(</span><span style="color:#c41a16">"Hello, FXML!"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">});</span>
+</span></span></code></pre></div><ul>
+<li><strong>Attenzione</strong>: il metodo <code>lookup</code> richiede come parametro l’id specificato per il componente (attributo <code>fx:id</code> nel file FXML) preceduto dal simbolo #</li>
+</ul>
+</section><section>
+<h3 id="gui-controller-e-node-injection">GUI Controller e Node Injection</h3>
+<ul>
+<li>Per una corretta separazione dei contenuti (e una buona implementazione del pattern MVC in JavaFX) è opportuno specificare un oggetto <em>controller</em> per ciascuna GUI</li>
+<li>Il root component della GUI deve definire l’attributo <code>fx:controller</code> con valore riferito al nome pienamente qualificato della classe che fungerà da controller</li>
+<li>Nella classe controller, mediante l’annotazione <code>@FXML</code> è possibile recuperare:
+<ul>
+<li>I riferimenti ai vari nodi
+<ul>
+<li>senza utilizzare esplicitamente il meccanismo di lookup—usando la corrispondenza tra l’ID (<code>fx:id</code>) del nodo nel file FXML e il <em>nome della variabile d’istanza annotata</em> nella classe controller</li>
+</ul>
+</li>
+<li>Associare gli event handler ai vari eventi dei componenti</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h3 id="esempio-completo-13----application">Esempio Completo (1/3) – Application</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">CompleteExample</span> <span style="color:#a90d91">extends</span> <span style="color:#000">Application</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a90d91">public</span> <span style="color:#a90d91">void</span> <span style="color:#000">start</span><span style="color:#000">(</span><span style="color:#000">Stage</span> <span style="color:#000">stage</span><span style="color:#000">)</span> <span style="color:#a90d91">throws</span> <span style="color:#000">Exception</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">VBox</span> <span style="color:#000">root</span> <span style="color:#000">=</span> <span style="color:#000">FXMLLoader</span><span style="color:#000">.</span><span style="color:#836c28">load</span><span style="color:#000">(</span><span style="color:#000">ClassLoader</span><span style="color:#000">.</span><span style="color:#836c28">getSystemResource</span><span style="color:#000">(</span><span style="color:#c41a16">"layouts/main.fxml"</span><span style="color:#000">));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">Scene</span> <span style="color:#000">scene</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Scene</span><span style="color:#000">(</span><span style="color:#000">root</span><span style="color:#000">,</span> <span style="color:#000">500</span><span style="color:#000">,</span> <span style="color:#000">250</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">setTitle</span><span style="color:#000">(</span><span style="color:#c41a16">"JavaFX - Complete Example"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">setScene</span><span style="color:#000">(</span><span style="color:#000">scene</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">stage</span><span style="color:#000">.</span><span style="color:#836c28">show</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">void</span> <span style="color:#000">main</span><span style="color:#000">(</span><span style="color:#000">String</span><span style="color:#000">[]</span> <span style="color:#000">args</span><span style="color:#000">)</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">launch</span><span style="color:#000">(</span><span style="color:#000">args</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">}</span>
+</span></span></code></pre></div></section><section>
+<h3 id="esempio-completo-23----gui-fxml-file">Esempio Completo (2/3) – GUI (FXML file)</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#633820">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#633820">&lt;?import javafx.scene.control.*?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#633820">&lt;?import javafx.scene.layout.*?&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">&lt;VBox</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#836c28">xmlns=</span><span style="color:#c41a16">"http://javafx.com/javafx"</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#836c28">xmlns:fx=</span><span style="color:#c41a16">"http://javafx.com/fxml"</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#836c28">fx:controller=</span><span style="color:#c41a16">"it.unibo.oop.lab.javafx.UIController"</span><span style="color:#000">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">&lt;children&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">&lt;Button</span> <span style="color:#836c28">fx:id=</span><span style="color:#c41a16">"btn"</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#836c28">alignment=</span><span style="color:#c41a16">"CENTER"</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#836c28">text=</span><span style="color:#c41a16">"Say Hello!"</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#836c28">onMouseClicked=</span><span style="color:#c41a16">"#btnOnClickHandler"</span> <span style="color:#000">/&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">&lt;Label</span> <span style="color:#836c28">fx:id=</span><span style="color:#c41a16">"lbl"</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#836c28">alignment=</span><span style="color:#c41a16">"CENTER_LEFT"</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#836c28">text=</span><span style="color:#c41a16">"Label Text Here!"</span> <span style="color:#000">/&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">&lt;/children&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">&lt;/VBox&gt;</span>
+</span></span></code></pre></div></section><section>
+<h3 id="esempio-completo-33----gui-controller">Esempio Completo (3/3) – GUI Controller</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">UIController</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000">@FXML</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a90d91">private</span> <span style="color:#000">Label</span> <span style="color:#000">lbl</span><span style="color:#000">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000">@FXML</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a90d91">private</span> <span style="color:#000">Button</span> <span style="color:#000">btn</span><span style="color:#000">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000">@FXML</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a90d91">public</span> <span style="color:#a90d91">void</span> <span style="color:#000">btnOnClickHandler</span><span style="color:#000">()</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#000">lbl</span><span style="color:#000">.</span><span style="color:#836c28">setText</span><span style="color:#000">(</span><span style="color:#c41a16">"Hello, World!"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">}</span>
+</span></span></code></pre></div></section><section>
+<h2 id="scene-builder">Scene Builder</h2>
+<h3 id="scene-builder-1">Scene Builder</h3>
+<ul>
+<li>Strumento per la creazione di GUI JavaFX-based in modalità drag-n-drop (GUI Builder)</li>
+<li>Consente di esportare il file FXML relativo alla GUI disegnata</li>
+<li>Distribuito come strumento esterno al JDK, non integrato (direttamente) in Eclipse</li>
+<li><a href="https://gluonhq.com/products/scene-builder/">https://gluonhq.com/products/scene-builder/</a></li>
+</ul>
+</section><section>
+<h3 id="scene-builder-2">Scene Builder</h3>
+<p><img src="imgs/scenebuilder.png" alt=""></p>
+</section><section>
+<h2 id="stile-separato-via-css">Stile separato via CSS</h2>
+<ul>
+<li>Esistono convenzioni (non regole) per “derivare” selettori di classe e proprietà CSS da nomi di classe e nomi di proprietà: per i <code>ToggleButton</code> c’è la classe <code>.toggle-button</code>, e per la proprietà <code>blendMode</code> la proprietà CSS <code>-fx-blend-mode</code> (notare prefisso <code>-fx-</code>)</li>
+</ul>
+<h3 id="esempio-di-file-css">Esempio di file CSS</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>#<span style="color:#000">myButton</span> { <span style="color:#000">-</span><span style="color:#000">fx-padding</span>: <span style="color:#1c01ce">0.5</span><span style="color:#a90d91">em</span>; } <span style="color:#177500">/* for an individual node */</span>
+</span></span><span style="display:flex;"><span>.<span style="color:#3f6e75">label</span> { <span style="color:#000">-</span><span style="color:#000">fx-font-size</span>: <span style="color:#1c01ce">30</span><span style="color:#a90d91">pt</span>; }  <span style="color:#177500">/* for all the labels */</span>
+</span></span></code></pre></div><h3 id="applicazione-dello-stile">Applicazione dello stile</h3>
+<p>Programmaticamente</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">Scene</span> <span style="color:#000">scene</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Scene</span><span style="color:#000">(</span><span style="color:#000">pane</span><span style="color:#000">);</span> 
+</span></span><span style="display:flex;"><span><span style="color:#000">scene</span><span style="color:#000">.</span><span style="color:#836c28">getStylesheets</span><span style="color:#000">().</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#000">ClassLoader</span><span style="color:#000">.</span><span style="color:#836c28">getSystemResource</span><span style="color:#000">(</span><span style="color:#c41a16">"css/scene.css"</span><span style="color:#000">));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">HBox</span> <span style="color:#000">buttons</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">HBox</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">buttons</span><span style="color:#000">.</span><span style="color:#836c28">setStyle</span><span style="color:#000">(</span><span style="color:#c41a16">"-fx-border-color: red;"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">buttons</span><span style="color:#000">.</span><span style="color:#836c28">getStyleClass</span><span style="color:#000">().</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#c41a16">"buttonrow"</span><span style="color:#000">);</span>
+</span></span></code></pre></div><p>Nel file FXML (ad esempio attaccandolo al nodo root)</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">&lt;GridPane</span> <span style="color:#836c28">id=</span><span style="color:#c41a16">"pane"</span> <span style="color:#836c28">stylesheets=</span><span style="color:#c41a16">"css/scene.css"</span><span style="color:#000">&gt;</span> ... <span style="color:#000">&lt;/GridPane&gt;</span>
+</span></span></code></pre></div></section><section>
+<h2 id="integrazione-javafx-e-swing">Integrazione JavaFX e Swing</h2>
+</section><section>
+<h3 id="integrare-javafx-e-swing">Integrare JavaFX e Swing</h3>
+<ul>
+<li>L’integrazione può avvenire nelle due direzioni
+<ul>
+<li>Si possono includere elementi Swing in applicazioni JavaFX attraverso <code>SwingNode</code></li>
+<li>Si possono includere elementi JavaFX in applicazioni Swing attraverso <code>JFXPanel</code></li>
+<li>Nota: <code>SwingNode</code> e <code>JFXPanel</code> si trovano nel modulo <code>javafx.swing</code></li>
+</ul>
+</li>
+<li>Va prestata particolare attenzione a dove viene eseguito il codice che gestisce la GUI
+<ul>
+<li><code>javafx.application.Platform.runLater()</code>, per eseguire codice nel thread dedicato a JavaFX</li>
+<li><code>javax.swing.SwingUtilities.invokeLater()</code>, per eseguire codice nel thread dedicato a Swing</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h3 id="usare-javafx-in-applicazioni-swing-esempio">Usare JavaFX in applicazioni Swing: esempio</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">void</span> <span style="color:#000">main</span><span style="color:#000">(</span><span style="color:#a90d91">final</span> <span style="color:#000">String</span><span style="color:#000">[]</span> <span style="color:#000">args</span><span style="color:#000">){</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">initMainJFrame</span><span style="color:#000">(</span><span style="color:#a90d91">new</span> <span style="color:#000">JFrame</span><span style="color:#000">(</span><span style="color:#c41a16">"JFrame GUI"</span><span style="color:#000">));</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">private</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">void</span> <span style="color:#000">initMainJFrame</span><span style="color:#000">(</span><span style="color:#a90d91">final</span> <span style="color:#000">JFrame</span> <span style="color:#000">frame</span><span style="color:#000">)</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">final</span> <span style="color:#000">JButton</span> <span style="color:#000">button</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">JButton</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">button</span><span style="color:#000">.</span><span style="color:#836c28">setText</span><span style="color:#000">(</span><span style="color:#c41a16">"Launch JavaFX Scene"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">button</span><span style="color:#000">.</span><span style="color:#836c28">addActionListener</span><span style="color:#000">(</span><span style="color:#000">event</span> <span style="color:#000">-&gt;</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">final</span> <span style="color:#000">JFXPanel</span> <span style="color:#000">jfxPanel</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">JFXPanel</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">Platform</span><span style="color:#000">.</span><span style="color:#836c28">runLater</span><span style="color:#000">(()</span> <span style="color:#000">-&gt;</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#000">jfxPanel</span><span style="color:#000">.</span><span style="color:#836c28">setScene</span><span style="color:#000">(</span><span style="color:#a90d91">new</span> <span style="color:#000">Scene</span><span style="color:#000">(</span><span style="color:#000">initJavaFXSceneUI</span><span style="color:#000">(),</span> <span style="color:#000">300</span><span style="color:#000">,</span> <span style="color:#000">300</span><span style="color:#000">));</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#000">SwingUtilities</span><span style="color:#000">.</span><span style="color:#836c28">invokeLater</span><span style="color:#000">(()</span> <span style="color:#000">-&gt;</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">final</span> <span style="color:#000">JFrame</span> <span style="color:#000">frameWithJavaFX</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">JFrame</span><span style="color:#000">(</span><span style="color:#c41a16">"JFrame with JavaFX embedded!"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">frameWithJavaFX</span><span style="color:#000">.</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#000">jfxPanel</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">frameWithJavaFX</span><span style="color:#000">.</span><span style="color:#836c28">pack</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">frameWithJavaFX</span><span style="color:#000">.</span><span style="color:#836c28">setVisible</span><span style="color:#000">(</span><span style="color:#a90d91">true</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">});</span> <span style="color:#000">});</span> <span style="color:#000">});</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">final</span> <span style="color:#000">JPanel</span> <span style="color:#000">panel</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">JPanel</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">panel</span><span style="color:#000">.</span><span style="color:#836c28">setLayout</span><span style="color:#000">(</span><span style="color:#a90d91">new</span> <span style="color:#000">FlowLayout</span><span style="color:#000">());</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">panel</span><span style="color:#000">.</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#000">button</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">frame</span><span style="color:#000">.</span><span style="color:#836c28">setContentPane</span><span style="color:#000">(</span><span style="color:#000">panel</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">frame</span><span style="color:#000">.</span><span style="color:#836c28">setSize</span><span style="color:#000">(</span><span style="color:#000">300</span><span style="color:#000">,</span> <span style="color:#000">300</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">frame</span><span style="color:#000">.</span><span style="color:#836c28">setDefaultCloseOperation</span><span style="color:#000">(</span><span style="color:#000">JFrame</span><span style="color:#000">.</span><span style="color:#836c28">EXIT_ON_CLOSE</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">frame</span><span style="color:#000">.</span><span style="color:#836c28">setVisible</span><span style="color:#000">(</span><span style="color:#a90d91">true</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">}</span>
+</span></span></code></pre></div></section><section>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">private</span> <span style="color:#a90d91">static</span> <span style="color:#000">Parent</span> <span style="color:#000">initJavaFXSceneUI</span><span style="color:#000">()</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">final</span> <span style="color:#000">Label</span> <span style="color:#000">lbl</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Label</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">lbl</span><span style="color:#000">.</span><span style="color:#836c28">setText</span><span style="color:#000">(</span><span style="color:#c41a16">"Hello, JavaFX World!"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">final</span> <span style="color:#000">Button</span> <span style="color:#000">btn</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Button</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">btn</span><span style="color:#000">.</span><span style="color:#836c28">setText</span><span style="color:#000">(</span><span style="color:#c41a16">"Say Hello"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">btn</span><span style="color:#000">.</span><span style="color:#836c28">setOnMouseClicked</span><span style="color:#000">(</span><span style="color:#000">event</span> <span style="color:#000">-&gt;</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">lbl</span><span style="color:#000">.</span><span style="color:#836c28">setText</span><span style="color:#000">(</span><span style="color:#c41a16">"Hello from Button!"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">});</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">final</span> <span style="color:#000">VBox</span> <span style="color:#000">root</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">VBox</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">root</span><span style="color:#000">.</span><span style="color:#836c28">getChildren</span><span style="color:#000">().</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#000">lbl</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">root</span><span style="color:#000">.</span><span style="color:#836c28">getChildren</span><span style="color:#000">().</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#000">btn</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">return</span> <span style="color:#000">root</span><span style="color:#000">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">}</span>
+</span></span></code></pre></div></section><section>
+<h3 id="usare-swing-in-applicazioni-javafx">Usare Swing in applicazioni JavaFX</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">final</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">JavaFXAppWithSwing</span> <span style="color:#a90d91">extends</span> <span style="color:#000">Application</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">public</span> <span style="color:#a90d91">void</span> <span style="color:#000">start</span><span style="color:#000">(</span><span style="color:#a90d91">final</span> <span style="color:#000">Stage</span> <span style="color:#000">primaryStage</span><span style="color:#000">)</span> <span style="color:#a90d91">throws</span> <span style="color:#000">Exception</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">final</span> <span style="color:#000">SwingNode</span> <span style="color:#000">msg</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">SwingNode</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">SwingUtilities</span><span style="color:#000">.</span><span style="color:#836c28">invokeLater</span><span style="color:#000">(()</span> <span style="color:#000">-&gt;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#000">msg</span><span style="color:#000">.</span><span style="color:#836c28">setContent</span><span style="color:#000">(</span><span style="color:#a90d91">new</span> <span style="color:#000">JLabel</span><span style="color:#000">(</span><span style="color:#c41a16">"Hello by Swing JLabel"</span><span style="color:#000">)));</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">HBox</span> <span style="color:#000">pane</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">HBox</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">pane</span><span style="color:#000">.</span><span style="color:#836c28">getChildren</span><span style="color:#000">().</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#000">msg</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">primaryStage</span><span style="color:#000">.</span><span style="color:#836c28">setScene</span><span style="color:#000">(</span><span style="color:#a90d91">new</span> <span style="color:#000">Scene</span><span style="color:#000">(</span><span style="color:#000">pane</span><span style="color:#000">));</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">primaryStage</span><span style="color:#000">.</span><span style="color:#836c28">show</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#177500">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">}</span>
+</span></span></code></pre></div></section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/oop-lab/reveal-hugo/object-assign.js"></script>
+
+<a href="/oop-lab/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"900","highlight_theme":"default","history":true,"mermaid":[{"startOnLoad":false}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1440"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/oop-lab/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = { 
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"startOnLoad":false});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+    
+  
+
+</body></html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Progettazione e Sviluppo del Software</title>
+<meta name="description" content="Progettazione e Sviluppo del Software, Tecnologie dei Sistemi Informatici">
+<meta name="author" content="Danilo Pianini">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/oop-lab/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/oop-lab/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/oop-lab/css/custom-theme.min.a1fb5112a00265a42a2454be30346ad4b54db549887ebde65a30994235d50c7d.css" id="theme"><link rel="stylesheet" href="/oop-lab/highlight-js/default.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="build-systems-e-introduzione-a-gradle">Build systems e introduzione a gradle</h1>
+<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+<h3 id="danilo-pianini-----danilopianiniuniboitmailtodanilopianiniuniboit"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+<h3 id="roberto-casadei-----robycasadeiuniboitmailtorobycasadeiuniboit"><a href="mailto:roby.casadei@unibo.it">Roberto Casadei — <code>roby.casadei@unibo.it</code></a></h3>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a>
+</p></section><section>
+<!-- this file includes generated content. Do not edit. Edit content/03-gradle-basics/generator.md, instead. -->
+<h2 id="la-costruzione-del-software">La costruzione del software</h2>
+<p>Costruire sistemi software non è solo <em>programmare</em>.
+Dipendentemente dal sistema in esame, potrebbero servire:</p>
+<ul>
+<li>Manipolazione e pre-processing del sorgente (inclusa generazione)</li>
+<li>Verifica della qualità del sorgente</li>
+<li>Gestione delle dipendenze
+<ul>
+<li>Ricerca, scaricamento, e importazione delle librerie</li>
+</ul>
+</li>
+<li>Compilazione</li>
+<li>Manipolazione del binario compilato</li>
+<li>Esecuzione dei test</li>
+<li>Misurazione della qualità dei test (e.g., coverage)</li>
+<li>Generazione della documentazione</li>
+</ul>
+<p>In principio, si può anche fare a mano</p>
+<ul>
+<li>ma richiederebbe <strong>molto tempo</strong>…</li>
+<li>…e gli umani si stancano presto di lavori noiosi e ripetitivi</li>
+</ul>
+</section><section>
+<h2 id="build-automation">Build automation</h2>
+<p>Automatizzazione del processo di costruzione del software</p>
+<ul>
+<li>Di fatto, scrivere software che di lavoro fa manutenzione di altro software</li>
+</ul>
+<h3 id="stili">Stili</h3>
+<ul>
+<li><strong>Imperativo</strong>/<strong>Personalizzato</strong>
+<ul>
+<li>Tipicamente realizzato tramite script in qualche linguaggio di programmazione</li>
+<li><em>Flessibile</em> e <em>configurabile</em></li>
+<li>Difficile da adattare e <em>riusare</em></li>
+</ul>
+</li>
+<li><strong>Dichiarativo</strong>/<strong>Standardizzato</strong>
+<ul>
+<li>Tipicamente realizzato tramite un file di configurazione di un software dedicato alla build automation</li>
+<li><em>Portabile</em> e di semplice comprensione</li>
+<li><em>Limitato</em> dalle opzioni di configurazioni disponibili, e quindi poco flessibile</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="convention-over-configuration">Convention over configuration</h2>
+<p>Principio per cui un certo sistema software ha una configurazione “ragionevole” di default,
+che può essere sovrascritta in caso di necessità</p>
+<ul>
+<li>Induce la creazione di <em>standard di fatto</em>
+<ul>
+<li>La convenzione tende a diventare il modo “normale” di fare le cose per minimizzare la configurazione</li>
+</ul>
+</li>
+<li>Riduce le <em>ripetizioni</em></li>
+<li>Aumenta la portabilità!</li>
+</ul>
+</section><section>
+<h2 id="automatori-ibridi">Automatori ibridi</h2>
+<p>Sono sistemi che cercano di unire il meglio dei sistemi dichiarativi e imperativi</p>
+<ul>
+<li>Il file di configurazione è in realtà uno <em>script</em> in un linguaggio di programmazione vero e proprio</li>
+<li>Aprendolo sembra un file di testo con la configurazione</li>
+<li>In realtà è uno script valido!</li>
+<li>Quanto non specificato si assume come da convenzione</li>
+<li>Quando si vuole personalizzare qualcosa, si ha a disposizione la “potenza di fuoco” di un linguaggio di programmazione vero e proprio</li>
+</ul>
+<h3 id="esempi">Esempi</h3>
+<ul>
+<li>Sbt, che si appoggia su Scala</li>
+<li>Gradle, che si appoggia su Kotlin o Groovy</li>
+</ul>
+<p>Il linguaggio host deve consentire di costruire dei <strong>Domain-Specific languages</strong></p>
+<ul>
+<li>ossia, essere così flessibile da permettere di costruire un “linguaggio nel linguaggio”</li>
+</ul>
+</section><section>
+<h2 id="gradle">Gradle</h2>
+<ul>
+<li>Un <strong>moderno</strong> build system ibrido
+<ul>
+<li>Pilotato in Kotlin (preferibile) o in Groovy</li>
+</ul>
+</li>
+<li>Supporta Java (oltre a C/C++, Scala, Kotlin…)
+<ul>
+<li>In tutto l’ecosistema, che include Android</li>
+</ul>
+</li>
+<li>Ne vedremo solo le basi di utilizzo
+<ul>
+<li>Per noi è strumentale a costruire software Java</li>
+<li>Impareremo come sfruttarlo per automatizzare le operazioni di cui sopra</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="gradle-è-in-espansione-google-trends">Gradle è in espansione: Google trends</h2>
+<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/3045_RC01/embed_loader.js"></script>
+<script type="text/javascript">
+var today = new Date().toISOString().split('T')[0]
+var dateRange = `2004-01-01 ${today}`
+trends.embed.renderExploreWidget(
+  "TIMESERIES",
+  {
+    "comparisonItem":[
+      {"keyword":"/m/028m4s","geo":"","time":dateRange},
+      {"keyword":"/m/04tj5z","geo":"","time":dateRange},
+      {"keyword":"/m/080c0g9","geo":"","time":dateRange}
+    ],
+    "category":0,
+    "property":""
+  },
+  {
+    "exploreQuery":"date=all&q=%2Fm%2F028m4s,%2Fm%2F04tj5z,%2Fm%2F080c0g9",
+    "guestPath":"https://trends.google.com:443/trends/embed/"
+  }
+);
+</script>
+
+</section><section>
+<h2 id="concetti-base-in-gradle-task-progetto-plugin">Concetti base in Gradle: <strong>task</strong>, <strong>progetto</strong>, <strong>plugin</strong></h2>
+<h3 id="progetto">Progetto</h3>
+<p>Una directory contenente il file speciale <code>build.gradle.kts</code> e/o <code>settings.gradle.kts</code>,
+detti <em>build file</em>.
+La loro presenza segnala a Gradle che la cartella rappresenta un <strong>progetto</strong></p>
+<h3 id="plugin">Plugin</h3>
+<p>Componente software contentente <strong>task</strong> pronti all’uso.
+Gradle contiene diversi plugin pronti all’uso
+(per i linguaggi più comuni, come Java).</p>
+<h3 id="task">Task</h3>
+<p>Un <strong>task</strong> in Gradle rappresenta una <em>singola operazione atomica</em> del processo di costruzione del sofware</p>
+<ul>
+<li><em>singola</em> $\rightarrow$ un task fa una sola cosa (Single Responsibility Principle)</li>
+<li><em>atomica</em> $\rightarrow$ indivisibile: un task comincia e finisce senza interruzione</li>
+</ul>
+<p>Qualunque esecuzione di Gradle richiede di specificare uno o più <strong>task</strong>, ad esempio:</p>
+<ul>
+<li><code>gradle tasks</code> (elenca i task disponibili, escludendo quelli non categorizzati)</li>
+<li><code>gradle tasks --all</code> (elenca tutti i task disponibili)</li>
+<li><code>gradle compileJava</code> (compila i sorgenti java)</li>
+</ul>
+<p>Gradle è in grado capire le <em>dipendenze</em> fra task ed eseguirli nell’ordine corretto.</p>
+</section><section>
+<h2 id="gradle-configurazione-minimale-per-java">Gradle: configurazione minimale per Java</h2>
+<ul>
+<li>Gradle viene pilotato con due file:
+<ul>
+<li><code>settings.gradle.kts</code>
+<ul>
+<li>Per i nostri scopi, serve solo a dare un nome al progetto</li>
+</ul>
+</li>
+<li><code>build.gradle.kts</code>
+<ul>
+<li>Conterrà tutta la logica di costruzione del software</li>
+<li>Ma noi sfrutteremo le convenzioni, configurando ben poco!</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Al momento, ci basta una sola riga di codice per ciascuno!</li>
+</ul>
+<p><code>settings.gradle.kts</code></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">rootProject</span>.<span style="color:#000">name</span> = <span style="color:#c41a16">"minimal-build"</span>
+</span></span></code></pre></div><p><code>build.gradle.kts</code></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">plugins</span> { <span style="color:#000">java</span> }
+</span></span></code></pre></div><p>Così configurato, Gradle autonomamente:</p>
+<ul>
+<li>cerca e compila i sorgenti java dalla cartella: <code>src/main/java</code></li>
+<li>produce i binari dentro: <code>build/classes/java/main</code></li>
+</ul>
+<p>Vogliamo percorsi diversi?
+Va configurato.</p>
+</section><section>
+<h2 id="gradle-hello-world-in-java-struttura">Gradle: Hello World in Java, struttura</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>├── build.gradle.kts
+</span></span><span style="display:flex;"><span>├── settings.gradle.kts
+</span></span><span style="display:flex;"><span>└── src
+</span></span><span style="display:flex;"><span>    └── main
+</span></span><span style="display:flex;"><span>        └── java
+</span></span><span style="display:flex;"><span>            └── HelloWorld.java
+</span></span></code></pre></div><p><code>build.gradle.kts</code></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">plugins</span> { <span style="color:#000">java</span> }
+</span></span></code></pre></div><p><code>settings.gradle.kts</code> (opzionale)</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">rootProject</span>.<span style="color:#000">name</span> = <span style="color:#c41a16">"hello-world"</span>
+</span></span></code></pre></div><p><code>HelloWorld.java</code></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">HelloWorld</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">void</span> <span style="color:#000">main</span><span style="color:#000">(</span><span style="color:#000">String</span><span style="color:#000">...</span> <span style="color:#000">args</span><span style="color:#000">)</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">System</span><span style="color:#000">.</span><span style="color:#836c28">out</span><span style="color:#000">.</span><span style="color:#836c28">println</span><span style="color:#000">(</span><span style="color:#c41a16">"Hello, world!"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span><span style="color:#000">}</span>
+</span></span></code></pre></div></section><section>
+<h2 id="gradle-hello-world-in-java-task-e-loro-utilizzo">Gradle: Hello World in Java, task e loro utilizzo</h2>
+<ul>
+<li>elencare i task disponibili:
+<ul>
+<li><code>gradle tasks --all</code></li>
+</ul>
+</li>
+<li>compilazione:
+<ul>
+<li><code>gradle compileJava</code></li>
+</ul>
+</li>
+<li>pulizia (cancellazione della directory <code>build</code> dove Gradle lavora):
+<ul>
+<li><code>gradle clean</code></li>
+</ul>
+</li>
+<li>esecuzione (non responsabilità di Gradle):
+<ul>
+<li><code>java -cp build/classes/java/main HelloWorld</code></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<!-- this file includes generated content. Do not edit. Edit content/03-gradle-basics/generator.md, instead. -->
+<h2 id="il-build-system-come-dipendenza">Il build system come dipendenza</h2>
+<p><strong>Problema</strong>: come tutti i software <em>anche il build system <strong>cambia</strong></em></p>
+<p>Se da una versione all’altra di Gradle dovesse cambiare la convenzione,
+cosa succederebbe?</p>
+<ul>
+<li>Il nostro software smette di funzionare se aggiorniamo il build system!</li>
+</ul>
+<p>E se avessimo <em>progetti diversi</em> che richiedono <em>versioni diverse</em> di Gradle?</p>
+<h4 id="ci-serve-un-modo-per">Ci serve un modo per:</h4>
+<ol>
+<li>avere sempre <em>la giusta versione</em> di Gradle
+<ul>
+<li>Potenzialmente ogni progetto ha la sua</li>
+</ul>
+</li>
+<li>fare in modo che più versioni di Gradle coesistano senza “darsi fastidio”
+<ul>
+<li>Non vogliamo certo scaricare e installare versioni diverse a seconda del progetto su cui stiamo lavorando</li>
+</ul>
+</li>
+<li>già che ci siamo, sarebbe carino se questo sistema sapesse scaricare e installare Gradle, senza richiedere multiple installazioni manuali all’utente</li>
+</ol>
+</section><section>
+<h2 id="gradle-wrapper">Gradle wrapper</h2>
+<p>Un insieme di script con un software minimale che:</p>
+<ol>
+<li>Scarica la versione di Gradle indicata in un file di configurazione
+<ul>
+<li>se non già disponibile nel sistema</li>
+</ul>
+</li>
+<li>Usa quella versione per costruire il nostro sistema software!</li>
+</ol>
+<p>Il wrapper può (deve) esser copiato in ogni progetto che gestiamo con Gradle</p>
+<p>Dato che il wrapper sa come scaricare ed installare Gradle, non occorre scaricare ed installare gradle manualmente</p>
+<ul>
+<li>Anche se è comodo, la versione di Gradle installata può generare le versioni wrapper</li>
+</ul>
+</section><section>
+<h2 id="progetti-gradle-con-wrapper">Progetti Gradle con wrapper</h2>
+<ol>
+<li>Script bash eseguibile (<i class="fab fa-linux"></i>/<i class="fab fa-apple"></i>): <code>gradlew</code></li>
+<li>Script batch eseguibile (<i class="fab fa-windows"></i>): <code>gradlew.bat</code></li>
+<li>File di configurazione con indicata la versione di Gradle:<br>
+<code>gradle/wrapper/gradle-wrapper.properties</code></li>
+<li>Software Java che scarica la versione di Gradle descritta nel file di configurazione: <br>
+<code>gradle/wrapper/gradle-wrapper.jar</code></li>
+</ol>
+<p>Wrapper pronto per esser scaricato:</p>
+<ul>
+<li><a href="https://github.com/DanySK/Gradle-Wrapper/archive/refs/heads/master.zip">https://github.com/DanySK/Gradle-Wrapper/archive/refs/heads/master.zip</a></li>
+<li><strong>Attenzione</strong>: su <i class="fab fa-linux"></i> e <i class="fab fa-apple"></i>,
+eseguire anche il comando <code>chmod +x gradlew</code> per rendere eseguibile lo script</li>
+<li>setta i permessi Unix per eseguire, il cui valore viene resettato dalla compressione in formato zip</li>
+<li>alternativamente, lo script va eseguito chiedendo all’interprete della linea di comando di interpretarlo</li>
+<li><code>sh gradlew</code></li>
+</ul>
+</section><section>
+<h2 id="utilizzo-di-gradle-con-wrapper">Utilizzo di Gradle con wrapper</h2>
+<p>Se abbiamo il Gradle wrapper configurato in un progetto,
+possiamo usarlo attraverso uno dei due script:</p>
+<ul>
+<li><code>gradlew</code> (<i class="fab fa-linux"></i>/<i class="fab fa-apple"></i>)
+o <code>gradlew.bat</code> (<i class="fab fa-windows"></i>),
+a seconda della nostra piattaforma</li>
+<li>seguito dall’elenco dei <strong>task</strong></li>
+</ul>
+<h4 id="nota"><strong>Nota</strong></h4>
+<p>Su sistemi <i class="fab fa-linux"></i> e <i class="fab fa-apple"></i>
+per eseguire lo script occorre anche includere il percorso corrente:</p>
+<ul>
+<li><code>./gradlew</code></li>
+</ul>
+<p>o, in alternativa, chiedere all’interprete dei comandi di eseguire</p>
+<ul>
+<li><code>sh gradlew</code></li>
+<li><code>bash gradlew</code></li>
+</ul>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/oop-lab/reveal-hugo/object-assign.js"></script>
+
+<a href="/oop-lab/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"900","highlight_theme":"default","history":true,"mermaid":[{"startOnLoad":false}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1440"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/oop-lab/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = { 
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"startOnLoad":false});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+    
+  
+
+</body></html>

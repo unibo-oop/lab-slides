@@ -1,0 +1,408 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Laboratorio di Programmazione ad Oggetti</title>
+<meta name="description" content="Laboratorio di Programmazione ad Oggetti, Ingegneria e Scienze Informatiche">
+<meta name="author" content="Danilo Pianini">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/oop-lab/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/oop-lab/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/oop-lab/css/custom-theme.min.a1fb5112a00265a42a2454be30346ad4b54db549887ebde65a30994235d50c7d.css" id="theme"><link rel="stylesheet" href="/oop-lab/highlight-js/default.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="analisi-statica">Analisi statica</h1>
+<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+<h3 id="danilo-pianini-----danilopianiniuniboitmailtodanilopianiniuniboit"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+<h3 id="roberto-casadei-----robycasadeiuniboitmailtorobycasadeiuniboit"><a href="mailto:roby.casadei@unibo.it">Roberto Casadei — <code>roby.casadei@unibo.it</code></a></h3>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a>
+</p></section><section>
+<h2 id="analisi-di-qualità-del-codice-sorgente">Analisi di qualità del codice sorgente</h2>
+<h3 id="software-di-analisi-statica-del-codice---definizione">“Software di analisi statica del codice” - Definizione</h3>
+<p>Software in grado di analizzare il codice sorgente per individuare:</p>
+<ul>
+<li>Potenziali bug, magari dovuti a distrazione</li>
+<li>Possibili miglioramenti, ottimizzazioni o pratiche difformi da quelle consigliate</li>
+<li>Codice duplicato, segnale di una progettazione discutibile</li>
+<li>Stile non conforme</li>
+</ul>
+<h4 id="uso">Uso</h4>
+<p>L’analisi automatica del proprio codice consente di migliorare la qualità del codice,
+aiuta ad apprendere il modo corretto di scrivere,
+riduce il costo di manutenzione,
+e garantisce uniformità fra le parti sviluppate da persone diverse
+(aiutando quindi il sistema di controllo versione!).</p>
+</section><section>
+<h3 id="code-checking">Code checking</h3>
+<p>I software che vedremo sono eseguibili in due modalità:</p>
+<ul>
+<li><em>Stand-alone</em>: il software viene eseguito e genera un report</li>
+<li>Come <em>plug-in</em>: il software viene integrato con l’IDE (ad es. VS Code), e segnala i problemi sotto forma di warning</li>
+<li>Come <em>plugin Gradle</em>: Gradle viene configurato per eseguire il software nella prima modalità</li>
+</ul>
+<p>Noi vedremo la terza modalità.</p>
+</section><section>
+<h2 id="spotbugs-ex-findbugs">SpotBugs (ex FindBugs)}</h2>
+<p>SpotBugs scansiona il <em>bytecode</em> generato dal compilatore, e dalla sua analisi cerca di scoprire potenziali bug nel sorgente, ad esempio:</p>
+<ul>
+<li>Uguaglianza esatta fra <code>float</code> o <code>double</code></li>
+<li>Utilizzo di <code>==</code> invece di <code>equals()</code></li>
+<li>Mancata annotazione di annotazioni usate a runtime via reflection</li>
+<li>Uso errato di meccanismi di sincronizzazione</li>
+<li>Assenza di copie difensive</li>
+<li>Variabili non utilizzate</li>
+<li>Vulnerabilità  di sicurezza</li>
+<li>Tanti altri! Si veda: <a href="https://spotbugs.readthedocs.io/en/stable/bugDescriptions.html">https://spotbugs.readthedocs.io/en/stable/bugDescriptions.html</a></li>
+</ul>
+</section><section>
+<h2 id="pmd-e-cpd">PMD e CPD</h2>
+<p>PMD si occupa di trovare imperfezioni nel codice:</p>
+<ul>
+<li>Campi pubblici, protetti o default</li>
+<li>Mancato uso di final</li>
+<li>Singular fields</li>
+<li>Integra CPD (copy/paste detector) per verificare se vi siano blocchi di codice copincollati</li>
+<li>Tanti altri! Si veda: <a href="https://pmd.github.io/latest/pmd_rules_java.html">https://pmd.github.io/latest/pmd_rules_java.html</a></li>
+</ul>
+</section><section>
+<h2 id="checkstyle">Checkstyle</h2>
+<p>Cos’è: Checkstyle si occupa di trovare errori di stile:</p>
+<ul>
+<li>Mancanza di commento Javadoc</li>
+<li>Spaziature non corrette</li>
+<li>Parentesi assenti</li>
+<li>Magic numbers</li>
+<li>Altro: <a href="http://checkstyle.sourceforge.net/checks.html">http://checkstyle.sourceforge.net/checks.html</a></li>
+</ul>
+</section><section>
+<h2 id="configurazione-e-utilizzo-tramite-gradle">Configurazione e utilizzo tramite Gradle</h2>
+<p>Ciascun tool di quelli introdotti ha un proprio plugin gradle che consente di attivarlo e configurarlo.</p>
+<p>Per gli scopi del corso,
+è stato sviluppato un plugin che applica i tre plugin precedenti,
+preconfigurandoli in modo “ragionevole”.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">plugins</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#000">id</span>(<span style="color:#c41a16">"org.danilopianini.gradle-java-qa"</span>) <span style="color:#000">version</span> <span style="color:#c41a16">"0.40.0"</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>di default, questo causa un fallimento della build se ci sono errori in analisi statica:</p>
+<ul>
+<li>
+<p>la configurazione è <em>aggressiva</em>.</p>
+</li>
+<li>
+<p>Plugin</p>
+</li>
+<li>
+<p>Aggressività</p>
+</li>
+<li>
+<p>Build reports</p>
+</li>
+</ul>
+</section><section>
+<h2 id="falsi-positivi-e-falsi-negativi">Falsi positivi e falsi negativi</h2>
+<table>
+<thead>
+<tr>
+<th><em>Osservato</em> \ <strong>Reale</strong></th>
+<th><strong>Vero</strong></th>
+<th><strong>Falso</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>Vero</em></td>
+<td>Positivo</td>
+<td>Falso positivo</td>
+</tr>
+<tr>
+<td><em>Falso</em></td>
+<td>Falso negativo</td>
+<td>Negativo</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Sensibilità</strong>: capacità di un test di identificare i casi veri
+<ul>
+<li>Alta sensibilità $\Rightarrow$ pochi falsi negativi</li>
+<li>Un test molto sensibile tende a sbagliare “in eccesso”,
+preferendo i falsi positivi ai falsi negativi.</li>
+</ul>
+</li>
+<li><strong>Specificità</strong>: capacità di un test di identificare i casi negativi
+<ul>
+<li>Alta specificità $\Rightarrow$ pochi falsi positivi</li>
+<li>Un test molto sensibile tende a sbagliare “in difetto”,
+preferendo i falsi negativi ai falsi positivi.</li>
+</ul>
+</li>
+</ul>
+<p>Sensibilità e specificità spesso vanno <em>bilanciate</em>,
+raramente in casi reali un test può essere sia molto sensibile che molto specifico</p>
+<h4 id="ci-saranno-casi-in-cui-lanalisi-statica-darà-dei-falsi-positivi">Ci saranno casi in cui l’analisi statica darà dei falsi positivi</h4>
+<p>(ci saranno anche falsi negativi, ma è più difficile trovarli…)</p>
+</section><section>
+<h2 id="gestire-falsi-positivi-soppressione">Gestire falsi positivi: soppressione</h2>
+<p>La <em>ragione</em> per cui un caso di problema sia da classificare come <em>falso positivo</em> va <em>studiata</em></p>
+<ul>
+<li>Potrebbe essere, in effetti, un <em>bug</em> o una limitazione del tool di analisi statica</li>
+<li>Potrebbe essere che il difetto ci sia veramente, <em>ma non dipenda da noi</em>
+(magari stiamo usando una libreria esterna che ci forza a fare le cose così)</li>
+<li>Potrebbe essere che il difetto sia presente, <em>ma sia voluto</em>
+<ul>
+<li>Abbiamo scientemente fatto una scelta di design, intendiamo mantenerla e sappiamo giustificarla</li>
+</ul>
+</li>
+<li>Potrebbe essere che il difetto sia presente, <em>ma l’alternativa sia peggiore</em>
+<ul>
+<li>caso specifico non supportato dal software</li>
+<li>impossibilità di utilizzo di una alternativa</li>
+<li>performance troppo basse (raro nei progetti di OOP…)</li>
+</ul>
+</li>
+</ul>
+<p>In questi casi, si <em>disabilita <strong>puntualmente</strong> l’analisi statica nel punto in cui è presente il falso positivo</em></p>
+<p>Questa operazione è detta <strong>soppressione</strong> e va <em>sempre giustificata</em></p>
+</section><section>
+<h2 id="soppressione-in-checkstyle">Soppressione in Checkstyle</h2>
+<ul>
+<li>La soppressione in checkstyle avviene tramite commenti, ed è configurabile</li>
+<li>Nella configurazione fornitavi, si sopprime con delle “comment fences”:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#177500">// CHECKSTYLE: &lt;ruleName&gt; OFF
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">&lt;</span><span style="color:#000">java</span> <span style="color:#000">code</span> <span style="color:#000">with</span> <span style="color:#000">the</span> <span style="color:#a90d91">false</span> <span style="color:#000">positive</span><span style="color:#000">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#177500">// CHECKSTYLE: &lt;ruleName&gt; ON
+</span></span></span></code></pre></div><ul>
+<li>dove <code>&lt;ruleName&gt;</code> va sostituito col nome della regola di Checkstyle che si sta violando</li>
+</ul>
+<p>È bene aggiungere un commento che spieghi la ragione della soppressione</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#177500">// CHECKSTYLE: &lt;ruleName&gt; OFF
+</span></span></span><span style="display:flex;"><span><span style="color:#177500">// Rule disabled due to false positives, see this bug report: https://...
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">&lt;</span><span style="color:#000">java</span> <span style="color:#000">code</span> <span style="color:#000">with</span> <span style="color:#000">the</span> <span style="color:#a90d91">false</span> <span style="color:#000">positive</span><span style="color:#000">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#177500">// CHECKSTYLE: &lt;ruleName&gt; ON
+</span></span></span></code></pre></div></section><section>
+<h2 id="soppressione-in-pmd">Soppressione in PMD</h2>
+<ul>
+<li>La soppressione in PMD avviene tramite commento in linea</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">&lt;</span><span style="color:#000">java</span> <span style="color:#000">code</span> <span style="color:#000">with</span> <span style="color:#000">the</span> <span style="color:#a90d91">false</span> <span style="color:#000">positive</span><span style="color:#000">&gt;</span> <span style="color:#177500">// NOPMD suppressed as it is a false positive
+</span></span></span></code></pre></div><p>Se la linea di codice diventa troppo lunga, si può spezzare:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">&lt;</span><span style="color:#000">java</span> <span style="color:#000">code</span> <span style="color:#000">with</span> <span style="color:#000">the</span> <span style="color:#a90d91">false</span> <span style="color:#000">positive</span><span style="color:#000">&gt;</span> <span style="color:#177500">// NOPMD
+</span></span></span><span style="display:flex;"><span><span style="color:#177500">// suppressed as it is a false positive
+</span></span></span></code></pre></div></section><section>
+<h2 id="soppressione-in-spotbugs">Soppressione in Spotbugs</h2>
+<p>Spotbugs lavora sul <em>bytecode</em>, quindi non può essere soppresso usando dei commenti</p>
+<p>Occorre invece usare una speciale <strong>annotazione</strong>,
+contenuta nella libreria:</p>
+<ul>
+<li><a href="https://search.maven.org/artifact/com.github.spotbugs/spotbugs-annotations"><code>com.github.spotbugs:spotbugs-annotations</code></a></li>
+</ul>
+<p>E quindi, in <code>build.gradle.kts</code></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">dependencies</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#000">compileOnly</span>(<span style="color:#c41a16">"com.github.spotbugs:spotbugs-annotations:4.7.3"</span>) <span style="color:#177500">// Use the latest version
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>}
+</span></span></code></pre></div><p>Sarà a questo punto disponibile l’annotazione <code>@SuppressFBWarnings</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">@SuppressFBWarnings</span><span style="color:#000">(</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">value</span> <span style="color:#000">=</span> <span style="color:#000">{</span> <span style="color:#177500">// List of bugs to be suppressed
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>        <span style="color:#c41a16">"BC_UNCONFIRMED_CAST_OF_RETURN_VALUE"</span><span style="color:#000">,</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#c41a16">"RV_RETURN_VALUE_IGNORED_BAD_PRACTICE"</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">},</span> <span style="color:#177500">// String with the reasons for them to be suppressed
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>    <span style="color:#000">justification</span> <span style="color:#000">=</span> <span style="color:#c41a16">"A ChoiceDialog is always in its own stage"</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">+</span> <span style="color:#c41a16">", and we don't need the status of the Runnable"</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">&lt;</span><span style="color:#000">java</span> <span style="color:#000">code</span> <span style="color:#000">with</span> <span style="color:#000">the</span> <span style="color:#a90d91">false</span> <span style="color:#000">positive</span><span style="color:#000">&gt;</span>
+</span></span></code></pre></div></section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/oop-lab/reveal-hugo/object-assign.js"></script>
+
+<a href="/oop-lab/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"900","highlight_theme":"default","history":true,"mermaid":[{"startOnLoad":false}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1440"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/oop-lab/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = { 
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"startOnLoad":false});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+    
+  
+
+</body></html>

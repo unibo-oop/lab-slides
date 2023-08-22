@@ -1,0 +1,867 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Laboratorio di Programmazione ad Oggetti</title>
+<meta name="description" content="Laboratorio di Programmazione ad Oggetti, Ingegneria e Scienze Informatiche">
+<meta name="author" content="Danilo Pianini">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/oop-lab/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/oop-lab/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/oop-lab/css/custom-theme.min.a1fb5112a00265a42a2454be30346ad4b54db549887ebde65a30994235d50c7d.css" id="theme"><link rel="stylesheet" href="/oop-lab/highlight-js/default.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="programmazione-multipiattaforma">Programmazione multipiattaforma</h1>
+<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+<h3 id="danilo-pianini-----danilopianiniuniboitmailtodanilopianiniuniboit"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+<h3 id="roberto-casadei-----robycasadeiuniboitmailtorobycasadeiuniboit"><a href="mailto:roby.casadei@unibo.it">Roberto Casadei — <code>roby.casadei@unibo.it</code></a></h3>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a>
+</p></section><section>
+<h2 id="write-once-run-anywhere">“Write once, run anywhere…”</h2>
+<p>Lo slogan, coniato originariamente da Sun Microsystems per illustrare i benefici del linguaggio Java, vale <em>a patto che</em>:</p>
+<ul>
+<li><strong>“write” sia fatta in modo corretto e robusto</strong>;
+<ul>
+<li>ovvero, sia adottato un approccio di programmazione adeguato.</li>
+</ul>
+</li>
+<li><strong>sia possibile distribuire ciascuna applicazione per qualunque piattaforma</strong>.
+<ul>
+<li>ovvero, sia predisposto un packaging efficace.</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="accesso-al-file-system">Accesso al file system</h2>
+<h3 id="path-e-separatori">Path e Separatori</h3>
+<p>Inserire dei <em>path assoluti</em> nel proprio sorgente è <strong>sempre</strong> fonte di problemi quando si scrive software multipiattaforma:</p>
+<ul>
+<li><code>C:\Users\UserName\file</code> — Non funzionerà su piattaforma *nix, e non funzionerà se l’utente Windows non è “UserName”.</li>
+<li><code>C:\MyProgram\file</code> — Non funzionerà su piattaforma *nix, e non funzionerà se
+l’installazione di Windows è sana e il software non è avviato con diritti di amministratore.</li>
+<li><code>/home/username/file</code> — Non funzionerà su piattaforma Windows, e non funzionerà se l’utente non è <code>username</code>.</li>
+</ul>
+<h4 id="problemi">Problemi</h4>
+<ul>
+<li>I <em>separatori</em> per i path cambiano a seconda dell’OS</li>
+<li>La <em>struttura del file system</em> cambia con l’OS</li>
+<li>I <em>diritti</em> di lettura e scrittura cambiano con la configurazione</li>
+</ul>
+</section><section>
+<h2 id="proprietà-di-sistema">Proprietà di sistema</h2>
+<p>Java fornisce nella classe <code>System</code> un metodo</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">String</span> <span style="color:#000">getProperty</span><span style="color:#000">(</span><span style="color:#000">String</span> <span style="color:#000">p</span><span style="color:#000">)</span>
+</span></span></code></pre></div><p>che consente di accedere a proprietà di sistema</p>
+<h3 id="proprietà-relative-al-file-system">Proprietà relative al file system</h3>
+<ul>
+<li><code>file.separator</code> — Restituisce <code>\</code> per Windows e <code>/</code> per Unix</li>
+<li><code>java.home</code> — La directory di installazione di Java</li>
+<li><code>user.dir</code> — La directory da cui il comando <code>java</code> è stato invocato</li>
+<li><code>user.home</code> — Restituisce la home directory dell’utente che ha lanciato <code>java</code></li>
+<li><code>user.name</code> — Restituisce il nome utente</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">final</span> <span style="color:#000">String</span> <span style="color:#000">PROP_FILE_SEPARATOR</span> <span style="color:#000">=</span> <span style="color:#c41a16">"file.separator"</span><span style="color:#000">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">String</span> <span style="color:#000">separator</span> <span style="color:#000">=</span> <span style="color:#000">System</span><span style="color:#000">.</span><span style="color:#836c28">getProperty</span><span style="color:#000">(</span><span style="color:#000">PROP_FILE_SEPARATOR</span><span style="color:#000">);</span>
+</span></span></code></pre></div></section><section>
+<h2 id="accesso-ai-dettagli-del-sistema">Accesso ai dettagli del sistema</h2>
+<h3 id="funzionalità-os-specifiche">Funzionalità OS-specifiche</h3>
+<ul>
+<li>Talvolta è possibile che in una applicazione si debbano utilizzare librerie non disponibili o non licenziate per alcune piattaforme.</li>
+<li>A supporto di ciò, Java fornisce delle proprietà che consentono di <em>identificare OS, versione, e JVM corrente</em>.</li>
+</ul>
+<h4 id="proprietà-relative-al-sistema">Proprietà relative al sistema</h4>
+<ul>
+<li><code>java.version</code> — La versione di <code>java</code> in uso. Si potrebbe decidere di non usare una funzionalità che si sa non esistere o essere buggata.</li>
+<li><code>os.arch</code> — L’architettura della CPU come rilevata dall’OS (x86, i386, amd64, x86_64, IA64N, ARM, …)</li>
+<li><code>os.name</code> — Il nome del sistema operativo (Linux, MacOS X, MacOS, Windows 10, Solaris, FreeBSD,  …)</li>
+<li><code>os.version</code> — Restituisce per Windows il numero di versione effettivo (per esempio, Windows 10 restituisce 10.0), per MacOS il numero di versione (per esempio, 10.3.4), per Linux la versione
+del kernel (es. 6.1)</li>
+</ul>
+</section><section>
+<h2 id="gui-scalabili-e-internazionalizzazione">GUI scalabili e internazionalizzazione</h2>
+<h3 id="gui-scalabili----motivazioni">GUI scalabili – Motivazioni</h3>
+<h4 id="flessibilità">Flessibilità</h4>
+<p>Diversamente dagli anni 90, i dispositivi oggi hanno una <em>densità di pixel per area</em> <strong>estremamente</strong> variabile. Si va da 120 <em>PPI (Pixel Per Inch)</em> a 640 PPI, su schermi di dimensione estremamente variabile (da 3 a 200 pollici).</p>
+<h4 id="multipiattaforma">Multipiattaforma</h4>
+<p>Piattaforme diverse, anche a parità di schermo, possono adottare diverse convenzioni:</p>
+<ul>
+<li>Diversa grandezza di bordi</li>
+<li>Diversa spaziatura, dimensione e tipo di font</li>
+<li>Diverso sistema di decorazioni</li>
+</ul>
+<p>Questi elementi sono stabiliti dal <em>window manager</em> (del <em>windowing system</em> del sistema utilizzato) e non dallo sviluppatore dell’applicazione. Come indicazione generale vale che <strong>un’applicazione ben sviluppata eredita il “look and feel” dal sistema su cui sta girando</strong>.</p>
+</section><section>
+<h3 id="esempio-finestra-non-ridimensionabile-e-bassa-risoluzione">Esempio: Finestra non ridimensionabile e bassa risoluzione</h3>
+<p><img src="imgs/lowres.jpg" alt=""></p>
+</section><section>
+<h3 id="esempio-finestra-non-ridimensionabile-e-alta-risoluzione">Esempio: Finestra non ridimensionabile e alta risoluzione</h3>
+<p><img src="imgs/brokensword.png" alt=""></p>
+</section><section>
+<h2 id="best-practices-per-la-costruzione-di-gui">Best-practices per la costruzione di GUI</h2>
+<ul>
+<li>A proposito della specifica delle dimensioni
+<ul>
+<li>La <em>dimensione di default</em> della finestra va calcolata <em>in base alla dimensione dello schermo</em>.</li>
+<li>E’ opportuno <strong>non</strong> <em>specificare dimensioni assolute in pixel</em> per i componenti della GUI, ma dimensionarli <strong>in termini relativi</strong> <em>rispetto al container</em>.
+<ul>
+<li>Anche per i layout è opportuno non utilizzare dimensioni fisse in pixel.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>A proposito dei font
+<ul>
+<li>I <em>font</em> possono essere allegati all’applicazione</li>
+<li>La <em>dimensione dei font</em> può essere resa <em>relativa</em> alla dimensione corrente della view.</li>
+</ul>
+</li>
+<li><em>L’utente deve essere libero di ridimensionare l’interfaccia a piacimento per adattarla alla
+propria configurazione di schermi</em></li>
+</ul>
+</section><section>
+<h2 id="supporto-multilingua-per-le-ui">Supporto multilingua per le UI</h2>
+<ul>
+<li>
+<p>Sarebbe opportuno definire la UI una sola volta e cambiare dinamicamente le parti scritte (il testo) a seconda dell’impostazione della lingua di sistema (o della nostra applicazione).</p>
+</li>
+<li>
+<p>In realtà anche per il formato dei numeri, la valuta, le convenzioni sulla data, …</p>
+<ul>
+<li>un <strong>locale</strong> è un insieme di parametri che definiscono la lingua dell’utente, la sua regione, e le sue preferenze di visualizzazione delle GUI</li>
+<li>un esempio di locale è <code>en_US_UNIX</code> (lingua inglese, Stati Uniti, piattaforma UNIX)</li>
+</ul>
+</li>
+</ul>
+<h4 id="java-resource-bundles">Java Resource Bundles</h4>
+<p>Java fornisce una architettura per l’internazionalizzazione (<strong>i18n = internationalization</strong>), che fa uso di <code>ResourceBundle</code> e di una serie di file di supporto (<em>properties files</em>).</p>
+<ul>
+<li>per localizzazione (<strong>l10n = localization</strong>) si intende invece il processo di adattare un prodotto internazionalizzato a un particolare locale</li>
+</ul>
+<p>Per approfondimenti (per implementare il supporto multilingua):</p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/tutorial/i18n/resbundle/index.html">https://docs.oracle.com/javase/tutorial/i18n/resbundle/index.html</a></li>
+<li><a href="http://tutorials.jenkov.com/java-internationalization/resourcebundle.html">http://tutorials.jenkov.com/java-internationalization/resourcebundle.html</a></li>
+</ul>
+</section><section>
+<h1 id="corretta-configurazione-di-un-progetto-gradle">Corretta configurazione di un progetto Gradle</h1>
+</section><section>
+<h2 id="risorse-nei-progetti-gradle">Risorse nei progetti Gradle</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>├── src
+</span></span><span style="display:flex;"><span>│   ├── main
+</span></span><span style="display:flex;"><span>│   │   ├── java
+</span></span><span style="display:flex;"><span>│   │   └── resources
+</span></span><span style="display:flex;"><span>│   └── test
+</span></span><span style="display:flex;"><span>│       ├── java
+</span></span><span style="display:flex;"><span>│       └── resources
+</span></span><span style="display:flex;"><span>├── build.gradle.kts
+</span></span><span style="display:flex;"><span>└── settings.gradle.kts
+</span></span></code></pre></div><ul>
+<li>Le cartelle <code>src/[main|test]/resources</code> contengono le risorse del progetto opportunamente organizzate
+<ul>
+<li>Per risorse si intendono icone, file di testo, video, immagini, modelli 3D e qualunque cosa sia necessaria al corretto funzionamento del programma ma non sia una libreria o un file sorgente.</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="file-ancillari-per-il-progetto-di-oop">File ancillari per il progetto di OOP</h2>
+<p>Per OOP, alla struttura del progetto Gradle andranno aggiunti almeno altri due file</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>├── src
+</span></span><span style="display:flex;"><span>│   ├── main
+</span></span><span style="display:flex;"><span>│   │   ├── java
+</span></span><span style="display:flex;"><span>│   │   └── resources
+</span></span><span style="display:flex;"><span>│   └── test
+</span></span><span style="display:flex;"><span>│       ├── java
+</span></span><span style="display:flex;"><span>│       └── resources
+</span></span><span style="display:flex;"><span>├── build.gradle.kts
+</span></span><span style="display:flex;"><span>├── LICENSE
+</span></span><span style="display:flex;"><span>├── README.md
+</span></span><span style="display:flex;"><span>└── settings.gradle.kts
+</span></span></code></pre></div><h4 id="readmemd"><code>README.md</code></h4>
+<ul>
+<li>File con la descrizione del progetto: autori, breve guida d’uso, link a risorse.
+<ul>
+<li>GitHub è in grado di fare il parse del file e di integrarlo nella pagina del progetto, in modo da dargli una descrizione.</li>
+</ul>
+</li>
+</ul>
+<h4 id="license"><code>LICENSE</code></h4>
+<ul>
+<li>File con informazioni circa la licenza, necessario affinché il progetto sia open source.</li>
+<li>Per software open source, si raccomanda l’uso di MIT license.</li>
+<li>Qualunque licenza GPL-compatibile è ritenuta idonea per il progetto del corso.</li>
+</ul>
+</section><section>
+<h2 id="font-ed-encoding">Font ed encoding</h2>
+<h3 id="font-ed-encoding-1">Font ed encoding</h3>
+<p>Le più note piattaforme utilizzano di default encoding diversi:</p>
+<ul>
+<li><strong>UTF-8</strong> — default su Linux, può essere considerato lo standard de-facto.</li>
+<li><strong>MacRoman</strong> — default su MacOS, raramente causa artefatti se riconvertito ad altri formati.</li>
+<li><strong>ISO-8859-1</strong> — default su Windows, può causare artefatti su quasi tutti i caratteri non ASCII se convertito a UTF-8.</li>
+</ul>
+<h4 id="encoding-per-il-codice-sorgente">Encoding per il codice sorgente</h4>
+<p>Solitamente, il codice sorgente si sviluppa utilizzando la codifica UTF-8</p>
+<ul>
+<li>Essenziale se si utilizzano caratteri non inclusi nella tabella ASCII (caratteri accentati, ad esempio).</li>
+</ul>
+</section><section>
+<h3 id="configurazione-di-encoding-e-newline-in-vs-code">Configurazione di encoding e newline in VS Code</h3>
+<ul>
+<li>
+<p><code>File -&gt; Preferences -&gt; Settings</code></p>
+</li>
+<li>
+<p>Per l’opzione <code>Text Editor -&gt; Files -&gt; Encoding</code> selezionare <code>UTF-8</code></p>
+</li>
+<li>
+<p>Per l’opzione <code>Test Editor -&gt; Files -&gt; Eol</code> selezionare <code>LF</code></p>
+</li>
+<li>
+<p>In basso a destra nella finestra di VS Code c’è l’indicazione della codifica e di EOL per il file selezionato</p>
+</li>
+</ul>
+<p><img src="imgs/vscode-encoding-eol.png" alt=""></p>
+</section><section>
+<h1 id="caricamento-di-risorse-dal-classpath">Caricamento di risorse dal classpath</h1>
+</section><section>
+<!-- this file includes generated content. Do not edit. Edit content/08-multiplatform/generator.md, instead. -->
+<h2 id="risorse-caricate-dal-classpath">Risorse caricate dal classpath</h2>
+<ul>
+<li>
+<p>Abbiamo visto finora il <em>classpath</em> come l’insieme dei <em>percorsi</em> dove la virtual machine va a cercare le classi da caricare</p>
+<ul>
+<li>Come abbiamo visto usando l’opzione <code>-cp</code> di <code>java</code> e <code>javac</code>, il classpath può contenere indifferentemente dei path o dei JAR (o anche degli zip)</li>
+</ul>
+</li>
+<li>
+<p>Esso includerà tipicamente anche le risorse del progetto, i JAR delle dipendenze importate, etc.</p>
+</li>
+<li>
+<p>Come possiamo accedere a queste risorse in modo uniforme?</p>
+<ul>
+<li>Ossia caricarle sia che si trovino sul file system, sia che si trovino nel JAR eseguibile, sia che vengano incluse in un JAR di risorse separato.</li>
+</ul>
+</li>
+<li>
+<p>Java fornisce un’utilità per caricare risorse dal <strong>classpath</strong></p>
+<ul>
+<li>Approccio <strong>location-independent</strong>: non importa dove il codice venga eseguito fin tanto che l’ambiente viene correttamente impostato per trovare le risorse.</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h3 id="classloadergetsystemresourceasstreamstring"><code>ClassLoader.getSystemResource</code>(<code>AsStream</code>)<code>(String)</code></h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">abstract</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">ClassLoader</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#000">ClassLoader</span> <span style="color:#000">getSystemClassLoader</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#000">URL</span> <span style="color:#000">getSystemResource</span><span style="color:#000">(</span><span style="color:#000">String</span> <span style="color:#000">name</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#000">InputStream</span> <span style="color:#000">getSystemResourceAsStream</span><span style="color:#000">(</span><span style="color:#000">String</span> <span style="color:#000">name</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#000">URL</span> <span style="color:#000">getResource</span><span style="color:#000">(</span><span style="color:#000">String</span> <span style="color:#000">name</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#177500">// ...
+</span></span></span></code></pre></div><ul>
+<li>Un <strong>class loader</strong> (istanza di <code>ClassLoader</code>) è un’oggetto responsabile del <em>caricamento di classi e risorse</em>
+<ul>
+<li>ogni class loader ha un class loader padre, per sfruttare un meccanismo di delega</li>
+<li>il parent di default è il <strong>system class loader</strong> che carica classi e risorse <em>dal classpath</em></li>
+</ul>
+</li>
+<li>Una <strong>risorsa di sistema</strong> (system resource) è una risorsa “built-in” del sistema software, oppure disponibile nel sistema host (ad es. nel filesystem locale)
+<ul>
+<li>Per esempio, l’implementazione di base ricerca nel <code>CLASSPATH</code></li>
+</ul>
+</li>
+<li>L’argomento di <code>getSystemResource</code> e <code>getSystemResourceAsStream</code> è il <strong>nome di una risorsa</strong> (<strong>non un percorso del filesystem!</strong>), che è una stringa separata da <code>/</code> che identifica la risorsa
+<ul>
+<li>L’interpretazione del nome della risorsa dipende dall’implementazione</li>
+<li>Il system class loader usa il nome come un path per cercare la risorsa a partire dalle entry del classpath</li>
+</ul>
+</li>
+<li><code>ClassLoader.getSystemResource()</code> equivale a <code>ClassLoader.getSystemClassLoader().getResource()</code></li>
+</ul>
+</section><section>
+<h3 id="risorse-caricate-dal-classpath----esempi">Risorse caricate dal classpath – Esempi</h3>
+<h4 id="caricamento-di-file">Caricamento di File</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">InputStream</span> <span style="color:#000">in</span> <span style="color:#000">=</span> <span style="color:#000">ClassLoader</span><span style="color:#000">.</span><span style="color:#836c28">getSystemResourceAsStream</span><span style="color:#000">(</span><span style="color:#c41a16">"/settings/settings"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">BufferedReader</span> <span style="color:#000">br</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">BufferedReader</span><span style="color:#000">(</span><span style="color:#a90d91">new</span> <span style="color:#000">InputStreamReader</span><span style="color:#000">(</span><span style="color:#000">in</span><span style="color:#000">));</span>
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">String</span> <span style="color:#000">line</span> <span style="color:#000">=</span> <span style="color:#000">br</span><span style="color:#000">.</span><span style="color:#836c28">readLine</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">in</span><span style="color:#000">.</span><span style="color:#836c28">close</span><span style="color:#000">();</span>
+</span></span></code></pre></div><h4 id="caricamento-di-immagini">Caricamento di Immagini</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">URL</span> <span style="color:#000">imgURL</span> <span style="color:#000">=</span> <span style="color:#000">ClassLoader</span><span style="color:#000">.</span><span style="color:#836c28">getSystemResource</span><span style="color:#000">(</span><span style="color:#c41a16">"/images/gandalf.jpg"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">ImageIcon</span> <span style="color:#000">icon</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">ImageIcon</span><span style="color:#000">(</span><span style="color:#000">imgURL</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">JLabel</span> <span style="color:#000">lab1</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">JLabel</span><span style="color:#000">(</span><span style="color:#000">icon</span><span style="color:#000">);</span>
+</span></span></code></pre></div><p>Progetto di esempio:
+<a href="https://github.com/unibo-oop/example-with-get-resources">https://github.com/unibo-oop/example-with-get-resources</a></p>
+</section><section>
+<h2 id="installazione-delle-impostazioni-per-utente">Installazione delle impostazioni per-utente</h2>
+<h4 id="motivazione">Motivazione</h4>
+<p>Spesso un software ha necessità di caricare al primo avvio delle <em>impostazioni di default</em>, quindi lasciare l’utente libero di modificarle e, se avviato successivamente caricare quelle scelte dall’utente. In caso di sistema multiutente, le impostazioni saranno diverse per ciascuno.</p>
+<h4 id="strategia">Strategia</h4>
+<ul>
+<li>Si sceglie una cartella nella <strong>home folder dell’utente</strong> dove salvare le impostazioni.
+<ul>
+<li>È norma consolidata creare una cartella <code>.nomeprogramma</code>.</li>
+</ul>
+</li>
+<li>Al primo avvio, si verifica se tale cartella esista e se contenga i file di configurazione previsti.
+<ul>
+<li>Se non è presente, o se non sono presenti e leggibili alcuni i file, si procede a caricare nella cartella di destinazione i file di default dal JAR usando <code>getResource()</code>.</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<!-- this file includes generated content. Do not edit. Edit content/08-multiplatform/generator.md, instead. -->
+<h1 id="dipendenze-e-librerie">Dipendenze e librerie</h1>
+</section><section>
+<h2 id="dipendenze-nel-software">Dipendenze nel software</h2>
+<blockquote>
+<p>nos esse quasi nanos gigantium humeris insidentes
+<cite>Bernardo di Chartres</cite></p>
+</blockquote>
+<p>Tutto il software moderno dipende da altro software!</p>
+<ul>
+<li>il sistema operativo</li>
+<li>il <em>runtime environment</em> (la Java Virtual Machine)</li>
+<li>le librerie di basa (tutto quello che sta in <code>java.*</code> e <code>javax.*</code>)</li>
+<li>librerie di terze parti (fra poco)</li>
+<li>risorse esterne (icone, suoni, dati applicativi)</li>
+</ul>
+<p>Tutto il software che costruiamo e usiamo dipende da <em>altro sofware</em></p>
+<ul>
+<li>Che dipende da <em>altro software</em>
+<ul>
+<li>Che dipende da <em>altro software</em>
+<ul>
+<li>Che dipende da <em>altro software</em>
+<ul>
+<li>Che dipende da <em>altro software</em>
+<ul>
+<li>Che dipende da <em>altro software</em>
+<ul>
+<li>Che dipende da <em>altro software</em>
+<ul>
+<li>Che dipende da <em>altro software</em>
+<ul>
+<li>…</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>$\Rightarrow$ Le applicazioni hanno un <strong>albero</strong> di dipendenze!</p>
+</section><section>
+<h2 id="un-semplice-esempio-rate-a-movie">Un semplice esempio: rate a movie</h2>
+<p>Proviamo a costruire una <em>semplice applicazione</em> che:</p>
+<ol>
+<li>Richiede come parametro il nome di un film o serie TV</li>
+<li>Si connette ad Internet e cerca informazioni sul dato prodotto cinematografico<br>
+(per esempio, andando a cercare su IMDb.org o rottentomatoes)</li>
+<li>Cerca il film che abbiamo fornito come ingresso</li>
+<li>Stampa tutte le informazioni disponibili su questo film!<br>
+(anno, regista, attori, trama, media voti…)</li>
+</ol>
+<h4 id="quanto-codice-potrebbe-servire"><strong>Quanto codice potrebbe servire?</strong></h4>
+</section><section>
+<p>Una possibile soluzione:
+<a href="https://github.com/APICe-at-DISI/sample-gradle-project/blob/master/src/main/java/it/unibo/sampleapp/SimplerRateAMovie.java">https://github.com/APICe-at-DISI/sample-gradle-project/blob/master/src/main/java/it/unibo/sampleapp/SimplerRateAMovie.java</a></p>
+</section><section>
+<h2 id="il-trucco-usare-librerie">Il trucco: usare librerie</h2>
+<ul>
+<li>
+<p>È stata sfruttata una libreria per OMDB</p>
+<ul>
+<li>Data una chiave, interroga un database di film</li>
+<li>Nasconde tutta la parte di comunicazione di rete via HTTP, il parsing, eccetera</li>
+</ul>
+</li>
+<li>
+<p>Ma a sua volta, questa libreria usa librerie che usano librerie…</p>
+</li>
+</ul>
+
+
+<span class="fragment ">
+  <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>+--- com.omertron:API-OMDB:1.5
+</span></span><span style="display:flex;"><span>|    +--- commons-codec:commons-codec:1.10
+</span></span><span style="display:flex;"><span>|    +--- org.apache.commons:commons-lang3:3.4
+</span></span><span style="display:flex;"><span>|    +--- com.fasterxml.jackson.core:jackson-core:2.8.7
+</span></span><span style="display:flex;"><span>|    +--- com.fasterxml.jackson.core:jackson-annotations:2.8.7
+</span></span><span style="display:flex;"><span>|    +--- com.fasterxml.jackson.core:jackson-databind:2.8.7
+</span></span><span style="display:flex;"><span>|    |    +--- com.fasterxml.jackson.core:jackson-annotations:2.8.0
+</span></span><span style="display:flex;"><span>|    |    \--- com.fasterxml.jackson.core:jackson-core:2.8.7
+</span></span><span style="display:flex;"><span>|    +--- org.slf4j:slf4j-api:1.7.24
+</span></span><span style="display:flex;"><span>|    \--- org.yamj:api-common:2.1
+</span></span><span style="display:flex;"><span>|         +--- org.apache.httpcomponents:httpclient:4.5.3
+</span></span><span style="display:flex;"><span>|         |    +--- org.apache.httpcomponents:httpcore:4.4.6
+</span></span><span style="display:flex;"><span>|         |    +--- commons-logging:commons-logging:1.2
+</span></span><span style="display:flex;"><span>|         |    \--- commons-codec:commons-codec:1.9
+</span></span><span style="display:flex;"><span>|         \--- org.slf4j:slf4j-api:1.7.24
+</span></span></code></pre></div>
+</span>
+
+</section><section>
+<h2 id="dipendenze-transitive">Dipendenze <em>transitive</em></h2>
+<p>Le dipendenze <em>indirette</em> (dipendenze di dipendenze) sono dette <em>transitive</em></p>
+<p>In progetti non giocattolo, le dipendenze transitive sono la <em>maggioranza</em></p>
+<ul>
+<li>Si fa molto, molto presto ad avere più di 50 dipendenze</li>
+</ul>
+<p>Gestire il classpath diventa molto difficile! Ogni libreria va:</p>
+<ul>
+<li>trovata su Internet</li>
+<li>scaricata</li>
+<li>installata</li>
+<li>aggiunta al classpath di compilazione e di esecuzione</li>
+</ul>
+<p>L’applicazione di prima viene lanciata con:</p>
+<p><code>java -cp "build/classes/java/main:lib/API-OMDB-1.5.jar:lib/jool-0.9.14.jar:lib/logback-classic-1.4.1.jar:lib/api-common-2.1.jar:lib/slf4j-api-2.0.2.jar:lib/httpclient-4.5.3.jar:lib/commons-codec-1.10.jar:lib/commons-lang3-3.4.jar:lib/jackson-databind-2.8.7.jar:lib/jackson-core-2.8.7.jar:lib/jackson-annotations-2.8.7.jar:lib/logback-core-1.4.1.jar:lib/httpcore-4.4.6.jar:lib/commons-logging-1.2.jar" it.unibo.sampleapp.SimplerRateAMovie</code></p>
+<h4 id="la-complessità-sfugge-presto-di-mano"><em>La complessità sfugge presto di mano!</em></h4>
+</section><section>
+<h2 id="la-gestione-delle-dipendenze">La gestione delle dipendenze</h2>
+<p>Ci servirebbe uno strumento capace di:</p>
+<ul>
+<li><em>Cercare</em> (magari in archivi noti) le librerie di cui abbiamo bisogno</li>
+<li><em>Scaricare</em> le suddette (se le trova)</li>
+<li>Costruire il <em>classpath</em> e lanciare la <em>compilazione</em></li>
+<li>E magari anche <em>lanciare l’applicazione</em>…</li>
+</ul>
+<p>Per farlo, però,
+abbiamo bisogno di conoscere qualche archivio ("<em>repository</em>") di librerie,
+e di sapere come reperirle, ossia conoscere il loro <em>nome</em> e <em>versione</em>…</p>
+</section><section>
+<h2 id="librerie-di-terze-parti-in-java">Librerie “di terze parti” in Java</h2>
+<h3 id="java-non-definisce-alcuno-standard-per-i-nomi-di-libreria">Java non definisce alcuno standard per i nomi di libreria</h3>
+<p>Al compilatore Java e alla JVM
+(a differenza di quello che accade con altri linguaggi)
+è <em>ignoto</em> il concetto di “libreria”.
+L’unica astrazione che abbiamo in mano è quella di <strong>classpath</strong>,
+ma è troppo grezza!</p>
+<ul>
+<li>Usare il solo classpath ci costringerebbe a cercare, scaricare, ed elencare le librerie a mano!</li>
+</ul>
+<h3 id="standard-di-fatto-maven-naming-convention">Standard di fatto: Maven naming convention</h3>
+<p>Quando Java ha preso piede, è stato necessario sopperire a questa mancanza.
+Un particolare build system,
+<strong>Apache Maven</strong>,
+ha elaborato una propria <em>convenzione</em> per i nomi,
+divenuta oggi <em>sostanzialmente standard</em>
+(qualunque build system per Java la adotta).</p>
+</section><section>
+<h2 id="maven-naming-convention">Maven naming convention</h2>
+<p>Una libreria Java in formato compatibile con Maven si compone di:</p>
+<ul>
+<li><strong>groupId</strong>: identifica un (sotto-)progetto o un gruppo di lavoro
+<ul>
+<li>Segue lo schema di nomi dei package Java, ossia, tipicamente,
+è un URL invertito
+<ul>
+<li>ad esempio: <code>it.unibo</code>, <code>com.google</code>, <code>io.github</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>artifactId</strong>: identifica una specifica <em>libreria</em> o <em>modulo di progetto</em>
+<ul>
+<li>È un nome semplice in kebab-case
+<ul>
+<li>ad esempio: <code>commons-math</code>, <code>guava</code>, <code>junit-jupiter-assertions-jvm</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>version</strong>: identifica una specifica <em>versione</em> di una libreria
+<ul>
+<li>possono essere numeri o lettere separati da <code>.</code>, <code>-</code>, o <code>+</code> (solitamente numeri e punti)
+<ul>
+<li>ad esempio: <code>1.0</code>, <code>1.0.1</code>, <code>2.3.5-beta4</code>, <code>28ae10dd</code>, <code>4.0.2-alpha+28ae10dd</code></li>
+<li>tipicamente (ma non sempre) le versioni con soli numeri e punti sono <em>stabili</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Per riferirsi ad una libreria specifica, si usa la sintassi: <code>groupId:artifactId:version</code></p>
+<ul>
+<li><code>com.google.guava:guava:32-jre</code></li>
+<li><code>it.unibo.alchemist:alchemist-api:25.0.1</code></li>
+</ul>
+<p>Ora sappiamo come si chiamano, ma non dove trovarle…</p>
+</section><section>
+<h2 id="the-maven-central-repository-aka-sonatype-ossrh">The Maven Central Repository (a.k.a. Sonatype OSSRH)</h2>
+<p>Assieme alla convenzione per i nomi,
+Maven definì un <em>repository</em> (archivio) dove i creatori di software Java <em>open source</em> potessero:</p>
+<ul>
+<li><em>pubblicare</em> le proprie librerie</li>
+<li><em>utilizzare</em> quelle prodotte da sé e da altri $\Leftarrow$ vedremo come!</li>
+</ul>
+<p>La disponibilità e la possibilità di <strong>riuso</strong> ha consentito la nascita dell’“ecosistema” Java,
+rendendolo uno dei linguaggi/piattaforme di più ampio successo di sempre.</p>
+<h3 id="httpscentralsonatypedev-storicamente-httpssearchmavenorg"><a href="https://central.sonatype.dev/">https://central.sonatype.dev/</a> (storicamente: <a href="https://search.maven.org/">https://search.maven.org/</a>)</h3>
+<ul>
+<li>È possibile trovare moltissime librerie!</li>
+<li>Oltre a scaricarle, sono documentate le <em>dipendenze</em>, che andranno a loro volta scaricate…</li>
+</ul>
+<p>Sappiamo <em>dove</em> trovare le librerie e <em>come</em> riferirle, ma ci serve ancora uno strumento per:</p>
+<ul>
+<li><em>scaricarle</em> in automatico</li>
+<li>scaricare anche tutte le <em>dipendenze transitive</em>
+<ul>
+<li>ricorsivamente!</li>
+</ul>
+</li>
+<li>gestire i classpath che diventano lunghi e complicati</li>
+</ul>
+</section><section>
+<h1 id="dipendenze-e-gradle">Dipendenze e Gradle</h1>
+</section><section>
+<h2 id="gestione-delle-dipendenze-in-gradle">Gestione delle dipendenze in Gradle</h2>
+<p>Gradle consente di gestire le dipendenze, specificando:</p>
+<ul>
+<li>Dove andarle a reperire (i cosiddetti “<em>repository</em>”)</li>
+<li>Qual è il loro <em>nome</em></li>
+<li>Qual è la loro <em>versione</em></li>
+<li>Qual è il loro <em>scopo</em> (applicazione o testing, compilazione e/o esecuzione)
+<ul>
+<li>Infatti, potremmo avere delle librerie che ci servono solo per dei test,
+ma di cui possiamo fare a meno una volta che l’applicazione è testata
+<ul>
+<li>I produttori di automobili provano il motore sui banchi prova,
+ma quando comprate la macchina non ve lo danno:
+col software è analogo…</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="specificare-i-repository-in-gradle">Specificare i repository in Gradle</h2>
+<p>In Gradle è possibile “puntare” ad archivi di librerie specificandolo in un blocco <code>repositories</code></p>
+<ul>
+<li>Maven Central è un membro speciale, e la sua configurazione è semplificata.</li>
+</ul>
+<p>Per dire a Gradle di:</p>
+<ol>
+<li>Preparare il necessario per gestire un progetto Java</li>
+<li>Configurare Maven Central come <em>repository</em> per le eventuali liberie</li>
+</ol>
+<p>è sufficiente configurare <code>build.gradle.kts</code> come segue:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">plugins</span> { <span style="color:#000">java</span> } <span style="color:#177500">// Carica il necessario per Java
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">repositories</span> { <span style="color:#000">mavenCentral</span>() } <span style="color:#177500">// Configura Gradle per cercare e scaricare da Maven Central
+</span></span></span></code></pre></div></section><section>
+<h2 id="dipendenze-in-gradle-preparazione">Dipendenze in Gradle: preparazione</h2>
+<p>Siamo pronti per importare le librerie che vogliamo!
+Dobbiamo solo:</p>
+<ol>
+<li>Trovare su Maven Central la libreria che intendiamo usare e annotare <code>groupId</code>, <code>artifactId</code>, e <code>version</code>
+<ul>
+<li>per questo esempio: la libreria OMDB di “Omertron”
+<ul>
+<li><a href="https://central.sonatype.dev/artifact/com.omertron/API-OMDB/1.5">https://central.sonatype.dev/artifact/com.omertron/API-OMDB/1.5</a></li>
+<li><code>com.omertron:API-OMDB:1.5</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Capire quale sia il suo <em>scope</em></li>
+</ol>
+<h3 id="scopo-delle-dipendenze-in-gradle">Scopo delle dipendenze in Gradle</h3>
+<p>Gradle consente di (costringe a) dire chiaramente “a cosa serve” una certa libreria. Noi vedremo solo alcuni degli scope disponibili:</p>
+<ul>
+<li><code>implementation</code>: la libreria ci serve sia per compilare che per eseguire la nostra applicazione
+<ul>
+<li>è la scelta <em>più comune</em></li>
+<li>in questa lezione useremo solo questo scope</li>
+</ul>
+</li>
+<li><code>testImplementation</code>: la libreria ci serve per compilare ed eseguire i test
+<ul>
+<li>ma non deve essere usabile quando si scrive l’applicazione vera e propria
+<ul>
+<li>Sarebbe come costruire un motore che richiede pezzi del banco prova per funzionare…</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>testRuntimeOnly</code>: la libreria ci serve per eseguire i test (sarà nel <code>-cp</code> di <code>java</code>), ma non per compilarli (<em>non</em> sarà nel <code>-cp</code> di <code>javac</code>)</li>
+</ul>
+</section><section>
+<h2 id="dipendenze-in-gradle-specifica">Dipendenze in Gradle: specifica</h2>
+<p>Una volta identificata la libreria</p>
+<ul>
+<li><code>com.omertron:API-OMDB:1.5</code></li>
+</ul>
+<p>e scelto lo scope che vogliamo usare</p>
+<ul>
+<li><code>implementation</code></li>
+</ul>
+<p>Possiamo semplicemente configurare Gradle per importarla dentro il blocco <code>dependencies</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">plugins</span> { <span style="color:#000">java</span> } <span style="color:#177500">// Carica il necessario per Java
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">repositories</span> { <span style="color:#000">mavenCentral</span>() } <span style="color:#177500">// Configura Gradle per cercare e scaricare da Maven Central
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">dependencies</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#000">implementation</span>(<span style="color:#c41a16">"com.omertron:API-OMDB:1.5"</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Quando lanceremo il task <code>compileJava</code>, Gradle si occuperà di:</p>
+<ul>
+<li>scaricare la libreria</li>
+<li>salvarla nella cartella dell’utente per uso futuro</li>
+<li>includerla nel classpath di compilazione!</li>
+</ul>
+</section><section>
+<h3 id="librerie-particolarmente-utili">Librerie particolarmente utili</h3>
+<ul>
+<li>
+<p><strong>Google Guava</strong> (<a href="https://github.com/google/guava">https://github.com/google/guava</a>)</p>
+<ul>
+<li>Il progetto Guava di Google raccoglie diverse librerie core sviluppate da Google che possono essere utilizzate per lo sviluppo di applicazioni.</li>
+<li>Ad esempio, sono disponibili librerie per Collections Management, Concurrency, I/O, String Processing, …</li>
+</ul>
+</li>
+<li>
+<p><strong>Apache Commons</strong> (<a href="https://commons.apache.org">https://commons.apache.org</a>)</p>
+<ul>
+<li>Estensioni al linguaggio (Commons Lang3)</li>
+<li>Libreria matematica estesa (Commons Math3)</li>
+<li>Accesso semplificato all’I/O (Commons IO)</li>
+<li>Costruzione semi automatica di una command line (Commons CLI)</li>
+<li>Encoding e crittazione (Commons Codec), compressione (Commons Compress)</li>
+</ul>
+</li>
+<li>
+<p><strong>Static Logger Facade for Java (SLF4J)</strong> (<a href="http://www.slf4j.org">http://www.slf4j.org</a>)</p>
+<ul>
+<li>Backend-independent logging (addio <code>println</code>)</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h3 id="top-20-java-library">Top 20 Java Library</h3>
+<p><a href="http://blog.takipi.com/we-analyzed-60678-libraries-on-github-here-are-the-top-100">
+<img src="imgs/top-20-java-libraries.png" alt="">
+</a></p>
+</section><section>
+<h3 id="awesome-java">Awesome Java</h3>
+<p>Esiste una lista, costantemente manutenuta, che elenca le più comuni, diffuse e stabili librerie per una pletora di usi: <a href="https://bit.ly/awesome-java">https://bit.ly/awesome-java</a></p>
+<h4 id="usatele">USATELE!</h4>
+<ul>
+<li><strong>Usare librerie e non reinventare la ruota è IMPORTANTE</strong> e valutato
+positivamente.</li>
+<li>Attenzione però a scegliere le librerie dopo aver fatto il <strong>modello del dominio</strong>
+dell’applicazione: <strong>PRIMA</strong> si studia il problema, <strong>DOPO</strong> si implementa una soluzione:
+siete aspiranti ingegneri, cercate di lavorare sempre top-down quando possibile, non partite dalla libreria per costruirci sopra un software, ma partite dai requisiti e - se utile - sfruttate le librerie per soddisfarli.</li>
+</ul>
+<h4 id="attenzione-ai-framework">Attenzione ai framework!</h4>
+<p>Alcune librerie sono costruite come <em>Framework</em>,
+ossia come ossature di applicazioni,
+pensate per velocizzare la costruzione di un certo tipo di software</p>
+<ul>
+<li>Esempio tipico: l’engine per videogames <a href="%60https://libgdx.com/%60">libGDX</a></li>
+</ul>
+<p>Uno degli scopi del progetto di OOP è quello di misurare se siate bravi designer,
+ma per farlo è necessario che il design della vostra applicazione l’abbiate fatto voi e non chi ha costruito il framework.</p>
+<p>Vi raccomandiamo quindi di <strong>evitare i framework</strong>!
+O, al più, usarli solo <em>dopo che il progetto è avviato</em> come semplice libreria
+(non semplice e non sempre possibile)</p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/oop-lab/reveal-hugo/object-assign.js"></script>
+
+<a href="/oop-lab/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"900","highlight_theme":"default","history":true,"mermaid":[{"startOnLoad":false}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1440"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/oop-lab/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = { 
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"startOnLoad":false});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+    
+  
+
+</body></html>

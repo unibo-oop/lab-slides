@@ -1,0 +1,360 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Laboratorio di Programmazione ad Oggetti</title>
+<meta name="description" content="Laboratorio di Programmazione ad Oggetti, Ingegneria e Scienze Informatiche">
+<meta name="author" content="Danilo Pianini">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/oop-lab/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/oop-lab/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/oop-lab/css/custom-theme.min.a1fb5112a00265a42a2454be30346ad4b54db549887ebde65a30994235d50c7d.css" id="theme"><link rel="stylesheet" href="/oop-lab/highlight-js/default.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="dvcs-workflow">DVCS Workflow</h1>
+<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+<h3 id="danilo-pianini-----danilopianiniuniboitmailtodanilopianiniuniboit"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+<h3 id="roberto-casadei-----robycasadeiuniboitmailtorobycasadeiuniboit"><a href="mailto:roby.casadei@unibo.it">Roberto Casadei — <code>roby.casadei@unibo.it</code></a></h3>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a>
+</p></section><section>
+<h3 id="dalle-puntate-precedenti">Dalle puntate precedenti</h3>
+<h4 id="dvcs">DVCS</h4>
+<ul>
+<li>DVCS sono strumenti potenti per tenere traccia in maniera efficiente della storia di un progetto</li>
+<li>Nascono in particolare come evoluzione dei tradizionali VCS (SVN, CVS …)</li>
+<li>Enfasi su una <strong>miglior gestione del lavoro di team</strong></li>
+</ul>
+<h4 id="dvcs-e-teamwork">DVCS e teamwork</h4>
+<ul>
+<li>
+<p>“La potenza è nulla senza controllo!”</p>
+</li>
+<li>
+<p>Ovvero … la mancanza di un metodo chiaro e condiviso per utilizzarli può portare a risultati <strong>DEVASTANTI</strong></p>
+<ul>
+<li>effort necessario per la parte di gestione diventa presto preponderante e insostenibile</li>
+</ul>
+</li>
+<li>
+<p>Ecco perché è bene adottare un <strong>workflow collaborativo</strong></p>
+<ul>
+<li>i vostri progetti e i vostri partner di progetto vi ringrazieranno!</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h3 id="quale-workflow">Quale workflow</h3>
+<ul>
+<li>Come si sceglie un workflow?</li>
+<li>Abbiamo parlato di semplicità…</li>
+<li>In realtà è più corretto parlare di giusto <strong>trade-off</strong> tra semplicità ed esigenze</li>
+</ul>
+</section><section>
+<h3 id="lo-stato-dellarte-git-flow">Lo stato dell’arte: <strong>git-flow</strong></h3>
+<p>Definito da <em>Vincent Driessen</em> e spiegato in <a href="http://nvie.com/posts/a-successful-git-branching-model/">“A successful git branching model”</a></p>
+<p><img src="imgs/Git-branching-model.png" alt=""></p>
+</section><section>
+<h4 id="alcune-considerazioni">Alcune considerazioni</h4>
+<ul>
+<li>Non lo useremo
+<ul>
+<li>troppo complicato per i nostri scopi</li>
+</ul>
+</li>
+<li>Comunque molto interessante perché racchiude tutti gli aspetti di un DVCS workflow</li>
+<li>Usiste lo strumento <code>git-flow</code> (un wrapper attorno a git) che può essere installato per supportare il worflow “git flow”</li>
+</ul>
+</section><section>
+<h4 id="i-branch">I branch</h4>
+<ul>
+<li>Sono il supporto fondamentale alle fasi del ciclo di vita del software</li>
+<li>Ogni fase/attività ha il proprio branch!</li>
+<li>Branching e merging all’ordine del giorno!</li>
+</ul>
+<p>A proposito della <em>nomenclatura</em> dei branch</p>
+<ul>
+<li>Tipici nomi sono, ad esempio <code>feature-&lt;feature-name&gt;</code> o <code>bug-&lt;bug-name&gt;</code></li>
+<li>Si usa infatti categorizzare i branch in <em>gruppi</em>: <code>wip</code>, <code>feat</code>, <code>bug</code> …</li>
+<li>Varie convenzioni possono essere adottate (l’importante è essere consistenti)
+<ul>
+<li>Uso degli slash come separatori: <code>feature/&lt;feature-name&gt;</code>, <code>bug/&lt;bug-name&gt;</code>
+<ul>
+<li>Alcuni strumenti potrebbero dedurre una vista tree-like</li>
+</ul>
+</li>
+<li>Aggiunta di “compontenti” al nome del branch, relativi ad es.
+<ul>
+<li>all’autore/responsabile</li>
+<li>a una <em>issue</em> (cf. Issue su GitHub) o <em>ticket</em>, o l’ID di un task o user story</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Nota: questi aspetti di nomenclatura e formattazione sono importanti anche a livello di commit (cf. <a href="https://www.conventionalcommits.org/en/v1.0.0/">conventional commit</a>)</li>
+</ul>
+</section><section>
+<h3 id="un-modello-più-semplice">Un modello più semplice</h3>
+<ul>
+<li>Un <em>branch principale</em></li>
+<li><em>Feature branch</em> diversi e indipendenti, per sviluppi diversi
+<ul>
+<li>da sincronizzare attraverso il branch principale (<em>frequentemente</em> per ridurre possibilità di conflitti complessi)</li>
+</ul>
+</li>
+</ul>
+<p><img src="imgs/git-flow-simplified.png" alt=""></p>
+</section><section>
+<h3 id="feature-branch-processo">Feature branch: processo</h3>
+<ul>
+<li>nel modello semplificato (assumendo il branch principale si chiami <code>develop</code>) o in git flow</li>
+</ul>
+<p><img src="imgs/feature.png" alt=""></p>
+</section><section>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#177500"># Create a new feature branch from develop and share it</span>
+</span></span><span style="display:flex;"><span>git checkout develop
+</span></span><span style="display:flex;"><span>git checkout -b feature-mynewfeaturename
+</span></span><span style="display:flex;"><span>git push origin feature-mynewfeaturename
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#177500"># WHILE your_feature_is_unfinished</span>
+</span></span><span style="display:flex;"><span><span style="color:#177500"># work on your feature:</span>
+</span></span><span style="display:flex;"><span>git add mynewfiles
+</span></span><span style="display:flex;"><span>git add mymodifiedfiles
+</span></span><span style="display:flex;"><span>git add mydeletedfiles
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#c41a16">"my commit message"</span>
+</span></span><span style="display:flex;"><span><span style="color:#177500"># Merge develop in to prevent big merge conflicts!</span>
+</span></span><span style="display:flex;"><span>git pull origin/develop
+</span></span><span style="display:flex;"><span><span style="color:#177500"># You may need to solve a merge conflict here!</span>
+</span></span><span style="display:flex;"><span><span style="color:#177500"># Share and save your work</span>
+</span></span><span style="display:flex;"><span>git push
+</span></span><span style="display:flex;"><span><span style="color:#177500"># END-WHILE</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#177500"># Merge feature onto develop</span>
+</span></span><span style="display:flex;"><span>git checkout develop
+</span></span><span style="display:flex;"><span>git merge feature-mynewfeaturename
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#177500"># Push develop</span>
+</span></span><span style="display:flex;"><span>git push
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#177500"># Delete feature branch</span>
+</span></span><span style="display:flex;"><span>git branch -d feature-mynewfeaturename
+</span></span></code></pre></div></section><section>
+<h3 id="il-repo-ufficiale-del-vostro-progetto">Il repo ufficiale del vostro progetto</h3>
+<h4 id="approccio-1-workflow-semplice">Approccio 1: workflow semplice</h4>
+<ul>
+<li>Qualcuno di voi agirà come “repo maintainer”
+<ul>
+<li>Creerà quindi il repository su GitHub</li>
+</ul>
+</li>
+<li>Gli altri membri del team faranno la <code>clone</code></li>
+<li>Ciascuno lavorerà parallelamente sul proprio repository locale (working copy), condividendo tramite <code>push</code> e <code>pull</code> il proprio lavoro con gli altri</li>
+</ul>
+</section><section>
+<h4 id="approccio-2-workflow-avanzato">Approccio 2: workflow avanzato</h4>
+<p>Ottimo per progetti di grosse dimensioni e/o per team molto eterogenei, dove qualcuno deve assicurarsi della qualità del codice prodotto da altri.</p>
+<ul>
+<li>Il maintainer crea il repository, ed è l’unico col diritto di scrittura</li>
+<li>Gli altri membri del team hanno una <strong>fork</strong> a testa</li>
+<li>Ciascuno lavora su una working copy, facendo pull dal repository “centrale” e push sulla propria fork</li>
+<li>Quando una feature è completa, o si arriva ad un buon grado di sviluppo, si apre una <strong>pull request</strong></li>
+<li>Il maintainer revisiona il codice, assegna eventuali modifiche, e quando è soddisfatto accetta la pull request facendo il merge del codice nel repository principale</li>
+</ul>
+<p>Questo workflow è un overkill per il progetto di OOP</p>
+<ul>
+<li>Ma è possibile che vi chiederemo di lavorare così, se farete tesi o un tirocini relativi ad alcuni nostri software</li>
+</ul>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/oop-lab/reveal-hugo/object-assign.js"></script>
+
+<a href="/oop-lab/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"900","highlight_theme":"default","history":true,"mermaid":[{"startOnLoad":false}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1440"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/oop-lab/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/oop-lab/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = { 
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"startOnLoad":false});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+    
+  
+
+</body></html>
