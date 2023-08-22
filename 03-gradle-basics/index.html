@@ -340,7 +340,7 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
 
 <a href="/lab-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
 
-<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"900","highlight_theme":"default","history":true,"mermaid":[{"startOnLoad":false}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1440"}</script>
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"default","history":true,"mermaid":[{"startOnLoad":false}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1920"}</script>
 <script type="application/json" id="reveal-hugo-page-params">null</script>
 
 <script src="/lab-slides/reveal-js/dist/reveal.js"></script>
@@ -402,7 +402,11 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
   
 
   
+    
+  
 
+  
+    
   
 
   
@@ -426,6 +430,30 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
   
 
 
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"startOnLoad":false});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
 
     <script>
     MathJax = {
