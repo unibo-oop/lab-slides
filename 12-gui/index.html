@@ -1,13 +1,13 @@
 <!DOCTYPE html><html lang="en"><head>
     <meta charset="utf-8">
-<title>Progettazione e Sviluppo del Software</title>
-<meta name="description" content="Progettazione e Sviluppo del Software, Tecnologie dei Sistemi Informatici">
+<title>Laboratorio di Programmazione ad Oggetti</title>
+<meta name="description" content="Laboratorio di Programmazione ad Oggetti, Ingegneria e Scienze Informatiche">
 <meta name="author" content="Danilo Pianini">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/lab-slides/reveal-js/dist/reset.css">
 <link rel="stylesheet" href="/lab-slides/reveal-js/dist/reveal.css">
-  <link rel="stylesheet" href="/lab-slides/css/custom-theme.min.a1fb5112a00265a42a2454be30346ad4b54db549887ebde65a30994235d50c7d.css" id="theme"><link rel="stylesheet" href="/lab-slides/highlight-js/default.min.css">
+  <link rel="stylesheet" href="/lab-slides/css/custom-theme.min.b9824b4eda489af62701e2d8190aa9322d918538f2bdeae9180858f0a96ba320.css" id="theme"><link rel="stylesheet" href="/lab-slides/highlight-js/default.min.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
@@ -21,12 +21,21 @@
   
 
     <section><h1 id="interfacce-utente-grafiche-gui-con-javafx">Interfacce utente grafiche (GUI) con JavaFX</h1>
+<div style="text-align: center; margin-bottom: 3em">
 <h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
 <h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
 <h3 id="danilo-pianini-----danilopianiniuniboitmailtodanilopianiniuniboit"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
-<h3 id="roberto-casadei-----robycasadeiuniboitmailtorobycasadeiuniboit"><a href="mailto:roby.casadei@unibo.it">Roberto Casadei — <code>roby.casadei@unibo.it</code></a></h3>
-<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a>
-</p></section><section>
+<!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2023-08-22
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
+</section><section>
 <h2 id="introduzione-a-javafx">Introduzione a JavaFX</h2>
 </section><section>
 <h3 id="javafx">JavaFX</h3>
@@ -42,7 +51,7 @@
 </ul>
 </li>
 </ul>
-<!-- 
+<!--
 * Propone un look-and-feel personalizzabile
 
     * La descrizione dello stile/aspetto dei componenti della GUI è separato dalla relativa implementazione
@@ -131,10 +140,10 @@
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">import</span> <span style="color:#000">javafx.application.Application</span><span style="color:#000">;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">Main</span> <span style="color:#000">{</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">void</span> <span style="color:#000">main</span><span style="color:#000">(</span><span style="color:#000">String</span><span style="color:#000">[]</span> <span style="color:#000">args</span><span style="color:#000">)</span> <span style="color:#000">{</span> 
+</span></span><span style="display:flex;"><span>	<span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">void</span> <span style="color:#000">main</span><span style="color:#000">(</span><span style="color:#000">String</span><span style="color:#000">[]</span> <span style="color:#000">args</span><span style="color:#000">)</span> <span style="color:#000">{</span>
 </span></span><span style="display:flex;"><span>	    <span style="color:#177500">// App è la classe definita nella slide precedente
-</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>	    <span style="color:#000">Application</span><span style="color:#000">.</span><span style="color:#836c28">launch</span><span style="color:#000">(</span><span style="color:#000">App</span><span style="color:#000">.</span><span style="color:#836c28">class</span><span style="color:#000">,</span> <span style="color:#000">args</span><span style="color:#000">);</span> 
-</span></span><span style="display:flex;"><span>	<span style="color:#000">}</span>   
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>	    <span style="color:#000">Application</span><span style="color:#000">.</span><span style="color:#836c28">launch</span><span style="color:#000">(</span><span style="color:#000">App</span><span style="color:#000">.</span><span style="color:#836c28">class</span><span style="color:#000">,</span> <span style="color:#000">args</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#000">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#000">}</span>
 </span></span></code></pre></div><ul>
 <li>ATTENZIONE: per motivi tecnici che non approfondiremo, definire il metodo <code>main()</code> dentro la classe <code>App</code> (che estende <code>Application</code>) può risultare nel seguente errore: <em>“Error: JavaFX runtime components are missing, and are required to run this application”</em> (richiederebbe l’aggiunta di JavaFX al module path all’avvio dell’applicazione)</li>
@@ -207,8 +216,8 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#a90d91">for</span> (<span style="color:#000">platform</span> <span style="color:#a90d91">in</span> <span style="color:#000">supportedPlatforms</span>) {
 </span></span><span style="display:flex;"><span>    <span style="color:#a90d91">for</span> (<span style="color:#000">module</span> <span style="color:#a90d91">in</span> <span style="color:#000">javaFXModules</span>) {
 </span></span><span style="display:flex;"><span>      <span style="color:#000">implementation</span>(<span style="color:#c41a16">"org.openjfx:javafx-</span><span style="color:#c41a16">$module</span><span style="color:#c41a16">:</span><span style="color:#c41a16">$javaFxVersion</span><span style="color:#c41a16">:</span><span style="color:#c41a16">$platform</span><span style="color:#c41a16">"</span>)
-</span></span><span style="display:flex;"><span>    } 
-</span></span><span style="display:flex;"><span>  } 
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#000">application</span> {
@@ -484,7 +493,7 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">Main</span> <span style="color:#000">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">void</span> <span style="color:#000">main</span><span style="color:#000">(</span><span style="color:#a90d91">final</span> <span style="color:#000">String</span><span style="color:#000">[]</span> <span style="color:#000">args</span><span style="color:#000">)</span> <span style="color:#000">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">Application</span><span style="color:#000">.</span><span style="color:#836c28">launch</span><span style="color:#000">(</span><span style="color:#000">App</span><span style="color:#000">.</span><span style="color:#836c28">class</span><span style="color:#000">,</span> <span style="color:#000">args</span><span style="color:#000">);</span> 
+</span></span><span style="display:flex;"><span>        <span style="color:#000">Application</span><span style="color:#000">.</span><span style="color:#836c28">launch</span><span style="color:#000">(</span><span style="color:#000">App</span><span style="color:#000">.</span><span style="color:#836c28">class</span><span style="color:#000">,</span> <span style="color:#000">args</span><span style="color:#000">);</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#000">}</span>
 </span></span></code></pre></div></section><section>
@@ -551,7 +560,7 @@ accoda il runnable nella coda degli eventi del JFXAT
 </span></span><span style="display:flex;"><span><span style="color:#000">&lt;?</span><span style="color:#a90d91">import</span> <span style="color:#000">javafx.scene.control.*</span><span style="color:#000">?&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#000">&lt;?</span><span style="color:#a90d91">import</span> <span style="color:#000">javafx.scene.layout.*</span><span style="color:#000">?&gt;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">&lt;</span><span style="color:#000">VBox</span> <span style="color:#000">xmlns</span><span style="color:#000">=</span><span style="color:#c41a16">"http://javafx.com/javafx"</span> 
+</span></span><span style="display:flex;"><span><span style="color:#000">&lt;</span><span style="color:#000">VBox</span> <span style="color:#000">xmlns</span><span style="color:#000">=</span><span style="color:#c41a16">"http://javafx.com/javafx"</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#000">xmlns</span><span style="color:#000">:</span><span style="color:#000">fx</span><span style="color:#000">=</span><span style="color:#c41a16">"http://javafx.com/fxml"</span><span style="color:#000">&gt;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#000">&lt;</span><span style="color:#000">children</span><span style="color:#000">&gt;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000">&lt;</span><span style="color:#000">Button</span> <span style="color:#000">fx</span><span style="color:#000">:</span><span style="color:#000">id</span><span style="color:#000">=</span><span style="color:#c41a16">"btn"</span>
@@ -740,7 +749,7 @@ accoda il runnable nella coda degli eventi del JFXAT
 </span></span><span style="display:flex;"><span>.<span style="color:#3f6e75">label</span> { <span style="color:#000">-</span><span style="color:#000">fx-font-size</span>: <span style="color:#1c01ce">30</span><span style="color:#a90d91">pt</span>; }  <span style="color:#177500">/* for all the labels */</span>
 </span></span></code></pre></div><h3 id="applicazione-dello-stile">Applicazione dello stile</h3>
 <p>Programmaticamente</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">Scene</span> <span style="color:#000">scene</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Scene</span><span style="color:#000">(</span><span style="color:#000">pane</span><span style="color:#000">);</span> 
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">Scene</span> <span style="color:#000">scene</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Scene</span><span style="color:#000">(</span><span style="color:#000">pane</span><span style="color:#000">);</span>
 </span></span><span style="display:flex;"><span><span style="color:#000">scene</span><span style="color:#000">.</span><span style="color:#836c28">getStylesheets</span><span style="color:#000">().</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#000">ClassLoader</span><span style="color:#000">.</span><span style="color:#836c28">getSystemResource</span><span style="color:#000">(</span><span style="color:#c41a16">"css/scene.css"</span><span style="color:#000">));</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#000">HBox</span> <span style="color:#000">buttons</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">HBox</span><span style="color:#000">();</span>
@@ -825,7 +834,7 @@ accoda il runnable nella coda degli eventi del JFXAT
 </span></span><span style="display:flex;"><span>        <span style="color:#000">primaryStage</span><span style="color:#000">.</span><span style="color:#836c28">setScene</span><span style="color:#000">(</span><span style="color:#a90d91">new</span> <span style="color:#000">Scene</span><span style="color:#000">(</span><span style="color:#000">pane</span><span style="color:#000">));</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#000">primaryStage</span><span style="color:#000">.</span><span style="color:#836c28">show</span><span style="color:#000">();</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000">}</span>
-</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#177500">// ...
 </span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">}</span>
 </span></span></code></pre></div></section>
@@ -899,6 +908,8 @@ accoda il runnable nella coda degli eventi del JFXAT
 
 
 
+
+  
 
   
 

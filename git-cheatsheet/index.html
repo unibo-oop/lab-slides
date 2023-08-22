@@ -1,0 +1,471 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Laboratorio di Programmazione ad Oggetti</title>
+<meta name="description" content="Laboratorio di Programmazione ad Oggetti, Ingegneria e Scienze Informatiche">
+<meta name="author" content="Danilo Pianini">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/lab-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/lab-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/lab-slides/css/custom-theme.min.b9824b4eda489af62701e2d8190aa9322d918538f2bdeae9180858f0a96ba320.css" id="theme"><link rel="stylesheet" href="/lab-slides/highlight-js/default.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="git-cheatsheet">Git cheatsheet</h1>
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini-----danilopianiniuniboitmailtodanilopianiniuniboit"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+<!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2023-08-22
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
+</section><section>
+<h4 id="inizializzazione-e-configurazione">Inizializzazione e Configurazione</h4>
+<table>
+<thead>
+<tr>
+<th>Operazione</th>
+<th>Comando</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inizializzazione della cartella corrente come repository</td>
+<td><code>git init</code></td>
+</tr>
+<tr>
+<td>Clonazione di un repository</td>
+<td><code>git clone &lt;url&gt;</code></td>
+</tr>
+<tr>
+<td>Configurazione globale del nome utente</td>
+<td><code>git config --global user.name "&lt;Nome&gt; &lt;Cognome&gt;"</code></td>
+</tr>
+<tr>
+<td>Configurazione globale dell’email</td>
+<td><code>git config --global user.email "&lt;email&gt;"</code></td>
+</tr>
+<tr>
+<td>Configurazione globale dell’editor</td>
+<td><code>git config --global core.editor &lt;comando&gt;</code></td>
+</tr>
+<tr>
+<td>Configurazione globale del nome del branch principale</td>
+<td><code>git config --global init.defaultBranch &lt;nome&gt;</code></td>
+</tr>
+<tr>
+<td>Configurazione locale del nome utente</td>
+<td><code>git config user.name "&lt;Nome&gt; &lt;Cognome&gt;"</code></td>
+</tr>
+<tr>
+<td>Configurazione locale dell’email</td>
+<td><code>git config user.email "&lt;email&gt;"</code></td>
+</tr>
+</tbody>
+</table>
+</section><section>
+<h4 id="osservazione">Osservazione</h4>
+<table>
+<thead>
+<tr>
+<th>Operazione</th>
+<th>Comando</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Osservazione dello stato del repository</td>
+<td><code>git status</code></td>
+</tr>
+<tr>
+<td>Osservazione della cronologia dei commit sul branch corrente</td>
+<td><code>git log</code></td>
+</tr>
+<tr>
+<td>Osservazione della cronologia dei commit compatta sul branch corrente</td>
+<td><code>git log --oneline</code></td>
+</tr>
+<tr>
+<td>Osservazione della cronologia dei commit su ogni branch</td>
+<td><code>git log --all</code></td>
+</tr>
+<tr>
+<td>Osservazione della cronologia dei commit con grafico</td>
+<td><code>git log --graph --all</code></td>
+</tr>
+<tr>
+<td>Osservazione della cronologia dei commit compatta con grafico</td>
+<td><code>git log --graph --all --oneline</code></td>
+</tr>
+<tr>
+<td>Osservazione delle differenze tra il working directory e lo stage</td>
+<td><code>git diff</code></td>
+</tr>
+<tr>
+<td>Osservazione delle differenze tra lo stage e il repository</td>
+<td><code>git diff --staged</code></td>
+</tr>
+<tr>
+<td>Osservazione delle differenze tra due <code>&lt;tree-ish&gt;</code></td>
+<td><code>git diff &lt;tree-ish1&gt; &lt;tree-ish2&gt;</code></td>
+</tr>
+<tr>
+<td>Elenco dei remote associati al repository</td>
+<td><code>git remote -v</code></td>
+</tr>
+<tr>
+<td>Informazioni sul remote <code>&lt;remote&gt;</code></td>
+<td><code>git remote show &lt;remote&gt;</code></td>
+</tr>
+</tbody>
+</table>
+</section><section>
+<h4 id="stage-e-modifica">Stage e Modifica</h4>
+<table>
+<thead>
+<tr>
+<th>Operazione</th>
+<th>Comando</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aggiunta allo stage delle <em>modifiche</em> di un file (inclusa cancellazione)</td>
+<td><code>git add &lt;file&gt;</code></td>
+</tr>
+<tr>
+<td>Aggiunta forzata delle modifiche di un file allo stage anche se il file sarebbe normalmente ignorato</td>
+<td><code>git add -f &lt;file&gt;</code></td>
+</tr>
+<tr>
+<td>Rimozione dallo stage delle <em>modifiche</em> di un file</td>
+<td><code>git reset &lt;file&gt;</code></td>
+</tr>
+<tr>
+<td>Registrazione di un file rinominato</td>
+<td><code>git add &lt;vecchio&gt; &lt;nuovo&gt;</code></td>
+</tr>
+<tr>
+<td>Creazione di un commit con le modifiche nello stage</td>
+<td><code>git commit -m &lt;messaggio&gt;</code></td>
+</tr>
+<tr>
+<td>Recupero dello stato di un file dal commit <code>&lt;tree-ish&gt;</code></td>
+<td><code>git checkout &lt;tree-ish&gt; -- &lt;file&gt;</code></td>
+</tr>
+<tr>
+<td>Creazione di un commit accettando il messaggio di default (<strong>solo in caso di merge!</strong>)</td>
+<td><code>git commit --no-edit</code></td>
+</tr>
+</tbody>
+</table>
+</section><section>
+<h4 id="branching">Branching</h4>
+<table>
+<thead>
+<tr>
+<th>Operazione</th>
+<th>Comando</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spostamento di <code>HEAD</code> ad uno specifico <code>&lt;tree-ish&gt;</code></td>
+<td><code>git checkout &lt;tree-ish&gt;</code></td>
+</tr>
+<tr>
+<td>Creazione di un nuovo branch</td>
+<td><code>git branch &lt;nome&gt;</code></td>
+</tr>
+<tr>
+<td>Creazione di un nuovo branch e spostamento di <code>HEAD</code></td>
+<td><code>git checkout -b &lt;nome&gt;</code></td>
+</tr>
+<tr>
+<td>Creazione di un nuovo branch a partire da un branch esistente su un remote (import di branch remoti)</td>
+<td><code>git checkout -b &lt;nome&gt; &lt;remote&gt;/&lt;branch&gt;</code></td>
+</tr>
+<tr>
+<td>Merge di un branch locale in quello corrente</td>
+<td><code>git merge &lt;nome del branch da mergere&gt;</code></td>
+</tr>
+<tr>
+<td>Configurazione di un upstream branch</td>
+<td><code>git branch -u &lt;remote&gt;/&lt;branch&gt;</code></td>
+</tr>
+</tbody>
+</table>
+</section><section>
+<h4 id="operazioni-su-remote">Operazioni su remote</h4>
+<table>
+<thead>
+<tr>
+<th>Operazione</th>
+<th>Comando</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aggiunta di un remote</td>
+<td><code>git remote add &lt;nome&gt; &lt;url&gt;</code></td>
+</tr>
+<tr>
+<td>Rimozione di un remote</td>
+<td><code>git remote remove &lt;nome&gt;</code></td>
+</tr>
+<tr>
+<td>Aggiornamento del remote che ospita l’upstream branch corrente (o di <code>origin</code>, se presente)</td>
+<td><code>git fetch</code></td>
+</tr>
+<tr>
+<td>Aggiornamento di un remote</td>
+<td><code>git fetch &lt;nome&gt;</code></td>
+</tr>
+<tr>
+<td>Aggiornamento del remote che ospita l’upstream branch corrente (o di <code>origin</code>, se presente) e merge del branch corrente con il branch corrispondente sul remote</td>
+<td><code>git pull</code></td>
+</tr>
+<tr>
+<td>Invio delle modifiche sull’upstream branch corrente</td>
+<td><code>git push</code></td>
+</tr>
+<tr>
+<td>Invio delle modifiche su un nuovo branch su <code>&lt;remote&gt;</code> e registrazione del nuovo branch come upstream</td>
+<td><code>git push -u &lt;remote&gt; &lt;branch&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="ssh">SSH</h4>
+<table>
+<thead>
+<tr>
+<th>Operazione</th>
+<th>Comando</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Generazione di una chiave SSH</td>
+<td><code>ssh-keygen</code></td>
+</tr>
+</tbody>
+</table>
+</section><section>
+<h1 id="git-cheatsheet-1">Git cheatsheet</h1>
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini-----danilopianiniuniboitmailtodanilopianiniuniboit"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+<!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2023-08-22
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/lab-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/lab-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"default","history":true,"mermaid":[{"startOnLoad":false}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/lab-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = { 
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+  
+
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"startOnLoad":false});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+    
+  
+
+</body></html>
