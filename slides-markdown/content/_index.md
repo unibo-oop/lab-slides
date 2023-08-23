@@ -2,7 +2,7 @@
 +++
 
 title = "Laboratorio di Programmazione ad Oggetti"
-description = "Progettazione e Sviluppo del Software, Tecnologie dei Sistemi Informatici"
+description = "Laboratorio di Programmazione ad Oggetti"
 outputs = ["Reveal"]
 
 +++
@@ -11,6 +11,7 @@ outputs = ["Reveal"]
 
 ### Indice dei contenuti
 
+* [Introduzione e informazioni sul corso](intro/)
 * [Dipendenze nel software e build automation](build-systems-basics/)
 * [Sistemi di controllo versione](dvcs-basics/)
 * [Branching e merging](dvcs-branching/)

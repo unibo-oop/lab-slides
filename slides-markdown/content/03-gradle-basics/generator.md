@@ -2,7 +2,7 @@
 +++
 
 title = "Laboratorio di Programmazione ad Oggetti"
-description = "Progettazione e Sviluppo del Software, Tecnologie dei Sistemi Informatici"
+description = "Laboratorio di Programmazione ad Oggetti"
 outputs = ["Reveal"]
 aliases = ["/build-systems-basics/"]
 
