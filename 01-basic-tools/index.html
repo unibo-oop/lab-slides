@@ -1,0 +1,647 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Strumenti di base del JDK</title>
+<meta name="description" content="Laboratorio di Programmazione ad Oggetti">
+<meta name="author" content="Danilo Pianini">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/lab-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/lab-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/lab-slides/css/custom-theme.min.1f94ba54005c7f9b9184d10830c34f796254790156d07d848895a2808362aca2.css" id="theme"><link rel="stylesheet" href="/lab-slides/highlight-js/default.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="strumenti-di-base-del-jdk">Strumenti di base del JDK</h1>
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini-----danilopianiniuniboitmailtodanilopianiniuniboit"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+<!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2023-08-24
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
+</section><section>
+<h2 id="tipi-di-piattaforme-java">Tipi di piattaforme Java</h2>
+<h3 id="domini-applicativi">Domini applicativi</h3>
+<p>Esistono diverse piattaforme Java per diversi <strong>domini applicativi</strong>.
+Fra diverse piattaforme cambia il set di librerie disponibili e l’ambiente runtime (JVM).</p>
+<ul>
+<li><strong>Java ME</strong> (Java Platform, Micro Edition) – per dispositivi resource-constrained</li>
+<li><strong>Java SE</strong> (Java Platform, Standard Edition) – per applicazioni general-purpose su computer e server</li>
+<li><strong>Jakarta EE</strong> (ex Java Platform, Enterprise Edition) – Java SE + librerie estese per applicazioni distribuite</li>
+<li><strong>Java Card</strong> – per applicazioni su smart card e dispositivi con memoria limitata</li>
+</ul>
+<h3 id="sviluppo-o-semplice-esecuzione">Sviluppo o semplice esecuzione</h3>
+<p>Una distribuzione Java può o meno includere gli strumenti per lo sviluppo (SDK).
+Nel primo caso si parla di <em>Java <strong>Development</strong> Kit</em> (JDK),
+nel secondo di <em>Java <strong>Runtime</strong> Environment</em> (JRE).</p>
+<h3 id="implementazioni-della-jvm">Implementazioni della JVM</h3>
+<p>Data una piattaforma, possono esserci più <strong>implementazioni</strong> ad esempio, per Java SE,
+con caratteristiche diverse (ad esempio, prestazioni e utilizzo della memoria):
+OpenJDK (HotSpot), Eclipse OpenJ9, GraalVM, Codename One</p>
+<h3 id="distribuzioni">Distribuzioni</h3>
+<p>Data una implementazione, possono esserci più <strong>distribuzioni</strong> (binari pre-built) della JVM
+che possono contenere anche delle modifiche minori fra loro.
+Ad esempio, per OpenJDK:
+Temurin (Adoptium), DragonWell (Alibaba), Corretto (Amazon), Zulu (Azul), Liberica (BellSoft), Oracle, RedHat, Microsoft, JetBrains…</p>
+</section><section>
+<h2 id="ambiente-di-riferimento-per-laa-corrente">Ambiente di riferimento per l’A.A. corrente</h2>
+<h3 id="utilizzeremo-java-se-development-kit-17-jdk-17">Utilizzeremo Java SE Development Kit 17 (JDK 17)</h3>
+<p>Include il necessario per eseguire applicazioni Java,
+ossia il JRE con virtual machine (<code>java</code>) e relative librerie,
+più gli strumenti di sviluppo, fra cui:</p>
+<ul>
+<li>
+<p>compilatore (<code>javac</code>),</p>
+</li>
+<li>
+<p>documentatore (<code>javadoc</code>),</p>
+</li>
+<li>
+<p>impacchettatore (<code>jar</code>),</p>
+</li>
+<li>
+<p>e disassemblatore (<code>javap</code>).</p>
+</li>
+<li>
+<p>Java SE 17 – ultima versione Long-Term Support (LTS) a disposizione prima dell’inizio del corso</p>
+<ul>
+<li>Java 21 è previsto entro fine 2023</li>
+<li>Chi lo desidera può sperimentare con le versioni più recenti
+<ul>
+<li>Nota: la compatibilità è solo “all’indietro” (<em>backwards compatibility</em>):
+nuove JVM possono in generale eseguire applicazioni compilate per un vecchio bytecode, ma non viceversa</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Faremo riferimento a OpenJDK standard (che fa da <em>reference</em>)</p>
+<ul>
+<li>Ossia, percapire se una JVM si comporta correttamente, si confronta il suo comportamento con OpenJDK</li>
+</ul>
+</li>
+<li>
+<p>Come distributore di riferimento, raccomandiamo Adoptium (<a href="https://adoptium.net/">https://adoptium.net/</a>)</p>
+<ul>
+<li>In realtà ogni esercitazione dovrebbe funzionare con qualsiasi distribuzione OpenJDK e OpenJ9</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="java-virtual-machine-architettura-a-runtime">Java Virtual Machine: Architettura a Runtime</h2>
+<p><img src="img/arch_runtime.png" alt=""></p>
+</section><section>
+<h1 id="il-file-system-e-linterprete-dei-comandi-richiamo">Il file system e l’interprete dei comandi (richiamo)</h1>
+</section><section>
+<h2 id="elementi-base-del-file-system">Elementi base del file system</h2>
+<p>I sistemi operativi (S.O.) odierni consentono di memorizzare permanentemente le informazioni su
+supporti di memorizzazione di massa (dischi magnetici, dispositivi a stato solido…)</p>
+<p>Il <strong>file system</strong> è l’insieme di metodi e   strutture dati impiegati dal S.O. per controllare
+l’accesso e la memorizzazione dei dati.</p>
+<ul>
+<li><strong>Livello logico</strong>: riguarda come l’informazione è presentata all’utente</li>
+<li><strong>Livello fisico</strong>: riguarda come il livello logico è mappato nelle memorie</li>
+</ul>
+<p>Le informazioni sono organizzate in file e cartelle (livello logico):</p>
+<ul>
+<li>i <strong>file</strong> contengono le informazioni</li>
+<li>le <strong>cartelle</strong> sono contenitori, all’interno contengono i file ed altre cartelle</li>
+</ul>
+<p>La cartella più esterna (contenente tutte le altre) è la <strong>radice</strong> (<em>root</em>)
+che rappresenta il livello gerarchico più alto del file system</p>
+<ul>
+<li><i class="fa-brands fa-linux"></i><i class="fa-brands fa-apple"></i> Sistemi *nix (Linux, MacOS, BSD, Solaris…): vi è una unica radice, ossia <code>/</code></li>
+<li><i class="fa-brands fa-windows"></i> Sistemi Windows: c’è una root per FS, indicata da una “lettera di unità” (ad esempio: <code>C:</code>, <code>D:</code>)</li>
+</ul>
+<p>File e cartelle possono essere individuati da un percorso o <strong>path</strong></p>
+<p>Il percorso può essere <em>assoluto</em>, ossia partire dalla root:</p>
+<ul>
+<li><code>/home/user/frameworkFS.jar</code> (percorso Unix assoluto)</li>
+<li><code>C:\Windows\System\win64.dll</code> (percorso Windows assoluto)</li>
+</ul>
+<p>Oppure relativo <em>relativo</em> ad un certo punto del filesystem:</p>
+<ul>
+<li>si identificca con <code>.</code> la cartella corrente e con <code>..</code> la cartella di livello superiore</li>
+<li><code>./src/main/java/HelloWorld.java</code> (percorso Unix relativo, equivalente a <code>src/main/java/HelloWorld.java</code>)</li>
+<li><code>../Downloads/myapp.jar</code> (percorso Unix relativo, che risale, come primo passo, alla cartella superiore)</li>
+</ul>
+</section><section>
+<h2 id="manipolare-il-file-system">Manipolare il file system</h2>
+<p>L’utente può osservare e manipolare il file system:</p>
+<ul>
+<li>sapere quali file e cartelle contiene una cartella</li>
+<li>creare nuovi file e cartelle</li>
+<li>copiare file e cartelle</li>
+<li>eliminare file e cartelle</li>
+<li>spostare file e cartelle dentro altre cartelle (equivalente a copiare e rinominare)</li>
+<li>rinominare file e cartelle (equivalente a spostare dentro la stessa cartella)</li>
+</ul>
+<p>Il software grafico che consente di osservare e manipolare il file system prende il nome di <em><strong>file manager</strong></em>.</p>
+<ul>
+<li><i class="fa-brands fa-windows"></i> “Esplora risorse” (<code>explorer.exe</code>)</li>
+<li><i class="fa-brands fa-apple"></i> “Finder”</li>
+<li><i class="fa-brands fa-linux"></i> ne esistono diversi (Nautilus, Dolphin, Thunar, Astro…)</li>
+</ul>
+<p><strong>ATTENZIONE</strong>: alcuni file manager (specialmente <code>explorer.exe</code>) sono preimpostati per nascondere informazioni utili
+e possono trarre in inganno!</p>
+<p><em>Soluzione</em>: meglio fidarsi dell’interprete comandi…</p>
+</section><section>
+<h2 id="interprete-comandi">Interprete Comandi</h2>
+<p>Programma che permette di interagire con il S.O. mediante comandi impartiti in modalità testuale</p>
+<ul>
+<li>Nell’antichità (in termini informatici) le interfacce grafiche erano sostanzialmente inesistenti,
+e l’interazione con i calcolatori avveniva di norma tramite interfaccia testuale</li>
+<li>Tutt’oggi, le interfacce testuali sono utilizzate:
+<ul>
+<li>per <strong>automatizzare</strong> le operazioni</li>
+<li>per <strong>velocizzare</strong> le operazioni (scrivere un comando è spesso molto più veloce di andare a fare click col mouse in giro per lo schermo)</li>
+<li>per fare operazioni complesse con pochi semplici comandi</li>
+<li>non tutti i software sono dotati di interfaccia grafica</li>
+<li>alcune opzioni di configurazione del sistema operativo restano accessibili solo via linea di comando
+<ul>
+<li>(anche su Windows: ad esempio i comandi per associare le estensioni ad un eseguibile)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Lo vedrete in maniera esaustiva nel corso di Sistemi Operativi…</p>
+</section><section>
+<h2 id="i-classfa-brands-fa-windowsii-classfa-brands-fa-applei-sistemi-nix-linux-macos-x-freebsd-minix"><i class="fa-brands fa-windows"></i><i class="fa-brands fa-apple"></i> Sistemi *nix (Linux, MacOS X, FreeBSD, Minix…)</h2>
+<h3 id="nei-sistemi-unix-like-esistono-vari-tipi-di-interpreti-chiamati-shell">Nei sistemi UNIX-like esistono vari tipi di interpreti, chiamati shell</h3>
+<p>Alcuni esempi</p>
+<ul>
+<li>Bourne shell (sh)
+<ul>
+<li>Prima shell sviluppata per UNIX (1977)</li>
+</ul>
+</li>
+<li>C-Shell (csh)
+<ul>
+<li>Sviluppata da Bill Joy per BSD</li>
+</ul>
+</li>
+<li>Bourne Again Shell (bash)
+<ul>
+<li>Parte del progetto GNU, è un super set di Bourne shell</li>
+</ul>
+</li>
+<li>ZSH, Fish, e altri terminali di ultima generazione
+<ul>
+<li>Altamente personalizzabili</li>
+<li>Molto flessibili</li>
+<li>Autocompletamento avanzato e contestualità</li>
+<li>ZSH è default su <i class="fa-brands fa-apple"></i>, seppur con configurazione minimale</li>
+<li>La shell che vedrete sul sistema del docente è ZSH con configurazione abbastanza ricca</li>
+</ul>
+</li>
+</ul>
+<p>Panoramica delle differenze: <a href="http://www.faqs.org/faqs/unix-faq/shell/shell-differences/">http://www.faqs.org/faqs/unix-faq/shell/shell-differences/</a></p>
+</section><section>
+<h2 id="i-classfa-brands-fa-windowsi-sistemi-windows"><i class="fa-brands fa-windows"></i> Sistemi Windows</h2>
+<p>L’interprete comandi storico è rappresentato dal programma <code>cmd.exe</code> (<code>C:\Windows\System32\cmd.exe</code>)</p>
+<ul>
+<li>Eredita sintassi e funzionalità della maggior parte dei comandi del vecchio MSDOS</li>
+</ul>
+<p>Versioni recenti hanno introdotto <strong>PowerShell</strong>, basato su .NET e C#</p>
+<p>Da Windows 10 è possibile installare Linux dentro Windows usando <strong>Windows Subsystem for Linux (WSL2)</strong></p>
+<ul>
+<li>Può essere un modo ragionevole di avere shell Unix in ambiente Windows
+<ul>
+<li>…le macchine di laboratorio hanno una WSL2 con zsh <i class="fa-solid fa-heart"></i></li>
+</ul>
+</li>
+</ul>
+<p>Più avanti vedremo che lo strumento che useremo per fare controllo di versione installa un proprio emulatore bash.</p>
+</section><section>
+<h2 id="aprire-un-terminale-in-laboratorio">Aprire un terminale in laboratorio</h2>
+<h3 id="terminale-doscmd">Terminale DOS/cmd</h3>
+<ul>
+<li>Start $\Rightarrow$ Programmi $\Rightarrow$ Accessori $\Rightarrow$ Prompt dei comandi</li>
+<li>Oppure: Start  $\Rightarrow$ Nella barra di ricerca, digitare <code>cmd</code> $\Rightarrow$ cliccare su <code>cmd.exe</code></li>
+</ul>
+<h3 id="terminale-bash-emulato-git-bash">Terminale Bash emulato (git bash)</h3>
+<ul>
+<li>Icona sul desktop</li>
+<li>Oppure: Start  $\Rightarrow$ Nella barra di ricerca, digitare <code>git bash</code></li>
+<li>Consente di lavorare su Windows con un terminale meglio equipaggiato, vicino ad un nativo Linux</li>
+</ul>
+<h3 id="manjaro-con-terminale-zsh-via-wsl2-con-configurazioni-di-pianini">Manjaro con Terminale ZSH via WSL2 (con configurazioni di Pianini)</h3>
+<ul>
+<li>
+<p>Avviare WSL tramite collegamento “Lancia WSL” presente nella cartella “WSL” del Desktop</p>
+</li>
+<li>
+<p>Tasto destro sul file $\to$ <em>Esegui con PowerShell</em> (rispondere “T” alla domanda sui criteri d’esecuzione, e attendere)</p>
+<ul>
+<li>Attendere l’importazione della distro Linux (massimo 2 minuti)</li>
+<li>Non aprire altre istanze finché la prima non è avviata!</li>
+<li>Se dopo due minuti non è avviata, chiudere e ritentare</li>
+</ul>
+</li>
+<li>
+<p>Questa è una shell nativa Linux preconfigurata dal docente</p>
+<ul>
+<li>(e quindi potenzialmente con personalizzazioni che dipendono dal gusto personale)</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="file-system-e-terminale-cheat-sheet">File system e terminale: cheat sheet</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Operazione</strong></th>
+<th><strong>Comando Unix</strong></th>
+<th><strong>Comando Win</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ottenere aiuto / elenco comandi</td>
+<td><code>help</code></td>
+<td><code>help</code></td>
+</tr>
+<tr>
+<td>Visualizzare la directory corrente</td>
+<td><code>pwd</code></td>
+<td><code>echo %cd%</code></td>
+</tr>
+<tr>
+<td>Contenuto della directory corrente</td>
+<td><code>ls -alh</code></td>
+<td><code>dir</code></td>
+</tr>
+<tr>
+<td>Passare alla directory di nome <code>baz</code></td>
+<td><code>cd baz</code></td>
+<td><code>cd baz</code></td>
+</tr>
+<tr>
+<td>Passare alla directory superiore</td>
+<td><code>cd ..</code></td>
+<td><code>cd..</code></td>
+</tr>
+<tr>
+<td>Cambiare unità disco (passare a D:)</td>
+<td>–</td>
+<td><code>D:</code></td>
+</tr>
+<tr>
+<td>Eliminare il file <code>foo</code> (non va con le cartelle!)</td>
+<td><code>rm foo</code></td>
+<td><code>del foo</code></td>
+</tr>
+<tr>
+<td>Eliminare la directory di nome <code>bar</code></td>
+<td><code>rm -r bar</code></td>
+<td><code>rd bar</code></td>
+</tr>
+<tr>
+<td>Creare una directory di nome <code>baz</code></td>
+<td><code>mkdir baz</code></td>
+<td><code>md baz</code></td>
+</tr>
+<tr>
+<td>Copiare il file <code>foo</code> in <code>bar</code></td>
+<td><code>cp foo bar</code></td>
+<td><code>copy foo bar</code></td>
+</tr>
+<tr>
+<td>Spostare (rinominare) il file <code>foo</code> in <code>bar</code></td>
+<td><code>mv foo bar</code></td>
+<td><code>move foo bar</code></td>
+</tr>
+<tr>
+<td>Creare un file vuoto di nome <code>foo</code></td>
+<td><code>touch foo</code></td>
+<td><code>echo. &gt; foo</code></td>
+</tr>
+<tr>
+<td>Visualizzare il contenuto del file <code>foo</code></td>
+<td><code>cat foo</code></td>
+<td><code>type foo</code></td>
+</tr>
+<tr>
+<td>Interrompere il processo corrente (segnale <code>SIGINT</code>)</td>
+<td><kbd>CTRL</kbd>+<kbd class="kbc-button">C</kbd></td>
+<td><kbd>CTRL</kbd>+<kbd class="kbc-button">C</kbd></td>
+</tr>
+</tbody>
+</table>
+</section><section>
+<h2 id="uso-intelligente-del-terminale">Uso intelligente del terminale</h2>
+<p>I terminali moderni possono essere utilizzati in modo piuttosto efficace
+(in particolare se moderni e opportunamente personalizzati).</p>
+<h3 id="autocompletamento">Autocompletamento</h3>
+<p>Quasi tutti i terminali offrono la possibilità di effettuare autocompletamento, ossia chiedere al sistema di provare a completare un comando.</p>
+<ul>
+<li>Per farlo si utilizza il tasto <kbd>↹ Tab</kbd>.</li>
+<li>L’autocompletamento cambia (anche molto) fra terminali diversi ed è soggetto a personalizzazione
+(specialmente su terminali moderni)</li>
+</ul>
+<h3 id="memoria-dei-comandi-precendenti">Memoria dei comandi precendenti</h3>
+<p>Sia Bash/zsh che cmd offrono la possibilità di richiamare il comando precedente premendo <kbd><i class="fa-solid fa-caret-up"></i></kbd>.</p>
+<ul>
+<li>Su bash/zsh i comandi sono <em>persistenti</em> (disponibili anche se il terminale viene riavviato).</li>
+</ul>
+<h3 id="interruzione-di-un-programma">Interruzione di un programma</h3>
+<p>È possibile interrompere forzatamente un programma, qualora non risponda per vari motivi o non si voglia attenderne la normale terminazione
+(Esempio tipico: programma in loop infinito).</p>
+<ul>
+<li>Per farlo si prema <kbd>CTRL</kbd>+<kbd class="kbc-button">C</kbd> (invio segnale <code>SIGINT</code>).</li>
+</ul>
+<h3 id="visualizzazione-della-storia-dei-comandi">Visualizzazione della storia dei comandi</h3>
+<p>È possibile mostrare i comandi usati in precedenza.
+Le shell Unix memorizzano i comandi usati anche in sessioni precedenti.</p>
+<ul>
+<li>Su *nix, usare il comando <code>history</code>, su cmd, usare <kbd>F7</kbd></li>
+</ul>
+<h3 id="ricerca-nella-storia-dei-comandi-precedenti-solo-bashzshfish">Ricerca nella storia dei comandi precedenti (solo bash/zsh/fish)</h3>
+<ul>
+<li>Premendo <kbd>CTRL</kbd>+<kbd class="kbc-button">R</kbd> seguito da un testo, questo viene cercato in comandi lanciati in precedenza, anche in sessioni precedenti.</li>
+</ul>
+</section><section>
+<h1 id="preparazione-dellambiente-di-lavoro-per-lab01">Preparazione dell’ambiente di lavoro (per Lab01)</h1>
+</section><section>
+<h2 id="preparazione-ambiente-di-lavoro">Preparazione Ambiente di Lavoro</h2>
+<ol>
+<li>Accendere il PC ed eseguire l’accesso</li>
+<li>Accedere al sito del corso</li>
+<li>Scaricare dalla sezione dedicata a questa settimana il materiale dell’esercitazione odierna</li>
+<li>Spostare il file scaricato sul Desktop</li>
+<li>Decomprimere il file sul Desktop</li>
+<li>Aprire un terminale</li>
+</ol>
+<ul>
+<li>Si scelga quello che si preferisce fra quelli proposti</li>
+</ul>
+<ol start="7">
+<li>Si comprenda in quale cartella ci si trova usando l’apposito comando</li>
+</ol>
+<ul>
+<li>Generalmente il prompt si apre nella directory principale dell’utente</li>
+<li>Nel caso in cui si usasse zsh dentro WSL, o Git Bash, il file system di windows è agganciato emulando un file system Unix.</li>
+</ul>
+<ol start="8">
+<li>Posizionarsi all’interno della cartella scompattata con l’ausilio del comando <code>cd</code> (change directory)</li>
+<li>Verificare che il contenuto della cartella sia quello atteso</li>
+<li>Scegliere un editor di testo per modificare i file sorgente</li>
+</ol>
+<ul>
+<li>Il laboratorio è equipaggiato con diversi editor di testo: JEdit, Visual Studio Code…</li>
+<li><strong>NON</strong> sono adatti per programmare i word processors (Libreoffice Writer, <i class="fa-brands fa-microsoft"></i> Word, <i class="fa-brands fa-microsoft"></i> WordPad…), né l’editor di testo incluso in Windows (Notepad).</li>
+<li>Per questo lab, suggerisce l’utilizzo di <strong>Notepad++</strong>
+<ul>
+<li>consigliato prima di passare ad editor/IDE più sofisticati (come <em>VS Code</em>)</li>
+<li>dobbiamo abituarci a scrivere codice corretto senza ausili</li>
+<li>dobbiamo abituarci a compilare ed eseguire manualmente, da linea di comando</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="compilazione-ed-esecuzione-da-riga-di-comando">Compilazione ed Esecuzione da Riga di Comando</h1>
+</section><section>
+<h2 id="compilazione-ed-esecuzione-comandi-di-base">Compilazione ed Esecuzione, comandi di base</h2>
+<h3 id="compilazione">Compilazione</h3>
+<p>Compilazione di un file (comando <code>javac</code>)</p>
+<ul>
+<li><code>javac NomeFileSorgente.java</code></li>
+</ul>
+<p>È possibile usare la shell expansion per passare più file alla volta al compilatore:</p>
+<ul>
+<li><code>javac *.java</code></li>
+</ul>
+<h3 id="esecuzione">Esecuzione</h3>
+<p>Esecuzione di un programma Java (comando <code>java</code>)</p>
+<ul>
+<li><code>java NomeDellaClasse</code></li>
+</ul>
+<p>Si noti che il compilatore <em>traduce</em> <strong>file</strong> sorgente in <strong>file</strong> binari,
+mentre l’interprete Java (la Java Virtual Machine) esegue una ed una sola <strong>classe</strong>.</p>
+<h4 id="javac-il-compilatore-lavora-su-file-java-linterprete-su-classi"><code>javac</code> (il compilatore) lavora su <em>file</em>, <code>java</code> (l’interprete) su <em>classi</em></h4>
+</section><section>
+<h2 id="jshell-java-repl"><code>jshell</code>: Java REPL</h2>
+<p>A partire da Java 9, è stata introdotto in java l’interprete <em>REPL</em> <code>jshell</code></p>
+<ul>
+<li>Sta per <strong>R</strong>ead-<strong>E</strong>val-<strong>P</strong>rint <strong>L</strong>oop
+<code>jshell</code> consente di effettuare al volo compilazione ed esecuzione</li>
+<li>Lo useremo ogni tanto per mostrarvi il risultato di alcune espressioni</li>
+<li>Non utile per lo sviluppo di intere applicazioni</li>
+</ul>
+<h3 id="dietro-le-quinte">Dietro le quinte</h3>
+<p><code>jshell</code> non è magico: dietro le quinte compila in memoria, quindi lancia l’interprete sul bytecode risultante</p>
+<h2 id="errori-comuni">Errori comuni</h2>
+<p>I seguenti errori sono comuni se non è chiaro cosa facciano interprete e compilatore:</p>
+<ul>
+<li><i class="fa-solid fa-ban"></i> <code>java NomeClasse.java</code> (l’interprete non lavora su file)
+<ul>
+<li>Anche se da Java 9 potrebbe funzionare, ma solo perché l’interprete dietro le quinte compila il file e lo esegue</li>
+<li>Noi dovremo imparare a costruiare applicazioni vere, quindi: <strong>prima</strong> <em>si compila</em>, <strong>poi</strong> <em>si esegue</em>!</li>
+</ul>
+</li>
+<li><i class="fa-solid fa-ban"></i> <code>java path/to/NomeClasse.class</code> (l’interprete non lavora su file)</li>
+</ul>
+</section><section>
+<h1 id="appendice">Appendice</h1>
+</section><section>
+<h2 id="richiamo-per-gli-esercizi-del-lab01">Richiamo per gli esercizi del Lab01</h2>
+<h3 id="numeri-complessi----breve-ripasso">Numeri complessi – breve ripasso</h3>
+<p>Siano $z,w \in \mathbb{C} : z = a + ib,\ w = c + id$, allora:</p>
+<ul>
+<li>Confronto: $z = w \iff a = c \wedge b = d$</li>
+<li>Somma algebrica: $z \pm w = a \pm c + i(b \pm d)$</li>
+<li>Prodotto: $z \cdot w = (a+ib)(c+id) = ac-bd+i(bc+ad)$</li>
+<li>Rapporto: $\frac{z}{w} = \frac{(a+ib)(c-id)}{(c+id)(c-id)} = \frac{ac + bd}{c^2 + d^2} + i\frac{bc - ad}{c^2 + d^2}$</li>
+</ul>
+</section><section>
+<h1 id="strumenti-di-base-del-jdk-1">Strumenti di base del JDK</h1>
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini-----danilopianiniuniboitmailtodanilopianiniuniboit"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+<!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2023-08-24
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/lab-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/lab-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"default","history":true,"mermaid":[{"startOnLoad":false}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/lab-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = { 
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+    
+  
+
+</body></html>
