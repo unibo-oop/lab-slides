@@ -12,6 +12,7 @@ outputs = ["Reveal"]
 ### Indice dei contenuti
 
 * [Introduzione e informazioni sul corso](intro/)
+* [Strumenti di base del JDK](basic-tools/)
 * [Dipendenze nel software e build automation](build-systems-basics/)
 * [Sistemi di controllo versione](dvcs-basics/)
 * [Branching e merging](dvcs-branching/)

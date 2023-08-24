@@ -354,3 +354,23 @@ section.has-light-background {
 div.smaller {
 	font-size: 75%;
 }
+
+// Keyboard keys
+
+kbd {
+  display: inline-block;
+  min-width: 1em;
+  text-align: center;
+  padding: 0.1em 0.4em;
+  font-size: 0.8em;
+  margin-left: 0.1em;
+  margin-right: 0.2em;
+  color: $mainColor;
+  background-color: $backgroundColor;
+  border-radius: 0.2em;
+  border-style: solid;
+  border-width: 0.1em;
+  box-shadow: 0 0 0.1em $mainColor, 0.1em 0.1em 0em $mainColor;
+  font-family: 'Inconsolata';
+  font-weight: normal;
+}
