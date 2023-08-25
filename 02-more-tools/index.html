@@ -1,0 +1,734 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Strumenti del JDK e introduzione a Visual Studio Code</title>
+<meta name="description" content="Laboratorio di Programmazione ad Oggetti">
+<meta name="author" content="Danilo Pianini">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/lab-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/lab-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/lab-slides/css/custom-theme.min.2be6c35187ba1c798d8c4dc548833795b483d32808b0604690eb916b071de916.css" id="theme"><link rel="stylesheet" href="/lab-slides/highlight-js/default.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="strumenti-del-jdk-e-introduzione-a-visual-studio-code">Strumenti del JDK e introduzione a Visual Studio Code</h1>
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini-----danilopianiniuniboitmailtodanilopianiniuniboit"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+<!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2023-08-25
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
+</section><section>
+<h2 id="pre-requisiti">Pre-requisiti</h2>
+<ul>
+<li>Rudimenti di programmazione e codifica</li>
+<li>Nozioni di base dei <strong>filesystem</strong>
+<ul>
+<li><strong>percorsi assoluti e relativi</strong></li>
+</ul>
+</li>
+<li>Utilizzo del terminale
+<ul>
+<li>interazione con il file system attraverso terminale (navigazione, concetto di working directory, eccetera)</li>
+</ul>
+</li>
+<li><strong>Compilazione ed esecuzione di base</strong> di programmi Java
+<ul>
+<li>uso basilare dei comandi <code>javac</code> e <code>java</code></li>
+<li>distinzione tra file sorgenti (<code>.java</code>) e file di classi compilate (<code>.class</code>)</li>
+<li>concetto di <strong>programma/applicazione</strong> in Java</li>
+</ul>
+</li>
+<li>Il concetto di <strong>package</strong> in Java</li>
+<li>contenitore (organizzato gerarchicamente) di tipi (ad es. classi) che funge da namespace e permette controllo degli accessi ai tipi contenuti</li>
+</ul>
+</section><section>
+<h1 id="stili-e-convenzioni-per-il-codice-sorgente">Stili e Convenzioni per il codice sorgente</h1>
+</section><section>
+<h2 id="stili-e-convenzioni">Stili e Convenzioni</h2>
+<p>Il codice sorgente che un programmatore scrive, generalmente è <strong>condiviso</strong> con altre persone
+(del proprio team, ma anche persone esterne al team o la community)</p>
+<ul>
+<li>è importante scrivere software <strong>immediatamente comprensibile</strong></li>
+<li>il fatto che un software “giri” (rispetti i requisiti e/o produca i risultati attesi) non è una sufficente metrica di qualità</li>
+<li>è importante adottare uno stile e seguirlo
+<ul>
+<li><strong>chiaro</strong> – facilmente comprensibile</li>
+<li><strong>condiviso</strong> – piuttoto che il “proprio stile”</li>
+<li><strong>consistente</strong> –  con regole che non si contraddicono</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+    Always code as if the guy who ends up maintaining your code will be
+    a violent psychopath who knows where you live. Code for readability.
+    <cite>John Woods [disputed]</cite>
+</blockquote>
+</section><section>
+<h2 id="ogni-linguaggio-ha-le-sue-prassi">Ogni linguaggio ha le sue prassi</h2>
+<p>Linguaggi diversi, regole di stile diverse!</p>
+<ul>
+<li>Usare convenzioni comuni su altri linguaggi su Java è una pessima idea
+<ul>
+<li>esempio tipico: usare lo stile <a href="https://en.wikipedia.org/wiki/Indentation_style#Allman_style">Allman</a> (tipico di C#) invece di <a href="https://en.wikipedia.org/wiki/Indentation_style#Variant:_1TBS_(OTBS)">1TBS/OTBS</a> (tipico di Java)</li>
+</ul>
+</li>
+<li>È vero anche il contrario, ovviamente!
+<ul>
+<li>Quando imparerete altri linguaggi, imparate anche le loro convenzioni e non riusate quelle di Java!</li>
+</ul>
+</li>
+</ul>
+<p>Le prassi di riferimento per Java sono disponibili qui:</p>
+<ul>
+<li><a href="http://bit.ly/java-style-guide">http://bit.ly/java-style-guide</a></li>
+<li><a href="http://bit.ly/java-code-conventions">http://bit.ly/java-code-conventions</a></li>
+<li><a href="http://bit.ly/oracle-java-code-conventions">http://bit.ly/oracle-java-code-conventions</a></li>
+</ul>
+<h2 id="ogni-azienda--team-poi-può-darsi-regole-interne-solitamente-in-aggiunta">Ogni azienda / team poi può darsi regole interne (solitamente <em>in aggiunta</em>)</h2>
+<p>Ad esempio:</p>
+<ul>
+<li>Google: <a href="http://archive.is/a0Jhz">http://archive.is/a0Jhz</a></li>
+<li>Twitter: <a href="http://archive.is/aa1tE">http://archive.is/aa1tE</a></li>
+<li>Mozilla: <a href="http://archive.is/rs3Ns">http://archive.is/rs3Ns</a></li>
+</ul>
+<p>Notare che sono sempre <strong>consistenti</strong>!</p>
+<ul>
+<li>E che sono tipicamente <em>restrizioni</em> delle convenzioni, non modifiche!</li>
+</ul>
+<h4 id="nel-corso-faremo-riferimento-alle-java-code-conventions"><strong>Nel corso faremo riferimento alle Java Code Conventions</strong></h4>
+<h4 id="con-qualche-vincolo-in-più-che-introdurremo-man-mano"><strong>(con qualche vincolo in più che introdurremo man mano)</strong></h4>
+</section><section>
+<h2 id="java-code-conventions-un-estratto">Java Code Conventions (un estratto)</h2>
+<h3 id="usare-sempre-le-parentesi-graffe-per-if-else-for-while-anche-se-segue-una-sola-istruzione">Usare <strong>sempre</strong> le parentesi (graffe) per if, else, for, while, anche se segue una sola istruzione</h3>
+<ul>
+<li>Aumentano la manutenibilità del codice</li>
+<li>È facile che nella fretta si modifichi il codice in modo sbagliato</li>
+<li>È facile che alcuni tool automatici si sbaglino quando “uniscono” pezzi di codice scritti da diverse persone</li>
+<li>Apple iOS soffrì di un grave bug a SSL/TLS causato da questa cattiva pratica <a href="http://archive.is/KQp8E">http://archive.is/KQp8E</a></li>
+</ul>
+<h3 id="si-usi-lo-stile-one-true-brace-style-1tbs-o-otbs">Si usi lo stile “One True Brace Style” (1TBS o OTBS)</h3>
+<p>Le parentesi graffe vanno sempre “all’egiziana” (Egyptian brackets)</p>
+<ul>
+<li>La graffa che apre va in linea con lo statement di apertura, separata da uno spazio</li>
+<li>La graffa che chiude va in a capo, nella stessa colonna dello statement di apertura</li>
+</ul>
+<h3 id="naming-conventions---molto-importanti">Naming conventions - <strong>molto importanti!</strong></h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#177500">// mini guida: PascalCase, camelCase, snake_case, kebab-case
+</span></span></span></code></pre></div><ul>
+<li>I nomi di <code>package</code> usano sempre e solo lettere minuscole e numeri, senza underscore (<code>_</code>)</li>
+<li>I nomi di variabili, campi, e metodi usano sempre <code>camelCase</code>: <code>myVariable</code>, <code>myMethod()</code>, <code>myObject.myField</code></li>
+<li>I nomi di classe utilizzano invece <code>PascalCase</code> (cominciano per maiuscola): <code>SomeClass</code></li>
+<li>I campi <code>static final</code> (costanti di classe) usano <code>SNAKE_CASE</code>, ma solo con lettere maiuscole</li>
+</ul>
+<h4 id="come-seguire-stili-e-convenzioni">Come seguire stili e convenzioni?</h4>
+<p>Ovviamente può essere difficile fare tutto a mano:
+esistono strumenti automatici a supporto, che introdurremo nelle prossime lezioni…</p>
+</section><section>
+<h1 id="compilazione-ed-esecuzione-avanzata-in-java">Compilazione ed esecuzione avanzata in Java</h1>
+</section><section>
+<h2 id="nuova-opzione-per-javac">Nuova opzione per <code>javac</code></h2>
+<ul>
+<li>Abbiamo già visto come compilare file sorgenti Java (file <code>.java</code>), generando classi sotto forma di
+file in bytecode con estensione <code>.class</code> nella medesima directory</li>
+<li>Tuttavia è uso comune e <strong>buona pratica</strong> nella gestione di progetti articolati, <strong>separare le classi sorgenti dal bytecode</strong>, ad esempio:
+<ul>
+<li>cartella <code>src</code>, per i file sorgenti (<code>.java</code>)</li>
+<li>cartella <code>bin</code>, contenente le classi compilate (<code>.class</code>)</li>
+</ul>
+</li>
+<li>Come si fa?</li>
+</ul>
+<h3 id="nuova-opzione-del-comando-javac">Nuova opzione del comando <code>javac</code></h3>
+<ul>
+<li><code>-d</code>: consente di specificare la cartella destinazione in cui compilare i file <code>.java</code></li>
+<li>Si tratta di un’opzione che dovete obbligatoriamente saper usare
+<ul>
+<li><strong>Sarà oggetto di valutazione in sede di prova pratica!</strong></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="compilazione-di-più-file-da-qualunque-directory-verso-una-qualunque-directory">Compilazione di più file da qualunque directory verso una qualunque directory</h2>
+<h3 id="compilazione-in-directory-arbitrarie">Compilazione in directory arbitrarie</h3>
+<p><code>javac -d "&lt;CARTELLA DESTINAZIONE&gt;" "&lt;FILE JAVA&gt;"</code></p>
+<ul>
+<li><strong>OVVIAMENTE</strong> vanno sostituite le variabili fra parentesi angolari con le
+directory che andranno usate.</li>
+</ul>
+<h3 id="compilazione-di-più-file-in-una-singola-passata">Compilazione di più file in una singola passata</h3>
+<p><code>javac -d "&lt;CARTELLA DESTINAZIONE&gt;" "&lt;ELENCO DI FILE JAVA&gt;"</code></p>
+<ul>
+<li><strong>OVVIAMENTE</strong> vanno sostituite le variabili fra parentesi angolari con le
+directory che andranno usate.</li>
+</ul>
+<p>È possibile anche utilizzare la wildcard (<code>*</code>) invece di elencare tutti i file!</p>
+<ul>
+<li>Su <code>sh</code> e shell derivate si possono usare wildcard in più punti del path,
+<ul>
+<li>ad esempio <code>progetti/*/src/*.java</code> elenca tutti i file con estensione java dentro ciascuna cartella
+<code>src</code> di ciascuna cartella dentro <code>progetti</code></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="il-classpath-in-java">Il classpath in Java</h2>
+<p>Il risultato della compilazione di sorgenti Java sono una o più <strong>classi</strong></p>
+<ul>
+<li>A partire dalla cartella di destinazione (opzione <code>-d</code> di <code>javac</code>),
+ogni compilato <code>.class</code> sarà creato in un
+<strong>sottopercorso di cartelle che corrisponde al percorso del package dichiarato per la classe corrispondente</strong></li>
+<li>Ovvero, indipendentemente da dove si trovi un sorgente <code>C.java</code> definente una classe <code>foo.bar.C</code>,
+con <code>javac -d &lt;DEST&gt; path/to/C.java</code> il compilato sarà creato in <code>&lt;DEST&gt;/foo/bar/C.class</code></li>
+</ul>
+<p>Quando si va ad eseguire (comando <code>java</code>), si eseguono <strong>classi</strong>, non files</p>
+<ul>
+<li>Infatti la virtual machine si aspetta il nome completo di una classe, il <strong>Fully-Qualified Class Name (FQCN)</strong>, in input</li>
+<li>NON il percorso al file dov’è scritta</li>
+<li>NON il percorso al file dov’è compilata</li>
+</ul>
+<h3 id="come-fa-la-jvm-a-trovare-risolvere-le-classi">Come fa la JVM a trovare (risolvere) le classi?</h3>
+<ul>
+<li>
+<p>Possiede un elenco di percorsi <strong>a partire dai quali</strong> i file compilati possono essere trovati</p>
+<ul>
+<li>All’interno di questi percorsi, i file devono essere opportunamente organizzati:
+<strong>la struttura delle cartelle deve replicare quella dei package</strong></li>
+</ul>
+</li>
+<li>
+<p>Cerca nei suddetti percorsi (in ordine) la classe che gli serve</p>
+<ul>
+<li>Ad esempio: se si danno i due percorsi <code>/a/b/c</code> e <code>../foo</code> e si chiede di eseguire il programma definito nella classe <code>Program</code>,
+allora la JVM cercherà di caricare la classe da <code>/a/b/c/Program.class</code> e, se non la trova, da <code>../foo/Program.class</code></li>
+<li>I percorsi possono essere directory, file compressi, o indirizzi di rete
+<ul>
+<li>Per approfondire: <a href="http://archive.is/0ziau">http://archive.is/0ziau</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="linsieme-ordinato-dei-percorsi-prende-il-nome-di-classpath">L’insieme <em>ordinato</em> dei percorsi prende il nome di <strong>classpath</strong></h4>
+</section><section>
+<h2 id="il-classpath-in-java-1">Il classpath in Java</h2>
+<h3 id="default-classpath">Default classpath</h3>
+<p>Se non specificato, il classpath di Java include automaticamente:</p>
+<ul>
+<li>Il Java Runtime Environment
+<ul>
+<li>Contengono ad esempio <code>java.lang.Math</code></li>
+<li>La directory da cui viene invocato il comando</li>
+</ul>
+</li>
+</ul>
+<h3 id="aggiungere-directory-al-classpath">Aggiungere directory al classpath</h3>
+<p>Possono essere aggiunte directory al classpath</p>
+<ul>
+<li>Si usa l’opzione <code>-cp</code> (o, equivalentemente, <code>-classpath</code>), seguita da un elenco di percorsi
+<ul>
+<li>separati dal simbolo <code>:</code> su <i class="fa-brands fa-linux"></i><i class="fa-brands fa-apple"></i></li>
+<li>o dal simbolo <code>;</code> su <i class="fa-brands fa-windows"></i></li>
+<li>Per evitare problemi con simboli e percorsi, conviene circondare l’intero classpath con doppi apici (simbolo <code>"</code>)
+<ul>
+<li>Diversamente, percorsi con spazi o simboli speciali potrebbero non essere interpretati correttamente</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="esempi">Esempi</h3>
+<ul>
+<li>Su <i class="fa-brands fa-linux"></i><i class="fa-brands fa-apple"></i> <code>javac -d bin -cp "lib1:lib2:lib3" src/*.java</code>
+<ul>
+<li>Compila tutti i file con estensione java che si trovano nella cartella <code>src</code>, mettendo i compilati dentro <code>bin</code>.
+In compilazione, potrà linkare tutte le classi che si trovano nelle cartelle <code>lib1</code>, <code>lib2</code> e <code>lib3</code>:
+la compilazione avrà successo anche se le classi che stanno venendo compilate usano librerie contenute nelle cartelle precedenti.</li>
+<li>Equivalente <i class="fa-brands fa-windows"></i>: <code>javac -d bin -cp "lib1;lib2;lib3" src/*.java</code></li>
+</ul>
+</li>
+<li>Su <i class="fa-brands fa-linux"></i><i class="fa-brands fa-apple"></i> <code>java -cp "bin:lib1:lib2:lib3" MyClass</code>
+<ul>
+<li>Esegue il <code>main</code> della classe <code>MyClass</code>. Cercherà questa classe e tutte quelle collegate all’interno delle cartelle <code>bin</code>, <code>lib1</code>, <code>lib2</code> e <code>lib3</code>.</li>
+<li>Equivalente <i class="fa-brands fa-windows"></i>: <code>java -cp "bin;lib1;lib2;lib3" MyClass</code></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="organizzazione-dei-sorgenti-in-presenza-di-package">Organizzazione dei sorgenti in presenza di package</h2>
+<p>È buona norma organizzare i sorgenti in modo da rappresentare su filesystem la struttura
+dei package. Si noti però che (dato che il compilatore lavora su <em><strong>file</strong></em>) questa scelta
+<strong>non è <em>teoricamente</em> obbligatoria</strong>!</p>
+<ul>
+<li>Lo è di fatto in questo corso, perché le cose van fatte bene</li>
+<li>Lo sarà nel mondo del lavoro, perché è prassi assolutamente comune</li>
+</ul>
+<h3 id="risultato-della-compilazione">Risultato della compilazione</h3>
+<p>Quando ad essere compilata è una classe dichiarata in un package, il compilatore
+<strong>riproduce la struttura dei package usando delle directory</strong></p>
+<ul>
+<li>Dato che l’interprete non lavora con file ma con <em><strong>classi</strong></em>, il loro layout
+sul file system <strong>non può essere modificato!</strong>
+<ul>
+<li>Si tratta, tuttavia, di un aspetto implementativo: noi metteremo nel classpath le directory che abbiamo passato al compilatore con <code>-d</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="esecuzione">Esecuzione</h3>
+<p>L’esecuzione è identica al caso precedente, si faccia solo attenzione ad
+usare l’<em>intero nome della classe</em>, che in Java <em>include anche il nome del package</em>!</p>
+</section><section>
+<h2 id="uso-del-classpath-in-fase-di-compilazione">Uso del classpath in fase di compilazione</h2>
+<p>Supponiamo di avere in mano la seguente classe:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">package</span> <span style="color:#000">oop.lab02.math</span><span style="color:#000">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">UseComplex</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">void</span> <span style="color:#000">main</span><span style="color:#000">(</span><span style="color:#a90d91">final</span> <span style="color:#000">String</span><span style="color:#000">[]</span> <span style="color:#000">args</span><span style="color:#000">)</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">final</span> <span style="color:#000">ComplexNum</span> <span style="color:#000">c1</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">ComplexNum</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">c1</span><span style="color:#000">.</span><span style="color:#836c28">build</span><span style="color:#000">(</span><span style="color:#000">1</span><span style="color:#000">,</span> <span style="color:#000">-</span><span style="color:#000">45</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">final</span> <span style="color:#000">ComplexNum</span> <span style="color:#000">c2</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">ComplexNum</span><span style="color:#000">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">c2</span><span style="color:#000">.</span><span style="color:#836c28">build</span><span style="color:#000">(</span><span style="color:#000">2</span><span style="color:#000">,</span> <span style="color:#000">8</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">System</span><span style="color:#000">.</span><span style="color:#836c28">out</span><span style="color:#000">.</span><span style="color:#836c28">println</span><span style="color:#000">(</span><span style="color:#000">c1</span><span style="color:#000">.</span><span style="color:#836c28">toStringRep</span><span style="color:#000">());</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">System</span><span style="color:#000">.</span><span style="color:#836c28">out</span><span style="color:#000">.</span><span style="color:#836c28">println</span><span style="color:#000">(</span><span style="color:#000">c2</span><span style="color:#000">.</span><span style="color:#836c28">toStringRep</span><span style="color:#000">());</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">c1</span><span style="color:#000">.</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#000">c2</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">System</span><span style="color:#000">.</span><span style="color:#836c28">out</span><span style="color:#000">.</span><span style="color:#836c28">println</span><span style="color:#000">(</span><span style="color:#c41a16">"c1 new value is: "</span> <span style="color:#000">+</span> <span style="color:#000">c1</span><span style="color:#000">.</span><span style="color:#836c28">toStringRep</span><span style="color:#000">()</span> <span style="color:#000">+</span> <span style="color:#c41a16">"\n"</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">}</span>
+</span></span></code></pre></div><p>ed eseguiamo <code>javac UseComplex.java</code>. Cosa otteniamo?</p>
+</section><section>
+<h3 id="comprensione-degli-errori">Comprensione degli errori</h3>
+<p>Otteniamo degli errori!</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>src\oop\lab2\math\UseComplex.java:6: error: cannot find symbol
+</span></span><span style="display:flex;"><span>    ComplexNum c1 = new ComplexNum();
+</span></span><span style="display:flex;"><span>    ^
+</span></span><span style="display:flex;"><span>  symbol:   class ComplexNum
+</span></span><span style="display:flex;"><span>  location: class UseComplex
+</span></span><span style="display:flex;"><span>src\oop\lab2\math\UseComplex.java:6: error: cannot find symbol
+</span></span><span style="display:flex;"><span>    ComplexNum c1 = new ComplexNum();
+</span></span><span style="display:flex;"><span>                        ^
+</span></span><span style="display:flex;"><span>  symbol:   class ComplexNum
+</span></span><span style="display:flex;"><span>  location: class UseComplex
+</span></span><span style="display:flex;"><span>src\oop\lab2\math\UseComplex.java:8: error: cannot find symbol
+</span></span><span style="display:flex;"><span>    ComplexNum c2 = new ComplexNum();
+</span></span><span style="display:flex;"><span>    ^
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><ul>
+<li>Il compilatore ha bisogno di conoscere la classe <code>ComplexNum</code> per poterla
+linkare e per poter compilare una classe che la riferisce</li>
+<li>Il compilatore cerca nel classpath il bytecode della classe <code>ComplexNum</code></li>
+</ul>
+<p>Come risolviamo?</p>
+</section><section>
+<h3 id="utilizzo-di--cp-in-fase-di-compilazione">Utilizzo di <code>-cp</code> in fase di compilazione</h3>
+<ul>
+<li>Supponiamo di avere solo la versione compilata di <code>ComplexNum</code> (ovvero non il sorgente)
+<ul>
+<li>Notate che questa è la <em>norma</em> quando si usano delle librerie: vengono fornite già compilate!</li>
+</ul>
+</li>
+<li>Basterà mettere il percorso a partire dal quale <code>oop/lab02/math/ComplexNum.class</code> può essere individuata nel
+classpath di <code>javac</code>!</li>
+<li>Supponiamo di avere <code>UseComplex.java</code> nel percorso <code>src/oop/lab02/math/</code></li>
+<li>Supponiamo di aver compilato <code>ComplexNum</code> con destinazione (di partenza) <code>lib/</code></li>
+<li>Possiamo usare: <code>javac -d bin -cp lib src/oop/lab02/math/UseComplex.java</code></li>
+</ul>
+<h3 id="spiegazione-del-comando">Spiegazione del comando</h3>
+<p><code>javac -d bin -cp lib src/oop/lab02/math/UseComplex.java</code></p>
+<ul>
+<li><code>javac</code> $\Rightarrow$ Invocazione del compilatore</li>
+<li><code>-d bin</code> $\Rightarrow$ <code>-d</code> determina la <strong>destinazione</strong>. Vogliamo compilare dentro la cartella <code>bin</code></li>
+<li><code>-cp lib</code> $\Rightarrow$ <code>-cp</code> consente di aggiungere percorsi al
+<strong>classpath</strong>. Noi vogliamo cercare le classi che ci servono, oltre che nella
+posizione corrente e nelle librerie java, anche dentro <code>lib</code></li>
+<li><code>src/oop/lab02/math/UseComplex.java</code> $\Rightarrow$ Il <em>file</em> che vogliamo compilare</li>
+</ul>
+</section><section>
+<h2 id="passare-più-percorsi-al-classpath">Passare più percorsi al classpath</h2>
+<p>Avendo come riferimento l’esempio precedente, proviamo ad eseguire.</p>
+<ul>
+<li>Per eseguire correttamente <code>UseComplex</code> dobbiamo dire alla JVM, tramite <strong>-cp</strong>, dove trovare:
+<ul>
+<li><code>ComplexNum</code></li>
+<li><code>UseComplex</code></li>
+</ul>
+</li>
+<li>Si trovano in <em>due percorsi diversi</em>!</li>
+<li>Dobbiamo specificare come argomento di <code>-cp</code> due percorsi, usando il <strong>separatore</strong>:
+<ul>
+<li><code>:</code> su <i class="fa-brands fa-linux"></i><i class="fa-brands fa-apple"></i></li>
+<li><code>;</code> su <i class="fa-brands fa-windows"></i></li>
+</ul>
+</li>
+<li>Useremo quindi:
+<ul>
+<li><i class="fa-brands fa-linux"></i><i class="fa-brands fa-apple"></i> <code>java -cp bin:lib oop.lab02.math.UseComplex</code></li>
+<li><i class="fa-brands fa-windows"></i> <code>java -cp bin;lib oop.lab02.math.UseComplex</code> (Windows)</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="esempio-con-sommario-di-funzionamento-di-javac-e-java">Esempio con sommario di funzionamento di <code>javac</code> e <code>java</code></h2>
+<p>\includegraphics[width=\textwidth]{img/java-javac.drawio.pdf}</p>
+</section><section>
+<h2 id="consiglio-finale">Consiglio finale</h2>
+<p>Visto che all’esame il loro utilizzo è richiesto, è necessario imparare <strong>a memoria</strong> le opzioni di <code>java</code> e <code>javac</code>?
+\begin{center}
+<strong>NO</strong>
+\end{center}
+Entrambi i comandi (e praticamente tutti i comandi Unix) hanno con loro un’opzione che consente di stampare a video un help. Provate</p>
+<p>}</p>
+<pre><code>  *  java -help
+  *  javac -help
+</code></pre>
+<p>\vspace{10pt}</p>
+<p>Gli help stampano abbondante testo con le relative istruzioni e a me serve una riga, davvero devo imparare a leggere e capire un help?
+\begin{center}
+<strong>SÌ</strong>
+\end{center}
+È molto facile dimenticarsi la sintassi delle opzioni di comandi che non si usano spesso. È molto più facile imparare a destreggiarsi in un help che andare a tentativi o ricordare cose a memoria.</p>
+</section><section>
+<h1 id="esecuzioni-di-programmi-java-con-argomenti">Esecuzioni di programmi java con argomenti</h1>
+</section><section>
+<h2 id="passaggio-di-argomenti-ad-un-programma-java">Passaggio di argomenti ad un programma Java</h2>
+<p>itemsep10pt
+*  La maggior parte dei comandi supporta degli argomenti</p>
+<pre><code>        *  Ad esempio, quando eseguite `javac -d bin MyClass.java` gli argomenti sono:
+        \begin{enumerate}
+         *  `-d`
+         *  `bin`
+         *  `MyClass.java`
+        \end{enumerate}
+
+
+    *  In C, questi vengono passati al metodo `main()` come coppia di `char **` e `int`, rappresentanti rispettivamente un riferimento all'area di memoria dove sono salvati i parametri ed il numero dei suddetti.
+    *  Anche in Java ovviamente è possibile passare degli argomenti ad un programma
+</code></pre>
+<p>\framebreak</p>
+<p>itemsep10pt
+*  La gestione è un po’ più semplice che in C, grazie al fatto che gli array si portano dietro l’informazione circa la loro dimensione
+*  E grazie al fatto che la signature del metodo <code>main()</code> è una sola in Java</p>
+<pre><code>        *  `public static void main(String [])` è l'unica signature valida
+        *  Mentre in C sia `int main(void)` che `int main(char **, int)` sono ugualmente accettabili
+
+
+
+
+    *  Gli argomenti con cui un programma Java viene invocato vengono passati come parametri attraverso l'array (`String[] args`) che il metodo `main()` prende in ingresso
+
+    *  Nonostante sia un parametro del *metodo principale* di qualunque programma Java, si tratta di un comune array senza alcuna particolarità.
+</code></pre>
+<h1 id="visual-studio-code-vscode-e-debugging">Visual Studio Code (VSCode) e Debugging</h1>
+</section><section>
+<h2 id="visual-studio-code-vscode">Visual Studio Code (VSCode)</h2>
+<ul>
+<li><strong>Visual Studio Code (VSCode)</strong> è un editor di codice sorgente leggero, versatile, e multipiattaforma</li>
+<li>Estendibile attraverso un ecosistema di <strong>estensioni</strong> per vari linguaggi di programmazione e strumenti
+<ul>
+<li>Ne vedremo alcune nei prossimi lab</li>
+</ul>
+</li>
+</ul>
+<p><img src="img/vscode.png" alt="Screenshot"></p>
+</section><section>
+<h2 id="vscode-il-concetto-di-workspace">VSCode: il concetto di <strong>workspace</strong></h2>
+<ul>
+<li>Il <strong>workspace</strong> è
+<ul>
+<li>una collezione di <em>una o più <strong>cartelle</strong></em> aperte in una finestra (istanza di VSCode)</li>
+<li>Tali cartelle sono visualizzate nella vista <strong>Explorer</strong> sulla sinistra</li>
+<li>più un insieme di <strong>preferenze</strong>, <strong>configurazioni</strong>, <strong>stato</strong>, ed <strong>estensioni</strong> attive memorizzate in una cartella <strong>.vscode/</strong></li>
+</ul>
+</li>
+<li>Creazione di un workspace
+<ul>
+<li><em>File $\to$ Open Folder</em></li>
+</ul>
+</li>
+<li>Aggiunta di cartella top-level a un workspace
+<ul>
+<li><em>File $\to$ Add Folder to Workspace..</em></li>
+</ul>
+</li>
+<li>Salvataggio ed apertura di un workspace
+<ul>
+<li><em>Save $\to$ Workspace as… $\to$</em> <em>name</em>.<strong>code-workspace</strong></li>
+<li><em>File $\to$ Open Workspace from File</em></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="utilizzo-di-vscode-alcune-note">Utilizzo di VSCode: alcune note</h2>
+<ul>
+<li>Varie scorciatoie da tastiera</li>
+<li><kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>P</kbd>: <strong>command palette</strong> (a.k.a. “l’unico shortcut che veramente vi serve ricordare”)</li>
+<li><kbd>CTRL</kbd> + <kbd>SPACE</kbd>: intellisense (autocompletamento)</li>
+<li><kbd>CTRL</kbd> + <kbd>S</kbd>: salvataggio file corrente</li>
+<li><kbd>CTRL</kbd> + <kbd>PAGE <i class="fa-solid fa-caret-up"></i></kbd> / <kbd>CTRL</kbd> + <kbd>PAGE <i class="fa-solid fa-caret-down"></i></kbd>: tab sorgente precedente/successivo</li>
+<li><strong>Apertura di un terminale:</strong> <em>Terminal $\to$ New Terminal</em></li>
+<li>Sarà MOLTO UTILE</li>
+<li><strong>Visualizzare/installare estensioni:</strong> <em>File $\to$ Preferences $\to$ Extensions</em> oppure <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>X</kbd></li>
+</ul>
+</section><section>
+<h2 id="vscode-debugging-di-applicazioni-java">VSCode: debugging di applicazioni Java</h2>
+<p>Nota: richiede l’estensione <strong>Debugger for Java</strong></p>
+<p>\begin{enumerate}</p>
+<ul>
+<li>
+<p>Creazione di <strong>breakpoint</strong> (punti di rottura del flusso di controllo)</p>
+<ul>
+<li>Click a sinistra del numero di linea di una riga di codice di interesse</li>
+</ul>
+</li>
+</ul>
+<p>{\centering
+\includegraphics[height=0.15\textheight]{img/vscode-example-breakpoint2.png}
+}</p>
+<ul>
+<li>
+<p>Esecuzione di un’applicazione Java in <strong>“modalità debug”</strong></p>
+<ul>
+<li>Click destro su file java $\to$ <em>Debug Java</em></li>
+</ul>
+</li>
+</ul>
+<p>{\centering
+\includegraphics[height=0.4\textheight]{img/vscode-example-debug.png}
+}</p>
+<ul>
+<li>
+<p>Controllo e ispezione del comportamento runtime</p>
+<ul>
+<li><em>Variables</em>: vista che mostra le variabili in scope e il loro valore</li>
+<li><em>Watch</em>: permette di valutare espressioni rispetto al contesto d’esecuzione corrente</li>
+<li><strong>Step Over</strong> (F10) o anche <em>Run $\to$ Step Over</em></li>
+<li><strong>Step Into</strong> (F11)</li>
+<li><strong>Step Out</strong> (SHIFT + F11)</li>
+<li><strong>Continue</strong> (F5)</li>
+</ul>
+</li>
+</ul>
+<p>\end{enumerate}</p>
+</section><section>
+<h1 id="laboratorio">Laboratorio</h1>
+</section><section>
+<h2 id="preparazione-ambiente-di-lavoro">Preparazione ambiente di lavoro</h2>
+<p>itemsep10pt</p>
+<ul>
+<li>
+<p>Accedere al PC di laboratorio con le proprie credenziali istituzionali
+*  Accedere al sito del corso</p>
+<ul>
+<li>Scaricare il materiale dell’esercitazione odierna</li>
+<li>Spostare il file scaricato sul Desktop</li>
+<li>Decomprimere il file e aprire con Visual Studio Code la directory ottenuta (File $\to$ Open Folder…)</li>
+<li>Puntare il terminale alla directory con i sorgenti dell’esercitazione odierna</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<p>\subsection{Appendice: richiami utili per gli esercizi del {\lab}}</p>
+<h2 id="a1----varianza">A1 – Varianza</h2>
+<h3 id="formula-per-il-calcolo-della-varianza">Formula per il calcolo della varianza</h3>
+<p>Sia $n$ il numero di elementi dell’array ed $x_i$ l’elemento all’indice $i$ dell’array, e $\mu$ la media dei valori del suddetto array. La varianza $\sigma^2$ può essere calcolata come:</p>
+<p>\centering
+\huge
+$\sigma^2 = \frac{\displaystyle\sum_{i=0}^{n-1}(x_i - \mu)^2} {n}$</p>
+</section><section>
+<p>\end{document}</p>
+</section><section>
+<h1 id="strumenti-del-jdk-e-introduzione-a-visual-studio-code-1">Strumenti del JDK e introduzione a Visual Studio Code</h1>
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini-----danilopianiniuniboitmailtodanilopianiniuniboit"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+<!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2023-08-25
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/lab-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/lab-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"default","history":true,"mermaid":[{"startOnLoad":false}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/lab-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = { 
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+    
+  
+
+</body></html>
