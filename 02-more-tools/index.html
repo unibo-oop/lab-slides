@@ -30,7 +30,7 @@
 <!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2023-08-29
+<p>Slide compilate il: 2023-08-30
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
@@ -387,66 +387,53 @@ posizione corrente e nelle librerie java, anche dentro <code>lib</code></li>
 </li>
 </ul>
 </section><section>
-<h2 id="esempio-con-sommario-di-funzionamento-di-javac-e-java">Esempio con sommario di funzionamento di <code>javac</code> e <code>java</code></h2>
-<p>\includegraphics[width=\textwidth]{img/java-javac.drawio.pdf}</p>
+<h2 id="esempio-con-javac-e-java">Esempio con <code>javac</code> e <code>java</code></h2>
+<p><img src="https://github.com/DanySK/multi-jvm-test-plugin/assets/1991673/ffff11b4-f098-4e0b-8741-4e96461a763b" alt="image"></p>
 </section><section>
 <h2 id="consiglio-finale">Consiglio finale</h2>
-<p>Visto che all’esame il loro utilizzo è richiesto, è necessario imparare <strong>a memoria</strong> le opzioni di <code>java</code> e <code>javac</code>?
-\begin{center}
-<strong>NO</strong>
-\end{center}
-Entrambi i comandi (e praticamente tutti i comandi Unix) hanno con loro un’opzione che consente di stampare a video un help. Provate</p>
-<p>}</p>
-<pre><code>  *  java -help
-  *  javac -help
-</code></pre>
-<p>\vspace{10pt}</p>
-<p>Gli help stampano abbondante testo con le relative istruzioni e a me serve una riga, davvero devo imparare a leggere e capire un help?
-\begin{center}
-<strong>SÌ</strong>
-\end{center}
-È molto facile dimenticarsi la sintassi delle opzioni di comandi che non si usano spesso. È molto più facile imparare a destreggiarsi in un help che andare a tentativi o ricordare cose a memoria.</p>
+<p>Visto che all’esame il loro utilizzo è richiesto, è necessario imparare <strong>a memoria</strong> le opzioni di <code>java</code> e <code>javac</code>?</p>
+<h4 id="no"><strong>NO</strong></h4>
+<p>Entrambi i comandi (e praticamente tutti i comandi Unix) hanno con loro un’opzione che consente di stampare a video un help. Provate</p>
+<ul>
+<li><code>java -help</code></li>
+<li><code>javac -help</code></li>
+</ul>
+<p>Gli help stampano abbondante testo con le relative istruzioni e a me serve una riga,
+davvero devo imparare a leggere e capire un help?
+<strong>SÌ</strong></p>
+<p>È molto facile dimenticarsi la sintassi delle opzioni di comandi che non si usano spesso.
+È molto più facile imparare a destreggiarsi in un help che andare a tentativi o ricordare cose a memoria.</p>
 </section><section>
-<h1 id="esecuzioni-di-programmi-java-con-argomenti">Esecuzioni di programmi java con argomenti</h1>
+<h1 id="esecuzione-di-programmi-java-con-argomenti">Esecuzione di programmi java con argomenti</h1>
 </section><section>
 <h2 id="passaggio-di-argomenti-ad-un-programma-java">Passaggio di argomenti ad un programma Java</h2>
-<p>itemsep10pt
-*  La maggior parte dei comandi supporta degli argomenti</p>
-<pre><code>        *  Ad esempio, quando eseguite `javac -d bin MyClass.java` gli argomenti sono:
-        \begin{enumerate}
-         *  `-d`
-         *  `bin`
-         *  `MyClass.java`
-        \end{enumerate}
-
-
-    *  In C, questi vengono passati al metodo `main()` come coppia di `char **` e `int`, rappresentanti rispettivamente un riferimento all'area di memoria dove sono salvati i parametri ed il numero dei suddetti.
-    *  Anche in Java ovviamente è possibile passare degli argomenti ad un programma
-</code></pre>
-<p>\framebreak</p>
-<p>itemsep10pt
-*  La gestione è un po’ più semplice che in C, grazie al fatto che gli array si portano dietro l’informazione circa la loro dimensione
-*  E grazie al fatto che la signature del metodo <code>main()</code> è una sola in Java</p>
-<pre><code>        *  `public static void main(String [])` è l'unica signature valida
-        *  Mentre in C sia `int main(void)` che `int main(char **, int)` sono ugualmente accettabili
-
-
-
-
-    *  Gli argomenti con cui un programma Java viene invocato vengono passati come parametri attraverso l'array (`String[] args`) che il metodo `main()` prende in ingresso
-
-    *  Nonostante sia un parametro del *metodo principale* di qualunque programma Java, si tratta di un comune array senza alcuna particolarità.
-</code></pre>
+<p>La maggior parte dei comandi supporta degli argomenti</p>
+<p>Ad esempio, quando eseguite <code>javac -d bin MyClass.java</code> gli argomenti sono le seguenti tre stringhe:</p>
+<ol>
+<li><code>-d</code></li>
+<li><code>bin</code></li>
+<li><code>MyClass.java</code></li>
+</ol>
+<ul>
+<li>In C, questi vengono passati al metodo <code>int main()</code> come coppia di <code>char **</code> e <code>int</code>,
+rappresentanti rispettivamente un riferimento all’area di memoria dove sono salvati i parametri ed il numero dei suddetti.</li>
+<li>Anche in Java ovviamente è possibile passare degli argomenti ad un programma</li>
+</ul>
+<p>La gestione è un po’ *più semplice rispetto a *C
+perché che <em>gli array si portano dietro la loro dimensione come campo</em></p>
+<p>In Java la signature del metodo <code>main()</code> è una univoca: <code>public static void main(String [])</code>,
+mentre in C sia <code>int main(void)</code> che <code>int main(char **, int)</code> sono accettabili.</p>
+<ul>
+<li>Gli argomenti con cui un programma Java viene invocato vengono passati come parametri attraverso l’array (<code>String[] args</code>) che il metodo <code>main()</code> prende in ingresso</li>
+<li>Nonostante sia un parametro del <em>metodo principale</em> di qualunque programma Java, si tratta di un comune array senza alcuna particolarità.</li>
+</ul>
+</section><section>
 <h1 id="visual-studio-code-vscode-e-debugging">Visual Studio Code (VSCode) e Debugging</h1>
 </section><section>
 <h2 id="visual-studio-code-vscode">Visual Studio Code (VSCode)</h2>
 <ul>
 <li><strong>Visual Studio Code (VSCode)</strong> è un editor di codice sorgente leggero, versatile, e multipiattaforma</li>
-<li>Estendibile attraverso un ecosistema di <strong>estensioni</strong> per vari linguaggi di programmazione e strumenti
-<ul>
-<li>Ne vedremo alcune nei prossimi lab</li>
-</ul>
-</li>
+<li>Estendibile attraverso un ecosistema di <strong>estensioni</strong> per vari linguaggi di programmazione e strumenti</li>
 </ul>
 <p><img src="img/vscode.png" alt="Screenshot"></p>
 </section><section>
@@ -484,77 +471,173 @@ Entrambi i comandi (e praticamente tutti i comandi Unix) hanno con loro un’opz
 <li><kbd>CTRL</kbd> + <kbd>SPACE</kbd>: intellisense (autocompletamento)</li>
 <li><kbd>CTRL</kbd> + <kbd>S</kbd>: salvataggio file corrente</li>
 <li><kbd>CTRL</kbd> + <kbd>PAGE <i class="fa-solid fa-caret-up"></i></kbd> / <kbd>CTRL</kbd> + <kbd>PAGE <i class="fa-solid fa-caret-down"></i></kbd>: tab sorgente precedente/successivo</li>
+<li><kbd>CTRL</kbd> + <kbd>W</kbd>: chiusura della tab corrente</li>
+<li><kbd>CTRL</kbd> + <kbd>F</kbd>: cerca nel file corrente</li>
+<li><kbd>CTRL</kbd> + <kbd>H</kbd>: sostituisci nel file corrente</li>
+<li><kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>F</kbd>: cerca in tutti i file del workspace</li>
+<li><kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>H</kbd>: sostituisci in tutti i file del workspace</li>
 <li><strong>Apertura di un terminale:</strong> <em>Terminal $\to$ New Terminal</em></li>
 <li>Sarà MOLTO UTILE</li>
 <li><strong>Visualizzare/installare estensioni:</strong> <em>File $\to$ Preferences $\to$ Extensions</em> oppure <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>X</kbd></li>
 </ul>
 </section><section>
-<h2 id="vscode-debugging-di-applicazioni-java">VSCode: debugging di applicazioni Java</h2>
-<p>Nota: richiede l’estensione <strong>Debugger for Java</strong></p>
-<p>\begin{enumerate}</p>
+<h2 id="importanza-del-debugging">Importanza del debugging</h2>
+<p>Dato un software che non funziona correttamente, come intercettare l’errore?</p>
 <ul>
-<li>
-<p>Creazione di <strong>breakpoint</strong> (punti di rottura del flusso di controllo)</p>
+<li>Per semplici esempi, finora, avete <em>stampato a video</em> il valore di variabili di interesse
+<ul>
+<li>E se ve ne fosse sfuggita una, l’avreste aggiunta, ricompilato, rilanciato</li>
+</ul>
+</li>
+</ul>
+<p>Su software complessi <strong>non scala</strong>!</p>
+<ul>
+<li>servono centinaia di stampe</li>
+<li>il flusso di controllo è <em>troppo complesso</em> per essere ricostruito tramite stampe</li>
+<li>alcuni valori possono comunque sfuggire</li>
+<li>è comodo <strong>fermare</strong> il software ad un certo punto e <strong>ispezionare</strong> il suo stato
+<ul>
+<li>nonché, eventualmente, <strong>modificarlo</strong> per testare al volo un comportamento alternativo</li>
+</ul>
+</li>
+</ul>
+<p>Esistono strumenti appositi che consentono di farlo, detti <strong>debugger</strong>!</p>
+</section><section>
+<h2 id="debugging-in-generale">Debugging in generale</h2>
+<h2 id="linguaggi-compilati">Linguaggi compilati</h2>
+<p>I compilatori per programmi che vengono compilati nativamente (come C),
+tipicamente,
+possono <em>emettere codice in una speciale modalità debug</em>
+(nel caso di <code>gcc</code>, l’opzione <code>-g</code> o <code>-ggdb</code>).</p>
+<p>Questo codice contiene informazioni aggiuntive che consentono di:</p>
+<ul>
+<li>mappare le istruzioni del programma compilato con le righe di codice sorgente corrispondenti</li>
+<li>memorizzare informazioni aggiuntive sulle variabili e sullo stato del programma</li>
+<li>sospendere l’esecuzione del programma in punti specifici</li>
+</ul>
+<p>(il tutto, ovviamente, a prezzo di prestazioni inferiori e di un file eseguibile più grande)</p>
+<p>I tool di debugging (come <code>gdb</code>) possono lanciare l’eseguibile così prodotto e sfruttare le informazioni.</p>
+<h2 id="linguaggi-interpretati">Linguaggi interpretati</h2>
+<p>Nel caso degli interpreti (come Python, Ruby, Javascript, ecc.),
+il codice sorgente viene eseguito direttamente,
+dunque può essere l’interprete stesso a poter fornire informazioni di debugging,
+se eseguito con le opzioni opportune.</p>
+<h2 id="linguaggi-compilati-in-linguaggi-intermedi-e-poi-interpretati">Linguaggi compilati in linguaggi intermedi e poi interpretati</h2>
+<p>Nei linguaggi che vengono compilati in un linguaggio intermedio (come Java o C#),
+entrambe le strategie precedenti sono possibili.</p>
+<p>Si tende però a usarne una ibrida:</p>
+<ul>
+<li>Si codice in linguaggio intermedio che include informazioni sfruttabili per debug
+<ul>
+<li>Non serve ricompilare per debuggare</li>
+</ul>
+</li>
+<li>L’interprete può utilizzarle se in modalità debug, oppure scartarle ottimizzando “al volo”</li>
+</ul>
+</section><section>
+<h2 id="debugging-meccanismi">Debugging: meccanismi</h2>
+<h3 id="1-controllo-di-flusso">1. Controllo di flusso</h3>
+<p>I debugger consentono di sospendere l’esecuzione del programma in punti specifici detti <strong>breakpoint</strong>.</p>
+<p>I breakpoint possono essere <strong>condizionali</strong> (sospendono l’esecuzione solo se una certa condizione è vera).</p>
+<ul>
+<li>Fondamentale per programmi complessi!</li>
+</ul>
+<p>Una volta raggiunto un breakpoint, è possibile:</p>
+<ul>
+<li>Continuare l’<em>esecuzione passo-passo</em>
+<ul>
+<li>Opzionalmente “entrando” nelle chiamate di metodo</li>
+</ul>
+</li>
+<li>Continuare <em>ritornando al chiamante</em></li>
+<li>Continuare fino al <em>prossimo breakpoint</em></li>
+</ul>
+<h3 id="2-ispezione">2. Ispezione</h3>
+<p>Una volta sospeso il flusso di controllo, il debugger consente di osservare:</p>
+<ol>
+<li>La <em>stacktrace</em> (il “percorso” di chiamate di funzioni che ha portato all’istante corrente)
+<ul>
+<li>Tipicamente dando la possibilità di navigarla, cambiando lo <em>scope</em></li>
+</ul>
+</li>
+<li>Il valore di tutte le <em>variabili</em> in scope (inclusi i campi)</li>
+<li>Calcolare il valore di <em>espressioni</em> arbitrarie</li>
+</ol>
+<h3 id="3-modifica">3. Modifica</h3>
+<p>A flusso di esecuzione sospeso è anche possibile:</p>
+<ul>
+<li><em>modificare</em> il valore di variabili e campi</li>
+<li><em>buttare via</em> interi stackframe, in modo da ripartire con l’esecuzione di una funzione
+<ul>
+<li>In questo caso, attenzione a possibili side-effects, che non vengono cancellati…</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="debugging-in-java-tramite-vscode">Debugging in Java tramite VSCode</h2>
+<p>Nota: richiede l’estensione <strong>Debugger for Java</strong></p>
+<ul>
+<li>Creazione di <strong>breakpoint</strong> (punti di rottura del flusso di controllo)
 <ul>
 <li>Click a sinistra del numero di linea di una riga di codice di interesse</li>
 </ul>
 </li>
 </ul>
-<p>{\centering
-\includegraphics[height=0.15\textheight]{img/vscode-example-breakpoint2.png}
-}</p>
+<p><img src="img/vscode-example-breakpoint2.png" alt=""></p>
+</section><section>
+<h2 id="debugging-in-java-tramite-vscode-1">Debugging in Java tramite VSCode</h2>
 <ul>
-<li>
-<p>Esecuzione di un’applicazione Java in <strong>“modalità debug”</strong></p>
+<li>Esecuzione di un’applicazione Java in <strong>“modalità debug”</strong>
 <ul>
 <li>Click destro su file java $\to$ <em>Debug Java</em></li>
+<li>Non è magico, aggancia un “agente” a Java, in modo da poter parlare direttamente con la JVM
+<ul>
+<li>e.g, eseguendo java con: <code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044</code>
+si ottiene un interprete che risponderà ai comandi del debugger sulla porta 1044</li>
 </ul>
 </li>
 </ul>
-<p>{\centering
-\includegraphics[height=0.4\textheight]{img/vscode-example-debug.png}
-}</p>
+</li>
+</ul>
+<p><img src="img/vscode-example-debug.png" alt=""></p>
+</section><section>
+<h2 id="debugging-in-java-tramite-vscode-2">Debugging in Java tramite VSCode</h2>
 <ul>
 <li>
-<p>Controllo e ispezione del comportamento runtime</p>
+<p>Controllo di flusso:</p>
+<ul>
+<li><kbd>F10</kbd> <strong>Step Over</strong> o <em>Run $\to$ Step Over</em></li>
+<li><kbd>F11</kbd> <strong>Step Into</strong></li>
+<li><kbd>SHIFT</kbd> + <kbd>F11</kbd> <strong>Step Out</strong></li>
+<li><kbd>F5</kbd> <strong>Continue</strong></li>
+</ul>
+</li>
+<li>
+<p>Ispezione del comportamento runtime</p>
 <ul>
 <li><em>Variables</em>: vista che mostra le variabili in scope e il loro valore</li>
 <li><em>Watch</em>: permette di valutare espressioni rispetto al contesto d’esecuzione corrente</li>
-<li><strong>Step Over</strong> (F10) o anche <em>Run $\to$ Step Over</em></li>
-<li><strong>Step Into</strong> (F11)</li>
-<li><strong>Step Out</strong> (SHIFT + F11)</li>
-<li><strong>Continue</strong> (F5)</li>
 </ul>
 </li>
 </ul>
-<p>\end{enumerate}</p>
 </section><section>
-<h1 id="laboratorio">Laboratorio</h1>
+<h1 id="esercizi-di-oggi">Esercizi di oggi</h1>
 </section><section>
 <h2 id="preparazione-ambiente-di-lavoro">Preparazione ambiente di lavoro</h2>
-<p>itemsep10pt</p>
 <ul>
-<li>
-<p>Accedere al PC di laboratorio con le proprie credenziali istituzionali
-*  Accedere al sito del corso</p>
-<ul>
+<li>Accedere al PC di laboratorio con le proprie credenziali istituzionali</li>
+<li>Accedere al sito del corso</li>
 <li>Scaricare il materiale dell’esercitazione odierna</li>
 <li>Spostare il file scaricato sul Desktop</li>
 <li>Decomprimere il file e aprire con Visual Studio Code la directory ottenuta (File $\to$ Open Folder…)</li>
 <li>Puntare il terminale alla directory con i sorgenti dell’esercitazione odierna</li>
 </ul>
-</li>
-</ul>
 </section><section>
-<p>\subsection{Appendice: richiami utili per gli esercizi del {\lab}}</p>
+<h1 id="appendice-richiami-utili-per-gli-esercizi-del-lab">Appendice: richiami utili per gli esercizi del lab</h1>
 <h2 id="a1----varianza">A1 – Varianza</h2>
 <h3 id="formula-per-il-calcolo-della-varianza">Formula per il calcolo della varianza</h3>
 <p>Sia $n$ il numero di elementi dell’array ed $x_i$ l’elemento all’indice $i$ dell’array, e $\mu$ la media dei valori del suddetto array. La varianza $\sigma^2$ può essere calcolata come:</p>
-<p>\centering
-\huge
-$\sigma^2 = \frac{\displaystyle\sum_{i=0}^{n-1}(x_i - \mu)^2} {n}$</p>
-</section><section>
-<p>\end{document}</p>
+<p>$\sigma^2 = \frac{\displaystyle\sum_{i=0}^{n-1}(x_i - \mu)^2} {n}$</p>
 </section><section>
 <h1 id="strumenti-del-jdk-e-introduzione-a-visual-studio-code-1">Strumenti del JDK e introduzione a Visual Studio Code</h1>
 <div style="text-align: center; margin-bottom: 3em">
@@ -566,7 +649,7 @@ $\sigma^2 = \frac{\displaystyle\sum_{i=0}^{n-1}(x_i - \mu)^2} {n}$</p>
 <!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2023-08-29
+<p>Slide compilate il: 2023-08-30
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
