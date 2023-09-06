@@ -40,12 +40,12 @@ aliases = ["/intro/"]
 ### Ing. Martina Baiardi
 * Tutor didattico
 * mail: `m.baiardi@unibo.it`
-* ricevimento: TODO Martina
+* ricevimento: su appuntamento, da concordare via mail
 
 ### Ing. Nicolas Farabegoli
 * Tutor didattico
-* mail: `m.baiardi@unibo.it`
-* ricevimento: TODO Nicolas
+* mail: `nicolas.farabegoli@unibo.it`
+* ricevimento: su appuntamento, da concordare via mail
 
 ### Regole di ingaggio
 1. Si utilizzi il forum del corso per qualunque dubbio tecnico
