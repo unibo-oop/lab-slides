@@ -65,7 +65,7 @@ più gli strumenti di sviluppo, fra cui:
     * Nota: la compatibilità è solo "all'indietro" (*backwards compatibility*):
       nuove JVM possono in generale eseguire applicazioni compilate per un vecchio bytecode, ma non viceversa
 * Faremo riferimento a OpenJDK standard (che fa da *reference*)
-  * Ossia, percapire se una JVM si comporta correttamente, si confronta il suo comportamento con OpenJDK
+  * Ossia, per capire se una JVM si comporta correttamente, si confronta il suo comportamento con OpenJDK
 * Come distributore di riferimento, raccomandiamo Adoptium (https://adoptium.net/)
   * In realtà ogni esercitazione dovrebbe funzionare con qualsiasi distribuzione OpenJDK e OpenJ9
 
