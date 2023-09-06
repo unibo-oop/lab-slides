@@ -25,7 +25,7 @@ aliases = ["/intro/"]
 * Lab. 2.2, Campus Cesena
 
 ### Secondo Turno (iniziale cognome nell'intervallo [H-Z])
-*Martedì, 13:00 - 17:00
+* Martedì, 13:00 - 17:00
 * Lab. 2.2, Campus Cesena
 
 ---
