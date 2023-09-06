@@ -269,24 +269,24 @@ Le shell Unix memorizzano i comandi usati anche in sessioni precedenti.
 ## Preparazione Ambiente di Lavoro
 
 1. Accendere il PC ed eseguire l'accesso
-2. Accedere al sito del corso
-3. Scaricare dalla sezione dedicata a questa settimana il materiale dell'esercitazione odierna
-4. Spostare il file scaricato sul Desktop
-5. Decomprimere il file sul Desktop
-6. Aprire un terminale
-  * Si scelga quello che si preferisce fra quelli proposti
-7. Si comprenda in quale cartella ci si trova usando l'apposito comando
-  * Generalmente il prompt si apre nella directory principale dell'utente
-  * Nel caso in cui si usasse zsh dentro WSL, o Git Bash, il file system di windows è agganciato emulando un file system Unix.
-8. Posizionarsi all'interno della cartella scompattata con l'ausilio del comando `cd` (change directory)
-9. Verificare che il contenuto della cartella sia quello atteso
-10. Scegliere un editor di testo per modificare i file sorgente
-  * Il laboratorio è equipaggiato con diversi editor di testo: JEdit, Visual Studio Code...
-  * **NON** sono adatti per programmare i word processors (Libreoffice Writer, <i class="fa-brands fa-microsoft"></i> Word, <i class="fa-brands fa-microsoft"></i> WordPad...), né l'editor di testo incluso in Windows (Notepad).
-  * Per questo lab, suggerisce l'utilizzo di **Notepad++**
-    *  consigliato prima di passare ad editor/IDE più sofisticati (come *VS Code*)
-    *  dobbiamo abituarci a scrivere codice corretto senza ausili
-    *  dobbiamo abituarci a compilare ed eseguire manualmente, da linea di comando
+1. Accedere al sito del corso
+1. Scaricare dalla sezione dedicata a questa settimana il materiale dell'esercitazione odierna
+1. Spostare il file scaricato sul Desktop
+1. Decomprimere il file sul Desktop
+1. Aprire un terminale
+    * Si scelga quello che si preferisce fra quelli proposti
+1. Si comprenda in quale cartella ci si trova usando l'apposito comando
+    * Generalmente il prompt si apre nella directory principale dell'utente
+    * Nel caso in cui si usasse zsh dentro WSL, o Git Bash, il file system di windows è agganciato emulando un file system Unix.
+1. Posizionarsi all'interno della cartella scompattata con l'ausilio del comando `cd` (change directory)
+1. Verificare che il contenuto della cartella sia quello atteso
+1. Scegliere un editor di testo per modificare i file sorgente
+    * Il laboratorio è equipaggiato con diversi editor di testo: JEdit, Visual Studio Code...
+    * **NON** sono adatti per programmare i word processors (Libreoffice Writer, <i class="fa-brands fa-microsoft"></i> Word, <i class="fa-brands fa-microsoft"></i> WordPad...), né l'editor di testo incluso in Windows (Notepad).
+    * Per questo lab, suggerisce l'utilizzo di **Notepad++**
+        * consigliato prima di passare ad editor/IDE più sofisticati (come *VS Code*)
+        * dobbiamo abituarci a scrivere codice corretto senza ausili
+        * dobbiamo abituarci a compilare ed eseguire manualmente, da linea di comando
 
 ---
 
