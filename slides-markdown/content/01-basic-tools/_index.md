@@ -151,7 +151,7 @@ Lo vedrete in maniera esaustiva nel corso di Sistemi Operativi...
 
 ---
 
-## <i class="fa-brands fa-windows"></i><i class="fa-brands fa-apple"></i> Sistemi *nix (Linux, MacOS X, FreeBSD, Minix...)
+## <i class="fa-brands fa-linux"></i><i class="fa-brands fa-apple"></i> Sistemi *nix (Linux, MacOS X, FreeBSD, Minix...)
 
 ### Nei sistemi UNIX-like esistono vari tipi di interpreti, chiamati shell
 Alcuni esempi
