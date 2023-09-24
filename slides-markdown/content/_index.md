@@ -12,7 +12,7 @@ outputs = ["Reveal"]
 ### Indice dei contenuti
 
 * [Introduzione e informazioni sul corso](intro/)
-* [Strumenti del JDK e introduzione a Visual Studio Code](basic-tools/)
+* [Strumenti del JDK, parte prima](basic-tools/)
 * [Strumenti del JDK, parte seconda](more-tools/)
 * [Dipendenze nel software e build automation](build-systems-basics/)
 * [Sistemi di controllo versione](dvcs-basics/)
