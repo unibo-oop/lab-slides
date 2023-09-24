@@ -97,7 +97,7 @@ si incoraggia l'uso del **Forum del Corso**
 * da preferire all'email inviata direttamente al/ai docente/i
 
 ### Riguardo il forum
-* Il dubbio di uno studente, probabilmente, è anche il dubbio di qualcun'altro (**condivisione**)
+* Il dubbio di uno studente, probabilmente, è anche il dubbio di qualcun altro (**condivisione**)
 * Gli studenti possono aiutarsi (**discussione**)
 * Aiutare i colleghi sul forum è **valutato positivamente**
 
