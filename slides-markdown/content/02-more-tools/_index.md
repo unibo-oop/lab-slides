@@ -340,7 +340,8 @@ Entrambi i comandi (e praticamente tutti i comandi Unix) hanno con loro un'opzio
 
 Gli help stampano abbondante testo con le relative istruzioni e a me serve una riga,
 davvero devo imparare a leggere e capire un help?
-**SÌ**
+
+#### **SÌ**
 
 È molto facile dimenticarsi la sintassi delle opzioni di comandi che non si usano spesso.
 È molto più facile imparare a destreggiarsi in un help che andare a tentativi o ricordare cose a memoria.
