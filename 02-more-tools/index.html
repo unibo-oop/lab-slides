@@ -21,20 +21,20 @@
   
 
     <section><h1 id="strumenti-del-jdk-e-introduzione-a-visual-studio-code">Strumenti del JDK e introduzione a Visual Studio Code</h1>
-<div style="text-align: center; margin-bottom: 3em">
-<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
-<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
-</div>
-<div style="text-align: center; margin-bottom: 3em">
-<h3 id="danilo-pianini-----danilopianiniuniboitmailtodanilopianiniuniboit"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
-<!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
-</div>
-<div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2023-10-30
-</p>
-<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
-<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
-</div>
+<p>&lt;div style="text-align: center; margin-bottom: 3em"&gt;
+&lt;h4 id="programmazione-ad-oggetti"&gt;Programmazione ad Oggetti&lt;/h4&gt;
+&lt;h4 id="cdl-ingegneria-e-scienze-informatiche"&gt;C.D.L. Ingegneria e Scienze Informatiche&lt;/h4&gt;
+&lt;/div&gt;
+&lt;div style="text-align: center; margin-bottom: 3em"&gt;
+&lt;h3 id="danilo-pianini—–danilopianiniuniboitmailtodanilopianiniuniboit"&gt;&lt;a href="mailto:danilo.pianini@unibo.it"&gt;Danilo Pianini &amp;mdash; &lt;code&gt;danilo.pianini@unibo.it&lt;/code&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;!– ### <a href="mailto:roby.casadei@unibo.it">Roberto Casadei — <code>roby.casadei@unibo.it</code></a> –&gt;
+&lt;/div&gt;
+&lt;div style="text-align: left; margin-left: 10em"&gt;
+&lt;p&gt;Slide compilate il: 2023-10-30
+&lt;/p&gt;
+&lt;p&gt;&lt;a href="?print-pdf&amp;amp;pdfSeparateFragments=false"&gt;&lt;i class="fa fa-print" aria-hidden="true"&gt;&lt;/i&gt; versione stampabile&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=".."&gt;&lt;i class="fa fa-undo" aria-hidden="true"&gt;&lt;/i&gt; menu principale&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;</p>
 </section><section>
 <h2 id="pre-requisiti">Pre-requisiti</h2>
 <ul>
@@ -131,8 +131,8 @@
 <li>La graffa che chiude va in a capo, nella stessa colonna dello statement di apertura</li>
 </ul>
 <h3 id="naming-conventions---molto-importanti">Naming conventions - <strong>molto importanti!</strong></h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#177500">// mini guida: PascalCase, camelCase, snake_case, kebab-case
-</span></span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#177500">// mini guida: PascalCase, camelCase, snake_case, kebab-case</span>
+</span></span></code></pre></div><ul>
 <li>I nomi di <code>package</code> usano sempre e solo lettere minuscole e numeri, senza underscore (<code>_</code>)</li>
 <li>I nomi di variabili, campi, e metodi usano sempre <code>camelCase</code>: <code>myVariable</code>, <code>myMethod()</code>, <code>myObject.myField</code></li>
 <li>I nomi di classe utilizzano invece <code>PascalCase</code> (cominciano per maiuscola): <code>SomeClass</code></li>
@@ -297,23 +297,23 @@ usare l’<em>intero nome della classe</em>, che in Java <em>include anche il no
 </section><section>
 <h2 id="uso-del-classpath-in-fase-di-compilazione">Uso del classpath in fase di compilazione</h2>
 <p>Supponiamo di avere in mano la seguente classe:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">package</span> <span style="color:#000">oop.lab02.math</span><span style="color:#000">;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">package</span> <span style="color:#000">oop.lab02.math</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">UseComplex</span> <span style="color:#000">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">UseComplex</span> {
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">void</span> <span style="color:#000">main</span><span style="color:#000">(</span><span style="color:#a90d91">final</span> <span style="color:#000">String</span><span style="color:#000">[]</span> <span style="color:#000">args</span><span style="color:#000">)</span> <span style="color:#000">{</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">final</span> <span style="color:#000">ComplexNum</span> <span style="color:#000">c1</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">ComplexNum</span><span style="color:#000">();</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">c1</span><span style="color:#000">.</span><span style="color:#836c28">build</span><span style="color:#000">(</span><span style="color:#1c01ce">1</span><span style="color:#000">,</span> <span style="color:#000">-</span><span style="color:#1c01ce">45</span><span style="color:#000">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">final</span> <span style="color:#000">ComplexNum</span> <span style="color:#000">c2</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">ComplexNum</span><span style="color:#000">();</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">c2</span><span style="color:#000">.</span><span style="color:#836c28">build</span><span style="color:#000">(</span><span style="color:#1c01ce">2</span><span style="color:#000">,</span> <span style="color:#1c01ce">8</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">void</span> <span style="color:#000">main</span>(<span style="color:#a90d91">final</span> <span style="color:#000">String</span><span style="color:#000">[]</span> <span style="color:#000">args</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">final</span> <span style="color:#000">ComplexNum</span> <span style="color:#000">c1</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">ComplexNum</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#000">c1</span>.<span style="color:#836c28">build</span>(<span style="color:#000">1</span>, <span style="color:#000">-</span><span style="color:#000">45</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a90d91">final</span> <span style="color:#000">ComplexNum</span> <span style="color:#000">c2</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">ComplexNum</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#000">c2</span>.<span style="color:#836c28">build</span>(<span style="color:#000">2</span>, <span style="color:#000">8</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">System</span><span style="color:#000">.</span><span style="color:#836c28">out</span><span style="color:#000">.</span><span style="color:#836c28">println</span><span style="color:#000">(</span><span style="color:#000">c1</span><span style="color:#000">.</span><span style="color:#836c28">toStringRep</span><span style="color:#000">());</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">System</span><span style="color:#000">.</span><span style="color:#836c28">out</span><span style="color:#000">.</span><span style="color:#836c28">println</span><span style="color:#000">(</span><span style="color:#000">c2</span><span style="color:#000">.</span><span style="color:#836c28">toStringRep</span><span style="color:#000">());</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">System</span>.<span style="color:#836c28">out</span>.<span style="color:#836c28">println</span>(<span style="color:#000">c1</span>.<span style="color:#836c28">toStringRep</span>());
+</span></span><span style="display:flex;"><span>        <span style="color:#000">System</span>.<span style="color:#836c28">out</span>.<span style="color:#836c28">println</span>(<span style="color:#000">c2</span>.<span style="color:#836c28">toStringRep</span>());
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">c1</span><span style="color:#000">.</span><span style="color:#836c28">add</span><span style="color:#000">(</span><span style="color:#000">c2</span><span style="color:#000">);</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#000">System</span><span style="color:#000">.</span><span style="color:#836c28">out</span><span style="color:#000">.</span><span style="color:#836c28">println</span><span style="color:#000">(</span><span style="color:#c41a16">"c1 new value is: "</span> <span style="color:#000">+</span> <span style="color:#000">c1</span><span style="color:#000">.</span><span style="color:#836c28">toStringRep</span><span style="color:#000">()</span> <span style="color:#000">+</span> <span style="color:#c41a16">"\n"</span><span style="color:#000">);</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#000">c1</span>.<span style="color:#836c28">add</span>(<span style="color:#000">c2</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#000">System</span>.<span style="color:#836c28">out</span>.<span style="color:#836c28">println</span>(<span style="color:#c41a16">"c1 new value is: "</span> <span style="color:#000">+</span> <span style="color:#000">c1</span>.<span style="color:#836c28">toStringRep</span>() <span style="color:#000">+</span> <span style="color:#c41a16">"\n"</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>ed eseguiamo <code>javac UseComplex.java</code>. Cosa otteniamo?</p>
 </section><section>
 <h3 id="comprensione-degli-errori">Comprensione degli errori</h3>
@@ -640,20 +640,20 @@ si ottiene un interprete che risponderà ai comandi del debugger sulla porta 104
 <p>$\sigma^2 = \frac{\displaystyle\sum_{i=0}^{n-1}(x_i - \mu)^2} {n}$</p>
 </section><section>
 <h1 id="strumenti-del-jdk-e-introduzione-a-visual-studio-code-1">Strumenti del JDK e introduzione a Visual Studio Code</h1>
-<div style="text-align: center; margin-bottom: 3em">
-<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
-<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
-</div>
-<div style="text-align: center; margin-bottom: 3em">
-<h3 id="danilo-pianini-----danilopianiniuniboitmailtodanilopianiniuniboit"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
-<!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
-</div>
-<div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2023-10-30
-</p>
-<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
-<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
-</div>
+<p>&lt;div style="text-align: center; margin-bottom: 3em"&gt;
+&lt;h4 id="programmazione-ad-oggetti"&gt;Programmazione ad Oggetti&lt;/h4&gt;
+&lt;h4 id="cdl-ingegneria-e-scienze-informatiche"&gt;C.D.L. Ingegneria e Scienze Informatiche&lt;/h4&gt;
+&lt;/div&gt;
+&lt;div style="text-align: center; margin-bottom: 3em"&gt;
+&lt;h3 id="danilo-pianini—–danilopianiniuniboitmailtodanilopianiniuniboit"&gt;&lt;a href="mailto:danilo.pianini@unibo.it"&gt;Danilo Pianini &amp;mdash; &lt;code&gt;danilo.pianini@unibo.it&lt;/code&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;!– ### <a href="mailto:roby.casadei@unibo.it">Roberto Casadei — <code>roby.casadei@unibo.it</code></a> –&gt;
+&lt;/div&gt;
+&lt;div style="text-align: left; margin-left: 10em"&gt;
+&lt;p&gt;Slide compilate il: 2023-10-30
+&lt;/p&gt;
+&lt;p&gt;&lt;a href="?print-pdf&amp;amp;pdfSeparateFragments=false"&gt;&lt;i class="fa fa-print" aria-hidden="true"&gt;&lt;/i&gt; versione stampabile&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=".."&gt;&lt;i class="fa fa-undo" aria-hidden="true"&gt;&lt;/i&gt; menu principale&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;</p>
 </section>
 
   

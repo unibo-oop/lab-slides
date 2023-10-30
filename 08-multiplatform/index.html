@@ -21,20 +21,20 @@
   
 
     <section><h1 id="programmazione-multipiattaforma">Programmazione multipiattaforma</h1>
-<div style="text-align: center; margin-bottom: 3em">
-<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
-<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
-</div>
-<div style="text-align: center; margin-bottom: 3em">
-<h3 id="danilo-pianini-----danilopianiniuniboitmailtodanilopianiniuniboit"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
-<!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
-</div>
-<div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2023-10-30
-</p>
-<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
-<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
-</div>
+<p>&lt;div style="text-align: center; margin-bottom: 3em"&gt;
+&lt;h4 id="programmazione-ad-oggetti"&gt;Programmazione ad Oggetti&lt;/h4&gt;
+&lt;h4 id="cdl-ingegneria-e-scienze-informatiche"&gt;C.D.L. Ingegneria e Scienze Informatiche&lt;/h4&gt;
+&lt;/div&gt;
+&lt;div style="text-align: center; margin-bottom: 3em"&gt;
+&lt;h3 id="danilo-pianini—–danilopianiniuniboitmailtodanilopianiniuniboit"&gt;&lt;a href="mailto:danilo.pianini@unibo.it"&gt;Danilo Pianini &amp;mdash; &lt;code&gt;danilo.pianini@unibo.it&lt;/code&gt;&lt;/a&gt;&lt;/h3&gt;
+&lt;!– ### <a href="mailto:roby.casadei@unibo.it">Roberto Casadei — <code>roby.casadei@unibo.it</code></a> –&gt;
+&lt;/div&gt;
+&lt;div style="text-align: left; margin-left: 10em"&gt;
+&lt;p&gt;Slide compilate il: 2023-10-30
+&lt;/p&gt;
+&lt;p&gt;&lt;a href="?print-pdf&amp;amp;pdfSeparateFragments=false"&gt;&lt;i class="fa fa-print" aria-hidden="true"&gt;&lt;/i&gt; versione stampabile&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=".."&gt;&lt;i class="fa fa-undo" aria-hidden="true"&gt;&lt;/i&gt; menu principale&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;</p>
 </section><section>
 <h2 id="write-once-run-anywhere">“Write once, run anywhere…”</h2>
 <p>Lo slogan, coniato originariamente da Sun Microsystems per illustrare i benefici del linguaggio Java, vale <em>a patto che</em>:</p>
@@ -69,7 +69,7 @@ l’installazione di Windows è sana e il software non è avviato con diritti di
 </section><section>
 <h2 id="proprietà-di-sistema">Proprietà di sistema</h2>
 <p>Java fornisce nella classe <code>System</code> un metodo</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">String</span> <span style="color:#000">getProperty</span><span style="color:#000">(</span><span style="color:#000">String</span> <span style="color:#000">p</span><span style="color:#000">)</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">String</span> <span style="color:#000">getProperty</span>(<span style="color:#000">String</span> <span style="color:#000">p</span>)
 </span></span></code></pre></div><p>che consente di accedere a proprietà di sistema</p>
 <h3 id="proprietà-relative-al-file-system">Proprietà relative al file system</h3>
 <ul>
@@ -79,9 +79,9 @@ l’installazione di Windows è sana e il software non è avviato con diritti di
 <li><code>user.home</code> — Restituisce la home directory dell’utente che ha lanciato <code>java</code></li>
 <li><code>user.name</code> — Restituisce il nome utente</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">final</span> <span style="color:#000">String</span> <span style="color:#000">PROP_FILE_SEPARATOR</span> <span style="color:#000">=</span> <span style="color:#c41a16">"file.separator"</span><span style="color:#000">;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">final</span> <span style="color:#000">String</span> <span style="color:#000">PROP_FILE_SEPARATOR</span> <span style="color:#000">=</span> <span style="color:#c41a16">"file.separator"</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">String</span> <span style="color:#000">separator</span> <span style="color:#000">=</span> <span style="color:#000">System</span><span style="color:#000">.</span><span style="color:#836c28">getProperty</span><span style="color:#000">(</span><span style="color:#000">PROP_FILE_SEPARATOR</span><span style="color:#000">);</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">String</span> <span style="color:#000">separator</span> <span style="color:#000">=</span> <span style="color:#000">System</span>.<span style="color:#836c28">getProperty</span>(<span style="color:#000">PROP_FILE_SEPARATOR</span>);
 </span></span></code></pre></div></section><section>
 <h2 id="accesso-ai-dettagli-del-sistema">Accesso ai dettagli del sistema</h2>
 <h3 id="funzionalità-os-specifiche">Funzionalità OS-specifiche</h3>
@@ -271,13 +271,13 @@ propria configurazione di schermi</em></li>
 </ul>
 </section><section>
 <h3 id="classloadergetsystemresourceasstreamstring"><code>ClassLoader.getSystemResource</code>(<code>AsStream</code>)<code>(String)</code></h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">abstract</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">ClassLoader</span> <span style="color:#000">{</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#000">ClassLoader</span> <span style="color:#000">getSystemClassLoader</span><span style="color:#000">();</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#000">URL</span> <span style="color:#000">getSystemResource</span><span style="color:#000">(</span><span style="color:#000">String</span> <span style="color:#000">name</span><span style="color:#000">);</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#000">InputStream</span> <span style="color:#000">getSystemResourceAsStream</span><span style="color:#000">(</span><span style="color:#000">String</span> <span style="color:#000">name</span><span style="color:#000">);</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#000">URL</span> <span style="color:#000">getResource</span><span style="color:#000">(</span><span style="color:#000">String</span> <span style="color:#000">name</span><span style="color:#000">);</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#177500">// ...
-</span></span></span></code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">abstract</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">ClassLoader</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#000">ClassLoader</span> <span style="color:#000">getSystemClassLoader</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#000">URL</span> <span style="color:#000">getSystemResource</span>(<span style="color:#000">String</span> <span style="color:#000">name</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#000">InputStream</span> <span style="color:#000">getSystemResourceAsStream</span>(<span style="color:#000">String</span> <span style="color:#000">name</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#000">URL</span> <span style="color:#000">getResource</span>(<span style="color:#000">String</span> <span style="color:#000">name</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#177500">// ...</span>
+</span></span></code></pre></div><ul>
 <li>Un <strong>class loader</strong> (istanza di <code>ClassLoader</code>) è un’oggetto responsabile del <em>caricamento di classi e risorse</em>
 <ul>
 <li>ogni class loader ha un class loader padre, per sfruttare un meccanismo di delega</li>
@@ -300,14 +300,14 @@ propria configurazione di schermi</em></li>
 </section><section>
 <h3 id="risorse-caricate-dal-classpath----esempi">Risorse caricate dal classpath – Esempi</h3>
 <h4 id="caricamento-di-file">Caricamento di File</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">InputStream</span> <span style="color:#000">in</span> <span style="color:#000">=</span> <span style="color:#000">ClassLoader</span><span style="color:#000">.</span><span style="color:#836c28">getSystemResourceAsStream</span><span style="color:#000">(</span><span style="color:#c41a16">"/settings/settings"</span><span style="color:#000">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">BufferedReader</span> <span style="color:#000">br</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">BufferedReader</span><span style="color:#000">(</span><span style="color:#a90d91">new</span> <span style="color:#000">InputStreamReader</span><span style="color:#000">(</span><span style="color:#000">in</span><span style="color:#000">));</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">String</span> <span style="color:#000">line</span> <span style="color:#000">=</span> <span style="color:#000">br</span><span style="color:#000">.</span><span style="color:#836c28">readLine</span><span style="color:#000">();</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">in</span><span style="color:#000">.</span><span style="color:#836c28">close</span><span style="color:#000">();</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">InputStream</span> <span style="color:#000">in</span> <span style="color:#000">=</span> <span style="color:#000">ClassLoader</span>.<span style="color:#836c28">getSystemResourceAsStream</span>(<span style="color:#c41a16">"/settings/settings"</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">BufferedReader</span> <span style="color:#000">br</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">BufferedReader</span>(<span style="color:#a90d91">new</span> <span style="color:#000">InputStreamReader</span>(<span style="color:#000">in</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">String</span> <span style="color:#000">line</span> <span style="color:#000">=</span> <span style="color:#000">br</span>.<span style="color:#836c28">readLine</span>();
+</span></span><span style="display:flex;"><span><span style="color:#000">in</span>.<span style="color:#836c28">close</span>();
 </span></span></code></pre></div><h4 id="caricamento-di-immagini">Caricamento di Immagini</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">URL</span> <span style="color:#000">imgURL</span> <span style="color:#000">=</span> <span style="color:#000">ClassLoader</span><span style="color:#000">.</span><span style="color:#836c28">getSystemResource</span><span style="color:#000">(</span><span style="color:#c41a16">"/images/gandalf.jpg"</span><span style="color:#000">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">ImageIcon</span> <span style="color:#000">icon</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">ImageIcon</span><span style="color:#000">(</span><span style="color:#000">imgURL</span><span style="color:#000">);</span>
-</span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">JLabel</span> <span style="color:#000">lab1</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">JLabel</span><span style="color:#000">(</span><span style="color:#000">icon</span><span style="color:#000">);</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">URL</span> <span style="color:#000">imgURL</span> <span style="color:#000">=</span> <span style="color:#000">ClassLoader</span>.<span style="color:#836c28">getSystemResource</span>(<span style="color:#c41a16">"/images/gandalf.jpg"</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">ImageIcon</span> <span style="color:#000">icon</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">ImageIcon</span>(<span style="color:#000">imgURL</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">JLabel</span> <span style="color:#000">lab1</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">JLabel</span>(<span style="color:#000">icon</span>);
 </span></span></code></pre></div><p>Progetto di esempio:
 <a href="https://github.com/unibo-oop/example-with-get-resources">https://github.com/unibo-oop/example-with-get-resources</a></p>
 </section><section>
