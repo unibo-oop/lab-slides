@@ -10,7 +10,9 @@ aliases = ["/dvcs-remote/"]
 
 # Operazioni con repository remoti
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->
 
 ---
 
@@ -32,4 +34,6 @@ aliases = ["/dvcs-remote/"]
 
 # Operazioni con repository remoti
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->
