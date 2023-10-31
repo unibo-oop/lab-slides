@@ -10,7 +10,9 @@ aliases = ["/javafx/"]
 
 # Interfacce utente grafiche (GUI) con JavaFX
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->
 
 ---
 
@@ -1000,3 +1002,10 @@ public final class JavaFXAppWithSwing extends Application {
 }
 ```
 
+---
+
+# Interfacce utente grafiche (GUI) con JavaFX
+
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->

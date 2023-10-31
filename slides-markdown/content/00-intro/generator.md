@@ -10,7 +10,9 @@ aliases = ["/intro/"]
 
 # Introduzione e informazioni sul corso
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->
 
 ---
 
@@ -153,5 +155,6 @@ Impegnarsi fin dall'inizio, anche se nelle prime lezioni sembra facile, e restar
 
 # Introduzione e informazioni sul corso
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
 
+<!-- end-write -->

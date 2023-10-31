@@ -10,7 +10,9 @@ aliases = ["/git-cheatsheet/"]
 
 # Git cheatsheet
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->
 
 ---
 
@@ -97,4 +99,6 @@ aliases = ["/git-cheatsheet/"]
 
 # Git cheatsheet
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->

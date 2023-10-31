@@ -10,7 +10,9 @@ aliases = ["/junit-jar-javadoc/"]
 
 # Documentazione del codice e costruzione degli artefatti
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->
 
 ---
 
@@ -541,3 +543,11 @@ Il plugin `java` di Gradle aggiunge un task `javadoc` che documenta automaticame
 generando il sito web relativo in `build/`
 
 **NOTA --** In caso di javadoc incompleta, il task fallisce! 
+
+---
+
+# Documentazione del codice e costruzione degli artefatti
+
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->

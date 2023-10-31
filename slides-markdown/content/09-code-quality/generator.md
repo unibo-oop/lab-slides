@@ -10,7 +10,9 @@ aliases = ["/code-quality-tools/"]
 
 # Analisi statica
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->
 
 ---
 
@@ -224,3 +226,11 @@ Sarà a questo punto disponibile l'annotazione `@SuppressFBWarnings`:
 )
 <java code with the false positive>
 ```
+
+---
+
+# Analisi statica
+
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->

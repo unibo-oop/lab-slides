@@ -10,7 +10,9 @@ aliases = ["/basic-tools/"]
 
 # Strumenti di base del JDK
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->
 
 ---
 
@@ -352,5 +354,6 @@ Siano $z,w \in \mathbb{C} : z = a + ib,\ w = c + id$, allora:
 
 # Strumenti di base del JDK
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
 
+<!-- end-write -->

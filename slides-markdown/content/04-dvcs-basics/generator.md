@@ -10,7 +10,9 @@ aliases = ["/dvcs-basics/"]
 
 # Sistemi di controllo versione
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->
 
 ---
 
@@ -38,4 +40,6 @@ aliases = ["/dvcs-basics/"]
 
 # Sistemi di controllo versione
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->

@@ -10,7 +10,9 @@ aliases = ["/profiling-with-visualvm/"]
 
 # Monitoraggio e Profiling con VisualVM
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->
 
 ---
 
@@ -132,4 +134,12 @@ aliases = ["/profiling-with-visualvm/"]
     - E' un monitoraggio potenzialmente invasivo, ma consente di ottenere dati più precisi rispetto al sampling
 - *CPU profiling* fornisce tempo totale d'esecuzione e numero di invocazioni per ogni metodo
     - si realizza facendo sì che ogni thread emetta un evento con timestamp all'ingresso/uscita di ogni metodo
+
+---
+
+# Monitoraggio e Profiling con VisualVM
+
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->
 

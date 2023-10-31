@@ -10,8 +10,9 @@ aliases = ["/dvcs-workflow/"]
 
 # DVCS Workflow
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
 
+<!-- end-write -->
 
 ---
 
@@ -168,4 +169,10 @@ Questo workflow è un overkill per il progetto di OOP
 
 * Ma è possibile che vi chiederemo di lavorare così, se farete tesi o un tirocini relativi ad alcuni nostri software
 
+---
 
+# DVCS Workflow
+
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->

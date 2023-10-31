@@ -10,7 +10,9 @@ aliases = ["/dvcs-branching/"]
 
 # Branching e merging
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->
 
 ---
 
@@ -22,4 +24,6 @@ aliases = ["/dvcs-branching/"]
 
 # Branching e merging
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->

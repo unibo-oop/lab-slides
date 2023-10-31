@@ -10,7 +10,9 @@ aliases = ["/more-tools/"]
 
 # Strumenti del JDK e introduzione a Visual Studio Code
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->
 
 ---
 
@@ -576,5 +578,6 @@ $\sigma^2 = \frac{\displaystyle\sum_{i=0}^{n-1}(x_i - \mu)^2} {n}$
 
 # Strumenti del JDK e introduzione a Visual Studio Code
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
 
+<!-- end-write -->

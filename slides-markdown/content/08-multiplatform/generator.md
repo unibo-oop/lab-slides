@@ -10,7 +10,10 @@ aliases = ["/multiplatform/"]
 
 # Programmazione multipiattaforma
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->
+
 
 ---
 
@@ -335,3 +338,11 @@ ma per farlo è necessario che il design della vostra applicazione l'abbiate fat
 Vi raccomandiamo quindi di **evitare i framework**!
 O, al più, usarli solo *dopo che il progetto è avviato* come semplice libreria
 (non semplice e non sempre possibile)
+
+---
+
+# Programmazione multipiattaforma
+
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->
