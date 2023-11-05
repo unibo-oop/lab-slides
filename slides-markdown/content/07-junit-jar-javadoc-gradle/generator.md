@@ -352,6 +352,39 @@ application {
 
 ---
 
+## Utilizzo di `application` con multipli `main` tramite proprietà di progetto
+
+Nel caso in cui vi fossero più classi con un main, è possibile passare a Gradle il nome di classe da lanciare.
+
+Per farlo, sfruttiamo il concetto di *proprietà* del progetto.
+
+Le proprietà sono associazioni chiave-valore fra due stringhe che possono essere:
+* fornite come configurazione del sistema **$\leftarrow$ non lo vediamo**
+* fornite come variabile d'ambiente **$\leftarrow$ non lo vediamo**
+* scritte in un file `gradle.properties` *$\leftarrow$ per OOP cambia poco rispetto a scriverlo nel `bild.gradle.kts*
+* passate da terminale in formato `-Pnome=valore` *$\leftarrow$ utile se si hanno più main*
+
+Scrivendo quanto segue nel `build.gradle.kts`
+
+```kotlin
+val myMainClass: String by project // prende la main class dalle proprietà di  progetto
+application {
+    mainClass.set(myMainClass)
+}
+```
+
+È possibile poi scegliere la main class da avviare usando:
+* `./gradlew run -PmyMainClass=...`
+    * (sostuendo ai `...` il nome qualificato della main class)
+
+Ad esempio, se abbiamo due classi con main `it.unibo.oop.Pluto` e `it.unibo.oop.Paperino` nel nostro progetto, possiamo lanciare:
+* `./gradlew run -PmyMainClass=it.unibo.oop.Pluto`
+    * per eseguire `Pluto`
+* `./gradlew run -PmyMainClass=it.unibo.oop.Paperino`
+    * per eseguire `Paperino`
+
+---
+
 # Documentazione (semi-)automatica
 
 ---
