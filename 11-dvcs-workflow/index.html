@@ -31,78 +31,125 @@
 <!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2023-11-09
+<p>Slide compilate il: 2023-11-12
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
 </div>
 </section><section>
-<h3 id="dalle-puntate-precedenti">Dalle puntate precedenti</h3>
-<h4 id="dvcs">DVCS</h4>
+<h2 id="dalle-puntate-precedenti">Dalle puntate precedenti</h2>
+<h3 id="dvcs">DVCS</h3>
 <ul>
-<li>DVCS sono strumenti potenti per tenere traccia in maniera efficiente della storia di un progetto</li>
-<li>Nascono in particolare come evoluzione dei tradizionali VCS (SVN, CVS …)</li>
-<li>Enfasi su una <strong>miglior gestione del lavoro di team</strong></li>
-</ul>
-<h4 id="dvcs-e-teamwork">DVCS e teamwork</h4>
+<li>DVCS sono strumenti <strong>molto potenti</strong> per tenere traccia in maniera efficiente della storia di un progetto</li>
+<li>Nascono in particolare come evoluzione dei tradizionali VCS (SVN, CVS, …)</li>
+<li>Enfasi su una <strong>miglior gestione del lavoro di team</strong>
 <ul>
-<li>
-<p>“La potenza è nulla senza controllo!”</p>
-</li>
-<li>
-<p>Ovvero … la mancanza di un metodo chiaro e condiviso per utilizzarli può portare a risultati <strong>DEVASTANTI</strong></p>
-<ul>
-<li>effort necessario per la parte di gestione diventa presto preponderante e insostenibile</li>
-</ul>
-</li>
-<li>
-<p>Ecco perché è bene adottare un <strong>workflow collaborativo</strong></p>
-<ul>
-<li>i vostri progetti e i vostri partner di progetto vi ringrazieranno!</li>
+<li><em>Ma come organizzare un buon lavoro di squadra?</em></li>
 </ul>
 </li>
 </ul>
-</section><section>
+<h3 id="dvcs-e-teamwork">DVCS e teamwork</h3>
+<blockquote>
+<p>La potenza è nulla senza controllo</p>
+</blockquote>
+<ul>
+<li>La mancanza di un metodo chiaro e condiviso per utilizzarli può portare a risultati <strong>DEVASTANTI</strong>
+<ul>
+<li>L’impegno necessario per la parte di gestione diventa presto preponderante e insostenibile</li>
+</ul>
+</li>
+<li>Ecco perché è bene adottare un <strong>workflow collaborativo</strong>
+<ul>
+<li>miglior qualità nei progetti</li>
+<li>i vostri partner di progetto vi ringrazieranno!</li>
+</ul>
+</li>
+</ul>
 <h3 id="quale-workflow">Quale workflow</h3>
 <ul>
 <li>Come si sceglie un workflow?</li>
-<li>Abbiamo parlato di semplicità…</li>
-<li>In realtà è più corretto parlare di giusto <strong>trade-off</strong> tra semplicità ed esigenze</li>
+<li>Bisogna trovare un giusto <strong>trade-off</strong> tra semplicità ed esigenze</li>
 </ul>
 </section><section>
-<h3 id="lo-stato-dellarte-git-flow">Lo stato dell’arte: <strong>git-flow</strong></h3>
+<h2 id="tabella-riassuntiva">Tabella riassuntiva</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><em>Team sparso, scarsa fiducia</em></th>
+<th><em>Team coeso, elevata fiducia</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><em>Progetti piccoli</em></strong></td>
+<td>Singolo branch, multiple fork e pull request.<br><strong>Tipico di piccoli progetti FOSS</strong><br>Il focus è quello di consentire a chiunque di collaborare senza che nessuno possa causare danni</td>
+<td>Singolo Branch, singolo repository dove tutti hanno diritto di push.<br><strong>Tipico di piccoli progetti aziendali</strong> <em>(ma anche dei progetti di OOP)</em><br> Il focus è sulla semplicità del processo, si assume che chi è parte del team non faccia danni e possa quindi scrivere</td>
+</tr>
+<tr>
+<td><strong><em>Progetti grandi</em></strong></td>
+<td>Multipli branch, multiple fork e pull request<br><strong>Tipico di grandi progetti FOSS</strong><br>Stesso focus dei progetti open source piccoli, ma in questo caso il progetto, data la complessità, ha multipli branch attivi</td>
+<td>Multipli branch, singolo repository dove tutti hanno diritto di push<br><strong>Tipico di grandi progetti aziendali</strong><br>Nonostante ci sia fiducia che i membri del team collaborino positivamente (e quindi tutti possono scrivere) il progetto è troppo complesso perché tutti insistano sullo stesso branch</td>
+</tr>
+</tbody>
+</table>
+</section><section>
+<h2 id="lavorare-con-fork-e-pull-request">Lavorare con fork e pull request</h2>
+<p>Ottimo per progetti open source dove si vogliano contributi di terzi,
+e/o per team molto eterogenei,
+dove qualcuno deve assicurarsi della qualità del codice prodotto da altri.</p>
+<ul>
+<li>Il maintainer crea il repository, ed è l’unico col diritto di scrittura</li>
+<li>Gli altri membri del team hanno una <strong>fork</strong> a testa
+<ul>
+<li>in caso di progetto FOSS, chiunque voglia collaborare</li>
+</ul>
+</li>
+<li>Ciascuno lavora sulla propria fork, facendo pull dal repository “centrale” e push sulla propria fork</li>
+<li>Quando una feature è completa, o si arriva ad un buon grado di sviluppo, si apre una <strong>pull request</strong></li>
+<li>Il maintainer revisiona il codice, assegna eventuali modifiche, e quando è soddisfatto accetta la pull request facendo il merge del codice nel repository principale</li>
+</ul>
+<h4 id="questo-workflow-è-un-overkill-per-il-progetto-di-oop"><em>Questo workflow è un overkill per il progetto di OOP</em></h4>
+<ul>
+<li>Rischia di essere troppo “burocratico” per il nostro progetto</li>
+<li>Raramente il team è così sbilanciato che uno degli studenti possa fare revisione del codice degli altri</li>
+</ul>
+<h4 id="tuttavia-è-giusto-conoscerlo"><em>Tuttavia è giusto conoscerlo!</em></h4>
+<ul>
+<li>È il modo in cui potreste contribuire a progetti open source</li>
+<li>Se farete tesi o tirocini con il nostro gruppo di ricerca, lavorando su software che mateniamo noi, lavorerete così!</li>
+</ul>
+</section><section>
+<h2 id="lavorare-con-multipli-branch-git-flow">Lavorare con multipli branch: <strong>git-flow</strong></h2>
 <p>Definito da <em>Vincent Driessen</em> e spiegato in <a href="http://nvie.com/posts/a-successful-git-branching-model/">“A successful git branching model”</a></p>
 <p><img src="imgs/Git-branching-model.png" alt=""></p>
 </section><section>
-<h4 id="alcune-considerazioni">Alcune considerazioni</h4>
+<h3 id="alcune-considerazioni">Alcune considerazioni</h3>
 <ul>
 <li>Non lo useremo
 <ul>
 <li>troppo complicato per i nostri scopi</li>
 </ul>
 </li>
-<li>Comunque molto interessante perché racchiude tutti gli aspetti di un DVCS workflow</li>
-<li>Usiste lo strumento <code>git-flow</code> (un wrapper attorno a git) che può essere installato per supportare il worflow “git flow”</li>
+<li>Comunque molto interessante perché racchiude molti aspetti di un workflow collaborativo supportato da DVCS</li>
 </ul>
-</section><section>
-<h4 id="i-branch">I branch</h4>
+<h3 id="i-branch-in-git-flow">I branch in git-flow</h3>
 <ul>
 <li>Sono il supporto fondamentale alle fasi del ciclo di vita del software</li>
 <li>Ogni fase/attività ha il proprio branch!</li>
 <li>Branching e merging all’ordine del giorno!</li>
 </ul>
-<p>A proposito della <em>nomenclatura</em> dei branch</p>
+<h3 id="nomenclatura-dei-branch">Nomenclatura dei branch</h3>
 <ul>
-<li>Tipici nomi sono, ad esempio <code>feature-&lt;feature-name&gt;</code> o <code>bug-&lt;bug-name&gt;</code></li>
-<li>Si usa infatti categorizzare i branch in <em>gruppi</em>: <code>wip</code>, <code>feat</code>, <code>bug</code> …</li>
-<li>Varie convenzioni possono essere adottate (l’importante è essere consistenti)
+<li>Tipici nomi sono, ad esempio <code>feature/&lt;feature-name&gt;</code> o <code>fix/&lt;bug-name&gt;</code>
 <ul>
-<li>Uso degli slash come separatori: <code>feature/&lt;feature-name&gt;</code>, <code>bug/&lt;bug-name&gt;</code>
-<ul>
-<li>Alcuni strumenti potrebbero dedurre una vista tree-like</li>
+<li>È comune usare <code>/</code> come separatore: <code>feature/&lt;feature-name&gt;</code>, <code>bug/&lt;bug-name&gt;</code></li>
+<li>Si usa infatti categorizzare i branch in <em>gruppi</em>: <code>fix</code>, <code>feat</code>, <code>perf</code>…</li>
 </ul>
 </li>
-<li>Aggiunta di “compontenti” al nome del branch, relativi ad es.
+<li>Varie convenzioni possono essere adottate (l’importante è essere consistenti)
+<ul>
+<li>Aggiunta di “componenti” al nome del branch, relativi ad es.
 <ul>
 <li>all’autore/responsabile</li>
 <li>a una <em>issue</em> (cf. Issue su GitHub) o <em>ticket</em>, o l’ID di un task o user story</li>
@@ -115,10 +162,14 @@
 </section><section>
 <h3 id="un-modello-più-semplice">Un modello più semplice</h3>
 <ul>
-<li>Un <em>branch principale</em></li>
-<li><em>Feature branch</em> diversi e indipendenti, per sviluppi diversi
+<li>Un <em>branch principale</em>
 <ul>
-<li>da sincronizzare attraverso il branch principale (<em>frequentemente</em> per ridurre possibilità di conflitti complessi)</li>
+<li>Andrebbe tenuto sempre compilabile e “funzionante”</li>
+</ul>
+</li>
+<li><em>Feature branch</em> diversi e indipendenti, per sviluppi di nuove funzionalità
+<ul>
+<li>da sincronizzare riconciliandoli col branch principale (<em>frequentemente</em> per ridurre possibilità di conflitti complessi)</li>
 </ul>
 </li>
 </ul>
@@ -130,10 +181,11 @@
 </ul>
 <p><img src="imgs/feature.png" alt=""></p>
 </section><section>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#177500"># Create a new feature branch from develop and share it</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#177500"># Assuming there exists a remote repository called origin</span>
+</span></span><span style="display:flex;"><span><span style="color:#177500"># Create a new feature branch from develop and share it</span>
 </span></span><span style="display:flex;"><span>git checkout develop
 </span></span><span style="display:flex;"><span>git checkout -b feature-mynewfeaturename
-</span></span><span style="display:flex;"><span>git push origin feature-mynewfeaturename
+</span></span><span style="display:flex;"><span>git push -u origin feature-mynewfeaturename
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#177500"># WHILE your_feature_is_unfinished</span>
 </span></span><span style="display:flex;"><span><span style="color:#177500"># work on your feature:</span>
@@ -155,33 +207,28 @@
 </span></span><span style="display:flex;"><span><span style="color:#177500"># Push develop</span>
 </span></span><span style="display:flex;"><span>git push
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># Delete feature branch</span>
+</span></span><span style="display:flex;"><span><span style="color:#177500"># Delete the feature branch</span>
 </span></span><span style="display:flex;"><span>git branch -d feature-mynewfeaturename
 </span></span></code></pre></div></section><section>
-<h3 id="il-repo-ufficiale-del-vostro-progetto">Il repo ufficiale del vostro progetto</h3>
-<h4 id="approccio-1-workflow-semplice">Approccio 1: workflow semplice</h4>
+<h2 id="il-repo-ufficiale-del-vostro-progetto">Il repo ufficiale del vostro progetto</h2>
 <ul>
-<li>Qualcuno di voi agirà come “repo maintainer”
+<li>Qualcuno di voi agirà come <em>repo maintainer</em>
 <ul>
-<li>Creerà quindi il repository su GitHub</li>
+<li><em>Creerà quindi il repository</em> in local con <code>git init</code>,</li>
+<li><em>Creerà un repository su GitHub</em> e <em>darà diritto di scrittura</em> anche agli altri membri del team</li>
+<li>Lo registrerà come remote usando <code>git remote</code></li>
+<li>Farà il primo commit con il template di progetto fornito da noi
+<ul>
+<li>Progetti normali: <a href="https://github.com/unibo-oop/sample-gradle-project">https://github.com/unibo-oop/sample-gradle-project</a></li>
+<li>Progetti con JavaFX: <a href="https://github.com/unibo-oop/sample-javafx-project">https://github.com/unibo-oop/sample-javafx-project</a></li>
 </ul>
 </li>
-<li>Gli altri membri del team faranno la <code>clone</code></li>
+<li>Farà il primo push</li>
+</ul>
+</li>
+<li>Gli altri membri del team faranno il <code>clone</code></li>
 <li>Ciascuno lavorerà parallelamente sul proprio repository locale (working copy), condividendo tramite <code>push</code> e <code>pull</code> il proprio lavoro con gli altri</li>
-</ul>
-</section><section>
-<h4 id="approccio-2-workflow-avanzato">Approccio 2: workflow avanzato</h4>
-<p>Ottimo per progetti di grosse dimensioni e/o per team molto eterogenei, dove qualcuno deve assicurarsi della qualità del codice prodotto da altri.</p>
-<ul>
-<li>Il maintainer crea il repository, ed è l’unico col diritto di scrittura</li>
-<li>Gli altri membri del team hanno una <strong>fork</strong> a testa</li>
-<li>Ciascuno lavora su una working copy, facendo pull dal repository “centrale” e push sulla propria fork</li>
-<li>Quando una feature è completa, o si arriva ad un buon grado di sviluppo, si apre una <strong>pull request</strong></li>
-<li>Il maintainer revisiona il codice, assegna eventuali modifiche, e quando è soddisfatto accetta la pull request facendo il merge del codice nel repository principale</li>
-</ul>
-<p>Questo workflow è un overkill per il progetto di OOP</p>
-<ul>
-<li>Ma è possibile che vi chiederemo di lavorare così, se farete tesi o un tirocini relativi ad alcuni nostri software</li>
+<li>Chi stesse sviluppando delle feature, potrà creare un branch apposito per ciascuna di esse</li>
 </ul>
 </section><section>
 <h1 id="dvcs-workflow-1">DVCS Workflow</h1>
@@ -195,7 +242,7 @@
 <!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2023-11-09
+<p>Slide compilate il: 2023-11-12
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
