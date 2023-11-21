@@ -21,20 +21,21 @@
   
 
     <section><h1 id="build-systems-e-introduzione-a-gradle">Build systems e introduzione a gradle</h1>
-<p>&lt;div style="text-align: center; margin-bottom: 3em"&gt;
-&lt;h4 id="programmazione-ad-oggetti"&gt;Programmazione ad Oggetti&lt;/h4&gt;
-&lt;h4 id="cdl-ingegneria-e-scienze-informatiche"&gt;C.D.L. Ingegneria e Scienze Informatiche&lt;/h4&gt;
-&lt;/div&gt;
-&lt;div style="text-align: center; margin-bottom: 3em"&gt;
-&lt;h3 id="danilo-pianini—–danilopianiniuniboitmailtodanilopianiniuniboit"&gt;&lt;a href="mailto:danilo.pianini@unibo.it"&gt;Danilo Pianini &amp;mdash; &lt;code&gt;danilo.pianini@unibo.it&lt;/code&gt;&lt;/a&gt;&lt;/h3&gt;
-&lt;!– ### <a href="mailto:roby.casadei@unibo.it">Roberto Casadei — <code>roby.casadei@unibo.it</code></a> –&gt;
-&lt;/div&gt;
-&lt;div style="text-align: left; margin-left: 10em"&gt;
-&lt;p&gt;Slide compilate il: 2023-11-19
-&lt;/p&gt;
-&lt;p&gt;&lt;a href="?print-pdf&amp;amp;pdfSeparateFragments=false"&gt;&lt;i class="fa fa-print" aria-hidden="true"&gt;&lt;/i&gt; versione stampabile&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=".."&gt;&lt;i class="fa fa-undo" aria-hidden="true"&gt;&lt;/i&gt; menu principale&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;</p>
+<!-- this file includes generated content. Do not edit. Edit content/03-gradle-basics/generator.md, instead. -->
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini-----danilopianiniuniboitmailtodanilopianiniuniboit"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+<!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2023-11-21
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
 </section><section>
 <!-- this file includes generated content. Do not edit. Edit content/03-gradle-basics/generator.md, instead. -->
 <h2 id="la-costruzione-del-software">La costruzione del software</h2>
@@ -336,6 +337,22 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
 <li><code>sh gradlew</code></li>
 <li><code>bash gradlew</code></li>
 </ul>
+</section><section>
+<!-- this file includes generated content. Do not edit. Edit content/03-gradle-basics/generator.md, instead. -->
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti-1">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche-1">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini-----danilopianiniuniboitmailtodanilopianiniuniboit-1"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+<!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2023-11-21
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
 </section>
 
   
@@ -415,8 +432,6 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
   
 
   
-    
-  
 
   
 
@@ -445,30 +460,6 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
   
 
 
-
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({"startOnLoad":false});
-
-    let render = (event) => {
-      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
-      if (!mermaidElems.length){
-          return
-      }
-      mermaidElems.forEach(mermaidElem => {
-          let processed = mermaidElem.getAttribute('data-processed');
-          if (!processed){
-              
-              mermaid.init(undefined, mermaidElem);
-          }
-      });
-    };
-    
-    render({currentSlide: Reveal.getCurrentSlide()});
-
-    Reveal.on('slidechanged', render);
-    Reveal.on('ready', render);
-  </script>
 
     <script>
     MathJax = {
