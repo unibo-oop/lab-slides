@@ -10,7 +10,9 @@ aliases = ["/build-systems-basics/"]
 
 # Build systems e introduzione a gradle
 
-{{% import path="cover.md" %}}
+<!-- write-here "cover.md" -->
+
+<!-- end-write -->
 
 ---
 
@@ -21,5 +23,11 @@ aliases = ["/build-systems-basics/"]
 ---
 
 <!-- write-here "shared-slides/build-systems/it-gradle-wrapper.md" -->
+
+<!-- end-write -->
+
+---
+
+<!-- write-here "cover.md" -->
 
 <!-- end-write -->
