@@ -125,7 +125,7 @@ di default, questo causa un fallimento della build se ci sono errori in analisi 
     preferendo i falsi positivi ai falsi negativi.
 * **Specificità**: capacità di un test di identificare i casi negativi
     * Alta specificità $\Rightarrow$ pochi falsi positivi
-    * Un test molto sensibile tende a sbagliare "in difetto",
+    * Un test molto specifico tende a sbagliare "in difetto",
     preferendo i falsi negativi ai falsi positivi.
 
 Sensibilità e specificità spesso vanno *bilanciate*,
