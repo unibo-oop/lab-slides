@@ -31,7 +31,7 @@
 <!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2023-12-01
+<p>Slide compilate il: 2023-12-03
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
@@ -67,7 +67,7 @@
 <h3 id="java-apis">Java APIs</h3>
 <ul>
 <li>Libreria che include classi e interfacce scritte in Java <!-- e compilato con retro compatibilità fino a Java 7 --></li>
-<li>Nel 2022, la versione più recente, <em>JavaFX 19</em>, richiede <em>JDK &gt;= 11</em></li>
+<li>Nel 2022, la versione più recente, <em>JavaFX 21</em>, richiede <em>JDK &gt;= 17</em></li>
 </ul>
 <h3 id="fxml-e-css-per-lo-stile">FXML (e CSS per lo stile)</h3>
 <ul>
@@ -399,8 +399,8 @@
 </ul>
 </li>
 <li>Un <code>Node</code> può essere “gestito” (<em>managed</em>) o meno: nel primo caso, il parent ne gestirà il posizionamento/dimensionamento (in base alla <em>preferred size</em> del nodo)</li>
-<li>Se ci sono più <code>Screen</code> (si veda slide più avanti), i bound degli schermi non-primari saranno relativi a quelli dello schermo primario</li>
 </ul>
+<!-- - Se ci sono più `Screen` (si veda slide più avanti), i bound degli schermi non-primari saranno relativi a quelli dello schermo primario -->
 </section><section>
 <h2 id="eventi">Eventi</h2>
 <ul>
@@ -409,7 +409,7 @@
 <li>ogni evento ha un <em>event source</em>, <em>event target</em>, ed <em>event type</em>  e può essere consumato (<code>consume()</code>)</li>
 </ul>
 </li>
-<li>GLi eventi possono essere gestiti attraverso <em>event handlers</em>
+<li>Gli eventi possono essere gestiti attraverso <em>event handlers</em>
 <ul>
 <li>Ogni <code>EventHandler&lt;T extends Event&gt;</code> deve implementare il metodo <code>void handle(T)</code></li>
 </ul>
@@ -419,19 +419,13 @@
 <li>In generale, attraverso i metodi <code>setOn...()</code></li>
 </ul>
 </li>
-<li>Processamento degli eventi
-<ol>
-<li>selezione dell’<em>event target</em> (ad es., il nodo su cui si è clickato)</li>
-<li>costruzione dell’<em>event route</em> (tipicamente dallo <code>Stage</code> all’event target)</li>
-<li>percorrimento dell’event route
-<ul>
-<li>(A) <em>capture phase</em>: esecuzione degli <em>event filter</em> dalla testa alla coda della route</li>
-<li>(B) <em>event bubbling</em>: esecuzione degli <em>event handler</em> dalla coda alla testa della route</li>
 </ul>
-</li>
-</ol>
-</li>
-</ul>
+<!-- * Processamento degli eventi
+    1. selezione dell'*event target* (ad es., il nodo su cui si è clickato)
+    2. costruzione dell'*event route* (tipicamente dallo `Stage` all'event target)
+    3. percorrimento dell'event route
+        - (A) *capture phase*: esecuzione degli *event filter* dalla testa alla coda della route
+        - (B) *event bubbling*: esecuzione degli *event handler* dalla coda alla testa della route -->
 </section><section>
 <h3 id="es-gestione-del-click-su-un-button">Es. Gestione del click su un <code>Button</code></h3>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">btn</span>.<span style="color:#836c28">setOnMouseClicked</span>(<span style="color:#000">event</span> <span style="color:#000">-&gt;</span> {
@@ -850,7 +844,7 @@ accoda il runnable nella coda degli eventi del JFXAT
 <!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2023-12-01
+<p>Slide compilate il: 2023-12-03
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
