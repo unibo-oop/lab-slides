@@ -50,7 +50,7 @@ aliases = ["/javafx/"]
 ### Java APIs
 
 * Libreria che include classi e interfacce scritte in Java <!-- e compilato con retro compatibilità fino a Java 7 -->
-* Nel 2022, la versione più recente, *JavaFX 19*, richiede *JDK >= 11*
+* Nel 2022, la versione più recente, *JavaFX 21*, richiede *JDK >= 17*
 
 
 ### FXML (e CSS per lo stile)
@@ -454,7 +454,7 @@ for(Month m : Month.values()) {
 - Sul dimensionamento di uno `Stage`
     - Se non ha una scena associata o la scena è vuota, la dimensione è specificata dalla piattaforma. Altrimenti, la dimensione sarà data dalla scena.
 - Un `Node` può essere "gestito" (*managed*) o meno: nel primo caso, il parent ne gestirà il posizionamento/dimensionamento (in base alla *preferred size* del nodo)
-- Se ci sono più `Screen` (si veda slide più avanti), i bound degli schermi non-primari saranno relativi a quelli dello schermo primario
+<!-- - Se ci sono più `Screen` (si veda slide più avanti), i bound degli schermi non-primari saranno relativi a quelli dello schermo primario -->
 
 
 
@@ -465,16 +465,16 @@ for(Month m : Month.values()) {
 
 * Gli **eventi** (`javafx.event.Event`) possono essere generati dall'interazione dell'utente con gli elementi grafici
     * ogni evento ha un *event source*, *event target*, ed *event type*  e può essere consumato (`consume()`)
-* GLi eventi possono essere gestiti attraverso *event handlers*
+* Gli eventi possono essere gestiti attraverso *event handlers*
     * Ogni `EventHandler<T extends Event>` deve implementare il metodo `void handle(T)`
 * Ogni nodo può registrare uno o più event handler
     * In generale, attraverso i metodi `setOn...()`
-* Processamento degli eventi
+<!-- * Processamento degli eventi
     1. selezione dell'*event target* (ad es., il nodo su cui si è clickato)
     2. costruzione dell'*event route* (tipicamente dallo `Stage` all'event target)
     3. percorrimento dell'event route
         - (A) *capture phase*: esecuzione degli *event filter* dalla testa alla coda della route
-        - (B) *event bubbling*: esecuzione degli *event handler* dalla coda alla testa della route
+        - (B) *event bubbling*: esecuzione degli *event handler* dalla coda alla testa della route -->
 
 ---
 
