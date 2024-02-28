@@ -7,10 +7,12 @@
 * DallaTheMage
 * Drowsy_Fox03
 * DodoP12
+* Fuwuffy
 * Gaburi14
 * JaJi
 * Lozziopadredeivizzi
 * MatteoGodzilla
 * MrDorby
 * Nax
+* PavoJ
 * TheDarkDestructor
