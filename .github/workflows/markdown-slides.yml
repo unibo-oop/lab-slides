@@ -24,7 +24,7 @@ jobs:
         shell: bash
         run: |
           USES=$(cat <<TRICK_RENOVATE
-          - uses: gohugoio/hugo@v0.126.3
+          - uses: gohugoio/hugo@v0.127.0
           TRICK_RENOVATE
           )
           echo "Computed version: \"${USES#*@v}\""
