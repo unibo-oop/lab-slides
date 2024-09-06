@@ -31,7 +31,7 @@
 <!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2024-09-05
+<p>Slide compilate il: 2024-09-06
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
@@ -651,7 +651,7 @@ si ottiene un interprete che risponderà ai comandi del debugger sulla porta 104
 <!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2024-09-05
+<p>Slide compilate il: 2024-09-06
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
@@ -735,15 +735,9 @@ si ottiene un interprete che risponderà ai comandi del debugger sulla porta 104
   
 
   
-    
-  
 
   
-    
-  
 
-  
-    
   
 
   
@@ -769,30 +763,6 @@ si ottiene un interprete che risponderà ai comandi del debugger sulla porta 104
   
 
 
-
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({"startOnLoad":false});
-
-    let render = (event) => {
-      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
-      if (!mermaidElems.length){
-          return
-      }
-      mermaidElems.forEach(mermaidElem => {
-          let processed = mermaidElem.getAttribute('data-processed');
-          if (!processed){
-              
-              mermaid.init(undefined, mermaidElem);
-          }
-      });
-    };
-    
-    render({currentSlide: Reveal.getCurrentSlide()});
-
-    Reveal.on('slidechanged', render);
-    Reveal.on('ready', render);
-  </script>
 
     <script>
     MathJax = {
