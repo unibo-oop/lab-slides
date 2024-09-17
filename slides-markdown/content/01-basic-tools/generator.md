@@ -51,7 +51,7 @@ Temurin (Adoptium), DragonWell (Alibaba), Corretto (Amazon), Zulu (Azul), Liberi
 
 ## Ambiente di riferimento per l'A.A. corrente
 
-### Utilizzeremo Java SE Development Kit 17 (JDK 17)
+### Utilizzeremo Java SE Development Kit 21 (JDK 21)
 
 Include il necessario per eseguire applicazioni Java,
 ossia il JRE con virtual machine (`java`) e relative librerie,
@@ -61,15 +61,14 @@ più gli strumenti di sviluppo, fra cui:
 * impacchettatore (`jar`),
 * e disassemblatore (`javap`).
 
-* Java SE 17 -- ultima versione Long-Term Support (LTS) a disposizione prima dell'inizio del corso
-  * Java 21 è previsto entro fine 2023
+* Java SE 21 -- ultima versione Long-Term Support (LTS) a disposizione prima dell'inizio del corso
+  * Java 25 è per settembre
   * Chi lo desidera può sperimentare con le versioni più recenti
     * Nota: la compatibilità è solo "all'indietro" (*backwards compatibility*):
       nuove JVM possono in generale eseguire applicazioni compilate per un vecchio bytecode, ma non viceversa
 * Faremo riferimento a OpenJDK standard (che fa da *reference*)
   * Ossia, per capire se una JVM si comporta correttamente, si confronta il suo comportamento con OpenJDK
 * Come distributore di riferimento, raccomandiamo Adoptium (https://adoptium.net/)
-  * In realtà ogni esercitazione dovrebbe funzionare con qualsiasi distribuzione OpenJDK e OpenJ9
 
 ---
 
@@ -332,7 +331,7 @@ A partire da Java 9, è stata introdotto in java l'interprete *REPL* `jshell`
 I seguenti errori sono comuni se non è chiaro cosa facciano interprete e compilatore:
 *  <i class="fa-solid fa-ban"></i> `java NomeClasse.java` (l'interprete non lavora su file)
     * Anche se da Java 9 potrebbe funzionare, ma solo perché l'interprete dietro le quinte compila il file e lo esegue
-    * Noi dovremo imparare a costruiare applicazioni vere, quindi: **prima** *si compila*, **poi** *si esegue*!
+    * Noi dovremo imparare a costruire applicazioni vere, quindi: **prima** *si compila*, **poi** *si esegue*!
 *  <i class="fa-solid fa-ban"></i> `java path/to/NomeClasse.class` (l'interprete non lavora su file)
 
 ---
