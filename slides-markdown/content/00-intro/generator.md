@@ -110,6 +110,40 @@ si incoraggia l'uso del **Forum del Corso**
 
 ---
 
+## LLM e strumenti di AI
+
+Esistono strumenti di intelligenza artificiale (tipicamente Large Language Models, LLM)
+che possono essere utilizzati per **generare codice**.
+
+* Allenati a partire da grandi quantità di codice sorgente *preesistente*
+    * Soggetti al problema "garbage in, garbage out"
+    * Risolvono molto bene problemi semplici
+    * Spesso commettono errori in problemi complessi
+* Fruibili via web o integrati dentro l'ambiente di sviluppo
+* Usati sempre di più, anche in contesti professionali
+    * Con risultati variabili
+
+### In questo corso: **vietati**
+
+* Non sono consentiti a in lab
+* Non sono consentiti a casa
+* Non saranno disponibili per l'esame
+    * E sono abbastanza riconoscibili usando la similarità fra progetti, per la quale abbiamo strumenti che già usiamo
+
+### Motivazione
+
+Sono strumenti *potentissimi*, ma è necessario saperli usare **criticamente**, altrimenti:
+* Possono rallentare considerevolmente l'apprendimento
+* Possono generare codice di bassa qualità (con bug, inefficienze, o problemi di stile che non riconoscete)
+* Possono usare parti del linguaggio che ancora non potete conoscere
+    * Ergo, generare codice non comprensibile
+
+---
+
+![](torvalds.jpg)
+
+---
+
 ### Contenuti
 * Java toolchain (`java`, `javac`, `jar`, etc.)
 * VSCode IDE, strumenti di debug
