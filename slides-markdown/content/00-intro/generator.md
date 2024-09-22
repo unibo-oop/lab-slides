@@ -142,6 +142,8 @@ Sono strumenti *potentissimi*, ma è necessario saperli usare **criticamente**, 
 
 ![](torvalds.jpg)
 
+Linus Torvalds, creatore di Linux, commentando un contributo contenente codice generato da un LLM
+
 ---
 
 ### Contenuti
