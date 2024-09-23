@@ -75,6 +75,16 @@ aliases = ["/intro/"]
     * Evocando il docente in caso di difficoltà
     * Chiedendo **sempre** ai docenti una **correzione finale**
 
+## Pause
+
+Da che termina la parte iniziale, siamo in modalità "*pausa dinamica*": potete entrare e uscire dall'aula a piacimento
+* **Una sola regola**: se **siete in lab**, allora **state lavorando**
+    * Se avete fame, sete, necessità fisiologiche, voglia di una pausa,
+    voglia di andare su TikTok, bisogno di fare una partita a Fortnite...
+    <br>*no problem:  uscite e rientrate*
+    * Motivo: distrae moltissimo avere persone intorno che fanno cose decisamente più divertenti che scervellarsi su un esercizio
+
+
 ---
 
 ## Svolgimento di ciascun esercizio
