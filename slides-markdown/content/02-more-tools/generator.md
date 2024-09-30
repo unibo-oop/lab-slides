@@ -19,15 +19,15 @@ aliases = ["/more-tools/"]
 ## Pre-requisiti
 * Rudimenti di programmazione e codifica
 * Nozioni di base dei **filesystem**
-  * **percorsi assoluti e relativi**
+    * **percorsi assoluti e relativi**
 * Utilizzo del terminale
-  * interazione con il file system attraverso terminale (navigazione, concetto di working directory, eccetera)
+    * interazione con il file system attraverso terminale (navigazione, concetto di working directory, eccetera)
 * **Compilazione ed esecuzione di base** di programmi Java
-  * uso basilare dei comandi `javac` e `java`
-  * distinzione tra file sorgenti (`.java`) e file di classi compilate (`.class`)
-  * concetto di **programma/applicazione** in Java
+    * uso basilare dei comandi `javac` e `java`
+    * distinzione tra file sorgenti (`.java`) e file di classi compilate (`.class`)
+    * concetto di **programma/applicazione** in Java
 *  Il concetto di **package** in Java
-  *  contenitore (organizzato gerarchicamente) di tipi (ad es. classi) che funge da namespace e permette controllo degli accessi ai tipi contenuti
+    * contenitore (organizzato gerarchicamente) di tipi (ad es. classi) che funge da namespace e permette controllo degli accessi ai tipi contenuti
 
 ---
 
