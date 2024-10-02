@@ -137,8 +137,9 @@ che può essere sovrascritta in caso di necessità</p>
 </ul>
 </section><section>
 <h2 id="gradle-è-in-espansione-google-trends">Gradle è in espansione: Google trends</h2>
-&lt;script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/3045_RC01/embed_loader.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript"&gt;
+<!-- this file includes generated content. Do not edit. Edit content/03-gradle-basics/generator.md, instead. -->
+<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/3045_RC01/embed_loader.js"></script>
+<script type="text/javascript">
 var today = new Date().toISOString().split('T')[0]
 var dateRange = `2004-01-01 ${today}`
 trends.embed.renderExploreWidget(
@@ -153,12 +154,11 @@ trends.embed.renderExploreWidget(
     "property":""
   },
   {
-    "exploreQuery":"date=all&amp;q=%2Fm%2F028m4s,%2Fm%2F04tj5z,%2Fm%2F080c0g9",
+    "exploreQuery":"date=all&q=%2Fm%2F028m4s,%2Fm%2F04tj5z,%2Fm%2F080c0g9",
     "guestPath":"https://trends.google.com:443/trends/embed/"
   }
 );
-&lt;/script&gt;
-
+</script>
 </section><section>
 <h2 id="concetti-base-in-gradle-task-progetto-plugin">Concetti base in Gradle: <strong>task</strong>, <strong>progetto</strong>, <strong>plugin</strong></h2>
 <h3 id="progetto">Progetto</h3>
@@ -203,7 +203,8 @@ Gradle contiene diversi plugin pronti all’uso
 <li>Al momento, ci basta una sola riga di codice per ciascuno!</li>
 </ul>
 <p><code>settings.gradle.kts</code></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">rootProject</span>.<span style="color:#000">name</span> = &amp;<span style="color:#000">#</span><span style="color:#1c01ce">34</span>;<span style="color:#000">minimal</span>-<span style="color:#000">build</span>&amp;<span style="color:#000">#</span><span style="color:#1c01ce">34</span>;
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">rootProject.name = "minimal-build"
+</span>
 </span></span></code></pre></div><p><code>build.gradle.kts</code></p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">plugins</span> { <span style="color:#000">java</span> }
 </span></span></code></pre></div><p>Così configurato, Gradle autonomamente:</p>
@@ -338,6 +339,7 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
 <li><code>bash gradlew</code></li>
 </ul>
 </section><section>
+<h1 id="build-systems-e-introduzione-a-gradle-1">Build systems e introduzione a gradle</h1>
 <!-- this file includes generated content. Do not edit. Edit content/03-gradle-basics/generator.md, instead. -->
 <div style="text-align: center; margin-bottom: 3em">
 <h4 id="programmazione-ad-oggetti-1">Programmazione ad Oggetti</h4>
@@ -432,8 +434,6 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
   
 
   
-    
-  
 
   
 
@@ -462,30 +462,6 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
   
 
 
-
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({"startOnLoad":false});
-
-    let render = (event) => {
-      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
-      if (!mermaidElems.length){
-          return
-      }
-      mermaidElems.forEach(mermaidElem => {
-          let processed = mermaidElem.getAttribute('data-processed');
-          if (!processed){
-              
-              mermaid.init(undefined, mermaidElem);
-          }
-      });
-    };
-    
-    render({currentSlide: Reveal.getCurrentSlide()});
-
-    Reveal.on('slidechanged', render);
-    Reveal.on('ready', render);
-  </script>
 
     <script>
     MathJax = {
