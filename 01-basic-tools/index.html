@@ -2,12 +2,12 @@
     <meta charset="utf-8">
 <title>Strumenti di base del JDK</title>
 <meta name="description" content="Laboratorio di Programmazione ad Oggetti">
-<meta name="author" content="Danilo Pianini">
+
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/lab-slides/reveal-js/dist/reset.css">
 <link rel="stylesheet" href="/lab-slides/reveal-js/dist/reveal.css">
-  <link rel="stylesheet" href="/lab-slides/css/custom-theme.min.a2bf7ae2d9de873f01d93f372427cc923ede6edb89e6603f35f092c7fbe35eaf.css" id="theme"><link rel="stylesheet" href="/lab-slides/highlight-js/default.min.css">
+  <link rel="stylesheet" href="/lab-slides/css/custom-theme.min.7d3801440fda4377dd25e4071e6109e4ed99468049f8fd0eddc9749faafd372d.css" id="theme"><link rel="stylesheet" href="/lab-slides/highlight-js/default.min.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
@@ -31,7 +31,7 @@
 <!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2024-10-15
+<p>Slide compilate il: 2024-10-19
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
@@ -265,81 +265,81 @@ e l’interazione con i calcolatori avveniva di norma tramite interfaccia testua
 <table>
   <thead>
       <tr>
-          <th style="text-align: left"><strong>Operazione</strong></th>
-          <th style="text-align: left"><strong>Comando Unix</strong></th>
-          <th style="text-align: left"><strong>Comando Win</strong></th>
+          <th><strong>Operazione</strong></th>
+          <th><strong>Comando Unix</strong></th>
+          <th><strong>Comando Win</strong></th>
       </tr>
   </thead>
   <tbody>
       <tr>
-          <td style="text-align: left">Ottenere aiuto / elenco comandi</td>
-          <td style="text-align: left"><code>help</code></td>
-          <td style="text-align: left"><code>help</code></td>
+          <td>Ottenere aiuto / elenco comandi</td>
+          <td><code>help</code></td>
+          <td><code>help</code></td>
       </tr>
       <tr>
-          <td style="text-align: left">Visualizzare la directory corrente</td>
-          <td style="text-align: left"><code>pwd</code></td>
-          <td style="text-align: left"><code>echo %cd%</code></td>
+          <td>Visualizzare la directory corrente</td>
+          <td><code>pwd</code></td>
+          <td><code>echo %cd%</code></td>
       </tr>
       <tr>
-          <td style="text-align: left">Contenuto della directory corrente</td>
-          <td style="text-align: left"><code>ls -alh</code></td>
-          <td style="text-align: left"><code>dir</code></td>
+          <td>Contenuto della directory corrente</td>
+          <td><code>ls -alh</code></td>
+          <td><code>dir</code></td>
       </tr>
       <tr>
-          <td style="text-align: left">Passare alla directory di nome <code>baz</code></td>
-          <td style="text-align: left"><code>cd baz</code></td>
-          <td style="text-align: left"><code>cd baz</code></td>
+          <td>Passare alla directory di nome <code>baz</code></td>
+          <td><code>cd baz</code></td>
+          <td><code>cd baz</code></td>
       </tr>
       <tr>
-          <td style="text-align: left">Passare alla directory superiore</td>
-          <td style="text-align: left"><code>cd ..</code></td>
-          <td style="text-align: left"><code>cd..</code></td>
+          <td>Passare alla directory superiore</td>
+          <td><code>cd ..</code></td>
+          <td><code>cd..</code></td>
       </tr>
       <tr>
-          <td style="text-align: left">Cambiare unità disco (passare a D:)</td>
-          <td style="text-align: left">–</td>
-          <td style="text-align: left"><code>D:</code></td>
+          <td>Cambiare unità disco (passare a D:)</td>
+          <td>–</td>
+          <td><code>D:</code></td>
       </tr>
       <tr>
-          <td style="text-align: left">Eliminare il file <code>foo</code> (non va con le cartelle!)</td>
-          <td style="text-align: left"><code>rm foo</code></td>
-          <td style="text-align: left"><code>del foo</code></td>
+          <td>Eliminare il file <code>foo</code> (non va con le cartelle!)</td>
+          <td><code>rm foo</code></td>
+          <td><code>del foo</code></td>
       </tr>
       <tr>
-          <td style="text-align: left">Eliminare la directory di nome <code>bar</code></td>
-          <td style="text-align: left"><code>rm -r bar</code></td>
-          <td style="text-align: left"><code>rd bar</code></td>
+          <td>Eliminare la directory di nome <code>bar</code></td>
+          <td><code>rm -r bar</code></td>
+          <td><code>rd bar</code></td>
       </tr>
       <tr>
-          <td style="text-align: left">Creare una directory di nome <code>baz</code></td>
-          <td style="text-align: left"><code>mkdir baz</code></td>
-          <td style="text-align: left"><code>md baz</code></td>
+          <td>Creare una directory di nome <code>baz</code></td>
+          <td><code>mkdir baz</code></td>
+          <td><code>md baz</code></td>
       </tr>
       <tr>
-          <td style="text-align: left">Copiare il file <code>foo</code> in <code>bar</code></td>
-          <td style="text-align: left"><code>cp foo bar</code></td>
-          <td style="text-align: left"><code>copy foo bar</code></td>
+          <td>Copiare il file <code>foo</code> in <code>bar</code></td>
+          <td><code>cp foo bar</code></td>
+          <td><code>copy foo bar</code></td>
       </tr>
       <tr>
-          <td style="text-align: left">Spostare (rinominare) il file <code>foo</code> in <code>bar</code></td>
-          <td style="text-align: left"><code>mv foo bar</code></td>
-          <td style="text-align: left"><code>move foo bar</code></td>
+          <td>Spostare (rinominare) il file <code>foo</code> in <code>bar</code></td>
+          <td><code>mv foo bar</code></td>
+          <td><code>move foo bar</code></td>
       </tr>
       <tr>
-          <td style="text-align: left">Creare un file vuoto di nome <code>foo</code></td>
-          <td style="text-align: left"><code>touch foo</code></td>
-          <td style="text-align: left"><code>echo. &gt; foo</code></td>
+          <td>Creare un file vuoto di nome <code>foo</code></td>
+          <td><code>touch foo</code></td>
+          <td><code>echo. &gt; foo</code></td>
       </tr>
       <tr>
-          <td style="text-align: left">Visualizzare il contenuto del file <code>foo</code></td>
-          <td style="text-align: left"><code>cat foo</code></td>
-          <td style="text-align: left"><code>type foo</code></td>
+          <td>Visualizzare il contenuto del file <code>foo</code></td>
+          <td><code>cat foo</code></td>
+          <td><code>type foo</code></td>
       </tr>
       <tr>
-          <td style="text-align: left">Interrompere il processo corrente (segnale <code>SIGINT</code>)</td>
-          <td style="text-align: left"><kbd>CTRL</kbd>+<kbd class="kbc-button">C</kbd></td>
-          <td style="text-align: left"><kbd>CTRL</kbd>+<kbd class="kbc-button">C</kbd></td>
+          <td>Interrompere il processo corrente (segnale <code>SIGINT</code>)</td>
+          <td><kbd>CTRL</kbd>+<kbd class="kbc-button">C</kbd></td>
+          <td><kbd>CTRL</kbd>+<kbd class="kbc-button">C</kbd></td>
       </tr>
   </tbody>
 </table>
@@ -479,7 +479,7 @@ mentre l’interprete Java (la Java Virtual Machine) esegue una ed una sola <str
 <!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2024-10-15
+<p>Slide compilate il: 2024-10-19
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
@@ -556,71 +556,61 @@ mentre l’interprete Java (la Java Virtual Machine) esegue una ed una sola <str
 
 
 
+
+  
   
 
   
-
   
 
   
-    
   
 
   
-    
   
 
   
-    
   
 
   
-
   
 
   
-
   
 
   
-
   
 
   
-
   
 
   
-
   
 
   
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
 
 
 
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({"startOnLoad":false});
 
-    let render = (event) => {
-      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
-      if (!mermaidElems.length){
-          return
-      }
-      mermaidElems.forEach(mermaidElem => {
-          let processed = mermaidElem.getAttribute('data-processed');
-          if (!processed){
-              
-              mermaid.init(undefined, mermaidElem);
-          }
-      });
-    };
-    
-    render({currentSlide: Reveal.getCurrentSlide()});
-
-    Reveal.on('slidechanged', render);
-    Reveal.on('ready', render);
-  </script>
 
     <script>
     MathJax = {
