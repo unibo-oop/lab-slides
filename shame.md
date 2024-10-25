@@ -2,6 +2,7 @@
 
 ## Some of the best worst git `user.name` configurations
 
+* 2Skali3
 * Alelover01
 * Beylax
 * BlusterX
@@ -18,4 +19,6 @@
 * Nax
 * nuxtbart
 * PavoJ
+* SediaVerde20
+* SigCiccio
 * TheDarkDestructor
