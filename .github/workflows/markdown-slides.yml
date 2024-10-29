@@ -48,6 +48,7 @@ jobs:
       - name: Build slides with hugo
         working-directory: slides-markdown
         run: hugo
+      - name: Install Node
         uses: actions/setup-node@v4.1.0
         with:
           node-version-file: package.json
