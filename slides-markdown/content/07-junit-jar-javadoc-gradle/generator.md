@@ -213,7 +213,7 @@ Da adesso Gradle può lanciare i test JUnit 5 tramite il task `test`!
 
 ---
 
-# Assemblamento di applicazioni Java
+# Assemblaggio di applicazioni Java
 
 ---
 
@@ -361,7 +361,7 @@ Per farlo, sfruttiamo il concetto di *proprietà* del progetto.
 Le proprietà sono associazioni chiave-valore fra due stringhe che possono essere:
 * fornite come configurazione del sistema **$\leftarrow$ non lo vediamo**
 * fornite come variabile d'ambiente **$\leftarrow$ non lo vediamo**
-* scritte in un file `gradle.properties` *$\leftarrow$ per OOP cambia poco rispetto a scriverlo nel `bild.gradle.kts*
+* scritte in un file `gradle.properties` *$\leftarrow$ per OOP cambia poco rispetto a scriverlo nel `build.gradle.kts`*
 * passate da terminale in formato `-Pnome=valore` *$\leftarrow$ utile se si hanno più main*
 
 Scrivendo quanto segue nel `build.gradle.kts`
