@@ -99,7 +99,7 @@ preconfigurandoli in modo "ragionevole".
 
 ```kotlin
 plugins {
-    id("org.danilopianini.gradle-java-qa") version "0.40.0"
+    id("org.danilopianini.gradle-java-qa") version "1.75.0"
 }
 ```
 
