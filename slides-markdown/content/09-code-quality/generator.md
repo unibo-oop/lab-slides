@@ -49,7 +49,7 @@ Noi vedremo la terza modalità.
 
 ---
 
-## SpotBugs (ex FindBugs)} 
+## SpotBugs (ex FindBugs)
 
 
 SpotBugs scansiona il *bytecode* generato dal compilatore, e dalla sua analisi cerca di scoprire potenziali bug nel sorgente, ad esempio:
