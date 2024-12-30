@@ -88,7 +88,7 @@ jobs:
         uses: danysk/action-checkout@0.2.22
       - name: Compile LaTeX
         id: compile
-        uses: DanySK/compile-latex-action@db99c66caf60dcdba71399faf50c88fdf27cff74
+        uses: DanySK/compile-latex-action@dce171188e8cf1e3dc3d33a8519f762e1256c477
       - name: Deliver the pdfs
         if: >-
           (github.event_name == 'push' && github.ref == 'refs/heads/master')
