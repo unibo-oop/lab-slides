@@ -10,6 +10,7 @@
 * DallaTheMage
 * Drowsy_Fox03
 * DodoP12
+* ElManto03
 * gimboSpaziale
 * Fuwuffy
 * Gaburi14
@@ -23,4 +24,5 @@
 * PavoJ
 * SediaVerde20
 * SigCiccio
+* SignorTynam
 * TheDarkDestructor
