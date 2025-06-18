@@ -4,6 +4,7 @@
 
 * 2Skali3
 * Alelover01
+* Bergogliox
 * Beylax
 * BlusterX
 * Carbocode
@@ -12,6 +13,7 @@
 * Drowsy_Fox03
 * DodoP12
 * ElManto03
+* emme004
 * gimboSpaziale
 * Fuwuffy
 * Gaburi14
@@ -27,5 +29,6 @@
 * Sams-Source
 * SediaVerde20
 * SigCiccio
+* Simollino
 * SignorTynam
 * TheDarkDestructor
