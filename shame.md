@@ -33,4 +33,5 @@
 * SigCiccio
 * Simollino
 * SignorTynam
+* SolarEgg
 * TheDarkDestructor
