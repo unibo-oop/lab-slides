@@ -8,6 +8,7 @@
 * Beylax
 * BlusterX
 * Carbocode
+* conno711
 * DallaTheMage
 * delpiter
 * Drowsy_Fox03
