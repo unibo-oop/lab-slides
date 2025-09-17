@@ -14,6 +14,7 @@ outputs = ["Reveal"]
 * [Introduzione e informazioni sul corso](intro/)
 * [Strumenti del JDK, parte prima](basic-tools/)
 * [Strumenti del JDK, parte seconda](more-tools/)
+* [Introduzione a Visual Studio Code e Debugging](vscode/)
 * [Dipendenze nel software e build automation](build-systems-basics/)
 * [Sistemi di controllo versione](dvcs-basics/)
 * [Branching e merging](dvcs-branching/)
