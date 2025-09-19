@@ -200,15 +200,12 @@ Più avanti vedremo che lo strumento che useremo per fare controllo di versione 
 * Oppure: Start  $\Rightarrow$ Nella barra di ricerca, digitare `git bash`
 * Consente di lavorare su Windows con un terminale meglio equipaggiato, vicino ad un nativo Linux
 
-### Manjaro con Terminale ZSH via WSL2 (con configurazioni di Pianini)
-* Avviare WSL tramite collegamento "Lancia WSL" presente nella cartella "WSL" del Desktop
-* Tasto destro sul file $\to$ *Esegui con PowerShell* (rispondere "T" alla domanda sui criteri d'esecuzione, e attendere)
+### Manjaro con Terminale ZSH via WSL2 (con configurazione simile a quella di Pianini)
+* Tasto destro sul file "Lancia WSL" presente sul Desktop $\to$ *Esegui con PowerShell*
   * Attendere l'importazione della distro Linux (massimo 2 minuti)
   * Non aprire altre istanze finché la prima non è avviata!
   * Se dopo due minuti non è avviata, chiudere e ritentare
-
 * Questa è una shell nativa Linux preconfigurata dal docente
-  * (e quindi potenzialmente con personalizzazioni che dipendono dal gusto personale)
 
 ---
 
