@@ -61,8 +61,8 @@ più gli strumenti di sviluppo, fra cui:
 * impacchettatore (`jar`),
 * e disassemblatore (`javap`).
 
-* Java SE 21 -- ultima versione Long-Term Support (LTS) a disposizione prima dell'inizio del corso
-  * Java 25 è per settembre
+* Java SE 21 -- penultima versione Long-Term Support (LTS) a disposizione prima dell'inizio del corso
+  * Java 25, ultimissima LTS, è uscita il 16 settembre 2025
   * Chi lo desidera può sperimentare con le versioni più recenti
     * Nota: la compatibilità è solo "all'indietro" (*backwards compatibility*):
       nuove JVM possono in generale eseguire applicazioni compilate per un vecchio bytecode, ma non viceversa
