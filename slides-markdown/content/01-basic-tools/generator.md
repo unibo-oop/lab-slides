@@ -280,7 +280,7 @@ Le shell Unix memorizzano i comandi usati anche in sessioni precedenti.
 1. Posizionarsi all'interno della cartella scompattata con l'ausilio del comando `cd` (change directory)
 1. Verificare che il contenuto della cartella sia quello atteso
 1. Scegliere un editor di testo per modificare i file sorgente
-    * Il laboratorio è equipaggiato con diversi editor di testo: JEdit, Visual Studio Code...
+    * Il laboratorio è equipaggiato con diversi editor di testo
     * **NON** sono adatti per programmare i word processors (Libreoffice Writer, <i class="fa-brands fa-microsoft"></i> Word, <i class="fa-brands fa-microsoft"></i> WordPad...), né l'editor di testo incluso in Windows (Notepad).
     * Per questo lab, suggerisce l'utilizzo di **Notepad++**
         * consigliato prima di passare ad editor/IDE più sofisticati (come *VS Code*)
