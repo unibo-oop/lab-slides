@@ -22,11 +22,11 @@ aliases = ["/intro/"]
 * La gestione della partecipazione ai turni è demandata al prof. Viroli
 * Nello stesso giorno avrete sia OOP che OS
 
-### Primo Turno (iniziale cognome nell'intervallo [A-La])
+### Primo Turno (iniziale cognome nell'intervallo [A-Manp])
 * Lunedì, 9:00 - 13:00
 * Lab. 2.2, Campus Cesena
 
-### Secondo Turno (iniziale cognome nell'intervallo [Lb-Z])
+### Secondo Turno (iniziale cognome nell'intervallo [Manq-Z])
 * Martedì, 13:00 - 17:00
 * Lab. 2.2, Campus Cesena
 
