@@ -18,7 +18,7 @@ aliases = ["/intro/"]
 
 ## Organizzazione del Laboratorio
 * Due turni settimanali
-* Il contenuto della lezione e dell'esecitazione settimanale del laboratorio è il medesimo per entrambi i turni
+* Il contenuto della lezione e dell'esercitazione settimanale del laboratorio è il medesimo per entrambi i turni
 * La gestione della partecipazione ai turni è demandata al prof. Viroli
 * Nello stesso giorno avrete sia OOP che OS
 
