@@ -9,8 +9,6 @@
 
 ### [Danilo Pianini --- `danilo.pianini@unibo.it`](mailto:danilo.pianini@unibo.it)
 
-<!-- ### [Roberto Casadei --- `roby.casadei@unibo.it`](mailto:roby.casadei@unibo.it) -->
-
 </div>
 
 
