@@ -52,7 +52,7 @@ aliases = ["/intro/"]
 ### Regole di ingaggio
 1. Si utilizzi il forum del corso per qualunque dubbio tecnico
 2. Si utilizzi l'email solo in caso di problemi strettamente personali
-  * Un esercizio che non riuscite a risolvere **non** è un problema strettamente personale
+   * Un esercizio che non riuscite a risolvere **non** è un problema strettamente personale
 3. Se si invia una email, **si mettano in copia tutti i docenti**: *Viroli*, *Pianini*, *Baiardi*, e *Cortecchia*
 
 ---
