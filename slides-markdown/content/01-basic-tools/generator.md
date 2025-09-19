@@ -167,7 +167,8 @@ Alcuni esempi
   * Molto flessibili
   * Autocompletamento avanzato e contestualità
   * ZSH è default su <i class="fa-brands fa-apple"></i>, seppur con configurazione minimale
-  * La shell che vedrete sul sistema del docente è ZSH con configurazione abbastanza ricca
+  * La shell che vedrete sul sistema del docente è ZSH con configurazione di default di Manjaro Linux
+     * Simili configurazioni possono essere ottenute applicando [oh-my-zsh](https://ohmyz.sh/) e [powerlevel10k](https://github.com/romkatv/powerlevel10k)
 
 Panoramica delle differenze: http://www.faqs.org/faqs/unix-faq/shell/shell-differences/
 
