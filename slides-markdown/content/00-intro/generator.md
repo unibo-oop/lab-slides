@@ -32,28 +32,36 @@ aliases = ["/intro/"]
 
 ---
 
-## Docenti del Laboratorio
+## Docente del modulo di laboratorio
 
 ### Prof. Danilo Pianini
-* Responsabile dei moduli di laboratorio
 * mail: `danilo.pianini@unibo.it`
 * ricevimento: su appuntamento, da concordare via mail
 
+## 🚧 Assistenti alla didattica 🚧
+
+* ⏳ **Valido fino al _30/09_, sarà poi aggiornato con i nuovi riferimenti**
+* 📢 Il laboratorio del 29/30 settembre sarà tenuto da Farabegoli e da uno dei nuovi tutor (non Baiardi)
+
 ### Ing. Martina Baiardi
-* Tutor didattico
 * mail: `m.baiardi@unibo.it`
 * ricevimento: su appuntamento, da concordare via mail
 
+### Ing. Nicolas Farabegoli
+* mail: `nicolas.farabegoli@unibo.it`
+* ricevimento: non disponibile
+
+<!--
 ### Ing. Angela Cortecchia
-* Tutor didattico
 * mail: `angela.cortecchia@unibo.it`
 * ricevimento: su appuntamento, da concordare via mail
+-->
 
-### Regole di ingaggio
-1. Si utilizzi il forum del corso per qualunque dubbio tecnico
-2. Si utilizzi l'email solo in caso di problemi strettamente personali
-   * Un esercizio che non riuscite a risolvere **non** è un problema strettamente personale
-3. Se si invia una email, **si mettano in copia tutti i docenti**: *Viroli*, *Pianini*, *Baiardi*, e *Cortecchia*
+## ‼️ Regole di ingaggio
+1. 📝 Si utilizzi il *forum* del corso per qualunque dubbio *tecnico*
+2. 📨 Si utilizzi l'*email* solo per discutere argomenti strettamente *personali*
+   * ❗ Un esercizio che non riuscite a risolvere **non** è un problema strettamente personale
+3. 📌 Se si invia una email, **si mettano in copia _tutti_ i docenti e gli assistenti**
 
 ---
 
@@ -62,6 +70,7 @@ aliases = ["/intro/"]
 * Consente di mettere in pratica quanto visto nelle lezioni in aula
   * lo studente affronta gli esercizi in prima persona
   * **approccio cooperativo**: lo studente può (ed è invitato a) richiedere il supporto diretto dei pari, dei tutor, e del docente
+    * Gli LLM non rientrano fra i pari e non dovrebbero essere consultati
 * Integra ed *espande* i contenuti affrontati in aula
   * Introduce *nuovi argomenti* (non affrontati in aula!)
     * Strumenti, metodologie, pratiche, librerie...
@@ -135,7 +144,7 @@ che possono essere utilizzati per **generare codice**.
 
 ### In questo corso: **vietati**
 
-* Non sono consentiti a in lab
+* Non sono consentiti in lab
 * Non sono consentiti a casa
 * Non saranno disponibili per l'esame
     * E sono abbastanza riconoscibili usando la similarità fra progetti, per la quale abbiamo strumenti che già usiamo
@@ -143,10 +152,13 @@ che possono essere utilizzati per **generare codice**.
 ### Motivazione
 
 Sono strumenti *potentissimi*, ma è necessario saperli usare **criticamente**, altrimenti:
-* Possono rallentare considerevolmente l'apprendimento
+* Possono ostacolare e rallentare l'apprendimento
 * Possono generare codice di bassa qualità (con bug, inefficienze, o problemi di stile che non riconoscete)
+    * Stanno nascendo aziende e professionisti di "AI code cleanup" 
+    * Pare che possano accelerare lo sviluppo in piccoli progetti per sviluppatori inesperti,
+    ma [studi su progetti complessi con sviluppatori esperti rilevano un rallentamento dello sviluppo del 19%](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/)
 * Possono usare parti del linguaggio che ancora non potete conoscere
-    * Ergo, generare codice non comprensibile
+    * Ergo, generare codice non ancora comprensibile
 
 ---
 
@@ -185,11 +197,10 @@ Il corso di laboratorio ha *difficoltà crescente* (superlinearmente, ossia dive
 #### Fondamentale: **impegno** e **mettersi in gioco**
 
 È un corso molto impegnativo -- lo sappiamo dalle valutazioni degli anni passati, e pensiamo sia giusto che lo sia...
-* Richiede attenzione in aula
-* Richiede attenzione e impegno in laboratorio
-* Richiede studio e pratica *anche a casa*
+* Richiede attenzione in aula, impegno in laboratorio, e pratica *anche a casa*
   * Purtroppo è difficile recuperare se si resta indietro, la disciplina aiuta!
-* Dai docenti avrete il massimo supporto <i class="fa-solid fa-hand-fist"></i>, ma il risultato dipende da voi!
+* Non fermatevi quando "funziona", ma solo quando avete capito *perché* funziona
+* Dai docenti avrete il massimo supporto ✊, ma il risultato dipende da voi!
 
 #### Consiglio per chi conosce già Java o altri linguaggi OO/OB (come C#, Javascript, Python, Ruby...)
 
