@@ -107,7 +107,7 @@ Il percorso può essere *assoluto*, ossia partire dalla root:
   * `C:\Windows\System\win64.dll` (percorso Windows assoluto)
 
 Oppure relativo *relativo* ad un certo punto del filesystem:
-  * si identificca con `.` la cartella corrente e con `..` la cartella di livello superiore
+  * si identifica con `.` la cartella corrente e con `..` la cartella di livello superiore
   * `./src/main/java/HelloWorld.java` (percorso Unix relativo, equivalente a `src/main/java/HelloWorld.java`)
   * `../Downloads/myapp.jar` (percorso Unix relativo, che risale, come primo passo, alla cartella superiore)
 
