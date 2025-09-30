@@ -30,7 +30,7 @@
 <h3 id="danilo-pianini"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2025-09-28
+<p>Slide compilate il: 2025-09-30
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
@@ -459,7 +459,7 @@ mentre in C sia <code>int main(void)</code> che <code>int main(char **, int)</co
 <h3 id="danilo-pianini-1"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2025-09-28
+<p>Slide compilate il: 2025-09-30
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
@@ -550,11 +550,7 @@ mentre in C sia <code>int main(void)</code> che <code>int main(char **, int)</co
   
 
   
-  
-
-  
-  
-
+    
   
   
 
@@ -591,7 +587,37 @@ mentre in C sia <code>int main(void)</code> che <code>int main(char **, int)</co
   
   
 
+  
+  
 
+  
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"startOnLoad":false});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
 
 
 
