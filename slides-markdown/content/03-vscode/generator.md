@@ -106,7 +106,7 @@ Nei linguaggi che vengono compilati in un linguaggio intermedio (come Java o C#)
 entrambe le strategie precedenti sono possibili.
 
 Si tende però a usarne una ibrida:
-* Si codice in linguaggio intermedio che include informazioni sfruttabili per debug
+* Si includono nel linguaggio intermedio informazioni sfruttabili per debug
   * Non serve ricompilare per debuggare
 * L'interprete può utilizzarle se in modalità debug, oppure scartarle ottimizzando "al volo"
 
