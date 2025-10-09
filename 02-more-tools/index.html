@@ -30,7 +30,7 @@
 <h3 id="danilo-pianini"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2025-10-08
+<p>Slide compilate il: 2025-10-09
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
@@ -384,8 +384,15 @@ posizione corrente e nelle librerie java, anche dentro <code>lib</code></li>
 </li>
 <li>Useremo quindi:
 <ul>
-<li><i class="fa-brands fa-linux"></i><i class="fa-brands fa-apple"></i> <code>java -cp bin:lib oop.lab02.math.UseComplex</code></li>
-<li><i class="fa-brands fa-windows"></i> <code>java -cp bin;lib oop.lab02.math.UseComplex</code> (Windows)</li>
+<li><i class="fa-brands fa-linux"></i><i class="fa-brands fa-apple"></i> <code>java -cp "bin:lib" oop.lab02.math.UseComplex</code></li>
+<li><i class="fa-brands fa-windows"></i> <code>java -cp "bin;lib" oop.lab02.math.UseComplex</code> (Windows)</li>
+</ul>
+</li>
+<li>È buona norma mettere il classpath fra doppi apici: <code>"</code>
+<ul>
+<li>È <em>necessario</em> se utilizzate Git Bash su <i class="fa-brands fa-windows"></i>, poiché utilizza
+<code>java.exe</code> di Windows, che si aspetta un path <i class="fa-brands fa-windows"></i>-style,
+ma il carattere <code>;</code> è quello di fine istruzione in bash!</li>
 </ul>
 </li>
 </ul>
@@ -459,7 +466,7 @@ mentre in C sia <code>int main(void)</code> che <code>int main(char **, int)</co
 <h3 id="danilo-pianini-1"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2025-10-08
+<p>Slide compilate il: 2025-10-09
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
