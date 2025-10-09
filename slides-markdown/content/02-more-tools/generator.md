@@ -319,8 +319,12 @@ Avendo come riferimento l'esempio precedente, proviamo ad eseguire.
   * `:` su <i class="fa-brands fa-linux"></i><i class="fa-brands fa-apple"></i>
   * `;` su <i class="fa-brands fa-windows"></i>
 * Useremo quindi:
-  * <i class="fa-brands fa-linux"></i><i class="fa-brands fa-apple"></i> `java -cp bin:lib oop.lab02.math.UseComplex`
-  * <i class="fa-brands fa-windows"></i> `java -cp bin;lib oop.lab02.math.UseComplex` (Windows)
+  * <i class="fa-brands fa-linux"></i><i class="fa-brands fa-apple"></i> `java -cp "bin:lib" oop.lab02.math.UseComplex`
+  * <i class="fa-brands fa-windows"></i> `java -cp "bin;lib" oop.lab02.math.UseComplex` (Windows)
+* È buona norma mettere il classpath fra doppi apici: `"`
+  * È *necessario* se utilizzate Git Bash su <i class="fa-brands fa-windows"></i>, poiché utilizza
+    `java.exe` di Windows, che si aspetta un path <i class="fa-brands fa-windows"></i>-style,
+    ma il carattere `;` è quello di fine istruzione in bash!
 
 ---
 
