@@ -466,7 +466,11 @@ They <em>enrich</em> the base git model with services built around the tool:</p>
 </li>
 <li>Obtain your <strong>public key</strong>
 <ul>
-<li><code>cat ~/.ssh/id_rsa.pub</code></li>
+<li><code>cat ~/.ssh/id_rsa.pub</code>
+<ul>
+<li>If you get an error “No such file or directory”, try: <code>cat cat ~/.ssh/id_ed25519.pub</code></li>
+</ul>
+</li>
 <li>Looks something like:</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>ssh-rsa AAAAB3Nza&lt;snip, a lot of seemingly random chars&gt;PIl+qZfZ9+M= you@your_hostname
@@ -585,6 +589,8 @@ They <em>enrich</em> the base git model with services built around the tool:</p>
   
   
 
+  
+    
   
   
 
