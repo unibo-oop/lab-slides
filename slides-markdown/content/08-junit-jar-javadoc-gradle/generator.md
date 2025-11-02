@@ -110,7 +110,7 @@ D'altra parte, vogliamo che i sorgenti di test siano in effetti parte del proget
 
 ---
 
-## Configurazione di JUnit 5 in Gradle
+## Configurazione di JUnit 6 in Gradle
 
 Il plugin `java`, di per sé, non configura nessuna suite di test specifica:
 va aggiunta al build file la configurazione di JUnit,
@@ -127,7 +127,7 @@ seguendo questi passi:
 
 ---
 
-## Configurazione di JUnit 5 in Gradle
+## Configurazione di JUnit 6 in Gradle
 
 ### Dove prendere le librerie
 
@@ -135,9 +135,7 @@ Esistono diversi *repository* con librerie, quello di riferimento per Java è **
 * Vedremo poi in dettaglio in futuro
 
 ```kotlin
-repositories {
-    mavenCentral()
-}
+{{% import-raw from=18 to=20 path="sample-gradle-project/build.gradle.kts" %}} 
 ```
 
 ### Scegliere moduli e versioni
@@ -147,69 +145,29 @@ che ci servono *solo per i test*,
 che il motore di esecuzione serve *solo a runtime*,
 e che *vogliamo una specifica versione*
 
+* Nel caso specifico di JUnit, per mantenere coerenti le versioni dei componenti della libreria, si usa un "*BOM*" (Bills of Material).
+
 ```kotlin
 dependencies {
-    val junitVersion = "5.9.1"
-    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+    {{% import-raw from=39 to=43 path="sample-gradle-project/build.gradle.kts" %}}
 }
 ```
 
 ---
 
-## Configurazione di JUnit 5 in Gradle
+## Configurazione di JUnit 6 in Gradle
 
 ### Usare JUnit Platform
 
-Il task `test` generato dal plugin `java` ha un comodo metodo che pre-configura JUnit 5.
-
-```kotlin
-tasks.test {
-    useJUnitPlatform()
-}
-```
-
-### Avere più informazioni in esecuzione
-
+* Il task `test` generato dal plugin `java` ha un comodo metodo `useJunitPlatform()` che pre-configura JUnit 5/6.
 * Stampare ogni evento che succede mentre eseguono i test
 * Mostrare l'output dei test, se ce n'è
 
 ```kotlin
-tasks.test {
-    testLogging { events(TestLogEvent.values()) }
-    testLogging.showStandardStreams = true
-}
+{{% import-raw from=51 to=57 path="sample-gradle-project/build.gradle.kts" %}} 
 ```
 
----
-
-## Build file di esempio
-
-```kotlin
-plugins {
-    java
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    val junitVersion = "5.9.1"
-    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
-}
-
-tasks.test {
-    useJUnitPlatform()
-    testLogging { events(TestLogEvent.values()) }
-    testLogging.showStandardStreams = true
-}
-```
-
-Da adesso Gradle può lanciare i test JUnit 5 tramite il task `test`!
+Da adesso Gradle può lanciare i test JUnit 5/6 tramite il task `test`!
 
 ---
 
@@ -327,24 +285,9 @@ Nota: è sempre possibile costruire i propri task personalizzati, ma non è argo
 ## Utilizzo di `application` e `com.github.johnrengelman.shadow`
 
 ```kotlin
-plugins {
-    java
-    // Apply the application plugin to add support for building a CLI application
-    // You can run your app via task "run": ./gradlew run
-    application
-    /*
-     * Adds tasks to export a runnable jar.
-     * Always pick the latest version!
-     * In order to create it, launch the "shadowJar" task.
-     * The runnable jar will be found in build/libs/projectname-all.jar
-     */
-    id("com.github.johnrengelman.shadow") version "7.0.0" // Update the version!
+{{% import-raw from=1 to=14 path="sample-gradle-project/build.gradle.kts" %}}
 }
-
-application {
-    // Define the main class for the application
-    mainClass.set("your.mainclass.qualified.Name")
-}
+{{% import-raw from=45 to=50 path="sample-gradle-project/build.gradle.kts" %}}
 ```
 
 * `./gradlew run` lancia `your.mainclass.qualified.Name`
