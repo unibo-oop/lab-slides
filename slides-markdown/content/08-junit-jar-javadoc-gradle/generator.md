@@ -282,7 +282,7 @@ Nota: è sempre possibile costruire i propri task personalizzati, ma non è argo
 
 ---
 
-## Utilizzo di `application` e `com.github.johnrengelman.shadow`
+## Utilizzo di `application` e `com.gradleup.shadow`
 
 ```kotlin
 {{% import-raw from=1 to=14 path="sample-gradle-project/build.gradle.kts" %}}
