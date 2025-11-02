@@ -77,7 +77,7 @@ non vogliamo portarci dietro tutti i test compilati,
 né tantomeno le librerie che usiamo solo per i test!</p>
 <p>D’altra parte, vogliamo che i sorgenti di test siano in effetti parte del progetto.</p>
 </section><section>
-<h2 id="configurazione-di-junit-5-in-gradle">Configurazione di JUnit 5 in Gradle</h2>
+<h2 id="configurazione-di-junit-6-in-gradle">Configurazione di JUnit 6 in Gradle</h2>
 <p>Il plugin <code>java</code>, di per sé, non configura nessuna suite di test specifica:
 va aggiunta al build file la configurazione di JUnit,
 seguendo questi passi:</p>
@@ -101,65 +101,46 @@ seguendo questi passi:</p>
 </li>
 </ol>
 </section><section>
-<h2 id="configurazione-di-junit-5-in-gradle-1">Configurazione di JUnit 5 in Gradle</h2>
+<h2 id="configurazione-di-junit-6-in-gradle-1">Configurazione di JUnit 6 in Gradle</h2>
 <h3 id="dove-prendere-le-librerie">Dove prendere le librerie</h3>
 <p>Esistono diversi <em>repository</em> con librerie, quello di riferimento per Java è <strong>Maven Central</strong></p>
 <ul>
 <li>Vedremo poi in dettaglio in futuro</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">repositories</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#000">mavenCentral</span>()
-</span></span><span style="display:flex;"><span>}
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">repositories</span> { <span style="color:#177500">// Where to search for dependencies
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>    <span style="color:#000">mavenCentral</span>()
+</span></span><span style="display:flex;"><span>} 
 </span></span></code></pre></div><h3 id="scegliere-moduli-e-versioni">Scegliere moduli e versioni</h3>
 <p>Dobbiamo specificare che sono <em>dipendenze</em>,
 che ci servono <em>solo per i test</em>,
 che il motore di esecuzione serve <em>solo a runtime</em>,
 e che <em>vogliamo una specifica versione</em></p>
+<ul>
+<li>Nel caso specifico di JUnit, per mantenere coerenti le versioni dei componenti della libreria, si usa un “<em>BOM</em>” (Bills of Material).</li>
+</ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">dependencies</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">val</span> <span style="color:#000">junitVersion</span> = <span style="color:#c41a16">"5.9.1"</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">testImplementation</span>(<span style="color:#c41a16">"org.junit.jupiter:junit-jupiter-api:</span><span style="color:#c41a16">$junitVersion</span><span style="color:#c41a16">"</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#000">testImplementation</span>(<span style="color:#c41a16">"org.junit.jupiter:junit-jupiter-params:</span><span style="color:#c41a16">$junitVersion</span><span style="color:#c41a16">"</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#000">testRuntimeOnly</span>(<span style="color:#c41a16">"org.junit.jupiter:junit-jupiter-engine:</span><span style="color:#c41a16">$junitVersion</span><span style="color:#c41a16">"</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#177500">// JUnit API and testing engine
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>        <span style="color:#000">testImplementation</span>(<span style="color:#000">platform</span>(<span style="color:#c41a16">"org.junit:junit-bom:6.0.1"</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#000">testImplementation</span>(<span style="color:#c41a16">"org.junit.jupiter:junit-jupiter-api"</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#000">testRuntimeOnly</span>(<span style="color:#c41a16">"org.junit.platform:junit-platform-launcher"</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#000">testRuntimeOnly</span>(<span style="color:#c41a16">"org.junit.jupiter:junit-jupiter-engine"</span>)
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div></section><section>
-<h2 id="configurazione-di-junit-5-in-gradle-2">Configurazione di JUnit 5 in Gradle</h2>
+<h2 id="configurazione-di-junit-6-in-gradle-2">Configurazione di JUnit 6 in Gradle</h2>
 <h3 id="usare-junit-platform">Usare JUnit Platform</h3>
-<p>Il task <code>test</code> generato dal plugin <code>java</code> ha un comodo metodo che pre-configura JUnit 5.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">tasks</span>.<span style="color:#000">test</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#000">useJUnitPlatform</span>()
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id="avere-più-informazioni-in-esecuzione">Avere più informazioni in esecuzione</h3>
 <ul>
+<li>Il task <code>test</code> generato dal plugin <code>java</code> ha un comodo metodo <code>useJunitPlatform()</code> che pre-configura JUnit 5/6.</li>
 <li>Stampare ogni evento che succede mentre eseguono i test</li>
 <li>Mostrare l’output dei test, se ce n’è</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">tasks</span>.<span style="color:#000">test</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#000">testLogging</span> { <span style="color:#000">events</span>(<span style="color:#3f6e75">TestLogEvent</span>.<span style="color:#000">values</span>()) }
-</span></span><span style="display:flex;"><span>    <span style="color:#000">testLogging</span>.<span style="color:#000">showStandardStreams</span> = <span style="color:#a90d91">true</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div></section><section>
-<h2 id="build-file-di-esempio">Build file di esempio</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">plugins</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#000">java</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">repositories</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#000">mavenCentral</span>()
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">dependencies</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">val</span> <span style="color:#000">junitVersion</span> = <span style="color:#c41a16">"5.9.1"</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">testImplementation</span>(<span style="color:#c41a16">"org.junit.jupiter:junit-jupiter-api:</span><span style="color:#c41a16">$junitVersion</span><span style="color:#c41a16">"</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#000">testImplementation</span>(<span style="color:#c41a16">"org.junit.jupiter:junit-jupiter-params:</span><span style="color:#c41a16">$junitVersion</span><span style="color:#c41a16">"</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#000">testRuntimeOnly</span>(<span style="color:#c41a16">"org.junit.jupiter:junit-jupiter-engine:</span><span style="color:#c41a16">$junitVersion</span><span style="color:#c41a16">"</span>)
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">tasks</span>.<span style="color:#000">test</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#000">useJUnitPlatform</span>()
-</span></span><span style="display:flex;"><span>    <span style="color:#000">testLogging</span> { <span style="color:#000">events</span>(<span style="color:#3f6e75">TestLogEvent</span>.<span style="color:#000">values</span>()) }
-</span></span><span style="display:flex;"><span>    <span style="color:#000">testLogging</span>.<span style="color:#000">showStandardStreams</span> = <span style="color:#a90d91">true</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>Da adesso Gradle può lanciare i test JUnit 5 tramite il task <code>test</code>!</p>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">useJUnitPlatform</span>() <span style="color:#177500">// Enables the engine of JUnit 5/6
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>    <span style="color:#000">testLogging</span> { <span style="color:#177500">// Additional Options
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>        <span style="color:#177500">// Display all events (test started, succeeded, failed...)
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>        <span style="color:#000">events</span>(*<span style="color:#000">org</span>.<span style="color:#000">gradle</span>.<span style="color:#000">api</span>.<span style="color:#000">tasks</span>.<span style="color:#000">testing</span>.<span style="color:#000">logging</span>.<span style="color:#3f6e75">TestLogEvent</span>.<span style="color:#000">entries</span>.<span style="color:#000">toTypedArray</span>())
+</span></span><span style="display:flex;"><span>        <span style="color:#000">showStandardStreams</span> = <span style="color:#a90d91">true</span> <span style="color:#177500">// Show the standard output
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>    } 
+</span></span></code></pre></div><p>Da adesso Gradle può lanciare i test JUnit 5/6 tramite il task <code>test</code>!</p>
 </section><section>
 <h1 id="assemblaggio-di-applicazioni-java">Assemblaggio di applicazioni Java</h1>
 </section><section>
@@ -299,22 +280,24 @@ Possiamo però sfruttare una coppia di altri plugin:</p>
 </section><section>
 <h2 id="utilizzo-di-application-e-comgithubjohnrengelmanshadow">Utilizzo di <code>application</code> e <code>com.github.johnrengelman.shadow</code></h2>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">plugins</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#000">java</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#177500">// Apply the java plugin to add support for Java
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>    <span style="color:#000">java</span>
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#177500">// Apply the application plugin to add support for building a CLI application
 </span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>    <span style="color:#177500">// You can run your app via task "run": ./gradlew run
 </span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>    <span style="color:#000">application</span>
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#177500">/*
 </span></span></span><span style="display:flex;"><span><span style="color:#177500">     * Adds tasks to export a runnable jar.
-</span></span></span><span style="display:flex;"><span><span style="color:#177500">     * Always pick the latest version!
 </span></span></span><span style="display:flex;"><span><span style="color:#177500">     * In order to create it, launch the "shadowJar" task.
 </span></span></span><span style="display:flex;"><span><span style="color:#177500">     * The runnable jar will be found in build/libs/projectname-all.jar
 </span></span></span><span style="display:flex;"><span><span style="color:#177500">     */</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">id</span>(<span style="color:#c41a16">"com.github.johnrengelman.shadow"</span>) <span style="color:#000">version</span> <span style="color:#c41a16">"7.0.0"</span> <span style="color:#177500">// Update the version!
-</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#000">id</span>(<span style="color:#c41a16">"com.gradleup.shadow"</span>) <span style="color:#000">version</span> <span style="color:#c41a16">"9.2.2"</span>
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#000">application</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#177500">// Define the main class for the application
-</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>    <span style="color:#000">mainClass</span>.<span style="color:#a90d91">set</span>(<span style="color:#c41a16">"your.mainclass.qualified.Name"</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#177500">// Define the main class for the application.
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>    <span style="color:#000">mainClass</span>.<span style="color:#a90d91">set</span>(<span style="color:#c41a16">"it.unibo.sampleapp.RateAMovie"</span>)
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
 <li><code>./gradlew run</code> lancia <code>your.mainclass.qualified.Name</code></li>
