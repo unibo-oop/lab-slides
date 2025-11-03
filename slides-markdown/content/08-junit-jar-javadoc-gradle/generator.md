@@ -273,7 +273,7 @@ Possiamo però sfruttare una coppia di altri plugin:
 
 * `application`: un plugin incluso in Gradle che configura una classe come "main class" per il software
     * Aggiunge il task `run` che compila il progetto e la esegue
-* `com.github.johnrengelman.shadow`: un plugin *di terze parti*
+* `com.gradleup.shadow`: un plugin *di terze parti*
     (ossia, costruito da una persona che non fa parte del team di Gradle)
     * Aggiunge il task `shadowJar`, che costruisce un `jar` con tutte le dipendenze specificate in Gradle
     * Se presente `application`, cattura anche la *main class* e scrive il relativo file
