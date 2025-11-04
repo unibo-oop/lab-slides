@@ -135,7 +135,7 @@ Esistono diversi *repository* con librerie, quello di riferimento per Java è **
 * Vedremo poi in dettaglio in futuro
 
 ```kotlin
-{{% import-raw from=18 to=20 path="sample-gradle-project/build.gradle.kts" %}} 
+{{% import-raw from=18 to=21 path="sample-gradle-project/build.gradle.kts" %}} 
 ```
 
 ### Scegliere moduli e versioni
@@ -144,7 +144,7 @@ Dobbiamo specificare che sono *dipendenze*,
 che ci servono *solo per i test*,
 che il motore di esecuzione serve *solo a runtime*,
 e che *vogliamo una specifica versione*
-
+ 
 * Nel caso specifico di JUnit, per mantenere coerenti le versioni dei componenti della libreria, si usa un "*BOM*" (Bills of Material).
 
 ```kotlin
@@ -164,7 +164,7 @@ dependencies {
 * Mostrare l'output dei test, se ce n'è
 
 ```kotlin
-{{% import-raw from=51 to=57 path="sample-gradle-project/build.gradle.kts" %}} 
+{{% import-raw from=51 to=58 path="sample-gradle-project/build.gradle.kts" %}} 
 ```
 
 Da adesso Gradle può lanciare i test JUnit 5/6 tramite il task `test`!
