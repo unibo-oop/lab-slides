@@ -58,6 +58,36 @@ aliases = ["/vscode/"]
 
 ---
 
+## Font ed encoding
+
+### Font ed encoding
+
+Le più note piattaforme utilizzano di default encoding diversi:
+
+* **UTF-8** --- default su Linux, può essere considerato lo standard de-facto.
+* **MacRoman** --- default su MacOS, raramente causa artefatti se riconvertito ad altri formati.
+* **ISO-8859-1** --- default su Windows, può causare artefatti su quasi tutti i caratteri non ASCII se convertito a UTF-8.
+
+
+#### Encoding per il codice sorgente
+
+Solitamente, il codice sorgente si sviluppa utilizzando la codifica UTF-8
+* Essenziale se si utilizzano caratteri non inclusi nella tabella ASCII (caratteri accentati, ad esempio).
+
+---
+
+### Configurazione di encoding e newline in VS Code
+
+* `File -> Preferences -> Settings`
+* Per l'opzione `Text Editor -> Files -> Encoding` selezionare `UTF-8`
+* Per l'opzione `Test Editor -> Files -> Eol` selezionare `LF`
+
+* In basso a destra nella finestra di VS Code c'è l'indicazione della codifica e di EOL per il file selezionato
+
+![](img/vscode-encoding-eol.png)
+
+---
+
 ## Importanza del debugging
 
 Dato un software che non funziona correttamente, come intercettare l'errore?

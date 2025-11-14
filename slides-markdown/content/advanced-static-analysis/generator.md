@@ -4,7 +4,7 @@
 title = "Laboratorio di Programmazione ad Oggetti"
 description = "Laboratorio di Programmazione ad Oggetti, Ingegneria e Scienze Informatiche"
 outputs = ["Reveal"]
-aliases = ["/code-quality-tools/"]
+aliases = ["/code-quality-tools/", "static-analysis"]
 
 +++
 

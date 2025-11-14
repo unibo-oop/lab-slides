@@ -374,3 +374,23 @@ kbd {
   font-family: 'Inconsolata';
   font-weight: normal;
 }
+
+// Multicolumn styling
+
+.reveal div.col {
+  // draw a red border
+  // border: 1px solid red;
+  text-align: left;
+  border: #cccccc .1em outset;
+  border-radius: .2em;
+  padding: 1em;
+}
+
+.reveal div.container {
+  // border: 1px solid red;
+  align-self: center;
+  min-width: 100%;
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-top: 1em;
+}
