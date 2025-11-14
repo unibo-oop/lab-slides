@@ -1,0 +1,340 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Laboratorio di Programmazione ad Oggetti</title>
+<meta name="description" content="Laboratorio di Programmazione ad Oggetti, Ingegneria e Scienze Informatiche">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/lab-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/lab-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/lab-slides/css/custom-theme.min.89a6ba483286d32bd2bc6f71db56e2cb4c369b5afbf3df1844228fca88e5a3e4.css" id="theme"><link rel="stylesheet" href="/lab-slides/highlight-js/default.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/gh/DanySK/css-blur-animation/blur.css" rel="stylesheet" crossorigin="anonymous">
+
+<script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="note-per-il-progetto-finale">Note per il progetto finale</h1>
+<!-- this file includes generated content. Do not edit. Edit content/advanced-gradle-project-config/generator.md, instead. -->
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2025-11-14
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
+</section><section>
+<p>Questo pacchetto colleziona delle slide, alcune delle quali già viste in precedenza,
+che possono essere di particolare utilità per la corretta configurazione
+di un progetto Gradle per il corso di Programmazione ad Oggetti.</p>
+<p>Sono disponibili due progetti template su GitHub:</p>
+<ul>
+<li>Template Gradle “plain” <a href="https://github.com/unibo-oop/sample-gradle-project">https://github.com/unibo-oop/sample-gradle-project</a></li>
+<li>Template Gradle con JavaFX preconfigurato: <a href="https://github.com/unibo-oop/sample-javafx-project">https://github.com/unibo-oop/sample-javafx-project</a></li>
+</ul>
+</section><section>
+<h2 id="file-ancillari-per-il-progetto-di-oop">File ancillari per il progetto di OOP</h2>
+<p>Per OOP, alla struttura del progetto Gradle andranno aggiunti almeno altri due file</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>├── src
+</span></span><span style="display:flex;"><span>│   ├── main
+</span></span><span style="display:flex;"><span>│   │   ├── java
+</span></span><span style="display:flex;"><span>│   │   └── resources
+</span></span><span style="display:flex;"><span>│   └── test
+</span></span><span style="display:flex;"><span>│       ├── java
+</span></span><span style="display:flex;"><span>│       └── resources
+</span></span><span style="display:flex;"><span>├── build.gradle.kts
+</span></span><span style="display:flex;"><span>├── LICENSE
+</span></span><span style="display:flex;"><span>├── README.md
+</span></span><span style="display:flex;"><span>└── settings.gradle.kts
+</span></span></code></pre></div><h4 id="readmemd"><code>README.md</code></h4>
+<ul>
+<li>File con la descrizione del progetto: autori, breve guida d’uso, link a risorse.
+<ul>
+<li>GitHub è in grado di fare il parse del file e di integrarlo nella pagina del progetto, in modo da dargli una descrizione.</li>
+</ul>
+</li>
+</ul>
+<h4 id="license"><code>LICENSE</code></h4>
+<ul>
+<li>File con informazioni circa la licenza, necessario affinché il progetto sia open source.</li>
+<li>Per software open source, si raccomanda l’uso di MIT license.</li>
+<li>Qualunque licenza GPL-compatibile è ritenuta idonea per il progetto del corso.</li>
+</ul>
+</section><section>
+<h2 id="installazione-delle-impostazioni-per-utente">Installazione delle impostazioni per-utente</h2>
+<h4 id="motivazione">Motivazione</h4>
+<p>Spesso un software ha necessità di caricare al primo avvio delle <em>impostazioni di default</em>, quindi lasciare l’utente libero di modificarle e, se avviato successivamente caricare quelle scelte dall’utente. In caso di sistema multiutente, le impostazioni saranno diverse per ciascuno.</p>
+<h4 id="strategia">Strategia</h4>
+<ul>
+<li>Si sceglie una cartella nella <strong>home folder dell’utente</strong> dove salvare le impostazioni.
+<ul>
+<li>È norma consolidata creare una cartella <code>.nomeprogramma</code>.</li>
+</ul>
+</li>
+<li>Al primo avvio, si verifica se tale cartella esista e se contenga i file di configurazione previsti.
+<ul>
+<li>Se non è presente, o se non sono presenti e leggibili alcuni i file, si procede a caricare nella cartella di destinazione i file di default dal JAR usando <code>getResource()</code>.</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="awesome-java">Awesome Java</h2>
+<p>Esiste una lista, costantemente manutenuta, che elenca le più comuni, diffuse e stabili librerie per una pletora di usi: <a href="https://bit.ly/awesome-java">https://bit.ly/awesome-java</a></p>
+<h4 id="usatele">USATELE!</h4>
+<ul>
+<li><strong>Usare librerie e non reinventare la ruota è IMPORTANTE</strong> e valutato
+positivamente.</li>
+<li>Attenzione però a scegliere le librerie dopo aver fatto il <strong>modello del dominio</strong>
+dell’applicazione: <strong>PRIMA</strong> si studia il problema, <strong>DOPO</strong> si implementa una soluzione:
+siete aspiranti ingegneri, cercate di lavorare sempre top-down quando possibile, non partite dalla libreria per costruirci sopra un software, ma partite dai requisiti e - se utile - sfruttate le librerie per soddisfarli.</li>
+</ul>
+<h4 id="attenzione-ai-framework">Attenzione ai framework!</h4>
+<p>Alcune librerie sono costruite come <em>Framework</em>,
+ossia come ossature di applicazioni,
+pensate per velocizzare la costruzione di un certo tipo di software</p>
+<ul>
+<li>Esempio tipico: l’engine per videogames <a href="%60https://libgdx.com/%60">libGDX</a></li>
+</ul>
+<p>Uno degli scopi del progetto di OOP è quello di misurare se siate bravi designer,
+ma per farlo è necessario che il design della vostra applicazione l’abbiate fatto voi e non chi ha costruito il framework.</p>
+<p>Vi raccomandiamo quindi di <strong>evitare i framework</strong>!
+O, al più, usarli solo <em>dopo che il progetto è avviato</em> come semplice libreria
+(non semplice e non sempre possibile)</p>
+</section><section>
+<h1 id="note-per-il-progetto-finale-1">Note per il progetto finale</h1>
+<!-- this file includes generated content. Do not edit. Edit content/advanced-gradle-project-config/generator.md, instead. -->
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti-1">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche-1">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini-1"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2025-11-14
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/lab-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/lab-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"default","history":true,"mermaid":[{"startOnLoad":false}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/lab-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = {
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+
+
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+    
+  
+
+</body></html>

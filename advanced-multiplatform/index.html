@@ -1,0 +1,390 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Laboratorio di Programmazione ad Oggetti</title>
+<meta name="description" content="Laboratorio di Programmazione ad Oggetti, Ingegneria e Scienze Informatiche">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/lab-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/lab-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/lab-slides/css/custom-theme.min.89a6ba483286d32bd2bc6f71db56e2cb4c369b5afbf3df1844228fca88e5a3e4.css" id="theme"><link rel="stylesheet" href="/lab-slides/highlight-js/default.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/gh/DanySK/css-blur-animation/blur.css" rel="stylesheet" crossorigin="anonymous">
+
+<script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="programmazione-multipiattaforma">Programmazione multipiattaforma</h1>
+<!-- this file includes generated content. Do not edit. Edit content/advanced-multiplatform/generator.md, instead. -->
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2025-11-14
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
+</section><section>
+<h2 id="write-once-run-anywhere">“Write once, run anywhere…”</h2>
+<p>Lo slogan, coniato originariamente da Sun Microsystems per illustrare i benefici del linguaggio Java, vale <em>a patto che</em>:</p>
+<ul>
+<li><strong>“write” sia fatta in modo corretto e robusto</strong>;
+<ul>
+<li>ovvero, sia adottato un approccio di programmazione adeguato.</li>
+</ul>
+</li>
+<li><strong>sia possibile distribuire ciascuna applicazione per qualunque piattaforma</strong>.
+<ul>
+<li>ovvero, sia predisposto un packaging efficace.</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="accesso-al-file-system">Accesso al file system</h2>
+<h3 id="path-e-separatori">Path e Separatori</h3>
+<p>Inserire dei <em>path assoluti</em> nel proprio sorgente è <strong>sempre</strong> fonte di problemi quando si scrive software multipiattaforma:</p>
+<ul>
+<li><code>C:\Users\UserName\file</code> — Non funzionerà su piattaforma *nix, e non funzionerà se l’utente Windows non è “UserName”.</li>
+<li><code>C:\MyProgram\file</code> — Non funzionerà su piattaforma *nix, e non funzionerà se
+l’installazione di Windows è sana e il software non è avviato con diritti di amministratore.</li>
+<li><code>/home/username/file</code> — Non funzionerà su piattaforma Windows, e non funzionerà se l’utente non è <code>username</code>.</li>
+</ul>
+<h4 id="problemi">Problemi</h4>
+<ul>
+<li>I <em>separatori</em> per i path cambiano a seconda dell’OS</li>
+<li>La <em>struttura del file system</em> cambia con l’OS</li>
+<li>I <em>diritti</em> di lettura e scrittura cambiano con la configurazione</li>
+</ul>
+</section><section>
+<h2 id="proprietà-di-sistema">Proprietà di sistema</h2>
+<p>Java fornisce nella classe <code>System</code> un metodo</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">String</span> <span style="color:#000">getProperty</span>(<span style="color:#000">String</span> <span style="color:#000">p</span>)
+</span></span></code></pre></div><p>che consente di accedere a proprietà di sistema</p>
+<h3 id="proprietà-relative-al-file-system">Proprietà relative al file system</h3>
+<ul>
+<li><code>file.separator</code> — Restituisce <code>\</code> per Windows e <code>/</code> per Unix</li>
+<li><code>java.home</code> — La directory di installazione di Java</li>
+<li><code>user.dir</code> — La directory da cui il comando <code>java</code> è stato invocato</li>
+<li><code>user.home</code> — Restituisce la home directory dell’utente che ha lanciato <code>java</code></li>
+<li><code>user.name</code> — Restituisce il nome utente</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">final</span> <span style="color:#000">String</span> <span style="color:#000">PROP_FILE_SEPARATOR</span> <span style="color:#000">=</span> <span style="color:#c41a16">"file.separator"</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">String</span> <span style="color:#000">separator</span> <span style="color:#000">=</span> <span style="color:#000">System</span>.<span style="color:#836c28">getProperty</span>(<span style="color:#000">PROP_FILE_SEPARATOR</span>);
+</span></span></code></pre></div></section><section>
+<h2 id="accesso-ai-dettagli-del-sistema">Accesso ai dettagli del sistema</h2>
+<h3 id="funzionalità-os-specifiche">Funzionalità OS-specifiche</h3>
+<ul>
+<li>Talvolta è possibile che in una applicazione si debbano utilizzare librerie non disponibili o non licenziate per alcune piattaforme.</li>
+<li>A supporto di ciò, Java fornisce delle proprietà che consentono di <em>identificare OS, versione, e JVM corrente</em>.</li>
+</ul>
+<h4 id="proprietà-relative-al-sistema">Proprietà relative al sistema</h4>
+<ul>
+<li><code>java.version</code> — La versione di <code>java</code> in uso. Si potrebbe decidere di non usare una funzionalità che si sa non esistere o essere buggata.</li>
+<li><code>os.arch</code> — L’architettura della CPU come rilevata dall’OS (x86, i386, amd64, x86_64, IA64N, ARM, …)</li>
+<li><code>os.name</code> — Il nome del sistema operativo (Linux, MacOS X, MacOS, Windows 10, Solaris, FreeBSD,  …)</li>
+<li><code>os.version</code> — Restituisce per Windows il numero di versione effettivo (per esempio, Windows 10 restituisce 10.0), per MacOS il numero di versione (per esempio, 10.3.4), per Linux la versione
+del kernel (es. 6.1)</li>
+</ul>
+</section><section>
+<h2 id="gui-scalabili-e-internazionalizzazione">GUI scalabili e internazionalizzazione</h2>
+<h3 id="gui-scalabili--motivazioni">GUI scalabili – Motivazioni</h3>
+<h4 id="flessibilità">Flessibilità</h4>
+<p>Diversamente dagli anni 90, i dispositivi oggi hanno una <em>densità di pixel per area</em> <strong>estremamente</strong> variabile. Si va da 120 <em>PPI (Pixel Per Inch)</em> a 640 PPI, su schermi di dimensione estremamente variabile (da 3 a 200 pollici).</p>
+<h4 id="multipiattaforma">Multipiattaforma</h4>
+<p>Piattaforme diverse, anche a parità di schermo, possono adottare diverse convenzioni:</p>
+<ul>
+<li>Diversa grandezza di bordi</li>
+<li>Diversa spaziatura, dimensione e tipo di font</li>
+<li>Diverso sistema di decorazioni</li>
+</ul>
+<p>Questi elementi sono stabiliti dal <em>window manager</em> (del <em>windowing system</em> del sistema utilizzato) e non dallo sviluppatore dell’applicazione. Come indicazione generale vale che <strong>un’applicazione ben sviluppata eredita il “look and feel” dal sistema su cui sta girando</strong>.</p>
+</section><section>
+<h3 id="esempio-finestra-non-ridimensionabile-e-bassa-risoluzione">Esempio: Finestra non ridimensionabile e bassa risoluzione</h3>
+<p><img src="imgs/lowres.jpg" alt=""></p>
+</section><section>
+<h3 id="esempio-finestra-non-ridimensionabile-e-alta-risoluzione">Esempio: Finestra non ridimensionabile e alta risoluzione</h3>
+<p><img src="imgs/brokensword.png" alt=""></p>
+</section><section>
+<h2 id="best-practices-per-la-costruzione-di-gui">Best-practices per la costruzione di GUI</h2>
+<ul>
+<li>A proposito della specifica delle dimensioni
+<ul>
+<li>La <em>dimensione di default</em> della finestra va calcolata <em>in base alla dimensione dello schermo</em>.</li>
+<li>E’ opportuno <strong>non</strong> <em>specificare dimensioni assolute in pixel</em> per i componenti della GUI, ma dimensionarli <strong>in termini relativi</strong> <em>rispetto al container</em>.
+<ul>
+<li>Anche per i layout è opportuno non utilizzare dimensioni fisse in pixel.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>A proposito dei font
+<ul>
+<li>I <em>font</em> possono essere allegati all’applicazione</li>
+<li>La <em>dimensione dei font</em> può essere resa <em>relativa</em> alla dimensione corrente della view.</li>
+</ul>
+</li>
+<li><em>L’utente deve essere libero di ridimensionare l’interfaccia a piacimento per adattarla alla
+propria configurazione di schermi</em></li>
+</ul>
+</section><section>
+<h2 id="supporto-multilingua-per-le-ui">Supporto multilingua per le UI</h2>
+<ul>
+<li>
+<p>Sarebbe opportuno definire la UI una sola volta e cambiare dinamicamente le parti scritte (il testo) a seconda dell’impostazione della lingua di sistema (o della nostra applicazione).</p>
+</li>
+<li>
+<p>In realtà anche per il formato dei numeri, la valuta, le convenzioni sulla data, …</p>
+<ul>
+<li>un <strong>locale</strong> è un insieme di parametri che definiscono la lingua dell’utente, la sua regione, e le sue preferenze di visualizzazione delle GUI</li>
+<li>un esempio di locale è <code>en_US_UNIX</code> (lingua inglese, Stati Uniti, piattaforma UNIX)</li>
+</ul>
+</li>
+</ul>
+<h4 id="java-resource-bundles">Java Resource Bundles</h4>
+<p>Java fornisce una architettura per l’internazionalizzazione (<strong>i18n = internationalization</strong>), che fa uso di <code>ResourceBundle</code> e di una serie di file di supporto (<em>properties files</em>).</p>
+<ul>
+<li>per localizzazione (<strong>l10n = localization</strong>) si intende invece il processo di adattare un prodotto internazionalizzato a un particolare locale</li>
+</ul>
+<p>Per approfondimenti (per implementare il supporto multilingua):</p>
+<ul>
+<li><a href="https://docs.oracle.com/javase/tutorial/i18n/resbundle/index.html">https://docs.oracle.com/javase/tutorial/i18n/resbundle/index.html</a></li>
+<li><a href="http://tutorials.jenkov.com/java-internationalization/resourcebundle.html">http://tutorials.jenkov.com/java-internationalization/resourcebundle.html</a></li>
+</ul>
+</section><section>
+<h1 id="programmazione-multipiattaforma-1">Programmazione multipiattaforma</h1>
+<!-- this file includes generated content. Do not edit. Edit content/advanced-multiplatform/generator.md, instead. -->
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti-1">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche-1">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini-1"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2025-11-14
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/lab-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/lab-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"default","history":true,"mermaid":[{"startOnLoad":false}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/lab-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = {
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+
+
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+    
+  
+
+</body></html>

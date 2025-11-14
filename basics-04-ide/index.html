@@ -1,0 +1,503 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Introduzione a Visual Studio Code e Debugging</title>
+<meta name="description" content="Laboratorio di Programmazione ad Oggetti">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/lab-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/lab-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/lab-slides/css/custom-theme.min.89a6ba483286d32bd2bc6f71db56e2cb4c369b5afbf3df1844228fca88e5a3e4.css" id="theme"><link rel="stylesheet" href="/lab-slides/highlight-js/default.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/gh/DanySK/css-blur-animation/blur.css" rel="stylesheet" crossorigin="anonymous">
+
+<script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="introduzione-a-visual-studio-code-vscode-e-debugging">Introduzione a Visual Studio Code (VSCode) e Debugging</h1>
+<!-- this file includes generated content. Do not edit. Edit content/basics-04-ide/generator.md, instead. -->
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2025-11-14
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
+</section><section>
+<h2 id="visual-studio-code-vscode">Visual Studio Code (VSCode)</h2>
+<ul>
+<li><strong>Visual Studio Code (VSCode)</strong> è un editor di codice sorgente leggero, versatile, e multipiattaforma</li>
+<li>Estendibile attraverso un ecosistema di <strong>estensioni</strong> per vari linguaggi di programmazione e strumenti</li>
+</ul>
+<p><img src="img/vscode.png" alt="Screenshot"></p>
+</section><section>
+<h2 id="vscode-il-concetto-di-workspace">VSCode: il concetto di <strong>workspace</strong></h2>
+<ul>
+<li>Il <strong>workspace</strong> è
+<ul>
+<li>una collezione di <em>una o più <strong>cartelle</strong></em> aperte in una finestra (istanza di VSCode)</li>
+<li>Tali cartelle sono visualizzate nella vista <strong>Explorer</strong> sulla sinistra</li>
+<li>più un insieme di <strong>preferenze</strong>, <strong>configurazioni</strong>, <strong>stato</strong>, ed <strong>estensioni</strong> attive memorizzate in una cartella <strong>.vscode/</strong></li>
+</ul>
+</li>
+<li>Creazione di un workspace
+<ul>
+<li><em>File $\to$ Open Folder</em></li>
+</ul>
+</li>
+<li>Aggiunta di cartella top-level a un workspace
+<ul>
+<li><em>File $\to$ Add Folder to Workspace..</em></li>
+</ul>
+</li>
+<li>Salvataggio ed apertura di un workspace
+<ul>
+<li><em>Save $\to$ Workspace as… $\to$</em> <em>name</em>.<strong>code-workspace</strong></li>
+<li><em>File $\to$ Open Workspace from File</em></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="utilizzo-di-vscode-alcune-note">Utilizzo di VSCode: alcune note</h2>
+<ul>
+<li>Varie scorciatoie da tastiera</li>
+<li><kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>P</kbd>: <strong>command palette</strong> (a.k.a. “l’unico shortcut che veramente vi serve ricordare”)</li>
+<li><kbd>CTRL</kbd> + <kbd>SPACE</kbd>: intellisense (autocompletamento)</li>
+<li><kbd>CTRL</kbd> + <kbd>S</kbd>: salvataggio file corrente</li>
+<li><kbd>CTRL</kbd> + <kbd>PAGE <i class="fa-solid fa-caret-up"></i></kbd> / <kbd>CTRL</kbd> + <kbd>PAGE <i class="fa-solid fa-caret-down"></i></kbd>: tab sorgente precedente/successivo</li>
+<li><kbd>CTRL</kbd> + <kbd>W</kbd>: chiusura della tab corrente</li>
+<li><kbd>CTRL</kbd> + <kbd>F</kbd>: cerca nel file corrente</li>
+<li><kbd>CTRL</kbd> + <kbd>H</kbd>: sostituisci nel file corrente</li>
+<li><kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>F</kbd>: cerca in tutti i file del workspace</li>
+<li><kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>H</kbd>: sostituisci in tutti i file del workspace</li>
+<li><strong>Apertura di un terminale:</strong> <em>Terminal $\to$ New Terminal</em></li>
+<li>Sarà MOLTO UTILE</li>
+<li><strong>Visualizzare/installare estensioni:</strong> <em>File $\to$ Preferences $\to$ Extensions</em> oppure <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>X</kbd></li>
+</ul>
+</section><section>
+<h2 id="font-ed-encoding">Font ed encoding</h2>
+<h3 id="font-ed-encoding-1">Font ed encoding</h3>
+<p>Le più note piattaforme utilizzano di default encoding diversi:</p>
+<ul>
+<li><strong>UTF-8</strong> — default su Linux, può essere considerato lo standard de-facto.</li>
+<li><strong>MacRoman</strong> — default su MacOS, raramente causa artefatti se riconvertito ad altri formati.</li>
+<li><strong>ISO-8859-1</strong> — default su Windows, può causare artefatti su quasi tutti i caratteri non ASCII se convertito a UTF-8.</li>
+</ul>
+<h4 id="encoding-per-il-codice-sorgente">Encoding per il codice sorgente</h4>
+<p>Solitamente, il codice sorgente si sviluppa utilizzando la codifica UTF-8</p>
+<ul>
+<li>Essenziale se si utilizzano caratteri non inclusi nella tabella ASCII (caratteri accentati, ad esempio).</li>
+</ul>
+</section><section>
+<h3 id="configurazione-di-encoding-e-newline-in-vs-code">Configurazione di encoding e newline in VS Code</h3>
+<ul>
+<li>
+<p><code>File -&gt; Preferences -&gt; Settings</code></p>
+</li>
+<li>
+<p>Per l’opzione <code>Text Editor -&gt; Files -&gt; Encoding</code> selezionare <code>UTF-8</code></p>
+</li>
+<li>
+<p>Per l’opzione <code>Test Editor -&gt; Files -&gt; Eol</code> selezionare <code>LF</code></p>
+</li>
+<li>
+<p>In basso a destra nella finestra di VS Code c’è l’indicazione della codifica e di EOL per il file selezionato</p>
+</li>
+</ul>
+<p><img src="img/vscode-encoding-eol.png" alt=""></p>
+</section><section>
+<h2 id="importanza-del-debugging">Importanza del debugging</h2>
+<p>Dato un software che non funziona correttamente, come intercettare l’errore?</p>
+<ul>
+<li>Per semplici esempi, finora, avete <em>stampato a video</em> il valore di variabili di interesse
+<ul>
+<li>E se ve ne fosse sfuggita una, l’avreste aggiunta, ricompilato, rilanciato</li>
+</ul>
+</li>
+</ul>
+<p>Su software complessi <strong>non scala</strong>!</p>
+<ul>
+<li>servono centinaia di stampe</li>
+<li>il flusso di controllo è <em>troppo complesso</em> per essere ricostruito tramite stampe</li>
+<li>alcuni valori possono comunque sfuggire</li>
+<li>è comodo <strong>fermare</strong> il software ad un certo punto e <strong>ispezionare</strong> il suo stato
+<ul>
+<li>nonché, eventualmente, <strong>modificarlo</strong> per testare al volo un comportamento alternativo</li>
+</ul>
+</li>
+</ul>
+<p>Esistono strumenti appositi che consentono di farlo, detti <strong>debugger</strong>!</p>
+</section><section>
+<h2 id="debugging-in-generale">Debugging in generale</h2>
+<h2 id="linguaggi-compilati">Linguaggi compilati</h2>
+<p>I compilatori per programmi che vengono compilati nativamente (come C),
+tipicamente,
+possono <em>emettere codice in una speciale modalità debug</em>
+(nel caso di <code>gcc</code>, l’opzione <code>-g</code> o <code>-ggdb</code>).</p>
+<p>Questo codice contiene informazioni aggiuntive che consentono di:</p>
+<ul>
+<li>mappare le istruzioni del programma compilato con le righe di codice sorgente corrispondenti</li>
+<li>memorizzare informazioni aggiuntive sulle variabili e sullo stato del programma</li>
+<li>sospendere l’esecuzione del programma in punti specifici</li>
+</ul>
+<p>(il tutto, ovviamente, a prezzo di prestazioni inferiori e di un file eseguibile più grande)</p>
+<p>I tool di debugging (come <code>gdb</code>) possono lanciare l’eseguibile così prodotto e sfruttare le informazioni.</p>
+<h2 id="linguaggi-interpretati">Linguaggi interpretati</h2>
+<p>Nel caso degli interpreti (come Python, Ruby, Javascript, ecc.),
+il codice sorgente viene eseguito direttamente,
+dunque può essere l’interprete stesso a poter fornire informazioni di debugging,
+se eseguito con le opzioni opportune.</p>
+<h2 id="linguaggi-compilati-in-linguaggi-intermedi-e-poi-interpretati">Linguaggi compilati in linguaggi intermedi e poi interpretati</h2>
+<p>Nei linguaggi che vengono compilati in un linguaggio intermedio (come Java o C#),
+entrambe le strategie precedenti sono possibili.</p>
+<p>Si tende però a usarne una ibrida:</p>
+<ul>
+<li>Si includono nel linguaggio intermedio informazioni sfruttabili per debug
+<ul>
+<li>Non serve ricompilare per debuggare</li>
+</ul>
+</li>
+<li>L’interprete può utilizzarle se in modalità debug, oppure scartarle ottimizzando “al volo”</li>
+</ul>
+</section><section>
+<h2 id="debugging-meccanismi">Debugging: meccanismi</h2>
+<h3 id="1-controllo-di-flusso">1. Controllo di flusso</h3>
+<p>I debugger consentono di sospendere l’esecuzione del programma in punti specifici detti <strong>breakpoint</strong>.</p>
+<p>I breakpoint possono essere <strong>condizionali</strong> (sospendono l’esecuzione solo se una certa condizione è vera).</p>
+<ul>
+<li>Fondamentale per programmi complessi!</li>
+</ul>
+<p>Una volta raggiunto un breakpoint, è possibile:</p>
+<ul>
+<li>Continuare l’<em>esecuzione passo-passo</em>
+<ul>
+<li>Opzionalmente “entrando” nelle chiamate di metodo</li>
+</ul>
+</li>
+<li>Continuare <em>ritornando al chiamante</em></li>
+<li>Continuare fino al <em>prossimo breakpoint</em></li>
+</ul>
+<h3 id="2-ispezione">2. Ispezione</h3>
+<p>Una volta sospeso il flusso di controllo, il debugger consente di osservare:</p>
+<ol>
+<li>La <em>stacktrace</em> (il “percorso” di chiamate di funzioni che ha portato all’istante corrente)
+<ul>
+<li>Tipicamente dando la possibilità di navigarla, cambiando lo <em>scope</em></li>
+</ul>
+</li>
+<li>Il valore di tutte le <em>variabili</em> in scope (inclusi i campi)</li>
+<li>Calcolare il valore di <em>espressioni</em> arbitrarie</li>
+</ol>
+<h3 id="3-modifica">3. Modifica</h3>
+<p>A flusso di esecuzione sospeso è anche possibile:</p>
+<ul>
+<li><em>modificare</em> il valore di variabili e campi</li>
+<li><em>buttare via</em> interi stackframe, in modo da ripartire con l’esecuzione di una funzione
+<ul>
+<li>In questo caso, attenzione a possibili side-effects, che non vengono cancellati…</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="debugging-in-java-tramite-vscode">Debugging in Java tramite VSCode</h2>
+<p>Nota: richiede l’estensione <strong>Debugger for Java</strong></p>
+<ul>
+<li>Creazione di <strong>breakpoint</strong> (punti di rottura del flusso di controllo)
+<ul>
+<li>Click a sinistra del numero di linea di una riga di codice di interesse</li>
+</ul>
+</li>
+</ul>
+<p><img src="img/vscode-example-breakpoint2.png" alt=""></p>
+</section><section>
+<h2 id="debugging-in-java-tramite-vscode-1">Debugging in Java tramite VSCode</h2>
+<ul>
+<li>Esecuzione di un’applicazione Java in <strong>“modalità debug”</strong>
+<ul>
+<li>Click destro su file java $\to$ <em>Debug Java</em></li>
+<li>Non è magico, aggancia un “agente” a Java, in modo da poter parlare direttamente con la JVM
+<ul>
+<li>e.g, eseguendo java con: <code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044</code>
+si ottiene un interprete che risponderà ai comandi del debugger sulla porta 1044</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="img/vscode-example-debug.png" alt=""></p>
+</section><section>
+<h2 id="debugging-in-java-tramite-vscode-2">Debugging in Java tramite VSCode</h2>
+<ul>
+<li>
+<p>Controllo di flusso:</p>
+<ul>
+<li><kbd>F10</kbd> <strong>Step Over</strong> o <em>Run $\to$ Step Over</em></li>
+<li><kbd>F11</kbd> <strong>Step Into</strong></li>
+<li><kbd>SHIFT</kbd> + <kbd>F11</kbd> <strong>Step Out</strong></li>
+<li><kbd>F5</kbd> <strong>Continue</strong></li>
+</ul>
+</li>
+<li>
+<p>Ispezione del comportamento runtime</p>
+<ul>
+<li><em>Variables</em>: vista che mostra le variabili in scope e il loro valore</li>
+<li><em>Watch</em>: permette di valutare espressioni rispetto al contesto d’esecuzione corrente</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="esercizi-di-oggi">Esercizi di oggi</h1>
+</section><section>
+<h2 id="preparazione-ambiente-di-lavoro">Preparazione ambiente di lavoro</h2>
+<ul>
+<li>Accedere al PC di laboratorio con le proprie credenziali istituzionali</li>
+<li>Accedere al sito del corso</li>
+<li>Scaricare il materiale dell’esercitazione odierna</li>
+<li>Spostare il file scaricato sul Desktop</li>
+<li>Decomprimere il file e aprire con Visual Studio Code la directory ottenuta (File $\to$ Open Folder…)</li>
+<li>Puntare il terminale alla directory con i sorgenti dell’esercitazione odierna</li>
+</ul>
+</section><section>
+<h1 id="appendice-richiami-utili-per-gli-esercizi-del-lab">Appendice: richiami utili per gli esercizi del lab</h1>
+<h2 id="a1--varianza">A1 – Varianza</h2>
+<h3 id="formula-per-il-calcolo-della-varianza">Formula per il calcolo della varianza</h3>
+<p>Sia $n$ il numero di elementi dell’array ed $x_i$ l’elemento all’indice $i$ dell’array, e $\mu$ la media dei valori del suddetto array. La varianza $\sigma^2$ può essere calcolata come:</p>
+<p>$\sigma^2 = \frac{\displaystyle\sum_{i=0}^{n-1}(x_i - \mu)^2} {n}$</p>
+</section><section>
+<h1 id="introduzione-a-visual-studio-code-vscode-e-debugging-1">Introduzione a Visual Studio Code (VSCode) e Debugging</h1>
+<!-- this file includes generated content. Do not edit. Edit content/basics-04-ide/generator.md, instead. -->
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti-1">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche-1">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini-1"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2025-11-14
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/lab-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/lab-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"default","history":true,"mermaid":[{"startOnLoad":false}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/lab-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = {
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+
+
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+    
+  
+
+</body></html>

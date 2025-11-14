@@ -1,0 +1,515 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Introduzione e informazioni sul corso</title>
+<meta name="description" content="Laboratorio di Programmazione ad Oggetti">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/lab-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/lab-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/lab-slides/css/custom-theme.min.89a6ba483286d32bd2bc6f71db56e2cb4c369b5afbf3df1844228fca88e5a3e4.css" id="theme"><link rel="stylesheet" href="/lab-slides/highlight-js/default.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/gh/DanySK/css-blur-animation/blur.css" rel="stylesheet" crossorigin="anonymous">
+
+<script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="introduzione-e-informazioni-sul-corso">Introduzione e informazioni sul corso</h1>
+<!-- this file includes generated content. Do not edit. Edit content/basics-01-intro/generator.md, instead. -->
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2025-11-14
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
+</section><section>
+<h2 id="organizzazione-del-laboratorio">Organizzazione del Laboratorio</h2>
+<ul>
+<li>Due turni settimanali</li>
+<li>Il contenuto della lezione e dell’esercitazione settimanale del laboratorio è il medesimo per entrambi i turni</li>
+<li>La gestione della partecipazione ai turni è demandata al prof. Viroli</li>
+<li>Nello stesso giorno avrete sia OOP che OS</li>
+</ul>
+<h3 id="primo-turno-iniziale-cognome-nellintervallo-a-manp">Primo Turno (iniziale cognome nell’intervallo [A-Manp])</h3>
+<ul>
+<li>Lunedì, 9:00 - 13:00</li>
+<li>Lab. 2.2, Campus Cesena</li>
+</ul>
+<h3 id="secondo-turno-iniziale-cognome-nellintervallo-manq-z">Secondo Turno (iniziale cognome nell’intervallo [Manq-Z])</h3>
+<ul>
+<li>Martedì, 13:00 - 17:00</li>
+<li>Lab. 2.2, Campus Cesena</li>
+</ul>
+</section><section>
+<h2 id="docente-del-modulo-di-laboratorio">Docente del modulo di laboratorio</h2>
+<h3 id="prof-danilo-pianini">Prof. Danilo Pianini</h3>
+<ul>
+<li>mail: <code>danilo.pianini@unibo.it</code></li>
+<li>ricevimento: su appuntamento, da concordare via mail</li>
+</ul>
+<h2 id="-assistenti-alla-didattica-">🚧 Assistenti alla didattica 🚧</h2>
+<ul>
+<li>⏳ <strong>Valido fino al <em>30/09</em>, sarà poi aggiornato con i nuovi riferimenti</strong></li>
+<li>📢 Il laboratorio del 29/30 settembre sarà tenuto da Farabegoli e da uno dei nuovi tutor (non Baiardi)</li>
+</ul>
+<h3 id="ing-martina-baiardi">Ing. Martina Baiardi</h3>
+<ul>
+<li>mail: <code>m.baiardi@unibo.it</code></li>
+<li>ricevimento: su appuntamento, da concordare via mail</li>
+</ul>
+<h3 id="ing-nicolas-farabegoli">Ing. Nicolas Farabegoli</h3>
+<ul>
+<li>mail: <code>nicolas.farabegoli@unibo.it</code></li>
+<li>ricevimento: non disponibile</li>
+</ul>
+<!--
+### Ing. Angela Cortecchia
+* mail: `angela.cortecchia@unibo.it`
+* ricevimento: su appuntamento, da concordare via mail
+-->
+<h2 id="-regole-di-ingaggio">‼️ Regole di ingaggio</h2>
+<ol>
+<li>📝 Si utilizzi il <em>forum</em> del corso per qualunque dubbio <em>tecnico</em></li>
+<li>📨 Si utilizzi l’<em>email</em> solo per discutere argomenti strettamente <em>personali</em>
+<ul>
+<li>❗ Un esercizio che non riuscite a risolvere <strong>non</strong> è un problema strettamente personale</li>
+</ul>
+</li>
+<li>📌 Se si invia una email, <strong>si mettano in copia <em>tutti</em> i docenti e gli assistenti</strong></li>
+</ol>
+</section><section>
+<h2 id="il-laboratorio">Il Laboratorio</h2>
+<ul>
+<li>Consente di mettere in pratica quanto visto nelle lezioni in aula
+<ul>
+<li>lo studente affronta gli esercizi in prima persona</li>
+<li><strong>approccio cooperativo</strong>: lo studente può (ed è invitato a) richiedere il supporto diretto dei pari, dei tutor, e del docente
+<ul>
+<li>Gli LLM non rientrano fra i pari e non dovrebbero essere consultati</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Integra ed <em>espande</em> i contenuti affrontati in aula
+<ul>
+<li>Introduce <em>nuovi argomenti</em> (non affrontati in aula!)
+<ul>
+<li>Strumenti, metodologie, pratiche, librerie…</li>
+</ul>
+</li>
+<li>Fondamentale per arrivare preparati all’esame, e soprattutto per riuscire a fare un buon <strong>progetto</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="organizzazione-di-ciascun-turno-di-laboratorio">Organizzazione di ciascun turno di laboratorio</h2>
+<ol>
+<li>Lezione Frontale (40-80 min)
+<ul>
+<li>Introduce <em>nuovi concetti</em> non visti in aula</li>
+</ul>
+</li>
+<li>Esercitazione
+<ul>
+<li>Un set di esercizi da svolgere in autonomia</li>
+<li>Evocando il docente in caso di difficoltà</li>
+<li>Chiedendo <strong>sempre</strong> ai docenti una <strong>correzione finale</strong></li>
+</ul>
+</li>
+</ol>
+<h2 id="pause">Pause</h2>
+<p>Da che termina la parte iniziale, siamo in modalità “<em>pausa dinamica</em>”: potete entrare e uscire dall’aula a piacimento</p>
+<ul>
+<li><strong>Una sola regola</strong>: se <strong>siete in lab</strong>, allora <strong>state lavorando</strong>
+<ul>
+<li>Se avete fame, sete, necessità fisiologiche, voglia di una pausa,
+voglia di andare su TikTok, bisogno di fare una partita a Fortnite…
+<br><em>no problem:  uscite e rientrate</em></li>
+<li>Motivo: distrae moltissimo avere persone intorno che fanno cose decisamente più divertenti che scervellarsi su un esercizio</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="svolgimento-di-ciascun-esercizio">Svolgimento di ciascun esercizio</h2>
+<ol>
+<li>Lettura attenta della consegna
+<ul>
+<li>Contattare un docente in caso di dubbi</li>
+</ul>
+</li>
+<li>Svolgimento dell’esercizio
+<ul>
+<li>Attraverso esecuzione precisa dei passi riportati nella consegna</li>
+<li>Contattare un docente in caso di difficoltà</li>
+</ul>
+</li>
+<li><strong>Segnalazione al docente/tutor del avvenuto completamento</strong>
+<ul>
+<li><em>La correzione è fondamentale!</em>
+<ul>
+<li>Nella correzione, progressivamente, vi verranno dati suggerimenti per passare da “qualcosa che funziona”
+a qualcosa di ben fatto!</li>
+<li>Ricordate che in OOP <em>“funziona” non è una metrica di qualità sufficiente</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section><section>
+<h2 id="chiarimenti-e-spiegazioni-dopo-il-laboratorio">Chiarimenti e spiegazioni dopo il laboratorio</h2>
+<p>Per chiarimenti, ulteriori delucidazioni e spiegazioni <em>fuori dall’orario di laboratorio</em>
+si incoraggia l’uso del <strong>Forum del Corso</strong></p>
+<ul>
+<li>link accessibile dal sito del corso su Virtuale</li>
+<li>da preferire all’email inviata direttamente al/ai docente/i</li>
+</ul>
+<h3 id="riguardo-il-forum">Riguardo il forum</h3>
+<ul>
+<li>Il dubbio di uno studente, probabilmente, è anche il dubbio di qualcun altro (<strong>condivisione</strong>)</li>
+<li>Gli studenti possono aiutarsi (<strong>discussione</strong>)</li>
+<li>Aiutare i colleghi sul forum è <strong>valutato positivamente</strong></li>
+</ul>
+<h3 id="riguardo-lemail">Riguardo l’email</h3>
+<ul>
+<li>L’email resta il canale da utilizzare per comunicazioni <strong>confidenziali</strong>
+<ul>
+<li>con l’accortezza di mettere sempre in copia <em>tutti</em> i docenti del corso</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="llm-e-strumenti-di-ai">LLM e strumenti di AI</h2>
+<p>Esistono strumenti di intelligenza artificiale (tipicamente Large Language Models, LLM)
+che possono essere utilizzati per <strong>generare codice</strong>.</p>
+<ul>
+<li>Allenati a partire da grandi quantità di codice sorgente <em>preesistente</em>
+<ul>
+<li>Soggetti al problema “garbage in, garbage out”</li>
+<li>Risolvono molto bene problemi semplici</li>
+<li>Spesso commettono errori in problemi complessi</li>
+</ul>
+</li>
+<li>Fruibili via web o integrati dentro l’ambiente di sviluppo</li>
+<li>Usati sempre di più, anche in contesti professionali
+<ul>
+<li>Con risultati variabili</li>
+</ul>
+</li>
+</ul>
+<h3 id="in-questo-corso-vietati">In questo corso: <strong>vietati</strong></h3>
+<ul>
+<li>Non sono consentiti in lab</li>
+<li>Non sono consentiti a casa</li>
+<li>Non saranno disponibili per l’esame
+<ul>
+<li>E sono abbastanza riconoscibili usando la similarità fra progetti, per la quale abbiamo strumenti che già usiamo</li>
+</ul>
+</li>
+</ul>
+<h3 id="motivazione">Motivazione</h3>
+<p>Sono strumenti <em>potentissimi</em>, ma è necessario saperli usare <strong>criticamente</strong>, altrimenti:</p>
+<ul>
+<li>Possono ostacolare e rallentare l’apprendimento</li>
+<li>Possono generare codice di bassa qualità (con bug, inefficienze, o problemi di stile che non riconoscete)
+<ul>
+<li>Stanno nascendo aziende e professionisti di “AI code cleanup”</li>
+<li>Pare che possano accelerare lo sviluppo in piccoli progetti per sviluppatori inesperti,
+ma <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/">studi su progetti complessi con sviluppatori esperti rilevano un rallentamento dello sviluppo del 19%</a></li>
+</ul>
+</li>
+<li>Possono usare parti del linguaggio che ancora non potete conoscere
+<ul>
+<li>Ergo, generare codice non ancora comprensibile</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<p><img src="torvalds.jpg" alt=""></p>
+<p>Linus Torvalds, creatore di Linux, commentando un contributo contenente codice generato da un LLM</p>
+</section><section>
+<h3 id="contenuti">Contenuti</h3>
+<ul>
+<li>Java toolchain (<code>java</code>, <code>javac</code>, <code>jar</code>, etc.)</li>
+<li>VSCode IDE, strumenti di debug</li>
+<li>Rudimenti di build automation con Gradle</li>
+<li>Controllo di versione</li>
+<li>Documentazione (Javadoc)</li>
+<li>Testing (JUnit)</li>
+<li>Controllo di qualità del codice</li>
+<li>Programmazione multipiattaforma</li>
+<li>Profiling</li>
+<li>Sviluppo di GUI con JavaFX</li>
+</ul>
+</section><section>
+<h3 id="obiettivi-e-struttura-del-percorso">Obiettivi e struttura del percorso</h3>
+<p>Acquisire le competenze necessarie per diventare:</p>
+<ul>
+<li><em>ottimi</em> <strong>programmatori</strong></li>
+<li><em>discreti</em> <strong>progettisti</strong></li>
+</ul>
+<h4 id="il-percorso">Il percorso</h4>
+<p>Il corso di laboratorio ha <em>difficoltà crescente</em> (superlinearmente, ossia diventa sempre più impegnativo sempre più velocemente)</p>
+<ul>
+<li>Le consegne e il codice passeranno in inglese</li>
+<li>Richiederemo capacità di analisi di trade-off di soluzioni alternative</li>
+<li>Richiederemo sempre maggior qualità</li>
+<li>Useremo strumenti via via più avanzati</li>
+</ul>
+<h4 id="fondamentale-impegno-e-mettersi-in-gioco">Fondamentale: <strong>impegno</strong> e <strong>mettersi in gioco</strong></h4>
+<p>È un corso molto impegnativo – lo sappiamo dalle valutazioni degli anni passati, e pensiamo sia giusto che lo sia…</p>
+<ul>
+<li>Richiede attenzione in aula, impegno in laboratorio, e pratica <em>anche a casa</em>
+<ul>
+<li>Purtroppo è difficile recuperare se si resta indietro, la disciplina aiuta!</li>
+</ul>
+</li>
+<li>Non fermatevi quando “funziona”, ma solo quando avete capito <em>perché</em> funziona</li>
+<li>Dai docenti avrete il massimo supporto ✊, ma il risultato dipende da voi!</li>
+</ul>
+<h4 id="consiglio-per-chi-conosce-già-java-o-altri-linguaggi-ooob-come-c-javascript-python-ruby">Consiglio per chi conosce già Java o altri linguaggi OO/OB (come C#, Javascript, Python, Ruby…)</h4>
+<p>Impegnarsi fin dall’inizio, anche se nelle prime lezioni sembra facile, e restare sul pezzo!</p>
+<ul>
+<li>Assumere di conoscere già OOP rischia di essere <em>molto</em> controproducente
+<ul>
+<li>Specialmente se si conosce un solo linguaggio OO!</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="introduzione-e-informazioni-sul-corso-1">Introduzione e informazioni sul corso</h1>
+<!-- this file includes generated content. Do not edit. Edit content/basics-01-intro/generator.md, instead. -->
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti-1">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche-1">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini-1"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2025-11-14
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/lab-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/lab-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"default","history":true,"mermaid":[{"startOnLoad":false}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/lab-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = {
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+
+
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+    
+  
+
+</body></html>

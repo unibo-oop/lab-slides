@@ -1,0 +1,406 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+<title>Laboratorio di Programmazione ad Oggetti</title>
+<meta name="description" content="Laboratorio di Programmazione ad Oggetti, Ingegneria e Scienze Informatiche">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/lab-slides/reveal-js/dist/reset.css">
+<link rel="stylesheet" href="/lab-slides/reveal-js/dist/reveal.css">
+  <link rel="stylesheet" href="/lab-slides/css/custom-theme.min.89a6ba483286d32bd2bc6f71db56e2cb4c369b5afbf3df1844228fca88e5a3e4.css" id="theme"><link rel="stylesheet" href="/lab-slides/highlight-js/default.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/gh/DanySK/css-blur-animation/blur.css" rel="stylesheet" crossorigin="anonymous">
+
+<script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+
+
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="caricamento-di-risorse-dal-classpath">Caricamento di risorse dal classpath</h1>
+<!-- this file includes generated content. Do not edit. Edit content/build-resources/generator.md, instead. -->
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2025-11-14
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
+</section><section>
+<h2 id="risorse-nei-progetti-gradle">Risorse nei progetti Gradle</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>├── src
+</span></span><span style="display:flex;"><span>│   ├── main
+</span></span><span style="display:flex;"><span>│   │   ├── java
+</span></span><span style="display:flex;"><span>│   │   └── resources
+</span></span><span style="display:flex;"><span>│   └── test
+</span></span><span style="display:flex;"><span>│       ├── java
+</span></span><span style="display:flex;"><span>│       └── resources
+</span></span><span style="display:flex;"><span>├── build.gradle.kts
+</span></span><span style="display:flex;"><span>└── settings.gradle.kts
+</span></span></code></pre></div><ul>
+<li>Le cartelle <code>src/[main|test]/resources</code> contengono le risorse del progetto opportunamente organizzate
+<ul>
+<li>Per risorse si intendono icone, file di testo, video, immagini, modelli 3D e qualunque cosa sia necessaria al corretto funzionamento del programma ma non sia una libreria o un file sorgente.</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<!-- this file includes generated content. Do not edit. Edit content/build-resources/generator.md, instead. -->
+<h2 id="risorse-caricate-dal-classpath">Risorse caricate dal classpath</h2>
+<ul>
+<li>
+<p>Abbiamo visto finora il <em>classpath</em> come l’insieme dei <em>percorsi</em> dove la virtual machine va a cercare le classi da caricare</p>
+<ul>
+<li>Come abbiamo visto usando l’opzione <code>-cp</code> di <code>java</code> e <code>javac</code>, il classpath può contenere indifferentemente dei path o dei JAR (o anche degli zip)</li>
+</ul>
+</li>
+<li>
+<p>Esso includerà tipicamente anche le risorse del progetto, i JAR delle dipendenze importate, etc.</p>
+</li>
+<li>
+<p>Come possiamo accedere a queste risorse in modo uniforme?</p>
+<ul>
+<li>Ossia caricarle sia che si trovino sul file system, sia che si trovino nel JAR eseguibile, sia che vengano incluse in un JAR di risorse separato.</li>
+</ul>
+</li>
+<li>
+<p>Java fornisce un’utilità per caricare risorse dal <strong>classpath</strong></p>
+<ul>
+<li>Approccio <strong>location-independent</strong>: non importa dove il codice venga eseguito fin tanto che l’ambiente viene correttamente impostato per trovare le risorse.</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h3 id="classloadergetsystemresourceasstreamstring"><code>ClassLoader.getSystemResource</code>(<code>AsStream</code>)<code>(String)</code></h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">abstract</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">ClassLoader</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#000">ClassLoader</span> <span style="color:#000">getSystemClassLoader</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#000">URL</span> <span style="color:#000">getSystemResource</span>(<span style="color:#000">String</span> <span style="color:#000">name</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#000">InputStream</span> <span style="color:#000">getSystemResourceAsStream</span>(<span style="color:#000">String</span> <span style="color:#000">name</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#000">URL</span> <span style="color:#000">getResource</span>(<span style="color:#000">String</span> <span style="color:#000">name</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#177500">// ...</span>
+</span></span></code></pre></div><ul>
+<li>Un <strong>class loader</strong> (istanza di <code>ClassLoader</code>) è un’oggetto responsabile del <em>caricamento di classi e risorse</em>
+<ul>
+<li>ogni class loader ha un class loader padre, per sfruttare un meccanismo di delega</li>
+<li>il parent di default è il <strong>system class loader</strong> che carica classi e risorse <em>dal classpath</em></li>
+</ul>
+</li>
+<li>Una <strong>risorsa di sistema</strong> (system resource) è una risorsa “built-in” del sistema software, oppure disponibile nel sistema host (ad es. nel filesystem locale)
+<ul>
+<li>Per esempio, l’implementazione di base ricerca nel <code>CLASSPATH</code></li>
+</ul>
+</li>
+<li>L’argomento di <code>getSystemResource</code> e <code>getSystemResourceAsStream</code> è il <strong>nome di una risorsa</strong>
+(<strong>non un percorso del filesystem!</strong>), che è una stringa separata da <code>/</code> che identifica la risorsa
+<ul>
+<li>L’interpretazione del nome della risorsa dipende dall’implementazione</li>
+<li>Il system class loader usa il nome come un path per cercare la risorsa a partire dalle entry del classpath</li>
+</ul>
+</li>
+<li><code>ClassLoader.getSystemResource()</code> equivale a <code>ClassLoader.getSystemClassLoader().getResource()</code></li>
+</ul>
+<h4 id="nota-dal-classpath-è-possibile-solo-leggere-risorse-non-scriverle">Nota: dal classpath è possibile solo <strong>leggere</strong> risorse, non <strong>scriverle</strong></h4>
+<ul>
+<li>Le risorse caricate dal classpath sono <strong>in sola lettura</strong>
+<ul>
+<li>Per esempio, se la risorsa è dentro un JAR, non è possibile modificarla “dentro” il JAR</li>
+</ul>
+</li>
+<li>Se si ha la necessità di modificare una risorsa, è necessario copiarla in
+un percorso su cui l’utente abbia diritto di scrittura e lavorare su quella copia
+<ul>
+<li>Tipicamente, una cartella nascosta nella la home utente: <code>System.getProperty("user.home")</code></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h3 id="risorse-caricate-dal-classpath--esempi">Risorse caricate dal classpath – Esempi</h3>
+<h4 id="caricamento-di-file">Caricamento di File</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">InputStream</span> <span style="color:#000">in</span> <span style="color:#000">=</span> <span style="color:#000">ClassLoader</span>.<span style="color:#836c28">getSystemResourceAsStream</span>(<span style="color:#c41a16">"/settings/settings"</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">BufferedReader</span> <span style="color:#000">br</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">BufferedReader</span>(<span style="color:#a90d91">new</span> <span style="color:#000">InputStreamReader</span>(<span style="color:#000">in</span>));
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">String</span> <span style="color:#000">line</span> <span style="color:#000">=</span> <span style="color:#000">br</span>.<span style="color:#836c28">readLine</span>();
+</span></span><span style="display:flex;"><span><span style="color:#000">in</span>.<span style="color:#836c28">close</span>();
+</span></span></code></pre></div><h4 id="caricamento-di-immagini">Caricamento di Immagini</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">URL</span> <span style="color:#000">imgURL</span> <span style="color:#000">=</span> <span style="color:#000">ClassLoader</span>.<span style="color:#836c28">getSystemResource</span>(<span style="color:#c41a16">"/images/gandalf.jpg"</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">ImageIcon</span> <span style="color:#000">icon</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">ImageIcon</span>(<span style="color:#000">imgURL</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">JLabel</span> <span style="color:#000">lab1</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">JLabel</span>(<span style="color:#000">icon</span>);
+</span></span></code></pre></div><p>Progetto di esempio:
+<a href="https://github.com/unibo-oop/example-with-get-resources">https://github.com/unibo-oop/example-with-get-resources</a></p>
+</section><section>
+<h2 id="installazione-delle-impostazioni-per-utente">Installazione delle impostazioni per-utente</h2>
+<h4 id="motivazione">Motivazione</h4>
+<p>Spesso un software ha necessità di caricare al primo avvio delle <em>impostazioni di default</em>, quindi lasciare l’utente libero di modificarle e, se avviato successivamente caricare quelle scelte dall’utente. In caso di sistema multiutente, le impostazioni saranno diverse per ciascuno.</p>
+<h4 id="strategia">Strategia</h4>
+<ul>
+<li>Si sceglie una cartella nella <strong>home folder dell’utente</strong> dove salvare le impostazioni.
+<ul>
+<li>È norma consolidata creare una cartella <code>.nomeprogramma</code>.</li>
+</ul>
+</li>
+<li>Al primo avvio, si verifica se tale cartella esista e se contenga i file di configurazione previsti.
+<ul>
+<li>Se non è presente, o se non sono presenti e leggibili alcuni i file, si procede a caricare nella cartella di destinazione i file di default dal JAR usando <code>getResource()</code>.</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h1 id="caricamento-di-risorse-dal-classpath-1">Caricamento di risorse dal classpath</h1>
+<!-- this file includes generated content. Do not edit. Edit content/build-resources/generator.md, instead. -->
+<div style="text-align: center; margin-bottom: 3em">
+<h4 id="programmazione-ad-oggetti-1">Programmazione ad Oggetti</h4>
+<h4 id="cdl-ingegneria-e-scienze-informatiche-1">C.D.L. Ingegneria e Scienze Informatiche</h4>
+</div>
+<div style="text-align: center; margin-bottom: 3em">
+<h3 id="danilo-pianini-1"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
+</div>
+<div style="text-align: left; margin-left: 10em">
+<p>Slide compilate il: 2025-11-14
+</p>
+<p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
+<p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
+</div>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src="/lab-slides/reveal-hugo/object-assign.js"></script>
+
+<a href="/lab-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"default","history":true,"mermaid":[{"startOnLoad":false}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/lab-slides/reveal-js/dist/reveal.js"></script>
+
+
+  
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/zoom/zoom.js"></script>
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
+  
+  
+  <script type="text/javascript" src="/lab-slides/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = {
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+  Reveal.initialize(options);
+</script>
+
+
+
+
+
+
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+    
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"startOnLoad":false});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
+
+
+
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+</script>
+
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+
+<script>
+  if (/.*?(\?|&)print-pdf/.test(window.location.toString())) {
+      var ytVideos = document.getElementsByTagName("iframe")
+      for (let i = 0; i < ytVideos.length; i++) {
+          var videoFrame = ytVideos[i]
+          var isYouTube = /^https?:\/\/(www.)youtube\.com\/.*/.test(videoFrame.src)
+          if (isYouTube) {
+              console.log(`Removing ${videoFrame.src}`)
+              var parent = videoFrame.parentElement
+              videoFrame.remove()
+              var p = document.createElement('p')
+              p.append(
+                  document.createTextNode(
+                      "There was an embedded video here, but it is disabled in the printed version of the slides."
+                  )
+              )
+              p.append(document.createElement('br'))
+              p.append(
+                  document.createTextNode(
+                      `Visit instead ${
+                          videoFrame.src
+                      } or ${
+                          videoFrame.src.replace(
+                              /(^https?:\/\/(www.)youtube\.com)\/(embed\/)(\w+).*/,
+                              "https://www.youtube.com/watch?v=$4"
+                          )
+                      }`
+                  )
+              )
+              parent.appendChild(p)
+          }
+      }
+  }
+</script>
+
+    
+  
+
+</body></html>

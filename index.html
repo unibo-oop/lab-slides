@@ -8,11 +8,16 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/lab-slides/reveal-js/dist/reset.css">
 <link rel="stylesheet" href="/lab-slides/reveal-js/dist/reveal.css">
-  <link rel="stylesheet" href="/lab-slides/css/custom-theme.min.0abede0d74688457d8c6ae6ea3f37a0a7d6d7baa26277168bcdf8d26d9cfbc19.css" id="theme"><link rel="stylesheet" href="/lab-slides/highlight-js/default.min.css">
+  <link rel="stylesheet" href="/lab-slides/css/custom-theme.min.89a6ba483286d32bd2bc6f71db56e2cb4c369b5afbf3df1844228fca88e5a3e4.css" id="theme"><link rel="stylesheet" href="/lab-slides/highlight-js/default.min.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/gh/DanySK/css-blur-animation/blur.css" rel="stylesheet" crossorigin="anonymous">
+
+<script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+
 
   </head>
   <body>
@@ -23,23 +28,37 @@
 
     <section><h2 id="laboratorio-di-programmazione-ad-oggetti">Laboratorio di Programmazione ad Oggetti</h2>
 <h3 id="indice-dei-contenuti">Indice dei contenuti</h3>
-<ul>
-<li><a href="intro/">Introduzione e informazioni sul corso</a></li>
-<li><a href="basic-tools/">Strumenti del JDK, parte prima</a></li>
-<li><a href="more-tools/">Strumenti del JDK, parte seconda</a></li>
-<li><a href="vscode/">Introduzione a Visual Studio Code e Debugging</a></li>
-<li><a href="build-systems-basics/">Dipendenze nel software e build automation</a></li>
-<li><a href="dvcs-basics/">Sistemi di controllo versione</a></li>
-<li><a href="dvcs-branching/">Branching e merging</a></li>
-<li><a href="dvcs-remote/">Operazioni con repository remoti</a></li>
-<li><a href="junit-jar-javadoc/">Testing, Documentazione del codice e costruzione degli artefatti</a></li>
-<li><a href="multiplatform/">Programmazione multi-piattaforma</a></li>
-<li><a href="code-quality-tools/">Strumenti per la qualità del codice</a></li>
-<li><a href="dvcs-workflow/">DVCS workflow</a></li>
-<li><a href="profiling-with-visualvm/">Monitoraggio e Profiling con VisualVM</a></li>
-<li><a href="javafx/">Sviluppo di GUI con JavaFX</a></li>
-<li><a href="git-cheatsheet/">Speciale: <code>git</code> cheatsheet</a></li>
-</ul>
+
+<div class="container w-100 m-0 p-0">
+  <div class="row "><div class="col "><h4 id="basics">Basics</h4>
+<p><i class="fa-solid fa-graduation-cap"></i> <a href="intro/">Introduzione al corso</a></p>
+<p><i class="fa-brands fa-java"></i> <a href="basic-tools/">Strumenti del JDK, pt. 1</a></p>
+<p><i class="fa-brands fa-java"></i> <a href="more-tools/">Strumenti del JDK, pt. 2</a></p>
+<p><i class="fa-solid fa-bug-slash"></i> <a href="vscode/">Introduzione a Visual Studio Code e Debugging</a></p>
+<h4 id="build-automation">Build automation</h4>
+<p><i class="fa-solid fa-gear"></i> <a href="build-systems-basics/">Build automation basics</a></p>
+<p><i class="fa-solid fa-chart-diagram"></i> <a href="dependencies/">Dipendenze e librerie</a></p>
+<p><i class="fa-solid fa-vial-circle-check"></i> <a href="junit/">Testing unitario</a></p>
+<p><i class="fa-solid fa-book"></i> <a href="javadoc/">Documentazione del codice</a></p>
+<p><i class="fa-solid fa-icons"></i> <a href="resources/">Risorse di progetto</a></p>
+<p><i class="fa-solid fa-torii-gate"></i> <a href="jar/">Costruzione degli artefatti</a></p>
+</div>
+<div class="col "><h4 id="version-control">Version control</h4>
+<p><i class="fa-solid fa-code-branch"></i> <a href="dvcs-basics/">Sistemi di controllo versione</a></p>
+<p><i class="fa-solid fa-code-branch"></i> <a href="dvcs-branching/">Branching e merging</a></p>
+<p><i class="fa-solid fa-code-branch"></i> <a href="dvcs-remote/">Operazioni con repository remoti</a></p>
+<p><i class="fa-solid fa-code-branch"></i> <a href="dvcs-git-cheatsheet/"><code>git</code> cheatsheet</a></p>
+<p><i class="fa-solid fa-code-branch"></i> <a href="dvcs-workflow/">DVCS workflow</a></p>
+<h4 id="advanced">Advanced</h4>
+<p><i class="fa-solid fa-medal"></i> <a href="static-analysis/">Analisi statica</a></p>
+<p><i class="fa-solid fa-left-right"></i> <a href="multiplatform/">Programmazione multi-piattaforma</a></p>
+<p><i class="fa-solid fa-camera-retro"></i> <a href="javafx/">Sviluppo di GUI con JavaFX</a></p>
+<p><i class="fa-solid fa-signal"></i> <a href="profiling-with-visualvm/">Monitoraggio e Profiling con VisualVM</a></p>
+<p><i class="fa-solid fa-user-graduate"></i> <a href="project-config/">Note per il progetto finale</a></p>
+</div>
+</div>
+</div>
+
 </section>
 
   
@@ -112,6 +131,27 @@
 
 
 
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
 
   
   
