@@ -35,7 +35,7 @@
 <h3 id="danilo-pianini"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2025-11-30
+<p>Slide compilate il: 2025-12-01
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
@@ -168,7 +168,7 @@ un percorso su cui l’utente abbia diritto di scrittura e lavorare su quella co
 <h3 id="danilo-pianini-1"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2025-11-30
+<p>Slide compilate il: 2025-12-01
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
@@ -286,20 +286,14 @@ un percorso su cui l’utente abbia diritto di scrittura e lavorare su quella co
   
 
   
-    
-  
-  
-
-  
-    
-  
   
 
   
   
 
   
-    
+  
+
   
   
 
@@ -328,30 +322,6 @@ un percorso su cui l’utente abbia diritto di scrittura e lavorare su quella co
   
 
 
-
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({"startOnLoad":false});
-
-    let render = (event) => {
-      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
-      if (!mermaidElems.length){
-          return
-      }
-      mermaidElems.forEach(mermaidElem => {
-          let processed = mermaidElem.getAttribute('data-processed');
-          if (!processed){
-              
-              mermaid.init(undefined, mermaidElem);
-          }
-      });
-    };
-    
-    render({currentSlide: Reveal.getCurrentSlide()});
-
-    Reveal.on('slidechanged', render);
-    Reveal.on('ready', render);
-  </script>
 
 
 
