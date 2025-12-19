@@ -224,7 +224,7 @@ contenuta nella libreria:</p>
 <p>E quindi, in <code>build.gradle.kts</code></p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">dependencies</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#000">compileOnly</span>(<span style="color:#c41a16">"com.github.spotbugs:spotbugs-annotations:4.7.3"</span>) <span style="color:#177500">// Use the latest version
-</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span>}
+</span></span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Sarà a questo punto disponibile l’annotazione <code>@SuppressFBWarnings</code>:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">@SuppressFBWarnings</span>(
 </span></span><span style="display:flex;"><span>    <span style="color:#000">value</span> <span style="color:#000">=</span> { <span style="color:#177500">// List of bugs to be suppressed</span>

@@ -287,7 +287,7 @@ col software è analogo…</li>
 </ol>
 <p>è sufficiente configurare <code>build.gradle.kts</code> come segue:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">plugins</span> { <span style="color:#000">java</span> } <span style="color:#177500">// Carica il necessario per Java
-</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">repositories</span> { <span style="color:#000">mavenCentral</span>() } <span style="color:#177500">// Configura Gradle per cercare e scaricare da Maven Central
+</span></span></span><span style="display:flex;"><span><span style="color:#000">repositories</span> { <span style="color:#000">mavenCentral</span>() } <span style="color:#177500">// Configura Gradle per cercare e scaricare da Maven Central
 </span></span></span></code></pre></div></section><section>
 <h2 id="dipendenze-in-gradle-preparazione">Dipendenze in Gradle: preparazione</h2>
 <p>Siamo pronti per importare le librerie che vogliamo!
@@ -337,8 +337,8 @@ Dobbiamo solo:</p>
 </ul>
 <p>Possiamo semplicemente configurare Gradle per importarla dentro il blocco <code>dependencies</code>:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">plugins</span> { <span style="color:#000">java</span> } <span style="color:#177500">// Carica il necessario per Java
-</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">repositories</span> { <span style="color:#000">mavenCentral</span>() } <span style="color:#177500">// Configura Gradle per cercare e scaricare da Maven Central
-</span></span></span><span style="display:flex;"><span><span style="color:#177500"></span><span style="color:#000">dependencies</span> {
+</span></span></span><span style="display:flex;"><span><span style="color:#000">repositories</span> { <span style="color:#000">mavenCentral</span>() } <span style="color:#177500">// Configura Gradle per cercare e scaricare da Maven Central
+</span></span></span><span style="display:flex;"><span><span style="color:#000">dependencies</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#000">implementation</span>(<span style="color:#c41a16">"com.omertron:API-OMDB:1.5"</span>)
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Quando lanceremo il task <code>compileJava</code>, Gradle si occuperà di:</p>
