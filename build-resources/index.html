@@ -35,14 +35,14 @@
 <h3 id="danilo-pianini"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2026-01-26
+<p>Slide compilate il: 2026-01-28
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
 </div>
 </section><section>
 <h2 id="risorse-nei-progetti-gradle">Risorse nei progetti Gradle</h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>├── src
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span>├── src
 </span></span><span style="display:flex;"><span>│   ├── main
 </span></span><span style="display:flex;"><span>│   │   ├── java
 </span></span><span style="display:flex;"><span>│   │   └── resources
@@ -86,7 +86,7 @@
 </ul>
 </section><section>
 <h3 id="classloadergetsystemresourceasstreamstring"><code>ClassLoader.getSystemResource</code>(<code>AsStream</code>)<code>(String)</code></h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">abstract</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">ClassLoader</span> {
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">abstract</span> <span style="color:#a90d91">class</span> <span style="color:#3f6e75">ClassLoader</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#000">ClassLoader</span> <span style="color:#000">getSystemClassLoader</span>();
 </span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#000">URL</span> <span style="color:#000">getSystemResource</span>(<span style="color:#000">String</span> <span style="color:#000">name</span>);
 </span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#000">InputStream</span> <span style="color:#000">getSystemResourceAsStream</span>(<span style="color:#000">String</span> <span style="color:#000">name</span>);
@@ -130,12 +130,12 @@ un percorso su cui l’utente abbia diritto di scrittura e lavorare su quella co
 </section><section>
 <h3 id="risorse-caricate-dal-classpath--esempi">Risorse caricate dal classpath – Esempi</h3>
 <h4 id="caricamento-di-file">Caricamento di File</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">InputStream</span> <span style="color:#000">in</span> <span style="color:#000">=</span> <span style="color:#000">ClassLoader</span>.<span style="color:#836c28">getSystemResourceAsStream</span>(<span style="color:#c41a16">"/settings/settings"</span>);
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">InputStream</span> <span style="color:#000">in</span> <span style="color:#000">=</span> <span style="color:#000">ClassLoader</span>.<span style="color:#836c28">getSystemResourceAsStream</span>(<span style="color:#c41a16">"/settings/settings"</span>);
 </span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">BufferedReader</span> <span style="color:#000">br</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">BufferedReader</span>(<span style="color:#a90d91">new</span> <span style="color:#000">InputStreamReader</span>(<span style="color:#000">in</span>));
 </span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">String</span> <span style="color:#000">line</span> <span style="color:#000">=</span> <span style="color:#000">br</span>.<span style="color:#836c28">readLine</span>();
 </span></span><span style="display:flex;"><span><span style="color:#000">in</span>.<span style="color:#836c28">close</span>();
 </span></span></code></pre></div><h4 id="caricamento-di-immagini">Caricamento di Immagini</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">URL</span> <span style="color:#000">imgURL</span> <span style="color:#000">=</span> <span style="color:#000">ClassLoader</span>.<span style="color:#836c28">getSystemResource</span>(<span style="color:#c41a16">"/images/gandalf.jpg"</span>);
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">URL</span> <span style="color:#000">imgURL</span> <span style="color:#000">=</span> <span style="color:#000">ClassLoader</span>.<span style="color:#836c28">getSystemResource</span>(<span style="color:#c41a16">"/images/gandalf.jpg"</span>);
 </span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">ImageIcon</span> <span style="color:#000">icon</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">ImageIcon</span>(<span style="color:#000">imgURL</span>);
 </span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">JLabel</span> <span style="color:#000">lab1</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">JLabel</span>(<span style="color:#000">icon</span>);
 </span></span></code></pre></div><p>Progetto di esempio:
@@ -168,7 +168,7 @@ un percorso su cui l’utente abbia diritto di scrittura e lavorare su quella co
 <h3 id="danilo-pianini-1"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2026-01-26
+<p>Slide compilate il: 2026-01-28
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
@@ -286,11 +286,7 @@ un percorso su cui l’utente abbia diritto di scrittura e lavorare su quella co
   
 
   
-  
-
-  
-  
-
+    
   
   
 
@@ -321,7 +317,37 @@ un percorso su cui l’utente abbia diritto di scrittura e lavorare su quella co
   
   
 
+  
+  
 
+  
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"startOnLoad":false});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
 
 
 
