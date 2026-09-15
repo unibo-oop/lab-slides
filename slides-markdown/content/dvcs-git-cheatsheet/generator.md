@@ -41,7 +41,7 @@ aliases = ["/git-cheatsheet/"]
 | Osservazione della cronologia dei commit su ogni branch | `git log --all` |
 | Osservazione della cronologia dei commit con grafico | `git log --graph --all` |
 | Osservazione della cronologia dei commit compatta con grafico | `git log --graph --all --oneline` |
-| Osservazione delle differenze tra il working directory e lo stage | `git diff` |
+| Osservazione delle differenze tra la working directory e lo stage | `git diff` |
 | Osservazione delle differenze tra lo stage e il repository | `git diff --staged` |
 | Osservazione delle differenze tra due `<tree-ish>` | `git diff <tree-ish1> <tree-ish2>` |
 | Elenco dei remote associati al repository | `git remote -v` |
