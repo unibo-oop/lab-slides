@@ -20,7 +20,7 @@ aliases = ["javadoc"]
 
 La documentazione di un progetto software è un aspetto *fondamentale*
 Al fine di garantirne la *manutenibilità*
-* Siamo cosı̀ sicuri di ricordarci, a distanza di settimane, del perché
+* Siamo così sicuri di ricordarci, a distanza di settimane, del perché
   abbiamo adottato una certa architettura, scritto una certa classe, una
   data estensione di una classe, un certo metodo?
 * Arriva in azienda un nuovo sviluppatore: come fa a costruirsi il
@@ -38,7 +38,7 @@ tramite utilizzo di una specifica sintassi nei commenti
 
 ### Funzionamento
 
-* Il tool processa tutti commenti del tipo `/** ... */`
+* Il tool processa tutti i commenti del tipo `/** ... */`
 * I commenti devono trovarsi in posizioni specifiche: *in testa* a dichiarazione di interfacce/classi o dei loro membri
 * Esiste una sintassi specifica per esprimere informazioni specifiche
     * significato dei parametri di un metodo
