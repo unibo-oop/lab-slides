@@ -235,7 +235,7 @@ Il corso di laboratorio ha *difficoltà crescente* (superlinearmente, ossia dive
 * Non fermatevi quando "funziona", ma solo quando avete capito *perché* funziona
 * Dai docenti avrete il massimo supporto ✊, ma il risultato dipende da voi!
 
-#### Consiglio per chi conosce già Java o altri linguaggi OO/OB (come C#, Javascript, Python, Ruby...)
+#### Consiglio per chi conosce già Java o altri linguaggi OO/OB (come C#, JavaScript, Python, Ruby...)
 
 Impegnarsi fin dall'inizio, anche se nelle prime lezioni sembra facile, e restare sul pezzo!
 * Assumere di conoscere già OOP rischia di essere *molto* controproducente
