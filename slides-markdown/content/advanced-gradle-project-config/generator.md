@@ -68,7 +68,7 @@ Spesso un software ha necessità di caricare al primo avvio delle *impostazioni 
 * Si sceglie una cartella nella **home folder dell'utente** dove salvare le impostazioni.
     * È norma consolidata creare una cartella `.nomeprogramma`.
 * Al primo avvio, si verifica se tale cartella esista e se contenga i file di configurazione previsti.
-    * Se non è presente, o se non sono presenti e leggibili alcuni i file, si procede a caricare nella cartella di destinazione i file di default dal JAR usando `getResource()`.
+    * Se non è presente, o se non sono presenti e leggibili alcuni file, si procede a caricare nella cartella di destinazione i file di default dal JAR usando `getResource()`.
 
 ---
 
