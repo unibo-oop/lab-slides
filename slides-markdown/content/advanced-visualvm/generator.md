@@ -27,10 +27,10 @@ aliases = ["/profiling-with-visualvm/"]
     - *Method profiling*: fornisce indicazioni sul tempo d'esecuzione di metodi
     - *Memory profiling*: fornisce informazioni sull'utilizzo di memoria delle applicazioni Java (allocazione di oggetti etc.)
 - Monitoraggio e profiling fanno parte del cosiddetto *performance testing*
-    - E' un tema molto articolato
+    - È un tema molto articolato
         - Hunt, Charlie, and Binu John. *Java performance*. Prentice Hall Press, 2011.
         - Oaks, Scott. *Java Performance: The Definitive Guide: Getting the Most Out of Your Code.* " O'Reilly Media, Inc.", 2014.
-    - La valutazione delle performance si può effettuare in modo automatico attraverso programmi/test noti come *benchmark* (o *micro-benchmark* se si concentrano su piccoli porzioni di un programma)
+    - La valutazione delle performance si può effettuare in modo automatico attraverso programmi/test noti come *benchmark* (o *micro-benchmark* se si concentrano su piccole porzioni di un programma)
 
 ---
 
