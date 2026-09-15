@@ -1,23 +1,28 @@
-<div style="text-align: center; margin-bottom: 3em">
+<div class="deck-cover">
 
-#### Programmazione ad Oggetti
-#### C.D.L. Ingegneria e Scienze Informatiche
+<div class="deck-cover-course">
 
-</div>
-
-<div style="text-align: center; margin-bottom: 3em">
-
-### [Danilo Pianini --- `danilo.pianini@unibo.it`](mailto:danilo.pianini@unibo.it)
+Programmazione ad Oggetti &nbsp;&middot;&nbsp; C.d.L. in Ingegneria e Scienze Informatiche
 
 </div>
 
+<div class="deck-cover-author">
 
-<div style="text-align: left; margin-left: 10em">
+[<i class="fa-solid fa-envelope"></i> **Danilo Pianini** `danilo.pianini@unibo.it`](mailto:danilo.pianini@unibo.it)
 
-Slide compilate il: {{< today >}}
+</div>
 
-[<i class="fa fa-print" aria-hidden="true"></i> versione stampabile](?print-pdf&pdfSeparateFragments=false)
+<div class="deck-cover-actions">
 
-[<i class="fa fa-undo" aria-hidden="true"></i> menu principale](..)
+[<i class="fa-solid fa-print"></i> versione stampabile](?print-pdf&pdfSeparateFragments=false)
+[<i class="fa-solid fa-list"></i> menu principale](..)
+
+</div>
+
+<div class="deck-cover-date">
+
+<i class="fa-regular fa-calendar"></i> Slide compilate il {{< today >}}
+
+</div>
 
 </div>
