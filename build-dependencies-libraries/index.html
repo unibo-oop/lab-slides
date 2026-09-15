@@ -368,7 +368,7 @@ Dobbiamo solo:</p>
 <li>Libreria matematica estesa (Commons Math3)</li>
 <li>Accesso semplificato all’I/O (Commons IO)</li>
 <li>Costruzione semi automatica di una command line (Commons CLI)</li>
-<li>Encoding e crittazione (Commons Codec), compressione (Commons Compress)</li>
+<li>Encoding e cifratura (Commons Codec), compressione (Commons Compress)</li>
 </ul>
 </li>
 <li>
@@ -379,7 +379,7 @@ Dobbiamo solo:</p>
 </li>
 </ul>
 </section><section>
-<h3 id="top-20-java-library">Top 20 Java Library</h3>
+<h3 id="top-20-java-libraries">Top 20 Java Libraries</h3>
 <p><a href="http://blog.takipi.com/we-analyzed-60678-libraries-on-github-here-are-the-top-100">
 <img src="imgs/top-20-java-libraries.png" alt="">
 </a></p>
@@ -541,8 +541,6 @@ O, al più, usarli solo <em>dopo che il progetto è avviato</em> come semplice l
   
 
   
-    
-  
   
 
   
@@ -576,30 +574,6 @@ O, al più, usarli solo <em>dopo che il progetto è avviato</em> come semplice l
   
 
 
-
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({"startOnLoad":false});
-
-    let render = (event) => {
-      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
-      if (!mermaidElems.length){
-          return
-      }
-      mermaidElems.forEach(mermaidElem => {
-          let processed = mermaidElem.getAttribute('data-processed');
-          if (!processed){
-              
-              mermaid.init(undefined, mermaidElem);
-          }
-      });
-    };
-    
-    render({currentSlide: Reveal.getCurrentSlide()});
-
-    Reveal.on('slidechanged', render);
-    Reveal.on('ready', render);
-  </script>
 
 
 
