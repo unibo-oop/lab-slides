@@ -34,33 +34,24 @@ aliases = ["/intro/"]
 
 ## Docente del modulo di laboratorio
 
-### Prof. Danilo Pianini
+### Prof. [Danilo Pianini](https://www.unibo.it/sitoweb/danilo.pianini)
 * mail: `danilo.pianini@unibo.it`
 * ricevimento: su appuntamento, da concordare via mail
 
-## 🚧 Assistenti alla didattica 🚧
+## Assistenti alla didattica
 
-* ⏳ **Valido fino al _30/09_, sarà poi aggiornato con i nuovi riferimenti**
-* 📢 Il laboratorio del 29/30 settembre sarà tenuto da Farabegoli e da uno dei nuovi tutor (non Baiardi)
-
-### Ing. Martina Baiardi
+### Ing. [Martina Baiardi](https://www.unibo.it/sitoweb/martina.baiardi)
 * mail: `m.baiardi@unibo.it`
 * ricevimento: su appuntamento, da concordare via mail
 
-### Ing. Nicolas Farabegoli
-* mail: `nicolas.farabegoli@unibo.it`
-* ricevimento: non disponibile
-
-<!--
-### Ing. Angela Cortecchia
+### Ing. [Angela Cortecchia](https://www.unibo.it/sitoweb/angela.cortecchia)
 * mail: `angela.cortecchia@unibo.it`
 * ricevimento: su appuntamento, da concordare via mail
--->
 
 ## ‼️ Regole di ingaggio
 1. 📝 Si utilizzi il *forum* del corso per qualunque dubbio *tecnico*
 2. 📨 Si utilizzi l'*email* solo per discutere argomenti strettamente *personali*
-   * ❗ Un esercizio che non riuscite a risolvere **non** è un problema strettamente personale
+    * ❗ Un esercizio che non riuscite a risolvere **non** è un problema strettamente personale
 3. 📌 Se si invia una email, **si mettano in copia _tutti_ i docenti e gli assistenti**
 
 ---
@@ -70,7 +61,7 @@ aliases = ["/intro/"]
 * Consente di mettere in pratica quanto visto nelle lezioni in aula
   * lo studente affronta gli esercizi in prima persona
   * **approccio cooperativo**: lo studente può (ed è invitato a) richiedere il supporto diretto dei pari, dei tutor, e del docente
-    * Gli LLM non rientrano fra i pari e non dovrebbero essere consultati
+    * Gli **LLM non rientrano fra i pari** e non dovrebbero essere consultati (più avanti spiegheremo perché)
 * Integra ed *espande* i contenuti affrontati in aula
   * Introduce *nuovi argomenti* (non affrontati in aula!)
     * Strumenti, metodologie, pratiche, librerie...
@@ -92,7 +83,6 @@ Da che termina la parte iniziale, siamo in modalità "*pausa dinamica*": potete 
     voglia di andare su TikTok, bisogno di fare una partita a Fortnite...
     <br>*no problem:  uscite e rientrate*
     * Motivo: distrae moltissimo avere persone intorno che fanno cose decisamente più divertenti che scervellarsi su un esercizio
-
 
 ---
 
