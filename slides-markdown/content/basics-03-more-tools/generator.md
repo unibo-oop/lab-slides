@@ -92,7 +92,7 @@ Notare che sono sempre **consistenti**!
 ### Si usi lo stile "One True Brace Style" (1TBS o OTBS)
 Le parentesi graffe vanno sempre "all'egiziana" (Egyptian brackets)
 * La graffa che apre va in linea con lo statement di apertura, separata da uno spazio
-* La graffa che chiude va in a capo, nella stessa colonna dello statement di apertura
+* La graffa che chiude va a capo, nella stessa colonna dello statement di apertura
 
 ### Naming conventions - **molto importanti!**
 ```java
