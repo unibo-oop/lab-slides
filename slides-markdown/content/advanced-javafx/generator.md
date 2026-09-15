@@ -181,7 +181,7 @@ L'avvio mediante `Application.launch(App.class)` comporta:
 
 1. La classe principale di un'applicazione JavaFX (chiamiamola `App`) deve estendere la classe `javafx.application.Application`
 3. Si effettua l'override di `void start(Stage primaryStage)` che è, di fatto, l'entry point dell'applicazione JavaFX (lo stage primario è creato dalla piattaforma)
-4. Sullo stage is imposta la scena (`setScene()`)
+4. Sullo stage si imposta la scena (`setScene()`)
 5. Lo stage va mostrato invocando `show()`
 2. Una *classe separata* definisce il `main()` dell'applicazione Java, che deve chiamare `Application.launch(App.class)`
 
@@ -534,7 +534,7 @@ stage.xProperty().addListener(x -> {
 
 ### Il linguaggio FXML
 
-* Linguaggio di markup basato su **XML**, utilizzato per descrivere la *struttura della GUI* (ovvero il *scene graph*)
+* Linguaggio di markup basato su **XML**, utilizzato per descrivere la *struttura della GUI* (ovvero lo *scene graph*)
     * Tutti i *nodi* della GUI sono specificati mediante *tag* specifici
     * Le *proprietà* sono specificate come *attributi* (su tag, nella forma chiave-valore) o *tag*
 
@@ -576,7 +576,7 @@ stage.xProperty().addListener(x -> {
 ### Esempio di GUI in FXML -- Note
 
 * Attraverso il tag `<?import ... ?>` è possibile specificare i package in cui recuperare le classi dei componenti d'interesse
-    * E' equivalente all'`import` di Java
+    * È equivalente all'`import` di Java
 
 * Il container principale (unico per il singolo file) *deve* specificare gli attributi `xmlns` e `xmlns:fx`
     * Il namespace `fx` raccoglie nodi relativi al processamento interno del descrittore FXML
