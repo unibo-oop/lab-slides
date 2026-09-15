@@ -35,7 +35,7 @@ aliases = ["dependencies"]
     * Libreria matematica estesa (Commons Math3)
     * Accesso semplificato all'I/O (Commons IO)
     * Costruzione semi automatica di una command line (Commons CLI)
-    * Encoding e crittazione (Commons Codec), compressione (Commons Compress)
+    * Encoding e cifratura (Commons Codec), compressione (Commons Compress)
 
 * **Static Logger Facade for Java (SLF4J)** ([http://www.slf4j.org](http://www.slf4j.org))
 
