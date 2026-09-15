@@ -197,9 +197,9 @@ Se la linea di codice diventa troppo lunga, si può spezzare:
 ```
 ---
 
-## Soppressione in Spotbugs
+## Soppressione in SpotBugs
 
-Spotbugs lavora sul *bytecode*, quindi non può essere soppresso usando dei commenti
+SpotBugs lavora sul *bytecode*, quindi non può essere soppresso usando dei commenti
 
 Occorre invece usare una speciale **annotazione**,
 contenuta nella libreria:
