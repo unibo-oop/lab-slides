@@ -125,7 +125,7 @@ I tool di debugging (come `gdb`) possono lanciare l'eseguibile così prodotto e 
 
 ## Linguaggi interpretati
 
-Nel caso degli interpreti (come Python, Ruby, Javascript, ecc.),
+Nel caso degli interpreti (come Python, Ruby, JavaScript, ecc.),
 il codice sorgente viene eseguito direttamente,
 dunque può essere l'interprete stesso a poter fornire informazioni di debugging,
 se eseguito con le opzioni opportune.
