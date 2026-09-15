@@ -94,9 +94,12 @@ Da che termina la parte iniziale, siamo in modalità "*pausa dinamica*": potete 
     * Contattare un docente in caso di difficoltà
 2. **Segnalazione al docente/tutor del avvenuto completamento**
     * *La correzione è fondamentale!*
-      * Nella correzione, progressivamente, vi verranno dati suggerimenti per passare da "qualcosa che funziona"
-      a qualcosa di ben fatto!
-      * Ricordate che in OOP *"funziona" non è una metrica di qualità sufficiente*
+        * Nella correzione, progressivamente, vi verranno dati suggerimenti per passare da "qualcosa che funziona"
+          a qualcosa di ben fatto!
+        * Ricordate che in OOP *"funziona" non è una metrica di qualità sufficiente*
+    * Perché chiedere al **docente** e non ad un *LLM*?
+        * *Sappiamo a che punto siete* nella comprensione del programma, e non rischiamo di anticipare elementi che non avete ancora studiato
+        * *Riusciamo a capire quanto siete in pari* con i contenuti, e darvi suggerimenti mirati
 
 ---
 
@@ -127,7 +130,7 @@ che possono essere utilizzati per **generare codice**.
 * Allenati a partire da grandi quantità di codice sorgente *preesistente*
     * Soggetti al problema "garbage in, garbage out"
     * Risolvono molto bene problemi semplici
-    * Spesso commettono errori in problemi complessi
+    * Vanno utilizzati con **cautela** per problemi complessi
 * Fruibili via web o integrati dentro l'ambiente di sviluppo
 * Usati sempre di più, anche in contesti professionali
     * Con risultati variabili
