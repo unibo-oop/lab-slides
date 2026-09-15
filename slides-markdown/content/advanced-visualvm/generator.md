@@ -130,8 +130,8 @@ aliases = ["/profiling-with-visualvm/"]
 
 **Profiler**
 
-- Consente di effeatture il profiling dell'applicazione, "instrumentando" classi e metodi
-    - E' un monitoraggio potenzialmente invasivo, ma consente di ottenere dati più precisi rispetto al sampling
+- Consente di effettuare il profiling dell'applicazione, "instrumentando" classi e metodi
+    - È un monitoraggio potenzialmente invasivo, ma consente di ottenere dati più precisi rispetto al sampling
 - *CPU profiling* fornisce tempo totale d'esecuzione e numero di invocazioni per ogni metodo
     - si realizza facendo sì che ogni thread emetta un evento con timestamp all'ingresso/uscita di ogni metodo
 
