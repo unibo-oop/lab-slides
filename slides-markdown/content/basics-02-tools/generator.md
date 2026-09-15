@@ -242,7 +242,7 @@ Quasi tutti i terminali offrono la possibilità di effettuare autocompletamento,
 * L'autocompletamento cambia (anche molto) fra terminali diversi ed è soggetto a personalizzazione
   (specialmente su terminali moderni)
 
-### Memoria dei comandi precendenti
+### Memoria dei comandi precedenti
 Sia Bash/zsh che cmd offrono la possibilità di richiamare il comando precedente premendo <kbd><i class="fa-solid fa-caret-up"></i></kbd>.
 * Su bash/zsh i comandi sono *persistenti* (disponibili anche se il terminale viene riavviato).
 
