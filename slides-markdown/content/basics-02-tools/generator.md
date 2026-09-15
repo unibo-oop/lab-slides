@@ -315,7 +315,7 @@ mentre l'interprete Java (la Java Virtual Machine) esegue una ed una sola **clas
 ---
 
 ## `jshell`: Java REPL
-A partire da Java 9, è stata introdotto in java l'interprete *REPL* `jshell`
+A partire da Java 9, è stato introdotto in java l'interprete *REPL* `jshell`
   *  Sta per **R**ead-**E**val-**P**rint **L**oop
 `jshell` consente di effettuare al volo compilazione ed esecuzione
   * Lo useremo ogni tanto per mostrarvi il risultato di alcune espressioni
