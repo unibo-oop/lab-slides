@@ -129,25 +129,25 @@ preconfigurandoli in modo “ragionevole”.</p>
 </section><section>
 <h2 id="falsi-positivi-e-falsi-negativi">Falsi positivi e falsi negativi</h2>
 <table>
-  <thead>
-      <tr>
-          <th><em>Osservato</em> \ <strong>Reale</strong></th>
-          <th><strong>Vero</strong></th>
-          <th><strong>Falso</strong></th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td><em>Vero</em></td>
-          <td>Positivo</td>
-          <td>Falso positivo</td>
-      </tr>
-      <tr>
-          <td><em>Falso</em></td>
-          <td>Falso negativo</td>
-          <td>Negativo</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th><em>Osservato</em> \ <strong>Reale</strong></th>
+					<th><strong>Vero</strong></th>
+					<th><strong>Falso</strong></th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><em>Vero</em></td>
+					<td>Positivo</td>
+					<td>Falso positivo</td>
+			</tr>
+			<tr>
+					<td><em>Falso</em></td>
+					<td>Falso negativo</td>
+					<td>Negativo</td>
+			</tr>
+	</tbody>
 </table>
 <ul>
 <li><strong>Sensibilità</strong>: capacità di un test di identificare i casi veri
@@ -198,7 +198,7 @@ raramente in casi reali un test può essere sia molto sensibile che molto specif
 <li>Nella configurazione fornitavi, si sopprime con delle “comment fences”:</li>
 </ul>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#177500">// CHECKSTYLE: &lt;ruleName&gt; OFF</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">&lt;</span><span style="color:#000">java</span> <span style="color:#000">code</span> <span style="color:#000">with</span> <span style="color:#000">the</span> <span style="color:#a90d91">false</span> <span style="color:#000">positive</span><span style="color:#000">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">&lt;</span><span style="color:#000">java</span> <span style="color:#000">code</span> <span style="color:#a90d91">with</span> <span style="color:#000">the</span> <span style="color:#a90d91">false</span> <span style="color:#000">positive</span><span style="color:#000">&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#177500">// CHECKSTYLE: &lt;ruleName&gt; ON</span>
 </span></span></code></pre></div><ul>
 <li>dove <code>&lt;ruleName&gt;</code> va sostituito col nome della regola di Checkstyle che si sta violando</li>
@@ -206,16 +206,16 @@ raramente in casi reali un test può essere sia molto sensibile che molto specif
 <p>È bene aggiungere un commento che spieghi la ragione della soppressione</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#177500">// CHECKSTYLE: &lt;ruleName&gt; OFF</span>
 </span></span><span style="display:flex;"><span><span style="color:#177500">// Rule disabled due to false positives, see this bug report: https://...</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">&lt;</span><span style="color:#000">java</span> <span style="color:#000">code</span> <span style="color:#000">with</span> <span style="color:#000">the</span> <span style="color:#a90d91">false</span> <span style="color:#000">positive</span><span style="color:#000">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">&lt;</span><span style="color:#000">java</span> <span style="color:#000">code</span> <span style="color:#a90d91">with</span> <span style="color:#000">the</span> <span style="color:#a90d91">false</span> <span style="color:#000">positive</span><span style="color:#000">&gt;</span>
 </span></span><span style="display:flex;"><span><span style="color:#177500">// CHECKSTYLE: &lt;ruleName&gt; ON</span>
 </span></span></code></pre></div></section><section>
 <h2 id="soppressione-in-pmd">Soppressione in PMD</h2>
 <ul>
 <li>La soppressione in PMD avviene tramite commento in linea</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">&lt;</span><span style="color:#000">java</span> <span style="color:#000">code</span> <span style="color:#000">with</span> <span style="color:#000">the</span> <span style="color:#a90d91">false</span> <span style="color:#000">positive</span><span style="color:#000">&gt;</span> <span style="color:#177500">// NOPMD suppressed as it is a false positive</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">&lt;</span><span style="color:#000">java</span> <span style="color:#000">code</span> <span style="color:#a90d91">with</span> <span style="color:#000">the</span> <span style="color:#a90d91">false</span> <span style="color:#000">positive</span><span style="color:#000">&gt;</span> <span style="color:#177500">// NOPMD suppressed as it is a false positive</span>
 </span></span></code></pre></div><p>Se la linea di codice diventa troppo lunga, si può spezzare:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">&lt;</span><span style="color:#000">java</span> <span style="color:#000">code</span> <span style="color:#000">with</span> <span style="color:#000">the</span> <span style="color:#a90d91">false</span> <span style="color:#000">positive</span><span style="color:#000">&gt;</span> <span style="color:#177500">// NOPMD</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">&lt;</span><span style="color:#000">java</span> <span style="color:#000">code</span> <span style="color:#a90d91">with</span> <span style="color:#000">the</span> <span style="color:#a90d91">false</span> <span style="color:#000">positive</span><span style="color:#000">&gt;</span> <span style="color:#177500">// NOPMD</span>
 </span></span><span style="display:flex;"><span><span style="color:#177500">// suppressed as it is a false positive</span>
 </span></span></code></pre></div></section><section>
 <h2 id="soppressione-in-spotbugs">Soppressione in Spotbugs</h2>
@@ -238,7 +238,7 @@ contenuta nella libreria:</p>
 </span></span><span style="display:flex;"><span>    <span style="color:#000">justification</span> <span style="color:#000">=</span> <span style="color:#c41a16">"A ChoiceDialog is always in its own stage"</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#000">+</span> <span style="color:#c41a16">", and we don't need the status of the Runnable"</span>
 </span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span><span style="color:#000">&lt;</span><span style="color:#000">java</span> <span style="color:#000">code</span> <span style="color:#000">with</span> <span style="color:#000">the</span> <span style="color:#a90d91">false</span> <span style="color:#000">positive</span><span style="color:#000">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">&lt;</span><span style="color:#000">java</span> <span style="color:#000">code</span> <span style="color:#a90d91">with</span> <span style="color:#000">the</span> <span style="color:#a90d91">false</span> <span style="color:#000">positive</span><span style="color:#000">&gt;</span>
 </span></span></code></pre></div></section><section>
 <h1 id="analisi-statica-1">Analisi statica</h1>
 <!-- this file includes generated content. Do not edit. Edit content/advanced-static-analysis/generator.md, instead. -->
