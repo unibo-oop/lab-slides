@@ -92,7 +92,7 @@ Da che termina la parte iniziale, siamo in modalità "*pausa dinamica*": potete 
 2. Svolgimento dell'esercizio
     * Attraverso esecuzione precisa dei passi riportati nella consegna
     * Contattare un docente in caso di difficoltà
-2. **Segnalazione al docente/tutor del avvenuto completamento**
+2. **Segnalazione al docente/tutor dell'avvenuto completamento**
     * *La correzione è fondamentale!*
         * Nella correzione, progressivamente, vi verranno dati suggerimenti per passare da "qualcosa che funziona"
           a qualcosa di ben fatto!
