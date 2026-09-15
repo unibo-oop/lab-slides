@@ -45,7 +45,7 @@ aliases = ["dependencies"]
 
 ---
 
-### Top 20 Java Library
+### Top 20 Java Libraries
 
 [
 ![](imgs/top-20-java-libraries.png)
