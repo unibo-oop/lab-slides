@@ -40,10 +40,10 @@ aliases = ["/more-tools/"]
 Il codice sorgente che un programmatore scrive, generalmente è **condiviso** con altre persone
 (del proprio team, ma anche persone esterne al team o la community)
 * è importante scrivere software **immediatamente comprensibile**
-* il fatto che un software "giri" (rispetti i requisiti e/o produca i risultati attesi) non è una sufficente metrica di qualità
+* il fatto che un software "giri" (rispetti i requisiti e/o produca i risultati attesi) non è una sufficiente metrica di qualità
 * è importante adottare uno stile e seguirlo
   * **chiaro** -- facilmente comprensibile
-  * **condiviso** -- piuttoto che il "proprio stile"
+  * **condiviso** -- piuttosto che il "proprio stile"
   * **consistente** --  con regole che non si contraddicono
 
 <blockquote>
