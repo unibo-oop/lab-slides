@@ -242,7 +242,7 @@ può risultare nel seguente errore:
 <ol>
 <li>La classe principale di un’applicazione JavaFX (chiamiamola <code>App</code>) deve estendere la classe <code>javafx.application.Application</code></li>
 <li>Si effettua l’override di <code>void start(Stage primaryStage)</code> che è, di fatto, l’entry point dell’applicazione JavaFX (lo stage primario è creato dalla piattaforma)</li>
-<li>Sullo stage is imposta la scena (<code>setScene()</code>)</li>
+<li>Sullo stage si imposta la scena (<code>setScene()</code>)</li>
 <li>Lo stage va mostrato invocando <code>show()</code></li>
 <li>Una <em>classe separata</em> definisce il <code>main()</code> dell’applicazione Java, che deve chiamare <code>Application.launch(App.class)</code></li>
 </ol>
@@ -551,7 +551,7 @@ accoda il runnable nella coda degli eventi del JFXAT
 <h3 id="il-linguaggio-fxml">Il linguaggio FXML</h3>
 <ul>
 <li>
-<p>Linguaggio di markup basato su <strong>XML</strong>, utilizzato per descrivere la <em>struttura della GUI</em> (ovvero il <em>scene graph</em>)</p>
+<p>Linguaggio di markup basato su <strong>XML</strong>, utilizzato per descrivere la <em>struttura della GUI</em> (ovvero lo <em>scene graph</em>)</p>
 <ul>
 <li>Tutti i <em>nodi</em> della GUI sono specificati mediante <em>tag</em> specifici</li>
 <li>Le <em>proprietà</em> sono specificate come <em>attributi</em> (su tag, nella forma chiave-valore) o <em>tag</em></li>
@@ -591,7 +591,7 @@ accoda il runnable nella coda degli eventi del JFXAT
 <li>
 <p>Attraverso il tag <code>&lt;?import ... ?&gt;</code> è possibile specificare i package in cui recuperare le classi dei componenti d’interesse</p>
 <ul>
-<li>E’ equivalente all’<code>import</code> di Java</li>
+<li>È equivalente all’<code>import</code> di Java</li>
 </ul>
 </li>
 <li>
