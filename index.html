@@ -8,14 +8,15 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><link rel="stylesheet" href="/lab-slides/reveal-js/dist/reset.css">
 <link rel="stylesheet" href="/lab-slides/reveal-js/dist/reveal.css">
-  <link rel="stylesheet" href="/lab-slides/css/custom-theme.min.89a6ba483286d32bd2bc6f71db56e2cb4c369b5afbf3df1844228fca88e5a3e4.css" id="theme"><link rel="stylesheet" href="/lab-slides/highlight-js/default.min.css">
+  <link rel="stylesheet" href="/lab-slides/css/custom-theme.min.0bcbb621b0c614d9e76dea101161d898156f0cdfebe3b071fa877618ab36f124.css" id="theme"><link rel="stylesheet" href="/lab-slides/highlight-js/default.min.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Oxygen Mono" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Ubuntu Mono" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 <link href="https://cdn.jsdelivr.net/gh/DanySK/css-blur-animation/blur.css" rel="stylesheet" crossorigin="anonymous">
 
-<script src="https://kit.fontawesome.com/81ac037be0.js" crossorigin="anonymous"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/v4-shims.min.css" rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer">
 <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 
 
@@ -26,36 +27,53 @@
       <div class="slides">
   
 
-    <section><h2 id="laboratorio-di-programmazione-ad-oggetti">Laboratorio di Programmazione ad Oggetti</h2>
-<h3 id="indice-dei-contenuti">Indice dei contenuti</h3>
+    
+<section data-noprocess="" data-shortcode-slide="" class="deck-index">
+  
+<h2 id="laboratorio-di-programmazione-ad-oggetti">Laboratorio di Programmazione ad Oggetti</h2>
+<div class="deck-index-subtitle">
+<p>C.d.L. in Ingegneria e Scienze Informatiche &nbsp;·&nbsp; Indice dei contenuti</p>
+</div>
 
-<div class="container w-100 m-0 p-0">
-  <div class="row "><div class="col "><h4 id="basics">Basics</h4>
-<p><i class="fa-solid fa-graduation-cap"></i> <a href="intro/">Introduzione al corso</a></p>
-<p><i class="fa-brands fa-java"></i> <a href="basic-tools/">Strumenti del JDK, pt. 1</a></p>
-<p><i class="fa-brands fa-java"></i> <a href="more-tools/">Strumenti del JDK, pt. 2</a></p>
-<p><i class="fa-solid fa-bug-slash"></i> <a href="vscode/">Introduzione a Visual Studio Code e Debugging</a></p>
-<h4 id="build-automation">Build automation</h4>
-<p><i class="fa-solid fa-gear"></i> <a href="build-systems-basics/">Build automation basics</a></p>
-<p><i class="fa-solid fa-chart-diagram"></i> <a href="dependencies/">Dipendenze e librerie</a></p>
-<p><i class="fa-solid fa-vial-circle-check"></i> <a href="junit/">Testing unitario</a></p>
-<p><i class="fa-solid fa-book"></i> <a href="javadoc/">Documentazione del codice</a></p>
-<p><i class="fa-solid fa-icons"></i> <a href="resources/">Risorse di progetto</a></p>
-<p><i class="fa-solid fa-torii-gate"></i> <a href="jar/">Costruzione degli artefatti</a></p>
+<div class="deck-menu"><div class="deck-menu-group">
+<div class="deck-menu-group-title"><i class="fa-solid fa-graduation-cap"></i><span>Basics</span></div>
+<ul>
+<li><a href="intro/"><i class="fa-solid fa-flag-checkered"></i> Introduzione al corso</a></li>
+<li><a href="basic-tools/"><i class="fa-brands fa-java"></i> Strumenti del JDK, pt. 1</a></li>
+<li><a href="more-tools/"><i class="fa-brands fa-java"></i> Strumenti del JDK, pt. 2</a></li>
+<li><a href="vscode/"><i class="fa-solid fa-bug-slash"></i> Visual Studio Code e debugging</a></li>
+</ul>
 </div>
-<div class="col "><h4 id="version-control">Version control</h4>
-<p><i class="fa-solid fa-code-branch"></i> <a href="dvcs-basics/">Sistemi di controllo versione</a></p>
-<p><i class="fa-solid fa-code-branch"></i> <a href="dvcs-branching/">Branching e merging</a></p>
-<p><i class="fa-solid fa-code-branch"></i> <a href="dvcs-remote/">Operazioni con repository remoti</a></p>
-<p><i class="fa-solid fa-code-branch"></i> <a href="dvcs-git-cheatsheet/"><code>git</code> cheatsheet</a></p>
-<p><i class="fa-solid fa-code-branch"></i> <a href="dvcs-workflow/">DVCS workflow</a></p>
-<h4 id="advanced">Advanced</h4>
-<p><i class="fa-solid fa-medal"></i> <a href="static-analysis/">Analisi statica</a></p>
-<p><i class="fa-solid fa-left-right"></i> <a href="multiplatform/">Programmazione multi-piattaforma</a></p>
-<p><i class="fa-solid fa-camera-retro"></i> <a href="javafx/">Sviluppo di GUI con JavaFX</a></p>
-<p><i class="fa-solid fa-signal"></i> <a href="profiling-with-visualvm/">Monitoraggio e Profiling con VisualVM</a></p>
-<p><i class="fa-solid fa-user-graduate"></i> <a href="project-config/">Note per il progetto finale</a></p>
+<div class="deck-menu-group">
+<div class="deck-menu-group-title"><i class="fa-solid fa-gear"></i><span>Build automation</span></div>
+<ul>
+<li><a href="build-systems-basics/"><i class="fa-solid fa-gears"></i> Build automation basics</a></li>
+<li><a href="dependencies/"><i class="fa-solid fa-cubes"></i> Dipendenze e librerie</a></li>
+<li><a href="junit/"><i class="fa-solid fa-vial-circle-check"></i> Testing unitario</a></li>
+<li><a href="javadoc/"><i class="fa-solid fa-book"></i> Documentazione del codice</a></li>
+<li><a href="resources/"><i class="fa-solid fa-icons"></i> Risorse di progetto</a></li>
+<li><a href="jar/"><i class="fa-solid fa-torii-gate"></i> Costruzione degli artefatti</a></li>
+</ul>
 </div>
+<div class="deck-menu-group">
+<div class="deck-menu-group-title"><i class="fa-solid fa-code-branch"></i><span>Version control</span></div>
+<ul>
+<li><a href="dvcs-basics/"><i class="fa-brands fa-git-alt"></i> Sistemi di controllo versione</a></li>
+<li><a href="dvcs-branching/"><i class="fa-solid fa-code-merge"></i> Branching e merging</a></li>
+<li><a href="dvcs-remote/"><i class="fa-solid fa-cloud-arrow-up"></i> Operazioni con repository remoti</a></li>
+<li><a href="dvcs-git-cheatsheet/"><i class="fa-solid fa-list-check"></i> <code>git</code> cheatsheet</a></li>
+<li><a href="dvcs-workflow/"><i class="fa-solid fa-diagram-project"></i> DVCS workflow</a></li>
+</ul>
+</div>
+<div class="deck-menu-group">
+<div class="deck-menu-group-title"><i class="fa-solid fa-medal"></i><span>Advanced</span></div>
+<ul>
+<li><a href="static-analysis/"><i class="fa-solid fa-magnifying-glass-chart"></i> Analisi statica</a></li>
+<li><a href="multiplatform/"><i class="fa-solid fa-left-right"></i> Programmazione multi-piattaforma</a></li>
+<li><a href="javafx/"><i class="fa-solid fa-camera-retro"></i> Sviluppo di GUI con JavaFX</a></li>
+<li><a href="profiling-with-visualvm/"><i class="fa-solid fa-gauge-high"></i> Monitoraggio e profiling con VisualVM</a></li>
+<li><a href="project-config/"><i class="fa-solid fa-user-graduate"></i> Note per il progetto finale</a></li>
+</ul>
 </div>
 </div>
 
