@@ -51,7 +51,7 @@ tramite utilizzo di una specifica sintassi nei commenti
 
 ## Build lifecycle
 
-La costruzione dellla documentazione *è parte integrante* del processo di costruzione del software:
+La costruzione della documentazione *è parte integrante* del processo di costruzione del software:
 
 * *compilazione* $\Leftarrow$ la conosciamo
 * *compilazione dei test* $\Leftarrow$ altro lab
