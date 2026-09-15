@@ -71,7 +71,7 @@ dove qualcuno deve assicurarsi della qualità del codice prodotto da altri.
 
 #### *Tuttavia è giusto conoscerlo!*
 * È il modo in cui potreste contribuire a progetti open source
-* Se farete tesi o tirocini con il nostro gruppo di ricerca, lavorando su software che mateniamo noi, lavorerete così!
+* Se farete tesi o tirocini con il nostro gruppo di ricerca, lavorando su software che manteniamo noi, lavorerete così!
 
 ---
 
