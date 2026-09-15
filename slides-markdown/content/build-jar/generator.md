@@ -204,7 +204,7 @@ application {
 
 È possibile poi scegliere la main class da avviare usando:
 * `./gradlew run -PmyMainClass=...`
-    * (sostuendo ai `...` il nome qualificato della main class)
+    * (sostituendo ai `...` il nome qualificato della main class)
 
 Ad esempio, se abbiamo due classi con main `it.unibo.oop.Pluto` e `it.unibo.oop.Paperino` nel nostro progetto, possiamo lanciare:
 * `./gradlew run -PmyMainClass=it.unibo.oop.Pluto`
