@@ -129,15 +129,15 @@ che possono essere utilizzati per **generare codice**.
 
 * Allenati a partire da grandi quantità di codice sorgente *preesistente*
     * Soggetti al problema "garbage in, garbage out"
-    * Risolvono molto bene problemi semplici
+    * Risolvono molto bene (e velocemente) problemi semplici
     * Vanno utilizzati con **cautela** per problemi complessi
-* Fruibili via web o integrati dentro l'ambiente di sviluppo
+* Fruibili via web o integrati come *agenti* all'interno dell'ambiente di sviluppo
 * Usati sempre di più, anche in contesti professionali
     * Con risultati variabili
 
 ### In questo corso: **vietati**
 
-* Non sono consentiti in lab
+* Non sono consentiti in laboratorio
 * Non sono consentiti a casa
 * Non saranno disponibili per l'esame
     * E sono abbastanza riconoscibili usando la similarità fra progetti, per la quale abbiamo strumenti che già usiamo
@@ -146,6 +146,7 @@ che possono essere utilizzati per **generare codice**.
 
 Sono strumenti *potentissimi*, ma è necessario saperli usare **criticamente**, altrimenti:
 * Possono ostacolare e rallentare l'apprendimento
+  * Problema del *cognitive offloading*: se non si impara a fare da soli, si impara meno
 * Possono generare codice di bassa qualità (con bug, inefficienze, o problemi di stile che non riconoscete)
 * Possono usare parti del linguaggio che ancora non potete conoscere
     * Ergo, generare codice non ancora comprensibile
@@ -175,7 +176,7 @@ Prima si diventa il revisore, **poi** si usa l'acceleratore
 
 ---
 
-## Cosa dice davvero la letteratura
+## Cosa dice davvero la letteratura scientifica
 
 * Sviluppatori **esperti**, su progetti maturi che conoscono bene: con AI **19% più lenti**
     ([METR, 2025](https://arxiv.org/abs/2507.09089)) --- il tempo se ne va in verifica e correzione
@@ -189,9 +190,6 @@ Prima si diventa il revisore, **poi** si usa l'acceleratore
     ([EMSE 2025](https://doi.org/10.1007/s10664-025-10658-6))
 * A livello di organizzazione: +25% di adozione AI, qualità percepita **+3.4%**
     ma stabilità dei rilasci **-7.2%** ([DORA, 2024](https://cloud.google.com/blog/products/devops-sre/announcing-the-2024-dora-report))
-
-La letteratura **non** dice "l'AI scrive codice peggiore":
-dice che la qualità regge finché **qualcuno di competente controlla**
 
 ---
 
