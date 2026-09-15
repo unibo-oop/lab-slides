@@ -121,7 +121,7 @@ Definito da *Vincent Driessen* e spiegato in ["A successful git branching model"
 
 ### Feature branch: processo
 
-- nel modello semplificato (assumendo il branch principale si chiami `develop`) o in git flow
+- nel modello semplificato (assumendo che il branch principale si chiami `develop`) o in git flow
 
 ![](imgs/feature.png)
 
