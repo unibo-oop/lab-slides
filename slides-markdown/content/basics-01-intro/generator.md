@@ -176,7 +176,7 @@ Prima si diventa il revisore, **poi** si usa l'acceleratore
 
 ---
 
-## Cosa dice davvero la letteratura
+## Cosa dice davvero la letteratura scientifica
 
 * Sviluppatori **esperti**, su progetti maturi che conoscono bene: con AI **19% più lenti**
     ([METR, 2025](https://arxiv.org/abs/2507.09089)) --- il tempo se ne va in verifica e correzione
