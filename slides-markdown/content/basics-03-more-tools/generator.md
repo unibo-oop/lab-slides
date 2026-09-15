@@ -371,10 +371,10 @@ Ad esempio, quando eseguite `javac -d bin MyClass.java` gli argomenti sono le se
 rappresentanti rispettivamente un riferimento all'area di memoria dove sono salvati i parametri ed il numero dei suddetti.
 * Anche in Java ovviamente è possibile passare degli argomenti ad un programma
 
-La gestione è un po' *più semplice rispetto a *C
-perché che *gli array si portano dietro la loro dimensione come campo*
+La gestione è un po' *più semplice rispetto a* C
+perché *gli array si portano dietro la loro dimensione come campo*
 
-In Java la signature del metodo `main()` è una univoca: `public static void main(String [])`,
+In Java la signature del metodo `main()` è univoca: `public static void main(String [])`,
 mentre in C sia `int main(void)` che `int main(char **, int)` sono accettabili.
 * Gli argomenti con cui un programma Java viene invocato vengono passati come parametri attraverso l'array (`String[] args`) che il metodo `main()` prende in ingresso
 * Nonostante sia un parametro del *metodo principale* di qualunque programma Java, si tratta di un comune array senza alcuna particolarità.
