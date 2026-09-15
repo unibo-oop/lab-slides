@@ -145,7 +145,7 @@ Questi elementi sono stabiliti dal *window manager* (del *windowing system* del 
 
 * A proposito della specifica delle dimensioni
     * La *dimensione di default* della finestra va calcolata *in base alla dimensione dello schermo*.
-    * E' opportuno **non** *specificare dimensioni assolute in pixel* per i componenti della GUI, ma dimensionarli **in termini relativi** *rispetto al container*.
+    * È opportuno **non** *specificare dimensioni assolute in pixel* per i componenti della GUI, ma dimensionarli **in termini relativi** *rispetto al container*.
         * Anche per i layout è opportuno non utilizzare dimensioni fisse in pixel.
 * A proposito dei font
     * I *font* possono essere allegati all'applicazione
