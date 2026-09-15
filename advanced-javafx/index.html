@@ -35,7 +35,7 @@
 <h3 id="danilo-pianini"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2026-02-18
+<p>Slide compilate il: 2026-09-15
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
@@ -212,7 +212,7 @@ può risultare nel seguente errore:
 </span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#000">dependencies</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#177500">// Suppressions for SpotBugs
-</span></span></span><span style="display:flex;"><span>    <span style="color:#000">compileOnly</span>(<span style="color:#c41a16">"com.github.spotbugs:spotbugs-annotations:4.9.8"</span>)
+</span></span></span><span style="display:flex;"><span>    <span style="color:#000">compileOnly</span>(<span style="color:#c41a16">"com.github.spotbugs:spotbugs-annotations:4.10.3"</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#177500">// Example library: Guava. Add what you need (and use the latest version where appropriate).
 </span></span></span><span style="display:flex;"><span>    <span style="color:#177500">// implementation("com.google.guava:guava:28.1-jre")
@@ -227,7 +227,7 @@ può risultare nel seguente errore:
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#177500">// The BOM (Bill of Materials) synchronizes all the versions of Junit coherently.
-</span></span></span><span style="display:flex;"><span>    <span style="color:#000">testImplementation</span>(<span style="color:#000">platform</span>(<span style="color:#c41a16">"org.junit:junit-bom:6.0.3"</span>))
+</span></span></span><span style="display:flex;"><span>    <span style="color:#000">testImplementation</span>(<span style="color:#000">platform</span>(<span style="color:#c41a16">"org.junit:junit-bom:6.1.2"</span>))
 </span></span><span style="display:flex;"><span>    <span style="color:#177500">// The annotations, assertions and other elements we want to have access when compiling our tests.
 </span></span></span><span style="display:flex;"><span>    <span style="color:#000">testImplementation</span>(<span style="color:#c41a16">"org.junit.jupiter:junit-jupiter"</span>)
 </span></span><span style="display:flex;"><span>    <span style="color:#177500">// The engine that must be available at runtime to run the tests.
@@ -855,7 +855,7 @@ accoda il runnable nella coda degli eventi del JFXAT
 <h3 id="danilo-pianini-1"><a href="mailto:danilo.pianini@unibo.it">Danilo Pianini — <code>danilo.pianini@unibo.it</code></a></h3>
 </div>
 <div style="text-align: left; margin-left: 10em">
-<p>Slide compilate il: 2026-02-18
+<p>Slide compilate il: 2026-09-15
 </p>
 <p><a href="?print-pdf&amp;pdfSeparateFragments=false"><i class="fa fa-print" aria-hidden="true"></i> versione stampabile</a></p>
 <p><a href=".."><i class="fa fa-undo" aria-hidden="true"></i> menu principale</a></p>
@@ -973,12 +973,8 @@ accoda il runnable nella coda degli eventi del JFXAT
   
 
   
-    
-  
   
 
-  
-    
   
   
 
@@ -986,12 +982,8 @@ accoda il runnable nella coda degli eventi del JFXAT
   
 
   
-    
-  
   
 
-  
-    
   
   
 
@@ -1017,30 +1009,6 @@ accoda il runnable nella coda degli eventi del JFXAT
   
 
 
-
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({"startOnLoad":false});
-
-    let render = (event) => {
-      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
-      if (!mermaidElems.length){
-          return
-      }
-      mermaidElems.forEach(mermaidElem => {
-          let processed = mermaidElem.getAttribute('data-processed');
-          if (!processed){
-              
-              mermaid.init(undefined, mermaidElem);
-          }
-      });
-    };
-    
-    render({currentSlide: Reveal.getCurrentSlide()});
-
-    Reveal.on('slidechanged', render);
-    Reveal.on('ready', render);
-  </script>
 
 
 
