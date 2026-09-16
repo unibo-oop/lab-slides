@@ -70,7 +70,7 @@ Ad esempio, per OpenJDK:
 Temurin (Adoptium), DragonWell (Alibaba), Corretto (Amazon), Zulu (Azul), Liberica (BellSoft), Oracle, RedHat, Microsoft, JetBrains…</p>
 </section><section>
 <h2 id="ambiente-di-riferimento-per-laa-corrente">Ambiente di riferimento per l’A.A. corrente</h2>
-<h3 id="utilizzeremo-java-se-development-kit-21-jdk-21">Utilizzeremo Java SE Development Kit 21 (JDK 21)</h3>
+<h3 id="utilizzeremo-java-se-development-kit-25-jdk-25">Utilizzeremo Java SE Development Kit 25 (JDK 25)</h3>
 <p>Include il necessario per eseguire applicazioni Java,
 ossia il JRE con virtual machine (<code>java</code>) e relative librerie,
 più gli strumenti di sviluppo, fra cui:</p>
@@ -601,20 +601,14 @@ mentre l’interprete Java (la Java Virtual Machine) esegue una ed una sola <str
   
 
   
-    
-  
-  
-
-  
-    
-  
   
 
   
   
 
   
-    
+  
+
   
   
 
@@ -643,30 +637,6 @@ mentre l’interprete Java (la Java Virtual Machine) esegue una ed una sola <str
   
 
 
-
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({"startOnLoad":false});
-
-    let render = (event) => {
-      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
-      if (!mermaidElems.length){
-          return
-      }
-      mermaidElems.forEach(mermaidElem => {
-          let processed = mermaidElem.getAttribute('data-processed');
-          if (!processed){
-              
-              mermaid.init(undefined, mermaidElem);
-          }
-      });
-    };
-    
-    render({currentSlide: Reveal.getCurrentSlide()});
-
-    Reveal.on('slidechanged', render);
-    Reveal.on('ready', render);
-  </script>
 
 
 
