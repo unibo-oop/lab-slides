@@ -51,7 +51,7 @@ Temurin (Adoptium), DragonWell (Alibaba), Corretto (Amazon), Zulu (Azul), Liberi
 
 ## Ambiente di riferimento per l'A.A. corrente
 
-### Utilizzeremo Java SE Development Kit 21 (JDK 21)
+### Utilizzeremo Java SE Development Kit 25 (JDK 25)
 
 Include il necessario per eseguire applicazioni Java,
 ossia il JRE con virtual machine (`java`) e relative librerie,
