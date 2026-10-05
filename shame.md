@@ -28,6 +28,7 @@
 * IlCile
 * JaJi
 * larck
+* Leon7-cmd
 * Lozziopadredeivizzi
 * MatteoGodzilla
 * mgad3489-blip
