@@ -94,6 +94,7 @@ Un buon modo per eseguire l'intero ciclo di vita è `./gradlew build javadoc`!
 ### Esempio
 
 ```java
+import java.io.IOException;
 import java.util.List;
 /**
  * This is an exemplary documentation of a class named {@code Something}.
