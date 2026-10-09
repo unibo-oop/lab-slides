@@ -98,29 +98,29 @@ import java.util.List;
 /**
  * This is an exemplary documentation of a class named {@code Something}.
  * It is possible to use <i>HTML tags</i> in this text, and special characters such as &amp; must be
- * escaped as uyou would escape them in HTML.
+ * escaped as you would escape them in HTML.
  * Code can be written in {@code code tags}. Other entities can be linked via {@code @link}, e.g.,
  * the {@link List} interface, or the {@link List#of(Object...)} method.
  *
  * @param <T> This is the documentation specific for the class parameter {@code T}
  * @see List#size()
  * @deprecated This contains information on the reason why this class should not be used in new code,
- * when (if) will eventually be removed, and what to use as a replacement.
+ * when (if) it will eventually be removed, and what to use as a replacement.
  */
 @Deprecated
 interface Something<T> {
     /**
      * This is the documentation of a method. The text is still HTML.
      * 
-     * @param subject Documents the parameter @{code subject}
-     * @param count Documents the parameter @{code count} (one entry per parameter)
+     * @param subject Documents the parameter {@code subject}
+     * @param count Documents the parameter {@code count} (one entry per parameter)
      * @return Provides information on the returned information
-     * @throws IOException Provides detail on the causes that may trigger an @{code IOException}
+     * @throws IOException Provides detail on the causes that may trigger an {@code IOException}
      * @throws IllegalArgumentException If more exceptions are thrown, each should get documented
      * 
      */
     @Deprecated
-    int doIt(List<T> subject, int count) throws IOException { ... }
+    int doIt(List<T> subject, int count) throws IOException;
 }
 ```
 
