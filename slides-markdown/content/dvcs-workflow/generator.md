@@ -77,7 +77,7 @@ dove qualcuno deve assicurarsi della qualità del codice prodotto da altri.
 
 ## Lavorare con multipli branch: **git-flow** 
 
-Definito da *Vincent Driessen* e spiegato in ["A successful git branching model"](http://nvie.com/posts/a-successful-git-branching-model/)
+Definito da *Vincent Driessen* e spiegato in ["A successful git branching model"](https://nvie.com/posts/a-successful-git-branching-model/)
 
 ![](imgs/Git-branching-model.png)
 
