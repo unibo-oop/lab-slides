@@ -243,9 +243,9 @@ che va oltre lo scopo di questo corso.
 È possibile però appoggiarsi a Gradle per generare documentazione con impostazioni di default ragionevoli.
 
 Il plugin `java` di Gradle aggiunge un task `javadoc` che documenta automaticamente tutto il sorgente in `src/main/java`,
-generando il sito web relativo in `build/`
+generando il sito web relativo in `build/docs/javadoc`
 
-**NOTA --** In caso di javadoc incompleta, il task fallisce! 
+**NOTA --** In caso di javadoc malformata (ad esempio tag sconosciuti o HTML non valido), il task fallisce! 
 
 ---
 
