@@ -224,7 +224,7 @@ si raccomanda di **non usarlo**
 ## Cosa commentare, linee guida
 
 * Inserire sempre un commento che descrive il ruolo e il funzionamento generale dell'**interfaccia**/**classe**/**record**
-* Inserire un commento per tutti i **costruttori** (**parametri** e **return value** inclusi), **metodi**, e **campi** *con livello di accesso `public` e `protected`*
+* Inserire un commento per tutti i **costruttori** e **metodi** (**parametri** e, per i metodi, **return value** inclusi), e per i **campi** *con livello di accesso `public` e `protected`*
 * Non è necessario avere commenti javadoc su metodi `private` (non sono comunque chiamabili dal codice cliente)
 * Non è necessario ri-documentare metodi di cui si fa override,
 a meno che non vi siano peculiarità non rilevate nella documentazione della superclasse:
