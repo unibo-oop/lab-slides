@@ -167,7 +167,7 @@ git push origin --delete feature/mynewfeaturename
 * Qualcuno di voi agirà come *repo maintainer*
     * *Creerà quindi il repository* in local con `git init`,
     * *Creerà un repository su GitHub* e *darà diritto di scrittura* anche agli altri membri del team
-    * Lo registrerà come remote usando `git remote`
+    * Lo registrerà come remote usando opportunamente `git remote`
     * Farà il primo commit con il template di progetto fornito da noi
         * Progetti normali: https://github.com/unibo-oop/sample-gradle-project
         * Progetti con JavaFX: https://github.com/unibo-oop/sample-javafx-project
