@@ -107,33 +107,34 @@ tramite utilizzo di una specifica sintassi nei commenti</p>
 <p>Un buon modo per eseguire l’intero ciclo di vita è <code>./gradlew build javadoc</code>!</p>
 </section><section>
 <h3 id="esempio">Esempio</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">import</span> <span style="color:#000">java.util.List</span>;
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">import</span> <span style="color:#000">java.io.IOException</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a90d91">import</span> <span style="color:#000">java.util.List</span>;
 </span></span><span style="display:flex;"><span><span style="color:#177500">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#177500"> * This is an exemplary documentation of a class named {@code Something}.
 </span></span></span><span style="display:flex;"><span><span style="color:#177500"> * It is possible to use &lt;i&gt;HTML tags&lt;/i&gt; in this text, and special characters such as &amp;amp; must be
-</span></span></span><span style="display:flex;"><span><span style="color:#177500"> * escaped as uyou would escape them in HTML.
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"> * escaped as you would escape them in HTML.
 </span></span></span><span style="display:flex;"><span><span style="color:#177500"> * Code can be written in {@code code tags}. Other entities can be linked via {@code @link}, e.g.,
 </span></span></span><span style="display:flex;"><span><span style="color:#177500"> * the {@link List} interface, or the {@link List#of(Object...)} method.
 </span></span></span><span style="display:flex;"><span><span style="color:#177500"> *
 </span></span></span><span style="display:flex;"><span><span style="color:#177500"> * @param &lt;T&gt; This is the documentation specific for the class parameter {@code T}
 </span></span></span><span style="display:flex;"><span><span style="color:#177500"> * @see List#size()
 </span></span></span><span style="display:flex;"><span><span style="color:#177500"> * @deprecated This contains information on the reason why this class should not be used in new code,
-</span></span></span><span style="display:flex;"><span><span style="color:#177500"> * when (if) will eventually be removed, and what to use as a replacement.
+</span></span></span><span style="display:flex;"><span><span style="color:#177500"> * when (if) it will eventually be removed, and what to use as a replacement.
 </span></span></span><span style="display:flex;"><span><span style="color:#177500"> */</span>
 </span></span><span style="display:flex;"><span><span style="color:#000">@Deprecated</span>
 </span></span><span style="display:flex;"><span><span style="color:#a90d91">interface</span> <span style="color:#3f6e75">Something</span><span style="color:#000">&lt;</span><span style="color:#000">T</span><span style="color:#000">&gt;</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#177500">/**
 </span></span></span><span style="display:flex;"><span><span style="color:#177500">     * This is the documentation of a method. The text is still HTML.
 </span></span></span><span style="display:flex;"><span><span style="color:#177500">     * 
-</span></span></span><span style="display:flex;"><span><span style="color:#177500">     * @param subject Documents the parameter @{code subject}
-</span></span></span><span style="display:flex;"><span><span style="color:#177500">     * @param count Documents the parameter @{code count} (one entry per parameter)
+</span></span></span><span style="display:flex;"><span><span style="color:#177500">     * @param subject Documents the parameter {@code subject}
+</span></span></span><span style="display:flex;"><span><span style="color:#177500">     * @param count Documents the parameter {@code count} (one entry per parameter)
 </span></span></span><span style="display:flex;"><span><span style="color:#177500">     * @return Provides information on the returned information
-</span></span></span><span style="display:flex;"><span><span style="color:#177500">     * @throws IOException Provides detail on the causes that may trigger an @{code IOException}
+</span></span></span><span style="display:flex;"><span><span style="color:#177500">     * @throws IOException Provides detail on the causes that may trigger an {@code IOException}
 </span></span></span><span style="display:flex;"><span><span style="color:#177500">     * @throws IllegalArgumentException If more exceptions are thrown, each should get documented
 </span></span></span><span style="display:flex;"><span><span style="color:#177500">     * 
 </span></span></span><span style="display:flex;"><span><span style="color:#177500">     */</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#000">@Deprecated</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">int</span> <span style="color:#000">doIt</span>(<span style="color:#000">List</span><span style="color:#000">&lt;</span><span style="color:#000">T</span><span style="color:#000">&gt;</span> <span style="color:#000">subject</span>, <span style="color:#a90d91">int</span> <span style="color:#000">count</span>) <span style="color:#a90d91">throws</span> <span style="color:#000">IOException</span> { ... }
+</span></span><span style="display:flex;"><span>    <span style="color:#a90d91">int</span> <span style="color:#000">doIt</span>(<span style="color:#000">List</span><span style="color:#000">&lt;</span><span style="color:#000">T</span><span style="color:#000">&gt;</span> <span style="color:#000">subject</span>, <span style="color:#a90d91">int</span> <span style="color:#000">count</span>) <span style="color:#a90d91">throws</span> <span style="color:#000">IOException</span>;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div></section><section>
 <h2 id="tag-informativi">Tag informativi</h2>
@@ -232,7 +233,7 @@ si raccomanda di <strong>non usarlo</strong></li>
 <h2 id="cosa-commentare-linee-guida">Cosa commentare, linee guida</h2>
 <ul>
 <li>Inserire sempre un commento che descrive il ruolo e il funzionamento generale dell’<strong>interfaccia</strong>/<strong>classe</strong>/<strong>record</strong></li>
-<li>Inserire un commento per tutti i <strong>costruttori</strong> (<strong>parametri</strong> e <strong>return value</strong> inclusi), <strong>metodi</strong>, e <strong>campi</strong> <em>con livello di accesso <code>public</code> e <code>protected</code></em></li>
+<li>Inserire un commento per tutti i <strong>costruttori</strong> e <strong>metodi</strong> (<strong>parametri</strong> e, per i metodi, <strong>return value</strong> inclusi), e per i <strong>campi</strong> <em>con livello di accesso <code>public</code> e <code>protected</code></em></li>
 <li>Non è necessario avere commenti javadoc su metodi <code>private</code> (non sono comunque chiamabili dal codice cliente)</li>
 <li>Non è necessario ri-documentare metodi di cui si fa override,
 a meno che non vi siano peculiarità non rilevate nella documentazione della superclasse:
@@ -246,8 +247,8 @@ usarlo direttamente è un esercizio non banale
 che va oltre lo scopo di questo corso.</p>
 <p>È possibile però appoggiarsi a Gradle per generare documentazione con impostazioni di default ragionevoli.</p>
 <p>Il plugin <code>java</code> di Gradle aggiunge un task <code>javadoc</code> che documenta automaticamente tutto il sorgente in <code>src/main/java</code>,
-generando il sito web relativo in <code>build/</code></p>
-<p><strong>NOTA –</strong> In caso di javadoc incompleta, il task fallisce!</p>
+generando il sito web relativo in <code>build/docs/javadoc</code></p>
+<p><strong>NOTA –</strong> In caso di javadoc malformata (ad esempio tag sconosciuti o HTML non valido), il task fallisce!</p>
 </section><section>
 <h1 id="documentazione-del-codice-1">Documentazione del codice</h1>
 <!-- this file includes generated content. Do not edit. Edit content/build-doc/generator.md, instead. -->
