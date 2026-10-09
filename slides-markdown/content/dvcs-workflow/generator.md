@@ -131,8 +131,8 @@ Definito da *Vincent Driessen* e spiegato in ["A successful git branching model"
 # Assuming there exists a remote repository called origin
 # Create a new feature branch from develop and share it
 git checkout develop
-git checkout -b feature-mynewfeaturename
-git push -u origin feature-mynewfeaturename
+git checkout -b feature/mynewfeaturename
+git push -u origin feature/mynewfeaturename
 
 # WHILE your_feature_is_unfinished
 # work on your feature:
@@ -141,7 +141,7 @@ git add mymodifiedfiles
 git add mydeletedfiles
 git commit -m "my commit message"
 # Merge develop in to prevent big merge conflicts!
-git pull origin/develop
+git pull origin develop
 # You may need to solve a merge conflict here!
 # Share and save your work
 git push
@@ -149,13 +149,15 @@ git push
 
 # Merge feature onto develop
 git checkout develop
-git merge feature-mynewfeaturename
+git pull
+git merge feature/mynewfeaturename
 
 # Push develop
 git push
 
-# Delete the feature branch
-git branch -d feature-mynewfeaturename
+# Delete the feature branch (locally and on the remote)
+git branch -d feature/mynewfeaturename
+git push origin --delete feature/mynewfeaturename
 ```
 
 ---
