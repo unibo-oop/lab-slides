@@ -129,7 +129,7 @@ dove qualcuno deve assicurarsi della qualità del codice prodotto da altri.</p>
 </ul>
 </section><section>
 <h2 id="lavorare-con-multipli-branch-git-flow">Lavorare con multipli branch: <strong>git-flow</strong></h2>
-<p>Definito da <em>Vincent Driessen</em> e spiegato in <a href="http://nvie.com/posts/a-successful-git-branching-model/">“A successful git branching model”</a></p>
+<p>Definito da <em>Vincent Driessen</em> e spiegato in <a href="https://nvie.com/posts/a-successful-git-branching-model/">“A successful git branching model”</a></p>
 <p><img src="imgs/Git-branching-model.png" alt=""></p>
 </section><section>
 <h3 id="alcune-considerazioni">Alcune considerazioni</h3>
@@ -192,8 +192,8 @@ dove qualcuno deve assicurarsi della qualità del codice prodotto da altri.</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#177500"># Assuming there exists a remote repository called origin</span>
 </span></span><span style="display:flex;"><span><span style="color:#177500"># Create a new feature branch from develop and share it</span>
 </span></span><span style="display:flex;"><span>git checkout develop
-</span></span><span style="display:flex;"><span>git checkout -b feature-mynewfeaturename
-</span></span><span style="display:flex;"><span>git push -u origin feature-mynewfeaturename
+</span></span><span style="display:flex;"><span>git checkout -b feature/mynewfeaturename
+</span></span><span style="display:flex;"><span>git push -u origin feature/mynewfeaturename
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#177500"># WHILE your_feature_is_unfinished</span>
 </span></span><span style="display:flex;"><span><span style="color:#177500"># work on your feature:</span>
@@ -202,7 +202,7 @@ dove qualcuno deve assicurarsi della qualità del codice prodotto da altri.</p>
 </span></span><span style="display:flex;"><span>git add mydeletedfiles
 </span></span><span style="display:flex;"><span>git commit -m <span style="color:#c41a16">"my commit message"</span>
 </span></span><span style="display:flex;"><span><span style="color:#177500"># Merge develop in to prevent big merge conflicts!</span>
-</span></span><span style="display:flex;"><span>git pull origin/develop
+</span></span><span style="display:flex;"><span>git pull origin develop
 </span></span><span style="display:flex;"><span><span style="color:#177500"># You may need to solve a merge conflict here!</span>
 </span></span><span style="display:flex;"><span><span style="color:#177500"># Share and save your work</span>
 </span></span><span style="display:flex;"><span>git push
@@ -210,13 +210,15 @@ dove qualcuno deve assicurarsi della qualità del codice prodotto da altri.</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#177500"># Merge feature onto develop</span>
 </span></span><span style="display:flex;"><span>git checkout develop
-</span></span><span style="display:flex;"><span>git merge feature-mynewfeaturename
+</span></span><span style="display:flex;"><span>git pull
+</span></span><span style="display:flex;"><span>git merge feature/mynewfeaturename
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#177500"># Push develop</span>
 </span></span><span style="display:flex;"><span>git push
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#177500"># Delete the feature branch</span>
-</span></span><span style="display:flex;"><span>git branch -d feature-mynewfeaturename
+</span></span><span style="display:flex;"><span><span style="color:#177500"># Delete the feature branch (locally and on the remote)</span>
+</span></span><span style="display:flex;"><span>git branch -d feature/mynewfeaturename
+</span></span><span style="display:flex;"><span>git push origin --delete feature/mynewfeaturename
 </span></span></code></pre></div></section><section>
 <h2 id="il-repo-ufficiale-del-vostro-progetto">Il repo ufficiale del vostro progetto</h2>
 <ul>
@@ -224,7 +226,7 @@ dove qualcuno deve assicurarsi della qualità del codice prodotto da altri.</p>
 <ul>
 <li><em>Creerà quindi il repository</em> in local con <code>git init</code>,</li>
 <li><em>Creerà un repository su GitHub</em> e <em>darà diritto di scrittura</em> anche agli altri membri del team</li>
-<li>Lo registrerà come remote usando <code>git remote</code></li>
+<li>Lo registrerà come remote usando opportunamente <code>git remote</code></li>
 <li>Farà il primo commit con il template di progetto fornito da noi
 <ul>
 <li>Progetti normali: <a href="https://github.com/unibo-oop/sample-gradle-project">https://github.com/unibo-oop/sample-gradle-project</a></li>
