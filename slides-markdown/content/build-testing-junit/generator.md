@@ -84,8 +84,7 @@ seguendo questi passi:
 1. Va specificato *dove* JUnit va cercato e (se trovato) scaricato
 2. Va specificato quali moduli di JUnit sono da utilizzare, e a che *versione*
     * Sono molti, e noi ne usiamo solo alcuni
-3. Va detto a Gradle che vogliamo usare JUnit Platform (è il metodo di avvio dei test in JUnit 5)
-    * Si veda https://junit.org/junit5/docs/current/user-guide/#overview-what-is-junit-5
+3. Va detto a Gradle che vogliamo usare JUnit Platform (è il metodo di avvio dei test a partire da JUnit 5)
 4. Opzionalmente, possiamo chiedere a Gradle di mostrare più output di quanto normalmente farebbe
     * Ad esempio, mostrando quando comincia e quando termina un test, con che risultato, e mostrando il suo output su terminale
     * Diversamente, Gradle si limita a fallire se un qualche test fallisce
