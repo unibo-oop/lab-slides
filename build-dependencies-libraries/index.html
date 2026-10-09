@@ -538,20 +538,14 @@ O, al più, usarli solo <em>dopo che il progetto è avviato</em> come semplice l
   
 
   
-    
-  
-  
-
-  
-    
-  
   
 
   
   
 
   
-    
+  
+
   
   
 
@@ -580,30 +574,6 @@ O, al più, usarli solo <em>dopo che il progetto è avviato</em> come semplice l
   
 
 
-
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({"layout":"dagre","look":"classic","startOnLoad":false,"theme":"default"});
-
-    let render = (event) => {
-      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
-      if (!mermaidElems.length){
-          return
-      }
-      mermaidElems.forEach(mermaidElem => {
-          let processed = mermaidElem.getAttribute('data-processed');
-          if (!processed){
-              
-              mermaid.init(undefined, mermaidElem);
-          }
-      });
-    };
-    
-    render({currentSlide: Reveal.getCurrentSlide()});
-
-    Reveal.on('slidechanged', render);
-    Reveal.on('ready', render);
-  </script>
 
 
 
