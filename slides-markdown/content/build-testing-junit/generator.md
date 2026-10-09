@@ -106,7 +106,7 @@ Esistono diversi *repository* con librerie, quello di riferimento per Java è **
 
 Dobbiamo specificare che sono *dipendenze*,
 che ci servono *solo per i test*,
-che il motore di esecuzione serve *solo a runtime*,
+che il motore di esecuzione (e il *launcher* della JUnit Platform) serve *solo a runtime*,
 e che *vogliamo una specifica versione*
  
 * Nel caso specifico di JUnit, per mantenere coerenti le versioni dei componenti della libreria, si usa un "*BOM*" (Bill of Materials).
