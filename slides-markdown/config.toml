@@ -48,6 +48,8 @@ enableSourceMap = true
 
 [[params.reveal_hugo.mermaid]]
 startOnLoad = false
-# theme = "default"
+theme = "default"
+look = "classic"
+layout = "dagre"
 # fontFamily = "Inconsolata"
 #useMaxWidth = true
