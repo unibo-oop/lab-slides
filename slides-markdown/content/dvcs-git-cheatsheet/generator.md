@@ -92,7 +92,7 @@ aliases = ["/git-cheatsheet/"]
 
 | Operazione | Comando |
 | --- | --- |
-| Generazione di una chiave SSH | `ssh-keygen` |
+| Generazione di una chiave SSH | `ssh-keygen -t ed25519` |
 
 
 ---
