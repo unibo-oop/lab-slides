@@ -40,7 +40,7 @@
 <a href=".."><i class="fa-solid fa-list"></i> menu principale</a></p>
 </div>
 <div class="deck-cover-date">
-<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-08
+<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-09
 </p>
 </div>
 </div>
@@ -176,7 +176,7 @@ un percorso su cui l’utente abbia diritto di scrittura e lavorare su quella co
 <a href=".."><i class="fa-solid fa-list"></i> menu principale</a></p>
 </div>
 <div class="deck-cover-date">
-<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-08
+<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-09
 </p>
 </div>
 </div>
@@ -193,7 +193,7 @@ un percorso su cui l’utente abbia diritto di scrittura e lavorare su quella co
 
 <a href="/lab-slides/reveal-js/dist/print/" id="print-location" style="display: none;"></a>
 
-<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"default","history":true,"mermaid":[{"startOnLoad":false}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1920"}</script>
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"custom-theme.scss","custom_theme_compile":true,"custom_theme_options":{"enablesourcemap":true,"targetpath":"css/custom-theme.css"},"height":"1080","highlight_theme":"default","history":true,"mermaid":[{"layout":"dagre","look":"classic","startOnLoad":false,"theme":"default"}],"slide_number":true,"theme":"white","transition":"slide","transition_speed":"fast","width":"1920"}</script>
 <script type="application/json" id="reveal-hugo-page-params">null</script>
 
 <script src="/lab-slides/reveal-js/dist/reveal.js"></script>
@@ -311,8 +311,6 @@ un percorso su cui l’utente abbia diritto di scrittura e lavorare su quella co
   
 
   
-    
-  
   
 
   
@@ -340,7 +338,7 @@ un percorso su cui l’utente abbia diritto di scrittura e lavorare su quella co
 
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
   <script>
-    mermaid.initialize({"startOnLoad":false});
+    mermaid.initialize({"layout":"dagre","look":"classic","startOnLoad":false,"theme":"default"});
 
     let render = (event) => {
       let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
