@@ -57,8 +57,8 @@ aliases = ["/git-cheatsheet/"]
 | Aggiunta forzata delle modifiche di un file allo stage anche se il file sarebbe normalmente ignorato | `git add -f <file>` |
 | Rimozione dallo stage delle *modifiche* di un file | `git reset <file>` |
 | Registrazione di un file rinominato | `git add <vecchio> <nuovo>` |
-| Creazione di un commit con le modifiche nello stage | `git commit -m <messaggio>` |
-| Recupero dello stato di un file dal commit `<tree-ish>` | `git checkout <tree-ish> -- <file>` |
+| Creazione di un commit con le modifiche nello stage | `git commit -m "<messaggio>"` |
+| Recupero dello stato di un file dal commit `<tree-ish>` (**sovrascrive le modifiche locali!**) | `git checkout <tree-ish> -- <file>` |
 | Creazione di un commit accettando il messaggio di default (**solo in caso di merge!**) | `git commit --no-edit` |
 
 ---
