@@ -37,7 +37,7 @@ aliases = ["dependencies"]
     * Costruzione semi automatica di una command line (Commons CLI)
     * Encoding e cifratura (Commons Codec), compressione (Commons Compress)
 
-* **Static Logger Facade for Java (SLF4J)** ([http://www.slf4j.org](http://www.slf4j.org))
+* **Simple Logging Facade for Java (SLF4J)** ([https://www.slf4j.org](https://www.slf4j.org))
 
     * Backend-independent logging (addio `println`)
 
