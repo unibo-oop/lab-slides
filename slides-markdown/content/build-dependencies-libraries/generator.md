@@ -70,7 +70,7 @@ siete aspiranti ingegneri, cercate di lavorare sempre top-down quando possibile,
 Alcune librerie sono costruite come *Framework*,
 ossia come ossature di applicazioni,
 pensate per velocizzare la costruzione di un certo tipo di software
-* Esempio tipico: l'engine per videogames [libGDX](`https://libgdx.com/`)
+* Esempio tipico: l'engine per videogames [libGDX](https://libgdx.com/)
 
 Uno degli scopi del progetto di OOP è quello di misurare se siate bravi designer,
 ma per farlo è necessario che il design della vostra applicazione l'abbiate fatto voi e non chi ha costruito il framework.
