@@ -92,7 +92,7 @@
 </ul>
 <h3 id="supporto-per-schermi-multi-touch-e-hi-dpi">Supporto per schermi Multi-touch e Hi-DPI</h3>
 <ul>
-<li>Fornisce il supporto per funzionalità  multi-touch (cf. <code>SwipeEvent</code>), in funzione della piattaforma in cui l’applicazione è in esecuzione</li>
+<li>Fornisce il supporto per funzionalità multi-touch (cf. <code>SwipeEvent</code>), in funzione della piattaforma in cui l’applicazione è in esecuzione</li>
 <li>Garantisce una buona visualizzazione della GUI anche su schermi ad alta densità di pixel</li>
 </ul>
 <h3 id="interoperabilità-bidirezionale-con-la-libreria-java-built-in-per-gui-swing">Interoperabilità bidirezionale con la libreria Java built-in per GUI <em>Swing</em></h3>
@@ -109,7 +109,7 @@
 <li>Corrisponde al <code>JFrame</code> di Swing</li>
 </ul>
 </li>
-<li><a href="https://openjfx.io/javadoc/15/javafx.graphics/javafx/stage/Stage.html">javafx.stage.Stage</a>, sottoclasse di <code>Window</code></li>
+<li><a href="https://openjfx.io/javadoc/25/javafx.graphics/javafx/stage/Stage.html">javafx.stage.Stage</a>, sottoclasse di <code>Window</code></li>
 </ul>
 <h3 id="scene">Scene</h3>
 <ul>
@@ -118,12 +118,12 @@
 <li>ogni <code>Stage</code> può mostrare una sola <code>Scene</code> alla volta: si imposta via <code>Stage#setScene(Scene)</code></li>
 </ul>
 </li>
-<li><a href="https://openjfx.io/javadoc/15/javafx.graphics/javafx/scene/Scene.html">javafx.scene.Scene</a> contiene il cosiddetto <em>scene graph</em>, impostabile attraverso <code>Scene#setRoot(Parent)</code></li>
+<li><a href="https://openjfx.io/javadoc/25/javafx.graphics/javafx/scene/Scene.html">javafx.scene.Scene</a> contiene il cosiddetto <em>scene graph</em>, impostabile attraverso <code>Scene#setRoot(Parent)</code></li>
 </ul>
 </section><section>
 <h3 id="application">Application</h3>
 <ul>
-<li>Un’<strong>applicazione JavaFX</strong> si definisce estendendo <a href="https://openjfx.io/javadoc/15/javafx.graphics/javafx/application/Application.html">javafx.application.Application</a>
+<li>Un’<strong>applicazione JavaFX</strong> si definisce estendendo <a href="https://openjfx.io/javadoc/25/javafx.graphics/javafx/application/Application.html">javafx.application.Application</a>
 <ul>
 <li>Consente di definire metodi hook sul ciclo di vita dell’applicazione (<code>init</code>, <code>start</code>, <code>stop</code>, …)</li>
 <li>Tipicamente, si opera ridefinendo <code>start(Stage)</code> che riceve lo stage primario</li>
@@ -196,7 +196,7 @@ può risultare nel seguente errore:
 <li>Un nodo ha un ID univoco, coordinate locali, può subire trasformazioni (ad es. rotazione), ha un bounding rectangle associato, e può essere stilizzato via CSS</li>
 </ul>
 </li>
-<li>Sottoclassi di <a href="https://openjfx.io/javadoc/15/javafx.graphics/javafx/scene/Node.html"><code>Node</code></a>: <code>SwingNode</code>, <code>Canvas</code>, <code>Parent</code></li>
+<li>Sottoclassi di <a href="https://openjfx.io/javadoc/25/javafx.graphics/javafx/scene/Node.html"><code>Node</code></a>: <code>SwingNode</code>, <code>Canvas</code>, <code>Parent</code></li>
 </ul>
 </section><section>
 <h3 id="sommario">Sommario</h3>
@@ -256,7 +256,7 @@ può risultare nel seguente errore:
 <li>
 <p>Ciascun nodo (componente) espone diverse <em>proprietà osservabili</em> (classe <code>Property&lt;T&gt;</code>)</p>
 <ul>
-<li>relative all’aspetto (es. <code>size</code>, <code>posizion</code>, <code>color</code>, …)</li>
+<li>relative all’aspetto (es. <code>size</code>, <code>position</code>, <code>color</code>, …)</li>
 <li>relative al contenuto (es. <code>text</code>, <code>value</code>, …)</li>
 <li>relative al comportamento (es. <em>event handler</em>, <code>controller</code>, …)</li>
 </ul>
@@ -307,7 +307,7 @@ può risultare nel seguente errore:
 </span></span><span style="display:flex;"><span><span style="color:#000">mirror</span>.<span style="color:#836c28">textProperty</span>().<span style="color:#836c28">bindBidirectional</span>(<span style="color:#000">input</span>.<span style="color:#836c28">textProperty</span>());
 </span></span><span style="display:flex;"><span><span style="color:#000">mirror</span>.<span style="color:#836c28">setText</span>(<span style="color:#c41a16">"default"</span>);
 </span></span></code></pre></div></section><section>
-<h2 id="i-layout-cf-package-javafxscenelayout">I layout (cf. package <a href="https://openjfx.io/javadoc/13/javafx.graphics/javafx/scene/layout/package-summary.html">javafx.scene.layout</a>)</h2>
+<h2 id="i-layout-cf-package-javafxscenelayout">I layout (cf. package <a href="https://openjfx.io/javadoc/25/javafx.graphics/javafx/scene/layout/package-summary.html">javafx.scene.layout</a>)</h2>
 <ul>
 <li>Sottoclassi di <code>Parent</code> (nodo che può avere nodi figli – cf. proprietà protected <code>children</code>):
 <ul>
@@ -330,7 +330,7 @@ può risultare nel seguente errore:
 <ul>
 <li>Classe base per tutti i layout general purpose (simili a quelli offerti da Swing):
 <ul>
-<li><code>BorderPane</code>, <code>HBox</code>/<code>VBox</code>, <code>TilePane</code>, <code>GridPane</code>, <code>FLowPane</code>, <code>AnchorPane</code>, <code>StackPane</code></li>
+<li><code>BorderPane</code>, <code>HBox</code>/<code>VBox</code>, <code>TilePane</code>, <code>GridPane</code>, <code>FlowPane</code>, <code>AnchorPane</code>, <code>StackPane</code></li>
 </ul>
 </li>
 </ul>
