@@ -40,7 +40,7 @@
 <a href=".."><i class="fa-solid fa-list"></i> menu principale</a></p>
 </div>
 <div class="deck-cover-date">
-<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-10
+<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-12
 </p>
 </div>
 </div>
@@ -97,7 +97,7 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#a90d91">public</span> <span style="color:#000">URL</span> <span style="color:#000">getResource</span>(<span style="color:#000">String</span> <span style="color:#000">name</span>);
 </span></span><span style="display:flex;"><span>  <span style="color:#177500">// ...</span>
 </span></span></code></pre></div><ul>
-<li>Un <strong>class loader</strong> (istanza di <code>ClassLoader</code>) è un’oggetto responsabile del <em>caricamento di classi e risorse</em>
+<li>Un <strong>class loader</strong> (istanza di <code>ClassLoader</code>) è un oggetto responsabile del <em>caricamento di classi e risorse</em>
 <ul>
 <li>ogni class loader ha un class loader padre, per sfruttare un meccanismo di delega</li>
 <li>il parent di default è il <strong>system class loader</strong> che carica classi e risorse <em>dal classpath</em></li>
@@ -127,19 +127,19 @@
 <li>Se si ha la necessità di modificare una risorsa, è necessario copiarla in
 un percorso su cui l’utente abbia diritto di scrittura e lavorare su quella copia
 <ul>
-<li>Tipicamente, una cartella nascosta nella la home utente: <code>System.getProperty("user.home")</code></li>
+<li>Tipicamente, una cartella nascosta nella home utente: <code>System.getProperty("user.home")</code></li>
 </ul>
 </li>
 </ul>
 </section><section>
 <h3 id="risorse-caricate-dal-classpath--esempi">Risorse caricate dal classpath – Esempi</h3>
 <h4 id="caricamento-di-file">Caricamento di File</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">InputStream</span> <span style="color:#000">in</span> <span style="color:#000">=</span> <span style="color:#000">ClassLoader</span>.<span style="color:#836c28">getSystemResourceAsStream</span>(<span style="color:#c41a16">"/settings/settings"</span>);
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">InputStream</span> <span style="color:#000">in</span> <span style="color:#000">=</span> <span style="color:#000">ClassLoader</span>.<span style="color:#836c28">getSystemResourceAsStream</span>(<span style="color:#c41a16">"settings/settings"</span>);
 </span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">BufferedReader</span> <span style="color:#000">br</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">BufferedReader</span>(<span style="color:#a90d91">new</span> <span style="color:#000">InputStreamReader</span>(<span style="color:#000">in</span>));
 </span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">String</span> <span style="color:#000">line</span> <span style="color:#000">=</span> <span style="color:#000">br</span>.<span style="color:#836c28">readLine</span>();
 </span></span><span style="display:flex;"><span><span style="color:#000">in</span>.<span style="color:#836c28">close</span>();
 </span></span></code></pre></div><h4 id="caricamento-di-immagini">Caricamento di Immagini</h4>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">URL</span> <span style="color:#000">imgURL</span> <span style="color:#000">=</span> <span style="color:#000">ClassLoader</span>.<span style="color:#836c28">getSystemResource</span>(<span style="color:#c41a16">"/images/gandalf.jpg"</span>);
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">URL</span> <span style="color:#000">imgURL</span> <span style="color:#000">=</span> <span style="color:#000">ClassLoader</span>.<span style="color:#836c28">getSystemResource</span>(<span style="color:#c41a16">"images/gandalf.jpg"</span>);
 </span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">ImageIcon</span> <span style="color:#000">icon</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">ImageIcon</span>(<span style="color:#000">imgURL</span>);
 </span></span><span style="display:flex;"><span><span style="color:#a90d91">final</span> <span style="color:#000">JLabel</span> <span style="color:#000">lab1</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">JLabel</span>(<span style="color:#000">icon</span>);
 </span></span></code></pre></div><p>Progetto di esempio:
@@ -157,7 +157,7 @@ un percorso su cui l’utente abbia diritto di scrittura e lavorare su quella co
 </li>
 <li>Al primo avvio, si verifica se tale cartella esista e se contenga i file di configurazione previsti.
 <ul>
-<li>Se non è presente, o se non sono presenti e leggibili alcuni i file, si procede a caricare nella cartella di destinazione i file di default dal JAR usando <code>getResource()</code>.</li>
+<li>Se non è presente, o se non sono presenti e leggibili alcuni file, si procede a caricare nella cartella di destinazione i file di default dal JAR usando <code>getResource()</code>.</li>
 </ul>
 </li>
 </ul>
@@ -176,7 +176,7 @@ un percorso su cui l’utente abbia diritto di scrittura e lavorare su quella co
 <a href=".."><i class="fa-solid fa-list"></i> menu principale</a></p>
 </div>
 <div class="deck-cover-date">
-<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-10
+<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-12
 </p>
 </div>
 </div>

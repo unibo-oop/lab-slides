@@ -40,7 +40,7 @@
 <a href=".."><i class="fa-solid fa-list"></i> menu principale</a></p>
 </div>
 <div class="deck-cover-date">
-<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-10
+<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-12
 </p>
 </div>
 </div>
@@ -57,11 +57,11 @@
 <ul>
 <li>il sistema operativo</li>
 <li>il <em>runtime environment</em> (la Java Virtual Machine)</li>
-<li>le librerie di basa (tutto quello che sta in <code>java.*</code> e <code>javax.*</code>)</li>
+<li>le librerie di base (tutto quello che sta in <code>java.*</code> e <code>javax.*</code>)</li>
 <li>librerie di terze parti (fra poco)</li>
 <li>risorse esterne (icone, suoni, dati applicativi)</li>
 </ul>
-<p>Tutto il software che costruiamo e usiamo dipende da <em>altro sofware</em></p>
+<p>Tutto il software che costruiamo e usiamo dipende da <em>altro software</em></p>
 <ul>
 <li>Che dipende da <em>altro software</em>
 <ul>
@@ -209,7 +209,7 @@ divenuta oggi <em>sostanzialmente standard</em>
 <ul>
 <li>È un nome semplice in kebab-case
 <ul>
-<li>ad esempio: <code>commons-math</code>, <code>guava</code>, <code>junit-jupiter-assertions-jvm</code></li>
+<li>ad esempio: <code>commons-math</code>, <code>guava</code>, <code>junit-jupiter-api</code></li>
 </ul>
 </li>
 </ul>
@@ -227,12 +227,12 @@ divenuta oggi <em>sostanzialmente standard</em>
 </ul>
 <p>Per riferirsi ad una libreria specifica, si usa la sintassi: <code>groupId:artifactId:version</code></p>
 <ul>
-<li><code>com.google.guava:guava:32-jre</code></li>
+<li><code>com.google.guava:guava:33.4.0-jre</code></li>
 <li><code>it.unibo.alchemist:alchemist-api:25.0.1</code></li>
 </ul>
 <p>Ora sappiamo come si chiamano, ma non dove trovarle…</p>
 </section><section>
-<h2 id="the-maven-central-repository-aka-sonatype-ossrh">The Maven Central Repository (a.k.a. Sonatype OSSRH)</h2>
+<h2 id="the-maven-central-repository">The Maven Central Repository</h2>
 <p>Assieme alla convenzione per i nomi,
 Maven definì un <em>repository</em> (archivio) dove i creatori di software Java <em>open source</em> potessero:</p>
 <ul>
@@ -287,7 +287,7 @@ col software è analogo…</li>
 <p>Per dire a Gradle di:</p>
 <ol>
 <li>Preparare il necessario per gestire un progetto Java</li>
-<li>Configurare Maven Central come <em>repository</em> per le eventuali liberie</li>
+<li>Configurare Maven Central come <em>repository</em> per le eventuali librerie</li>
 </ol>
 <p>è sufficiente configurare <code>build.gradle.kts</code> come segue:</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">plugins</span> { <span style="color:#000">java</span> } <span style="color:#177500">// Carica il necessario per Java
@@ -421,7 +421,7 @@ O, al più, usarli solo <em>dopo che il progetto è avviato</em> come semplice l
 <a href=".."><i class="fa-solid fa-list"></i> menu principale</a></p>
 </div>
 <div class="deck-cover-date">
-<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-10
+<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-12
 </p>
 </div>
 </div>
@@ -538,11 +538,7 @@ O, al più, usarli solo <em>dopo che il progetto è avviato</em> come semplice l
   
 
   
-  
-
-  
-  
-
+    
   
   
 
@@ -573,7 +569,37 @@ O, al più, usarli solo <em>dopo che il progetto è avviato</em> come semplice l
   
   
 
+  
+  
 
+  
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"layout":"dagre","look":"classic","startOnLoad":false,"theme":"default"});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
 
 
 

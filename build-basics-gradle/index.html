@@ -40,7 +40,7 @@
 <a href=".."><i class="fa-solid fa-list"></i> menu principale</a></p>
 </div>
 <div class="deck-cover-date">
-<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-10
+<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-12
 </p>
 </div>
 </div>
@@ -174,11 +174,11 @@ trends.embed.renderExploreWidget(
 detti <em>build file</em>.
 La loro presenza segnala a Gradle che la cartella rappresenta un <strong>progetto</strong></p>
 <h3 id="plugin">Plugin</h3>
-<p>Componente software contentente <strong>task</strong> pronti all’uso.
+<p>Componente software contenente <strong>task</strong> pronti all’uso.
 Gradle contiene diversi plugin pronti all’uso
 (per i linguaggi più comuni, come Java).</p>
 <h3 id="task">Task</h3>
-<p>Un <strong>task</strong> in Gradle rappresenta una <em>singola operazione atomica</em> del processo di costruzione del sofware</p>
+<p>Un <strong>task</strong> in Gradle rappresenta una <em>singola operazione atomica</em> del processo di costruzione del software</p>
 <ul>
 <li><em>singola</em> $\rightarrow$ un task fa una sola cosa (Single Responsibility Principle)</li>
 <li><em>atomica</em> $\rightarrow$ indivisibile: un task comincia e finisce senza interruzione</li>
@@ -189,7 +189,7 @@ Gradle contiene diversi plugin pronti all’uso
 <li><code>gradle tasks --all</code> (elenca tutti i task disponibili)</li>
 <li><code>gradle compileJava</code> (compila i sorgenti java)</li>
 </ul>
-<p>Gradle è in grado capire le <em>dipendenze</em> fra task ed eseguirli nell’ordine corretto.</p>
+<p>Gradle è in grado di capire le <em>dipendenze</em> fra task ed eseguirli nell’ordine corretto.</p>
 </section><section>
 <h2 id="gradle-configurazione-minimale-per-java">Gradle: configurazione minimale per Java</h2>
 <ul>
@@ -309,7 +309,7 @@ cosa succederebbe?</p>
 </section><section>
 <h2 id="progetti-gradle-con-wrapper">Progetti Gradle con wrapper</h2>
 <ol>
-<li>Script bash eseguibile (<i class="fab fa-linux"></i>/<i class="fab fa-apple"></i>): <code>gradlew</code></li>
+<li>Script shell (POSIX <code>sh</code>) eseguibile (<i class="fab fa-linux"></i>/<i class="fab fa-apple"></i>): <code>gradlew</code></li>
 <li>Script batch eseguibile (<i class="fab fa-windows"></i>): <code>gradlew.bat</code></li>
 <li>File di configurazione con indicata la versione di Gradle:<br>
 <code>gradle/wrapper/gradle-wrapper.properties</code></li>
@@ -320,10 +320,16 @@ cosa succederebbe?</p>
 <ul>
 <li><a href="https://github.com/DanySK/Gradle-Wrapper/archive/refs/heads/master.zip">https://github.com/DanySK/Gradle-Wrapper/archive/refs/heads/master.zip</a></li>
 <li><strong>Attenzione</strong>: su <i class="fab fa-linux"></i> e <i class="fab fa-apple"></i>,
-eseguire anche il comando <code>chmod +x gradlew</code> per rendere eseguibile lo script</li>
+eseguire anche il comando <code>chmod +x gradlew</code> per rendere eseguibile lo script
+<ul>
 <li>setta i permessi Unix per eseguire, il cui valore viene resettato dalla compressione in formato zip</li>
-<li>alternativamente, lo script va eseguito chiedendo all’interprete della linea di comando di interpretarlo</li>
+<li>alternativamente, lo script va eseguito chiedendo all’interprete della linea di comando di interpretarlo
+<ul>
 <li><code>sh gradlew</code></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </section><section>
 <h2 id="utilizzo-di-gradle-con-wrapper">Utilizzo di Gradle con wrapper</h2>
@@ -361,7 +367,7 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
 <a href=".."><i class="fa-solid fa-list"></i> menu principale</a></p>
 </div>
 <div class="deck-cover-date">
-<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-10
+<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-12
 </p>
 </div>
 </div>
@@ -478,6 +484,21 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
   
 
   
+    
+  
+  
+
+  
+    
+  
+  
+
+  
+  
+
+  
+    
+  
   
 
   
@@ -504,16 +525,31 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
   
   
 
-  
-  
-
-  
-  
-
-  
-  
 
 
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"layout":"dagre","look":"classic","startOnLoad":false,"theme":"default"});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
 
 
 
