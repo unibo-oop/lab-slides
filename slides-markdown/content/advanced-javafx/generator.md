@@ -496,7 +496,7 @@ public class Main {
 Screen s = Screen.getPrimary();
 double dpi = s.getDpi();
 Rectangle2D sb = s.getBounds();
-Ractangle2D svb = s.getVisualBounds();
+Rectangle2D svb = s.getVisualBounds();
 
 ObservableList<Screen> screenList = Screen.getScreens();
 ```
