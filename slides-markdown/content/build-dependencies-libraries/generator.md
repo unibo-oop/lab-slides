@@ -45,11 +45,11 @@ aliases = ["dependencies"]
 
 ---
 
-### Top 20 Java Libraries
+### Le librerie Java più usate
 
-[
-![](imgs/top-20-java-libraries.png)
-](http://blog.takipi.com/we-analyzed-60678-libraries-on-github-here-are-the-top-100)
+La classifica aggiornata delle librerie più usate (per numero di progetti che le importano) è disponibile su MVN Repository:
+
+### [https://mvnrepository.com/popular](https://mvnrepository.com/popular)
 
 ---
 
