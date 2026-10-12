@@ -379,10 +379,9 @@ Dobbiamo solo:</p>
 </li>
 </ul>
 </section><section>
-<h3 id="top-20-java-libraries">Top 20 Java Libraries</h3>
-<p><a href="http://blog.takipi.com/we-analyzed-60678-libraries-on-github-here-are-the-top-100">
-<img src="imgs/top-20-java-libraries.png" alt="">
-</a></p>
+<h3 id="le-librerie-java-più-usate">Le librerie Java più usate</h3>
+<p>La classifica aggiornata delle librerie più usate (per numero di progetti che le importano) è disponibile su MVN Repository:</p>
+<h3 id="httpsmvnrepositorycompopular"><a href="https://mvnrepository.com/popular">https://mvnrepository.com/popular</a></h3>
 </section><section>
 <h3 id="awesome-java">Awesome Java</h3>
 <p>Esiste una lista, costantemente manutenuta, che elenca le più comuni, diffuse e stabili librerie per una pletora di usi: <a href="https://bit.ly/awesome-java">https://bit.ly/awesome-java</a></p>
@@ -541,11 +540,7 @@ O, al più, usarli solo <em>dopo che il progetto è avviato</em> come semplice l
   
 
   
-  
-
-  
-  
-
+    
   
   
 
@@ -573,7 +568,37 @@ O, al più, usarli solo <em>dopo che il progetto è avviato</em> come semplice l
   
   
 
+  
+  
 
+  
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"layout":"dagre","look":"classic","startOnLoad":false,"theme":"default"});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
 
 
 
