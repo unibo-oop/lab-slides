@@ -255,7 +255,7 @@ mirror.setText("default");
 
 ---
 
-## I layout (cf. package [javafx.scene.layout](https://openjfx.io/javadoc/13/javafx.graphics/javafx/scene/layout/package-summary.html))
+## I layout (cf. package [javafx.scene.layout](https://openjfx.io/javadoc/25/javafx.graphics/javafx/scene/layout/package-summary.html))
 
 * Sottoclassi di `Parent` (nodo che può avere nodi figli -- cf. proprietà protected `children`):
     * `Group` (gestisce un insieme di figli; ogni trasformazione/effetto è applicata su ogni figlio)
