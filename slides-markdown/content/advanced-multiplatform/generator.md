@@ -175,7 +175,7 @@ Java fornisce una architettura per l'internazionalizzazione (**i18n = internatio
 Per approfondimenti (per implementare il supporto multilingua):
 
 * [https://docs.oracle.com/javase/tutorial/i18n/resbundle/index.html](https://docs.oracle.com/javase/tutorial/i18n/resbundle/index.html)
-* [http://tutorials.jenkov.com/java-internationalization/resourcebundle.html](http://tutorials.jenkov.com/java-internationalization/resourcebundle.html)
+* [https://jenkov.com/tutorials/java-internationalization/resourcebundle.html](https://jenkov.com/tutorials/java-internationalization/resourcebundle.html)
 
 ---
 
