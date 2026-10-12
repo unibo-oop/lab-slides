@@ -149,7 +149,7 @@ L'avvio mediante `Application.launch(App.class)` comporta:
     * Possono essere organizzati gerarchicamente
         * La sottoclasse `Parent` rappresenta nodi che possono avere figli (recuperabili via `getChildren()`)
     * Un nodo ha un ID univoco, coordinate locali, può subire trasformazioni (ad es. rotazione), ha un bounding rectangle associato, e può essere stilizzato via CSS
-* Sottoclassi di [`Node`](https://openjfx.io/javadoc/15/javafx.graphics/javafx/scene/Node.html): `SwingNode`, `Canvas`, `Parent`
+* Sottoclassi di [`Node`](https://openjfx.io/javadoc/25/javafx.graphics/javafx/scene/Node.html): `SwingNode`, `Canvas`, `Parent`
 
 ---
 
