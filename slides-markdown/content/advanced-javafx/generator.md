@@ -790,7 +790,7 @@ Programmaticamente
 
 ```java
 Scene scene = new Scene(pane);
-scene.getStylesheets().add(ClassLoader.getSystemResource("css/scene.css"));
+scene.getStylesheets().add(ClassLoader.getSystemResource("css/scene.css").toExternalForm());
 
 HBox buttons = new HBox();
 buttons.setStyle("-fx-border-color: red;");
