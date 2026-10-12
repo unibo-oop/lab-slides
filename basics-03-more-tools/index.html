@@ -246,10 +246,10 @@ allora la JVM cercherà di caricare la classe da <code>/a/b/c/Program.class</cod
 <ul>
 <li>Il Java Runtime Environment
 <ul>
-<li>Contengono ad esempio <code>java.lang.Math</code></li>
-<li>La directory da cui viene invocato il comando</li>
+<li>Contiene ad esempio <code>java.lang.Math</code></li>
 </ul>
 </li>
+<li>La directory da cui viene invocato il comando</li>
 </ul>
 <h3 id="aggiungere-directory-al-classpath">Aggiungere directory al classpath</h3>
 <p>Possono essere aggiunte directory al classpath</p>
@@ -370,8 +370,8 @@ classpath di <code>javac</code>!</li>
 <li><code>javac</code> $\Rightarrow$ Invocazione del compilatore</li>
 <li><code>-d bin</code> $\Rightarrow$ <code>-d</code> determina la <strong>destinazione</strong>. Vogliamo compilare dentro la cartella <code>bin</code></li>
 <li><code>-cp lib</code> $\Rightarrow$ <code>-cp</code> consente di aggiungere percorsi al
-<strong>classpath</strong>. Noi vogliamo cercare le classi che ci servono, oltre che nella
-posizione corrente e nelle librerie java, anche dentro <code>lib</code></li>
+<strong>classpath</strong>. Noi vogliamo cercare le classi che ci servono, oltre che nelle librerie java, dentro <code>lib</code>
+(attenzione: specificando <code>-cp</code>, la directory corrente <strong>non</strong> è più inclusa automaticamente nel classpath)</li>
 <li><code>src/oop/lab02/math/UseComplex.java</code> $\Rightarrow$ Il <em>file</em> che vogliamo compilare</li>
 </ul>
 </section><section>
@@ -434,14 +434,14 @@ davvero devo imparare a leggere e capire un help?</p>
 <li><code>MyClass.java</code></li>
 </ol>
 <ul>
-<li>In C, questi vengono passati al metodo <code>int main()</code> come coppia di <code>char **</code> e <code>int</code>,
-rappresentanti rispettivamente un riferimento all’area di memoria dove sono salvati i parametri ed il numero dei suddetti.</li>
+<li>In C, questi vengono passati alla funzione <code>int main()</code> come coppia di <code>int</code> e <code>char **</code>,
+rappresentanti rispettivamente il numero dei parametri ed un riferimento all’area di memoria dove sono salvati.</li>
 <li>Anche in Java ovviamente è possibile passare degli argomenti ad un programma</li>
 </ul>
 <p>La gestione è un po’ <em>più semplice rispetto a</em> C
 perché <em>gli array si portano dietro la loro dimensione come campo</em></p>
-<p>In Java la signature del metodo <code>main()</code> è univoca: <code>public static void main(String [])</code>,
-mentre in C sia <code>int main(void)</code> che <code>int main(char **, int)</code> sono accettabili.</p>
+<p>In Java la signature del metodo <code>main()</code> è &lt;<code>public</code> <code>static</code>&gt; <code>void main(</code>&lt;<code>String[]</code>&gt;<code>)</code>,
+dove le parentesi angolari indicano elementi opzionali a partire da Java 25.</p>
 <ul>
 <li>Gli argomenti con cui un programma Java viene invocato vengono passati come parametri attraverso l’array (<code>String[] args</code>) che il metodo <code>main()</code> prende in ingresso</li>
 <li>Nonostante sia un parametro del <em>metodo principale</em> di qualunque programma Java, si tratta di un comune array senza alcuna particolarità.</li>
