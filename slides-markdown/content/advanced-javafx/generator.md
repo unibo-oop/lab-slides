@@ -758,7 +758,7 @@ public class UIController {
 
 * Strumento per la creazione di GUI JavaFX-based in modalità drag-n-drop (GUI Builder)
 * Consente di esportare il file FXML relativo alla GUI disegnata
-* Distribuito come strumento esterno al JDK, non integrato (direttamente) in Eclipse
+* Distribuito come strumento esterno al JDK, non integrato (direttamente) nell'IDE
 * [https://gluonhq.com/products/scene-builder/](https://gluonhq.com/products/scene-builder/)
 
 
