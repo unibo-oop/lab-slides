@@ -70,17 +70,17 @@ aliases = ["/javafx/"]
 
 * Il contenitore (esterno) dove la GUI sarà visualizzata (ad es., una finestra del S.O.)
     * Corrisponde al `JFrame` di Swing
-* [javafx.stage.Stage](https://openjfx.io/javadoc/15/javafx.graphics/javafx/stage/Stage.html), sottoclasse di `Window`
+* [javafx.stage.Stage](https://openjfx.io/javadoc/25/javafx.graphics/javafx/stage/Stage.html), sottoclasse di `Window`
 
 ### Scene
 * Una **scene** rappresenta un contenuto (una *pagina* della GUI) visualizzabile sullo `Stage`
     * ogni `Stage` può mostrare una sola `Scene` alla volta: si imposta via `Stage#setScene(Scene)`
-* [javafx.scene.Scene](https://openjfx.io/javadoc/15/javafx.graphics/javafx/scene/Scene.html) contiene il cosiddetto *scene graph*, impostabile attraverso `Scene#setRoot(Parent)`
+* [javafx.scene.Scene](https://openjfx.io/javadoc/25/javafx.graphics/javafx/scene/Scene.html) contiene il cosiddetto *scene graph*, impostabile attraverso `Scene#setRoot(Parent)`
 
 ---
 
 ### Application
-* Un'**applicazione JavaFX** si definisce estendendo [javafx.application.Application](https://openjfx.io/javadoc/15/javafx.graphics/javafx/application/Application.html)
+* Un'**applicazione JavaFX** si definisce estendendo [javafx.application.Application](https://openjfx.io/javadoc/25/javafx.graphics/javafx/application/Application.html)
     * Consente di definire metodi hook sul ciclo di vita dell'applicazione (`init`, `start`, `stop`, ...)
     * Tipicamente, si opera ridefinendo `start(Stage)` che riceve lo stage primario
 
