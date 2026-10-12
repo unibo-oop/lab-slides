@@ -295,8 +295,8 @@ Group g = new Group();
 Label l1 = new Label("label");
 Button b1 = new Button("a larger button");
 Button b2 = new Button("small button");
-g.getChildren().addAll(l1, b2, b3);
-// Use binding to suitable place the components
+g.getChildren().addAll(l1, b1, b2);
+// Use binding to suitably place the components
 b1.layoutXProperty().bind(l1.widthProperty().add(10));
 b2.layoutXProperty().bind(b1.layoutXProperty()
     .add(b1.widthProperty()).add(10));
