@@ -326,7 +326,7 @@ AnchorPane root = new AnchorPane(topLeft);
 // An empty vertical TilePane with 5px horiz / 10px vertical spacing
 TilePane tp2 = new TilePane(Orientation.VERTICAL, 5, 10);
 tp2.setPrefRows(3);
-tp.setPrefTileHeight(100);
+tp2.setPrefTileHeight(100);
 for(Month m : Month.values()) { tp2.getChildren().add(new Label(m.name())); }
 ```
 
