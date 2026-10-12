@@ -185,8 +185,8 @@ Quando si va ad eseguire (comando `java`), si eseguono **classi**, non files
 
 Se non specificato, il classpath di Java include automaticamente:
 * Il Java Runtime Environment
-  * Contengono ad esempio `java.lang.Math`
-  * La directory da cui viene invocato il comando
+  * Contiene ad esempio `java.lang.Math`
+* La directory da cui viene invocato il comando
 
 ### Aggiungere directory al classpath
 
@@ -302,8 +302,8 @@ Come risolviamo?
 * `javac` $\Rightarrow$ Invocazione del compilatore
 * `-d bin` $\Rightarrow$ `-d` determina la **destinazione**. Vogliamo compilare dentro la cartella `bin`
 * `-cp lib` $\Rightarrow$ `-cp` consente di aggiungere percorsi al
-**classpath**. Noi vogliamo cercare le classi che ci servono, oltre che nella
-posizione corrente e nelle librerie java, anche dentro `lib`
+**classpath**. Noi vogliamo cercare le classi che ci servono, oltre che nelle librerie java, dentro `lib`
+(attenzione: specificando `-cp`, la directory corrente **non** è più inclusa automaticamente nel classpath)
 * `src/oop/lab02/math/UseComplex.java` $\Rightarrow$ Il *file* che vogliamo compilare
 
 ---
@@ -367,15 +367,15 @@ Ad esempio, quando eseguite `javac -d bin MyClass.java` gli argomenti sono le se
 2. `bin`
 3. `MyClass.java`
 
-* In C, questi vengono passati al metodo `int main()` come coppia di `char **` e `int`,
-rappresentanti rispettivamente un riferimento all'area di memoria dove sono salvati i parametri ed il numero dei suddetti.
+* In C, questi vengono passati alla funzione `int main()` come coppia di `int` e `char **`,
+rappresentanti rispettivamente il numero dei parametri ed un riferimento all'area di memoria dove sono salvati.
 * Anche in Java ovviamente è possibile passare degli argomenti ad un programma
 
 La gestione è un po' *più semplice rispetto a* C
 perché *gli array si portano dietro la loro dimensione come campo*
 
-In Java la signature del metodo `main()` è univoca: `public static void main(String [])`,
-mentre in C sia `int main(void)` che `int main(char **, int)` sono accettabili.
+In Java la signature del metodo `main()` è <`public` `static`> `void main(`<`String[]`>`)`,
+dove le parentesi angolari indicano elementi opzionali a partire da Java 25.
 * Gli argomenti con cui un programma Java viene invocato vengono passati come parametri attraverso l'array (`String[] args`) che il metodo `main()` prende in ingresso
 * Nonostante sia un parametro del *metodo principale* di qualunque programma Java, si tratta di un comune array senza alcuna particolarità.
 
