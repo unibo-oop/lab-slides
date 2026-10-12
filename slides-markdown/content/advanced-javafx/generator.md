@@ -824,7 +824,7 @@ Nel file FXML (ad esempio attaccandolo al nodo root)
 
 ```java
 public static void main(final String[] args){
-  initMainJFrame(new JFrame("JFrame GUI"));
+  SwingUtilities.invokeLater(() -> initMainJFrame(new JFrame("JFrame GUI")));
 }
 ```
 
