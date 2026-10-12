@@ -44,7 +44,7 @@ C.d.L. in Ingegneria e Scienze Informatiche &nbsp;&middot;&nbsp; Indice dei cont
 * [<i class="fa-brands fa-git-alt"></i> Sistemi di controllo versione](dvcs-basics/)
 * [<i class="fa-solid fa-code-merge"></i> Branching e merging](dvcs-branching/)
 * [<i class="fa-solid fa-cloud-arrow-up"></i> Operazioni con repository remoti](dvcs-remote/)
-* [<i class="fa-solid fa-list-check"></i> `git` cheatsheet](dvcs-git-cheatsheet/)
+* [<i class="fa-solid fa-list-check"></i> `git` cheatsheet](git-cheatsheet/)
 * [<i class="fa-solid fa-diagram-project"></i> DVCS workflow](dvcs-workflow/)
 
 {{% /menu-group %}}
