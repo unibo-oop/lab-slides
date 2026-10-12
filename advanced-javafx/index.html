@@ -744,7 +744,7 @@ accoda il runnable nella coda degli eventi del JFXAT
 <ul>
 <li>Strumento per la creazione di GUI JavaFX-based in modalità drag-n-drop (GUI Builder)</li>
 <li>Consente di esportare il file FXML relativo alla GUI disegnata</li>
-<li>Distribuito come strumento esterno al JDK, non integrato (direttamente) in Eclipse</li>
+<li>Distribuito come strumento esterno al JDK, non integrato (direttamente) nell’IDE</li>
 <li><a href="https://gluonhq.com/products/scene-builder/">https://gluonhq.com/products/scene-builder/</a></li>
 </ul>
 </section><section>
@@ -761,7 +761,7 @@ accoda il runnable nella coda degli eventi del JFXAT
 </span></span></code></pre></div><h3 id="applicazione-dello-stile">Applicazione dello stile</h3>
 <p>Programmaticamente</p>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">Scene</span> <span style="color:#000">scene</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Scene</span>(<span style="color:#000">pane</span>);
-</span></span><span style="display:flex;"><span><span style="color:#000">scene</span>.<span style="color:#836c28">getStylesheets</span>().<span style="color:#836c28">add</span>(<span style="color:#000">ClassLoader</span>.<span style="color:#836c28">getSystemResource</span>(<span style="color:#c41a16">"css/scene.css"</span>));
+</span></span><span style="display:flex;"><span><span style="color:#000">scene</span>.<span style="color:#836c28">getStylesheets</span>().<span style="color:#836c28">add</span>(<span style="color:#000">ClassLoader</span>.<span style="color:#836c28">getSystemResource</span>(<span style="color:#c41a16">"css/scene.css"</span>).<span style="color:#836c28">toExternalForm</span>());
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#000">HBox</span> <span style="color:#000">buttons</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">HBox</span>();
 </span></span><span style="display:flex;"><span><span style="color:#000">buttons</span>.<span style="color:#836c28">setStyle</span>(<span style="color:#c41a16">"-fx-border-color: red;"</span>);
@@ -790,7 +790,7 @@ accoda il runnable nella coda degli eventi del JFXAT
 </section><section>
 <h3 id="usare-javafx-in-applicazioni-swing-esempio">Usare JavaFX in applicazioni Swing: esempio</h3>
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">public</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">void</span> <span style="color:#000">main</span>(<span style="color:#a90d91">final</span> <span style="color:#000">String</span><span style="color:#000">[]</span> <span style="color:#000">args</span>){
-</span></span><span style="display:flex;"><span>  <span style="color:#000">initMainJFrame</span>(<span style="color:#a90d91">new</span> <span style="color:#000">JFrame</span>(<span style="color:#c41a16">"JFrame GUI"</span>));
+</span></span><span style="display:flex;"><span>  <span style="color:#000">SwingUtilities</span>.<span style="color:#836c28">invokeLater</span>(() <span style="color:#000">-&gt;</span> <span style="color:#000">initMainJFrame</span>(<span style="color:#a90d91">new</span> <span style="color:#000">JFrame</span>(<span style="color:#c41a16">"JFrame GUI"</span>)));
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">private</span> <span style="color:#a90d91">static</span> <span style="color:#a90d91">void</span> <span style="color:#000">initMainJFrame</span>(<span style="color:#a90d91">final</span> <span style="color:#000">JFrame</span> <span style="color:#000">frame</span>) {
 </span></span><span style="display:flex;"><span>  <span style="color:#a90d91">final</span> <span style="color:#000">JButton</span> <span style="color:#000">button</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">JButton</span>();
