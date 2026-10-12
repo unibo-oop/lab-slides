@@ -196,7 +196,7 @@ L'avvio mediante `Application.launch(App.class)` comporta:
 
 * Ogni scena ha un *root node* relativo a una *gerarchia di nodi* descrivente la GUI
 * Ciascun nodo (componente) espone diverse *proprietà osservabili* (classe `Property<T>`)
-    * relative all'aspetto (es. `size`, `posizion`, `color`, ...)
+    * relative all'aspetto (es. `size`, `position`, `color`, ...)
     * relative al contenuto (es. `text`, `value`, ...)
     * relative al comportamento (es. *event handler*, `controller`, ...)
 
