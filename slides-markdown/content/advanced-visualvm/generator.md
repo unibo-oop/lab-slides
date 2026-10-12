@@ -21,7 +21,7 @@ aliases = ["/profiling-with-visualvm/"]
 
 - Due approcci
     * Approccio *top-down*: ci si focalizza sulle parti top-level di un'applicazione e si scende ai livelli inferiori per identificare problemi ed opportunità di ottimizzazione
-    * Approccio *bottom-up*: ci si concentra ai livelli più bassi (ad es. sulle inefficienze a livello di CPU) e si risale verso le applicazioni
+    * Approccio *bottom-up*: ci si concentra sui livelli più bassi (ad es. sulle inefficienze a livello di CPU) e si risale verso le applicazioni
 - *Monitoraggio* delle performance: osservazione e raccolta dati *non invasivi* di un'applicazione in esecuzione
 - *Profiling* delle performance: osservazione e raccolta dati *potenzialmente invasivi* di un'applicazione in esecuzione
     - *Method profiling*: fornisce indicazioni sul tempo d'esecuzione di metodi
@@ -29,7 +29,7 @@ aliases = ["/profiling-with-visualvm/"]
 - Monitoraggio e profiling fanno parte del cosiddetto *performance testing*
     - È un tema molto articolato
         - Hunt, Charlie, and Binu John. *Java performance*. Prentice Hall Press, 2011.
-        - Oaks, Scott. *Java Performance: The Definitive Guide: Getting the Most Out of Your Code.* " O'Reilly Media, Inc.", 2014.
+        - Oaks, Scott. *Java Performance: The Definitive Guide: Getting the Most Out of Your Code.* O'Reilly Media, 2014.
     - La valutazione delle performance si può effettuare in modo automatico attraverso programmi/test noti come *benchmark* (o *micro-benchmark* se si concentrano su piccole porzioni di un programma)
 
 ---
@@ -42,9 +42,9 @@ aliases = ["/profiling-with-visualvm/"]
 
 * Tra gli *strumenti* che possono essere utilizzati per monitorare l'esecuzione di applicazioni che sono eseguite sulla JVM:
 
-    * *JConsole*, lo storico (e scarno) tool per il profiling di applicazioni Java.
+    * *JConsole*, lo storico (e scarno) tool per il monitoraggio di applicazioni Java.
         - incluso nel JDK
-    * **JVisualVM**, il più recente ed evoluto tool utilizzabile per monitorare l'evoluzione e le performance di applicazioni in esecuzione sulla JVM.
+    * **VisualVM**, il più recente ed evoluto tool utilizzabile per monitorare l'evoluzione e le performance di applicazioni in esecuzione sulla JVM.
 
 ---
 
@@ -109,12 +109,12 @@ aliases = ["/profiling-with-visualvm/"]
 
 - Il tab `Threads` riporta il dettaglio dei thread dell'applicazione
 - E consente di effettuare un **thread dump**, riportante *una fotografia dei thread attivi, il loro stato, stacktrace*, etc.
-    - l'analisi di un thread dump può aiutare a diagnosticare situazioni di deadlock o di
+    - l'analisi di un thread dump può aiutare a diagnosticare situazioni di deadlock
     - un esempio alla slide successiva
 
 ---
 
-#### VisualVM - Thread Dump Example
+### VisualVM - Thread Dump Example
 
 
 ![](imgs/jvisualvm-3.jpg)
