@@ -35,14 +35,14 @@ aliases = ["/vscode/"]
 * Aggiunta di cartella top-level a un workspace
   *  *File $\to$ Add Folder to Workspace..*
 * Salvataggio ed apertura di un workspace
-  * *Save $\to$ Workspace as... $\to$* *name*.**code-workspace**
+  * *File $\to$ Save Workspace As... $\to$* *name*.**code-workspace**
   * *File $\to$ Open Workspace from File*
 
 ---
 
 ## Utilizzo di VSCode: alcune note
 
-  *  Varie scorciatoie da tastiera
+*  Varie scorciatoie da tastiera
   * <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>P</kbd>: **command palette** (a.k.a. "l'unico shortcut che veramente vi serve ricordare")
   * <kbd>CTRL</kbd> + <kbd>SPACE</kbd>: intellisense (autocompletamento)
   * <kbd>CTRL</kbd> + <kbd>S</kbd>: salvataggio file corrente
@@ -53,7 +53,7 @@ aliases = ["/vscode/"]
   * <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>F</kbd>: cerca in tutti i file del workspace
   * <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>H</kbd>: sostituisci in tutti i file del workspace
 *  **Apertura di un terminale:** *Terminal $\to$ New Terminal*
-  *  Sarà MOLTO UTILE
+   *  Sarà MOLTO UTILE
 *  **Visualizzare/installare estensioni:** *File $\to$ Preferences $\to$ Extensions* oppure <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>X</kbd>
 
 ---
@@ -65,8 +65,10 @@ aliases = ["/vscode/"]
 Le più note piattaforme utilizzano di default encoding diversi:
 
 * **UTF-8** --- default su Linux, può essere considerato lo standard de-facto.
-* **MacRoman** --- default su MacOS, raramente causa artefatti se riconvertito ad altri formati.
-* **ISO-8859-1** --- default su Windows, può causare artefatti su quasi tutti i caratteri non ASCII se convertito a UTF-8.
+* **MacRoman** --- default storico su Mac OS "classico".
+* **Windows-1252** (simile a **ISO-8859-1**) --- default storico su Windows (in configurazione occidentale), può causare artefatti su quasi tutti i caratteri non ASCII se convertito a UTF-8.
+
+Nota: da Java 18 l'encoding di default della JVM è UTF-8 su tutte le piattaforme.
 
 
 #### Encoding per il codice sorgente
@@ -80,7 +82,7 @@ Solitamente, il codice sorgente si sviluppa utilizzando la codifica UTF-8
 
 * `File -> Preferences -> Settings`
 * Per l'opzione `Text Editor -> Files -> Encoding` selezionare `UTF-8`
-* Per l'opzione `Test Editor -> Files -> Eol` selezionare `LF`
+* Per l'opzione `Text Editor -> Files -> Eol` selezionare `LF`
 
 * In basso a destra nella finestra di VS Code c'è l'indicazione della codifica e di EOL per il file selezionato
 
@@ -190,7 +192,7 @@ Nota: richiede l'estensione **Debugger for Java**
 * Esecuzione di un'applicazione Java in **"modalità debug"**
   * Click destro su file java $\to$ *Debug Java*
   * Non è magico, aggancia un "agente" a Java, in modo da poter parlare direttamente con la JVM
-    * e.g, eseguendo java con: `-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044`
+    * e.g., eseguendo java con: `-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044`
     si ottiene un interprete che risponderà ai comandi del debugger sulla porta 1044
 
 ![](img/vscode-example-debug.png)
@@ -206,9 +208,8 @@ Nota: richiede l'estensione **Debugger for Java**
   * <kbd>F5</kbd> **Continue**
 
 * Ispezione del comportamento runtime
-
-	*  *Variables*: vista che mostra le variabili in scope e il loro valore
-	*  *Watch*: permette di valutare espressioni rispetto al contesto d'esecuzione corrente
+    *  *Variables*: vista che mostra le variabili in scope e il loro valore
+    *  *Watch*: permette di valutare espressioni rispetto al contesto d'esecuzione corrente
 
 ---
 
