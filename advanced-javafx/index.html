@@ -349,8 +349,8 @@ può risultare nel seguente errore:
 </span></span><span style="display:flex;"><span><span style="color:#000">Label</span> <span style="color:#000">l1</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Label</span>(<span style="color:#c41a16">"label"</span>);
 </span></span><span style="display:flex;"><span><span style="color:#000">Button</span> <span style="color:#000">b1</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Button</span>(<span style="color:#c41a16">"a larger button"</span>);
 </span></span><span style="display:flex;"><span><span style="color:#000">Button</span> <span style="color:#000">b2</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">Button</span>(<span style="color:#c41a16">"small button"</span>);
-</span></span><span style="display:flex;"><span><span style="color:#000">g</span>.<span style="color:#836c28">getChildren</span>().<span style="color:#836c28">addAll</span>(<span style="color:#000">l1</span>, <span style="color:#000">b2</span>, <span style="color:#000">b3</span>);
-</span></span><span style="display:flex;"><span><span style="color:#177500">// Use binding to suitable place the components</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">g</span>.<span style="color:#836c28">getChildren</span>().<span style="color:#836c28">addAll</span>(<span style="color:#000">l1</span>, <span style="color:#000">b1</span>, <span style="color:#000">b2</span>);
+</span></span><span style="display:flex;"><span><span style="color:#177500">// Use binding to suitably place the components</span>
 </span></span><span style="display:flex;"><span><span style="color:#000">b1</span>.<span style="color:#836c28">layoutXProperty</span>().<span style="color:#836c28">bind</span>(<span style="color:#000">l1</span>.<span style="color:#836c28">widthProperty</span>().<span style="color:#836c28">add</span>(<span style="color:#000">10</span>));
 </span></span><span style="display:flex;"><span><span style="color:#000">b2</span>.<span style="color:#836c28">layoutXProperty</span>().<span style="color:#836c28">bind</span>(<span style="color:#000">b1</span>.<span style="color:#836c28">layoutXProperty</span>()
 </span></span><span style="display:flex;"><span>    .<span style="color:#836c28">add</span>(<span style="color:#000">b1</span>.<span style="color:#836c28">widthProperty</span>()).<span style="color:#836c28">add</span>(<span style="color:#000">10</span>));
@@ -370,7 +370,7 @@ può risultare nel seguente errore:
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#177500">// An empty vertical TilePane with 5px horiz / 10px vertical spacing</span>
 </span></span><span style="display:flex;"><span><span style="color:#000">TilePane</span> <span style="color:#000">tp2</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">TilePane</span>(<span style="color:#000">Orientation</span>.<span style="color:#836c28">VERTICAL</span>, <span style="color:#000">5</span>, <span style="color:#000">10</span>);
 </span></span><span style="display:flex;"><span><span style="color:#000">tp2</span>.<span style="color:#836c28">setPrefRows</span>(<span style="color:#000">3</span>);
-</span></span><span style="display:flex;"><span><span style="color:#000">tp</span>.<span style="color:#836c28">setPrefTileHeight</span>(<span style="color:#000">100</span>);
+</span></span><span style="display:flex;"><span><span style="color:#000">tp2</span>.<span style="color:#836c28">setPrefTileHeight</span>(<span style="color:#000">100</span>);
 </span></span><span style="display:flex;"><span><span style="color:#a90d91">for</span>(<span style="color:#000">Month</span> <span style="color:#000">m</span> : <span style="color:#000">Month</span>.<span style="color:#836c28">values</span>()) { <span style="color:#000">tp2</span>.<span style="color:#836c28">getChildren</span>().<span style="color:#836c28">add</span>(<span style="color:#a90d91">new</span> <span style="color:#000">Label</span>(<span style="color:#000">m</span>.<span style="color:#836c28">name</span>())); }
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">GridPane</span> <span style="color:#000">gp</span> <span style="color:#000">=</span> <span style="color:#a90d91">new</span> <span style="color:#000">GridPane</span>();
 </span></span><span style="display:flex;"><span><span style="color:#000">gp</span>.<span style="color:#836c28">setGridLinesVisible</span>(<span style="color:#a90d91">true</span>);
@@ -523,7 +523,7 @@ accoda il runnable nella coda degli eventi del JFXAT
 <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">Screen</span> <span style="color:#000">s</span> <span style="color:#000">=</span> <span style="color:#000">Screen</span>.<span style="color:#836c28">getPrimary</span>();
 </span></span><span style="display:flex;"><span><span style="color:#a90d91">double</span> <span style="color:#000">dpi</span> <span style="color:#000">=</span> <span style="color:#000">s</span>.<span style="color:#836c28">getDpi</span>();
 </span></span><span style="display:flex;"><span><span style="color:#000">Rectangle2D</span> <span style="color:#000">sb</span> <span style="color:#000">=</span> <span style="color:#000">s</span>.<span style="color:#836c28">getBounds</span>();
-</span></span><span style="display:flex;"><span><span style="color:#000">Ractangle2D</span> <span style="color:#000">svb</span> <span style="color:#000">=</span> <span style="color:#000">s</span>.<span style="color:#836c28">getVisualBounds</span>();
+</span></span><span style="display:flex;"><span><span style="color:#000">Rectangle2D</span> <span style="color:#000">svb</span> <span style="color:#000">=</span> <span style="color:#000">s</span>.<span style="color:#836c28">getVisualBounds</span>();
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#000">ObservableList</span><span style="color:#000">&lt;</span><span style="color:#000">Screen</span><span style="color:#000">&gt;</span> <span style="color:#000">screenList</span> <span style="color:#000">=</span> <span style="color:#000">Screen</span>.<span style="color:#836c28">getScreens</span>();
 </span></span></code></pre></div><p>Ad es., per dimensionare lo stage</p>
@@ -566,25 +566,25 @@ accoda il runnable nella coda degli eventi del JFXAT
 </ul>
 </section><section>
 <h3 id="esempio-di-gui-in-fxml">Esempio di GUI in FXML</h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">&lt;?</span><span style="color:#000">xml</span> <span style="color:#000">version</span><span style="color:#000">=</span><span style="color:#c41a16">"1.0"</span> <span style="color:#000">encoding</span><span style="color:#000">=</span><span style="color:#c41a16">"UTF-8"</span><span style="color:#000">?&gt;</span>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#633820">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">&lt;?</span><span style="color:#a90d91">import</span> <span style="color:#000">javafx.scene.control.*</span><span style="color:#000">?&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">&lt;?</span><span style="color:#a90d91">import</span> <span style="color:#000">javafx.scene.layout.*</span><span style="color:#000">?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#633820">&lt;?import javafx.scene.control.*?&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#633820">&lt;?import javafx.scene.layout.*?&gt;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#000">&lt;</span><span style="color:#000">VBox</span> <span style="color:#000">xmlns</span><span style="color:#000">=</span><span style="color:#c41a16">"http://javafx.com/javafx"</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#000">xmlns</span>:<span style="color:#000">fx</span><span style="color:#000">=</span><span style="color:#c41a16">"http://javafx.com/fxml"</span><span style="color:#000">&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#000">&lt;</span><span style="color:#000">children</span><span style="color:#000">&gt;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">&lt;</span><span style="color:#000">Button</span> <span style="color:#000">fx</span>:<span style="color:#000">id</span><span style="color:#000">=</span><span style="color:#c41a16">"btn"</span>
-</span></span><span style="display:flex;"><span>    	<span style="color:#000">alignment</span><span style="color:#000">=</span><span style="color:#c41a16">"CENTER"</span>
-</span></span><span style="display:flex;"><span>    	<span style="color:#000">text</span><span style="color:#000">=</span><span style="color:#c41a16">"Say Hello!"</span>
-</span></span><span style="display:flex;"><span>    	<span style="color:#000">textAlignment</span><span style="color:#000">=</span><span style="color:#c41a16">"CENTER"</span> <span style="color:#000">/&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">&lt;VBox</span> <span style="color:#836c28">xmlns=</span><span style="color:#c41a16">"http://javafx.com/javafx"</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#836c28">xmlns:fx=</span><span style="color:#c41a16">"http://javafx.com/fxml"</span><span style="color:#000">&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">&lt;children&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">&lt;Button</span> <span style="color:#836c28">fx:id=</span><span style="color:#c41a16">"btn"</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#836c28">alignment=</span><span style="color:#c41a16">"CENTER"</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#836c28">text=</span><span style="color:#c41a16">"Say Hello!"</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#836c28">textAlignment=</span><span style="color:#c41a16">"CENTER"</span> <span style="color:#000">/&gt;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#000">&lt;</span><span style="color:#000">Label</span> <span style="color:#000">fx</span>:<span style="color:#000">id</span><span style="color:#000">=</span><span style="color:#c41a16">"lbl"</span>
-</span></span><span style="display:flex;"><span>    	<span style="color:#000">alignment</span><span style="color:#000">=</span><span style="color:#c41a16">"CENTER_LEFT"</span>
-</span></span><span style="display:flex;"><span>    	<span style="color:#000">text</span><span style="color:#000">=</span><span style="color:#c41a16">"Label Text Here!"</span>
-</span></span><span style="display:flex;"><span>    	<span style="color:#000">textAlignment</span><span style="color:#000">=</span><span style="color:#c41a16">"LEFT"</span> <span style="color:#000">/&gt;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#000">&lt;/</span><span style="color:#000">children</span><span style="color:#000">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#000">&lt;/</span><span style="color:#000">VBox</span><span style="color:#000">&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">&lt;Label</span> <span style="color:#836c28">fx:id=</span><span style="color:#c41a16">"lbl"</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#836c28">alignment=</span><span style="color:#c41a16">"CENTER_LEFT"</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#836c28">text=</span><span style="color:#c41a16">"Label Text Here!"</span>
+</span></span><span style="display:flex;"><span>    	<span style="color:#836c28">textAlignment=</span><span style="color:#c41a16">"LEFT"</span> <span style="color:#000">/&gt;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#000">&lt;/children&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#000">&lt;/VBox&gt;</span>
 </span></span></code></pre></div></section><section>
 <h3 id="esempio-di-gui-in-fxml--note">Esempio di GUI in FXML – Note</h3>
 <ul>
@@ -603,7 +603,7 @@ accoda il runnable nella coda degli eventi del JFXAT
 </ul>
 <pre tabindex="0"><code>xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
 </code></pre><ul>
-<li>Ogni container deve specificare i nodi figli all’interno dei tag <code>&lt;children&gt;</code> e <code>&lt;/children&gt;</code></li>
+<li>Ogni container può specificare i nodi figli all’interno dei tag <code>&lt;children&gt;</code> e <code>&lt;/children&gt;</code></li>
 <li>Ogni nodo può definire il proprio ID mediante l’attributo <code>fx:id</code>
 <ul>
 <li>Es. <code>&lt;TextField fx:id="textField1"/&gt;</code></li>
