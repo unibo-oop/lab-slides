@@ -94,8 +94,8 @@ String separator = System.getProperty(PROP_FILE_SEPARATOR);
 
 * `java.version` --- La versione di `java` in uso. Si potrebbe decidere di non usare una funzionalità che si sa non esistere o essere buggata.
 * `os.arch` --- L'architettura della CPU come rilevata dall'OS (x86, i386, amd64, x86\_64, IA64N, ARM, ...)
-* `os.name` --- Il nome del sistema operativo (Linux, MacOS X, MacOS, Windows 10, Solaris, FreeBSD,  ...)
-* `os.version` --- Restituisce per Windows il numero di versione effettivo (per esempio, Windows 10 restituisce 10.0), per MacOS il numero di versione (per esempio, 10.3.4), per Linux la versione
+* `os.name` --- Il nome del sistema operativo (Linux, Mac OS X, Windows 10, Windows 11, Solaris, FreeBSD, ...)
+* `os.version` --- Restituisce per Windows il numero di versione effettivo (per esempio, Windows 10 restituisce 10.0), per macOS il numero di versione (per esempio, 15.5), per Linux la versione
 del kernel (es. 6.1)
 
 
