@@ -62,7 +62,7 @@ nel secondo di <em>Java <strong>Runtime</strong> Environment</em> (JRE).</p>
 <h3 id="implementazioni-della-jvm">Implementazioni della JVM</h3>
 <p>Data una piattaforma, possono esserci più <strong>implementazioni</strong> ad esempio, per Java SE,
 con caratteristiche diverse (ad esempio, prestazioni e utilizzo della memoria):
-OpenJDK (HotSpot), Eclipse OpenJ9, GraalVM, Codename One</p>
+OpenJDK (HotSpot), Eclipse OpenJ9, GraalVM, Azul Platform Prime</p>
 <h3 id="distribuzioni">Distribuzioni</h3>
 <p>Data una implementazione, possono esserci più <strong>distribuzioni</strong> (binari pre-built) della JVM
 che possono contenere anche delle modifiche minori fra loro.
@@ -194,7 +194,7 @@ e l’interazione con i calcolatori avveniva di norma tramite interfaccia testua
 <ul>
 <li>Bourne shell (sh)
 <ul>
-<li>Prima shell sviluppata per UNIX (1977)</li>
+<li>Shell storica di riferimento per UNIX (distribuita con UNIX V7, 1979)</li>
 </ul>
 </li>
 <li>C-Shell (csh)
@@ -207,7 +207,7 @@ e l’interazione con i calcolatori avveniva di norma tramite interfaccia testua
 <li>Parte del progetto GNU, è un super set di Bourne shell</li>
 </ul>
 </li>
-<li>ZSH, Fish, e altri terminali di ultima generazione
+<li>ZSH, Fish, e altre shell di ultima generazione
 <ul>
 <li>Altamente personalizzabili</li>
 <li>Molto flessibili</li>
@@ -242,8 +242,7 @@ e l’interazione con i calcolatori avveniva di norma tramite interfaccia testua
 <h2 id="aprire-un-terminale-in-laboratorio">Aprire un terminale in laboratorio</h2>
 <h3 id="terminale-doscmd">Terminale DOS/cmd</h3>
 <ul>
-<li>Start $\Rightarrow$ Programmi $\Rightarrow$ Accessori $\Rightarrow$ Prompt dei comandi</li>
-<li>Oppure: Start  $\Rightarrow$ Nella barra di ricerca, digitare <code>cmd</code> $\Rightarrow$ cliccare su <code>cmd.exe</code></li>
+<li>Start  $\Rightarrow$ Nella barra di ricerca, digitare <code>cmd</code> $\Rightarrow$ cliccare su <code>cmd.exe</code></li>
 </ul>
 <h3 id="terminale-bash-emulato-git-bash">Terminale Bash emulato (git bash)</h3>
 <ul>
@@ -275,7 +274,7 @@ e l’interazione con i calcolatori avveniva di norma tramite interfaccia testua
 	<tbody>
 			<tr>
 					<td>Ottenere aiuto / elenco comandi</td>
-					<td><code>help</code></td>
+					<td><code>man &lt;comando&gt;</code> (<code>help</code> solo in bash)</td>
 					<td><code>help</code></td>
 			</tr>
 			<tr>
@@ -311,7 +310,7 @@ e l’interazione con i calcolatori avveniva di norma tramite interfaccia testua
 			<tr>
 					<td>Eliminare la directory di nome <code>bar</code></td>
 					<td><code>rm -r bar</code></td>
-					<td><code>rd bar</code></td>
+					<td><code>rd /s bar</code></td>
 			</tr>
 			<tr>
 					<td>Creare una directory di nome <code>baz</code></td>
@@ -403,8 +402,8 @@ Le shell Unix memorizzano i comandi usati anche in sessioni precedenti.</p>
 <li>Scegliere un editor di testo per modificare i file sorgente
 <ul>
 <li>Il laboratorio è equipaggiato con diversi editor di testo</li>
-<li><strong>NON</strong> sono adatti per programmare i word processors (Libreoffice Writer, <i class="fa-brands fa-microsoft"></i> Word, <i class="fa-brands fa-microsoft"></i> WordPad…), né l’editor di testo incluso in Windows (Notepad).</li>
-<li>Per questo lab, suggerisce l’utilizzo di <strong>Notepad++</strong>
+<li><strong>NON</strong> sono adatti per programmare i word processor (Libreoffice Writer, <i class="fa-brands fa-microsoft"></i> Word, <i class="fa-brands fa-microsoft"></i> WordPad…), né l’editor di testo incluso in Windows (Notepad).</li>
+<li>Per questo lab, si suggerisce l’utilizzo di <strong>Notepad++</strong>
 <ul>
 <li>consigliato prima di passare ad editor/IDE più sofisticati (come <em>VS Code</em>)</li>
 <li>dobbiamo abituarci a scrivere codice corretto senza ausili</li>
@@ -439,8 +438,10 @@ mentre l’interprete Java (la Java Virtual Machine) esegue una ed una sola <str
 <h2 id="jshell-java-repl"><code>jshell</code>: Java REPL</h2>
 <p>A partire da Java 9, è stato introdotto in java l’interprete <em>REPL</em> <code>jshell</code></p>
 <ul>
-<li>Sta per <strong>R</strong>ead-<strong>E</strong>val-<strong>P</strong>rint <strong>L</strong>oop
-<code>jshell</code> consente di effettuare al volo compilazione ed esecuzione</li>
+<li>Sta per <strong>R</strong>ead-<strong>E</strong>val-<strong>P</strong>rint <strong>L</strong>oop</li>
+</ul>
+<p><code>jshell</code> consente di effettuare al volo compilazione ed esecuzione</p>
+<ul>
 <li>Lo useremo ogni tanto per mostrarvi il risultato di alcune espressioni</li>
 <li>Non utile per lo sviluppo di intere applicazioni</li>
 </ul>
@@ -451,7 +452,7 @@ mentre l’interprete Java (la Java Virtual Machine) esegue una ed una sola <str
 <ul>
 <li><i class="fa-solid fa-ban"></i> <code>java NomeClasse.java</code> (l’interprete non lavora su file)
 <ul>
-<li>Anche se da Java 9 potrebbe funzionare, ma solo perché l’interprete dietro le quinte compila il file e lo esegue</li>
+<li>Anche se da Java 11 potrebbe funzionare, ma solo perché l’interprete dietro le quinte compila il file e lo esegue</li>
 <li>Noi dovremo imparare a costruire applicazioni vere, quindi: <strong>prima</strong> <em>si compila</em>, <strong>poi</strong> <em>si esegue</em>!</li>
 </ul>
 </li>
