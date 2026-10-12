@@ -399,7 +399,7 @@ siete aspiranti ingegneri, cercate di lavorare sempre top-down quando possibile,
 ossia come ossature di applicazioni,
 pensate per velocizzare la costruzione di un certo tipo di software</p>
 <ul>
-<li>Esempio tipico: l’engine per videogames <a href="%60https://libgdx.com/%60">libGDX</a></li>
+<li>Esempio tipico: l’engine per videogames <a href="https://libgdx.com/">libGDX</a></li>
 </ul>
 <p>Uno degli scopi del progetto di OOP è quello di misurare se siate bravi designer,
 ma per farlo è necessario che il design della vostra applicazione l’abbiate fatto voi e non chi ha costruito il framework.</p>
@@ -538,8 +538,6 @@ O, al più, usarli solo <em>dopo che il progetto è avviato</em> come semplice l
   
 
   
-    
-  
   
 
   
@@ -576,30 +574,6 @@ O, al più, usarli solo <em>dopo che il progetto è avviato</em> come semplice l
   
 
 
-
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({"layout":"dagre","look":"classic","startOnLoad":false,"theme":"default"});
-
-    let render = (event) => {
-      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
-      if (!mermaidElems.length){
-          return
-      }
-      mermaidElems.forEach(mermaidElem => {
-          let processed = mermaidElem.getAttribute('data-processed');
-          if (!processed){
-              
-              mermaid.init(undefined, mermaidElem);
-          }
-      });
-    };
-    
-    render({currentSlide: Reveal.getCurrentSlide()});
-
-    Reveal.on('slidechanged', render);
-    Reveal.on('ready', render);
-  </script>
 
 
 
