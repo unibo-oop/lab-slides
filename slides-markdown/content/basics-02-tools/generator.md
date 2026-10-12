@@ -38,7 +38,7 @@ nel secondo di *Java __Runtime__ Environment* (JRE).
 
 Data una piattaforma, possono esserci più **implementazioni** ad esempio, per Java SE,
 con caratteristiche diverse (ad esempio, prestazioni e utilizzo della memoria):
-OpenJDK (HotSpot), Eclipse OpenJ9, GraalVM, Codename One
+OpenJDK (HotSpot), Eclipse OpenJ9, GraalVM, Azul Platform Prime
 
 ### Distribuzioni
 
@@ -156,12 +156,12 @@ Lo vedrete in maniera esaustiva nel corso di Sistemi Operativi...
 ### Nei sistemi UNIX-like esistono vari tipi di interpreti, chiamati shell
 Alcuni esempi
 * Bourne shell (sh)
-  * Prima shell sviluppata per UNIX (1977)
+  * Shell storica di riferimento per UNIX (distribuita con UNIX V7, 1979)
 * C-Shell (csh)
   * Sviluppata da Bill Joy per BSD
 * Bourne Again Shell (bash)
   * Parte del progetto GNU, è un super set di Bourne shell
-* ZSH, Fish, e altri terminali di ultima generazione
+* ZSH, Fish, e altre shell di ultima generazione
   * Altamente personalizzabili
   * Molto flessibili
   * Autocompletamento avanzato e contestualità
@@ -191,8 +191,7 @@ Più avanti vedremo che lo strumento che useremo per fare controllo di versione 
 ## Aprire un terminale in laboratorio
 
 ### Terminale DOS/cmd
-*  Start $\Rightarrow$ Programmi $\Rightarrow$ Accessori $\Rightarrow$ Prompt dei comandi
-*  Oppure: Start  $\Rightarrow$ Nella barra di ricerca, digitare `cmd` $\Rightarrow$ cliccare su `cmd.exe`
+*  Start  $\Rightarrow$ Nella barra di ricerca, digitare `cmd` $\Rightarrow$ cliccare su `cmd.exe`
 
 ### Terminale Bash emulato (git bash)
 * Icona sul desktop
@@ -212,14 +211,14 @@ Più avanti vedremo che lo strumento che useremo per fare controllo di versione 
 
 | **Operazione** | **Comando Unix** | **Comando Win** |
 | --- | --- | --- |
-| Ottenere aiuto / elenco comandi | `help` | `help` |
+| Ottenere aiuto / elenco comandi | `man <comando>` (`help` solo in bash) | `help` |
 | Visualizzare la directory corrente | `pwd` | `echo %cd%` |
 | Contenuto della directory corrente | `ls -alh` | `dir` |
 | Passare alla directory di nome `baz` | `cd baz` | `cd baz`|
 | Passare alla directory superiore | `cd ..` | `cd..` |
 | Cambiare unità disco (passare a D:) | -- | `D:` |
 | Eliminare il file `foo` (non va con le cartelle!) | `rm foo` | `del foo` |
-| Eliminare la directory di nome `bar` | `rm -r bar` | `rd bar` |
+| Eliminare la directory di nome `bar` | `rm -r bar` | `rd /s bar` |
 | Creare una directory di nome `baz` | `mkdir baz` | `md baz` |
 | Copiare il file `foo` in `bar` | `cp foo bar` | `copy foo bar` |
 | Spostare (rinominare) il file `foo` in `bar` | `mv foo bar` | `move foo bar` |
@@ -280,8 +279,8 @@ Le shell Unix memorizzano i comandi usati anche in sessioni precedenti.
 1. Verificare che il contenuto della cartella sia quello atteso
 1. Scegliere un editor di testo per modificare i file sorgente
     * Il laboratorio è equipaggiato con diversi editor di testo
-    * **NON** sono adatti per programmare i word processors (Libreoffice Writer, <i class="fa-brands fa-microsoft"></i> Word, <i class="fa-brands fa-microsoft"></i> WordPad...), né l'editor di testo incluso in Windows (Notepad).
-    * Per questo lab, suggerisce l'utilizzo di **Notepad++**
+    * **NON** sono adatti per programmare i word processor (Libreoffice Writer, <i class="fa-brands fa-microsoft"></i> Word, <i class="fa-brands fa-microsoft"></i> WordPad...), né l'editor di testo incluso in Windows (Notepad).
+    * Per questo lab, si suggerisce l'utilizzo di **Notepad++**
         * consigliato prima di passare ad editor/IDE più sofisticati (come *VS Code*)
         * dobbiamo abituarci a scrivere codice corretto senza ausili
         * dobbiamo abituarci a compilare ed eseguire manualmente, da linea di comando
@@ -316,6 +315,7 @@ mentre l'interprete Java (la Java Virtual Machine) esegue una ed una sola **clas
 ## `jshell`: Java REPL
 A partire da Java 9, è stato introdotto in java l'interprete *REPL* `jshell`
   *  Sta per **R**ead-**E**val-**P**rint **L**oop
+
 `jshell` consente di effettuare al volo compilazione ed esecuzione
   * Lo useremo ogni tanto per mostrarvi il risultato di alcune espressioni
   * Non utile per lo sviluppo di intere applicazioni
@@ -327,7 +327,7 @@ A partire da Java 9, è stato introdotto in java l'interprete *REPL* `jshell`
 
 I seguenti errori sono comuni se non è chiaro cosa facciano interprete e compilatore:
 *  <i class="fa-solid fa-ban"></i> `java NomeClasse.java` (l'interprete non lavora su file)
-    * Anche se da Java 9 potrebbe funzionare, ma solo perché l'interprete dietro le quinte compila il file e lo esegue
+    * Anche se da Java 11 potrebbe funzionare, ma solo perché l'interprete dietro le quinte compila il file e lo esegue
     * Noi dovremo imparare a costruire applicazioni vere, quindi: **prima** *si compila*, **poi** *si esegue*!
 *  <i class="fa-solid fa-ban"></i> `java path/to/NomeClasse.class` (l'interprete non lavora su file)
 
