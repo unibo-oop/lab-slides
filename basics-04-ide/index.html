@@ -73,7 +73,7 @@
 </li>
 <li>Salvataggio ed apertura di un workspace
 <ul>
-<li><em>Save $\to$ Workspace as… $\to$</em> <em>name</em>.<strong>code-workspace</strong></li>
+<li><em>File $\to$ Save Workspace As… $\to$</em> <em>name</em>.<strong>code-workspace</strong></li>
 <li><em>File $\to$ Open Workspace from File</em></li>
 </ul>
 </li>
@@ -91,8 +91,11 @@
 <li><kbd>CTRL</kbd> + <kbd>H</kbd>: sostituisci nel file corrente</li>
 <li><kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>F</kbd>: cerca in tutti i file del workspace</li>
 <li><kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>H</kbd>: sostituisci in tutti i file del workspace</li>
-<li><strong>Apertura di un terminale:</strong> <em>Terminal $\to$ New Terminal</em></li>
+<li><strong>Apertura di un terminale:</strong> <em>Terminal $\to$ New Terminal</em>
+<ul>
 <li>Sarà MOLTO UTILE</li>
+</ul>
+</li>
 <li><strong>Visualizzare/installare estensioni:</strong> <em>File $\to$ Preferences $\to$ Extensions</em> oppure <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>X</kbd></li>
 </ul>
 </section><section>
@@ -101,9 +104,10 @@
 <p>Le più note piattaforme utilizzano di default encoding diversi:</p>
 <ul>
 <li><strong>UTF-8</strong> — default su Linux, può essere considerato lo standard de-facto.</li>
-<li><strong>MacRoman</strong> — default su MacOS, raramente causa artefatti se riconvertito ad altri formati.</li>
-<li><strong>ISO-8859-1</strong> — default su Windows, può causare artefatti su quasi tutti i caratteri non ASCII se convertito a UTF-8.</li>
+<li><strong>MacRoman</strong> — default storico su Mac OS “classico”.</li>
+<li><strong>Windows-1252</strong> (simile a <strong>ISO-8859-1</strong>) — default storico su Windows (in configurazione occidentale), può causare artefatti su quasi tutti i caratteri non ASCII se convertito a UTF-8.</li>
 </ul>
+<p>Nota: da Java 18 l’encoding di default della JVM è UTF-8 su tutte le piattaforme.</p>
 <h4 id="encoding-per-il-codice-sorgente">Encoding per il codice sorgente</h4>
 <p>Solitamente, il codice sorgente si sviluppa utilizzando la codifica UTF-8</p>
 <ul>
@@ -119,7 +123,7 @@
 <p>Per l’opzione <code>Text Editor -&gt; Files -&gt; Encoding</code> selezionare <code>UTF-8</code></p>
 </li>
 <li>
-<p>Per l’opzione <code>Test Editor -&gt; Files -&gt; Eol</code> selezionare <code>LF</code></p>
+<p>Per l’opzione <code>Text Editor -&gt; Files -&gt; Eol</code> selezionare <code>LF</code></p>
 </li>
 <li>
 <p>In basso a destra nella finestra di VS Code c’è l’indicazione della codifica e di EOL per il file selezionato</p>
@@ -238,7 +242,7 @@ entrambe le strategie precedenti sono possibili.</p>
 <li>Click destro su file java $\to$ <em>Debug Java</em></li>
 <li>Non è magico, aggancia un “agente” a Java, in modo da poter parlare direttamente con la JVM
 <ul>
-<li>e.g, eseguendo java con: <code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044</code>
+<li>e.g., eseguendo java con: <code>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1044</code>
 si ottiene un interprete che risponderà ai comandi del debugger sulla porta 1044</li>
 </ul>
 </li>
