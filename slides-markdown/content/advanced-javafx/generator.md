@@ -548,7 +548,7 @@ stage.xProperty().addListener(x -> {
 
 ### Esempio di GUI in FXML
 
-```java
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
