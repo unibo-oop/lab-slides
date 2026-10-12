@@ -55,7 +55,7 @@ aliases = ["/javafx/"]
 * Abilita la possibilità di disegnare direttamente sulla superficie (canvas) dell'applicazione
 
 ### Supporto per schermi Multi-touch e Hi-DPI
-* Fornisce il supporto per funzionalità  multi-touch (cf. `SwipeEvent`), in funzione della piattaforma in cui l'applicazione è in esecuzione
+* Fornisce il supporto per funzionalità multi-touch (cf. `SwipeEvent`), in funzione della piattaforma in cui l'applicazione è in esecuzione
 * Garantisce una buona visualizzazione della GUI anche su schermi ad alta densità di pixel
 
 ### Interoperabilità bidirezionale con la libreria Java built-in per GUI *Swing*
