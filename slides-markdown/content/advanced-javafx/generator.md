@@ -583,7 +583,7 @@ stage.xProperty().addListener(x -> {
 ```
 xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
 ```
-* Ogni container deve specificare i nodi figli all'interno dei tag `<children>` e `</children>`
+* Ogni container può specificare i nodi figli all'interno dei tag `<children>` e `</children>`
 * Ogni nodo può definire il proprio ID mediante l'attributo `fx:id`
     * Es. `<TextField fx:id="textField1"/>`
 
