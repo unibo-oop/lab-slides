@@ -272,7 +272,7 @@ mirror.setText("default");
 ### Region
 
 * Classe base per tutti i layout general purpose (simili a quelli offerti da Swing):
-    * `BorderPane`, `HBox`/`VBox`, `TilePane`, `GridPane`, `FLowPane`, `AnchorPane`, `StackPane`
+    * `BorderPane`, `HBox`/`VBox`, `TilePane`, `GridPane`, `FlowPane`, `AnchorPane`, `StackPane`
 
 
 ---
