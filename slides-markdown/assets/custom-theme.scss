@@ -339,7 +339,9 @@ section.has-light-background {
 	stroke: green !important;
 }
 
-.mermaid .commit > rect {
+// mermaid < 12 draws stadium shapes as a rect, mermaid >= 12 as a path inside a group
+.mermaid .commit > rect,
+.mermaid .commit > .label-container > path {
 	fill: white !important;
 	stroke:#333 !important;
 	stroke-width: 0.2em !important;
