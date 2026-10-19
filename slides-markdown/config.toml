@@ -53,3 +53,8 @@ look = "classic"
 layout = "dagre"
 # fontFamily = "Inconsolata"
 #useMaxWidth = true
+# mermaid 12 (used by the CI inlining) changed these defaults to 120, which makes diagrams much
+# larger than the labels require (and thus scaled down when shown): restore the previous behavior
+[params.reveal_hugo.mermaid.flowchart]
+minNodeWidth = 0
+wrappingWidth = 200
