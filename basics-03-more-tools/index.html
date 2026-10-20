@@ -643,8 +643,6 @@ dove le parentesi angolari indicano elementi opzionali a partire da Java 25.</p>
   
 
   
-    
-  
   
 
   
@@ -681,30 +679,6 @@ dove le parentesi angolari indicano elementi opzionali a partire da Java 25.</p>
   
 
 
-
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({"flowchart":{"minNodeWidth":0,"wrappingWidth":200},"layout":"dagre","look":"classic","startOnLoad":false,"theme":"default"});
-
-    let render = (event) => {
-      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
-      if (!mermaidElems.length){
-          return
-      }
-      mermaidElems.forEach(mermaidElem => {
-          let processed = mermaidElem.getAttribute('data-processed');
-          if (!processed){
-              
-              mermaid.init(undefined, mermaidElem);
-          }
-      });
-    };
-    
-    render({currentSlide: Reveal.getCurrentSlide()});
-
-    Reveal.on('slidechanged', render);
-    Reveal.on('ready', render);
-  </script>
 
 
 
