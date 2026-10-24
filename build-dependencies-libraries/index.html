@@ -87,7 +87,7 @@
 <a href=".."><i class="fa-solid fa-list"></i> menu principale</a></p>
 </div>
 <div class="deck-cover-date">
-<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-23
+<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-24
 </p>
 </div>
 </div>
@@ -467,7 +467,7 @@ O, al più, usarli solo <em>dopo che il progetto è avviato</em> come semplice l
 <a href=".."><i class="fa-solid fa-list"></i> menu principale</a></p>
 </div>
 <div class="deck-cover-date">
-<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-23
+<p><i class="fa-regular fa-calendar"></i> Slide compilate il 2026-10-24
 </p>
 </div>
 </div>
@@ -584,11 +584,7 @@ O, al più, usarli solo <em>dopo che il progetto è avviato</em> come semplice l
   
 
   
-  
-
-  
-  
-
+    
   
   
 
@@ -619,7 +615,37 @@ O, al più, usarli solo <em>dopo che il progetto è avviato</em> come semplice l
   
   
 
+  
+  
 
+  
+  
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({"flowchart":{"minNodeWidth":0,"wrappingWidth":200},"layout":"dagre","look":"classic","startOnLoad":false,"theme":"default"});
+
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
 
 
 
