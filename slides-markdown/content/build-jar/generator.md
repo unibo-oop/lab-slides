@@ -155,14 +155,13 @@ Un Jar file con queste caratteristiche viene definito anche fat-jar (o uber-jar,
 ## Fat-jar in Gradle
 
 Il plugin `java` non ha dei task preconfigurati per generare dei fat-jar.
-Possiamo però sfruttare una coppia di altri plugin:
+Possiamo però sfruttare il plugin `application` (visto nella lezione introduttiva su Gradle)
+in combinazione con un altro plugin:
 
-* `application`: un plugin incluso in Gradle che configura una classe come "main class" per il software
-    * Aggiunge il task `run` che compila il progetto e la esegue
 * `com.gradleup.shadow`: un plugin *di terze parti*
     (ossia, costruito da una persona che non fa parte del team di Gradle)
     * Aggiunge il task `shadowJar`, che costruisce un `jar` con tutte le dipendenze specificate in Gradle
-    * Se presente `application`, cattura anche la *main class* e scrive il relativo file
+    * Se presente `application`, cattura anche la *main class* e scrive il relativo file *Manifest*
 
 Nota: è sempre possibile costruire i propri task personalizzati, ma non è argomento di questo corso
 
@@ -178,39 +177,7 @@ Nota: è sempre possibile costruire i propri task personalizzati, ma non è argo
 
 * `./gradlew run` lancia `your.mainclass.qualified.Name`
 * `./gradlew shadowJar` crea un fat-jar il cui nome termina in `-all.jar` dentro `build/libs`
-
----
-
-## Utilizzo di `application` con multipli `main` tramite proprietà di progetto
-
-Nel caso in cui vi fossero più classi con un main, è possibile passare a Gradle il nome di classe da lanciare.
-
-Per farlo, sfruttiamo il concetto di *proprietà* del progetto.
-
-Le proprietà sono associazioni chiave-valore fra due stringhe che possono essere:
-* fornite come configurazione del sistema **$\leftarrow$ non lo vediamo**
-* fornite come variabile d'ambiente **$\leftarrow$ non lo vediamo**
-* scritte in un file `gradle.properties` *$\leftarrow$ per OOP cambia poco rispetto a scriverlo nel `build.gradle.kts`*
-* passate da terminale in formato `-Pnome=valore` *$\leftarrow$ utile se si hanno più main*
-
-Scrivendo quanto segue nel `build.gradle.kts`
-
-```kotlin
-val myMainClass: String by project // prende la main class dalle proprietà di  progetto
-application {
-    mainClass.set(myMainClass)
-}
-```
-
-È possibile poi scegliere la main class da avviare usando:
-* `./gradlew run -PmyMainClass=...`
-    * (sostituendo ai `...` il nome qualificato della main class)
-
-Ad esempio, se abbiamo due classi con main `it.unibo.oop.Pluto` e `it.unibo.oop.Paperino` nel nostro progetto, possiamo lanciare:
-* `./gradlew run -PmyMainClass=it.unibo.oop.Pluto`
-    * per eseguire `Pluto`
-* `./gradlew run -PmyMainClass=it.unibo.oop.Paperino`
-    * per eseguire `Paperino`
+    * Il jar può essere eseguito con `java -jar build/libs/<nome>-all.jar`
 
 ---
 

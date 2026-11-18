@@ -6,3 +6,4 @@ _gen/
 *build.lock
 pid
 node_modules/
+_index.md
