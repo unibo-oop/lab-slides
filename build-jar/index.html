@@ -236,18 +236,14 @@ cerca una descrizione della <em>Main Class</em> da eseguire e <em>tenta di esegu
 </section><section>
 <h2 id="fat-jar-in-gradle">Fat-jar in Gradle</h2>
 <p>Il plugin <code>java</code> non ha dei task preconfigurati per generare dei fat-jar.
-Possiamo però sfruttare una coppia di altri plugin:</p>
+Possiamo però sfruttare il plugin <code>application</code> (visto nella lezione introduttiva su Gradle)
+in combinazione con un altro plugin:</p>
 <ul>
-<li><code>application</code>: un plugin incluso in Gradle che configura una classe come “main class” per il software
-<ul>
-<li>Aggiunge il task <code>run</code> che compila il progetto e la esegue</li>
-</ul>
-</li>
 <li><code>com.gradleup.shadow</code>: un plugin <em>di terze parti</em>
 (ossia, costruito da una persona che non fa parte del team di Gradle)
 <ul>
 <li>Aggiunge il task <code>shadowJar</code>, che costruisce un <code>jar</code> con tutte le dipendenze specificate in Gradle</li>
-<li>Se presente <code>application</code>, cattura anche la <em>main class</em> e scrive il relativo file</li>
+<li>Se presente <code>application</code>, cattura anche la <em>main class</em> e scrive il relativo file <em>Manifest</em></li>
 </ul>
 </li>
 </ul>
@@ -276,42 +272,9 @@ Possiamo però sfruttare una coppia di altri plugin:</p>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><ul>
 <li><code>./gradlew run</code> lancia <code>your.mainclass.qualified.Name</code></li>
-<li><code>./gradlew shadowJar</code> crea un fat-jar il cui nome termina in <code>-all.jar</code> dentro <code>build/libs</code></li>
-</ul>
-</section><section>
-<h2 id="utilizzo-di-application-con-multipli-main-tramite-proprietà-di-progetto">Utilizzo di <code>application</code> con multipli <code>main</code> tramite proprietà di progetto</h2>
-<p>Nel caso in cui vi fossero più classi con un main, è possibile passare a Gradle il nome di classe da lanciare.</p>
-<p>Per farlo, sfruttiamo il concetto di <em>proprietà</em> del progetto.</p>
-<p>Le proprietà sono associazioni chiave-valore fra due stringhe che possono essere:</p>
+<li><code>./gradlew shadowJar</code> crea un fat-jar il cui nome termina in <code>-all.jar</code> dentro <code>build/libs</code>
 <ul>
-<li>fornite come configurazione del sistema <strong>$\leftarrow$ non lo vediamo</strong></li>
-<li>fornite come variabile d’ambiente <strong>$\leftarrow$ non lo vediamo</strong></li>
-<li>scritte in un file <code>gradle.properties</code> <em>$\leftarrow$ per OOP cambia poco rispetto a scriverlo nel <code>build.gradle.kts</code></em></li>
-<li>passate da terminale in formato <code>-Pnome=valore</code> <em>$\leftarrow$ utile se si hanno più main</em></li>
-</ul>
-<p>Scrivendo quanto segue nel <code>build.gradle.kts</code></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#a90d91">val</span> <span style="color:#000">myMainClass</span>: <span style="color:#000">String</span> <span style="color:#a90d91">by</span> <span style="color:#000">project</span> <span style="color:#177500">// prende la main class dalle proprietà di  progetto
-</span></span></span><span style="display:flex;"><span><span style="color:#000">application</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#000">mainClass</span>.<span style="color:#a90d91">set</span>(<span style="color:#000">myMainClass</span>)
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>È possibile poi scegliere la main class da avviare usando:</p>
-<ul>
-<li><code>./gradlew run -PmyMainClass=...</code>
-<ul>
-<li>(sostituendo ai <code>...</code> il nome qualificato della main class)</li>
-</ul>
-</li>
-</ul>
-<p>Ad esempio, se abbiamo due classi con main <code>it.unibo.oop.Pluto</code> e <code>it.unibo.oop.Paperino</code> nel nostro progetto, possiamo lanciare:</p>
-<ul>
-<li><code>./gradlew run -PmyMainClass=it.unibo.oop.Pluto</code>
-<ul>
-<li>per eseguire <code>Pluto</code></li>
-</ul>
-</li>
-<li><code>./gradlew run -PmyMainClass=it.unibo.oop.Paperino</code>
-<ul>
-<li>per eseguire <code>Paperino</code></li>
+<li>Il jar può essere eseguito con <code>java -jar build/libs/&lt;nome&gt;-all.jar</code></li>
 </ul>
 </li>
 </ul>
@@ -446,8 +409,6 @@ Possiamo però sfruttare una coppia di altri plugin:</p>
   
   
 
-  
-    
   
   
 

@@ -400,6 +400,147 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
 <li><code>bash gradlew</code></li>
 </ul>
 </section><section>
+<h2 id="eseguire-applicazioni-con-gradle-il-plugin-application">Eseguire applicazioni con Gradle: il plugin <code>application</code></h2>
+<p>Il plugin <code>java</code> si occupa di <em>compilare</em>, ma non di <em>eseguire</em>.</p>
+<p><code>application</code> è un plugin incluso in Gradle che configura una classe come “main class” per il software</p>
+<ul>
+<li>Aggiunge il task <code>run</code>, che compila il progetto ed esegue la main class
+<ul>
+<li>Il classpath (compilati, risorse, librerie) viene configurato da Gradle</li>
+</ul>
+</li>
+<li>Usa la stessa JVM configurata per la compilazione (vedi <em>toolchain</em>, più avanti)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">plugins</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#000">java</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#000">application</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">application</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#177500">// Nome qualificato della classe contenente il main
+</span></span></span><span style="display:flex;"><span>    <span style="color:#000">mainClass</span> = <span style="color:#c41a16">"it.unibo.myapp.MyApplication"</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li><code>./gradlew run</code> compila ed esegue <code>it.unibo.myapp.MyApplication</code>
+<ul>
+<li>Sostituisce il lancio manuale di <code>java -cp build/classes/java/main ...</code> a mano!</li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="utilizzo-di-application-con-multipli-main-tramite-proprietà-di-progetto">Utilizzo di <code>application</code> con multipli <code>main</code> tramite proprietà di progetto</h2>
+<p>Nel caso in cui vi fossero più classi con un main, è possibile passare a Gradle il nome di classe da lanciare.</p>
+<p>Per farlo, sfruttiamo il concetto di <em>proprietà</em> del progetto.</p>
+<p>Le proprietà sono associazioni chiave-valore fra due stringhe che possono essere:</p>
+<ul>
+<li>fornite come configurazione del sistema <strong>$\leftarrow$ non lo vediamo</strong></li>
+<li>fornite come variabile d’ambiente <strong>$\leftarrow$ non lo vediamo</strong></li>
+<li>scritte in un file <code>gradle.properties</code> <em>$\leftarrow$ per OOP cambia poco rispetto a scriverlo nel <code>build.gradle.kts</code></em></li>
+<li>passate da terminale in formato <code>-Pnome=valore</code> <em>$\leftarrow$ utile se si hanno più main</em></li>
+</ul>
+<p>Scrivendo quanto segue nel <code>build.gradle.kts</code></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">application</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#177500">// prende la main class dalle proprietà di  progetto
+</span></span></span><span style="display:flex;"><span>    <span style="color:#000">mainClass</span> = <span style="color:#000">providers</span>.<span style="color:#000">gradleProperty</span>(<span style="color:#c41a16">"myMainClass"</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>È possibile poi scegliere la main class da avviare usando:</p>
+<ul>
+<li><code>./gradlew run -PmyMainClass=...</code>
+<ul>
+<li>(sostituendo ai <code>...</code> il nome qualificato della main class)</li>
+</ul>
+</li>
+</ul>
+<p>Ad esempio, se abbiamo due classi con main <code>it.unibo.oop.Pluto</code> e <code>it.unibo.oop.Paperino</code> nel nostro progetto, possiamo lanciare:</p>
+<ul>
+<li><code>./gradlew run -PmyMainClass=it.unibo.oop.Pluto</code>
+<ul>
+<li>per eseguire <code>Pluto</code></li>
+</ul>
+</li>
+<li><code>./gradlew run -PmyMainClass=it.unibo.oop.Paperino</code>
+<ul>
+<li>per eseguire <code>Paperino</code></li>
+</ul>
+</li>
+</ul>
+</section><section>
+<h2 id="anche-java-è-una-dipendenza">Anche Java è una dipendenza</h2>
+<p><strong>Problema</strong>: quale versione di Java usa Gradle per compilare ed eseguire?</p>
+<ul>
+<li>Di default, <em>la stessa JVM su cui gira Gradle</em>
+<ul>
+<li>ossia quella indicata da <code>JAVA_HOME</code>, o il primo <code>java</code> trovato nel <code>PATH</code></li>
+</ul>
+</li>
+<li>Quindi <strong>dipende dalla macchina</strong> su cui si lancia la build!</li>
+</ul>
+<p>Cosa può andare storto?</p>
+<ul>
+<li>Il progetto usa costrutti di Java 25, ma sulla macchina di un collega è installato Java 17
+<ul>
+<li>$\Rightarrow$ errori di compilazione difficili da interpretare</li>
+</ul>
+</li>
+<li>Il progetto è compilato con un JDK più recente di quello usato per eseguirlo
+<ul>
+<li>$\Rightarrow$ <code>UnsupportedClassVersionError</code> a runtime</li>
+</ul>
+</li>
+<li>Progetti diversi richiedono versioni diverse di Java
+<ul>
+<li>$\Rightarrow$ si finisce a modificare <code>JAVA_HOME</code> a mano a seconda del progetto</li>
+</ul>
+</li>
+</ul>
+<p>Esattamente lo stesso problema già risolto per Gradle con il <em>wrapper</em>:
+vogliamo <strong>dichiarare</strong> la versione di Java nel progetto, e che sia il build system a procurarla.</p>
+</section><section>
+<h2 id="java-toolchains">Java toolchains</h2>
+<p>Una <strong>toolchain</strong> è un JDK (compilatore, JVM, <code>javadoc</code>, …) di una specifica versione,
+che Gradle usa per costruire il progetto,
+<strong>indipendentemente</strong> dalla JVM su cui gira Gradle stesso.</p>
+<p>La versione si dichiara nel <code>build.gradle.kts</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">java</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#000">toolchain</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#177500">// Versione di Java usata per compilare ed eseguire il progetto
+</span></span></span><span style="display:flex;"><span>        <span style="color:#000">languageVersion</span>.<span style="color:#a90d91">set</span>(<span style="color:#3f6e75">JavaLanguageVersion</span>.<span style="color:#000">of</span>(<span style="color:#1c01ce">21</span>))
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>La toolchain viene usata da tutti i task Java:</p>
+<ul>
+<li>compilazione (<code>compileJava</code>, <code>compileTestJava</code>)</li>
+<li>esecuzione dei test (<code>test</code>)</li>
+<li>generazione della documentazione (<code>javadoc</code>)</li>
+<li>esecuzione dell’applicazione (<code>run</code>, dal plugin <code>application</code>)</li>
+</ul>
+</section><section>
+<h2 id="java-toolchains-dove-trova-il-jdk-gradle">Java toolchains: dove trova il JDK Gradle?</h2>
+<ol>
+<li><strong>Auto-detection</strong>: Gradle cerca i JDK già installati nel sistema
+<ul>
+<li>nei percorsi standard del sistema operativo, in <code>JAVA_HOME</code>, in SDKMAN!, in IntelliJ IDEA, …</li>
+<li><code>./gradlew javaToolchains</code> elenca i JDK trovati</li>
+</ul>
+</li>
+<li><strong>Auto-provisioning</strong>: se nessun JDK compatibile è installato, Gradle può <em>scaricarlo</em> automaticamente
+<ul>
+<li>Richiede di indicare a Gradle <em>da dove</em> scaricarlo</li>
+<li>Il modo più semplice è applicare il plugin <code>foojay-resolver-convention</code> nel <code>settings.gradle.kts</code></li>
+</ul>
+</li>
+</ol>
+<p><code>settings.gradle.kts</code></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="nohighlight" data-noescape=""><span style="display:flex;"><span><span style="color:#000">plugins</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#177500">// Automatically downloads the correct java version to run the static analyzers
+</span></span></span><span style="display:flex;"><span>    <span style="color:#000">id</span>(<span style="color:#c41a16">"org.gradle.toolchains.foojay-resolver-convention"</span>) <span style="color:#000">version</span> <span style="color:#c41a16">"1.0.0"</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000">rootProject</span>.<span style="color:#000">name</span> = <span style="color:#c41a16">"sample-gradle-project"</span>
+</span></span></code></pre></div><p>I JDK scaricati vengono salvati in <code>~/.gradle/jdks</code>, e riutilizzati da tutti i progetti.</p>
+<p><strong>Nota</strong>: per lanciare Gradle serve comunque <em>una</em> JVM installata,
+ma non è più necessario che sia quella corretta per il progetto!</p>
+</section><section>
 <h1 id="build-systems-e-introduzione-a-gradle-1">Build systems e introduzione a gradle</h1>
 <!-- this file includes generated content. Do not edit. Edit content/build-basics-gradle/generator.md, instead. -->
 <div class="deck-cover">
@@ -531,12 +672,8 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
   
 
   
-    
-  
   
 
-  
-    
   
   
 
@@ -571,30 +708,6 @@ per eseguire lo script occorre anche includere il percorso corrente:</p>
   
 
 
-
-  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.3/dist/mermaid.min.js"></script>
-  <script>
-    mermaid.initialize({"flowchart":{"minNodeWidth":0,"wrappingWidth":200},"layout":"dagre","look":"classic","startOnLoad":false,"theme":"default"});
-
-    let render = (event) => {
-      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
-      if (!mermaidElems.length){
-          return
-      }
-      mermaidElems.forEach(mermaidElem => {
-          let processed = mermaidElem.getAttribute('data-processed');
-          if (!processed){
-              
-              mermaid.init(undefined, mermaidElem);
-          }
-      });
-    };
-    
-    render({currentSlide: Reveal.getCurrentSlide()});
-
-    Reveal.on('slidechanged', render);
-    Reveal.on('ready', render);
-  </script>
 
 
 
